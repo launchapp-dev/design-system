@@ -26,3 +26,5 @@ export { Avatar, AvatarImage, AvatarFallback } from "./components/Avatar";
 export type { AvatarProps } from "./components/Avatar";
 export { Separator } from "./components/Separator";
 export { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "./components/Tooltip";
+export { TabsRoot, TabsList, TabsTrigger, TabsContent } from "./components/Tabs";
+export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "./components/Accordion";
