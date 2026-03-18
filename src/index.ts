@@ -100,6 +100,10 @@ export {
   FormMessage,
   useFormField,
 } from "./components/Form";
+export { Alert, AlertTitle, AlertDescription, alertVariants } from "./components/Alert";
+export type { AlertProps } from "./components/Alert";
+export { Toaster as SonnerToaster, toast as sonnerToast } from "./components/Sonner";
+export type { ToasterProps as SonnerToasterProps } from "./components/Sonner";
 export {
   AlertDialogRoot,
   AlertDialogTrigger,
