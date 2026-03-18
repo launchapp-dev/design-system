@@ -450,25 +450,20 @@ phases:
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Plan -> Implement -> Stories -> Typecheck -> Build -> Push -> PR -> Review"
+    description: "Plan -> Implement -> Push -> PR -> Review"
     phases:
       - requirements
       - implementation
-      - storybook
-      - typecheck
-      - build
       - push-branch
       - create-pr
       - pr-review
 
   - id: standard
     name: "Standard Task Workflow"
-    description: "Plan -> Implement -> Typecheck -> Build -> Push -> PR -> Review"
+    description: "Plan -> Implement -> Push -> PR -> Review"
     phases:
       - requirements
       - implementation
-      - typecheck
-      - build
       - push-branch
       - create-pr
       - pr-review
@@ -484,11 +479,9 @@ workflows:
 
   - id: quick-fix
     name: "Quick Fix"
-    description: "Implement -> Typecheck -> Build -> Push -> PR -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - typecheck
-      - build
       - push-branch
       - create-pr
       - pr-review
