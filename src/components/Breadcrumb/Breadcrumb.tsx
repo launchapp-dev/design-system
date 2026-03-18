@@ -90,6 +90,7 @@ const BreadcrumbSeparator = ({
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        aria-hidden="true"
       >
         <path d="m9 18 6-6-6-6" />
       </svg>
@@ -119,6 +120,7 @@ const BreadcrumbEllipsis = ({
       strokeLinecap="round"
       strokeLinejoin="round"
       className="h-4 w-4"
+      aria-hidden="true"
     >
       <circle cx="12" cy="12" r="1" />
       <circle cx="19" cy="12" r="1" />

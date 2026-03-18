@@ -34,7 +34,7 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {
   isActive?: boolean;
-} & Pick<React.ComponentPropsWithoutRef<"a">, "className" | "href" | "onClick" | "aria-label" | "children">;
+} & React.ComponentProps<"a">;
 
 const PaginationLink = ({
   className,
@@ -76,6 +76,7 @@ const PaginationPrevious = ({
       strokeLinecap="round"
       strokeLinejoin="round"
       className="h-4 w-4"
+      aria-hidden="true"
     >
       <path d="m15 18-6-6 6-6" />
     </svg>
@@ -105,6 +106,7 @@ const PaginationNext = ({
       strokeLinecap="round"
       strokeLinejoin="round"
       className="h-4 w-4"
+      aria-hidden="true"
     >
       <path d="m9 18 6-6-6-6" />
     </svg>
@@ -132,6 +134,7 @@ const PaginationEllipsis = ({
       strokeLinecap="round"
       strokeLinejoin="round"
       className="h-4 w-4"
+      aria-hidden="true"
     >
       <circle cx="12" cy="12" r="1" />
       <circle cx="19" cy="12" r="1" />
