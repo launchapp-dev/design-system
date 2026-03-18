@@ -159,3 +159,32 @@ export { Skeleton } from "./components/Skeleton";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/Collapsible";
 export { DataTable } from "./components/DataTable";
 export type { DataTableProps } from "./components/DataTable";
+export {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuContent,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+  NavigationMenuViewport,
+  NavigationMenuIndicator,
+  navigationMenuTriggerStyle,
+} from "./components/NavigationMenu";
+export {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "./components/Breadcrumb";
+export {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "./components/Pagination";
