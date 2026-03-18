@@ -21,9 +21,21 @@ const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttribut
 );
 TableHeader.displayName = "TableHeader";
 
-const TableBody = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(
-  ({ className, ...props }, ref) => (
-    <tbody ref={ref} className={cn("[&_tr:last-child]:border-0", className)} {...props} />
+interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {
+  striped?: boolean;
+}
+
+const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
+  ({ className, striped, ...props }, ref) => (
+    <tbody
+      ref={ref}
+      className={cn(
+        "[&_tr:last-child]:border-0",
+        striped && "[&_tr:nth-child(even)]:bg-muted/30",
+        className
+      )}
+      {...props}
+    />
   )
 );
 TableBody.displayName = "TableBody";
