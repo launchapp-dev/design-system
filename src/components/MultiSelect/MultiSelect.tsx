@@ -31,6 +31,7 @@ const multiSelectTriggerVariants = cva(
 export interface MultiSelectOption {
   value: string;
   label: string;
+  disabled?: boolean;
 }
 
 export interface MultiSelectProps
@@ -71,7 +72,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
       onValueChange?.(newValue);
     };
 
-    const handleRemove = (optionValue: string, e: React.MouseEvent) => {
+    const handleRemove = (optionValue: string, e: React.MouseEvent | React.KeyboardEvent) => {
       e.stopPropagation();
       onValueChange?.(value.filter((v) => v !== optionValue));
     };
@@ -111,6 +112,12 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                           aria-label={`Remove ${opt?.label ?? v}`}
                           className="ml-0.5 rounded-full p-0.5 hover:bg-secondary-foreground/20 focus:outline-none focus:ring-1 focus:ring-ring"
                           onClick={(e) => handleRemove(v, e)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              handleRemove(v, e);
+                            }
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +173,8 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                   return (
                     <CommandItem
                       key={option.value}
-                      value={option.value}
+                      value={option.label}
+                      disabled={option.disabled}
                       onSelect={() => handleSelect(option.value)}
                     >
                       <div
@@ -206,6 +214,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
     );
   }
 );
+
 MultiSelect.displayName = "MultiSelect";
 
 export { MultiSelect, multiSelectTriggerVariants };

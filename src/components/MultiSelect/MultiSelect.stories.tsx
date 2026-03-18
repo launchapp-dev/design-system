@@ -2,12 +2,20 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { MultiSelect } from "./index";
 
-const meta: Meta = {
+const meta: Meta<typeof MultiSelect> = {
   title: "Components/MultiSelect",
+  component: MultiSelect,
+  argTypes: {
+    placeholder: { control: "text" },
+    searchPlaceholder: { control: "text" },
+    emptyText: { control: "text" },
+    disabled: { control: "boolean" },
+    maxCount: { control: "number" },
+  },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof MultiSelect>;
 
 const frameworks = [
   { value: "react", label: "React" },
@@ -33,20 +41,17 @@ const tags = [
   { value: "deps", label: "Dependencies" },
 ];
 
+const ControlledMultiSelect = (props: React.ComponentProps<typeof MultiSelect>) => {
+  const [value, setValue] = React.useState<string[]>([]);
+  return <MultiSelect {...props} value={value} onValueChange={setValue} />;
+};
+
 export const Default: Story = {
-  render: () => {
-    const [value, setValue] = React.useState<string[]>([]);
-    return (
-      <div className="w-full max-w-sm">
-        <MultiSelect
-          options={frameworks}
-          value={value}
-          onValueChange={setValue}
-          placeholder="Select frameworks..."
-        />
-      </div>
-    );
-  },
+  render: () => (
+    <div className="w-full max-w-sm">
+      <ControlledMultiSelect options={frameworks} placeholder="Select frameworks..." />
+    </div>
+  ),
 };
 
 export const WithPreselected: Story = {
@@ -149,6 +154,32 @@ export const Disabled: Story = {
         placeholder="Select frameworks..."
         disabled
       />
+    </div>
+  ),
+};
+
+export const WithDisabledOptions: Story = {
+  render: () => {
+    const options = [
+      { value: "react", label: "React" },
+      { value: "vue", label: "Vue", disabled: true },
+      { value: "angular", label: "Angular" },
+      { value: "svelte", label: "Svelte", disabled: true },
+      { value: "solid", label: "SolidJS" },
+    ];
+    const [value, setValue] = React.useState<string[]>([]);
+    return (
+      <div className="w-full max-w-sm">
+        <MultiSelect options={options} value={value} onValueChange={setValue} placeholder="Select frameworks..." />
+      </div>
+    );
+  },
+};
+
+export const EmptyState: Story = {
+  render: () => (
+    <div className="w-full max-w-sm">
+      <ControlledMultiSelect options={[]} emptyText="No frameworks available." />
     </div>
   ),
 };
