@@ -67,3 +67,11 @@ export {
   dismiss,
 } from "./components/Toast";
 export type { ToastData, ToastInput, ToastVariant } from "./components/Toast";
+export { Toggle, toggleVariants, type ToggleProps } from "./components/Toggle";
+export {
+  ToggleGroup,
+  ToggleGroupItem,
+  type ToggleGroupProps,
+  type ToggleGroupItemProps,
+} from "./components/ToggleGroup";
+export { Progress, type ProgressProps } from "./components/Progress";
