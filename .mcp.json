@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ao": {
+      "command": "/Users/samishukri/ao-cli/target/debug/ao",
+      "args": ["--project-root", "/Users/samishukri/design-system", "mcp", "serve"]
+    }
+  }
+}

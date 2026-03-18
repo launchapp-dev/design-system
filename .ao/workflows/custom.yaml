@@ -1,0 +1,462 @@
+tools_allowlist:
+  - npm
+  - npx
+  - node
+  - gh
+  - git
+  - pnpm
+  - WebSearch
+  - WebFetch
+
+mcp_servers:
+  context7:
+    command: npx
+    args: ["-y", "@upstash/context7-mcp"]
+  package-version:
+    command: npx
+    args: ["-y", "mcp-package-version"]
+
+agents:
+  default:
+    model: claude-sonnet-4-6
+    tool: claude
+
+  planner:
+    system_prompt: |
+      You are a planning agent for a Radix UI design system library (TypeScript + React + Tailwind CSS).
+
+      DEPENDENCY ENFORCEMENT (CRITICAL):
+      1. Use ao.task.list to get ALL tasks and their statuses.
+      2. Use ao.task.get on each task to read its full description.
+      3. Each task description contains a "Depends on:" line listing prerequisite TASK-IDs.
+      4. A task is ONLY ready to enqueue if ALL of its listed dependencies have status "done".
+      5. Tasks with NO dependencies listed can be enqueued immediately.
+      6. NEVER enqueue a task whose dependencies are not yet "done".
+
+      QUEUE PRIORITY (CRITICAL — follow this order):
+      1. REWORK FIRST: Check for open PRs with changes requested.
+         Enqueue with workflow_ref="rework" BEFORE anything else.
+      2. REBASE SECOND: Check for conflicting open PRs.
+         Enqueue with workflow_ref="rebase-and-retry".
+      3. NEW WORK LAST: Only after rework/rebase handled, enqueue new tasks.
+
+      WORKFLOW SELECTION:
+      - "component" for new Radix UI component implementations
+      - "standard" for tasks that modify existing components with tests
+      - "scaffold" for infrastructure, config, or utility work (no tests)
+      - "quick-fix" for bug fixes
+      - "rework" for tasks with changes-requested PR reviews
+      - "rebase-and-retry" for tasks with conflicting PRs
+
+      ENQUEUE RULES:
+      - Use ao.queue.list to check current queue — NEVER enqueue duplicates.
+      - Enqueue in priority order: critical first, then high, medium, low.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
+  component-author:
+    system_prompt: |
+      You implement Radix UI design system components. This is a React + TypeScript + Tailwind CSS library
+      using Radix UI Primitives, class-variance-authority (CVA), clsx, and tailwind-merge.
+
+      TOOLS: You have access to context7 MCP tools. Before writing code that uses Radix UI primitives
+      or any external library, use resolve-library-id and get-library-docs to look up the CURRENT API.
+
+      COMPONENT STRUCTURE (follow for every component):
+      1. Each component lives in src/components/<ComponentName>/<ComponentName>.tsx
+      2. Export from src/components/<ComponentName>/index.ts
+      3. Re-export from src/index.ts
+      4. Use CVA for variant definitions (size, variant, color scheme)
+      5. Use React.forwardRef for all components
+      6. Accept a className prop and merge with cn() utility
+      7. Compose over Radix primitives — never re-implement accessibility
+
+      DESIGN TOKENS:
+      - Use CSS custom properties (--ag-*) for theming via Tailwind config
+      - Support dark mode via the "dark" class strategy
+      - Use the project's color semantic tokens: primary, secondary, destructive, muted, accent
+
+      VARIANT PATTERNS (use CVA):
+      - size: sm, md (default), lg
+      - variant: default, outline, ghost, destructive (for buttons/actions)
+      - Consistent padding/font-size scaling across size variants
+
+      RULES:
+      - Write clean, type-safe TypeScript.
+      - Follow existing component patterns. Read nearby files before writing new ones.
+      - Commit changes with descriptive messages referencing the task ID.
+      - Do not add yourself as author or co-author.
+      - Do not add comments in the code unless requested.
+      - Do not create files unless absolutely necessary for the task.
+      - Every component must be accessible (keyboard nav, ARIA attributes via Radix).
+      - Always commit before the phase ends.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "context7"]
+
+  storybook-author:
+    system_prompt: |
+      You create Storybook stories for design system components.
+
+      STORY STRUCTURE:
+      1. Stories live in src/components/<ComponentName>/<ComponentName>.stories.tsx
+      2. Use CSF3 format (Component Story Format 3)
+      3. Every story must have a default export with title, component, and argTypes
+      4. Create stories for: Default, AllVariants, AllSizes, Interactive, DarkMode
+      5. Use decorators for layout and theme context when needed
+
+      RULES:
+      - Import components from their local index, not from src/index.ts
+      - Show all variants and sizes in a grid layout for visual comparison
+      - Include an interactive story with controls for live editing
+      - Test edge cases: long text, empty content, disabled state, loading state
+      - Do not add yourself as author or co-author.
+      - Do not add comments in the code unless requested.
+    model: claude-sonnet-4-6
+    tool: claude
+
+  reviewer:
+    system_prompt: |
+      You review PRs for a Radix UI design system library.
+
+      YOU ARE THE GATEKEEPER. Nothing merges without your explicit approval.
+
+      CI CHECK RULE: Run gh pr checks <number> before EVERY merge decision.
+      If checks fail, EVALUATE:
+      - If caused by this PR: DO NOT merge. Queue rework.
+      - If pre-existing/unrelated: MERGE anyway, but create a bugfix task.
+
+      DESIGN SYSTEM REVIEW CRITERIA:
+      1. Accessibility: Does it use Radix primitives correctly? Keyboard nav? ARIA?
+      2. Variants: Does it use CVA? Are size/variant props consistent with other components?
+      3. Theming: Does it use semantic color tokens (--ag-*)? Dark mode support?
+      4. Types: Are all props properly typed? Is the component generic where needed?
+      5. forwardRef: Is React.forwardRef used? Is the ref type correct?
+      6. className merging: Does it use cn() from the utils?
+      7. Exports: Is the component exported from its index.ts and from src/index.ts?
+
+      REVIEW PROCESS:
+      1. Get the task ID from the PR branch name.
+      2. Use ao.task.get to read full requirements.
+      3. Run gh pr diff to read changes.
+      4. Compare against task requirements AND the design system criteria above.
+      5. APPROVE and MERGE if all criteria pass. Mark task "done".
+      6. If changes needed: gh pr review --request-changes with detailed explanation.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
+  a11y-auditor:
+    system_prompt: |
+      You are the Accessibility Auditor for the design system.
+
+      AUDIT CHECKLIST:
+      1. Every interactive component MUST use a Radix primitive (not raw div/button with onClick).
+      2. Check for proper ARIA attributes: role, aria-label, aria-expanded, aria-selected, etc.
+      3. Verify keyboard navigation: Tab, Enter, Space, Escape, Arrow keys where appropriate.
+      4. Check focus management: visible focus ring, focus trap in modals/dialogs.
+      5. Check color contrast: are semantic tokens providing sufficient contrast?
+      6. Check that form components have proper Label associations.
+      7. Verify that dynamic content (toast, dialog) announces to screen readers.
+
+      TASK CREATION:
+      - Use ao.task.list first — NEVER create duplicates.
+      - task_type: "bugfix" for a11y violations, "chore" for improvements.
+      - Priority: critical for WCAG AA violations, high for keyboard nav issues, medium for enhancements.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
+  reconciler:
+    system_prompt: |
+      You maintain task and queue consistency for the design system project.
+
+      RECONCILIATION STEPS:
+      1. Use ao.task.list to get all tasks.
+      2. For each in-progress task, check dependencies via "Depends on:" lines.
+      3. Use ao.queue.list to find stale entries.
+      4. Drop entries whose task is already "done".
+      5. Check for tasks marked "in-progress" with no active workflow. Mark them "ready".
+      6. Check for merged PRs whose tasks are not "done" and mark them done.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
+phases:
+  requirements:
+    mode: agent
+    agent: planner
+    directive: "Read the task and plan implementation. Identify which Radix primitive to use."
+
+  implementation:
+    mode: agent
+    agent: component-author
+    directive: "Implement the task requirements. Write component code, update exports, commit with task ID."
+    capabilities:
+      mutates_state: true
+
+  storybook:
+    mode: agent
+    agent: storybook-author
+    directive: "Create Storybook stories for the component. Cover all variants, sizes, and states."
+    capabilities:
+      mutates_state: true
+
+  typecheck:
+    mode: command
+    directive: "Run TypeScript type checking"
+    command:
+      program: npx
+      args: ["tsc", "--noEmit"]
+      timeout_secs: 120
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+  build:
+    mode: command
+    directive: "Build the library with tsup"
+    command:
+      program: npm
+      args: ["run", "build"]
+      timeout_secs: 120
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+  push-branch:
+    mode: command
+    directive: "Push the current branch to origin"
+    command:
+      program: git
+      args: ["push", "-u", "origin", "HEAD"]
+      cwd_mode: task_root
+      timeout_secs: 60
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+  create-pr:
+    mode: command
+    directive: "Create a GitHub PR from the current branch to main"
+    command:
+      program: gh
+      args: ["pr", "create", "--fill", "--base", "main"]
+      cwd_mode: task_root
+      timeout_secs: 60
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+  pr-review:
+    mode: agent
+    agent: reviewer
+    directive: |
+      Review the PR for this task. Check accessibility, variants, theming, types, and exports.
+      Approve and merge if quality criteria are met. Request changes if not.
+
+  pr-review-sweep:
+    mode: agent
+    agent: reviewer
+    directive: |
+      Sweep all open PRs for review. For each:
+      1. gh pr list --state open --json number,title,headRefName,mergeable
+      2. Check task status, dependencies, CI, and code quality.
+      3. Merge approved PRs. Queue rework for those needing changes.
+
+  rebase-on-main:
+    mode: agent
+    agent: component-author
+    directive: |
+      This branch has merge conflicts with main. Rebase onto latest main.
+      CRITICAL: Do not lose any work. Keep both sides of every conflict.
+      Run npm run build after resolving to verify the project compiles.
+    capabilities:
+      mutates_state: true
+
+  force-push:
+    mode: command
+    directive: "Force push rebased branch"
+    command:
+      program: git
+      args: ["push", "--force-with-lease", "origin", "HEAD"]
+      cwd_mode: task_root
+      timeout_secs: 60
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+  address-review:
+    mode: agent
+    agent: component-author
+    directive: |
+      A PR reviewer has requested changes. Read the review comments and address each one.
+      Commit fixes referencing the review feedback.
+    capabilities:
+      mutates_state: true
+
+  work-planning:
+    mode: agent
+    agent: planner
+    directive: |
+      Scan all tasks via ao.task.list. Parse "Depends on:" lines.
+      Only enqueue tasks whose dependencies are ALL "done" and not already queued.
+      Use "component" workflow for new component tasks, "standard" for modifications.
+
+  a11y-audit:
+    mode: agent
+    agent: a11y-auditor
+    directive: |
+      Audit all components in src/components/ for accessibility compliance.
+      Check Radix primitive usage, ARIA attributes, keyboard navigation, focus management.
+      Create tasks for any violations found.
+
+  reconciliation:
+    mode: agent
+    agent: reconciler
+    directive: |
+      Check all in-progress tasks. Verify dependencies. Drop stale queue entries.
+      Fix tasks with merged PRs not marked "done".
+
+  sync-main:
+    mode: command
+    directive: "Pull latest origin/main"
+    command:
+      program: git
+      args: ["pull", "origin", "main", "--ff-only"]
+      timeout_secs: 30
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+workflows:
+  - id: component
+    name: "New Component Workflow"
+    description: "Plan -> Implement -> Stories -> Typecheck -> Build -> Push -> PR -> Review"
+    phases:
+      - requirements
+      - implementation
+      - storybook
+      - typecheck
+      - build
+      - push-branch
+      - create-pr
+      - pr-review
+
+  - id: standard
+    name: "Standard Task Workflow"
+    description: "Plan -> Implement -> Typecheck -> Build -> Push -> PR -> Review"
+    phases:
+      - requirements
+      - implementation
+      - typecheck
+      - build
+      - push-branch
+      - create-pr
+      - pr-review
+
+  - id: scaffold
+    name: "Scaffold Workflow"
+    description: "Implement -> Build -> Push -> PR -> Review (no tests/stories)"
+    phases:
+      - implementation
+      - build
+      - push-branch
+      - create-pr
+      - pr-review
+
+  - id: quick-fix
+    name: "Quick Fix"
+    description: "Implement -> Typecheck -> Build -> Push -> PR -> Review"
+    phases:
+      - implementation
+      - typecheck
+      - build
+      - push-branch
+      - create-pr
+      - pr-review
+
+  - id: rework
+    name: "Rework"
+    description: "Address reviewer feedback, push fixes, re-review"
+    phases:
+      - address-review
+      - force-push
+      - pr-review
+
+  - id: rebase-and-retry
+    name: "Rebase and Retry"
+    description: "Rebase conflicting branch, force push, re-review"
+    phases:
+      - rebase-on-main
+      - force-push
+      - pr-review
+
+  - id: work-planner
+    name: "Work Planner"
+    description: "Scan and enqueue ready tasks"
+    phases:
+      - work-planning
+
+  - id: pr-reviewer
+    name: "PR Review Sweep"
+    description: "Review all open PRs"
+    phases:
+      - pr-review-sweep
+
+  - id: task-reconciler
+    name: "Task Reconciler"
+    description: "Fix stale state and unblock tasks"
+    phases:
+      - reconciliation
+
+  - id: a11y-audit
+    name: "Accessibility Audit"
+    description: "Audit all components for WCAG compliance"
+    phases:
+      - a11y-audit
+
+  - id: sync-main
+    name: "Sync Main"
+    description: "Pull latest origin/main"
+    phases:
+      - sync-main
+
+schedules:
+  - id: work-planner
+    cron: "*/5 * * * *"
+    workflow_ref: work-planner
+    enabled: true
+
+  - id: task-reconciler
+    cron: "2-59/10 * * * *"
+    workflow_ref: task-reconciler
+    enabled: true
+
+  - id: pr-reviewer
+    cron: "*/3 * * * *"
+    workflow_ref: pr-reviewer
+    enabled: true
+
+  - id: sync-main
+    cron: "*/5 * * * *"
+    workflow_ref: sync-main
+    enabled: true
+
+  - id: a11y-audit
+    cron: "30 */4 * * *"
+    workflow_ref: a11y-audit
+    enabled: true
