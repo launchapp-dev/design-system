@@ -92,3 +92,68 @@ export const WithDescription: Story = {
     </div>
   ),
 };
+
+export const Interactive: Story = {
+  args: {
+    theme: "system",
+    richColors: false,
+    position: "bottom-right",
+  },
+  argTypes: {
+    theme: {
+      control: "select",
+      options: ["light", "dark", "system"],
+    },
+    position: {
+      control: "select",
+      options: ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"],
+    },
+    richColors: {
+      control: "boolean",
+    },
+  },
+  render: (args) => (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+      <Toaster {...args} />
+      <button
+        style={{ padding: "8px 16px", border: "1px solid #e2e8f0", borderRadius: "6px", cursor: "pointer" }}
+        onClick={() => toast("Notification triggered")}
+      >
+        Trigger Toast
+      </button>
+    </div>
+  ),
+};
+
+export const DarkMode: Story = {
+  decorators: [
+    (Story) => (
+      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px", minHeight: "120px" }}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: () => (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+      <Toaster theme="dark" richColors />
+      <button
+        style={{ padding: "8px 16px", border: "1px solid #374151", background: "#1f2937", color: "#f9fafb", borderRadius: "6px", cursor: "pointer" }}
+        onClick={() => toast.success("Dark mode toast")}
+      >
+        Success
+      </button>
+      <button
+        style={{ padding: "8px 16px", border: "1px solid #374151", background: "#1f2937", color: "#f9fafb", borderRadius: "6px", cursor: "pointer" }}
+        onClick={() => toast.error("Dark mode error")}
+      >
+        Error
+      </button>
+      <button
+        style={{ padding: "8px 16px", border: "1px solid #374151", background: "#1f2937", color: "#f9fafb", borderRadius: "6px", cursor: "pointer" }}
+        onClick={() => toast.info("Dark mode info")}
+      >
+        Info
+      </button>
+    </div>
+  ),
+};

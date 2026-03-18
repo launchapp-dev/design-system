@@ -121,3 +121,50 @@ export const WithoutTitle: Story = {
     </Alert>
   ),
 };
+
+export const Interactive: Story = {
+  args: {
+    variant: "default",
+  },
+  render: (args) => (
+    <Alert {...args}>
+      <InfoIcon />
+      <AlertTitle>Interactive Alert</AlertTitle>
+      <AlertDescription>Use the controls panel to switch variants and see live changes.</AlertDescription>
+    </Alert>
+  ),
+};
+
+export const DarkMode: Story = {
+  decorators: [
+    (Story) => (
+      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxWidth: "500px" }}>
+      <Alert>
+        <InfoIcon />
+        <AlertTitle>Default</AlertTitle>
+        <AlertDescription>Neutral informational message.</AlertDescription>
+      </Alert>
+      <Alert variant="destructive">
+        <AlertCircleIcon />
+        <AlertTitle>Destructive</AlertTitle>
+        <AlertDescription>Something went wrong. Please try again.</AlertDescription>
+      </Alert>
+      <Alert variant="warning">
+        <TriangleAlertIcon />
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>Proceed with caution.</AlertDescription>
+      </Alert>
+      <Alert variant="success">
+        <CheckCircleIcon />
+        <AlertTitle>Success</AlertTitle>
+        <AlertDescription>Operation completed successfully.</AlertDescription>
+      </Alert>
+    </div>
+  ),
+};
