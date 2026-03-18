@@ -24,6 +24,9 @@ mcp_servers:
   github:
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
+  figma:
+    url: "https://mcp.figma.com/mcp"
+    type: http
 
 agents:
   default:
@@ -172,6 +175,41 @@ agents:
       TASK CREATION:
       - Use ao.task.list first — NEVER create duplicates.
       - task_type: "bugfix" for a11y violations, "chore" for improvements.
+      - Priority: critical for WCAG AA violations, high for keyboard nav issues, medium for enhancements.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
+  design-extractor:
+    system_prompt: |
+      You are a Design-to-Code agent for the design system. You use Figma MCP tools to extract
+      design context from Figma files and translate them into component implementations.
+
+      CAPABILITIES (via Figma MCP):
+      - Generate code from selected Figma frames
+      - Extract design variables (colors, spacing, typography) from Figma
+      - Retrieve component definitions and layout data
+      - Keep design system components consistent with Figma via Code Connect
+
+      WORKFLOW:
+      1. Use Figma MCP tools to read the design file or selected frames.
+      2. Extract design tokens: colors, spacing, typography, border radius, shadows.
+      3. Map Figma tokens to our --ag-* CSS custom property system.
+      4. Generate component code that matches the Figma design exactly.
+      5. Use CVA for variants if the Figma design shows multiple states/sizes.
+      6. Ensure generated code uses our existing utilities (cn, forwardRef, Radix primitives).
+
+      DESIGN TOKEN SYNC:
+      - Compare Figma variables against src/styles/globals.css tokens.
+      - If Figma has new tokens not in our system, create tasks to add them.
+      - If our tokens differ from Figma, flag the discrepancy.
+
+      RULES:
+      - Always use Radix primitives for interactive components.
+      - Always use our cn() utility for className merging.
+      - Match Figma designs pixel-perfect — colors, spacing, typography.
+      - Do not add yourself as author or co-author.
+      - Commit changes with descriptive messages.
       - Priority: critical for WCAG AA violations, high for keyboard nav issues, medium for enhancements.
     model: claude-sonnet-4-6
     tool: claude
@@ -413,6 +451,30 @@ phases:
     capabilities:
       mutates_state: true
 
+  figma-extract:
+    mode: agent
+    agent: design-extractor
+    directive: |
+      Extract design context from the Figma file linked in the task description.
+      Use Figma MCP tools to read frames, extract tokens, and generate component code.
+      Map Figma design tokens to our --ag-* CSS custom property system.
+      Commit the generated code with the task ID in the message.
+    capabilities:
+      mutates_state: true
+
+  design-token-sync:
+    mode: agent
+    agent: design-extractor
+    directive: |
+      Sync design tokens between Figma and the design system.
+      1. Use Figma MCP to extract all design variables (colors, spacing, typography).
+      2. Compare against src/styles/globals.css --ag-* tokens.
+      3. Update globals.css with any new or changed tokens.
+      4. Update tailwind.config.ts if new token categories are needed.
+      5. Commit changes.
+    capabilities:
+      mutates_state: true
+
   work-planning:
     mode: agent
     agent: planner
@@ -558,6 +620,24 @@ workflows:
     description: "Fix stale state and unblock tasks"
     phases:
       - reconciliation
+
+  - id: figma-to-code
+    name: "Figma to Code"
+    description: "Extract design from Figma -> Implement -> Push -> PR -> Review"
+    phases:
+      - figma-extract
+      - push-branch
+      - create-pr
+      - pr-review
+
+  - id: design-token-sync
+    name: "Design Token Sync"
+    description: "Sync Figma design tokens to CSS custom properties"
+    phases:
+      - design-token-sync
+      - push-branch
+      - create-pr
+      - pr-review
 
   - id: a11y-audit
     name: "Accessibility Audit"
