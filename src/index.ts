@@ -238,3 +238,7 @@ export {
   MenubarSubTrigger,
   MenubarRadioGroup,
 } from "./components/Menubar";
+export { Combobox, comboboxTriggerVariants } from "./components/Combobox";
+export type { ComboboxProps, ComboboxOption } from "./components/Combobox";
+export { MultiSelect, multiSelectTriggerVariants } from "./components/MultiSelect";
+export type { MultiSelectProps, MultiSelectOption } from "./components/MultiSelect";
