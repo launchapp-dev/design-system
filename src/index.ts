@@ -242,3 +242,34 @@ export { Combobox, comboboxTriggerVariants } from "./components/Combobox";
 export type { ComboboxProps, ComboboxOption } from "./components/Combobox";
 export { MultiSelect, multiSelectTriggerVariants } from "./components/MultiSelect";
 export type { MultiSelectProps, MultiSelectOption } from "./components/MultiSelect";
+export {
+  ChartContainer,
+  LineChart,
+  BarChart,
+  AreaChart,
+  PieChart,
+  CHART_COLORS,
+  Line,
+  Bar,
+  Area,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ChartTooltip,
+  Legend,
+  ResponsiveContainer,
+} from "./components/Chart";
+export type {
+  ChartConfig,
+  ChartContainerProps,
+  LineChartProps,
+  BarChartProps,
+  AreaChartProps,
+  PieChartProps,
+} from "./components/Chart";
+export { KPICard } from "./components/KPICard";
+export type { KPICardProps } from "./components/KPICard";
+export { StatDisplay } from "./components/StatDisplay";
+export type { StatDisplayProps } from "./components/StatDisplay";

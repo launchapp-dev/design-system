@@ -36,6 +36,12 @@
 
     --ag-font-sans: "Inter";
     --ag-font-mono: "JetBrains Mono";
+
+    --ag-chart-1: 262 83% 58%;
+    --ag-chart-2: 200 80% 50%;
+    --ag-chart-3: 150 60% 45%;
+    --ag-chart-4: 30 90% 55%;
+    --ag-chart-5: 350 80% 55%;
   }
 
   .dark {
@@ -66,6 +72,12 @@
     --ag-border: 240 3.7% 15.9%;
     --ag-input: 240 3.7% 15.9%;
     --ag-ring: 263 70% 50%;
+
+    --ag-chart-1: 263 70% 65%;
+    --ag-chart-2: 200 75% 60%;
+    --ag-chart-3: 150 55% 55%;
+    --ag-chart-4: 30 85% 65%;
+    --ag-chart-5: 350 75% 65%;
   }
 
   * {
