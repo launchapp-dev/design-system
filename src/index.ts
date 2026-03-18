@@ -101,6 +101,17 @@ export {
   useFormField,
 } from "./components/Form";
 export {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandSeparator,
+  CommandShortcut,
+} from "./components/Command";
+export {
   AlertDialogRoot,
   AlertDialogTrigger,
   AlertDialogPortal,
