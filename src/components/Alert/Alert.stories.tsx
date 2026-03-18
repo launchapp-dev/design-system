@@ -7,7 +7,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "destructive", "warning", "success"],
+      options: ["default", "info", "destructive", "warning", "success"],
     },
   },
 } satisfies Meta<typeof Alert>;
@@ -56,6 +56,16 @@ export const Default: Story = {
   ),
 };
 
+export const Info: Story = {
+  render: () => (
+    <Alert variant="info">
+      <InfoIcon />
+      <AlertTitle>Information</AlertTitle>
+      <AlertDescription>This action will update your account settings immediately.</AlertDescription>
+    </Alert>
+  ),
+};
+
 export const Destructive: Story = {
   render: () => (
     <Alert variant="destructive">
@@ -93,6 +103,11 @@ export const AllVariants: Story = {
         <InfoIcon />
         <AlertTitle>Default</AlertTitle>
         <AlertDescription>Neutral informational message for the user.</AlertDescription>
+      </Alert>
+      <Alert variant="info">
+        <InfoIcon />
+        <AlertTitle>Info</AlertTitle>
+        <AlertDescription>This action will update your account settings immediately.</AlertDescription>
       </Alert>
       <Alert variant="destructive">
         <AlertCircleIcon />
@@ -149,6 +164,11 @@ export const DarkMode: Story = {
         <InfoIcon />
         <AlertTitle>Default</AlertTitle>
         <AlertDescription>Neutral informational message.</AlertDescription>
+      </Alert>
+      <Alert variant="info">
+        <InfoIcon />
+        <AlertTitle>Info</AlertTitle>
+        <AlertDescription>Your changes will be applied on next login.</AlertDescription>
       </Alert>
       <Alert variant="destructive">
         <AlertCircleIcon />
