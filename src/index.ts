@@ -113,3 +113,20 @@ export {
   AlertDialogAction,
   AlertDialogCancel,
 } from "./components/AlertDialog";
+export {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+} from "./components/Sheet";
+export { ScrollArea, ScrollBar } from "./components/ScrollArea";
+export { AspectRatio } from "./components/AspectRatio";
+export {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "./components/Resizable";
