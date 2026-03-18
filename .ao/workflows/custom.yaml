@@ -15,6 +15,15 @@ mcp_servers:
   package-version:
     command: npx
     args: ["-y", "mcp-package-version"]
+  sequential-thinking:
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+  memory:
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-memory"]
+  github:
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-github"]
 
 agents:
   default:
@@ -251,12 +260,27 @@ phases:
     capabilities:
       mutates_state: true
 
+  install-deps:
+    mode: command
+    directive: "Install dependencies in the worktree"
+    command:
+      program: npm
+      args: ["install"]
+      cwd_mode: task_root
+      timeout_secs: 120
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
   typecheck:
     mode: command
     directive: "Run TypeScript type checking"
     command:
       program: npx
       args: ["tsc", "--noEmit"]
+      cwd_mode: task_root
       timeout_secs: 120
     output_contract:
       kind: phase_result
@@ -270,6 +294,7 @@ phases:
     command:
       program: npm
       args: ["run", "build"]
+      cwd_mode: task_root
       timeout_secs: 120
     output_contract:
       kind: phase_result
@@ -299,6 +324,20 @@ phases:
       args: ["pr", "create", "--fill", "--base", "main"]
       cwd_mode: task_root
       timeout_secs: 60
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+  wait-for-ci:
+    mode: command
+    directive: "Wait for CI checks to complete on the PR"
+    command:
+      program: gh
+      args: ["pr", "checks", "--watch", "--fail-fast"]
+      cwd_mode: task_root
+      timeout_secs: 600
     output_contract:
       kind: phase_result
       fields:
