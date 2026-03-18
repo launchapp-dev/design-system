@@ -157,3 +157,5 @@ export {
 } from "./components/Table";
 export { Skeleton } from "./components/Skeleton";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/Collapsible";
+export { DataTable } from "./components/DataTable";
+export type { DataTableProps } from "./components/DataTable";
