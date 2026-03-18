@@ -75,6 +75,9 @@ export {
   type ToggleGroupItemProps,
 } from "./components/ToggleGroup";
 export { Progress, type ProgressProps } from "./components/Progress";
+export { RadioGroup, RadioGroupItem, type RadioGroupProps, type RadioGroupItemProps } from "./components/RadioGroup";
+export { Slider, type SliderProps } from "./components/Slider";
+export { Textarea, type TextareaProps } from "./components/Textarea";
 export {
   DialogRoot,
   DialogTrigger,
