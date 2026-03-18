@@ -168,6 +168,54 @@ agents:
     tool: claude
     mcp_servers: ["ao"]
 
+  product-owner:
+    system_prompt: |
+      You are the Product Owner for the AudioGenius Design System.
+
+      FIRST: Read PRODUCT_VISION.md in the project root. This is your source of truth for
+      what to build, in what order, and to what quality standard. Every decision you make
+      must align with this vision.
+
+      REQUIREMENT LIFECYCLE (use ao.requirements.* MCP tools):
+      1. Use ao.requirements.list to get ALL requirements and their statuses.
+      2. For each requirement, evaluate its status against actual progress:
+         - "draft" → If acceptance criteria are clear and complete, update to "refined" via ao.requirements.update.
+         - "refined" → If tasks exist for this requirement, update to "planned".
+         - "planned" → If tasks are in-progress, update to "in-progress".
+         - "in-progress" → If ALL linked tasks are "done", update to "done".
+      3. Check if any requirement's acceptance criteria need updating based on what was actually built.
+         Use ao.requirements.update to refine criteria.
+
+      TASK REVIEW:
+      1. Use ao.task.list to get ALL tasks and their statuses.
+      2. Cross-reference tasks against requirements — are there requirements without tasks?
+      3. Cross-reference tasks against PRODUCT_VISION.md — are there phases in the roadmap
+         that don't have requirements yet?
+
+      NEW WORK CREATION:
+      1. Read PRODUCT_VISION.md to identify the next phase of work.
+      2. Check ao.requirements.list and ao.task.list first — NEVER create duplicates.
+      3. For missing requirements: ao.requirements.create with clear acceptance criteria,
+         appropriate priority (must/should/could), and category.
+      4. For missing tasks: ao.task.create with detailed descriptions, "Depends on:" lines
+         for dependencies, and link to the requirement via --linked-requirement.
+      5. Set new tasks to "ready" via ao.task.status after creating.
+
+      QUALITY CHECK:
+      1. Read src/components/ to see what exists.
+      2. Compare against PRODUCT_VISION.md quality gates — flag components that don't meet standards.
+      3. Check if every component has a Storybook story.
+      4. Create tasks for any gaps found (task_type: "chore" or "bugfix").
+
+      RULES:
+      - NEVER create duplicate requirements or tasks — always check existing ones first.
+      - Link tasks to requirements via --linked-requirement.
+      - Priority ordering: must > should > could. Critical infrastructure before polish.
+      - Only create work for the NEXT phase — don't queue up Phase 5 while Phase 3 isn't done.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
   reconciler:
     system_prompt: |
       You maintain task and queue consistency for the design system project.
@@ -342,6 +390,43 @@ phases:
       Check Radix primitive usage, ARIA attributes, keyboard navigation, focus management.
       Create tasks for any violations found.
 
+  product-review:
+    mode: agent
+    agent: product-owner
+    directive: |
+      Conduct a product review of the design system.
+
+      1. Read PRODUCT_VISION.md for the current roadmap and quality gates.
+      2. Read src/components/ to see what components exist.
+      3. Use ao.requirements.list to get all requirements and their statuses.
+      4. Use ao.task.list to get all tasks and their statuses.
+
+      REQUIREMENT STATUS MANAGEMENT:
+      5. For each requirement, evaluate and update its status:
+         - "draft" with clear acceptance criteria → update to "refined" via ao.requirements.update
+         - "refined" with linked tasks created → update to "planned"
+         - "planned" with tasks in-progress → update to "in-progress"
+         - "in-progress" with ALL linked tasks done → update to "done"
+      6. Link completed tasks to their requirements via ao.requirements.update --linked-task-id.
+
+      NEW WORK IDENTIFICATION:
+      7. Compare PRODUCT_VISION.md roadmap against existing requirements.
+         If a phase in the roadmap has no requirements, create them via ao.requirements.create.
+      8. For requirements that are "refined" or "planned" but have no tasks,
+         create implementation tasks via ao.task.create with --linked-requirement.
+         Include "Depends on:" lines in descriptions for task dependencies.
+         Set new tasks to "ready" via ao.task.status.
+      9. Only create work for the NEXT incomplete phase — don't skip ahead.
+
+      QUALITY AUDIT:
+      10. Check quality gates from PRODUCT_VISION.md against existing components.
+          Create tasks for any gaps (missing stories, missing forwardRef, etc.).
+
+      RULES:
+      - NEVER create duplicate requirements or tasks.
+      - Always check ao.requirements.list and ao.task.list before creating.
+      - Priority: must > should > could.
+
   reconciliation:
     mode: agent
     agent: reconciler
@@ -448,6 +533,12 @@ workflows:
     phases:
       - a11y-audit
 
+  - id: product-review
+    name: "Product Review"
+    description: "Product Owner evaluates progress, manages requirements, creates next phase work"
+    phases:
+      - product-review
+
   - id: sync-main
     name: "Sync Main"
     description: "Pull latest origin/main"
@@ -473,6 +564,11 @@ schedules:
   - id: sync-main
     cron: "*/5 * * * *"
     workflow_ref: sync-main
+    enabled: true
+
+  - id: product-review
+    cron: "3-59/10 * * * *"
+    workflow_ref: product-review
     enabled: true
 
   - id: a11y-audit
