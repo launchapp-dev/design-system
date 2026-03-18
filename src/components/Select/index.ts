@@ -1,4 +1,3 @@
-export { cn } from "./lib/utils";
 export {
   SelectRoot,
   SelectGroup,
@@ -10,4 +9,4 @@ export {
   SelectSeparator,
   SelectScrollUpButton,
   SelectScrollDownButton,
-} from "./components/Select";
+} from "./Select";
