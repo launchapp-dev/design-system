@@ -220,6 +220,10 @@ export {
   ContextMenuSubTrigger,
   ContextMenuRadioGroup,
 } from "./components/ContextMenu";
+export { Combobox } from "./components/Combobox";
+export type { ComboboxProps, ComboboxOption } from "./components/Combobox";
+export { MultiSelect } from "./components/MultiSelect";
+export type { MultiSelectProps, MultiSelectOption } from "./components/MultiSelect";
 export {
   MenubarRoot,
   MenubarMenu,
