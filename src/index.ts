@@ -28,3 +28,27 @@ export { Separator } from "./components/Separator";
 export { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "./components/Tooltip";
 export { TabsRoot, TabsList, TabsTrigger, TabsContent } from "./components/Tabs";
 export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "./components/Accordion";
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+} from "./components/DropdownMenu";
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverAnchor,
+} from "./components/Popover";
