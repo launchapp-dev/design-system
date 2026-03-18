@@ -18,3 +18,5 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
 } from "./components/Select";
+export { Checkbox, type CheckboxProps } from "./components/Checkbox";
+export { Switch, type SwitchProps } from "./components/Switch";
