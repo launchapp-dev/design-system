@@ -370,10 +370,9 @@ workflows:
 
   - id: scaffold
     name: "Scaffold Workflow"
-    description: "Implement -> Build -> Push -> PR -> Review (no tests/stories)"
+    description: "Implement -> Push -> PR -> Review (no tests/stories)"
     phases:
       - implementation
-      - build
       - push-branch
       - create-pr
       - pr-review
