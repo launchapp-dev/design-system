@@ -145,3 +145,15 @@ export {
   ResizablePanel,
   ResizableHandle,
 } from "./components/Resizable";
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from "./components/Table";
+export { Skeleton } from "./components/Skeleton";
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/Collapsible";
