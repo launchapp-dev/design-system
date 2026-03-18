@@ -158,3 +158,63 @@ export const SimpleLinks: Story = {
     </div>
   ),
 };
+
+export const DarkMode: Story = {
+  decorators: [
+    (Story) => {
+      React.useEffect(() => {
+        document.documentElement.classList.add("dark");
+        return () => document.documentElement.classList.remove("dark");
+      }, []);
+      return (
+        <div className="dark bg-[hsl(var(--ag-background))] p-8">
+          <Story />
+        </div>
+      );
+    },
+  ],
+  render: () => (
+    <div className="flex items-center justify-center">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <li className="row-span-3">
+                  <NavigationMenuLink asChild>
+                    <a
+                      href="#"
+                      className="flex h-full w-full select-none flex-col justify-end rounded-[--ag-radius] bg-gradient-to-b from-[hsl(var(--ag-muted)/0.5)] to-[hsl(var(--ag-muted))] p-6 no-underline outline-none focus:shadow-md"
+                    >
+                      <div className="mb-2 mt-4 text-lg font-medium">
+                        AudioGenius DS
+                      </div>
+                      <p className="text-sm leading-tight text-[hsl(var(--ag-muted-foreground))]">
+                        Beautifully designed components built with Radix UI and Tailwind CSS.
+                      </p>
+                    </a>
+                  </NavigationMenuLink>
+                </li>
+                <ListItem href="#" title="Introduction">
+                  Re-usable components built using Radix UI and Tailwind CSS.
+                </ListItem>
+                <ListItem href="#" title="Installation">
+                  How to install dependencies and structure your app.
+                </ListItem>
+                <ListItem href="#" title="Typography">
+                  Styles for headings, paragraphs, lists, and more.
+                </ListItem>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+              Documentation
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
+  ),
+};

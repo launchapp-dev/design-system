@@ -181,3 +181,120 @@ function InteractivePaginator() {
 export const Interactive: Story = {
   render: () => <InteractivePaginator />,
 };
+
+export const FirstPage: Story = {
+  render: () => (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            href="#"
+            aria-disabled
+            className="pointer-events-none opacity-50"
+          />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">10</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  ),
+};
+
+export const LastPage: Story = {
+  render: () => (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">8</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">9</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>10</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext
+            href="#"
+            aria-disabled
+            className="pointer-events-none opacity-50"
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  ),
+};
+
+export const DarkMode: Story = {
+  decorators: [
+    (Story) => {
+      React.useEffect(() => {
+        document.documentElement.classList.add("dark");
+        return () => document.documentElement.classList.remove("dark");
+      }, []);
+      return (
+        <div className="dark bg-[hsl(var(--ag-background))] p-8">
+          <Story />
+        </div>
+      );
+    },
+  ],
+  render: () => (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">4</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>5</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">6</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">10</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  ),
+};
