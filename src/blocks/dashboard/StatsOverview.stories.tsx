@@ -110,3 +110,32 @@ export const DarkMode: Story = {
     ],
   },
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  args: {
+    title: "Performance Overview",
+    description: "Key metrics for the current period",
+    items: kpiItems,
+    cols: 4,
+  },
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  args: {
+    title: "Performance Overview",
+    description: "Key metrics for the current period",
+    items: kpiItems,
+    cols: 4,
+    chartData: trendChartData,
+    chartKeys: [
+      { key: "revenue", color: "hsl(var(--la-chart-1))" },
+      { key: "users", color: "hsl(var(--la-chart-2))" },
+    ],
+  },
+};

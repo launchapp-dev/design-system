@@ -116,3 +116,40 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <HeroSection
+      variant="centered"
+      badge={<Badge variant="secondary">New Release</Badge>}
+      headline="Build faster with our design system"
+      subheadline="A comprehensive library of accessible, composable components."
+      primaryAction={<Button size="lg">Get started</Button>}
+      secondaryAction={<Button size="lg" variant="outline">Learn more</Button>}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <HeroSection
+      variant="split"
+      badge={<Badge>v2.0 is here</Badge>}
+      headline="Ship products your users love"
+      subheadline="Composable, accessible, and beautifully designed components."
+      primaryAction={<Button>Start building</Button>}
+      secondaryAction={<Button variant="ghost">View docs</Button>}
+      media={
+        <div className="h-64 w-full rounded-lg bg-muted flex items-center justify-center text-muted-foreground text-sm">
+          Product preview
+        </div>
+      }
+    />
+  ),
+};

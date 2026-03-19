@@ -41,3 +41,23 @@ export const ResendReady: Story = {
     onResend: () => alert("Code resent"),
   },
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  args: {
+    email: "jane@example.com",
+    onResend: () => {},
+  },
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  args: {
+    email: "jane@example.com",
+    onResend: () => {},
+  },
+};

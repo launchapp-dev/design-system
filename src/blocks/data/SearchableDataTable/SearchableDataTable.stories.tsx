@@ -203,3 +203,39 @@ export const EmptyState: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <SearchableDataTable
+      columns={defaultColumns}
+      data={employees}
+      searchColumn="name"
+      searchPlaceholder="Search employees..."
+      filterColumn="department"
+      filterLabel="Department"
+      filterOptions={departmentOptions}
+      pageSize={5}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <SearchableDataTable
+      columns={defaultColumns}
+      data={employees}
+      searchColumn="name"
+      searchPlaceholder="Search employees..."
+      filterColumn="department"
+      filterLabel="Department"
+      filterOptions={departmentOptions}
+      pageSize={10}
+    />
+  ),
+};

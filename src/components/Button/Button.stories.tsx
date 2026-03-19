@@ -33,7 +33,7 @@ export const Default: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-      {(["default", "outline", "ghost", "destructive"] as const).map((variant) => (
+      {(["default", "secondary", "outline", "ghost", "destructive", "link"] as const).map((variant) => (
         <div key={variant} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <span style={{ fontSize: "12px", textTransform: "capitalize" }}>{variant}</span>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -72,4 +72,28 @@ export const Ghost: Story = {
 
 export const Destructive: Story = {
   render: (args) => <Button {...args} variant="destructive">Delete</Button>,
+};
+
+export const Secondary: Story = {
+  render: (args) => <Button {...args} variant="secondary">Secondary</Button>,
+};
+
+export const Link: Story = {
+  render: (args) => <Button {...args} variant="link">Link button</Button>,
+};
+
+export const IconSize: Story = {
+  render: () => (
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <Button size="icon" aria-label="Add">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      </Button>
+      <Button size="icon" variant="outline" aria-label="Add">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      </Button>
+      <Button size="icon" variant="ghost" aria-label="Add">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      </Button>
+    </div>
+  ),
 };

@@ -106,3 +106,29 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <PricingTable
+      headline="Simple, transparent pricing"
+      subheadline="Choose the plan that works best for you."
+      tiers={tiers}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <PricingTable
+      headline="Simple, transparent pricing"
+      subheadline="Choose the plan that works best for you."
+      tiers={tiers}
+    />
+  ),
+};

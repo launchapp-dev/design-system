@@ -112,3 +112,36 @@ export const DarkMode: Story = {
     maxHeight: 400,
   },
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: (args) => (
+    <div style={{ padding: "16px" }}>
+      <ActivityFeed {...args} />
+    </div>
+  ),
+  args: {
+    title: "Recent Activity",
+    items: mockItems,
+    maxHeight: 500,
+  },
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: (args) => (
+    <div style={{ padding: "24px" }}>
+      <ActivityFeed {...args} />
+    </div>
+  ),
+  args: {
+    title: "Recent Activity",
+    description: "Latest actions from your team",
+    items: mockItems,
+    maxHeight: 400,
+  },
+};

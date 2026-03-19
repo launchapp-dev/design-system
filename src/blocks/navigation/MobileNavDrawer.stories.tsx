@@ -140,3 +140,29 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <MobileNavDrawer
+      sections={sampleSections}
+      logo={<LogoMark />}
+      user={sampleUser}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <MobileNavDrawer
+      sections={sampleSections}
+      logo={<LogoMark />}
+      user={sampleUser}
+    />
+  ),
+};

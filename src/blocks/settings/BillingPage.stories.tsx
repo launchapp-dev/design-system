@@ -61,3 +61,31 @@ export const DarkMode: Story = {
     </div>
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <BillingPage
+      onUpgrade={() => console.log("Upgrade")}
+      onUpdatePayment={() => console.log("Update payment")}
+      onDownloadInvoice={(id) => console.log("Download", id)}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <div style={{ maxWidth: 800, margin: "0 auto" }}>
+      <BillingPage
+        onUpgrade={() => console.log("Upgrade")}
+        onUpdatePayment={() => console.log("Update payment")}
+        onDownloadInvoice={(id) => console.log("Download", id)}
+      />
+    </div>
+  ),
+};

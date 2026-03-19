@@ -55,3 +55,23 @@ export const DarkMode: Story = {
     </div>
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <div style={{ maxWidth: 640, margin: "0 auto" }}>
+      <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
+    </div>
+  ),
+};

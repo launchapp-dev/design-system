@@ -165,3 +165,25 @@ export const DarkMode: Story = {
     </div>
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <div className="h-[600px]">
+      <KanbanBoard initialColumns={initialColumns} />
+    </div>
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <div className="h-[600px]">
+      <KanbanBoard initialColumns={initialColumns} />
+    </div>
+  ),
+};
