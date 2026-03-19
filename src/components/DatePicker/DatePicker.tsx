@@ -47,13 +47,16 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
     },
     ref
   ) => {
+    const [open, setOpen] = React.useState(false);
     return (
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <button
             ref={ref}
             disabled={disabled}
             aria-label={selected ? format(selected, dateFormat) : placeholder}
+            aria-haspopup="dialog"
+            aria-expanded={open}
             className={cn(
               "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
