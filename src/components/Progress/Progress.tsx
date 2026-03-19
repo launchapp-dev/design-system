@@ -26,11 +26,17 @@ export interface ProgressProps
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ className, size, value, ...props }, ref) => (
+>(({ className, size, value, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ...props }, ref) => {
+  if (process.env.NODE_ENV !== "production" && !ariaLabel && !ariaLabelledBy) {
+    console.warn("Progress: provide `aria-label` or `aria-labelledby` for WCAG 4.1.2 compliance.");
+  }
+  return (
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(progressVariants({ size }), className)}
     value={value}
+    aria-label={ariaLabel}
+    aria-labelledby={ariaLabelledBy}
     {...props}
   >
     <ProgressPrimitive.Indicator
@@ -38,7 +44,8 @@ const Progress = React.forwardRef<
       style={{ transform: `translateX(-${100 - (value ?? 0)}%)` }}
     />
   </ProgressPrimitive.Root>
-));
+  );
+});
 
 Progress.displayName = ProgressPrimitive.Root.displayName;
 
