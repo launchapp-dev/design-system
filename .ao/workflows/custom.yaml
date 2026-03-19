@@ -1077,102 +1077,39 @@ phases:
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> UX Audit -> Storybook -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Changelog -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - design-review:
-          on_verdict:
-            rework:
-              target: implementation
-      - design-engineering-review:
-          on_verdict:
-            rework:
-              target: implementation
-      - code-quality
-      - ux-audit
-      - storybook
-      - sync-worktree
-      - install-deps
-      - typecheck
-      - lint-check
-      - build
       - push-branch
       - create-pr
-      - wait-for-ci
-      - changelog
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
+      - pr-review
 
   - id: standard
     name: "Standard Task Workflow"
-    description: "Implement -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - sync-worktree
-      - install-deps
-      - typecheck
-      - lint-check
-      - build
       - push-branch
       - create-pr
-      - wait-for-ci
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
+      - pr-review
 
   - id: scaffold
     name: "Scaffold Workflow"
-    description: "Implement -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - sync-worktree
-      - install-deps
-      - typecheck
-      - lint-check
-      - build
       - push-branch
       - create-pr
-      - wait-for-ci
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
+      - pr-review
 
   - id: quick-fix
     name: "Quick Fix"
-    description: "Implement -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - sync-worktree
-      - install-deps
-      - typecheck
-      - lint-check
-      - build
       - push-branch
       - create-pr
-      - wait-for-ci
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
-
-  - id: rework
-    name: "Rework"
-    description: "Address reviewer feedback, push fixes, re-review"
-    phases:
-      - address-review
-      - force-push
       - pr-review
-
-  - id: rebase-and-retry
-    name: "Rebase and Retry"
-    description: "Rebase conflicting branch, force push, re-review"
-    phases:
-      - rebase-on-main
-      - force-push
 
   - id: work-planner
     name: "Work Planner"
@@ -1192,12 +1129,6 @@ workflows:
     phases:
       - reconciliation
 
-  - id: a11y-audit
-    name: "Accessibility Audit"
-    description: "Audit all components for WCAG compliance"
-    phases:
-      - a11y-audit
-
   - id: product-review
     name: "Product Review"
     description: "Product Owner evaluates progress, manages requirements, creates next phase work"
@@ -1210,71 +1141,17 @@ workflows:
     phases:
       - dependency-update
 
+  - id: a11y-audit
+    name: "Accessibility Audit"
+    description: "Audit all components for WCAG compliance"
+    phases:
+      - a11y-audit
+
   - id: sync-main
     name: "Sync Main"
     description: "Pull latest origin/main"
     phases:
       - sync-main
-
-  - id: changelog-update
-    name: "Changelog Update"
-    description: "Generate changelog entry from conventional commits and commit to CHANGELOG.md"
-    phases:
-      - changelog
-
-  - id: visual-regression
-    name: "Visual Regression"
-    description: "Run Chromatic snapshot tests against Storybook stories"
-    phases:
-      - visual-regression-check
-
-  - id: design-advisor-review
-    name: "Design Advisor Review"
-    description: "Audit component composition patterns, CVA axes, and design token usage"
-    phases:
-      - design-review
-
-  - id: ux-research
-    name: "UX Research Audit"
-    description: "Audit all components using Nielsen's heuristics and interaction pattern analysis"
-    phases:
-      - ux-audit
-
-  - id: code-quality-sweep
-    name: "Code Quality Sweep"
-    description: "Review all recent changes for code quality, dead code, and over-engineering"
-    phases:
-      - code-quality
-
-  - id: design-engineering-review
-    name: "Design Engineering Review"
-    description: "Audit component visual quality: hierarchy, spacing, color semantics, interaction states"
-    phases:
-      - design-engineering-review
-
-  - id: product-strategy
-    name: "Product Strategy Review"
-    description: "OKR cascade planning and RICE prioritization for the design system roadmap"
-    phases:
-      - okr-strategy
-
-  - id: competitive-analysis
-    name: "Competitive Analysis"
-    description: "Benchmark AudioGenius DS against top competitors and identify differentiation gaps"
-    phases:
-      - competitive-teardown
-
-  - id: design-token-generation
-    name: "Design Token Generation"
-    description: "Audit and regenerate design tokens from brand color using ui-design-system skill"
-    phases:
-      - token-generation
-
-  - id: adoption-metrics
-    name: "Adoption Metrics Report"
-    description: "Monthly HEART-framework adoption report using product-analytics skill"
-    phases:
-      - adoption-metrics
 
 schedules:
   - id: work-planner
@@ -1310,34 +1187,4 @@ schedules:
   - id: a11y-audit
     cron: "30 */4 * * *"
     workflow_ref: a11y-audit
-    enabled: true
-
-  - id: visual-regression
-    cron: "0 2 * * *"
-    workflow_ref: visual-regression
-    enabled: false
-
-  - id: ux-research
-    cron: "0 10 * * 1"
-    workflow_ref: ux-research
-    enabled: true
-
-  - id: code-quality-sweep
-    cron: "0 9 * * 1,4"
-    workflow_ref: code-quality-sweep
-    enabled: true
-
-  - id: product-strategy
-    cron: "0 9 * * 1"
-    workflow_ref: product-strategy
-    enabled: true
-
-  - id: competitive-analysis
-    cron: "0 10 1 * *"
-    workflow_ref: competitive-analysis
-    enabled: true
-
-  - id: adoption-metrics
-    cron: "0 9 1 * *"
-    workflow_ref: adoption-metrics
     enabled: true
