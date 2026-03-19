@@ -69,6 +69,7 @@ function DataTableInner<TData, TValue>(
     <div ref={ref} className={cn("space-y-4", className)}>
       {filterCol && (
         <Input
+          aria-label={filterPlaceholder}
           placeholder={filterPlaceholder}
           value={(table.getColumn(String(filterCol))?.getFilterValue() as string) ?? ""}
           onChange={(e) =>
