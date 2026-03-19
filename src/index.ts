@@ -281,3 +281,10 @@ export { FocusScope } from "./components/FocusScope";
 export type { FocusScopeProps } from "./components/FocusScope";
 export { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification } from "./blocks/auth";
 export type { LoginFormProps, LoginValues, SignUpFormProps, SignUpValues, ForgotPasswordFormProps, ForgotPasswordValues, OTPVerificationProps } from "./blocks/auth";
+
+export { AppSidebar } from "./blocks/navigation";
+export type { AppSidebarProps, NavItem, NavSection } from "./blocks/navigation";
+export { TopNav } from "./blocks/navigation";
+export type { TopNavProps, TopNavItem, TopNavUser } from "./blocks/navigation";
+export { MobileNavDrawer } from "./blocks/navigation";
+export type { MobileNavDrawerProps } from "./blocks/navigation";
