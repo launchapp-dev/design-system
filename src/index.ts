@@ -318,3 +318,10 @@ export { FullDataTable } from "./blocks/data/FullDataTable";
 export type { FullDataTableProps, FilterOption } from "./blocks/data/FullDataTable";
 export { KanbanBoard } from "./blocks/data/KanbanBoard";
 export type { KanbanBoardProps, KanbanCard, KanbanColumn } from "./blocks/data/KanbanBoard";
+
+export { ProductCard, productCardVariants, ProductCardGrid } from "./blocks/ecommerce/ProductCard";
+export type { ProductCardProps, ProductCardItem, ProductCardGridProps } from "./blocks/ecommerce/ProductCard";
+export { ShoppingCart } from "./blocks/ecommerce/ShoppingCart";
+export type { ShoppingCartProps, CartItem } from "./blocks/ecommerce/ShoppingCart";
+export { CheckoutForm } from "./blocks/ecommerce/CheckoutForm";
+export type { CheckoutFormProps, CheckoutValues, OrderSummaryItem } from "./blocks/ecommerce/CheckoutForm";
