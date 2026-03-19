@@ -53,10 +53,12 @@ agents:
       3. NEW WORK LAST: Only after rework/rebase handled, enqueue new tasks.
 
       WORKFLOW SELECTION:
+      - "design-first" for blocks and complex UI patterns that benefit from Figma design first
       - "component" for new Radix UI component implementations
       - "standard" for tasks that modify existing components with tests
       - "scaffold" for infrastructure, config, or utility work (no tests)
       - "quick-fix" for bug fixes
+      - "figma-to-code" for tasks with an existing Figma design URL in the description
       - "rework" for tasks with changes-requested PR reviews
       - "rebase-and-retry" for tasks with conflicting PRs
 
@@ -451,12 +453,32 @@ phases:
     capabilities:
       mutates_state: true
 
+  figma-design:
+    mode: agent
+    agent: design-extractor
+    directive: |
+      Create a design in Figma for the component or block described in the task.
+
+      PROCESS:
+      1. Read the task description to understand what needs to be designed.
+      2. Read existing components in src/components/ and src/styles/globals.css to understand
+         the current design system tokens and patterns.
+      3. Use generate_figma_design to create a new Figma file with the design.
+         - Use our --ag-* color tokens mapped to actual hex values from globals.css.
+         - Follow the design principles from PRODUCT_VISION.md.
+         - Create responsive variants: mobile (375px), tablet (768px), desktop (1280px).
+         - Show all states: default, hover, focus, disabled, loading where applicable.
+      4. Record the Figma file URL in the task description or as a comment for the
+         implementation phase to reference.
+      5. Output the Figma URL so the next phase can extract from it.
+
   figma-extract:
     mode: agent
     agent: design-extractor
     directive: |
       Extract design context from the Figma file linked in the task description.
-      Use Figma MCP tools to read frames, extract tokens, and generate component code.
+      Use Figma MCP tools (get_design_context) to read frames, extract tokens,
+      and generate component code.
       Map Figma design tokens to our --ag-* CSS custom property system.
       Commit the generated code with the task ID in the message.
     capabilities:
@@ -621,9 +643,20 @@ workflows:
     phases:
       - reconciliation
 
+  - id: design-first
+    name: "Design-First Workflow"
+    description: "Design in Figma -> Extract -> Implement -> Push -> PR -> Review"
+    phases:
+      - figma-design
+      - figma-extract
+      - implementation
+      - push-branch
+      - create-pr
+      - pr-review
+
   - id: figma-to-code
     name: "Figma to Code"
-    description: "Extract design from Figma -> Implement -> Push -> PR -> Review"
+    description: "Extract existing Figma design -> Implement -> Push -> PR -> Review"
     phases:
       - figma-extract
       - push-branch
