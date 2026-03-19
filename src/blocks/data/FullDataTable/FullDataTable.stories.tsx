@@ -202,3 +202,38 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <FullDataTable
+      columns={columns}
+      data={tasks}
+      searchColumn="title"
+      searchPlaceholder="Search tasks..."
+      filterColumn="status"
+      filterOptions={statusOptions}
+      pageSize={5}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <FullDataTable
+      columns={columns}
+      data={tasks}
+      searchColumn="title"
+      searchPlaceholder="Search tasks..."
+      filterColumn="status"
+      filterOptions={statusOptions}
+      pageSize={10}
+      onBulkDelete={(rows) => console.log("Delete", rows)}
+    />
+  ),
+};

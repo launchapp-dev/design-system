@@ -172,3 +172,40 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <div className="flex h-[600px] w-full overflow-hidden border border-[hsl(var(--la-border))] rounded-lg">
+      <AppSidebar
+        sections={sampleSections}
+        logo={<LogoMark />}
+        user={sampleUser}
+        defaultCollapsed
+      />
+      <main className="flex flex-1 items-center justify-center bg-[hsl(var(--la-muted))]">
+        <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Main content area</p>
+      </main>
+    </div>
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <div className="flex h-[600px] w-full overflow-hidden border border-[hsl(var(--la-border))] rounded-lg">
+      <AppSidebar
+        sections={sampleSections}
+        logo={<LogoMark />}
+        user={sampleUser}
+      />
+      <main className="flex flex-1 items-center justify-center bg-[hsl(var(--la-muted))]">
+        <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Main content area</p>
+      </main>
+    </div>
+  ),
+};

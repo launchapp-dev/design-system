@@ -185,3 +185,31 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <ProductCardGrid
+      products={sampleProducts}
+      columns={1}
+      variant="compact"
+      onAddToCart={() => {}}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <ProductCardGrid
+      products={sampleProducts}
+      columns={2}
+      variant="detailed"
+      onAddToCart={() => {}}
+    />
+  ),
+};

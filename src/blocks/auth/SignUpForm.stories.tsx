@@ -32,3 +32,15 @@ export const WithError: Story = {
     onLoginClick: () => {},
   },
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+};

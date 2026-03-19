@@ -76,3 +76,23 @@ export const DarkMode: Story = {
     onSubmit: async (values) => console.log(values),
   },
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  args: {
+    orderItems,
+    onSubmit: async (values) => console.log(values),
+  },
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  args: {
+    orderItems,
+    onSubmit: async (values) => console.log(values),
+  },
+};

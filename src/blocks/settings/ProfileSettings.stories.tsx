@@ -52,3 +52,31 @@ export const DarkMode: Story = {
     </div>
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <ProfileSettings
+      defaultValues={{ name: "Jane Doe", username: "janedoe", bio: "Designer & coffee lover." }}
+      avatarFallback="JD"
+      onSave={(values) => console.log("Saved:", values)}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <div style={{ maxWidth: 640, margin: "0 auto" }}>
+      <ProfileSettings
+        defaultValues={{ name: "Jane Doe", username: "janedoe", bio: "Designer & coffee lover." }}
+        avatarFallback="JD"
+        onSave={(values) => console.log("Saved:", values)}
+      />
+    </div>
+  ),
+};

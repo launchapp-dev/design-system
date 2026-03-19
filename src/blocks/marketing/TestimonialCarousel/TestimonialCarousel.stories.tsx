@@ -113,3 +113,28 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <TestimonialCarousel
+      headline="What our customers say"
+      testimonials={testimonials}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <TestimonialCarousel
+      headline="What our customers say"
+      subheadline="Trusted by teams at companies of all sizes."
+      testimonials={testimonials}
+    />
+  ),
+};

@@ -95,6 +95,42 @@ export const WithGroups: Story = {
   ),
 };
 
+export const WithError: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: 200 }}>
+      <SelectRoot>
+        <SelectTrigger
+          style={{ width: 200 }}
+          className="border-destructive focus:ring-destructive"
+          aria-invalid="true"
+        >
+          <SelectValue placeholder="Select an option" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="a">Option A</SelectItem>
+          <SelectItem value="b">Option B</SelectItem>
+        </SelectContent>
+      </SelectRoot>
+      <span style={{ fontSize: "12px", color: "hsl(var(--destructive))" }}>Please select a value</span>
+    </div>
+  ),
+};
+
+export const WithDisabledItems: Story = {
+  render: () => (
+    <SelectRoot>
+      <SelectTrigger style={{ width: 220 }}>
+        <SelectValue placeholder="Select a plan" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="free">Free</SelectItem>
+        <SelectItem value="pro">Pro</SelectItem>
+        <SelectItem value="enterprise" disabled>Enterprise (contact sales)</SelectItem>
+      </SelectContent>
+    </SelectRoot>
+  ),
+};
+
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>

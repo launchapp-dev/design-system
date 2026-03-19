@@ -132,3 +132,29 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <FeatureGrid
+      headline="Everything you need"
+      subheadline="A complete toolkit for building modern applications."
+      features={sampleFeatures}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <FeatureGrid
+      headline="Everything you need"
+      subheadline="A complete toolkit for building modern applications."
+      features={sampleFeatures}
+    />
+  ),
+};

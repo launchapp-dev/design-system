@@ -38,3 +38,33 @@ export const DarkMode: Story = {
     </div>
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <AccountSettings
+      currentEmail="jane@example.com"
+      onEmailChange={(v) => console.log("Email changed:", v)}
+      onPasswordChange={(v) => console.log("Password changed:", v)}
+      onDeleteAccount={() => console.log("Delete account")}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <div style={{ maxWidth: 640, margin: "0 auto" }}>
+      <AccountSettings
+        currentEmail="jane@example.com"
+        onEmailChange={(v) => console.log("Email changed:", v)}
+        onPasswordChange={(v) => console.log("Password changed:", v)}
+        onDeleteAccount={() => console.log("Delete account")}
+      />
+    </div>
+  ),
+};

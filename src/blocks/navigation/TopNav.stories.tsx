@@ -124,3 +124,35 @@ export const DarkMode: Story = {
     />
   ),
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  render: () => (
+    <TopNav
+      logo={<LogoMark />}
+      items={navItems}
+      onSearchClick={() => {}}
+      onNotificationClick={() => {}}
+      notificationCount={5}
+      user={sampleUser}
+    />
+  ),
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  render: () => (
+    <TopNav
+      logo={<LogoMark />}
+      items={navItems}
+      onSearchClick={() => {}}
+      onNotificationClick={() => {}}
+      notificationCount={5}
+      user={sampleUser}
+    />
+  ),
+};

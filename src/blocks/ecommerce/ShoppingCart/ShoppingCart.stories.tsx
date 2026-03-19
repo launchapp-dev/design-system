@@ -116,3 +116,25 @@ export const DarkMode: Story = {
     onCheckout: () => {},
   },
 };
+
+export const Mobile: Story = {
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+  args: {
+    items: sampleItems,
+    freeShippingThreshold: 200,
+    onCheckout: () => {},
+  },
+};
+
+export const Tablet: Story = {
+  parameters: {
+    viewport: { defaultViewport: "tablet" },
+  },
+  args: {
+    items: sampleItems,
+    freeShippingThreshold: 200,
+    onCheckout: () => {},
+  },
+};
