@@ -259,6 +259,20 @@ phases:
     capabilities:
       mutates_state: true
 
+  sync-worktree:
+    mode: command
+    directive: "Rebase worktree onto latest main to prevent stale build failures"
+    command:
+      program: git
+      args: ["pull", "--rebase", "origin", "main"]
+      cwd_mode: task_root
+      timeout_secs: 60
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
   install-deps:
     mode: command
     directive: "Install dependencies in the worktree"
@@ -488,39 +502,63 @@ phases:
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Push -> PR -> Review"
+    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
     phases:
       - implementation
+      - sync-worktree
+      - install-deps
+      - build
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: standard
     name: "Standard Task Workflow"
-    description: "Implement -> Push -> PR -> Review"
+    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
     phases:
       - implementation
+      - sync-worktree
+      - install-deps
+      - build
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: scaffold
     name: "Scaffold Workflow"
-    description: "Implement -> Push -> PR -> Review (no tests/stories)"
+    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
     phases:
       - implementation
+      - sync-worktree
+      - install-deps
+      - build
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: quick-fix
     name: "Quick Fix"
-    description: "Implement -> Push -> PR -> Review"
+    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
     phases:
       - implementation
+      - sync-worktree
+      - install-deps
+      - build
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: rework
     name: "Rework"
