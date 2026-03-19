@@ -5,6 +5,7 @@ import {
   DragOverEvent,
   DragStartEvent,
   DragOverlay,
+  KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
@@ -13,6 +14,7 @@ import {
 } from "@dnd-kit/core";
 import {
   SortableContext,
+  sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
   arrayMove,
@@ -158,7 +160,8 @@ export const KanbanBoard = React.forwardRef<HTMLDivElement, KanbanBoardProps>(
     const [newCardTitle, setNewCardTitle] = React.useState("");
 
     const sensors = useSensors(
-      useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
+      useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+      useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
     );
 
     const findColumnByCardId = React.useCallback(

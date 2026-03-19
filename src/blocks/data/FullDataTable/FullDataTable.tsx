@@ -33,6 +33,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/DropdownMenu";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover";
+import {
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/Select";
+import { Label } from "@/components/Label";
 import { cn } from "@/lib/utils";
 
 export interface FilterOption {
@@ -199,16 +207,16 @@ function FullDataTableInner<TData>(
                 </p>
                 <div className="space-y-1">
                   {filterOptions.map((option) => (
-                    <label
+                    <Label
                       key={option.value}
-                      className="flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-sm hover:bg-accent"
+                      className="flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-sm font-normal hover:bg-accent"
                     >
                       <Checkbox
                         checked={activeFilterValues.includes(option.value)}
                         onCheckedChange={() => toggleFilterValue(option.value)}
                       />
                       {option.label}
-                    </label>
+                    </Label>
                   ))}
                 </div>
                 {activeFilterValues.length > 0 && (
@@ -365,17 +373,21 @@ function FullDataTableInner<TData>(
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Rows per page:</span>
-            <select
-              value={table.getState().pagination.pageSize}
-              onChange={(e) => table.setPageSize(Number(e.target.value))}
-              className="h-8 rounded-md border border-input bg-background px-2 text-sm"
+            <SelectRoot
+              value={String(table.getState().pagination.pageSize)}
+              onValueChange={(value) => table.setPageSize(Number(value))}
             >
-              {[10, 20, 30, 50].map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
+              <SelectTrigger size="sm" className="w-16">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {[10, 20, 30, 50].map((size) => (
+                  <SelectItem key={size} value={String(size)}>
+                    {size}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </SelectRoot>
           </div>
           <span className="text-sm text-muted-foreground">
             Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
