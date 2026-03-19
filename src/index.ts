@@ -306,3 +306,10 @@ export { PricingTable } from "./blocks/marketing/PricingTable";
 export type { PricingTableProps, PricingTier } from "./blocks/marketing/PricingTable";
 export { TestimonialCarousel } from "./blocks/marketing/TestimonialCarousel";
 export type { TestimonialCarouselProps, Testimonial } from "./blocks/marketing/TestimonialCarousel";
+
+export { StatsOverview } from "./blocks/dashboard";
+export type { StatsOverviewProps, StatsOverviewChartData } from "./blocks/dashboard";
+export { ActivityFeed } from "./blocks/dashboard";
+export type { ActivityFeedProps, ActivityItem } from "./blocks/dashboard";
+export { MetricCards } from "./blocks/dashboard";
+export type { MetricCardsProps, MetricCardItem } from "./blocks/dashboard";
