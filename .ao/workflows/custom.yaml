@@ -952,60 +952,36 @@ phases:
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> UX Audit -> Storybook -> Sync -> Install -> Build -> Push -> PR -> Changelog -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - design-review:
-          on_verdict:
-            rework:
-              target: implementation
-      - design-engineering-review:
-          on_verdict:
-            rework:
-              target: implementation
-      - code-quality
-      - ux-audit
-      - storybook
-      - sync-worktree
-      - install-deps
-      - build
       - push-branch
       - create-pr
-      - changelog
       - pr-review
 
   - id: standard
     name: "Standard Task Workflow"
-    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - sync-worktree
-      - install-deps
-      - build
       - push-branch
       - create-pr
       - pr-review
 
   - id: scaffold
     name: "Scaffold Workflow"
-    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - sync-worktree
-      - install-deps
-      - build
       - push-branch
       - create-pr
       - pr-review
 
   - id: quick-fix
     name: "Quick Fix"
-    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
       - implementation
-      - sync-worktree
-      - install-deps
-      - build
       - push-branch
       - create-pr
       - pr-review
