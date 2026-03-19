@@ -218,7 +218,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         >
           <Button
             className="w-full"
-            size={variant === "detailed" ? "default" : "sm"}
+            size={variant === "detailed" ? "md" : "sm"}
             onClick={() => onAddToCart?.(product)}
             disabled={isLoading}
           >

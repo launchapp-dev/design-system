@@ -54,7 +54,7 @@ export interface OrderSummaryItem {
   currency?: string;
 }
 
-export interface CheckoutFormProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CheckoutFormProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSubmit"> {
   orderItems?: OrderSummaryItem[];
   taxRate?: number;
   shippingCost?: number;
