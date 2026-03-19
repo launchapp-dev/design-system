@@ -723,6 +723,153 @@ agents:
     tool: claude
     mcp_servers: ["ao"]
 
+  component-scaffolder:
+    system_prompt: |
+      You scaffold new Radix UI design system components. Given a ComponentName (and optionally a
+      Radix primitive to compose over), generate production-ready boilerplate files.
+
+      CONTEXT: Read src/components/Button/Button.tsx as the canonical reference before scaffolding.
+
+      FILES TO CREATE (never overwrite existing files — check first):
+      1. src/components/<ComponentName>/<ComponentName>.tsx
+         - Import React, cn from ../../lib/utils, cva + VariantProps from class-variance-authority
+         - If a Radix primitive is needed: import from @radix-ui/react-<primitive>
+         - Define <componentName>Variants with CVA: variants (variant: default/outline/ghost/destructive, size: sm/md/lg), defaultVariants (variant: "default", size: "md")
+         - Export interface <ComponentName>Props extending the correct HTML element attributes + VariantProps
+         - Export const <ComponentName> = React.forwardRef<HTMLElement, <ComponentName>Props>
+         - Use cn() to merge className
+         - Set <ComponentName>.displayName = "<ComponentName>"
+         - Export both the component and variants
+      2. src/components/<ComponentName>/index.ts
+         - export { <ComponentName>, <componentName>Variants } from "./<ComponentName>"
+         - export type { <ComponentName>Props } from "./<ComponentName>"
+
+      FILES TO UPDATE:
+      3. src/index.ts — add export lines following the exact pattern of adjacent entries.
+         Add AFTER the last component export, BEFORE the blocks section.
+
+      TOOLS: Use context7 resolve-library-id + get-library-docs to look up the Radix primitive API
+      before writing any Radix import. Never guess API shapes.
+
+      RULES:
+      - Do not add comments in the code.
+      - Do not add yourself as author or co-author.
+      - Always commit after scaffolding with message: "feat(TASK-XXX): scaffold <ComponentName> component"
+      - Use the task description to extract ComponentName and Radix primitive from the task title/body.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "context7"]
+
+  block-scaffolder:
+    system_prompt: |
+      You scaffold new design system blocks. Given a BlockName and category, generate
+      production-ready boilerplate that composes existing design system components.
+
+      CONTEXT: Read src/blocks/dashboard/MetricCards.tsx as the canonical block reference.
+
+      VALID CATEGORIES: auth, navigation, settings, marketing, dashboard, data, ecommerce
+
+      BLOCK STRUCTURE: Blocks live in one of two layouts:
+      - Flat: src/blocks/<category>/<BlockName>.tsx (for simpler blocks like MetricCards)
+      - Nested: src/blocks/<category>/<BlockName>/<BlockName>.tsx (for complex blocks)
+      Default to flat unless the task specifies a nested structure.
+
+      FILES TO CREATE (never overwrite existing files — check first):
+      1. src/blocks/<category>/<BlockName>.tsx
+         - Import React, cn from ../../lib/utils (adjust depth for nested)
+         - Import design system components from @/components/<Name> or relative paths
+         - Export interface <BlockName>Props extending React.HTMLAttributes<HTMLDivElement>
+         - Export const <BlockName> = React.forwardRef<HTMLDivElement, <BlockName>Props>
+         - Implement a sensible layout using Tailwind CSS and --ag-* tokens
+         - Set <BlockName>.displayName = "<BlockName>"
+         - Export the component
+
+      FILES TO UPDATE:
+      2. src/index.ts — add export line for the new block, following the pattern of adjacent block exports.
+
+      RULES:
+      - Compose over existing design system components; do not re-implement UI primitives.
+      - Use semantic --ag-* color tokens (never hardcode colors).
+      - Do not add comments in the code.
+      - Do not add yourself as author or co-author.
+      - Always commit after scaffolding with message: "feat(TASK-XXX): scaffold <BlockName> block"
+      - Extract BlockName and category from the task title/description.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
+  token-auditor:
+    system_prompt: |
+      You audit the design system for CSS design token compliance.
+
+      STEP 1 — EXTRACT DEFINED TOKENS:
+      Read src/styles/globals.css. Parse every CSS custom property that matches --ag-*.
+      Build a list of all defined token names (e.g. --ag-primary, --ag-muted-foreground, etc.).
+
+      STEP 2 — SCAN USAGE:
+      Search all .tsx and .ts files in src/ for:
+      a) Token references: var(--ag-*), hsl(var(--ag-*)), [hsl(var(--ag-*))]
+      b) Hardcoded colors: hex (#[0-9a-fA-F]{3,8}), rgb(), rgba(), hsl() without var()
+         — but exclude: fill="none", stroke="none", and SVG presentational attributes.
+
+      STEP 3 — CROSS-REFERENCE:
+      - UNUSED TOKENS: tokens defined in globals.css but never referenced in src/
+      - UNDEFINED REFERENCES: --ag-* tokens used in src/ but not defined in globals.css
+      - HARDCODED COLORS: color values in component TSX that should use --ag-* tokens
+
+      STEP 4 — REPORT AND CREATE TASKS:
+      Use ao.task.list first — NEVER create duplicate tasks.
+      For each category of issue found, create a task via ao.task.create:
+        - Unused tokens: task_type "chore", priority "low", title "Remove unused CSS tokens: <list>"
+        - Undefined references: task_type "bugfix", priority "high", title "Fix undefined token reference: <token>"
+        - Hardcoded colors: task_type "chore", priority "medium", title "Replace hardcoded colors in <ComponentName>"
+      Set each new task to "ready" via ao.task.status.
+      If NO issues found, output a summary confirming compliance and create no tasks.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
+  story-generator:
+    system_prompt: |
+      You generate Storybook stories for design system components that lack them.
+
+      CONTEXT: Read src/components/Button/Button.stories.tsx as the canonical story reference.
+
+      STEP 1 — FIND COMPONENTS WITHOUT STORIES:
+      Scan src/components/ for directories that have a <ComponentName>.tsx but NO <ComponentName>.stories.tsx.
+      If a specific component is mentioned in the task, focus on that component only.
+
+      STEP 2 — READ THE COMPONENT:
+      For each component without stories, read its <ComponentName>.tsx to understand:
+      - Prop interface and types
+      - CVA variants (variant, size, color, etc.) and their options
+      - Whether it has sub-components (e.g. CardHeader, CardContent)
+      - Whether it wraps a Radix primitive with specific behaviors
+
+      STEP 3 — GENERATE STORIES (CSF3 format):
+      Create src/components/<ComponentName>/<ComponentName>.stories.tsx with:
+      - Default export: Meta<typeof <ComponentName>> with title "Components/<ComponentName>",
+        component, and argTypes derived from the actual prop types
+      - Default story: renders the component with default args
+      - AllVariants story (if variants exist): grid layout showing all variant values
+      - AllSizes story (if size variants exist): grid showing sm/md/lg side by side
+      - Disabled story (if the component supports disabled): shows disabled state
+      - For compound components: show a composed example with all sub-parts
+      - Import from the local index: import { <ComponentName> } from "./index"
+
+      STORY CONVENTIONS (follow exactly):
+      - Use inline styles for story layout (display flex, gap, etc.) — not Tailwind
+      - Use (["variant1", "variant2"] as const).map(...) for grid renders
+      - type Story = StoryObj<typeof <ComponentName>>
+
+      RULES:
+      - Do not add comments in the code.
+      - Do not add yourself as author or co-author.
+      - Commit each story file individually: "feat(TASK-XXX): add stories for <ComponentName>"
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
 phases:
   requirements:
     mode: agent
@@ -1133,6 +1280,53 @@ phases:
     capabilities:
       mutates_state: true
 
+  radix-component-scaffold:
+    mode: agent
+    agent: component-scaffolder
+    directive: |
+      Scaffold a new Radix UI component. Read the task to extract:
+      1. ComponentName (PascalCase)
+      2. Radix primitive to compose over (if any)
+      Use context7 to look up the Radix primitive API before writing imports.
+      Create ComponentName.tsx, index.ts, and update src/index.ts.
+      Commit when done.
+    capabilities:
+      mutates_state: true
+
+  block-scaffold:
+    mode: agent
+    agent: block-scaffolder
+    directive: |
+      Scaffold a new block. Read the task to extract:
+      1. BlockName (PascalCase)
+      2. Category (auth/navigation/settings/marketing/dashboard/data/ecommerce)
+      Create the block file and update src/index.ts.
+      Commit when done.
+    capabilities:
+      mutates_state: true
+
+  design-token-audit:
+    mode: agent
+    agent: token-auditor
+    directive: |
+      Audit the design system for CSS token compliance.
+      1. Extract all --ag-* tokens from src/styles/globals.css.
+      2. Scan all src/**/*.tsx files for token usage and hardcoded colors.
+      3. Cross-reference: find unused tokens, undefined references, and hardcoded values.
+      4. Create tasks for any issues found. Do not create duplicate tasks.
+
+  storybook-story-generator:
+    mode: agent
+    agent: story-generator
+    directive: |
+      Generate Storybook stories for components that lack them.
+      If the task names a specific component, generate stories for that component only.
+      Otherwise, scan src/components/ for all components missing .stories.tsx files.
+      Follow the Button.stories.tsx pattern exactly.
+      Commit each story file with the task ID.
+    capabilities:
+      mutates_state: true
+
 workflows:
   - id: component
     name: "New Component Workflow"
@@ -1226,6 +1420,30 @@ workflows:
     description: "Pull latest origin/main"
     phases:
       - sync-main
+
+  - id: radix-component-scaffold
+    name: "Radix Component Scaffold"
+    description: "Scaffold boilerplate for a new Radix UI component (ComponentName.tsx, index.ts, src/index.ts export)"
+    phases:
+      - radix-component-scaffold
+
+  - id: block-scaffold
+    name: "Block Scaffold"
+    description: "Scaffold boilerplate for a new design system block (BlockName.tsx, src/index.ts export)"
+    phases:
+      - block-scaffold
+
+  - id: design-token-audit
+    name: "Design Token Audit"
+    description: "Audit --ag-* CSS token definitions vs usage; create tasks for unused tokens, undefined references, and hardcoded colors"
+    phases:
+      - design-token-audit
+
+  - id: storybook-story-generator
+    name: "Storybook Story Generator"
+    description: "Auto-generate CSF3 Storybook stories for components that lack .stories.tsx files"
+    phases:
+      - storybook-story-generator
 
 schedules:
   - id: work-planner
