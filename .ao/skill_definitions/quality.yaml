@@ -1,0 +1,85 @@
+skills:
+  ds-code-review:
+    name: ds-code-review
+    version: "1.0.0"
+    description: Design-system-specific code review skill enforcing Radix primitives, CVA patterns, design tokens, forwardRef, and export completeness.
+    category: review
+
+    prompt:
+      directives:
+        - Reject any component that uses raw div or button with onClick instead of a Radix primitive
+        - Verify CVA is used for variant logic — inline ternaries for variants are a blocking issue
+        - Check that all color values reference --ag-* CSS custom properties, not hardcoded values
+        - Confirm React.forwardRef is used and the ref type matches the underlying Radix element
+        - Verify cn() is used for className merging — string concatenation is a blocking issue
+        - Check the component is exported from its own index.ts AND re-exported from src/index.ts
+        - For each PR, run gh pr checks before deciding to merge — never skip CI verification
+        - If CI fails due to changes in this PR, request changes and queue rework
+        - If CI fails due to pre-existing issues unrelated to this PR, merge but create a bugfix task
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Grep"
+        - "Glob"
+        - "Bash"
+        - "task.*"
+        - "queue.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "task.delete"
+
+    mcp_servers:
+      - ao
+      - context7
+
+    capabilities:
+      is_review: true
+      writes_files: false
+      mutates_state: true
+
+    tags: ["review", "radix-ui", "design-system", "quality-gate"]
+
+  ds-a11y-audit:
+    name: ds-a11y-audit
+    version: "1.0.0"
+    description: Accessibility audit skill for the design system — enforces WCAG AA compliance, Radix keyboard navigation, ARIA correctness, and focus management.
+    category: review
+
+    prompt:
+      directives:
+        - Every interactive component must use a Radix primitive — file a critical task for any that use plain HTML with onClick
+        - Check for proper ARIA attributes on every component (role, aria-label, aria-expanded, aria-selected, aria-controls)
+        - Verify keyboard navigation works for all components (Tab, Enter, Space, Escape, Arrow keys as appropriate)
+        - Confirm focus rings are visible — components must not remove outline without providing a custom focus-visible style
+        - Modal and Dialog components must trap focus and restore it on close
+        - Form inputs must have Label components properly associated via htmlFor and id
+        - Toast and other dynamic content must use role="alert" or role="status" for screen reader announcements
+        - Color contrast must meet WCAG AA (4.5:1 for normal text, 3:1 for large text and UI components)
+        - File bugfix tasks for WCAG AA violations (critical), keyboard nav issues (high), and enhancement opportunities (medium)
+        - Before creating tasks, check ao.task.list to avoid duplicates
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Grep"
+        - "Glob"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "task.delete"
+
+    mcp_servers:
+      - ao
+
+    capabilities:
+      is_review: true
+      writes_files: false
+      mutates_state: true
+
+    tags: ["accessibility", "wcag", "a11y", "aria", "keyboard-navigation"]

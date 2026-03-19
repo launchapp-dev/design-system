@@ -102,6 +102,8 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
+    skills:
+      - radix-component-impl
 
   storybook-author:
     system_prompt: |
@@ -124,6 +126,8 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["context7"]
+    skills:
+      - storybook-csf3
 
   reviewer:
     system_prompt: |
@@ -155,6 +159,8 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7"]
+    skills:
+      - ds-code-review
 
   a11y-auditor:
     system_prompt: |
@@ -176,6 +182,8 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao"]
+    skills:
+      - ds-a11y-audit
 
   product-owner:
     system_prompt: |
@@ -279,6 +287,8 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
+    skills:
+      - ds-product-owner
 
   product-strategist:
     system_prompt: |
@@ -409,6 +419,8 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
+    skills:
+      - ds-dependency-scout
 
   reconciler:
     system_prompt: |
