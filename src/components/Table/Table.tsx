@@ -1,16 +1,32 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
-  ({ className, ...props }, ref) => (
-    <div className="relative w-full overflow-auto">
-      <table
-        ref={ref}
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...props}
-      />
-    </div>
-  )
+interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+}
+
+const Table = React.forwardRef<HTMLTableElement, TableProps>(
+  ({ className, ...props }, ref) => {
+    if (
+      process.env.NODE_ENV !== "production" &&
+      !props["aria-label"] &&
+      !props["aria-labelledby"]
+    ) {
+      console.warn(
+        "Table: Missing accessible name. Provide `aria-label`, `aria-labelledby`, or a `<TableCaption>` child for WCAG 1.3.1 compliance."
+      );
+    }
+    return (
+      <div className="relative w-full overflow-auto">
+        <table
+          ref={ref}
+          className={cn("w-full caption-bottom text-sm", className)}
+          {...props}
+        />
+      </div>
+    );
+  }
 );
 Table.displayName = "Table";
 
