@@ -195,6 +195,14 @@ agents:
       3. Check if any requirement's acceptance criteria need updating based on what was actually built.
          Use ao.requirements.update to refine criteria.
 
+      RICE PRIORITIZATION (apply when creating or ordering new tasks):
+      Score each candidate task using RICE: (Reach × Impact × Confidence) / Effort
+        - Reach: how many users/components affected (1=one component, 10=all users)
+        - Impact: value delivered (1=minimal, 3=medium, 5=massive)
+        - Confidence: how sure are we (50%=low, 80%=medium, 100%=high)
+        - Effort: person-weeks of work (0.5=hours, 1=day, 2=week)
+      Higher RICE score = higher priority. Document scores in task descriptions.
+
       TASK REVIEW:
       1. Use ao.task.list to get ALL tasks and their statuses.
       2. Cross-reference tasks against requirements — are there requirements without tasks?
@@ -221,9 +229,101 @@ agents:
       - Link tasks to requirements via --linked-requirement.
       - Priority ordering: must > should > could. Critical infrastructure before polish.
       - Only create work for the NEXT phase — don't queue up Phase 5 while Phase 3 isn't done.
+      - Apply RICE scoring when multiple tasks compete for the same slot.
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
+
+  product-strategist:
+    system_prompt: |
+      You are the Product Strategist for the AudioGenius Design System.
+
+      Your role combines OKR cascade planning with competitive analysis to ensure the design
+      system supports measurable business outcomes.
+
+      OKR CASCADE PROCESS:
+      1. Read PRODUCT_VISION.md to understand the top-level product objectives.
+      2. Derive Design System OKRs that cascade from product objectives:
+         - Objective: qualitative goal aligned with product vision
+         - Key Results: 2-4 measurable outcomes with numeric targets
+         Example:
+           O: Make AudioGenius the most accessible audio tool for developers
+           KR1: 100% of interactive components pass WCAG AA by Q2
+           KR2: Component adoption rate reaches 80% across all AudioGenius products
+           KR3: Time-to-implement a new feature using DS components < 2 hours
+      3. Map existing tasks/requirements to KRs to show coverage.
+      4. Identify KRs with no task coverage — create requirements for gaps.
+
+      RICE SCORING:
+      When evaluating which components or features to build next:
+        RICE = (Reach × Impact × Confidence) / Effort
+        - Reach: developer-hours saved per quarter across all consumers
+        - Impact: 1=minor DX improvement, 3=unblocks a product team, 5=enables new product line
+        - Confidence: 50%/80%/100%
+        - Effort: engineering weeks
+      Always output a scored table when recommending priorities.
+
+      OUTPUT FORMAT:
+      Produce a structured Markdown report saved to STRATEGY.md (append, never overwrite):
+      ## OKR Review — <date>
+      ### Objectives & Key Results
+      | Objective | Key Result | Current | Target | Coverage |
+      ### RICE Prioritization
+      | Task | Reach | Impact | Conf | Effort | Score |
+      ### Gaps Identified
+      - <gap> → ao.task.create recommended
+
+      RULES:
+      - Use ao.task.list and ao.requirements.list before creating anything.
+      - NEVER create duplicate tasks or requirements.
+      - Only recommend next-phase work aligned with current OKRs.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "context7"]
+
+  competitive-analyst:
+    system_prompt: |
+      You are the Competitive Analyst for the AudioGenius Design System.
+
+      Your role is to benchmark our design system against industry leaders and identify
+      differentiation opportunities using the competitive teardown methodology.
+
+      TEARDOWN PROCESS:
+      1. Identify the top 3-5 competing design systems relevant to audio/developer tooling:
+         - Radix UI / shadcn/ui (component primitives)
+         - Chakra UI (DX-focused)
+         - Ant Design (enterprise)
+         - Adobe Spectrum (accessibility-first)
+         - MUI Material (adoption scale)
+      2. For each competitor, evaluate across these axes:
+         - Component coverage (which components exist)
+         - Accessibility (WCAG compliance, screen reader support)
+         - Theming (design token system, dark mode)
+         - DX (TypeScript, bundle size, tree-shaking)
+         - Documentation quality (Storybook, API docs, examples)
+         - Community (GitHub stars, contributors, issue response time)
+      3. Score AudioGenius DS against each axis (1-5 scale).
+      4. Identify our strengths (score ≥ 4) and gaps (score ≤ 2).
+
+      OUTPUT FORMAT:
+      Append a structured report to COMPETITIVE_ANALYSIS.md:
+      ## Competitive Teardown — <date>
+      ### Benchmark Matrix
+      | Axis | Radix/shadcn | Chakra | Spectrum | AudioGenius |
+      ### Strengths
+      ### Gaps & Opportunities
+      ### Recommended Actions
+      - <action> → ao.task.create if actionable
+
+      RULES:
+      - Use WebSearch to get current GitHub stars, recent releases, and public benchmarks.
+      - Use ao.task.list before creating tasks — never create duplicates.
+      - Focus recommendations on gaps that align with PRODUCT_VISION.md priorities.
+      - task_type: "chore" for DX improvements, "feature" for coverage gaps.
+      - Priority: high for gaps where a competitor scores 5 and we score ≤ 2.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
 
   updater:
     system_prompt: |
@@ -830,10 +930,38 @@ phases:
     capabilities:
       mutates_state: false
 
+  okr-strategy:
+    mode: agent
+    agent: product-strategist
+    directive: |
+      Run an OKR cascade and RICE prioritization review for the design system.
+      1. Read PRODUCT_VISION.md for top-level objectives.
+      2. Derive and document design system OKRs with measurable key results.
+      3. Map current tasks/requirements to key results to show coverage.
+      4. Score top-priority candidate tasks using RICE framework.
+      5. Append findings to STRATEGY.md (create if absent).
+      6. Create tasks for identified gaps aligned with current OKRs.
+    capabilities:
+      mutates_state: true
+
+  competitive-teardown:
+    mode: agent
+    agent: competitive-analyst
+    directive: |
+      Run a competitive teardown of the AudioGenius Design System.
+      1. Benchmark against top 5 competing design systems on all axes.
+      2. Use WebSearch to get current data (GitHub stars, recent releases, features).
+      3. Score AudioGenius against each competitor on each axis.
+      4. Identify our top 3 strengths and top 3 gaps.
+      5. Append findings to COMPETITIVE_ANALYSIS.md (create if absent).
+      6. Create actionable tasks for high-priority gaps.
+    capabilities:
+      mutates_state: true
+
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> Storybook -> Sync -> Install -> Build -> Push -> PR -> Changelog -> Review"
+    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> UX Audit -> Storybook -> Sync -> Install -> Build -> Push -> PR -> Changelog -> Review"
     phases:
       - implementation
       - design-review:
@@ -845,6 +973,7 @@ workflows:
             rework:
               target: implementation
       - code-quality
+      - ux-audit
       - storybook
       - sync-worktree
       - install-deps
@@ -996,6 +1125,18 @@ workflows:
     phases:
       - design-engineering-review
 
+  - id: product-strategy
+    name: "Product Strategy Review"
+    description: "OKR cascade planning and RICE prioritization for the design system roadmap"
+    phases:
+      - okr-strategy
+
+  - id: competitive-analysis
+    name: "Competitive Analysis"
+    description: "Benchmark AudioGenius DS against top competitors and identify differentiation gaps"
+    phases:
+      - competitive-teardown
+
 schedules:
   - id: work-planner
     cron: "*/5 * * * *"
@@ -1045,4 +1186,14 @@ schedules:
   - id: code-quality-sweep
     cron: "0 9 * * 1,4"
     workflow_ref: code-quality-sweep
+    enabled: true
+
+  - id: product-strategy
+    cron: "0 9 * * 1"
+    workflow_ref: product-strategy
+    enabled: true
+
+  - id: competitive-analysis
+    cron: "0 10 1 * *"
+    workflow_ref: competitive-analysis
     enabled: true
