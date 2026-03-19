@@ -1,6 +1,4 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import { mergeConfig } from 'vite';
-import path from 'path';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
@@ -13,13 +11,16 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   viteFinal(config) {
-    return mergeConfig(config, {
+    return {
+      ...config,
       resolve: {
+        ...config.resolve,
         alias: {
-          '@': path.resolve(import.meta.dirname, '../src'),
+          ...config.resolve?.alias,
+          '@': new URL('../src', import.meta.url).pathname,
         },
       },
-    });
+    };
   },
 };
 
