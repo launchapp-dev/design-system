@@ -8,6 +8,7 @@ const heroSectionVariants = cva("w-full", {
       centered: "flex flex-col items-center text-center px-4 py-16 md:py-24 lg:py-32",
       split: "grid grid-cols-1 md:grid-cols-2 gap-8 px-4 py-16 md:py-24 items-center",
       minimal: "flex flex-col px-4 py-16 md:py-24 lg:py-32",
+      imageBackground: "relative flex flex-col items-center text-center px-4 py-24 md:py-32 lg:py-48 overflow-hidden",
     },
   },
   defaultVariants: {
@@ -24,6 +25,7 @@ export interface HeroSectionProps
   primaryAction?: React.ReactNode;
   secondaryAction?: React.ReactNode;
   media?: React.ReactNode;
+  backgroundImageSrc?: string;
 }
 
 const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
@@ -37,10 +39,45 @@ const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
       primaryAction,
       secondaryAction,
       media,
+      backgroundImageSrc,
       ...props
     },
     ref
   ) => {
+    if (variant === "imageBackground") {
+      return (
+        <section
+          ref={ref}
+          className={cn(heroSectionVariants({ variant }), className)}
+          {...props}
+        >
+          {backgroundImageSrc && (
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${backgroundImageSrc})` }}
+              aria-hidden="true"
+            />
+          )}
+          <div className="absolute inset-0 bg-background/70" aria-hidden="true" />
+          <div className="relative z-10 max-w-3xl space-y-6">
+            {badge}
+            <h1 className="text-4xl font-bold tracking-tight text-foreground lg:text-6xl">
+              {headline}
+            </h1>
+            {subheadline && (
+              <p className="text-lg text-muted-foreground">{subheadline}</p>
+            )}
+            {(primaryAction || secondaryAction) && (
+              <div className="flex flex-wrap justify-center gap-3">
+                {primaryAction}
+                {secondaryAction}
+              </div>
+            )}
+          </div>
+        </section>
+      );
+    }
+
     if (variant === "split") {
       return (
         <section
