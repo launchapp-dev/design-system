@@ -31,15 +31,27 @@ export interface TextareaProps
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, resize, error, rows = 3, ...props }, ref) => (
-    <textarea
-      ref={ref}
-      rows={rows}
-      className={cn(textareaVariants({ resize, error }), "px-3 py-2", className)}
-      aria-invalid={error || undefined}
-      {...props}
-    />
-  )
+  ({ className, resize, error, rows = 3, ...props }, ref) => {
+    if (
+      process.env.NODE_ENV !== "production" &&
+      !props.id &&
+      !props["aria-label"] &&
+      !props["aria-labelledby"]
+    ) {
+      console.warn(
+        "Textarea: missing label association. Provide `id` paired with a <Label htmlFor>, or pass `aria-label`/`aria-labelledby`."
+      );
+    }
+    return (
+      <textarea
+        ref={ref}
+        rows={rows}
+        className={cn(textareaVariants({ resize, error }), "px-3 py-2", className)}
+        aria-invalid={error || undefined}
+        {...props}
+      />
+    );
+  }
 );
 
 Textarea.displayName = "Textarea";
