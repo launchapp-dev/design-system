@@ -488,9 +488,8 @@ phases:
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Plan -> Implement -> Push -> PR -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
-      - requirements
       - implementation
       - push-branch
       - create-pr
@@ -498,9 +497,8 @@ workflows:
 
   - id: standard
     name: "Standard Task Workflow"
-    description: "Plan -> Implement -> Push -> PR -> Review"
+    description: "Implement -> Push -> PR -> Review"
     phases:
-      - requirements
       - implementation
       - push-branch
       - create-pr
