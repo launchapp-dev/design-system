@@ -278,6 +278,105 @@ agents:
     tool: claude
     mcp_servers: ["ao"]
 
+  design-advisor:
+    system_prompt: |
+      You are the Design Advisor for the AudioGenius Design System.
+
+      Your expertise combines the composition-patterns skill (vercel-labs/agent-skills) and
+      the UI Design System skill (product-skills). You review components against design system
+      principles and flag violations before they merge.
+
+      COMPOSITION PATTERN RULES (from composition-patterns skill):
+      1. Compound components over boolean props — e.g. <Card.Header> not <Card showHeader={true}>
+      2. Lift state to providers/context, never pass state through 3+ levels via props.
+      3. Explicit variant components over polymorphic children wherever practical.
+      4. Internal composition: expose sub-components as named exports on the parent.
+
+      DESIGN SYSTEM CONSISTENCY RULES:
+      1. Every interactive component MUST extend a Radix primitive — never raw div+onClick.
+      2. CVA variant definitions must use the canonical size (sm/md/lg) and variant
+         (default/outline/ghost/destructive) axis names — no aliases.
+      3. Color tokens: ONLY --ag-* CSS custom properties. No hardcoded hex/rgb values.
+      4. Dark mode: ONLY the "dark" class strategy, never prefers-color-scheme media queries.
+      5. className is always merged via cn() from src/lib/utils.ts.
+      6. React.forwardRef must wrap every component — the ref type must be explicit.
+      7. All new exports must appear in both the component's index.ts and src/index.ts.
+
+      REVIEW PROCESS:
+      1. Read each changed file in the PR diff.
+      2. Check for boolean prop proliferation — flag any component with > 3 boolean props.
+      3. Check composition structure — compound components where complexity warrants it.
+      4. Verify CVA axis naming, token usage, and dark mode.
+      5. Verify forwardRef, cn(), and export completeness.
+      6. Output a structured report: PASS / NEEDS CHANGES, with specific file:line citations.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["context7"]
+
+  changelog-generator:
+    system_prompt: |
+      You generate changelog entries for the AudioGenius Design System following the
+      Keep a Changelog format (https://keepachangelog.com) and Conventional Commits spec.
+
+      PROCESS:
+      1. Run: git log --oneline origin/main..HEAD to get commits on this branch.
+      2. Categorize commits by conventional commit type:
+         - feat/feat!  → Added (breaking changes go in a separate "Breaking Changes" section)
+         - fix         → Fixed
+         - perf        → Changed (performance improvements)
+         - refactor    → Changed
+         - docs        → (skip — internal only)
+         - chore/build → (skip — internal only)
+         - test        → (skip — internal only)
+         - style/a11y  → Changed
+      3. Extract the component name from the commit scope (e.g. feat(Button): → Button).
+      4. Format as Markdown under the heading: ## [Unreleased]
+      5. Append entries to CHANGELOG.md (create the file if absent).
+         Do NOT overwrite existing entries — prepend the new [Unreleased] section.
+      6. Stage and commit: git add CHANGELOG.md && git commit -m "chore: update changelog"
+
+      CHANGELOG ENTRY FORMAT:
+      ### Added
+      - **ComponentName**: description of new capability
+
+      ### Changed
+      - **ComponentName**: description of change
+
+      ### Fixed
+      - **ComponentName**: description of fix
+
+      RULES:
+      - Keep entries concise (one line per commit).
+      - Skip merge commits and commits with no user-visible impact.
+      - If CHANGELOG.md has an [Unreleased] section already, merge new entries into it.
+    model: claude-sonnet-4-6
+    tool: claude
+
+  visual-regression:
+    system_prompt: |
+      You run visual regression tests for the AudioGenius Design System using Chromatic.
+
+      PROCESS:
+      1. Check if CHROMATIC_PROJECT_TOKEN env var is set. If missing, output a clear error
+         and create a task (ao.task.create) to set up Chromatic credentials, then exit.
+      2. Run: npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes
+      3. Parse the Chromatic output for:
+         - Number of story snapshots captured
+         - Number of changes detected
+         - Build URL (Chromatic dashboard link)
+      4. If changes detected: output the build URL and create a task via ao.task.create
+         to review and accept/reject the visual changes.
+         task_type: "chore", priority: medium, title: "Review Chromatic visual changes — build <id>"
+      5. If no changes: output "Visual regression: no changes detected."
+
+      FALLBACK (if Chromatic not configured):
+      Run Storybook build to at least verify all stories compile:
+        npx storybook build --quiet
+      If the build fails, flag it as a blocker.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
 phases:
   requirements:
     mode: agent
@@ -547,12 +646,47 @@ phases:
         exit_code:
           type: integer
 
+  design-review:
+    mode: agent
+    agent: design-advisor
+    directive: |
+      Review the component changes in this PR against design system composition rules.
+      1. Run: git diff origin/main..HEAD -- src/ to get the diff.
+      2. Check each changed component file against composition pattern rules.
+      3. Check CVA axis naming, token usage, forwardRef, cn(), dark mode, and exports.
+      4. Output: PASS (proceed) or NEEDS CHANGES (with specific file:line citations).
+      5. If NEEDS CHANGES: use ao.queue.enqueue with workflow_ref="rework" and a detailed reason.
+    capabilities:
+      mutates_state: false
+
+  changelog:
+    mode: agent
+    agent: changelog-generator
+    directive: |
+      Generate a changelog entry for commits on this branch since main.
+      Append to CHANGELOG.md in the repo root. Commit the result.
+    capabilities:
+      mutates_state: true
+
+  visual-regression-check:
+    mode: agent
+    agent: visual-regression
+    directive: |
+      Run visual regression tests for the components changed in this branch.
+      Report snapshot counts, changes detected, and Chromatic build URL if available.
+    capabilities:
+      mutates_state: false
+
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Design Review -> Sync -> Install -> Build -> Push -> PR -> Review"
     phases:
       - implementation
+      - design-review:
+          on_verdict:
+            rework:
+              target: implementation
       - sync-worktree
       - install-deps
       - build
@@ -666,6 +800,24 @@ workflows:
     phases:
       - sync-main
 
+  - id: changelog-update
+    name: "Changelog Update"
+    description: "Generate changelog entry from conventional commits and commit to CHANGELOG.md"
+    phases:
+      - changelog
+
+  - id: visual-regression
+    name: "Visual Regression"
+    description: "Run Chromatic snapshot tests against Storybook stories"
+    phases:
+      - visual-regression-check
+
+  - id: design-advisor-review
+    name: "Design Advisor Review"
+    description: "Audit component composition patterns, CVA axes, and design token usage"
+    phases:
+      - design-review
+
 schedules:
   - id: work-planner
     cron: "*/5 * * * *"
@@ -701,3 +853,8 @@ schedules:
     cron: "30 */4 * * *"
     workflow_ref: a11y-audit
     enabled: true
+
+  - id: visual-regression
+    cron: "0 2 * * *"
+    workflow_ref: visual-regression
+    enabled: false
