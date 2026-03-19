@@ -36,6 +36,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       ref={ref}
       rows={rows}
       className={cn(textareaVariants({ resize, error }), "px-3 py-2", className)}
+      aria-invalid={error || undefined}
       {...props}
     />
   )
