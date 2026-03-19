@@ -28,6 +28,34 @@ Releases are published automatically to npm via GitHub Actions when a version ta
 
 The repository must have `NPM_TOKEN` set in GitHub Actions secrets with publish access to the `@launchapp` npm scope.
 
+## Visual Regression Testing
+
+This project uses [Chromatic](https://www.chromatic.com/) for visual regression testing. Chromatic captures snapshots of every Storybook story and detects unintended UI changes on every PR.
+
+### How It Works
+
+The `chromatic.yml` workflow runs on every push to any branch. It builds Storybook and uploads snapshots to Chromatic, which compares them against the accepted baseline.
+
+### Reviewing Visual Changes
+
+When Chromatic detects visual differences, the PR check will fail. Visit the Chromatic UI to review each change and either:
+- **Accept** the change as the new baseline (intentional update)
+- **Deny** the change to block the PR (unintended regression)
+
+### Required Secret
+
+The repository must have `CHROMATIC_PROJECT_TOKEN` set in GitHub Actions secrets. To get the token:
+1. Go to [chromatic.com](https://www.chromatic.com/) and sign in with GitHub
+2. Create or select the project for this repository
+3. Copy the project token from the project's Manage page
+4. Add it as a secret named `CHROMATIC_PROJECT_TOKEN` in the repository's Settings → Secrets and variables → Actions
+
+### Running Chromatic Locally
+
+```bash
+CHROMATIC_PROJECT_TOKEN=<your-token> npm run chromatic
+```
+
 ### Dry Run
 
 To verify what will be published without actually publishing:
