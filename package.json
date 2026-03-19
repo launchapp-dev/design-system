@@ -1,11 +1,11 @@
 {
-  "name": "@audiogenius/design-system",
+  "name": "@launchapp/design-system",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
     "apps/*"
   ],
-  "description": "Radix UI based design system for AudioGenius",
+  "description": "Radix UI based design system for LaunchApp",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

@@ -52,7 +52,7 @@ export const components: ComponentEntry[] = [
     description:
       "A vertically stacked set of interactive headings that reveal or hide associated sections of content.",
     category: "display",
-    importStatement: `import { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "@audiogenius/design-system";`,
+    importStatement: `import { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "@launchapp/design-system";`,
     props: [
       { name: "type", type: '"single" | "multiple"', defaultValue: '"single"', description: "Determines whether one or multiple items can be open at the same time." },
       { name: "defaultValue", type: "string | string[]", description: "The default open item(s) when uncontrolled." },
@@ -86,7 +86,7 @@ export const components: ComponentEntry[] = [
     name: "Alert",
     description: "Displays a callout for user attention with support for different severity levels.",
     category: "feedback",
-    importStatement: `import { Alert, AlertTitle, AlertDescription } from "@audiogenius/design-system";`,
+    importStatement: `import { Alert, AlertTitle, AlertDescription } from "@launchapp/design-system";`,
     props: [
       { name: "variant", type: '"default" | "destructive"', defaultValue: '"default"', description: "The visual style of the alert." },
       { name: "className", type: "string", description: "Additional CSS classes to apply." },
@@ -122,7 +122,7 @@ export const components: ComponentEntry[] = [
   AlertDialogRoot, AlertDialogTrigger, AlertDialogContent,
   AlertDialogHeader, AlertDialogFooter, AlertDialogTitle,
   AlertDialogDescription, AlertDialogAction, AlertDialogCancel
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
       { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
@@ -156,7 +156,7 @@ export const components: ComponentEntry[] = [
     name: "AspectRatio",
     description: "Displays content within a desired ratio, preventing layout shifts.",
     category: "layout",
-    importStatement: `import { AspectRatio } from "@audiogenius/design-system";`,
+    importStatement: `import { AspectRatio } from "@launchapp/design-system";`,
     props: [
       { name: "ratio", type: "number", defaultValue: "1", description: "The desired ratio (width/height). E.g. 16/9." },
     ],
@@ -180,7 +180,7 @@ export const components: ComponentEntry[] = [
     name: "Avatar",
     description: "An image element with a fallback for representing users or entities.",
     category: "display",
-    importStatement: `import { Avatar, AvatarImage, AvatarFallback } from "@audiogenius/design-system";`,
+    importStatement: `import { Avatar, AvatarImage, AvatarFallback } from "@launchapp/design-system";`,
     props: [
       { name: "className", type: "string", description: "Additional CSS classes." },
       { name: "src", type: "string", description: "Source URL for the avatar image (on AvatarImage)." },
@@ -207,7 +207,7 @@ export const components: ComponentEntry[] = [
     name: "Badge",
     description: "Displays a badge or a component that looks like a badge.",
     category: "display",
-    importStatement: `import { Badge } from "@audiogenius/design-system";`,
+    importStatement: `import { Badge } from "@launchapp/design-system";`,
     props: [
       { name: "variant", type: '"default" | "secondary" | "destructive" | "outline"', defaultValue: '"default"', description: "The visual style of the badge." },
       { name: "className", type: "string", description: "Additional CSS classes." },
@@ -232,7 +232,7 @@ export const components: ComponentEntry[] = [
     importStatement: `import {
   Breadcrumb, BreadcrumbList, BreadcrumbItem,
   BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "separator", type: "React.ReactNode", description: "Custom separator element (on BreadcrumbSeparator)." },
     ],
@@ -263,7 +263,7 @@ export const components: ComponentEntry[] = [
     description:
       "Displays a button or a component that looks like a button with multiple variants and sizes.",
     category: "inputs",
-    importStatement: `import { Button } from "@audiogenius/design-system";`,
+    importStatement: `import { Button } from "@launchapp/design-system";`,
     props: [
       { name: "variant", type: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"', defaultValue: '"default"', description: "The visual style of the button." },
       { name: "size", type: '"sm" | "md" | "lg" | "icon"', defaultValue: '"md"', description: "The size of the button." },
@@ -302,7 +302,7 @@ export const components: ComponentEntry[] = [
     name: "Calendar",
     description: "A date field component that allows users to enter and edit date.",
     category: "inputs",
-    importStatement: `import { Calendar } from "@audiogenius/design-system";`,
+    importStatement: `import { Calendar } from "@launchapp/design-system";`,
     props: [
       { name: "mode", type: '"single" | "multiple" | "range"', defaultValue: '"single"', description: "Selection mode for the calendar." },
       { name: "selected", type: "Date | Date[] | DateRange", description: "The selected date(s)." },
@@ -329,7 +329,7 @@ export const components: ComponentEntry[] = [
     name: "Card",
     description: "Displays a card with header, content, and footer sections.",
     category: "display",
-    importStatement: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@audiogenius/design-system";`,
+    importStatement: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@launchapp/design-system";`,
     props: [
       { name: "className", type: "string", description: "Additional CSS classes for the card container." },
     ],
@@ -356,7 +356,7 @@ export const components: ComponentEntry[] = [
     name: "Chart",
     description: "A collection of chart components built on top of Recharts for data visualization.",
     category: "data",
-    importStatement: `import { ChartContainer, LineChart, BarChart, AreaChart, PieChart } from "@audiogenius/design-system";`,
+    importStatement: `import { ChartContainer, LineChart, BarChart, AreaChart, PieChart } from "@launchapp/design-system";`,
     props: [
       { name: "config", type: "ChartConfig", required: true, description: "Chart configuration mapping data keys to labels and colors." },
       { name: "className", type: "string", description: "Additional CSS classes for the chart container." },
@@ -372,7 +372,7 @@ export const components: ComponentEntry[] = [
 ];
 
 const config = {
-  value: { label: "Value", color: "hsl(var(--ag-chart-1))" },
+  value: { label: "Value", color: "hsl(var(--la-chart-1))" },
 };
 
 <ChartContainer config={config} className="h-[200px]">
@@ -391,7 +391,7 @@ const config = {
     description:
       "A control that allows the user to toggle between checked and not checked.",
     category: "inputs",
-    importStatement: `import { Checkbox } from "@audiogenius/design-system";`,
+    importStatement: `import { Checkbox } from "@launchapp/design-system";`,
     props: [
       { name: "checked", type: "boolean | 'indeterminate'", description: "The controlled checked state." },
       { name: "defaultChecked", type: "boolean", defaultValue: "false", description: "Initial checked state when uncontrolled." },
@@ -417,7 +417,7 @@ const config = {
     name: "Collapsible",
     description: "An interactive component which expands/collapses a panel.",
     category: "display",
-    importStatement: `import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@audiogenius/design-system";`,
+    importStatement: `import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
       { name: "defaultOpen", type: "boolean", defaultValue: "false", description: "Initial open state when uncontrolled." },
@@ -446,7 +446,7 @@ const config = {
     description:
       "An autocomplete input combined with a dropdown list for selecting from options.",
     category: "inputs",
-    importStatement: `import { Combobox } from "@audiogenius/design-system";`,
+    importStatement: `import { Combobox } from "@launchapp/design-system";`,
     props: [
       { name: "options", type: "ComboboxOption[]", required: true, description: "Array of options with value and label." },
       { name: "value", type: "string", description: "Controlled selected value." },
@@ -482,7 +482,7 @@ const config = {
     importStatement: `import {
   Command, CommandInput, CommandList, CommandEmpty,
   CommandGroup, CommandItem, CommandSeparator, CommandShortcut
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "string", description: "Controlled selected value." },
       { name: "onValueChange", type: "(value: string) => void", description: "Callback when selection changes." },
@@ -520,7 +520,7 @@ const config = {
     importStatement: `import {
   ContextMenu, ContextMenuTrigger, ContextMenuContent,
   ContextMenuItem, ContextMenuSeparator, ContextMenuLabel
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
     ],
@@ -548,7 +548,7 @@ const config = {
     description:
       "A powerful data table component with sorting, filtering, and pagination built on TanStack Table.",
     category: "data",
-    importStatement: `import { DataTable } from "@audiogenius/design-system";`,
+    importStatement: `import { DataTable } from "@launchapp/design-system";`,
     props: [
       { name: "columns", type: "ColumnDef<TData, TValue>[]", required: true, description: "Column definitions from TanStack Table." },
       { name: "data", type: "TData[]", required: true, description: "The data array to display." },
@@ -578,7 +578,7 @@ const data = [
     name: "DatePicker",
     description: "A date picker input that combines a button trigger with a calendar popover.",
     category: "inputs",
-    importStatement: `import { DatePicker } from "@audiogenius/design-system";`,
+    importStatement: `import { DatePicker } from "@launchapp/design-system";`,
     props: [
       { name: "selected", type: "Date | undefined", description: "Controlled selected date." },
       { name: "onSelect", type: "(date: Date | undefined) => void", description: "Callback when date is selected." },
@@ -608,7 +608,7 @@ const data = [
     importStatement: `import {
   DialogRoot, DialogTrigger, DialogContent,
   DialogHeader, DialogFooter, DialogTitle, DialogDescription
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
       { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
@@ -647,7 +647,7 @@ const data = [
     importStatement: `import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
       { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
@@ -678,7 +678,7 @@ const data = [
     name: "FocusScope",
     description: "A utility that traps focus within a container, useful for accessible modals and overlays.",
     category: "utilities",
-    importStatement: `import { FocusScope } from "@audiogenius/design-system";`,
+    importStatement: `import { FocusScope } from "@launchapp/design-system";`,
     props: [
       { name: "trapped", type: "boolean", defaultValue: "false", description: "Whether focus is trapped within the scope." },
       { name: "loop", type: "boolean", defaultValue: "false", description: "Whether tab navigation loops within the scope." },
@@ -704,7 +704,7 @@ const data = [
     name: "Form",
     description: "Building forms with React Hook Form and Zod validation, with accessible error messages.",
     category: "forms",
-    importStatement: `import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@audiogenius/design-system";`,
+    importStatement: `import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@launchapp/design-system";`,
     props: [
       { name: "...form", type: "UseFormReturn", required: true, description: "The react-hook-form form instance spread as props." },
     ],
@@ -742,7 +742,7 @@ const data = [
     name: "Input",
     description: "Displays a form input field or a component that looks like an input field.",
     category: "inputs",
-    importStatement: `import { Input } from "@audiogenius/design-system";`,
+    importStatement: `import { Input } from "@launchapp/design-system";`,
     props: [
       { name: "type", type: "string", defaultValue: '"text"', description: "HTML input type." },
       { name: "placeholder", type: "string", description: "Placeholder text." },
@@ -774,7 +774,7 @@ const data = [
     name: "KPICard",
     description: "A card component for displaying key performance indicators with trend information.",
     category: "data",
-    importStatement: `import { KPICard } from "@audiogenius/design-system";`,
+    importStatement: `import { KPICard } from "@launchapp/design-system";`,
     props: [
       { name: "label", type: "string", required: true, description: "The KPI title/label." },
       { name: "value", type: "string | number", required: true, description: "The main KPI value to display." },
@@ -800,7 +800,7 @@ const data = [
     name: "Label",
     description: "Renders an accessible label associated with controls.",
     category: "forms",
-    importStatement: `import { Label } from "@audiogenius/design-system";`,
+    importStatement: `import { Label } from "@launchapp/design-system";`,
     props: [
       { name: "htmlFor", type: "string", description: "The ID of the form element this label is for." },
       { name: "className", type: "string", description: "Additional CSS classes." },
@@ -823,7 +823,7 @@ const data = [
     importStatement: `import {
   MenubarRoot, MenubarMenu, MenubarTrigger, MenubarContent,
   MenubarItem, MenubarSeparator, MenubarShortcut
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "string", description: "Controlled value of the open menu." },
       { name: "onValueChange", type: "(value: string) => void", description: "Callback when the open menu changes." },
@@ -857,7 +857,7 @@ const data = [
     name: "MultiSelect",
     description: "An input component for selecting multiple options from a dropdown list.",
     category: "inputs",
-    importStatement: `import { MultiSelect } from "@audiogenius/design-system";`,
+    importStatement: `import { MultiSelect } from "@launchapp/design-system";`,
     props: [
       { name: "options", type: "MultiSelectOption[]", required: true, description: "Array of options with value and label." },
       { name: "value", type: "string[]", description: "Controlled selected values." },
@@ -892,7 +892,7 @@ const data = [
     importStatement: `import {
   NavigationMenu, NavigationMenuList, NavigationMenuItem,
   NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "string", description: "Controlled open value." },
       { name: "onValueChange", type: "(value: string) => void", description: "Callback when open value changes." },
@@ -927,7 +927,7 @@ const data = [
     importStatement: `import {
   Pagination, PaginationContent, PaginationItem,
   PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [],
     examples: [
       {
@@ -962,7 +962,7 @@ const data = [
     name: "Popover",
     description: "Displays rich content in a portal, triggered by a button.",
     category: "overlays",
-    importStatement: `import { Popover, PopoverTrigger, PopoverContent } from "@audiogenius/design-system";`,
+    importStatement: `import { Popover, PopoverTrigger, PopoverContent } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
       { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
@@ -996,7 +996,7 @@ const data = [
     name: "Portal",
     description: "A utility component that renders its children into a different DOM node.",
     category: "utilities",
-    importStatement: `import { Portal } from "@audiogenius/design-system";`,
+    importStatement: `import { Portal } from "@launchapp/design-system";`,
     props: [
       { name: "container", type: "HTMLElement | null", description: "Target DOM container. Defaults to document.body." },
       { name: "asChild", type: "boolean", defaultValue: "false", description: "Render as child element." },
@@ -1015,7 +1015,7 @@ const data = [
     name: "Progress",
     description: "Displays an indicator showing the completion progress of a task.",
     category: "feedback",
-    importStatement: `import { Progress } from "@audiogenius/design-system";`,
+    importStatement: `import { Progress } from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "number | null", description: "The current progress value (0-100). null shows indeterminate." },
       { name: "max", type: "number", defaultValue: "100", description: "The maximum value." },
@@ -1044,7 +1044,7 @@ React.useEffect(() => {
     name: "RadioGroup",
     description: "A set of checkable buttons—known as radio buttons—where no more than one can be checked at a time.",
     category: "inputs",
-    importStatement: `import { RadioGroup, RadioGroupItem } from "@audiogenius/design-system";`,
+    importStatement: `import { RadioGroup, RadioGroupItem } from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "string", description: "Controlled selected value." },
       { name: "defaultValue", type: "string", description: "Initial value when uncontrolled." },
@@ -1073,7 +1073,7 @@ React.useEffect(() => {
     name: "Resizable",
     description: "Accessible resizable panel groups and layouts with keyboard support.",
     category: "layout",
-    importStatement: `import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@audiogenius/design-system";`,
+    importStatement: `import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@launchapp/design-system";`,
     props: [
       { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The resize orientation for the panel group." },
       { name: "onLayoutChange", type: "(layout: number[]) => void", description: "Callback when panel sizes change." },
@@ -1105,7 +1105,7 @@ React.useEffect(() => {
     name: "ScrollArea",
     description: "Augments native scroll functionality for custom, cross-browser styling.",
     category: "layout",
-    importStatement: `import { ScrollArea, ScrollBar } from "@audiogenius/design-system";`,
+    importStatement: `import { ScrollArea, ScrollBar } from "@launchapp/design-system";`,
     props: [
       { name: "type", type: '"auto" | "always" | "scroll" | "hover"', defaultValue: '"hover"', description: "Scroll visibility strategy." },
       { name: "scrollHideDelay", type: "number", defaultValue: "600", description: "Delay before scrollbar hides (ms)." },
@@ -1130,7 +1130,7 @@ React.useEffect(() => {
     importStatement: `import {
   SelectRoot, SelectTrigger, SelectValue, SelectContent,
   SelectItem, SelectGroup, SelectLabel, SelectSeparator
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "string", description: "Controlled selected value." },
       { name: "defaultValue", type: "string", description: "Initial value when uncontrolled." },
@@ -1162,7 +1162,7 @@ React.useEffect(() => {
     name: "Separator",
     description: "Visually or semantically separates content.",
     category: "display",
-    importStatement: `import { Separator } from "@audiogenius/design-system";`,
+    importStatement: `import { Separator } from "@launchapp/design-system";`,
     props: [
       { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The axis the separator should align with." },
       { name: "decorative", type: "boolean", defaultValue: "false", description: "Whether the separator is purely visual (no ARIA role)." },
@@ -1193,7 +1193,7 @@ React.useEffect(() => {
     category: "overlays",
     importStatement: `import {
   Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
       { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
@@ -1226,7 +1226,7 @@ React.useEffect(() => {
     name: "Skeleton",
     description: "Use to show a placeholder while content is loading.",
     category: "feedback",
-    importStatement: `import { Skeleton } from "@audiogenius/design-system";`,
+    importStatement: `import { Skeleton } from "@launchapp/design-system";`,
     props: [
       { name: "className", type: "string", description: "Additional CSS classes to control size and shape." },
     ],
@@ -1248,7 +1248,7 @@ React.useEffect(() => {
     name: "Slider",
     description: "An input where the user selects a value from within a given range.",
     category: "inputs",
-    importStatement: `import { Slider } from "@audiogenius/design-system";`,
+    importStatement: `import { Slider } from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "number[]", description: "Controlled value(s). Array for range sliders." },
       { name: "defaultValue", type: "number[]", description: "Initial value when uncontrolled." },
@@ -1271,7 +1271,7 @@ React.useEffect(() => {
     name: "Sonner",
     description: "An opinionated toast notification component built on Sonner.",
     category: "feedback",
-    importStatement: `import { SonnerToaster, sonnerToast } from "@audiogenius/design-system";`,
+    importStatement: `import { SonnerToaster, sonnerToast } from "@launchapp/design-system";`,
     props: [
       { name: "position", type: '"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"', defaultValue: '"bottom-right"', description: "Position of the toast container." },
       { name: "expand", type: "boolean", defaultValue: "false", description: "Whether toasts expand to full width." },
@@ -1297,7 +1297,7 @@ React.useEffect(() => {
     name: "StatDisplay",
     description: "A compact component for displaying a statistic with optional label and trend indicator.",
     category: "data",
-    importStatement: `import { StatDisplay } from "@audiogenius/design-system";`,
+    importStatement: `import { StatDisplay } from "@launchapp/design-system";`,
     props: [
       { name: "items", type: "KPICardProps[]", required: true, description: "Array of KPI card data objects to display." },
       { name: "cols", type: "2 | 3 | 4", defaultValue: "4", description: "Number of columns in the grid layout." },
@@ -1321,7 +1321,7 @@ React.useEffect(() => {
     name: "Switch",
     description: "A control that allows the user to toggle between checked and not checked.",
     category: "inputs",
-    importStatement: `import { Switch } from "@audiogenius/design-system";`,
+    importStatement: `import { Switch } from "@launchapp/design-system";`,
     props: [
       { name: "checked", type: "boolean", description: "Controlled checked state." },
       { name: "defaultChecked", type: "boolean", defaultValue: "false", description: "Initial checked state." },
@@ -1347,7 +1347,7 @@ React.useEffect(() => {
     importStatement: `import {
   Table, TableHeader, TableBody, TableRow,
   TableHead, TableCell, TableCaption
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "className", type: "string", description: "Additional CSS classes." },
     ],
@@ -1387,7 +1387,7 @@ React.useEffect(() => {
     name: "Tabs",
     description: "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
     category: "navigation",
-    importStatement: `import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "@audiogenius/design-system";`,
+    importStatement: `import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "string", description: "Controlled active tab value." },
       { name: "defaultValue", type: "string", description: "Initial active tab when uncontrolled." },
@@ -1417,7 +1417,7 @@ React.useEffect(() => {
     name: "Textarea",
     description: "Displays a form textarea or a component that looks like a textarea.",
     category: "inputs",
-    importStatement: `import { Textarea } from "@audiogenius/design-system";`,
+    importStatement: `import { Textarea } from "@launchapp/design-system";`,
     props: [
       { name: "placeholder", type: "string", description: "Placeholder text." },
       { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the textarea." },
@@ -1445,7 +1445,7 @@ React.useEffect(() => {
     name: "Toast",
     description: "A succinct message that is displayed temporarily, with support for actions.",
     category: "feedback",
-    importStatement: `import { Toaster, useToast } from "@audiogenius/design-system";`,
+    importStatement: `import { Toaster, useToast } from "@launchapp/design-system";`,
     props: [
       { name: "variant", type: '"default" | "destructive"', defaultValue: '"default"', description: "The visual style of the toast." },
       { name: "title", type: "string", description: "Toast title." },
@@ -1478,7 +1478,7 @@ React.useEffect(() => {
     name: "Toggle",
     description: "A two-state button that can be either on or off.",
     category: "inputs",
-    importStatement: `import { Toggle } from "@audiogenius/design-system";`,
+    importStatement: `import { Toggle } from "@launchapp/design-system";`,
     props: [
       { name: "pressed", type: "boolean", description: "Controlled pressed state." },
       { name: "defaultPressed", type: "boolean", defaultValue: "false", description: "Initial pressed state when uncontrolled." },
@@ -1502,7 +1502,7 @@ React.useEffect(() => {
     name: "ToggleGroup",
     description: "A set of two-state buttons that can be toggled on or off.",
     category: "inputs",
-    importStatement: `import { ToggleGroup, ToggleGroupItem } from "@audiogenius/design-system";`,
+    importStatement: `import { ToggleGroup, ToggleGroupItem } from "@launchapp/design-system";`,
     props: [
       { name: "type", type: '"single" | "multiple"', required: true, description: "Whether a single or multiple items can be selected." },
       { name: "value", type: "string | string[]", description: "Controlled selected value(s)." },
@@ -1530,7 +1530,7 @@ React.useEffect(() => {
     importStatement: `import {
   ToolbarRoot, ToolbarButton, ToolbarLink,
   ToolbarSeparator, ToolbarToggleGroup, ToolbarToggleItem
-} from "@audiogenius/design-system";`,
+} from "@launchapp/design-system";`,
     props: [
       { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The orientation of the toolbar." },
       { name: "loop", type: "boolean", defaultValue: "true", description: "Whether keyboard navigation loops." },
@@ -1555,7 +1555,7 @@ React.useEffect(() => {
     name: "Tooltip",
     description: "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     category: "overlays",
-    importStatement: `import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "@audiogenius/design-system";`,
+    importStatement: `import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "@launchapp/design-system";`,
     props: [
       { name: "delayDuration", type: "number", defaultValue: "400", description: "Time in ms from hover to open (on TooltipRoot)." },
       { name: "side", type: '"top" | "right" | "bottom" | "left"', defaultValue: '"top"', description: "Preferred side of the trigger (on TooltipContent)." },
@@ -1582,7 +1582,7 @@ React.useEffect(() => {
     name: "VisuallyHidden",
     description: "Hides content visually while keeping it accessible to screen readers.",
     category: "utilities",
-    importStatement: `import { VisuallyHidden } from "@audiogenius/design-system";`,
+    importStatement: `import { VisuallyHidden } from "@launchapp/design-system";`,
     props: [
       { name: "asChild", type: "boolean", defaultValue: "false", description: "Render as child element via Radix Slot." },
     ],

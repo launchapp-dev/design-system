@@ -59,17 +59,17 @@ const userGrowthData = [
 ];
 
 const marketShareData = [
-  { name: "AudioGenius", value: 38 },
+  { name: "LaunchApp", value: 38 },
   { name: "Competitor A", value: 27 },
   { name: "Competitor B", value: 19 },
   { name: "Others", value: 16 },
 ];
 
 const tooltipStyle = {
-  backgroundColor: "hsl(var(--ag-card))",
-  border: "1px solid hsl(var(--ag-border))",
-  borderRadius: "var(--ag-radius)",
-  color: "hsl(var(--ag-card-foreground))",
+  backgroundColor: "hsl(var(--la-card))",
+  border: "1px solid hsl(var(--la-border))",
+  borderRadius: "var(--la-radius)",
+  color: "hsl(var(--la-card-foreground))",
   fontSize: 12,
 };
 
@@ -89,16 +89,16 @@ export const LineChartStory: Story = {
   render: () => (
     <ChartContainer
       config={{
-        revenue: { label: "Revenue", color: "hsl(var(--ag-chart-1))" },
-        expenses: { label: "Expenses", color: "hsl(var(--ag-chart-2))" },
+        revenue: { label: "Revenue", color: "hsl(var(--la-chart-1))" },
+        expenses: { label: "Expenses", color: "hsl(var(--la-chart-2))" },
       }}
       height={300}
       className="max-w-2xl"
     >
       <LineChart data={monthlyData}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--ag-border))" vertical={false} />
-        <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(var(--ag-muted-foreground))" tickLine={false} axisLine={false} />
-        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--ag-muted-foreground))" tickLine={false} axisLine={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--la-border))" vertical={false} />
+        <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
         <Tooltip contentStyle={tooltipStyle} />
         <Legend />
         <Line type="monotone" dataKey="revenue" stroke="var(--color-revenue)" strokeWidth={2} dot={false} />
@@ -113,18 +113,18 @@ export const BarChartStory: Story = {
   render: () => (
     <ChartContainer
       config={{
-        q1: { label: "Q1", color: "hsl(var(--ag-chart-1))" },
-        q2: { label: "Q2", color: "hsl(var(--ag-chart-2))" },
-        q3: { label: "Q3", color: "hsl(var(--ag-chart-3))" },
-        q4: { label: "Q4", color: "hsl(var(--ag-chart-4))" },
+        q1: { label: "Q1", color: "hsl(var(--la-chart-1))" },
+        q2: { label: "Q2", color: "hsl(var(--la-chart-2))" },
+        q3: { label: "Q3", color: "hsl(var(--la-chart-3))" },
+        q4: { label: "Q4", color: "hsl(var(--la-chart-4))" },
       }}
       height={300}
       className="max-w-2xl"
     >
       <BarChart data={categoryData}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--ag-border))" vertical={false} />
-        <XAxis dataKey="category" tick={{ fontSize: 12 }} stroke="hsl(var(--ag-muted-foreground))" tickLine={false} axisLine={false} />
-        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--ag-muted-foreground))" tickLine={false} axisLine={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--la-border))" vertical={false} />
+        <XAxis dataKey="category" tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
         <Tooltip contentStyle={tooltipStyle} />
         <Legend />
         <Bar dataKey="q1" fill="var(--color-q1)" radius={[2, 2, 0, 0]} />
@@ -141,8 +141,8 @@ export const AreaChartStory: Story = {
   render: () => (
     <ChartContainer
       config={{
-        users: { label: "New Users", color: "hsl(var(--ag-chart-1))" },
-        churn: { label: "Churned Users", color: "hsl(var(--ag-chart-5))" },
+        users: { label: "New Users", color: "hsl(var(--la-chart-1))" },
+        churn: { label: "Churned Users", color: "hsl(var(--la-chart-5))" },
       }}
       height={300}
       className="max-w-2xl"
@@ -158,9 +158,9 @@ export const AreaChartStory: Story = {
             <stop offset="95%" stopColor="var(--color-churn)" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--ag-border))" vertical={false} />
-        <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(var(--ag-muted-foreground))" tickLine={false} axisLine={false} />
-        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--ag-muted-foreground))" tickLine={false} axisLine={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--la-border))" vertical={false} />
+        <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
         <Tooltip contentStyle={tooltipStyle} />
         <Legend />
         <Area type="monotone" dataKey="users" stroke="var(--color-users)" strokeWidth={2} fill="url(#colorUsers)" />

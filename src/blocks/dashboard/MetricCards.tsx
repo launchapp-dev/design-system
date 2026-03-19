@@ -41,7 +41,7 @@ const MetricCards = React.forwardRef<HTMLDivElement, MetricCardsProps>(
     >
       {items.map((item) => {
         const normalizedData = item.sparklineData?.map((v) => ({ value: v }));
-        const color = item.sparklineColor ?? "hsl(var(--ag-chart-1))";
+        const color = item.sparklineColor ?? "hsl(var(--la-chart-1))";
         const gradientId = `mc-gradient-${item.id}`;
 
         return (

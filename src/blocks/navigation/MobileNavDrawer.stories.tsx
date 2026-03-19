@@ -67,8 +67,8 @@ const sampleUser = {
 
 const LogoMark = () => (
   <div className="flex items-center gap-2">
-    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--ag-primary))]">
-      <span className="text-xs font-bold text-[hsl(var(--ag-primary-foreground))]">A</span>
+    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
+      <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
     </div>
     <span className="text-sm font-semibold">Acme</span>
   </div>
@@ -107,7 +107,7 @@ export const Controlled: Story = {
           open={open}
           onOpenChange={setOpen}
         />
-        <p className="text-sm text-[hsl(var(--ag-muted-foreground))]">
+        <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
           Drawer is {open ? "open" : "closed"}
         </p>
       </div>
@@ -127,7 +127,7 @@ export const NoUser: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark flex h-32 w-64 items-center justify-center rounded-lg bg-[hsl(var(--ag-background))] p-4">
+      <div className="dark flex h-32 w-64 items-center justify-center rounded-lg bg-[hsl(var(--la-background))] p-4">
         <Story />
       </div>
     ),

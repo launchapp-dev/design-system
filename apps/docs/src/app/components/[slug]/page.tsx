@@ -17,7 +17,7 @@ export function generateMetadata({ params }: PageProps) {
   const component = getComponent(params.slug);
   if (!component) return {};
   return {
-    title: `${component.name} — AudioGenius Design System`,
+    title: `${component.name} — LaunchApp Design System`,
     description: component.description,
   };
 }
@@ -54,7 +54,7 @@ export default function ComponentPage({ params }: PageProps) {
         <h2 className="text-xl font-semibold mb-4">Installation</h2>
         <CodeBlock
           lang="bash"
-          code={`npm install @audiogenius/design-system`}
+          code={`npm install @launchapp/design-system`}
         />
         <div className="mt-4">
           <CodeBlock

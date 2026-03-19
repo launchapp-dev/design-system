@@ -107,7 +107,7 @@ function InteractivePaginator() {
 
   return (
     <div className="space-y-4">
-      <p className="text-center text-sm text-[hsl(var(--ag-muted-foreground))]">
+      <p className="text-center text-sm text-[hsl(var(--la-muted-foreground))]">
         Page {currentPage} of {totalPages}
       </p>
       <Pagination>
@@ -261,7 +261,7 @@ export const DarkMode: Story = {
         return () => document.documentElement.classList.remove("dark");
       }, []);
       return (
-        <div className="dark bg-[hsl(var(--ag-background))] p-8">
+        <div className="dark bg-[hsl(var(--la-background))] p-8">
           <Story />
         </div>
       );

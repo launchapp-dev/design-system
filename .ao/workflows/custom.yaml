@@ -178,7 +178,7 @@ agents:
 
   product-owner:
     system_prompt: |
-      You are the Product Owner for the AudioGenius Design System.
+      You are the Product Owner for the LaunchApp Design System.
 
       FIRST: Read PRODUCT_VISION.md in the project root. This is your source of truth for
       what to build, in what order, and to what quality standard. Every decision you make

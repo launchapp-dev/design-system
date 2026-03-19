@@ -19,7 +19,7 @@ The most advanced open-source React design system for 2026. Built on Radix UI pr
 - Projects that want pre-built complex blocks (auth pages, dashboards, settings panels)
 
 ## Distribution Strategy
-1. **Standalone npm package** — `npm install @audiogenius/design-system` for full library
+1. **Standalone npm package** — `npm install @launchapp/design-system` for full library
 2. **shadcn/ui registry** — Individual component installation via `npx shadcn add` using our custom registry
 3. **Blocks registry** — Pre-composed complex UI blocks available through the registry
 

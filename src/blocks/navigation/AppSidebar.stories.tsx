@@ -80,8 +80,8 @@ const sampleUser = {
 
 const LogoMark = () => (
   <div className="flex items-center gap-2">
-    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--ag-primary))]">
-      <span className="text-xs font-bold text-[hsl(var(--ag-primary-foreground))]">A</span>
+    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
+      <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
     </div>
     <span className="text-sm font-semibold">Acme</span>
   </div>
@@ -95,10 +95,10 @@ const meta: Meta<typeof AppSidebar> = {
   },
   decorators: [
     (Story) => (
-      <div className="flex h-[600px] w-full overflow-hidden border border-[hsl(var(--ag-border))] rounded-lg">
+      <div className="flex h-[600px] w-full overflow-hidden border border-[hsl(var(--la-border))] rounded-lg">
         <Story />
-        <main className="flex flex-1 items-center justify-center bg-[hsl(var(--ag-muted))]">
-          <p className="text-sm text-[hsl(var(--ag-muted-foreground))]">Main content area</p>
+        <main className="flex flex-1 items-center justify-center bg-[hsl(var(--la-muted))]">
+          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Main content area</p>
         </main>
       </div>
     ),
@@ -156,10 +156,10 @@ export const NoUser: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark flex h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--ag-border))]">
+      <div className="dark flex h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
         <Story />
-        <main className="flex flex-1 items-center justify-center bg-[hsl(var(--ag-muted))]">
-          <p className="text-sm text-[hsl(var(--ag-muted-foreground))]">Main content area</p>
+        <main className="flex flex-1 items-center justify-center bg-[hsl(var(--la-muted))]">
+          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Main content area</p>
         </main>
       </div>
     ),
