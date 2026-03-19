@@ -23,9 +23,14 @@ export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
 
+/**
+ * Badge component. By default, no ARIA role is applied.
+ * Pass `role="status"` for live-updating badges (politely announced by screen readers)
+ * or `role="alert"` for urgent announcements that require immediate attention.
+ */
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
   ({ className, variant, role, ...props }, ref) => {
-    const defaultRole = variant === "destructive" ? "alert" : "img";
+    const defaultRole = variant === "destructive" ? "status" : undefined;
     return (
       <div
         ref={ref}
