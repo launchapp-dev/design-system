@@ -34,6 +34,7 @@ const Checkbox = React.forwardRef<
   >
     <CheckboxPrimitive.Indicator className="group flex items-center justify-center text-current">
       <svg
+        aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -46,6 +47,7 @@ const Checkbox = React.forwardRef<
         <polyline points="20 6 9 17 4 12" />
       </svg>
       <svg
+        aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
