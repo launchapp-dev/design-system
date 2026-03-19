@@ -31,6 +31,16 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, size, error, ...props }, ref) => {
+    if (
+      process.env.NODE_ENV !== "production" &&
+      !props.id &&
+      !props["aria-label"] &&
+      !props["aria-labelledby"]
+    ) {
+      console.warn(
+        "Input: missing label association. Provide `id` paired with a <Label htmlFor>, or pass `aria-label`/`aria-labelledby`."
+      );
+    }
     return (
       <input
         className={cn(inputVariants({ size, error }), className)}
