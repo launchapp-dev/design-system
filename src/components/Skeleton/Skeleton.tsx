@@ -5,6 +5,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
+      aria-hidden="true"
       className={cn("animate-pulse rounded-md bg-muted", className)}
       {...props}
     />
