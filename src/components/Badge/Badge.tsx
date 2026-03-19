@@ -24,13 +24,17 @@ export interface BadgeProps
     VariantProps<typeof badgeVariants> {}
 
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
-  ({ className, variant, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(badgeVariants({ variant }), className)}
-      {...props}
-    />
-  )
+  ({ className, variant, role, ...props }, ref) => {
+    const defaultRole = variant === "destructive" ? "alert" : "img";
+    return (
+      <div
+        ref={ref}
+        role={role ?? defaultRole}
+        className={cn(badgeVariants({ variant }), className)}
+        {...props}
+      />
+    );
+  }
 );
 Badge.displayName = "Badge";
 
