@@ -42,6 +42,11 @@
     --ag-chart-3: 150 60% 45%;
     --ag-chart-4: 30 90% 55%;
     --ag-chart-5: 350 80% 55%;
+
+    --ag-sidebar: 0 0% 98%;
+    --ag-sidebar-foreground: 240 10% 3.9%;
+    --ag-sidebar-border: 240 5.9% 90%;
+    --ag-docs-bg: 0 0% 100%;
   }
 
   .dark {
@@ -78,6 +83,11 @@
     --ag-chart-3: 150 55% 55%;
     --ag-chart-4: 30 85% 65%;
     --ag-chart-5: 350 75% 65%;
+
+    --ag-sidebar: 240 10% 5%;
+    --ag-sidebar-foreground: 0 0% 98%;
+    --ag-sidebar-border: 240 3.7% 15.9%;
+    --ag-docs-bg: 240 10% 3.9%;
   }
 
   * {
