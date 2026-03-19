@@ -29,12 +29,10 @@ export interface BadgeProps
  * or `role="alert"` for urgent announcements that require immediate attention.
  */
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
-  ({ className, variant, role, ...props }, ref) => {
-    const defaultRole = variant === "destructive" ? "status" : undefined;
+  ({ className, variant, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        role={role ?? defaultRole}
         className={cn(badgeVariants({ variant }), className)}
         {...props}
       />
