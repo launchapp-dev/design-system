@@ -2,6 +2,9 @@
   "name": "@audiogenius/design-system",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "description": "Radix UI based design system for AudioGenius",
   "type": "module",
   "main": "./dist/index.cjs",
