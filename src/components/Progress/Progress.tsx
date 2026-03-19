@@ -30,6 +30,7 @@ const Progress = React.forwardRef<
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(progressVariants({ size }), className)}
+    value={value}
     {...props}
   >
     <ProgressPrimitive.Indicator
