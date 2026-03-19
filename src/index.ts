@@ -297,3 +297,12 @@ export { NotificationPreferences } from "./blocks/settings";
 export type { NotificationPreferencesProps, NotificationGroup, NotificationItem } from "./blocks/settings";
 export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./blocks/settings";
+
+export { HeroSection, heroSectionVariants } from "./blocks/marketing/HeroSection";
+export type { HeroSectionProps } from "./blocks/marketing/HeroSection";
+export { FeatureGrid } from "./blocks/marketing/FeatureGrid";
+export type { FeatureGridProps, Feature } from "./blocks/marketing/FeatureGrid";
+export { PricingTable } from "./blocks/marketing/PricingTable";
+export type { PricingTableProps, PricingTier } from "./blocks/marketing/PricingTable";
+export { TestimonialCarousel } from "./blocks/marketing/TestimonialCarousel";
+export type { TestimonialCarouselProps, Testimonial } from "./blocks/marketing/TestimonialCarousel";
