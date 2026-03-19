@@ -86,6 +86,23 @@ Pre-composed, production-ready UI blocks that combine multiple components:
 - Every block must be responsive (mobile, tablet, desktop)
 - Every block must include a Storybook story showing all variants
 
+## Workflow Automation Skills
+
+The AO agent orchestrator integrates the following skills into automated workflows:
+
+| Skill | Agent | Schedule | Purpose |
+|-------|-------|----------|---------|
+| product-skills (UX Researcher) | `ux-researcher` | Weekly Mon 10am | Nielsen heuristic audits, interaction pattern analysis, API ergonomics |
+| product-skills (UI Design System) | `design-engineer` | On component PRs | Visual hierarchy, spacing scale, color semantics, interaction states |
+| frontend-design | `design-engineer` | On component PRs | Production-grade design quality, avoids generic aesthetics |
+| simplify | `code-quality-reviewer` | Mon/Thu 9am | Dead code, over-engineering, prop explosion, CVA correctness |
+| ao-skills (composition-patterns) | `design-advisor` | On component PRs | Compound component patterns, CVA axis naming, forwardRef |
+
+### Workflow Integration
+- `component` workflow includes `design-engineering-review` and `code-quality` gates before PR
+- `ux-research` runs weekly against all components in `src/components/`
+- `code-quality-sweep` runs Mon/Thu to catch drift across all recent changes
+
 ## Non-Goals
 - Mobile-native components (React Native) — this is web only
 - CSS framework agnosticism — we are committed to Tailwind CSS
