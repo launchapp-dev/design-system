@@ -30,6 +30,7 @@ const comboboxTriggerVariants = cva(
 export interface ComboboxOption {
   value: string;
   label: string;
+  disabled?: boolean;
 }
 
 export interface ComboboxProps
@@ -104,9 +105,10 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                 {options.map((option) => (
                   <CommandItem
                     key={option.value}
-                    value={option.value}
-                    onSelect={(currentValue) => {
-                      onValueChange?.(currentValue === value ? "" : currentValue);
+                    value={option.label}
+                    disabled={option.disabled}
+                    onSelect={() => {
+                      onValueChange?.(option.value === value ? "" : option.value);
                       setOpen(false);
                     }}
                   >
@@ -139,6 +141,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
     );
   }
 );
+
 Combobox.displayName = "Combobox";
 
 export { Combobox, comboboxTriggerVariants };

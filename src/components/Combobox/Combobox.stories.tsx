@@ -2,12 +2,19 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { Combobox } from "./index";
 
-const meta: Meta = {
+const meta: Meta<typeof Combobox> = {
   title: "Components/Combobox",
+  component: Combobox,
+  argTypes: {
+    placeholder: { control: "text" },
+    searchPlaceholder: { control: "text" },
+    emptyText: { control: "text" },
+    disabled: { control: "boolean" },
+  },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Combobox>;
 
 const frameworks = [
   { value: "react", label: "React" },
@@ -29,22 +36,21 @@ const countries = [
   { value: "br", label: "Brazil" },
   { value: "in", label: "India" },
   { value: "cn", label: "China" },
+  { value: "mx", label: "Mexico" },
+  { value: "kr", label: "South Korea" },
 ];
 
+const ControlledCombobox = (props: React.ComponentProps<typeof Combobox>) => {
+  const [value, setValue] = React.useState("");
+  return <Combobox {...props} value={value} onValueChange={setValue} />;
+};
+
 export const Default: Story = {
-  render: () => {
-    const [value, setValue] = React.useState("");
-    return (
-      <div className="w-full max-w-sm">
-        <Combobox
-          options={frameworks}
-          value={value}
-          onValueChange={setValue}
-          placeholder="Select a framework..."
-        />
-      </div>
-    );
-  },
+  render: () => (
+    <div className="w-full max-w-sm">
+      <ControlledCombobox options={frameworks} placeholder="Select a framework..." />
+    </div>
+  ),
 };
 
 export const AllSizes: Story = {
@@ -66,6 +72,17 @@ export const AllSizes: Story = {
           <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Large</p>
           <Combobox size="lg" options={frameworks} value={lg} onValueChange={setLg} placeholder="Select..." />
         </div>
+      </div>
+    );
+  },
+};
+
+export const WithInitialValue: Story = {
+  render: () => {
+    const [value, setValue] = React.useState("react");
+    return (
+      <div className="w-full max-w-sm">
+        <Combobox options={frameworks} value={value} onValueChange={setValue} />
       </div>
     );
   },
@@ -112,6 +129,43 @@ export const Disabled: Story = {
   ),
 };
 
+export const WithDisabledOptions: Story = {
+  render: () => {
+    const options = [
+      { value: "react", label: "React" },
+      { value: "vue", label: "Vue", disabled: true },
+      { value: "angular", label: "Angular" },
+      { value: "svelte", label: "Svelte", disabled: true },
+      { value: "solid", label: "SolidJS" },
+    ];
+    const [value, setValue] = React.useState("");
+    return (
+      <div className="w-full max-w-sm">
+        <Combobox options={options} value={value} onValueChange={setValue} placeholder="Select framework..." />
+      </div>
+    );
+  },
+};
+
+export const EmptyState: Story = {
+  render: () => (
+    <div className="w-full max-w-sm">
+      <ControlledCombobox options={[]} emptyText="No frameworks available." />
+    </div>
+  ),
+};
+
+export const LongOptionList: Story = {
+  render: () => {
+    const [value, setValue] = React.useState("");
+    return (
+      <div className="w-full max-w-sm">
+        <Combobox options={countries} value={value} onValueChange={setValue} placeholder="Select a country..." searchPlaceholder="Search countries..." />
+      </div>
+    );
+  },
+};
+
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
@@ -130,30 +184,6 @@ export const DarkMode: Story = {
           onValueChange={setValue}
           placeholder="Select a framework..."
         />
-      </div>
-    );
-  },
-};
-
-export const EdgeCases: Story = {
-  render: () => {
-    const [value, setValue] = React.useState("");
-    const longOptions = [
-      { value: "opt1", label: "This is a very long option label that may overflow its container" },
-      { value: "opt2", label: "Another reasonably long option label for testing" },
-      { value: "opt3", label: "Short" },
-      { value: "opt4", label: "Medium length option" },
-    ];
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "320px" }}>
-        <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Long option labels</p>
-          <Combobox options={longOptions} value={value} onValueChange={setValue} placeholder="Select..." />
-        </div>
-        <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Empty options list</p>
-          <Combobox options={[]} value="" onValueChange={() => {}} placeholder="No options available" emptyText="No options." />
-        </div>
       </div>
     );
   },
