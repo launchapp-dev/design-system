@@ -3,14 +3,26 @@ import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "../../lib/utils";
 
 export interface SliderProps
-  extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {}
+  extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
+  thumbLabels?: string[];
+}
 
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   SliderProps
->(({ className, orientation, value, defaultValue, ...props }, ref) => {
+>(({ className, orientation, value, defaultValue, thumbLabels, ...props }, ref) => {
   const values = value ?? defaultValue ?? [0];
   const thumbCount = Array.isArray(values) ? values.length : 1;
+
+  const getThumbLabel = (index: number): string => {
+    if (thumbLabels && thumbLabels[index] !== undefined) {
+      return thumbLabels[index];
+    }
+    if (thumbCount === 2) {
+      return index === 0 ? "Minimum value" : "Maximum value";
+    }
+    return `Value ${index + 1}`;
+  };
   const isVertical = orientation === "vertical";
 
   return (
@@ -42,6 +54,7 @@ const Slider = React.forwardRef<
       {Array.from({ length: thumbCount }).map((_, i) => (
         <SliderPrimitive.Thumb
           key={i}
+          aria-label={getThumbLabel(i)}
           className="block h-4 w-4 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
