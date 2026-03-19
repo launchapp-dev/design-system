@@ -135,6 +135,7 @@ function DataTableInner<TData, TValue>(
             value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
             className="h-8 rounded-md border border-input bg-background px-2 text-sm"
+            aria-label="Rows per page"
           >
             {[10, 20, 30, 50].map((size) => (
               <option key={size} value={size}>
