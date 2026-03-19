@@ -64,6 +64,7 @@ const RadioGroupItem = React.forwardRef<
   >
     <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
       <svg
+        aria-hidden="true"
         viewBox="0 0 8 8"
         className={cn(
           "fill-current",
