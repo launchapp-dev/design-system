@@ -38,3 +38,19 @@ npm publish --dry-run
 ```
 
 Only the `dist/` directory is included in the published package (controlled by the `files` field in `package.json` and `.npmignore`).
+
+## shadcn Registry
+
+The `registry.json` file is hosted on GitHub Pages at:
+
+```
+https://launchapp-dev.github.io/design-system/registry.json
+```
+
+It is published automatically via the `pages.yml` workflow whenever `registry.json` changes on `main`.
+
+To add a component from the registry using the shadcn CLI:
+
+```bash
+npx shadcn@latest add --registry https://launchapp-dev.github.io/design-system/registry.json button
+```
