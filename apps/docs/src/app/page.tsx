@@ -48,7 +48,7 @@ export default function HomePage() {
           v0.1.0 · {components.length} components
         </div>
         <h1 className="text-4xl font-bold tracking-tight mb-4">
-          AudioGenius Design System
+          LaunchApp Design System
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
           A comprehensive component library built on{" "}

@@ -4,26 +4,26 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-[--ag-radius] font-medium ring-offset-[hsl(var(--ag-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ag-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-[--la-radius] font-medium ring-offset-[hsl(var(--la-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-[hsl(var(--ag-primary))] text-[hsl(var(--ag-primary-foreground))] hover:bg-[hsl(var(--ag-primary)/0.9)]",
+          "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] hover:bg-[hsl(var(--la-primary)/0.9)]",
         destructive:
-          "bg-[hsl(var(--ag-destructive))] text-[hsl(var(--ag-destructive-foreground))] hover:bg-[hsl(var(--ag-destructive)/0.9)]",
+          "bg-[hsl(var(--la-destructive))] text-[hsl(var(--la-destructive-foreground))] hover:bg-[hsl(var(--la-destructive)/0.9)]",
         outline:
-          "border border-[hsl(var(--ag-input))] bg-[hsl(var(--ag-background))] hover:bg-[hsl(var(--ag-accent))] hover:text-[hsl(var(--ag-accent-foreground))]",
+          "border border-[hsl(var(--la-input))] bg-[hsl(var(--la-background))] hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
         secondary:
-          "bg-[hsl(var(--ag-secondary))] text-[hsl(var(--ag-secondary-foreground))] hover:bg-[hsl(var(--ag-secondary)/0.8)]",
+          "bg-[hsl(var(--la-secondary))] text-[hsl(var(--la-secondary-foreground))] hover:bg-[hsl(var(--la-secondary)/0.8)]",
         ghost:
-          "hover:bg-[hsl(var(--ag-accent))] hover:text-[hsl(var(--ag-accent-foreground))]",
-        link: "text-[hsl(var(--ag-primary))] underline-offset-4 hover:underline",
+          "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
+        link: "text-[hsl(var(--la-primary))] underline-offset-4 hover:underline",
       },
       size: {
-        sm: "h-9 rounded-[--ag-radius] px-3 text-sm",
+        sm: "h-9 rounded-[--la-radius] px-3 text-sm",
         md: "h-10 px-4 py-2 text-sm",
-        lg: "h-11 rounded-[--ag-radius] px-8 text-base",
+        lg: "h-11 rounded-[--la-radius] px-8 text-base",
         icon: "h-10 w-10",
       },
     },

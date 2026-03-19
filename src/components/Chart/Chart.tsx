@@ -25,7 +25,7 @@ const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerProps>(
       return Object.fromEntries(
         Object.entries(config).map(([key, { color }]) => [
           `--color-${key}`,
-          color ?? "hsl(var(--ag-chart-1))",
+          color ?? "hsl(var(--la-chart-1))",
         ])
       );
     }, [config]);
@@ -72,11 +72,11 @@ function PieChart(props: PieChartProps) {
 PieChart.displayName = "PieChart";
 
 export const CHART_COLORS = [
-  "hsl(var(--ag-chart-1))",
-  "hsl(var(--ag-chart-2))",
-  "hsl(var(--ag-chart-3))",
-  "hsl(var(--ag-chart-4))",
-  "hsl(var(--ag-chart-5))",
+  "hsl(var(--la-chart-1))",
+  "hsl(var(--la-chart-2))",
+  "hsl(var(--la-chart-3))",
+  "hsl(var(--la-chart-4))",
+  "hsl(var(--la-chart-5))",
 ] as const;
 
 export { ChartContainer, LineChart, BarChart, AreaChart, PieChart };

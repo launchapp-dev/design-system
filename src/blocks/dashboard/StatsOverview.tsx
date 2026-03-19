@@ -42,12 +42,12 @@ const StatsOverview = React.forwardRef<HTMLDivElement, StatsOverviewProps>(
                     <linearGradient key={key} id={`gradient-${key}`} x1="0" y1="0" x2="0" y2="1">
                       <stop
                         offset="5%"
-                        stopColor={color ?? `hsl(var(--ag-chart-${i + 1}))`}
+                        stopColor={color ?? `hsl(var(--la-chart-${i + 1}))`}
                         stopOpacity={0.2}
                       />
                       <stop
                         offset="95%"
-                        stopColor={color ?? `hsl(var(--ag-chart-${i + 1}))`}
+                        stopColor={color ?? `hsl(var(--la-chart-${i + 1}))`}
                         stopOpacity={0}
                       />
                     </linearGradient>
@@ -56,15 +56,15 @@ const StatsOverview = React.forwardRef<HTMLDivElement, StatsOverviewProps>(
                 <CartesianGrid strokeDasharray="3 3" className="stroke-border" vertical={false} />
                 <XAxis
                   dataKey="label"
-                  tick={{ fontSize: 11, fill: "hsl(var(--ag-muted-foreground))" }}
+                  tick={{ fontSize: 11, fill: "hsl(var(--la-muted-foreground))" }}
                   tickLine={false}
                   axisLine={false}
                 />
                 <ChartTooltip
                   contentStyle={{
-                    background: "hsl(var(--ag-card))",
-                    border: "1px solid hsl(var(--ag-border))",
-                    borderRadius: "var(--ag-radius)",
+                    background: "hsl(var(--la-card))",
+                    border: "1px solid hsl(var(--la-border))",
+                    borderRadius: "var(--la-radius)",
                     fontSize: 12,
                   }}
                 />
@@ -73,7 +73,7 @@ const StatsOverview = React.forwardRef<HTMLDivElement, StatsOverviewProps>(
                     key={key}
                     type="monotone"
                     dataKey={key}
-                    stroke={color ?? `hsl(var(--ag-chart-${i + 1}))`}
+                    stroke={color ?? `hsl(var(--la-chart-${i + 1}))`}
                     strokeWidth={2}
                     fill={`url(#gradient-${key})`}
                     dot={false}

@@ -6,10 +6,10 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: {
-    default: "AudioGenius Design System",
-    template: "%s | AudioGenius Design System",
+    default: "LaunchApp Design System",
+    template: "%s | LaunchApp Design System",
   },
-  description: "Component documentation for the AudioGenius Design System — built on Radix UI and Tailwind CSS.",
+  description: "Component documentation for the LaunchApp Design System — built on Radix UI and Tailwind CSS.",
 };
 
 export default function RootLayout({

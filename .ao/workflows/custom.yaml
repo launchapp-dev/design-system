@@ -81,7 +81,7 @@ agents:
       7. Compose over Radix primitives — never re-implement accessibility
 
       DESIGN TOKENS:
-      - Use CSS custom properties (--ag-*) for theming via Tailwind config
+      - Use CSS custom properties (--la-*) for theming via Tailwind config
       - Support dark mode via the "dark" class strategy
       - Use the project's color semantic tokens: primary, secondary, destructive, muted, accent
 
@@ -138,7 +138,7 @@ agents:
       DESIGN SYSTEM REVIEW CRITERIA:
       1. Accessibility: Does it use Radix primitives correctly? Keyboard nav? ARIA?
       2. Variants: Does it use CVA? Are size/variant props consistent with other components?
-      3. Theming: Does it use semantic color tokens (--ag-*)? Dark mode support?
+      3. Theming: Does it use semantic color tokens (--la-*)? Dark mode support?
       4. Types: Are all props properly typed? Is the component generic where needed?
       5. forwardRef: Is React.forwardRef used? Is the ref type correct?
       6. className merging: Does it use cn() from the utils?
@@ -178,7 +178,7 @@ agents:
 
   product-owner:
     system_prompt: |
-      You are the Product Owner for the AudioGenius Design System.
+      You are the Product Owner for the LaunchApp Design System.
 
       FIRST: Read PRODUCT_VISION.md in the project root. This is your source of truth for
       what to build, in what order, and to what quality standard. Every decision you make

@@ -14,7 +14,7 @@ const footerLinks = [
   {
     title: "Community",
     links: [
-      { href: "https://github.com/audiogenius/design-system", label: "GitHub" },
+      { href: "https://github.com/launchapp/design-system", label: "GitHub" },
       { href: "/changelog", label: "Changelog" },
     ],
   },
@@ -35,9 +35,9 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
               <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground text-xs font-bold">
-                AG
+                LA
               </div>
-              <span>AudioGenius UI</span>
+              <span>LaunchApp UI</span>
             </Link>
             <p className="mt-3 text-sm text-muted-foreground max-w-xs">
               A production-ready React component library with full accessibility and dark mode support.
@@ -65,10 +65,10 @@ export function Footer() {
 
         <div className="mt-10 border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} AudioGenius. All rights reserved.
+            &copy; {new Date().getFullYear()} LaunchApp. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            Built with AudioGenius Design System
+            Built with LaunchApp Design System
           </p>
         </div>
       </div>

@@ -39,11 +39,11 @@ const DrawerNavItem = ({ item }: { item: NavItem }) => {
   const [open, setOpen] = React.useState(false);
 
   const itemClass = cn(
-    "flex w-full items-center gap-3 rounded-[--ag-radius] px-3 py-2.5 text-sm font-medium transition-colors",
-    "text-[hsl(var(--ag-foreground))]",
-    "hover:bg-[hsl(var(--ag-accent))] hover:text-[hsl(var(--ag-accent-foreground))]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ag-ring))]",
-    item.isActive && "bg-[hsl(var(--ag-accent))] text-[hsl(var(--ag-accent-foreground))]"
+    "flex w-full items-center gap-3 rounded-[--la-radius] px-3 py-2.5 text-sm font-medium transition-colors",
+    "text-[hsl(var(--la-foreground))]",
+    "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
+    item.isActive && "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]"
   );
 
   if (item.children && item.children.length > 0) {
@@ -59,7 +59,7 @@ const DrawerNavItem = ({ item }: { item: NavItem }) => {
           </button>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-[hsl(var(--ag-border))] pl-3">
+          <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-[hsl(var(--la-border))] pl-3">
             {item.children.map((child) => (
               <DrawerNavItem key={child.label} item={child} />
             ))}
@@ -118,15 +118,15 @@ const MobileNavDrawer = ({
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="flex w-[280px] flex-col gap-0 p-0 sm:max-w-[280px]">
-        <SheetHeader className="border-b border-[hsl(var(--ag-border))] p-4">
+        <SheetHeader className="border-b border-[hsl(var(--la-border))] p-4">
           <SheetTitle asChild>
             <div className="flex items-center gap-2">
               {logo ? (
-                <div className="flex items-center gap-2 font-semibold text-[hsl(var(--ag-foreground))]">
+                <div className="flex items-center gap-2 font-semibold text-[hsl(var(--la-foreground))]">
                   {logo}
                 </div>
               ) : (
-                <span className="text-base font-semibold text-[hsl(var(--ag-foreground))]">
+                <span className="text-base font-semibold text-[hsl(var(--la-foreground))]">
                   {title}
                 </span>
               )}
@@ -138,7 +138,7 @@ const MobileNavDrawer = ({
           {sections.map((section, idx) => (
             <div key={idx} className="flex flex-col gap-1">
               {section.title && (
-                <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[hsl(var(--ag-muted-foreground))]">
+                <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
                   {section.title}
                 </p>
               )}
@@ -161,11 +161,11 @@ const MobileNavDrawer = ({
                 </AvatarFallback>
               </Avatar>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-[hsl(var(--ag-foreground))]">
+                <p className="truncate text-sm font-medium text-[hsl(var(--la-foreground))]">
                   {user.name}
                 </p>
                 {user.email && (
-                  <p className="truncate text-xs text-[hsl(var(--ag-muted-foreground))]">
+                  <p className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">
                     {user.email}
                   </p>
                 )}

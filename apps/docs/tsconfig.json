@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*", "../../src/*"],
-      "@audiogenius/design-system": ["../../src/index.ts"]
+      "@launchapp/design-system": ["../../src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

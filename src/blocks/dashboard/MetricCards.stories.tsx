@@ -11,7 +11,7 @@ const mockItems: MetricCardItem[] = [
     trend: "up",
     trendValue: "+8.2%",
     sparklineData: [9200, 9800, 10100, 10400, 10900, 11200, 11600, 11900, 12100, 12200, 12350, 12480],
-    sparklineColor: "hsl(var(--ag-chart-1))",
+    sparklineColor: "hsl(var(--la-chart-1))",
   },
   {
     id: "mrr",
@@ -20,7 +20,7 @@ const mockItems: MetricCardItem[] = [
     trend: "up",
     trendValue: "+5.4%",
     sparklineData: [128000, 130000, 132000, 134000, 136000, 138000, 140000, 142000, 143500, 145000, 146800, 148200],
-    sparklineColor: "hsl(var(--ag-chart-2))",
+    sparklineColor: "hsl(var(--la-chart-2))",
   },
   {
     id: "churn",
@@ -29,7 +29,7 @@ const mockItems: MetricCardItem[] = [
     trend: "down",
     trendValue: "-0.3%",
     sparklineData: [2.4, 2.5, 2.3, 2.6, 2.4, 2.2, 2.1, 2.0, 2.1, 1.9, 1.85, 1.8],
-    sparklineColor: "hsl(var(--ag-destructive))",
+    sparklineColor: "hsl(var(--la-destructive))",
   },
   {
     id: "nps",
@@ -38,7 +38,7 @@ const mockItems: MetricCardItem[] = [
     trend: "neutral",
     trendValue: "±0",
     sparklineData: [68, 70, 71, 69, 70, 72, 73, 71, 72, 71, 72, 72],
-    sparklineColor: "hsl(var(--ag-chart-3))",
+    sparklineColor: "hsl(var(--la-chart-3))",
   },
 ];
 

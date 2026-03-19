@@ -5,9 +5,9 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@audiogenius/design-system"],
+  transpilePackages: ["@launchapp/design-system"],
   webpack: (config) => {
-    config.resolve.alias["@audiogenius/design-system"] = path.resolve(
+    config.resolve.alias["@launchapp/design-system"] = path.resolve(
       __dirname,
       "../../src/index.ts"
     );

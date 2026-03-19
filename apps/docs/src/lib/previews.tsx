@@ -157,7 +157,7 @@ import {
   ToolbarSeparator,
   ToolbarToggleGroup,
   ToolbarToggleItem,
-} from "@audiogenius/design-system";
+} from "@launchapp/design-system";
 
 export type PreviewFn = () => React.ReactElement;
 
@@ -627,7 +627,7 @@ export const previews: Record<string, PreviewFn> = {
       { month: "Jun", revenue: 214 },
     ];
     const config = {
-      revenue: { label: "Revenue", color: "hsl(var(--ag-chart-1))" },
+      revenue: { label: "Revenue", color: "hsl(var(--la-chart-1))" },
     };
     return (
       <ChartContainer config={config} className="h-[200px] w-full max-w-md">

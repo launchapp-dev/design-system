@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Command, CommandInput } from "@audiogenius/design-system";
+import { Command, CommandInput } from "@launchapp/design-system";
 import { cn } from "@/lib/utils";
 import {
   components,

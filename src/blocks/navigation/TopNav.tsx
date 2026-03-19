@@ -94,13 +94,13 @@ const TopNav = React.forwardRef<HTMLElement, TopNavProps>(
       <header
         ref={ref}
         className={cn(
-          "flex h-14 items-center gap-4 border-b border-[hsl(var(--ag-border))] bg-[hsl(var(--ag-background))] px-4",
+          "flex h-14 items-center gap-4 border-b border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] px-4",
           className
         )}
         {...props}
       >
         {logo && (
-          <div className="flex shrink-0 items-center gap-2 font-semibold text-[hsl(var(--ag-foreground))]">
+          <div className="flex shrink-0 items-center gap-2 font-semibold text-[hsl(var(--la-foreground))]">
             {logo}
           </div>
         )}
@@ -112,12 +112,12 @@ const TopNav = React.forwardRef<HTMLElement, TopNavProps>(
                 key={item.label}
                 href={item.href ?? "#"}
                 className={cn(
-                  "rounded-[--ag-radius] px-3 py-1.5 text-sm font-medium transition-colors",
-                  "hover:bg-[hsl(var(--ag-accent))] hover:text-[hsl(var(--ag-accent-foreground))]",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ag-ring))]",
+                  "rounded-[--la-radius] px-3 py-1.5 text-sm font-medium transition-colors",
+                  "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
                   item.isActive
-                    ? "text-[hsl(var(--ag-foreground))]"
-                    : "text-[hsl(var(--ag-muted-foreground))]"
+                    ? "text-[hsl(var(--la-foreground))]"
+                    : "text-[hsl(var(--la-muted-foreground))]"
                 )}
                 aria-current={item.isActive ? "page" : undefined}
               >
@@ -155,7 +155,7 @@ const TopNav = React.forwardRef<HTMLElement, TopNavProps>(
               </Button>
               {notificationCount && notificationCount > 0 ? (
                 <span
-                  className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[hsl(var(--ag-destructive))] px-1 text-[10px] font-bold text-[hsl(var(--ag-destructive-foreground))]"
+                  className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[hsl(var(--la-destructive))] px-1 text-[10px] font-bold text-[hsl(var(--la-destructive-foreground))]"
                   aria-hidden="true"
                 >
                   {notificationCount > 99 ? "99+" : notificationCount}
@@ -184,11 +184,11 @@ const TopNav = React.forwardRef<HTMLElement, TopNavProps>(
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-[hsl(var(--ag-foreground))]">
+                    <span className="text-sm font-medium text-[hsl(var(--la-foreground))]">
                       {user.name}
                     </span>
                     {user.email && (
-                      <span className="truncate text-xs text-[hsl(var(--ag-muted-foreground))]">
+                      <span className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">
                         {user.email}
                       </span>
                     )}
@@ -212,7 +212,7 @@ const TopNav = React.forwardRef<HTMLElement, TopNavProps>(
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                       onClick={user.onLogoutClick}
-                      className="text-[hsl(var(--ag-destructive))] focus:text-[hsl(var(--ag-destructive))]"
+                      className="text-[hsl(var(--la-destructive))] focus:text-[hsl(var(--la-destructive))]"
                     >
                       <LogOutIcon />
                       Log out

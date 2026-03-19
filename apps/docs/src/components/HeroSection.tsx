@@ -1,8 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
-import { Button } from "@audiogenius/design-system";
-import { Badge } from "@audiogenius/design-system";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@audiogenius/design-system";
+import { Button } from "@launchapp/design-system";
+import { Badge } from "@launchapp/design-system";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@launchapp/design-system";
 
 const features = [
   {
@@ -92,7 +92,7 @@ export function HeroSection() {
 
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               The design system for{" "}
-              <span className="text-primary">AudioGenius</span>
+              <span className="text-primary">LaunchApp</span>
             </h1>
 
             <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-xl">
@@ -172,7 +172,7 @@ export function HeroSection() {
               <Card className="inline-block text-left">
                 <CardContent className="p-4">
                   <pre className="text-sm font-mono text-foreground">
-                    <code>npm install @audiogenius/design-system</code>
+                    <code>npm install @launchapp/design-system</code>
                   </pre>
                 </CardContent>
               </Card>
@@ -183,7 +183,7 @@ export function HeroSection() {
                 <Link href="/docs">Read the Docs</Link>
               </Button>
               <Button size="lg" variant="ghost" asChild>
-                <Link href="https://github.com/audiogenius/design-system">
+                <Link href="https://github.com/launchapp/design-system">
                   View on GitHub
                 </Link>
               </Button>

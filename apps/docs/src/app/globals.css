@@ -4,90 +4,90 @@
 
 @layer base {
   :root {
-    --ag-background: 0 0% 100%;
-    --ag-foreground: 240 10% 3.9%;
+    --la-background: 0 0% 100%;
+    --la-foreground: 240 10% 3.9%;
 
-    --ag-card: 0 0% 100%;
-    --ag-card-foreground: 240 10% 3.9%;
+    --la-card: 0 0% 100%;
+    --la-card-foreground: 240 10% 3.9%;
 
-    --ag-popover: 0 0% 100%;
-    --ag-popover-foreground: 240 10% 3.9%;
+    --la-popover: 0 0% 100%;
+    --la-popover-foreground: 240 10% 3.9%;
 
-    --ag-primary: 262 83% 58%;
-    --ag-primary-foreground: 0 0% 98%;
+    --la-primary: 262 83% 58%;
+    --la-primary-foreground: 0 0% 98%;
 
-    --ag-secondary: 240 4.8% 95.9%;
-    --ag-secondary-foreground: 240 5.9% 10%;
+    --la-secondary: 240 4.8% 95.9%;
+    --la-secondary-foreground: 240 5.9% 10%;
 
-    --ag-muted: 240 4.8% 95.9%;
-    --ag-muted-foreground: 240 3.8% 46.1%;
+    --la-muted: 240 4.8% 95.9%;
+    --la-muted-foreground: 240 3.8% 46.1%;
 
-    --ag-accent: 240 4.8% 95.9%;
-    --ag-accent-foreground: 240 5.9% 10%;
+    --la-accent: 240 4.8% 95.9%;
+    --la-accent-foreground: 240 5.9% 10%;
 
-    --ag-destructive: 0 84.2% 60.2%;
-    --ag-destructive-foreground: 0 0% 98%;
+    --la-destructive: 0 84.2% 60.2%;
+    --la-destructive-foreground: 0 0% 98%;
 
-    --ag-border: 240 5.9% 90%;
-    --ag-input: 240 5.9% 90%;
-    --ag-ring: 262 83% 58%;
+    --la-border: 240 5.9% 90%;
+    --la-input: 240 5.9% 90%;
+    --la-ring: 262 83% 58%;
 
-    --ag-radius: 0.5rem;
+    --la-radius: 0.5rem;
 
-    --ag-font-sans: "Inter";
-    --ag-font-mono: "JetBrains Mono";
+    --la-font-sans: "Inter";
+    --la-font-mono: "JetBrains Mono";
 
-    --ag-chart-1: 262 83% 58%;
-    --ag-chart-2: 200 80% 50%;
-    --ag-chart-3: 150 60% 45%;
-    --ag-chart-4: 30 90% 55%;
-    --ag-chart-5: 350 80% 55%;
+    --la-chart-1: 262 83% 58%;
+    --la-chart-2: 200 80% 50%;
+    --la-chart-3: 150 60% 45%;
+    --la-chart-4: 30 90% 55%;
+    --la-chart-5: 350 80% 55%;
 
-    --ag-sidebar: 0 0% 98%;
-    --ag-sidebar-foreground: 240 10% 3.9%;
-    --ag-sidebar-border: 240 5.9% 90%;
-    --ag-docs-bg: 0 0% 100%;
+    --la-sidebar: 0 0% 98%;
+    --la-sidebar-foreground: 240 10% 3.9%;
+    --la-sidebar-border: 240 5.9% 90%;
+    --la-docs-bg: 0 0% 100%;
   }
 
   .dark {
-    --ag-background: 240 10% 3.9%;
-    --ag-foreground: 0 0% 98%;
+    --la-background: 240 10% 3.9%;
+    --la-foreground: 0 0% 98%;
 
-    --ag-card: 240 10% 3.9%;
-    --ag-card-foreground: 0 0% 98%;
+    --la-card: 240 10% 3.9%;
+    --la-card-foreground: 0 0% 98%;
 
-    --ag-popover: 240 10% 3.9%;
-    --ag-popover-foreground: 0 0% 98%;
+    --la-popover: 240 10% 3.9%;
+    --la-popover-foreground: 0 0% 98%;
 
-    --ag-primary: 263 70% 50%;
-    --ag-primary-foreground: 0 0% 98%;
+    --la-primary: 263 70% 50%;
+    --la-primary-foreground: 0 0% 98%;
 
-    --ag-secondary: 240 3.7% 15.9%;
-    --ag-secondary-foreground: 0 0% 98%;
+    --la-secondary: 240 3.7% 15.9%;
+    --la-secondary-foreground: 0 0% 98%;
 
-    --ag-muted: 240 3.7% 15.9%;
-    --ag-muted-foreground: 240 5% 64.9%;
+    --la-muted: 240 3.7% 15.9%;
+    --la-muted-foreground: 240 5% 64.9%;
 
-    --ag-accent: 240 3.7% 15.9%;
-    --ag-accent-foreground: 0 0% 98%;
+    --la-accent: 240 3.7% 15.9%;
+    --la-accent-foreground: 0 0% 98%;
 
-    --ag-destructive: 0 62.8% 30.6%;
-    --ag-destructive-foreground: 0 0% 98%;
+    --la-destructive: 0 62.8% 30.6%;
+    --la-destructive-foreground: 0 0% 98%;
 
-    --ag-border: 240 3.7% 15.9%;
-    --ag-input: 240 3.7% 15.9%;
-    --ag-ring: 263 70% 50%;
+    --la-border: 240 3.7% 15.9%;
+    --la-input: 240 3.7% 15.9%;
+    --la-ring: 263 70% 50%;
 
-    --ag-chart-1: 263 70% 65%;
-    --ag-chart-2: 200 75% 60%;
-    --ag-chart-3: 150 55% 55%;
-    --ag-chart-4: 30 85% 65%;
-    --ag-chart-5: 350 75% 65%;
+    --la-chart-1: 263 70% 65%;
+    --la-chart-2: 200 75% 60%;
+    --la-chart-3: 150 55% 55%;
+    --la-chart-4: 30 85% 65%;
+    --la-chart-5: 350 75% 65%;
 
-    --ag-sidebar: 240 10% 5%;
-    --ag-sidebar-foreground: 0 0% 98%;
-    --ag-sidebar-border: 240 3.7% 15.9%;
-    --ag-docs-bg: 240 10% 3.9%;
+    --la-sidebar: 240 10% 5%;
+    --la-sidebar-foreground: 0 0% 98%;
+    --la-sidebar-border: 240 3.7% 15.9%;
+    --la-docs-bg: 240 10% 3.9%;
   }
 
   * {

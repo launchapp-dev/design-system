@@ -19,7 +19,7 @@ const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
       trend,
       trendLabel,
       sparklineData,
-      sparklineColor = "hsl(var(--ag-chart-1))",
+      sparklineColor = "hsl(var(--la-chart-1))",
       className,
       ...props
     },
