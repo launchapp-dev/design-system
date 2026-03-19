@@ -1,0 +1,14 @@
+src/
+apps/
+.storybook/
+.ao/
+.claude/
+*.stories.tsx
+*.stories.ts
+tsup.config.ts
+tailwind.config.ts
+tsconfig.json
+postcss.config.js
+commitlint.config.js
+registry.json
+PRODUCT_VISION.md
