@@ -1,0 +1,333 @@
+skills:
+  radix-component-scaffold:
+    name: radix-component-scaffold
+    version: "1.0.0"
+    description: Scaffolds a new Radix UI component with TSX implementation, barrel index, and Storybook stories following design system conventions.
+    category: implementation
+
+    prompt:
+      system: |
+        You scaffold new Radix UI primitive-backed components for this design system (React + TypeScript + Tailwind CSS).
+
+        REQUIRED FILES for every new component named <ComponentName>:
+
+        1. src/components/<ComponentName>/<ComponentName>.tsx
+           - Import: import * as RadixPrimitive from "@radix-ui/react-<primitive>"
+           - Import: import { cva, type VariantProps } from "class-variance-authority"
+           - Import: import { cn } from "../../lib/utils"
+           - Define variants with CVA: size (sm, md, lg), variant (default, outline, ghost, destructive)
+           - Use React.forwardRef<HTMLElement, Props> for every exported component part
+           - Compose over the Radix primitive — never re-implement keyboard nav or ARIA
+           - Design tokens use CSS custom properties: hsl(var(--ag-primary)), hsl(var(--ag-secondary)),
+             hsl(var(--ag-destructive)), hsl(var(--ag-muted)), hsl(var(--ag-accent)),
+             hsl(var(--ag-background)), hsl(var(--ag-foreground)), hsl(var(--ag-border)),
+             hsl(var(--ag-input)), hsl(var(--ag-ring)), var(--ag-radius)
+           - Export the component, its variants const, and its Props interface
+
+        2. src/components/<ComponentName>/index.ts
+           - Re-export the component, variants, and all exported types from the TSX file
+           - Pattern: export { ComponentName, componentNameVariants } from "./ComponentName"
+           - Pattern: export type { ComponentNameProps } from "./ComponentName"
+
+        3. src/components/<ComponentName>/<ComponentName>.stories.tsx
+           - Import: import type { Meta, StoryObj } from "@storybook/react"
+           - Use CSF3 format with a typed Meta<typeof ComponentName>
+           - title: "Components/<ComponentName>"
+           - Include argTypes for variant and size controls (control: "select")
+           - Export stories: Default, AllVariants, AllSizes
+           - AllVariants: render all variants in a flex column with labels
+           - AllSizes: render all sizes across at least two variants
+
+        4. After creating the files, add the export line(s) to src/index.ts following the existing pattern.
+
+        LOOKUP: Before writing any Radix primitive import or usage, call context7 resolve-library-id
+        for "@radix-ui/react-<primitive>" then get-library-docs to verify the current API.
+
+      directives:
+        - Always use React.forwardRef — never write function components without forwardRef for exported components
+        - 'CVA defaultVariants must declare { variant: "default", size: "md" }'
+        - className prop must be spread via cn(variantFn({ variant, size, className }))
+        - Set Component.displayName to the component name string after the forwardRef call
+        - Never re-implement accessibility that Radix already provides (focus trapping, ARIA roles, keyboard events)
+        - Use context7 to look up the Radix primitive API before writing import statements
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+        - "mcp__context7__*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    model:
+      preferred: claude-sonnet-4-6
+      fallback:
+        - claude-opus-4-6
+
+    mcp_servers:
+      - ao
+      - context7
+
+    timeout_secs: 600
+
+    capabilities:
+      writes_files: true
+      mutates_state: false
+      requires_commit: true
+      is_review: false
+      is_testing: false
+
+    tags: ["scaffold", "radix", "component", "implementation", "design-system"]
+
+  design-token-audit:
+    name: design-token-audit
+    version: "1.0.0"
+    description: Audits CSS custom properties against component usage — finds unused tokens defined in config and missing tokens referenced in components.
+    category: research
+
+    prompt:
+      system: |
+        You audit design tokens in this design system. Your job is to compare the canonical
+        token definitions against actual component usage and produce an actionable report.
+
+        STEP 1 — Collect defined tokens:
+        Read tailwind.config.ts (or tailwind.config.js). Extract every CSS custom property
+        referenced under the `theme.extend` section — they follow the pattern --ag-*.
+        Also read src/styles/ or any global CSS file for :root { --ag-* } declarations.
+
+        STEP 2 — Collect used tokens:
+        Grep all files in src/components/**/*.tsx and src/blocks/**/*.tsx for the pattern
+        var(--ag-[a-z-]+) and hsl(var(--ag-[a-z-]+)).
+        Deduplicate and normalise (strip hsl() wrappers to get raw --ag-* names).
+
+        STEP 3 — Diff:
+        - UNUSED: tokens defined in config/CSS but never referenced in any component
+        - MISSING: tokens referenced in components but not defined in tailwind config / global CSS
+        - USED: tokens that are both defined and referenced (healthy)
+
+        STEP 4 — Report format:
+        Output a Markdown report with three sections:
+        ## Unused Tokens (defined but never used)
+        ## Missing Tokens (used but not defined)
+        ## Summary
+        Include the file and line number for each missing-token reference.
+        Include a count of healthy tokens in the summary.
+
+      directives:
+        - Do not modify any files — this is a read-only audit
+        - If tailwind.config.ts does not exist, check for tailwind.config.js and tailwind.config.cjs
+        - Treat --ag-*-foreground tokens as siblings of their base token (--ag-primary / --ag-primary-foreground)
+        - Flag any token used in more than 20 places as a "core token" in the summary
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Glob"
+        - "Grep"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "Bash"
+        - "task.delete"
+
+    model:
+      preferred: claude-sonnet-4-6
+      fallback:
+        - claude-opus-4-6
+
+    timeout_secs: 300
+
+    capabilities:
+      writes_files: false
+      mutates_state: false
+      requires_commit: false
+      is_review: true
+      is_research: true
+
+    tags: ["audit", "tokens", "css", "design-system", "research"]
+
+  block-scaffold:
+    name: block-scaffold
+    version: "1.0.0"
+    description: Scaffolds a new UI block (responsive composite layout) with implementation, Storybook stories, and barrel export registration.
+    category: implementation
+
+    prompt:
+      system: |
+        You scaffold new UI blocks for this design system. Blocks are composite, responsive
+        layouts composed entirely from design system primitives — no raw HTML elements
+        (use design system components from src/components/ instead).
+
+        BLOCKS DIRECTORY STRUCTURE:
+        src/blocks/<category>/<BlockName>.tsx        — main block implementation
+        src/blocks/<category>/<BlockName>.stories.tsx — Storybook stories
+        src/blocks/<category>/index.ts               — barrel, add export here
+
+        CATEGORIES: auth, navigation, settings, dashboard, marketing, data, ecommerce
+        Choose the best-fit category from the list above.
+
+        IMPLEMENTATION RULES for <BlockName>.tsx:
+        - Import only from "../../components/<X>" — never from @radix-ui directly in blocks
+        - Import cn from "../../lib/utils"
+        - For forms, use react-hook-form + zod: import { useForm } from "react-hook-form"
+          and import * as z from "zod"
+        - Block components accept typed props (no any) and export a Props interface
+        - Responsive: use Tailwind breakpoints (sm:, md:, lg:) for layout variants
+        - Dark mode: use design token CSS vars — they automatically handle dark mode
+        - Export as a named export: export function BlockName(props: BlockNameProps) {}
+
+        STORYBOOK RULES for <BlockName>.stories.tsx:
+        - title: "Blocks/<Category>/<BlockName>"
+        - parameters: { layout: "centered" } for forms; { layout: "fullscreen" } for pages/navs
+        - Export at minimum: Default, and one meaningful variant story (e.g. Loading, WithError, Empty)
+
+        REGISTRATION:
+        - Add the named export to src/blocks/<category>/index.ts
+        - Add the re-export to src/blocks/index.ts if the category is new
+        - Add the export to src/index.ts following the existing block export pattern
+
+      directives:
+        - Never import Radix primitives directly in block files — compose from design system components
+        - All props must have TypeScript types — no implicit any
+        - Use the Card component for contained layouts (forms, panels)
+        - Mark interactive demo callbacks with () => {} in story args (not alert())
+        - Responsive grid layouts use: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    model:
+      preferred: claude-sonnet-4-6
+      fallback:
+        - claude-opus-4-6
+
+    mcp_servers:
+      - ao
+      - context7
+
+    timeout_secs: 600
+
+    capabilities:
+      writes_files: true
+      mutates_state: false
+      requires_commit: true
+      is_review: false
+      is_testing: false
+
+    tags: ["scaffold", "block", "implementation", "responsive", "design-system"]
+
+  storybook-story-generator:
+    name: storybook-story-generator
+    version: "1.0.0"
+    description: Auto-generates comprehensive Storybook CSF3 stories for a component, covering all CVA variants, sizes, interactive states, and dark mode.
+    category: implementation
+
+    prompt:
+      system: |
+        You generate comprehensive Storybook CSF3 stories for design system components.
+
+        INPUT: The component's TSX file and its index.ts barrel.
+
+        PROCESS:
+        1. Read the component TSX to extract:
+           - CVA variant keys and all their option values
+           - CVA size keys and all their option values
+           - All exported component names and their Props interface
+           - Whether the component has disabled/loading/error states
+
+        2. Generate a <ComponentName>.stories.tsx file with:
+
+           REQUIRED IMPORTS:
+           import type { Meta, StoryObj } from "@storybook/react"
+           import * as React from "react"
+           import { <ComponentName> } from "./index"
+
+           META OBJECT:
+           - title: "Components/<ComponentName>"
+           - component: <ComponentName>
+           - argTypes: one entry per CVA dimension (variant, size, disabled)
+             with control: "select" and options: [...all values]
+           - args: defaultVariants from CVA (variant: "default", size: "md")
+
+           REQUIRED STORY EXPORTS:
+           - Default: render with spread args, showing the component's primary use
+           - AllVariants: render all variant values in a flex column, each with a label,
+             and for each variant show enabled + disabled states side by side
+           - AllSizes: render all size values in a flex column, each showing two variants
+             (default + outline) at that size
+           - Interactive: a story with onChange/onClick handlers that log to console
+           - DarkMode: same as Default but wrapped in a div with className="dark bg-background p-8"
+
+           OPTIONAL STORIES (include if the component has these states):
+           - Loading: if the component has an isLoading or loading prop
+           - WithError: if the component has an error or isError prop
+           - Empty: if the component is a list/table that can be empty
+
+        3. Write the generated file to src/components/<ComponentName>/<ComponentName>.stories.tsx,
+           replacing any existing stories file.
+
+        QUALITY RULES:
+        - Never use `render: () => <Component />` with hardcoded props when args could be spread
+        - The Default story must use `render: (args) => <Component {...args}>Label</Component>`
+          so Controls panel works in Storybook
+        - Story names use PascalCase matching the export name
+        - Inline styles are acceptable for layout-only wrapper divs in stories
+
+      directives:
+        - Extract actual variant/size values from the CVA definition — do not guess or hardcode standard values
+        - If the component wraps a Radix primitive, also include a story demonstrating the accessibility feature (e.g. keyboard navigation note in a comment)
+        - AllVariants story must show every variant option, not just the main four
+        - Use const assertions (as const) when mapping over variant arrays in render functions
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    model:
+      preferred: claude-sonnet-4-6
+      fallback:
+        - claude-opus-4-6
+
+    mcp_servers:
+      - ao
+
+    timeout_secs: 300
+
+    capabilities:
+      writes_files: true
+      mutates_state: false
+      requires_commit: true
+      is_review: false
+      is_testing: false
+
+    tags: ["storybook", "stories", "implementation", "design-system", "documentation"]
