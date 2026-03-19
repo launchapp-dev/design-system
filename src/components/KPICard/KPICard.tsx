@@ -46,7 +46,7 @@ const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
             <p className="text-3xl font-bold tracking-tight">{value}</p>
           </div>
           {normalizedSparkline && normalizedSparkline.length > 0 && (
-            <div className="h-12 w-24 flex-shrink-0">
+            <div className="h-12 w-24 flex-shrink-0" aria-hidden="true">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={normalizedSparkline} margin={{ top: 2, right: 0, left: 0, bottom: 2 }}>
                   <defs>
