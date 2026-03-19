@@ -313,3 +313,8 @@ export { ActivityFeed } from "./blocks/dashboard";
 export type { ActivityFeedProps, ActivityItem } from "./blocks/dashboard";
 export { MetricCards } from "./blocks/dashboard";
 export type { MetricCardsProps, MetricCardItem } from "./blocks/dashboard";
+
+export { FullDataTable } from "./blocks/data/FullDataTable";
+export type { FullDataTableProps, FilterOption } from "./blocks/data/FullDataTable";
+export { KanbanBoard } from "./blocks/data/KanbanBoard";
+export type { KanbanBoardProps, KanbanCard, KanbanColumn } from "./blocks/data/KanbanBoard";
