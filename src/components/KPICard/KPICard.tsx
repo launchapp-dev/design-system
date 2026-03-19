@@ -73,6 +73,7 @@ const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
           <div className="mt-3 flex items-center gap-1">
             {trend && (
               <span
+                aria-hidden="true"
                 className={cn("text-xs font-medium", {
                   "text-emerald-600 dark:text-emerald-400": trend === "up",
                   "text-destructive": trend === "down",
@@ -82,7 +83,7 @@ const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
                 {trend === "up" ? "↑" : trend === "down" ? "↓" : "→"}
               </span>
             )}
-            {trendLabel && (
+            {trendLabel ? (
               <span
                 className={cn("text-xs", {
                   "text-emerald-600 dark:text-emerald-400": trend === "up",
@@ -92,6 +93,12 @@ const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
               >
                 {trendLabel}
               </span>
+            ) : (
+              trend && (
+                <span className="sr-only">
+                  {trend === "up" ? "Trending up" : trend === "down" ? "Trending down" : "Trend neutral"}
+                </span>
+              )
             )}
           </div>
         )}
