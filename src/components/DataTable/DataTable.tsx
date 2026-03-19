@@ -82,11 +82,23 @@ function DataTableInner<TData, TValue>(
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
+              {headerGroup.headers.map((header) => {
+                const isSortable = header.column.getCanSort();
+                const sortDir = header.column.getIsSorted();
+                const ariaSortValue = sortDir === "asc" ? "ascending" : sortDir === "desc" ? "descending" : "none";
+                return (
                 <TableHead
                   key={header.id}
-                  onClick={header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined}
-                  className={header.column.getCanSort() ? "cursor-pointer select-none" : ""}
+                  onClick={isSortable ? header.column.getToggleSortingHandler() : undefined}
+                  tabIndex={isSortable ? 0 : undefined}
+                  aria-sort={isSortable ? ariaSortValue : undefined}
+                  onKeyDown={isSortable ? (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      header.column.getToggleSortingHandler()?.(e);
+                    }
+                  } : undefined}
+                  className={isSortable ? "cursor-pointer select-none" : ""}
                 >
                   {header.isPlaceholder ? null : (
                     <span className="inline-flex items-center gap-1">
@@ -103,7 +115,8 @@ function DataTableInner<TData, TValue>(
                     </span>
                   )}
                 </TableHead>
-              ))}
+                );
+              })}
             </TableRow>
           ))}
         </TableHeader>
