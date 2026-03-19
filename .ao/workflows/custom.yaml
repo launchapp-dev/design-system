@@ -24,10 +24,6 @@ mcp_servers:
   github:
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
-  figma:
-    url: "https://mcp.figma.com/mcp"
-    type: http
-
 agents:
   default:
     model: claude-sonnet-4-6
