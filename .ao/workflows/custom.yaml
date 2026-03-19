@@ -882,6 +882,75 @@ agents:
     tool: claude
     mcp_servers: ["ao"]
 
+  test-author:
+    system_prompt: |
+      You write React Testing Library + Vitest tests for design system components.
+
+      TEST STRUCTURE:
+      1. Test files live at src/components/<ComponentName>/<ComponentName>.test.tsx
+      2. Import from the component's local index file, not from src/index.ts
+      3. Cover: default render, all CVA variants and sizes, forwardRef ref attachment, className merging, dark mode
+      4. For interactive components: keyboard navigation via userEvent, ARIA attributes, focus management
+
+      RULES:
+      - Use userEvent for all user interactions — never fireEvent
+      - Assert on roles, accessible names, and states — not class names or internal DOM structure
+      - Never write full DOM snapshots — use targeted queries (getByRole, getByText, getByLabelText)
+      - Run "npm test -- --run" after writing tests and fix any failures before committing
+      - Read existing test files first to avoid duplication
+      - Do not add yourself as author or co-author.
+      - Do not add comments in the code unless requested.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "context7"]
+    skills:
+      - ds-test-author
+
+  docs-writer:
+    system_prompt: |
+      You maintain documentation quality for the AudioGenius Design System.
+
+      DOCUMENTATION SCOPE:
+      1. Props tables: every public prop with name, type, default, and description
+      2. Usage examples: one per variant, showing the most common use case
+      3. Accessibility notes: keyboard shortcuts, ARIA roles, screen reader behavior
+      4. Changelog entries: Keep a Changelog format (Added/Changed/Fixed/Removed)
+      5. Migration guides: before/after code examples for breaking changes
+
+      RULES:
+      - Read the component source AND existing Storybook stories before writing anything
+      - Use context7 to verify Radix primitive semantics for a11y notes
+      - Never duplicate information already in stories — link to them
+      - Check ao.task.list before creating tasks to avoid duplicates
+      - Do not add yourself as author or co-author.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "context7"]
+    skills:
+      - ds-docs-writer
+
+  ts-quality-auditor:
+    system_prompt: |
+      You audit the TypeScript public API surface of the AudioGenius Design System.
+
+      AUDIT CHECKLIST:
+      1. Check src/index.ts — catalog all exported types and components.
+      2. Every prop interface must extend ComponentPropsWithoutRef from the correct Radix primitive.
+      3. Flag 'any' and broad 'object' types in public API as blocking.
+      4. Verify forwardRef<ElementType, PropsType> generic signature is correct.
+      5. Check CVA variants export VariantProps<typeof variantFn> for typed prop consumers.
+      6. Flag exported internal types that consumers should not depend on.
+
+      TASK CREATION:
+      - Use ao.task.list first — NEVER create duplicates.
+      - task_type: "bugfix" for blocking type errors, "chore" for improvements.
+      - Priority: high for any/object in public API, medium for missing VariantProps export, low for style issues.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "context7"]
+    skills:
+      - ds-ts-quality
+
 phases:
   requirements:
     mode: agent
@@ -1155,6 +1224,41 @@ phases:
     directive: |
       Check all in-progress tasks. Verify dependencies. Drop stale queue entries.
       Fix tasks with merged PRs not marked "done".
+
+  testing:
+    mode: agent
+    agent: test-author
+    directive: |
+      Write Vitest + React Testing Library tests for the component(s) changed in this task.
+      1. Read the component source and existing stories to understand all variants and behaviors.
+      2. Create or update src/components/<ComponentName>/<ComponentName>.test.tsx.
+      3. Cover: default render, all variants, all sizes, forwardRef ref attachment, className merging, dark mode.
+      4. For interactive components: keyboard navigation, ARIA attributes, focus management.
+      5. Run "npm test -- --run" and fix any failures before committing.
+    capabilities:
+      mutates_state: true
+
+  docs-review:
+    mode: agent
+    agent: docs-writer
+    directive: |
+      Review and update documentation for the components changed in this task.
+      1. Read the component source, props, and existing Storybook stories.
+      2. Check if a props table and usage examples are present and accurate.
+      3. If a breaking change occurred, write a changelog entry and migration guide.
+      4. Use context7 to verify a11y notes for any Radix primitive used.
+    capabilities:
+      mutates_state: true
+
+  type-surface-review:
+    mode: agent
+    agent: ts-quality-auditor
+    directive: |
+      Audit the TypeScript public API surface of the design system.
+      1. Check src/index.ts to catalog all exported types and components.
+      2. Verify forwardRef generics, ComponentPropsWithoutRef usage, and VariantProps exports.
+      3. Flag any 'any' or broad 'object' in public API.
+      4. Create tasks for blocking issues (bugfix) and improvements (chore).
 
   sync-main:
     mode: command
@@ -1457,6 +1561,35 @@ workflows:
     phases:
       - storybook-story-generator
 
+  - id: component-full
+    name: "Full Component Workflow"
+    description: "Implement -> Test -> Storybook -> Sync -> Install -> Build -> Push -> PR -> Review"
+    phases:
+      - implementation
+      - testing
+      - storybook
+      - sync-worktree
+      - install-deps
+      - build
+      - push-branch
+      - create-pr
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
+
+  - id: docs-audit
+    name: "Documentation Audit"
+    description: "Audit and update component documentation quality"
+    phases:
+      - docs-review
+
+  - id: type-audit
+    name: "TypeScript API Audit"
+    description: "Audit the exported TypeScript surface for type safety and API quality"
+    phases:
+      - type-surface-review
+
 schedules:
   - id: work-planner
     cron: "*/5 * * * *"
@@ -1491,4 +1624,14 @@ schedules:
   - id: a11y-audit
     cron: "30 */4 * * *"
     workflow_ref: a11y-audit
+    enabled: true
+
+  - id: type-audit
+    cron: "45 */8 * * *"
+    workflow_ref: type-audit
+    enabled: true
+
+  - id: docs-audit
+    cron: "0 */12 * * *"
+    workflow_ref: docs-audit
     enabled: true
