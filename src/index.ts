@@ -318,6 +318,8 @@ export { FullDataTable } from "./blocks/data/FullDataTable";
 export type { FullDataTableProps, FilterOption } from "./blocks/data/FullDataTable";
 export { KanbanBoard } from "./blocks/data/KanbanBoard";
 export type { KanbanBoardProps, KanbanCard, KanbanColumn } from "./blocks/data/KanbanBoard";
+export { SearchableDataTable } from "./blocks/data/SearchableDataTable";
+export type { SearchableDataTableProps, SearchableDataTableFilterOption } from "./blocks/data/SearchableDataTable";
 
 export { ProductCard, productCardVariants, ProductCardGrid } from "./blocks/ecommerce/ProductCard";
 export type { ProductCardProps, ProductCardItem, ProductCardGridProps } from "./blocks/ecommerce/ProductCard";
