@@ -569,6 +569,89 @@ agents:
     tool: claude
     mcp_servers: ["ao", "context7"]
 
+  token-generator:
+    system_prompt: |
+      You are the Design Token Generator for the AudioGenius Design System.
+
+      Your expertise is grounded in the ui-design-system skill (product-skills). You generate and
+      maintain the CSS custom property token system that underpins all components.
+
+      TOKEN GENERATION PROCESS:
+      1. Read tailwind.config.js and src/styles/ to understand current token definitions.
+      2. Identify the brand primary color from existing --la-* tokens.
+      3. Generate a complete token set following this hierarchy:
+         - Colors: primary (50-900), secondary (50-900), neutral (50-900), semantic (success, warning, destructive)
+         - Typography: font-family, font-size scale (xs/sm/base/lg/xl/2xl/3xl/4xl), font-weight, line-height
+         - Spacing: 8pt grid scale (0.5/1/1.5/2/3/4/5/6/8/10/12/16/20/24)
+         - Borders: radius (none/sm/md/lg/full), width (thin/base/thick)
+         - Shadows: sm/md/lg/xl/2xl + inner
+         - Animation: duration (150/200/300/500ms), easing (ease-in/out/in-out)
+         - Z-index: base/raised/dropdown/sticky/overlay/modal/notification
+
+      TOKEN NAMING CONVENTION:
+      - All tokens: --la-<category>-<name>-<scale> (e.g., --la-color-primary-500)
+      - Dark mode: define values inside .dark {} class scope
+      - Never use hardcoded hex/rgb in component files — only reference tokens
+
+      WCAG VALIDATION:
+      - After generating colors, verify contrast ratios:
+        - primary/destructive on white: ≥ 4.5:1 (AA normal text)
+        - muted text on background: ≥ 4.5:1
+      - Flag any tokens that fail contrast requirements
+
+      OUTPUT:
+      - Update src/styles/tokens.css with new/updated CSS custom properties
+      - Update tailwind.config.js theme.extend to reference new tokens
+      - Commit with message: "chore(tokens): <description> [TASK-XXX]"
+
+      RULES:
+      - Never overwrite existing tokens without reading them first.
+      - Preserve all existing --la-* tokens — only add or update.
+      - Keep dark mode token values semantically correct (not just inverted).
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["context7"]
+
+  adoption-analyst:
+    system_prompt: |
+      You are the Adoption Analyst for the AudioGenius Design System.
+
+      Your expertise is grounded in the product-analytics skill (product-skills). You define KPIs
+      for design system health and track component adoption across the consuming codebase.
+
+      METRIC FRAMEWORK (HEART):
+      1. Happiness — developer satisfaction with component API ergonomics
+         - Proxy: number of rework PRs due to API issues vs total component PRs
+      2. Engagement — how actively components are used
+         - Metric: import count per component in apps/docs and any linked consumers
+      3. Adoption — breadth of component usage
+         - Metric: % of components imported at least once in apps/docs
+      4. Retention — continued use over time
+         - Metric: components used in current sprint vs previous sprint
+      5. Task Success — components meet requirements without workarounds
+         - Proxy: # of open "workaround" or "extend" tasks per component
+
+      ANALYSIS PROCESS:
+      1. Run: grep -r "from '@launchapp/ui'" or equivalent to count component imports.
+      2. Use ao.task.list to get bugfix/rework tasks linked to each component.
+      3. Calculate HEART scores per component.
+      4. Identify lowest-adoption components — candidates for deprecation or improvement.
+      5. Identify highest-rework components — candidates for API redesign.
+      6. Append a structured report to ADOPTION_METRICS.md (create if absent):
+         ## Adoption Report — <date>
+         | Component | Import Count | Rework Tasks | Adoption Score |
+         ### Low Adoption (< 3 imports)
+         ### High Rework (> 2 tasks)
+         ### Recommendations
+
+      RULES:
+      - Use ao.task.list before creating any new tasks — never create duplicates.
+      - task_type: "chore" for adoption improvements, "bugfix" for critical usability gaps.
+      - Focus on components with both low adoption AND high rework — highest ROI for fixes.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+
   visual-regression:
     system_prompt: |
       You run visual regression tests for the AudioGenius Design System using Chromatic.
@@ -648,6 +731,20 @@ phases:
     command:
       program: npx
       args: ["tsc", "--noEmit"]
+      cwd_mode: task_root
+      timeout_secs: 120
+    output_contract:
+      kind: phase_result
+      fields:
+        exit_code:
+          type: integer
+
+  lint-check:
+    mode: command
+    directive: "Run ESLint across src/"
+    command:
+      program: npm
+      args: ["run", "lint"]
       cwd_mode: task_root
       timeout_secs: 120
     output_contract:
@@ -958,10 +1055,38 @@ phases:
     capabilities:
       mutates_state: true
 
+  token-generation:
+    mode: agent
+    agent: token-generator
+    directive: |
+      Audit and update the design token system.
+      1. Read src/styles/tokens.css (or equivalent) for current --la-* tokens.
+      2. Read tailwind.config.js to see how tokens map to Tailwind utilities.
+      3. Identify gaps: missing scales, missing semantic tokens, missing dark mode values.
+      4. Generate any missing tokens following the 8pt grid and 1.25x type scale.
+      5. Validate all semantic color tokens against WCAG AA contrast (4.5:1 minimum).
+      6. Update token files and commit changes.
+    capabilities:
+      mutates_state: true
+
+  adoption-metrics:
+    mode: agent
+    agent: adoption-analyst
+    directive: |
+      Produce the monthly adoption metrics report for the design system.
+      1. Count component imports across all consuming files (grep for component names in apps/).
+      2. Use ao.task.list to find rework/bugfix tasks per component.
+      3. Calculate HEART adoption scores.
+      4. Identify top 3 lowest-adoption and highest-rework components.
+      5. Append report to ADOPTION_METRICS.md.
+      6. Create improvement tasks for components scoring below threshold.
+    capabilities:
+      mutates_state: true
+
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> UX Audit -> Storybook -> Sync -> Install -> Build -> Push -> PR -> Changelog -> Review"
+    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> UX Audit -> Storybook -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Changelog -> Review"
     phases:
       - implementation
       - design-review:
@@ -977,9 +1102,12 @@ workflows:
       - storybook
       - sync-worktree
       - install-deps
+      - typecheck
+      - lint-check
       - build
       - push-branch
       - create-pr
+      - wait-for-ci
       - changelog
       - pr-review:
           on_verdict:
@@ -988,14 +1116,17 @@ workflows:
 
   - id: standard
     name: "Standard Task Workflow"
-    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Review"
     phases:
       - implementation
       - sync-worktree
       - install-deps
+      - typecheck
+      - lint-check
       - build
       - push-branch
       - create-pr
+      - wait-for-ci
       - pr-review:
           on_verdict:
             rework:
@@ -1003,14 +1134,17 @@ workflows:
 
   - id: scaffold
     name: "Scaffold Workflow"
-    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Review"
     phases:
       - implementation
       - sync-worktree
       - install-deps
+      - typecheck
+      - lint-check
       - build
       - push-branch
       - create-pr
+      - wait-for-ci
       - pr-review:
           on_verdict:
             rework:
@@ -1018,14 +1152,17 @@ workflows:
 
   - id: quick-fix
     name: "Quick Fix"
-    description: "Implement -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Sync -> Install -> Typecheck -> Lint -> Build -> Push -> PR -> CI -> Review"
     phases:
       - implementation
       - sync-worktree
       - install-deps
+      - typecheck
+      - lint-check
       - build
       - push-branch
       - create-pr
+      - wait-for-ci
       - pr-review:
           on_verdict:
             rework:
@@ -1137,6 +1274,18 @@ workflows:
     phases:
       - competitive-teardown
 
+  - id: design-token-generation
+    name: "Design Token Generation"
+    description: "Audit and regenerate design tokens from brand color using ui-design-system skill"
+    phases:
+      - token-generation
+
+  - id: adoption-metrics
+    name: "Adoption Metrics Report"
+    description: "Monthly HEART-framework adoption report using product-analytics skill"
+    phases:
+      - adoption-metrics
+
 schedules:
   - id: work-planner
     cron: "*/5 * * * *"
@@ -1196,4 +1345,9 @@ schedules:
   - id: competitive-analysis
     cron: "0 10 1 * *"
     workflow_ref: competitive-analysis
+    enabled: true
+
+  - id: adoption-metrics
+    cron: "0 9 1 * *"
+    workflow_ref: adoption-metrics
     enabled: true
