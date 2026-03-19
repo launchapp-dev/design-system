@@ -64,6 +64,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
     ref
   ) => {
     const [open, setOpen] = React.useState(false);
+    const listboxId = React.useId();
 
     const handleSelect = (optionValue: string) => {
       const newValue = value.includes(optionValue)
@@ -89,6 +90,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
             aria-expanded={open}
             aria-haspopup="listbox"
             aria-multiselectable="true"
+            aria-controls={listboxId}
             disabled={disabled}
             className={cn(multiSelectTriggerVariants({ size }), className)}
             {...props}
@@ -165,7 +167,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
           <Command>
             <CommandInput placeholder={searchPlaceholder} />
-            <CommandList>
+            <CommandList id={listboxId}>
               <CommandEmpty>{emptyText}</CommandEmpty>
               <CommandGroup>
                 {options.map((option) => {
@@ -176,6 +178,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                       value={option.label}
                       disabled={option.disabled}
                       onSelect={() => handleSelect(option.value)}
+                      aria-selected={isSelected}
                     >
                       <div
                         className={cn(
