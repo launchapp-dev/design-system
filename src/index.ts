@@ -279,3 +279,5 @@ export { Portal } from "./components/Portal";
 export type { PortalProps } from "./components/Portal";
 export { FocusScope } from "./components/FocusScope";
 export type { FocusScopeProps } from "./components/FocusScope";
+export { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification } from "./blocks/auth";
+export type { LoginFormProps, LoginValues, SignUpFormProps, SignUpValues, ForgotPasswordFormProps, ForgotPasswordValues, OTPVerificationProps } from "./blocks/auth";
