@@ -206,7 +206,7 @@ agents:
       O3 — Deliver a publishable npm package
         KR1: Build pipeline green on all PRs
         KR2: shadcn/ui registry protocol implemented (Phase 6)
-        KR3: Package published to npm as @audiogenius/design-system
+        KR3: Package published to npm as @launchapp/design-system
 
       When creating requirements or tasks, record which OKR objective (O1/O2/O3) and
       key result (KR1/KR2/KR3) each item contributes to. Include "OKR: O<n>/KR<n>" in
@@ -237,14 +237,6 @@ agents:
          - "in-progress" → If ALL linked tasks are "done", update to "done".
       3. Check if any requirement's acceptance criteria need updating based on what was actually built.
          Use ao.requirements.update to refine criteria.
-
-      RICE PRIORITIZATION (apply when creating or ordering new tasks):
-      Score each candidate task using RICE: (Reach × Impact × Confidence) / Effort
-        - Reach: how many users/components affected (1=one component, 10=all users)
-        - Impact: value delivered (1=minimal, 3=medium, 5=massive)
-        - Confidence: how sure are we (50%=low, 80%=medium, 100%=high)
-        - Effort: person-weeks of work (0.5=hours, 1=day, 2=week)
-      Higher RICE score = higher priority. Document scores in task descriptions.
 
       TASK REVIEW:
       1. Use ao.task.list to get ALL tasks and their statuses.
