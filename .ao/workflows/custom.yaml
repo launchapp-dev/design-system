@@ -101,7 +101,7 @@ agents:
       - Always commit before the phase ends.
     model: claude-sonnet-4-6
     tool: claude
-    mcp_servers: ["ao", "context7"]
+    mcp_servers: ["ao", "context7", "package-version"]
 
   storybook-author:
     system_prompt: |
@@ -153,7 +153,7 @@ agents:
       6. If changes needed: gh pr review --request-changes with detailed explanation.
     model: claude-sonnet-4-6
     tool: claude
-    mcp_servers: ["ao"]
+    mcp_servers: ["ao", "context7"]
 
   a11y-auditor:
     system_prompt: |
@@ -222,7 +222,46 @@ agents:
       - Only create work for the NEXT phase — don't queue up Phase 5 while Phase 3 isn't done.
     model: claude-sonnet-4-6
     tool: claude
-    mcp_servers: ["ao"]
+    mcp_servers: ["ao", "context7", "package-version"]
+
+  updater:
+    system_prompt: |
+      You are the Dependency Updater for the design system. You keep all packages up to date
+      and ensure the codebase uses current APIs.
+
+      TOOLS: You have access to package-version MCP (check npm versions) and context7 MCP
+      (resolve-library-id, get-library-docs) to look up current documentation.
+
+      PROCESS:
+      1. Read package.json (root and apps/docs/) to get current dependency versions.
+      2. Use package-version MCP tools to check latest stable versions for ALL dependencies:
+         - Radix UI primitives (@radix-ui/react-*)
+         - Tailwind CSS, PostCSS, Autoprefixer
+         - class-variance-authority, clsx, tailwind-merge
+         - React, React DOM
+         - tsup, TypeScript
+         - Storybook packages
+         - Next.js (in apps/docs)
+         - Any other deps
+      3. For each outdated package, evaluate the update:
+         - PATCH/MINOR: safe to update, create a single bulk update task
+         - MAJOR: use context7 to read the migration guide before deciding
+         - SECURITY: flag as critical priority
+      4. Use ao.task.list first — NEVER create duplicates.
+      5. Create tasks via ao.task.create for updates found:
+         - task_type: "chore" for routine updates
+         - task_type: "bugfix" for security patches
+         - Priority: critical for security, high for major versions, medium for minor/patch
+         - Include specific version changes in the description (e.g. "5.0.0 -> 5.1.2")
+      6. Set new tasks to "ready" via ao.task.status.
+
+      RULES:
+      - NEVER create duplicate tasks. Always check ao.task.list first.
+      - Group related updates (e.g. all Radix packages) into a single task.
+      - Always check migration guides via context7 before recommending major updates.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "context7", "package-version"]
 
   reconciler:
     system_prompt: |
@@ -426,6 +465,15 @@ phases:
     capabilities:
       mutates_state: true
 
+  dependency-update:
+    mode: agent
+    agent: updater
+    directive: |
+      Scan all package.json files for outdated dependencies.
+      Use package-version MCP to check latest versions.
+      Use context7 MCP to read migration guides for major updates.
+      Create tasks for any updates found. Group related updates together.
+
   work-planning:
     mode: agent
     agent: planner
@@ -606,6 +654,12 @@ workflows:
     phases:
       - product-review
 
+  - id: dependency-update
+    name: "Dependency Update Scout"
+    description: "Scan for outdated packages and create update tasks"
+    phases:
+      - dependency-update
+
   - id: sync-main
     name: "Sync Main"
     description: "Pull latest origin/main"
@@ -636,6 +690,11 @@ schedules:
   - id: product-review
     cron: "3-59/10 * * * *"
     workflow_ref: product-review
+    enabled: true
+
+  - id: dependency-update
+    cron: "15 */6 * * *"
+    workflow_ref: dependency-update
     enabled: true
 
   - id: a11y-audit
