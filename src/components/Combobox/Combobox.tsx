@@ -61,6 +61,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
     ref
   ) => {
     const [open, setOpen] = React.useState(false);
+    const listboxId = React.useId();
     const selectedOption = options.find((opt) => opt.value === value);
 
     return (
@@ -71,6 +72,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             role="combobox"
             aria-expanded={open}
             aria-haspopup="listbox"
+            aria-controls={listboxId}
             disabled={disabled}
             className={cn(comboboxTriggerVariants({ size }), className)}
             {...props}
@@ -99,7 +101,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
           <Command>
             <CommandInput placeholder={searchPlaceholder} />
-            <CommandList>
+            <CommandList id={listboxId}>
               <CommandEmpty>{emptyText}</CommandEmpty>
               <CommandGroup>
                 {options.map((option) => (
