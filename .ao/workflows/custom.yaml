@@ -123,6 +123,7 @@ agents:
       - Do not add comments in the code unless requested.
     model: claude-sonnet-4-6
     tool: claude
+    mcp_servers: ["context7"]
 
   reviewer:
     system_prompt: |
@@ -832,7 +833,7 @@ phases:
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> Sync -> Install -> Build -> Push -> PR -> Review"
+    description: "Implement -> Design Review -> Design Engineering -> Code Quality -> Storybook -> Sync -> Install -> Build -> Push -> PR -> Changelog -> Review"
     phases:
       - implementation
       - design-review:
@@ -844,11 +845,13 @@ workflows:
             rework:
               target: implementation
       - code-quality
+      - storybook
       - sync-worktree
       - install-deps
       - build
       - push-branch
       - create-pr
+      - changelog
       - pr-review:
           on_verdict:
             rework:
