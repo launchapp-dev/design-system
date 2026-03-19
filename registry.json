@@ -1,0 +1,1205 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "audiogenius-design-system",
+  "homepage": "https://github.com/launchapp-dev/design-system",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge"]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Accordion/Accordion.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Accordion/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-accordion", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Alert/Alert.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Alert/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/AlertDialog/AlertDialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/AlertDialog/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-alert-dialog", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": ["button"]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/AspectRatio/AspectRatio.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/AspectRatio/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-aspect-ratio"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Avatar/Avatar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Avatar/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-avatar", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Badge/Badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Badge/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Breadcrumb/Breadcrumb.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Breadcrumb/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-slot"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Button/Button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Button/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Calendar/Calendar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Calendar/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["react-day-picker"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Card/Card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Card/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Chart/Chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Chart/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["recharts"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Checkbox/Checkbox.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Checkbox/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-checkbox"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Collapsible/Collapsible.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Collapsible/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-collapsible"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Command/Command.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Command/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["cmdk"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Combobox/Combobox.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Combobox/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": ["popover", "command"]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ContextMenu/ContextMenu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ContextMenu/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-context-menu", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/DataTable/DataTable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/DataTable/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@tanstack/react-table"],
+      "devDependencies": [],
+      "registryDependencies": ["table", "input", "button"]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/DatePicker/DatePicker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/DatePicker/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["date-fns"],
+      "devDependencies": [],
+      "registryDependencies": ["calendar", "popover"]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Dialog/Dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Dialog/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/DropdownMenu/DropdownMenu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/DropdownMenu/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-dropdown-menu", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "focus-scope",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/FocusScope/FocusScope.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/FocusScope/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-focus-scope"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Form/Form.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Form/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@radix-ui/react-slot"],
+      "devDependencies": [],
+      "registryDependencies": ["label"]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Input/Input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Input/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "kpi-card",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/KPICard/KPICard.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/KPICard/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["recharts"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Label/Label.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Label/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Menubar/Menubar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Menubar/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-menubar", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "multi-select",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/MultiSelect/MultiSelect.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/MultiSelect/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": ["popover", "command", "badge"]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/NavigationMenu/NavigationMenu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/NavigationMenu/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-navigation-menu", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Pagination/Pagination.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Pagination/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["button"]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Popover/Popover.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Popover/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-popover"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "portal",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Portal/Portal.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Portal/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-portal"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Progress/Progress.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Progress/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-progress"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/RadioGroup/RadioGroup.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/RadioGroup/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-radio-group"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Resizable/Resizable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Resizable/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["react-resizable-panels"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ScrollArea/ScrollArea.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ScrollArea/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-scroll-area"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Select/Select.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Select/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-select", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Separator/Separator.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Separator/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-separator"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Sheet/Sheet.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Sheet/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Skeleton/Skeleton.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Skeleton/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Slider/Slider.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Slider/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-slider"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Sonner/Sonner.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Sonner/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["sonner"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "stat-display",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/StatDisplay/StatDisplay.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/StatDisplay/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["kpi-card"]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Switch/Switch.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Switch/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-switch"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Table/Table.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Table/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Tabs/Tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Tabs/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-tabs", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Textarea/Textarea.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Textarea/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Toast/Toast.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Toast/useToast.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Toast/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-toast", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Toggle/Toggle.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Toggle/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-toggle", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ToggleGroup/ToggleGroup.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ToggleGroup/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-toggle-group", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": ["toggle"]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Toolbar/Toolbar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Toolbar/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-toolbar", "class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Tooltip/Tooltip.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Tooltip/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-tooltip"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "visually-hidden",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/VisuallyHidden/VisuallyHidden.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/VisuallyHidden/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["@radix-ui/react-visually-hidden"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "block-login-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/auth/LoginForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["form", "input", "button", "checkbox", "label", "card"]
+    },
+    {
+      "name": "block-sign-up-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/auth/SignUpForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["form", "input", "button", "checkbox", "label", "card"]
+    },
+    {
+      "name": "block-forgot-password-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/auth/ForgotPasswordForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["form", "input", "button", "card"]
+    },
+    {
+      "name": "block-otp-verification",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/auth/OTPVerification.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["form", "input", "button", "card"]
+    },
+    {
+      "name": "block-app-sidebar",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/navigation/AppSidebar.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["button", "separator", "collapsible", "avatar"]
+    },
+    {
+      "name": "block-top-nav",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/navigation/TopNav.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["button", "avatar", "dropdown-menu"]
+    },
+    {
+      "name": "block-mobile-nav-drawer",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/navigation/MobileNavDrawer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["sheet", "button", "separator", "collapsible", "avatar", "block-app-sidebar"]
+    },
+    {
+      "name": "block-profile-settings",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/ProfileSettings.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["avatar", "button", "input", "textarea", "separator", "form"]
+    },
+    {
+      "name": "block-account-settings",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/AccountSettings.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["button", "input", "separator", "alert", "form"]
+    },
+    {
+      "name": "block-notification-preferences",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/NotificationPreferences.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["switch", "label", "separator", "card"]
+    },
+    {
+      "name": "block-billing-page",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/BillingPage.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["card", "badge", "button", "progress", "separator", "table"]
+    },
+    {
+      "name": "block-hero-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/HeroSection/HeroSection.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "block-feature-grid",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/FeatureGrid/FeatureGrid.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["card"]
+    },
+    {
+      "name": "block-pricing-table",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/PricingTable/PricingTable.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["card", "badge", "button", "separator"]
+    },
+    {
+      "name": "block-testimonial-carousel",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/TestimonialCarousel/TestimonialCarousel.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["card", "avatar", "badge"]
+    },
+    {
+      "name": "block-stats-overview",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/dashboard/StatsOverview.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["recharts"],
+      "devDependencies": [],
+      "registryDependencies": ["stat-display", "card", "chart"]
+    },
+    {
+      "name": "block-activity-feed",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/dashboard/ActivityFeed.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["avatar", "badge", "scroll-area", "separator", "card"]
+    },
+    {
+      "name": "block-metric-cards",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/dashboard/MetricCards.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["recharts"],
+      "devDependencies": [],
+      "registryDependencies": ["card", "chart"]
+    },
+    {
+      "name": "block-full-data-table",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/FullDataTable/FullDataTable.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["@tanstack/react-table"],
+      "devDependencies": [],
+      "registryDependencies": ["table", "input", "button", "checkbox", "dropdown-menu", "popover", "select", "label"]
+    },
+    {
+      "name": "block-kanban-board",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/KanbanBoard/KanbanBoard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["@dnd-kit/core", "@dnd-kit/sortable", "@dnd-kit/utilities"],
+      "devDependencies": [],
+      "registryDependencies": ["card", "badge", "avatar", "button", "input", "scroll-area"]
+    },
+    {
+      "name": "block-product-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/ProductCard/ProductCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["class-variance-authority"],
+      "devDependencies": [],
+      "registryDependencies": ["card", "button", "badge"]
+    },
+    {
+      "name": "block-shopping-cart",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/ShoppingCart/ShoppingCart.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["card", "button", "separator", "badge"]
+    },
+    {
+      "name": "block-checkout-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/CheckoutForm/CheckoutForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["form", "input", "button", "label", "radio-group", "separator", "card", "badge"]
+    }
+  ]
+}
