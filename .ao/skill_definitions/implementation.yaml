@@ -76,3 +76,43 @@ skills:
       requires_commit: true
 
     tags: ["storybook", "csf3", "documentation", "visual-testing"]
+
+  ds-frontend-quality:
+    name: ds-frontend-quality
+    version: "1.0.0"
+    description: Ensures design system components meet production-grade visual quality — correct spacing rhythm, design token completeness, responsive behavior, and distinctive rather than generic aesthetics.
+    category: implementation
+
+    prompt:
+      directives:
+        - Every component must use only --ag-* design tokens for spacing, color, radius, and shadow — verify no hardcoded pixel values or color literals exist in the output
+        - Check that size variants (sm/md/lg) produce visually distinct but proportionally consistent results — font-size, padding, and icon sizes must all scale together
+        - Verify interactive states have clear visual feedback — hover, focus-visible, active, and disabled must all be distinct; do not rely on browser defaults alone
+        - Components must not look "generic" — use the project's radius, shadow, and color token conventions to maintain brand coherence across the system
+        - Ensure responsive behavior is correct — components must not overflow or clip content at common viewport widths
+        - For composite components (Card, Dialog, Sheet), verify internal spacing uses the --ag-* spacing scale, not arbitrary Tailwind values like p-3 or gap-2
+        - After implementing, visually verify the AllVariants and AllSizes Storybook stories match the design token intent
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    mcp_servers:
+      - context7
+
+    capabilities:
+      writes_files: true
+      mutates_state: true
+      requires_commit: true
+
+    tags: ["design-quality", "design-tokens", "spacing", "visual-consistency", "responsive"]

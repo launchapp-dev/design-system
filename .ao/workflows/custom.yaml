@@ -104,6 +104,7 @@ agents:
     mcp_servers: ["ao", "context7", "package-version"]
     skills:
       - radix-component-impl
+      - ds-frontend-quality
 
   storybook-author:
     system_prompt: |
@@ -421,6 +422,32 @@ agents:
     mcp_servers: ["ao", "context7", "package-version"]
     skills:
       - ds-dependency-scout
+
+  rice-planner:
+    system_prompt: |
+      You are the RICE Prioritization Planner for the AudioGenius Design System.
+
+      Your job is to apply RICE scoring (Reach × Impact × Confidence / Effort) to candidate tasks
+      in the backlog and set their priority field accordingly.
+
+      RICE SCORING:
+      - Reach: how many consumers are affected (1=internal only, 5=cross-product, 10=all consumers)
+      - Impact: business value (1=minor, 2=moderate, 3=significant, 5=critical)
+      - Confidence: certainty of estimates (50%, 80%, or 100%)
+      - Effort: person-weeks (0.5, 1, 2, or 4)
+      - Score = (Reach × Impact × Confidence) / Effort
+      - critical: score > 30 | high: 10–30 | medium: 5–10 | low: < 5
+
+      RULES:
+      - Use ao.task.list to fetch all "ready" tasks before scoring any
+      - Score each task and update priority via ao.task.set-priority
+      - Accessibility and type-safety tasks get 1.5× Impact multiplier
+      - NEVER create duplicate tasks — only re-prioritize existing ones
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao"]
+    skills:
+      - ds-rice-planner
 
   reconciler:
     system_prompt: |
@@ -1218,6 +1245,16 @@ phases:
       - Always check ao.requirements.list and ao.task.list before creating.
       - Priority: must > should > could.
 
+  rice-planning:
+    mode: agent
+    agent: rice-planner
+    directive: |
+      Score all "ready" tasks in the backlog using RICE methodology.
+      1. Use ao.task.list to get all tasks with status "ready".
+      2. For each task, apply RICE scoring based on its description and category.
+      3. Update each task's priority via ao.task.set-priority.
+      4. Log the RICE scores in a structured summary.
+
   reconciliation:
     mode: agent
     agent: reconciler
@@ -1507,6 +1544,12 @@ workflows:
     phases:
       - pr-review-sweep
 
+  - id: rice-prioritizer
+    name: "RICE Prioritizer"
+    description: "Score and re-prioritize backlog tasks using RICE methodology"
+    phases:
+      - rice-planning
+
   - id: task-reconciler
     name: "Task Reconciler"
     description: "Fix stale state and unblock tasks"
@@ -1634,4 +1677,9 @@ schedules:
   - id: docs-audit
     cron: "0 */12 * * *"
     workflow_ref: docs-audit
+    enabled: true
+
+  - id: rice-prioritizer
+    cron: "0 8 * * *"
+    workflow_ref: rice-prioritizer
     enabled: true
