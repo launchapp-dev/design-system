@@ -548,28 +548,29 @@ export const previews: Record<string, PreviewFn> = {
   "kpi-card": () => (
     <div className="flex flex-wrap gap-4">
       <KPICard
-        title="Total Revenue"
+        label="Total Revenue"
         value="$45,231"
-        change={20.1}
-        changeLabel="from last month"
         trend="up"
+        trendLabel="+20.1% from last month"
       />
       <KPICard
-        title="Active Users"
+        label="Active Users"
         value="2,350"
-        change={-4.3}
-        changeLabel="from last week"
         trend="down"
+        trendLabel="-4.3% from last week"
       />
     </div>
   ),
 
   "stat-display": () => (
-    <div className="flex flex-wrap gap-6">
-      <StatDisplay label="Active Users" value="2,420" trend="up" trendValue="+15%" />
-      <StatDisplay label="Bounce Rate" value="38%" trend="down" trendValue="-2%" />
-      <StatDisplay label="Page Views" value="12.4k" />
-    </div>
+    <StatDisplay
+      items={[
+        { label: "Active Users", value: "2,420", trend: "up", trendLabel: "+15%" },
+        { label: "Bounce Rate", value: "38%", trend: "down", trendLabel: "-2%" },
+        { label: "Page Views", value: "12.4k" },
+      ]}
+      cols={3}
+    />
   ),
 
   "visually-hidden": () => (
@@ -725,7 +726,7 @@ export const previews: Record<string, PreviewFn> = {
   "date-picker": function DatePickerPreview() {
     const [date, setDate] = React.useState<Date | undefined>();
     return (
-      <DatePicker value={date} onChange={setDate} placeholder="Pick a date" />
+      <DatePicker selected={date} onSelect={setDate} placeholder="Pick a date" />
     );
   },
 
@@ -897,7 +898,7 @@ export const previews: Record<string, PreviewFn> = {
   ),
 
   resizable: () => (
-    <ResizablePanelGroup direction="horizontal" className="max-w-md rounded-lg border h-[150px]">
+    <ResizablePanelGroup orientation="horizontal" className="max-w-md rounded-lg border h-[150px]">
       <ResizablePanel defaultSize={50}>
         <div className="flex h-full items-center justify-center p-4">
           <span className="text-sm font-medium">Panel One</span>

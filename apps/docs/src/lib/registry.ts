@@ -580,10 +580,11 @@ const data = [
     category: "inputs",
     importStatement: `import { DatePicker } from "@audiogenius/design-system";`,
     props: [
-      { name: "value", type: "Date | undefined", description: "Controlled date value." },
-      { name: "onChange", type: "(date: Date | undefined) => void", description: "Callback when date changes." },
+      { name: "selected", type: "Date | undefined", description: "Controlled selected date." },
+      { name: "onSelect", type: "(date: Date | undefined) => void", description: "Callback when date is selected." },
       { name: "placeholder", type: "string", defaultValue: '"Pick a date"', description: "Placeholder text when no date is selected." },
       { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the picker." },
+      { name: "dateFormat", type: "string", defaultValue: '"PPP"', description: "date-fns format string for the displayed date." },
       { name: "className", type: "string", description: "Additional CSS classes." },
     ],
     examples: [
@@ -592,8 +593,8 @@ const data = [
         code: `const [date, setDate] = React.useState<Date | undefined>();
 
 <DatePicker
-  value={date}
-  onChange={setDate}
+  selected={date}
+  onSelect={setDate}
   placeholder="Pick a date"
 />`,
       },
@@ -775,22 +776,21 @@ const data = [
     category: "data",
     importStatement: `import { KPICard } from "@audiogenius/design-system";`,
     props: [
-      { name: "title", type: "string", required: true, description: "The KPI title/label." },
+      { name: "label", type: "string", required: true, description: "The KPI title/label." },
       { name: "value", type: "string | number", required: true, description: "The main KPI value to display." },
-      { name: "change", type: "number", description: "Percentage change value (positive = increase)." },
-      { name: "changeLabel", type: "string", description: "Label for the change period (e.g. 'vs last month')." },
-      { name: "icon", type: "React.ReactNode", description: "Icon to display in the card." },
       { name: "trend", type: '"up" | "down" | "neutral"', description: "Trend direction for color coding." },
+      { name: "trendLabel", type: "string", description: "Label describing the trend (e.g. '+20% from last month')." },
+      { name: "sparklineData", type: "number[]", description: "Array of numbers to render a sparkline chart." },
+      { name: "sparklineColor", type: "string", description: "Color for the sparkline chart." },
     ],
     examples: [
       {
         title: "KPI Card",
         code: `<KPICard
-  title="Total Revenue"
+  label="Total Revenue"
   value="$45,231"
-  change={20.1}
-  changeLabel="from last month"
   trend="up"
+  trendLabel="+20.1% from last month"
 />`,
       },
     ],
@@ -1075,8 +1075,8 @@ React.useEffect(() => {
     category: "layout",
     importStatement: `import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@audiogenius/design-system";`,
     props: [
-      { name: "direction", type: '"horizontal" | "vertical"', required: true, description: "The resize direction for the panel group." },
-      { name: "onLayout", type: "(sizes: number[]) => void", description: "Callback when panel sizes change." },
+      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The resize orientation for the panel group." },
+      { name: "onLayoutChange", type: "(layout: number[]) => void", description: "Callback when panel sizes change." },
       { name: "defaultSize", type: "number", description: "Default panel size as a percentage (on ResizablePanel)." },
       { name: "minSize", type: "number", description: "Minimum size of the panel (on ResizablePanel)." },
       { name: "withHandle", type: "boolean", defaultValue: "false", description: "Show a drag handle (on ResizableHandle)." },
@@ -1084,7 +1084,7 @@ React.useEffect(() => {
     examples: [
       {
         title: "Horizontal Panels",
-        code: `<ResizablePanelGroup direction="horizontal" className="max-w-md rounded-lg border">
+        code: `<ResizablePanelGroup orientation="horizontal" className="max-w-md rounded-lg border">
   <ResizablePanel defaultSize={50}>
     <div className="flex h-[200px] items-center justify-center p-6">
       <span className="font-semibold">Panel One</span>
@@ -1299,19 +1299,19 @@ React.useEffect(() => {
     category: "data",
     importStatement: `import { StatDisplay } from "@audiogenius/design-system";`,
     props: [
-      { name: "label", type: "string", required: true, description: "The label for the statistic." },
-      { name: "value", type: "string | number", required: true, description: "The statistic value to display." },
-      { name: "trend", type: '"up" | "down" | "neutral"', description: "Trend direction for color coding." },
-      { name: "trendValue", type: "string", description: "The trend value to display (e.g. '+12%')." },
+      { name: "items", type: "KPICardProps[]", required: true, description: "Array of KPI card data objects to display." },
+      { name: "cols", type: "2 | 3 | 4", defaultValue: "4", description: "Number of columns in the grid layout." },
     ],
     examples: [
       {
         title: "Stat Display",
         code: `<StatDisplay
-  label="Active Users"
-  value="2,420"
-  trend="up"
-  trendValue="+15%"
+  items={[
+    { label: "Active Users", value: "2,420", trend: "up", trendLabel: "+15%" },
+    { label: "Bounce Rate", value: "38%", trend: "down", trendLabel: "-2%" },
+    { label: "Page Views", value: "12.4k" },
+  ]}
+  cols={3}
 />`,
       },
     ],
