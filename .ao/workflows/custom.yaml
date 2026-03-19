@@ -719,15 +719,10 @@ phases:
       Review the PR for this task.
       1. Get the task ID from context. Use ao.task.get to read requirements.
       2. Run: gh pr list --state open --head <branch> to find the PR number.
-      3. Check mergeable status: gh pr view <number> --json mergeable
-         - If "CONFLICTING": ao.queue.enqueue with task_id and workflow_ref="rebase-and-retry". EXIT.
-         - If "MERGEABLE": proceed.
-      4. Run: gh pr diff <number> to read the changes.
-      5. Check accessibility, variants, theming, types, exports, and forwardRef usage.
-      6. If approved: gh pr merge <number> --merge, then ao.task.status with status "done".
-      7. If changes needed:
-         - gh pr review <number> --request-changes --body "<detailed explanation>"
-         - ao.queue.enqueue with task_id and workflow_ref="rework"
+      3. Run: gh pr diff <number> to read the changes.
+      4. Check accessibility, variants, theming, types, exports, and forwardRef usage.
+      5. If approved: gh pr merge <number> --merge, then ao.task.status with status "done".
+      6. If changes needed: gh pr review <number> --request-changes --body "<detailed explanation>"
 
   pr-review-sweep:
     mode: agent
@@ -737,16 +732,12 @@ phases:
       1. gh pr list --state open --json number,title,headRefName,mergeable
       2. For each PR, get the task ID from branch name (e.g. ao/task-005 -> TASK-005).
       3. Use ao.task.get to read requirements.
-      4. Check mergeable status:
-         - If "CONFLICTING": ao.queue.enqueue with task_id and workflow_ref="rebase-and-retry". Skip.
-         - If "MERGEABLE": proceed.
-      5. Check for existing reviews with changes requested (gh pr view <number> --json reviews).
-         If changes requested but not addressed, ao.queue.enqueue with task_id and workflow_ref="rework". Skip.
-      6. Run gh pr diff <number> to review code quality.
-      7. If approved: gh pr merge <number> --merge, then ao.task.status with status "done".
-      8. If changes needed:
-         - gh pr review <number> --request-changes --body "<explanation>"
-         - ao.queue.enqueue with task_id and workflow_ref="rework"
+      4. Check mergeable: gh pr view <number> --json mergeable
+         - If "CONFLICTING": skip this PR, it will be rebased separately.
+         - If "MERGEABLE": proceed with review.
+      5. Run gh pr diff <number> to review code quality.
+      6. If approved: gh pr merge <number> --merge, then ao.task.status with status "done".
+      7. If changes needed: gh pr review <number> --request-changes --body "<explanation>"
 
   rebase-on-main:
     mode: agent
@@ -981,10 +972,7 @@ workflows:
       - push-branch
       - create-pr
       - changelog
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
+      - pr-review
 
   - id: standard
     name: "Standard Task Workflow"
@@ -996,10 +984,7 @@ workflows:
       - build
       - push-branch
       - create-pr
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
+      - pr-review
 
   - id: scaffold
     name: "Scaffold Workflow"
@@ -1011,10 +996,7 @@ workflows:
       - build
       - push-branch
       - create-pr
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
+      - pr-review
 
   - id: quick-fix
     name: "Quick Fix"
@@ -1026,25 +1008,6 @@ workflows:
       - build
       - push-branch
       - create-pr
-      - pr-review:
-          on_verdict:
-            rework:
-              target: implementation
-
-  - id: rework
-    name: "Rework"
-    description: "Address reviewer feedback, push fixes, re-review"
-    phases:
-      - address-review
-      - force-push
-      - pr-review
-
-  - id: rebase-and-retry
-    name: "Rebase and Retry"
-    description: "Rebase conflicting branch, force push, re-review"
-    phases:
-      - rebase-on-main
-      - force-push
       - pr-review
 
   - id: work-planner
