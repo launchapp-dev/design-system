@@ -97,11 +97,43 @@ The AO agent orchestrator integrates the following skills into automated workflo
 | frontend-design | `design-engineer` | On component PRs | Production-grade design quality, avoids generic aesthetics |
 | simplify | `code-quality-reviewer` | Mon/Thu 9am | Dead code, over-engineering, prop explosion, CVA correctness |
 | ao-skills (composition-patterns) | `design-advisor` | On component PRs | Compound component patterns, CVA axis naming, forwardRef |
+| product-skills (Agile Product Owner) | `product-owner` | Every 10 min | RICE scoring, OKR alignment, requirement lifecycle management |
+| product-skills (Product Strategist) | `product-strategist` | Quarterly (1st of quarter) | OKR health review, RICE roadmap sequencing, quarterly planning |
+
+### OKR Framework
+
+All work is tracked against three quarterly objectives:
+
+| Objective | Key Results |
+|-----------|-------------|
+| O1 — Ship Phase 3 Extended Components | KR1: 15 components shipped and passing quality gates; KR2: All have Storybook stories; KR3: Zero WCAG AA violations |
+| O2 — Achieve complete accessibility | KR1: Every interactive component uses a Radix primitive; KR2: A11y audit creates zero new critical violations; KR3: Keyboard nav verified across all components |
+| O3 — Deliver a publishable npm package | KR1: Build pipeline green on all PRs; KR2: shadcn/ui registry implemented; KR3: Package published as @launchapp/design-system |
+
+### RICE Prioritization
+
+Every new task is scored before creation using the RICE formula:
+
+```
+Score = (Reach × Impact × Confidence) / Effort
+
+Reach:      components/consumers affected (1–10)
+Impact:     0.25 minimal / 0.5 low / 1 medium / 2 high / 3 massive
+Confidence: 20% low / 50% medium / 80% high / 100% certain
+Effort:     person-weeks (min 0.5)
+
+Score ≥ 8  → critical priority
+Score 4–7  → high priority
+Score 1–3  → medium priority
+Score < 1  → low priority
+```
 
 ### Workflow Integration
 - `component` workflow includes `design-engineering-review` and `code-quality` gates before PR
 - `ux-research` runs weekly against all components in `src/components/`
 - `code-quality-sweep` runs Mon/Thu to catch drift across all recent changes
+- `product-review` runs every 10 min to advance requirement lifecycle and surface new work
+- `quarterly-planning` runs on the 1st of each quarter for OKR health review and roadmap sequencing
 
 ## OKRs
 

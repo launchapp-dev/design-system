@@ -1647,6 +1647,12 @@ workflows:
     phases:
       - strategic-planning
 
+  - id: quarterly-planning
+    name: "Quarterly Planning"
+    description: "Quarterly RICE prioritization, OKR health review, and roadmap sequencing"
+    phases:
+      - strategic-planning
+
   - id: sync-main
     name: "Sync Main"
     description: "Pull latest origin/main"
@@ -1755,4 +1761,34 @@ schedules:
   - id: rice-prioritizer
     cron: "0 8 * * *"
     workflow_ref: rice-prioritizer
+    enabled: true
+
+  - id: visual-regression
+    cron: "0 2 * * *"
+    workflow_ref: visual-regression
+    enabled: false
+
+  - id: ux-research
+    cron: "0 10 * * 1"
+    workflow_ref: ux-research
+    enabled: true
+
+  - id: code-quality-sweep
+    cron: "0 9 * * 1,4"
+    workflow_ref: code-quality-sweep
+    enabled: true
+
+  - id: product-strategy
+    cron: "0 9 * * 1"
+    workflow_ref: product-strategy
+    enabled: true
+
+  - id: quarterly-planning
+    cron: "0 9 1 */3 *"
+    workflow_ref: quarterly-planning
+    enabled: true
+
+  - id: competitive-analysis
+    cron: "0 10 1 * *"
+    workflow_ref: competitive-analysis
     enabled: true
