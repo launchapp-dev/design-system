@@ -42,6 +42,14 @@ const config: Config = {
           DEFAULT: "hsl(var(--ag-card))",
           foreground: "hsl(var(--ag-card-foreground))",
         },
+        sidebar: {
+          DEFAULT: "hsl(var(--ag-sidebar))",
+          foreground: "hsl(var(--ag-sidebar-foreground))",
+          border: "hsl(var(--ag-sidebar-border))",
+        },
+        docs: {
+          DEFAULT: "hsl(var(--ag-docs-bg))",
+        },
       },
       borderRadius: {
         lg: "var(--ag-radius)",
@@ -85,6 +93,14 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(100%)" },
         },
+        "collapsible-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-collapsible-content-height)" },
+        },
+        "collapsible-up": {
+          from: { height: "var(--radix-collapsible-content-height)" },
+          to: { height: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +111,8 @@ const config: Config = {
         "slide-out-to-left": "slide-out-to-left 0.3s ease-out",
         "slide-in-from-right": "slide-in-from-right 0.3s ease-out",
         "slide-out-to-right": "slide-out-to-right 0.3s ease-out",
+        "collapsible-down": "collapsible-down 0.2s ease-out",
+        "collapsible-up": "collapsible-up 0.2s ease-out",
       },
     },
   },
