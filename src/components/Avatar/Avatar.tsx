@@ -43,13 +43,19 @@ export interface AvatarImageProps
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   AvatarImageProps
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn("aspect-square h-full w-full object-cover", className)}
-    {...props}
-  />
-));
+>(({ className, alt, ...props }, ref) => {
+  if (process.env.NODE_ENV !== "production" && !alt) {
+    console.warn("AvatarImage: `alt` prop is required for WCAG 1.1.1 compliance.");
+  }
+  return (
+    <AvatarPrimitive.Image
+      ref={ref}
+      alt={alt}
+      className={cn("aspect-square h-full w-full object-cover", className)}
+      {...props}
+    />
+  );
+});
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
 const AvatarFallback = React.forwardRef<
