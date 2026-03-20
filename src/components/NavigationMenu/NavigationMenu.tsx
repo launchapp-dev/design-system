@@ -37,7 +37,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-background))] px-4 py-2 text-sm font-medium transition-colors hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus:bg-[hsl(var(--la-accent))] focus:text-[hsl(var(--la-accent-foreground))] focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-[hsl(var(--la-accent)/0.5)] data-[state=open]:bg-[hsl(var(--la-accent)/0.5)]"
+  "group inline-flex h-9 w-max items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-background))] px-4 py-2 text-sm font-medium transition-colors hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus:bg-[hsl(var(--la-accent))] focus:text-[hsl(var(--la-accent-foreground))] focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-[hsl(var(--la-accent)/0.5)] data-[state=open]:bg-[hsl(var(--la-accent)/0.5)]"
 );
 
 function NavigationMenuTrigger({ className, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof NavigationMenuPrimitive.Trigger>> }) {
