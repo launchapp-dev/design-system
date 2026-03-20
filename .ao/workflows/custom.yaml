@@ -102,9 +102,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
-    skills:
-      - radix-component-impl
-      - ds-frontend-quality
 
   storybook-author:
     system_prompt: |
@@ -127,8 +124,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["context7"]
-    skills:
-      - storybook-csf3
 
   reviewer:
     system_prompt: |
@@ -160,8 +155,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7"]
-    skills:
-      - ds-code-review
 
   a11y-auditor:
     system_prompt: |
@@ -183,8 +176,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao"]
-    skills:
-      - ds-a11y-audit
 
   product-owner:
     system_prompt: |
@@ -316,8 +307,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
-    skills:
-      - ds-product-owner
 
   product-strategist:
     system_prompt: |
@@ -464,8 +453,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
-    skills:
-      - ds-dependency-scout
 
   rice-planner:
     system_prompt: |
@@ -490,8 +477,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao"]
-    skills:
-      - ds-rice-planner
 
   reconciler:
     system_prompt: |
@@ -974,8 +959,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7"]
-    skills:
-      - ds-test-author
 
   docs-writer:
     system_prompt: |
@@ -997,8 +980,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7"]
-    skills:
-      - ds-docs-writer
 
   ts-quality-auditor:
     system_prompt: |
@@ -1019,8 +1000,6 @@ agents:
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7"]
-    skills:
-      - ds-ts-quality
 
 phases:
   requirements:
@@ -1711,6 +1690,30 @@ workflows:
     description: "Audit the exported TypeScript surface for type safety and API quality"
     phases:
       - type-surface-review
+
+  - id: visual-regression
+    name: "Visual Regression Sweep"
+    description: "Run visual regression tests across all components"
+    phases:
+      - visual-regression-check
+
+  - id: ux-research
+    name: "UX Research Audit"
+    description: "Audit all components for UX quality and interaction patterns using Nielsen heuristics"
+    phases:
+      - ux-audit
+
+  - id: code-quality-sweep
+    name: "Code Quality Sweep"
+    description: "Review all changed files for code quality issues"
+    phases:
+      - code-quality
+
+  - id: competitive-analysis
+    name: "Competitive Analysis"
+    description: "Run a competitive teardown and benchmark against top design systems"
+    phases:
+      - competitive-teardown
 
 schedules:
   - id: work-planner
