@@ -1,4 +1,8 @@
 export { cn } from "./lib/utils";
+export { Typewriter, BlurIn, FadeUp, LetterReveal } from "./components/TextAnimate";
+export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps } from "./components/TextAnimate";
+export { FadeInOnScroll, CountUp, Parallax } from "./components/ScrollAnimate";
+export type { FadeInOnScrollProps, CountUpProps, ParallaxProps } from "./components/ScrollAnimate";
 export { Button, buttonVariants } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
 export { Input } from "./components/Input";
