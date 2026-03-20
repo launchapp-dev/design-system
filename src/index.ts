@@ -3,7 +3,7 @@ export { useReducedMotion, duration, easing, motionSafe, motionReduce } from "./
 export { PaletteSwitcher } from "./components/PaletteSwitcher";
 export type { PaletteSwitcherProps } from "./components/PaletteSwitcher";
 export { builtinPalettes } from "./themes/palettes";
-export type { Palette, PaletteTokenSet } from "./themes/palettes";
+export type { PaletteTokenSet } from "./themes/palettes";
 export { createTheme } from "./themes/createTheme";
 export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
 export { Typewriter, BlurIn, FadeUp, LetterReveal } from "./components/TextAnimate";

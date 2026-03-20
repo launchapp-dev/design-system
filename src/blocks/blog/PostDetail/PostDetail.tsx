@@ -10,7 +10,7 @@ export interface TocItem {
   level: number;
 }
 
-export interface PostDetailProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface PostDetailProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {
   title: string;
   content: React.ReactNode;
   author?: string;
