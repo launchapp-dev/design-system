@@ -5,7 +5,24 @@ import { ProfileSettings } from "./ProfileSettings";
 const meta: Meta<typeof ProfileSettings> = {
   title: "Blocks/Settings/ProfileSettings",
   component: ProfileSettings,
-  parameters: { layout: "padded" },
+  parameters: {
+    layout: "padded",
+    docs: {
+      source: {
+        code: `import { ProfileSettings } from "@launchapp/design-system/blocks/settings";
+
+export default function Page() {
+  return (
+    <ProfileSettings
+      onSave={async (values) => {
+        console.log(values);
+      }}
+    />
+  );
+}`,
+      },
+    },
+  },
   argTypes: {
     avatarFallback: { control: "text" },
     avatarSrc: { control: "text" },

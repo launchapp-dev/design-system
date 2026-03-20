@@ -113,6 +113,40 @@ const meta: Meta<typeof KanbanBoard> = {
   component: KanbanBoard,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { KanbanBoard } from "@launchapp/design-system/blocks/data";
+
+const initialColumns = [
+  {
+    id: "todo",
+    title: "To Do",
+    cards: [
+      { id: "1", title: "Research competitors", badge: "Research" },
+      { id: "2", title: "Design wireframes", badge: "Design" },
+    ],
+  },
+  {
+    id: "in-progress",
+    title: "In Progress",
+    cards: [
+      { id: "3", title: "Build API endpoints", badge: "Engineering" },
+    ],
+  },
+  {
+    id: "done",
+    title: "Done",
+    cards: [
+      { id: "4", title: "Project kickoff", badge: "Planning" },
+    ],
+  },
+];
+
+export default function Page() {
+  return <KanbanBoard initialColumns={initialColumns} />;
+}`,
+      },
+    },
   },
 };
 

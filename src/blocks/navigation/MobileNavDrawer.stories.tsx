@@ -79,6 +79,22 @@ const meta: Meta<typeof MobileNavDrawer> = {
   component: MobileNavDrawer,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        code: `import { MobileNavDrawer } from "@launchapp/design-system/blocks/navigation";
+
+const items = [
+  { label: "Dashboard", href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "Team", href: "/team" },
+  { label: "Settings", href: "/settings" },
+];
+
+export default function Page() {
+  return <MobileNavDrawer items={items} />;
+}`,
+      },
+    },
   },
 };
 

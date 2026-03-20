@@ -5,7 +5,24 @@ import { AccountSettings } from "./AccountSettings";
 const meta: Meta<typeof AccountSettings> = {
   title: "Blocks/Settings/AccountSettings",
   component: AccountSettings,
-  parameters: { layout: "padded" },
+  parameters: {
+    layout: "padded",
+    docs: {
+      source: {
+        code: `import { AccountSettings } from "@launchapp/design-system/blocks/settings";
+
+export default function Page() {
+  return (
+    <AccountSettings
+      onEmailChange={async (values) => console.log(values)}
+      onPasswordChange={async (values) => console.log(values)}
+      onDeleteAccount={() => console.log("delete account")}
+    />
+  );
+}`,
+      },
+    },
+  },
 };
 
 export default meta;

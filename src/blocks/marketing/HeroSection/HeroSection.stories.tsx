@@ -7,6 +7,26 @@ import { Badge } from "../../../components/Badge";
 const meta: Meta<typeof HeroSection> = {
   title: "Blocks/Marketing/HeroSection",
   component: HeroSection,
+  parameters: {
+    docs: {
+      source: {
+        code: `import { HeroSection } from "@launchapp/design-system/blocks/marketing";
+import { Button } from "@launchapp/design-system";
+
+export default function Page() {
+  return (
+    <HeroSection
+      badge="New — v2.0 released"
+      headline="Build faster with LaunchApp"
+      subheadline="A complete design system built on Radix UI and Tailwind CSS. Ship production-ready UIs in hours, not weeks."
+      primaryAction={<Button size="lg">Get started</Button>}
+      secondaryAction={<Button size="lg" variant="outline">View docs</Button>}
+    />
+  );
+}`,
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: "select",

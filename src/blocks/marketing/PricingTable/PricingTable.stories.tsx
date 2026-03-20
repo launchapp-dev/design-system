@@ -51,6 +51,44 @@ const tiers: PricingTier[] = [
 const meta: Meta<typeof PricingTable> = {
   title: "Blocks/Marketing/PricingTable",
   component: PricingTable,
+  parameters: {
+    docs: {
+      source: {
+        code: `import { PricingTable } from "@launchapp/design-system/blocks/marketing";
+
+const plans = [
+  {
+    name: "Starter",
+    price: "$9",
+    period: "/month",
+    description: "Perfect for individuals and small projects.",
+    features: ["5 projects", "10 GB storage", "Email support"],
+    ctaLabel: "Get started",
+  },
+  {
+    name: "Pro",
+    price: "$29",
+    period: "/month",
+    description: "Best for growing teams and businesses.",
+    features: ["Unlimited projects", "100 GB storage", "Priority support", "Analytics"],
+    ctaLabel: "Start free trial",
+    highlighted: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    description: "For large organizations with advanced needs.",
+    features: ["Unlimited everything", "Dedicated support", "Custom integrations", "SLA"],
+    ctaLabel: "Contact sales",
+  },
+];
+
+export default function Page() {
+  return <PricingTable plans={plans} onSelect={(plan) => console.log(plan)} />;
+}`,
+      },
+    },
+  },
 };
 
 export default meta;

@@ -33,6 +33,27 @@ const meta: Meta<typeof CheckoutForm> = {
   component: CheckoutForm,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { CheckoutForm } from "@launchapp/design-system/blocks/ecommerce";
+
+const orderSummary = [
+  { name: "Wireless Headphones", quantity: 1, price: 99.99 },
+  { name: "Smart Watch", quantity: 2, price: 299.99 },
+];
+
+export default function Page() {
+  return (
+    <CheckoutForm
+      orderSummary={orderSummary}
+      onSubmit={async (values) => {
+        console.log(values);
+      }}
+    />
+  );
+}`,
+      },
+    },
   },
 };
 

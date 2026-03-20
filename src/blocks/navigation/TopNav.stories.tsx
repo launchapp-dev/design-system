@@ -33,6 +33,31 @@ const meta: Meta<typeof TopNav> = {
   component: TopNav,
   parameters: {
     layout: "fullscreen",
+    docs: {
+      source: {
+        code: `import { TopNav } from "@launchapp/design-system/blocks/navigation";
+
+const items = [
+  { label: "Dashboard", href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "Team", href: "/team" },
+];
+
+export default function Page() {
+  return (
+    <TopNav
+      items={items}
+      notificationCount={3}
+      user={{
+        name: "Alice Johnson",
+        email: "alice@example.com",
+        avatarFallback: "AJ",
+      }}
+    />
+  );
+}`,
+      },
+    },
   },
   decorators: [
     (Story) => (
