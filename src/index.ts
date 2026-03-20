@@ -384,3 +384,23 @@ export {
   paletteMap,
 } from "./themes";
 export type { Palette, PaletteTokens } from "./themes";
+
+export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
+export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
+
+export {
+  TiltCard,
+  SpotlightCard,
+  GlassCard,
+  MagneticButton,
+  ShimmerButton,
+  AnimatedBorderCard,
+} from "./components/MagicCard";
+export type {
+  TiltCardProps,
+  SpotlightCardProps,
+  GlassCardProps,
+  MagneticButtonProps,
+  ShimmerButtonProps,
+  AnimatedBorderCardProps,
+} from "./components/MagicCard";
