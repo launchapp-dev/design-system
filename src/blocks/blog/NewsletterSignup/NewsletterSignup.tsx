@@ -19,7 +19,7 @@ const newsletterSignupVariants = cva("w-full", {
 });
 
 export interface NewsletterSignupProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSubmit">,
     VariantProps<typeof newsletterSignupVariants> {
   title?: string;
   subtitle?: string;
