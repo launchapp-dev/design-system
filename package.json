@@ -2,7 +2,8 @@
   "name": "@launchapp/design-system",
   "version": "0.1.0",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "description": "Radix UI based design system for LaunchApp",
   "license": "MIT",
