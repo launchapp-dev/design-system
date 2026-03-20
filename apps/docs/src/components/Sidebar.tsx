@@ -11,6 +11,10 @@ import {
   CATEGORY_LABELS,
   type ComponentCategory,
 } from "@/lib/registry";
+import {
+  ALL_BLOCK_CATEGORIES,
+  BLOCK_CATEGORY_LABELS,
+} from "@/lib/blocks-registry";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -80,6 +84,32 @@ export function Sidebar() {
           >
             Design Tokens
           </Link>
+        </div>
+
+        <div className="mt-4">
+          <div className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            Blocks
+          </div>
+          <div className="mt-1 space-y-0.5">
+            {ALL_BLOCK_CATEGORIES.map((cat) => {
+              const href = `/blocks/${cat}`;
+              const active = pathname === href;
+              return (
+                <Link
+                  key={cat}
+                  href={href}
+                  className={cn(
+                    "flex items-center rounded-md px-2 py-1.5 text-sm transition-colors",
+                    active
+                      ? "bg-accent text-accent-foreground font-medium"
+                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                  )}
+                >
+                  {BLOCK_CATEGORY_LABELS[cat]}
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
         {ALL_CATEGORIES.map((cat) => {
