@@ -333,3 +333,18 @@ export { ShoppingCart } from "./blocks/ecommerce/ShoppingCart";
 export type { ShoppingCartProps, CartItem } from "./blocks/ecommerce/ShoppingCart";
 export { CheckoutForm } from "./blocks/ecommerce/CheckoutForm";
 export type { CheckoutFormProps, CheckoutValues, OrderSummaryItem } from "./blocks/ecommerce/CheckoutForm";
+export {
+  defaultPalette,
+  oceanPalette,
+  forestPalette,
+  sunsetPalette,
+  midnightPalette,
+  rosePalette,
+  amberPalette,
+  emeraldPalette,
+  violetPalette,
+  slatePalette,
+  palettes,
+  paletteMap,
+} from "./themes";
+export type { Palette, PaletteTokens } from "./themes";

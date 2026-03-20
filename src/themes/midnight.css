@@ -1,0 +1,44 @@
+[data-palette="midnight"] {
+  --la-background: 220 25% 97%;
+  --la-foreground: 225 35% 10%;
+  --la-card: 220 25% 97%;
+  --la-card-foreground: 225 35% 10%;
+  --la-popover: 0 0% 100%;
+  --la-popover-foreground: 225 35% 10%;
+  --la-primary: 225 73% 55%;
+  --la-primary-foreground: 0 0% 98%;
+  --la-secondary: 220 20% 92%;
+  --la-secondary-foreground: 225 35% 14%;
+  --la-muted: 220 20% 92%;
+  --la-muted-foreground: 220 15% 44%;
+  --la-accent: 240 60% 60%;
+  --la-accent-foreground: 0 0% 98%;
+  --la-destructive: 0 84.2% 60.2%;
+  --la-destructive-foreground: 0 0% 98%;
+  --la-border: 220 20% 85%;
+  --la-input: 220 20% 85%;
+  --la-ring: 225 73% 55%;
+}
+
+.dark[data-palette="midnight"],
+[data-palette="midnight"].dark {
+  --la-background: 225 35% 5%;
+  --la-foreground: 220 15% 95%;
+  --la-card: 225 35% 7%;
+  --la-card-foreground: 220 15% 95%;
+  --la-popover: 225 35% 5%;
+  --la-popover-foreground: 220 15% 95%;
+  --la-primary: 225 73% 65%;
+  --la-primary-foreground: 225 35% 5%;
+  --la-secondary: 225 30% 12%;
+  --la-secondary-foreground: 220 15% 90%;
+  --la-muted: 225 30% 12%;
+  --la-muted-foreground: 220 15% 62%;
+  --la-accent: 240 55% 68%;
+  --la-accent-foreground: 225 35% 5%;
+  --la-destructive: 0 62.8% 30.6%;
+  --la-destructive-foreground: 0 0% 98%;
+  --la-border: 225 30% 16%;
+  --la-input: 225 30% 16%;
+  --la-ring: 225 73% 65%;
+}
