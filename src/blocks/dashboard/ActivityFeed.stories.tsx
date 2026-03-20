@@ -69,7 +69,7 @@ const meta: Meta<typeof ActivityFeed> = {
     layout: "padded",
     docs: {
       source: {
-        code: `import { ActivityFeed } from "@launchapp/design-system/blocks/dashboard";
+        code: `import { ActivityFeed } from "@launchapp/design-system/blocks";
 
 const items = [
   {
@@ -171,5 +171,69 @@ export const Tablet: Story = {
     description: "Latest actions from your team",
     items: mockItems,
     maxHeight: 400,
+  },
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  args: {
+    title: "Recent Activity",
+    items: mockItems,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "ActivityFeed is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Avatar, AvatarFallback, AvatarImage,
+  Badge,
+  Card, CardHeader, CardTitle, CardDescription, CardContent,
+  ScrollArea,
+  Separator,
+} from "@launchapp/design-system";
+
+// ActivityFeed renders a scrollable timeline of user actions.
+// Each row is: Avatar (user initials/image) + description text + timestamp + Badge for action type.
+// ScrollArea constrains height with internal scroll, keeping the card fixed size.
+export function ActivityFeed({ title, description, items = [], maxHeight = 400 }) {
+  return (
+    <Card>
+      {(title || description) && (
+        <CardHeader>
+          {title && <CardTitle>{title}</CardTitle>}
+          {description && <CardDescription>{description}</CardDescription>}
+        </CardHeader>
+      )}
+      <CardContent className="p-0">
+        <ScrollArea style={{ maxHeight }}>
+          <ul className="divide-y">
+            {items.map((item, i) => (
+              <li key={item.id} className="flex items-start gap-3 px-6 py-4">
+                <Avatar className="h-8 w-8 shrink-0">
+                  {item.user.avatarSrc && <AvatarImage src={item.user.avatarSrc} />}
+                  <AvatarFallback>{item.user.initials}</AvatarFallback>
+                </Avatar>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm">{item.description}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.timestamp}</p>
+                </div>
+                {item.actionType && (
+                  <Badge variant={item.actionVariant ?? "secondary"} className="shrink-0 text-xs">
+                    {item.actionType}
+                  </Badge>
+                )}
+              </li>
+            ))}
+          </ul>
+        </ScrollArea>
+      </CardContent>
+    </Card>
+  );
+}`,
+      },
+    },
   },
 };

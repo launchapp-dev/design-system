@@ -105,7 +105,7 @@ const meta: Meta<typeof SearchableDataTable> = {
     layout: "padded",
     docs: {
       source: {
-        code: `import { SearchableDataTable } from "@launchapp/design-system/blocks/data";
+        code: `import { SearchableDataTable } from "@launchapp/design-system/blocks";
 import type { ColumnDef } from "@tanstack/react-table";
 
 interface Product {
@@ -274,4 +274,109 @@ export const Tablet: Story = {
       pageSize={10}
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <SearchableDataTable
+      columns={defaultColumns}
+      data={employees}
+      searchColumn="name"
+      searchPlaceholder="Search employees..."
+      filterColumn="department"
+      filterLabel="Department"
+      filterOptions={departmentOptions}
+      pageSize={10}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "SearchableDataTable is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Badge,
+  Button,
+  Input,
+  Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
+  Table, TableHeader, TableRow, TableHead, TableBody, TableCell,
+} from "@launchapp/design-system";
+import {
+  useReactTable, getCoreRowModel, getSortedRowModel,
+  getFilteredRowModel, getPaginationRowModel,
+  flexRender,
+} from "@tanstack/react-table";
+
+// SearchableDataTable is a lighter variant of FullDataTable without row selection or bulk actions.
+// It composes:
+// – Input for live text search on a designated column
+// – Select for single-value column filtering (e.g. department)
+// – Table primitives for grid rendering via TanStack Table's flexRender
+// – Button pair for Previous / Next pagination
+// – Badge for status/label cells defined in column defs
+export function SearchableDataTable({ columns, data, searchColumn, searchPlaceholder, filterColumn, filterLabel, filterOptions, pageSize = 10 }) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: { pagination: { pageSize } },
+  });
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2">
+        <Input
+          placeholder={searchPlaceholder}
+          value={(table.getColumn(searchColumn)?.getFilterValue() as string) ?? ""}
+          onChange={(e) => table.getColumn(searchColumn)?.setFilterValue(e.target.value)}
+          className="max-w-sm"
+        />
+        {filterColumn && (
+          <Select onValueChange={(v) => table.getColumn(filterColumn)?.setFilterValue(v === "all" ? "" : v)}>
+            <SelectTrigger className="w-40">
+              <SelectValue placeholder={filterLabel ?? "Filter"} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              {filterOptions?.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+            </SelectContent>
+          </Select>
+        )}
+      </div>
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((hg) => (
+            <TableRow key={hg.id}>
+              {hg.headers.map((h) => (
+                <TableHead key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows.map((row) => (
+            <TableRow key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <div className="flex items-center justify-end gap-2">
+        <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</Button>
+        <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</Button>
+      </div>
+    </div>
+  );
+}`,
+      },
+    },
+  },
 };

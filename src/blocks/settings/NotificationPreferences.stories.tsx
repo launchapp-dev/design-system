@@ -9,7 +9,7 @@ const meta: Meta<typeof NotificationPreferences> = {
     layout: "padded",
     docs: {
       source: {
-        code: `import { NotificationPreferences } from "@launchapp/design-system/blocks/settings";
+        code: `import { NotificationPreferences } from "@launchapp/design-system/blocks";
 
 export default function Page() {
   return (
@@ -91,4 +91,68 @@ export const Tablet: Story = {
       <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
     </div>
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <div style={{ maxWidth: 640 }}>
+      <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "NotificationPreferences is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Card, CardHeader, CardTitle, CardDescription, CardContent,
+  Label,
+  Separator,
+  Switch,
+} from "@launchapp/design-system";
+
+// NotificationPreferences renders grouped notification toggles.
+// Each group is a section with a title and individual Switch + Label rows.
+// The onChange callback receives (notificationId, enabled) so callers can persist preferences.
+export function NotificationPreferences({ groups, onChange }) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Notifications</CardTitle>
+        <CardDescription>Choose how and when you want to be notified.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {groups.map((group, gi) => (
+          <div key={group.title}>
+            {gi > 0 && <Separator className="mb-6" />}
+            <h3 className="text-sm font-semibold mb-3">{group.title}</h3>
+            <div className="space-y-4">
+              {group.items.map((item) => (
+                <div key={item.id} className="flex items-center justify-between gap-4">
+                  <div>
+                    <Label htmlFor={item.id} className="font-medium">{item.label}</Label>
+                    {item.description && (
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    )}
+                  </div>
+                  <Switch
+                    id={item.id}
+                    defaultChecked={item.defaultEnabled}
+                    onCheckedChange={(checked) => onChange?.(item.id, checked)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}`,
+      },
+    },
+  },
 };

@@ -36,7 +36,7 @@ const meta: Meta<typeof ShoppingCart> = {
     layout: "centered",
     docs: {
       source: {
-        code: `import { ShoppingCart } from "@launchapp/design-system/blocks/ecommerce";
+        code: `import { ShoppingCart } from "@launchapp/design-system/blocks";
 
 const items = [
   {
@@ -172,5 +172,79 @@ export const Tablet: Story = {
     items: sampleItems,
     freeShippingThreshold: 200,
     onCheckout: () => {},
+  },
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  args: {
+    items: sampleItems,
+    freeShippingThreshold: 200,
+    onCheckout: () => {},
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "ShoppingCart is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Badge,
+  Button,
+  Card, CardHeader, CardTitle, CardContent, CardFooter,
+  Separator,
+} from "@launchapp/design-system";
+
+// ShoppingCart composes:
+// – Card for the overall container
+// – One row per cart item: product thumbnail, name, quantity controls (Button –/+), price, remove Button
+// – Separator between items and order summary
+// – Order summary section: subtotal, shipping badge ("Free" when threshold met), total
+// – Checkout Button in CardFooter
+// onUpdateQuantity and onRemoveItem callbacks allow the parent to manage cart state.
+export function ShoppingCart({ items = [], freeShippingThreshold, onUpdateQuantity, onRemoveItem, onCheckout }) {
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const shippingFree = freeShippingThreshold ? subtotal >= freeShippingThreshold : false;
+  const total = shippingFree ? subtotal : subtotal + (items.length ? 9.99 : 0);
+
+  return (
+    <Card>
+      <CardHeader><CardTitle>Shopping cart ({items.length})</CardTitle></CardHeader>
+      <CardContent className="space-y-4">
+        {items.map((item) => (
+          <div key={item.id} className="flex items-center gap-3">
+            {item.image && <img src={item.image} alt={item.name} className="h-16 w-16 rounded-md object-cover" />}
+            <div className="flex-1 min-w-0">
+              <p className="font-medium truncate">{item.name}</p>
+              {item.variant && <p className="text-xs text-muted-foreground">{item.variant}</p>}
+            </div>
+            <div className="flex items-center gap-1">
+              <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => onUpdateQuantity?.(item.id, item.quantity - 1)}>−</Button>
+              <span className="w-6 text-center text-sm">{item.quantity}</span>
+              <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => onUpdateQuantity?.(item.id, item.quantity + 1)}>+</Button>
+            </div>
+            <p className="w-16 text-right font-medium">\${(item.price * item.quantity).toFixed(2)}</p>
+            <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground" onClick={() => onRemoveItem?.(item.id)}>×</Button>
+          </div>
+        ))}
+        <Separator />
+        <div className="space-y-1 text-sm">
+          <div className="flex justify-between"><span>Subtotal</span><span>\${subtotal.toFixed(2)}</span></div>
+          <div className="flex justify-between items-center">
+            <span>Shipping</span>
+            {shippingFree ? <Badge variant="secondary">Free</Badge> : <span>\$9.99</span>}
+          </div>
+          <div className="flex justify-between font-semibold text-base pt-1"><span>Total</span><span>\${total.toFixed(2)}</span></div>
+        </div>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full" onClick={onCheckout}>Checkout</Button>
+      </CardFooter>
+    </Card>
+  );
+}`,
+      },
+    },
   },
 };

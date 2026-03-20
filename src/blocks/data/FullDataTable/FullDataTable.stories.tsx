@@ -108,7 +108,7 @@ const meta: Meta<typeof FullDataTable> = {
     layout: "padded",
     docs: {
       source: {
-        code: `import { FullDataTable } from "@launchapp/design-system/blocks/data";
+        code: `import { FullDataTable } from "@launchapp/design-system/blocks";
 import type { ColumnDef } from "@tanstack/react-table";
 
 interface User {
@@ -267,4 +267,117 @@ export const Tablet: Story = {
       onBulkDelete={(rows) => console.log("Delete", rows)}
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <FullDataTable
+      columns={columns}
+      data={tasks}
+      searchColumn="title"
+      searchPlaceholder="Search tasks..."
+      filterColumn="status"
+      filterOptions={statusOptions}
+      pageSize={10}
+      onBulkDelete={(rows) => console.log("Delete", rows)}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "FullDataTable is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Button,
+  Checkbox,
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuCheckboxItem,
+  Input,
+  Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
+  Table, TableHeader, TableRow, TableHead, TableBody, TableCell,
+} from "@launchapp/design-system";
+import {
+  useReactTable, getCoreRowModel, getSortedRowModel,
+  getFilteredRowModel, getPaginationRowModel,
+  flexRender,
+} from "@tanstack/react-table";
+
+// FullDataTable composes TanStack React Table with design system UI components:
+// – Input for text search, Select for column filtering
+// – Checkbox in header and rows for multi-select
+// – DropdownMenu for column visibility toggle
+// – Table primitives for the grid (TableHeader, TableBody, TableRow, TableHead, TableCell)
+// – Button pair for pagination (Previous / Next)
+// – Bulk action Button that appears when rows are selected
+export function FullDataTable({ columns, data, searchColumn, filterColumn, filterOptions, pageSize = 10, onBulkDelete }) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: { pagination: { pageSize } },
+  });
+  const selectedRows = table.getSelectedRowModel().rows;
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2">
+        <Input
+          placeholder={searchColumn ? \`Search \${searchColumn}...\` : "Search..."}
+          value={(table.getColumn(searchColumn)?.getFilterValue() as string) ?? ""}
+          onChange={(e) => table.getColumn(searchColumn)?.setFilterValue(e.target.value)}
+          className="max-w-sm"
+        />
+        {filterColumn && (
+          <Select onValueChange={(v) => table.getColumn(filterColumn)?.setFilterValue(v === "all" ? "" : v)}>
+            <SelectTrigger className="w-40"><SelectValue placeholder="Filter" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              {filterOptions?.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+            </SelectContent>
+          </Select>
+        )}
+        {selectedRows.length > 0 && (
+          <Button variant="destructive" size="sm" onClick={() => onBulkDelete?.(selectedRows)}>
+            Delete ({selectedRows.length})
+          </Button>
+        )}
+      </div>
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((hg) => (
+            <TableRow key={hg.id}>
+              {hg.headers.map((h) => (
+                <TableHead key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows.map((row) => (
+            <TableRow key={row.id} data-state={row.getIsSelected() ? "selected" : undefined}>
+              {row.getVisibleCells().map((cell) => (
+                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <div className="flex items-center justify-between">
+        <span className="text-sm text-muted-foreground">{selectedRows.length} of {data.length} selected</span>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</Button>
+          <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</Button>
+        </div>
+      </div>
+    </div>
+  );
+}`,
+      },
+    },
+  },
 };

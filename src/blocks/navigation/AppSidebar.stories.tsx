@@ -94,7 +94,7 @@ const meta: Meta<typeof AppSidebar> = {
     layout: "fullscreen",
     docs: {
       source: {
-        code: `import { AppSidebar } from "@launchapp/design-system/blocks/navigation";
+        code: `import { AppSidebar } from "@launchapp/design-system/blocks";
 
 const sections = [
   {
@@ -240,4 +240,119 @@ export const Tablet: Story = {
       </main>
     </div>
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <div className="flex h-[600px] w-full overflow-hidden border border-[hsl(var(--la-border))] rounded-lg">
+      <AppSidebar
+        sections={sampleSections}
+        logo={<LogoMark />}
+        user={sampleUser}
+      />
+      <main className="flex flex-1 items-center justify-center bg-[hsl(var(--la-muted))]">
+        <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Main content area</p>
+      </main>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "AppSidebar is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Avatar, AvatarFallback, AvatarImage,
+  Button,
+  Collapsible, CollapsibleTrigger, CollapsibleContent,
+  ScrollArea,
+  Separator,
+  Tooltip, TooltipContent, TooltipTrigger,
+} from "@launchapp/design-system";
+
+// AppSidebar builds a collapsible navigation sidebar from design system primitives:
+// – ScrollArea wraps the nav so it scrolls independently of the page
+// – Collapsible from Radix handles nested nav sections (expand/collapse with animation)
+// – Button (ghost, icon) for the collapse toggle with Tooltip for collapsed labels
+// – Avatar for the user info footer
+// Collapsed width: 60px (icon only). Expanded width: 240px.
+export function AppSidebar({ sections = [], logo, user, collapsed, defaultCollapsed, onCollapsedChange }) {
+  const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed ?? false);
+  const controlled = collapsed !== undefined;
+  const open = controlled ? !collapsed : !isCollapsed;
+
+  const handleToggle = () => {
+    if (!controlled) setIsCollapsed((c) => !c);
+    onCollapsedChange?.(!open);
+  };
+
+  return (
+    <aside className={open ? "w-60" : "w-[60px]"} style={{ transition: "width 200ms" }}>
+      <div className="flex h-full flex-col border-r bg-background">
+        <div className="flex h-14 items-center justify-between px-3 border-b">
+          {open && logo}
+          <Button variant="ghost" size="icon" onClick={handleToggle}>
+            {/* ChevronLeft / ChevronRight icon */}
+          </Button>
+        </div>
+        <ScrollArea className="flex-1">
+          <nav className="space-y-1 p-2">
+            {sections.map((section) => (
+              <div key={section.title}>
+                {open && section.title && (
+                  <p className="px-2 py-1 text-xs font-semibold text-muted-foreground">{section.title}</p>
+                )}
+                {section.items.map((item) =>
+                  item.children ? (
+                    <Collapsible key={item.label}>
+                      <CollapsibleTrigger asChild>
+                        <Button variant="ghost" className="w-full justify-start gap-2">
+                          {item.icon}
+                          {open && item.label}
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        {item.children.map((child) => (
+                          <a key={child.label} href={child.href} className="block pl-8 py-1 text-sm text-muted-foreground hover:text-foreground">
+                            {child.label}
+                          </a>
+                        ))}
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ) : (
+                    <a key={item.label} href={item.href} className={item.isActive ? "flex items-center gap-2 px-2 py-1.5 rounded-md bg-muted font-medium text-sm" : "flex items-center gap-2 px-2 py-1.5 rounded-md text-sm text-muted-foreground hover:bg-muted"}>
+                      {item.icon}
+                      {open && item.label}
+                    </a>
+                  )
+                )}
+              </div>
+            ))}
+          </nav>
+        </ScrollArea>
+        {user && (
+          <>
+            <Separator />
+            <div className="flex items-center gap-2 p-3">
+              <Avatar className="h-7 w-7">
+                <AvatarFallback>{user.avatarFallback}</AvatarFallback>
+              </Avatar>
+              {open && (
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium">{user.name}</p>
+                  <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </aside>
+  );
+}`,
+      },
+    },
+  },
 };

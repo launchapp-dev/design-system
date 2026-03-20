@@ -115,7 +115,7 @@ const meta: Meta<typeof KanbanBoard> = {
     layout: "padded",
     docs: {
       source: {
-        code: `import { KanbanBoard } from "@launchapp/design-system/blocks/data";
+        code: `import { KanbanBoard } from "@launchapp/design-system/blocks";
 
 const initialColumns = [
   {
@@ -220,4 +220,94 @@ export const Tablet: Story = {
       <KanbanBoard initialColumns={initialColumns} />
     </div>
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <div className="h-[600px]">
+      <KanbanBoard initialColumns={initialColumns} />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "KanbanBoard is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Avatar, AvatarFallback,
+  Badge,
+  Button,
+  Card, CardContent,
+  Input,
+  ScrollArea,
+} from "@launchapp/design-system";
+import {
+  DndContext, DragEndEvent, DragOverlay,
+  closestCorners,
+} from "@dnd-kit/core";
+import {
+  SortableContext, verticalListSortingStrategy, useSortable,
+} from "@dnd-kit/sortable";
+
+// KanbanBoard uses @dnd-kit for drag-and-drop across columns.
+// Each column is a vertical lane composed from:
+// – ScrollArea to allow card lists to scroll independently
+// – Card + CardContent for each task card
+// – Badge for priority/label, Avatar for assignee
+// – Input for inline card creation within a column
+// – Button for add-card trigger and column actions
+// Drag-and-drop: DndContext wraps all columns; SortableContext per column.
+export function KanbanBoard({ initialColumns, onCardMove }) {
+  const [columns, setColumns] = React.useState(initialColumns);
+
+  function handleDragEnd(event: DragEndEvent) {
+    // Move card between columns or reorder within same column
+  }
+
+  return (
+    <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+      <div className="flex h-full gap-4 overflow-x-auto p-4">
+        {columns.map((col) => (
+          <div key={col.id} className="flex w-72 shrink-0 flex-col gap-2">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-semibold">{col.title}</h3>
+              <Badge variant="secondary">{col.cards.length}</Badge>
+            </div>
+            <ScrollArea className="flex-1">
+              <SortableContext items={col.cards.map((c) => c.id)} strategy={verticalListSortingStrategy}>
+                <div className="space-y-2">
+                  {col.cards.map((card) => (
+                    <Card key={card.id} className="cursor-grab active:cursor-grabbing">
+                      <CardContent className="p-3 space-y-2">
+                        <p className="text-sm font-medium">{card.title}</p>
+                        {card.description && <p className="text-xs text-muted-foreground">{card.description}</p>}
+                        <div className="flex items-center justify-between">
+                          {card.priority && <Badge variant="outline" className="text-xs">{card.priority}</Badge>}
+                          {card.assignee && (
+                            <Avatar className="h-5 w-5">
+                              <AvatarFallback className="text-[10px]">{card.assignee.initials}</AvatarFallback>
+                            </Avatar>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </SortableContext>
+            </ScrollArea>
+            <Button variant="ghost" size="sm" className="w-full justify-start text-muted-foreground">
+              + Add card
+            </Button>
+          </div>
+        ))}
+      </div>
+    </DndContext>
+  );
+}`,
+      },
+    },
+  },
 };

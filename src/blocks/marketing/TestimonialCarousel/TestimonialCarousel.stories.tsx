@@ -42,7 +42,7 @@ const meta: Meta<typeof TestimonialCarousel> = {
   parameters: {
     docs: {
       source: {
-        code: `import { TestimonialCarousel } from "@launchapp/design-system/blocks/marketing";
+        code: `import { TestimonialCarousel } from "@launchapp/design-system/blocks";
 
 const testimonials = [
   {
@@ -165,4 +165,89 @@ export const Tablet: Story = {
       testimonials={testimonials}
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <TestimonialCarousel
+      headline="What our customers say"
+      subheadline="Trusted by teams at companies of all sizes."
+      testimonials={testimonials}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "TestimonialCarousel is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Avatar, AvatarFallback, AvatarImage,
+  Badge,
+  Button,
+  Card, CardContent,
+} from "@launchapp/design-system";
+
+// TestimonialCarousel manages auto-advance and manual navigation state locally.
+// Each slide is a Card containing quote text, author Avatar, name, role, and optional Badge.
+// Navigation dots and prev/next Buttons are rendered below the card.
+// autoAdvanceInterval prop (ms) controls auto-play; set to 0 to disable.
+export function TestimonialCarousel({ headline, subheadline, testimonials = [], autoAdvanceInterval = 5000 }) {
+  const [active, setActive] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!autoAdvanceInterval) return;
+    const id = setInterval(() => setActive((i) => (i + 1) % testimonials.length), autoAdvanceInterval);
+    return () => clearInterval(id);
+  }, [autoAdvanceInterval, testimonials.length]);
+
+  const current = testimonials[active];
+
+  return (
+    <section className="py-16 px-4 space-y-8 text-center">
+      {(headline || subheadline) && (
+        <div className="space-y-2">
+          {headline && <h2 className="text-3xl font-bold">{headline}</h2>}
+          {subheadline && <p className="text-muted-foreground">{subheadline}</p>}
+        </div>
+      )}
+      <Card className="max-w-2xl mx-auto">
+        <CardContent className="pt-8 pb-6 space-y-4">
+          <p className="text-lg italic">&ldquo;{current?.quote}&rdquo;</p>
+          <div className="flex items-center justify-center gap-3">
+            <Avatar>
+              {current?.author.avatarSrc && <AvatarImage src={current.author.avatarSrc} />}
+              <AvatarFallback>{current?.author.initials}</AvatarFallback>
+            </Avatar>
+            <div className="text-left">
+              <p className="font-semibold">{current?.author.name}</p>
+              <p className="text-sm text-muted-foreground">{current?.author.role}</p>
+            </div>
+            {current?.badge && <Badge variant="secondary">{current.badge}</Badge>}
+          </div>
+        </CardContent>
+      </Card>
+      <div className="flex items-center justify-center gap-2">
+        <Button variant="ghost" size="icon" onClick={() => setActive((i) => (i - 1 + testimonials.length) % testimonials.length)}>
+          ‹
+        </Button>
+        {testimonials.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className={i === active ? "h-2 w-6 rounded-full bg-primary" : "h-2 w-2 rounded-full bg-muted-foreground/30"}
+          />
+        ))}
+        <Button variant="ghost" size="icon" onClick={() => setActive((i) => (i + 1) % testimonials.length)}>
+          ›
+        </Button>
+      </div>
+    </section>
+  );
+}`,
+      },
+    },
+  },
 };

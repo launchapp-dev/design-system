@@ -10,7 +10,7 @@ const meta: Meta<typeof HeroSection> = {
   parameters: {
     docs: {
       source: {
-        code: `import { HeroSection } from "@launchapp/design-system/blocks/marketing";
+        code: `import { HeroSection } from "@launchapp/design-system/blocks";
 import { Button } from "@launchapp/design-system";
 
 export default function Page() {
@@ -172,4 +172,70 @@ export const Tablet: Story = {
       }
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <HeroSection
+      variant="centered"
+      badge={<Badge>New</Badge>}
+      headline="Build something great"
+      subheadline="Start shipping with confidence."
+      primaryAction={<Button>Get started</Button>}
+      secondaryAction={<Button variant="ghost">Learn more</Button>}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "HeroSection is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import { HeroSection } from "@launchapp/design-system/blocks";
+import { Badge, Button } from "@launchapp/design-system";
+import { cva } from "class-variance-authority";
+import { cn } from "@launchapp/design-system/utils";
+
+// HeroSection uses CVA to switch between layout variants:
+// "centered"  – text and actions centred, optional media below
+// "split"     – text left, media right (md:flex-row)
+// "minimal"   – compact text-only layout
+// "imageBackground" – full-bleed background image with overlay
+// All slot props (badge, headline, primaryAction, secondaryAction, media)
+// accept any React node, so consumers pass Button, Badge, or custom elements.
+const heroVariants = cva("w-full py-16 px-4", {
+  variants: {
+    variant: {
+      centered: "flex flex-col items-center text-center gap-6",
+      split: "flex flex-col gap-8 md:flex-row md:items-center",
+      minimal: "flex flex-col gap-4",
+      imageBackground: "relative flex flex-col items-center text-center gap-6 text-white",
+    },
+  },
+  defaultVariants: { variant: "centered" },
+});
+
+export function HeroSection({ variant, badge, headline, subheadline, primaryAction, secondaryAction, media, className }) {
+  return (
+    <section className={cn(heroVariants({ variant }), className)}>
+      <div className="flex flex-col gap-4 max-w-2xl">
+        {badge}
+        <h1 className="text-4xl font-bold tracking-tight">{headline}</h1>
+        {subheadline && <p className="text-lg text-muted-foreground">{subheadline}</p>}
+        {(primaryAction || secondaryAction) && (
+          <div className="flex flex-wrap gap-3">
+            {primaryAction}
+            {secondaryAction}
+          </div>
+        )}
+      </div>
+      {media && <div className="flex-1">{media}</div>}
+    </section>
+  );
+}`,
+      },
+    },
+  },
 };
