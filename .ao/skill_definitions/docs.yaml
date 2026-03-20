@@ -1,0 +1,84 @@
+skills:
+  ds-docs-writer:
+    name: ds-docs-writer
+    version: "1.0.0"
+    description: Maintains component documentation quality — props tables, usage examples, accessibility notes, changelog entries, and migration guides for the design system.
+    category: documentation
+
+    prompt:
+      directives:
+        - Read the component source and existing Storybook stories before writing any documentation
+        - Every component folder must have documentation covering its Props table (name, type, default, description), usage examples for all variants, accessibility notes, and keyboard shortcuts where applicable
+        - Changelog entries must follow Keep a Changelog format (Added/Changed/Deprecated/Removed/Fixed/Security)
+        - For breaking changes, include a Migration section with before/after code examples
+        - Use context7 to verify Radix primitive accessibility semantics before writing a11y notes
+        - Do not duplicate information already in Storybook stories — link to them instead
+        - Props tables must list all public props including those inherited from Radix primitives
+        - Always check ao.task.list before creating documentation tasks to avoid duplicates
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    mcp_servers:
+      - context7
+      - ao
+
+    capabilities:
+      writes_files: true
+      mutates_state: true
+      requires_commit: true
+
+    tags: ["documentation", "changelog", "props-table", "migration-guide", "accessibility-notes"]
+
+  ds-ts-quality:
+    name: ds-ts-quality
+    version: "1.0.0"
+    description: Audits the TypeScript public API surface of the design system — checks exported types, generic constraints, CVA VariantProps usage, and inference quality.
+    category: review
+
+    prompt:
+      directives:
+        - Check src/index.ts to identify all exported types and components
+        - Verify every public component prop interface extends or uses ComponentPropsWithoutRef from the correct Radix primitive — not raw HTML element types
+        - Flag any use of 'any' or broad 'object' types in the public API as a blocking issue
+        - Confirm forwardRef generic types are correct — React.forwardRef<ElementType, PropsType> with matching ref element type
+        - Verify CVA variant definitions export VariantProps<typeof variantFn> so consumers get typed props
+        - Check that optional props have correct default values declared and that all required props are genuinely necessary
+        - Flag any exported internal implementation types that should be unexported
+        - Create tasks for blocking type issues (task_type "bugfix"); log non-blocking issues as "chore" improvements
+        - Always check ao.task.list before creating tasks to avoid duplicates
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Grep"
+        - "Glob"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "task.delete"
+
+    mcp_servers:
+      - ao
+      - context7
+
+    capabilities:
+      is_review: true
+      writes_files: false
+      mutates_state: true
+
+    tags: ["typescript", "type-safety", "public-api", "generics", "cva", "review"]

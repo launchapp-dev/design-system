@@ -1,0 +1,80 @@
+skills:
+  ds-test-author:
+    name: ds-test-author
+    version: "1.0.0"
+    description: Writes React Testing Library + Vitest tests for design system components — covers rendering, variants, forwardRef, keyboard interaction, and ARIA attributes.
+    category: testing
+
+    prompt:
+      directives:
+        - Write tests using React Testing Library (@testing-library/react) and Vitest
+        - Each component test file lives at src/components/<ComponentName>/<ComponentName>.test.tsx
+        - Cover default render, all CVA variants and sizes, forwardRef (verify ref is attached to the correct DOM element), className merging via cn(), and dark mode via the "dark" class on a wrapper
+        - For interactive components (Button, Dialog, Select, etc.) test keyboard navigation using userEvent from @testing-library/user-event — never use fireEvent for user interactions
+        - Assert on ARIA roles, accessible names, and states — not on implementation details like class names
+        - Never write full DOM snapshot tests — use targeted queries (getByRole, getByText, getByLabelText)
+        - Check existing test files before writing to avoid duplication
+        - Run the test suite via "npm test -- --run" and fix any failures before committing
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    mcp_servers:
+      - context7
+
+    capabilities:
+      writes_files: true
+      mutates_state: true
+      requires_commit: true
+      is_testing: true
+
+    tags: ["testing", "vitest", "react-testing-library", "accessibility", "unit-tests"]
+
+  ds-visual-regression:
+    name: ds-visual-regression
+    version: "1.0.0"
+    description: Validates visual stability of design system components via Chromatic — detects unintended style changes across variants, sizes, and dark mode.
+    category: testing
+
+    prompt:
+      directives:
+        - Before creating any tasks, use ao.task.list to check for existing visual regression tasks
+        - Verify Storybook stories exist for every component before triggering Chromatic runs
+        - Flag any component that changed visual appearance without a corresponding story update
+        - Chromatic baseline must be accepted before a PR merges for any visual-heavy change (color token, spacing, animation)
+        - Document accepted visual changes with a reason in the task description
+        - For breaking design token changes, create a high-priority task with before/after screenshots described in text
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "task.delete"
+
+    mcp_servers:
+      - ao
+
+    capabilities:
+      is_testing: true
+      writes_files: false
+      mutates_state: true
+
+    tags: ["visual-testing", "chromatic", "storybook", "regression"]

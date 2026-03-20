@@ -1,0 +1,118 @@
+skills:
+  radix-component-impl:
+    name: radix-component-impl
+    version: "1.0.0"
+    description: Enforces Radix UI primitive usage, CVA variant patterns, and design token conventions for the AudioGenius design system.
+    category: implementation
+
+    prompt:
+      directives:
+        - Always compose over Radix primitives — never re-implement interactive behavior with raw HTML elements
+        - Use class-variance-authority (CVA) for every component that has size or visual variants
+        - Use CSS custom properties (--ag-*) exclusively for colors and design tokens — no hardcoded hex or rgba values
+        - All components must use React.forwardRef with correct ref type annotations
+        - Merge classNames via the cn() utility; never concatenate strings directly
+        - Export the component from its own index.ts before touching src/index.ts
+        - Before writing code, use context7 resolve-library-id and query-docs to verify the current Radix primitive API
+        - Size variants must follow the sm/md/lg scale with consistent padding and font-size progression
+        - Dark mode must work via the "dark" class strategy — do not use media queries for theme switching
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    mcp_servers:
+      - context7
+      - package-version
+
+    capabilities:
+      writes_files: true
+      mutates_state: true
+      requires_commit: true
+
+    tags: ["radix-ui", "cva", "design-tokens", "react", "typescript", "tailwind"]
+
+  storybook-csf3:
+    name: storybook-csf3
+    version: "1.0.0"
+    description: Ensures Storybook stories use CSF3 format and cover all variants, sizes, states, and dark mode for design system components.
+    category: documentation
+
+    prompt:
+      directives:
+        - Use CSF3 format (Component Story Format 3) with a default export containing title, component, and argTypes
+        - Always create stories for Default, AllVariants, AllSizes, Interactive, and DarkMode
+        - Import the component from its local index file, never from the top-level src/index.ts
+        - Show all variants and sizes in a grid layout using a decorator for visual comparison
+        - The Interactive story must use argTypes controls so props can be live-edited
+        - Include edge case stories for disabled state, long text content, and loading state when applicable
+        - DarkMode story must set the html element's "dark" class on the decorator container
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+      deny:
+        - "task.delete"
+
+    capabilities:
+      writes_files: true
+      mutates_state: true
+      requires_commit: true
+
+    tags: ["storybook", "csf3", "documentation", "visual-testing"]
+
+  ds-frontend-quality:
+    name: ds-frontend-quality
+    version: "1.0.0"
+    description: Ensures design system components meet production-grade visual quality — correct spacing rhythm, design token completeness, responsive behavior, and distinctive rather than generic aesthetics.
+    category: implementation
+
+    prompt:
+      directives:
+        - Every component must use only --ag-* design tokens for spacing, color, radius, and shadow — verify no hardcoded pixel values or color literals exist in the output
+        - Check that size variants (sm/md/lg) produce visually distinct but proportionally consistent results — font-size, padding, and icon sizes must all scale together
+        - Verify interactive states have clear visual feedback — hover, focus-visible, active, and disabled must all be distinct; do not rely on browser defaults alone
+        - Components must not look "generic" — use the project's radius, shadow, and color token conventions to maintain brand coherence across the system
+        - Ensure responsive behavior is correct — components must not overflow or clip content at common viewport widths
+        - For composite components (Card, Dialog, Sheet), verify internal spacing uses the --ag-* spacing scale, not arbitrary Tailwind values like p-3 or gap-2
+        - After implementing, visually verify the AllVariants and AllSizes Storybook stories match the design token intent
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Write"
+        - "Edit"
+        - "Glob"
+        - "Grep"
+        - "Bash"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "task.delete"
+        - "requirements.delete"
+
+    mcp_servers:
+      - context7
+
+    capabilities:
+      writes_files: true
+      mutates_state: true
+      requires_commit: true
+
+    tags: ["design-quality", "design-tokens", "spacing", "visual-consistency", "responsive"]

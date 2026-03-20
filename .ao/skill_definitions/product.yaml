@@ -1,0 +1,129 @@
+skills:
+  ds-product-owner:
+    name: ds-product-owner
+    version: "1.0.0"
+    description: Product ownership skill for the AudioGenius design system — aligns work to PRODUCT_VISION.md, manages requirements lifecycle, and creates phased implementation tasks.
+    category: planning
+
+    prompt:
+      directives:
+        - Always read PRODUCT_VISION.md before making any planning decisions — it is the authoritative roadmap
+        - Update requirement status accurately (draft → refined → planned → in-progress → done) based on actual task state
+        - Only create work for the next incomplete phase — never queue ahead multiple phases
+        - Link every new task to its requirement via --linked-requirement
+        - Every task description must include a "Depends on:" line — write "Depends on: (none)" if there are no dependencies
+        - Check ao.requirements.list AND ao.task.list before creating anything — duplicate prevention is mandatory
+        - Quality gate: every component must have a Storybook story; create chore tasks for any missing stories
+        - Priority ordering: must > should > could; critical infrastructure before visual polish
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Glob"
+        - "Grep"
+        - "task.*"
+        - "requirements.*"
+        - "queue.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "Bash"
+        - "task.delete"
+        - "requirements.delete"
+
+    mcp_servers:
+      - ao
+      - context7
+
+    capabilities:
+      is_requirements: true
+      mutates_state: true
+      writes_files: false
+
+    tags: ["product", "planning", "requirements", "roadmap"]
+
+  ds-dependency-scout:
+    name: ds-dependency-scout
+    version: "1.0.0"
+    description: Dependency update scouting skill for the design system — checks Radix UI, Tailwind, CVA, and Storybook packages for updates and creates grouped update tasks.
+    category: operations
+
+    prompt:
+      directives:
+        - Check all Radix UI primitives (@radix-ui/react-*) as a group — one task for all Radix updates
+        - Check Tailwind CSS, PostCSS, and Autoprefixer together — one task for the Tailwind ecosystem
+        - Check class-variance-authority, clsx, and tailwind-merge together — one task for utility libraries
+        - Check Storybook packages (@storybook/*) as a group — one task for all Storybook updates
+        - For major version bumps, always use context7 to read the migration guide before creating a task
+        - Security patches must be flagged as critical priority regardless of semver level
+        - Always check ao.task.list before creating tasks — never create duplicate update tasks
+        - Include specific version changes in task descriptions (e.g. "4.2.0 → 5.0.1")
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Glob"
+        - "task.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "Bash"
+        - "task.delete"
+
+    mcp_servers:
+      - ao
+      - context7
+      - package-version
+
+    capabilities:
+      is_research: true
+      mutates_state: true
+      writes_files: false
+
+    tags: ["dependencies", "updates", "maintenance", "security"]
+
+  ds-rice-planner:
+    name: ds-rice-planner
+    version: "1.0.0"
+    description: RICE-based task prioritization skill for the design system — scores candidate tasks by Reach, Impact, Confidence, and Effort to produce an objective priority ordering for the backlog.
+    category: planning
+
+    prompt:
+      directives:
+        - Score every candidate task on RICE (Reach × Impact × Confidence / Effort) before assigning priority — document the scores in the task description
+        - "Reach: how many design system consumers are affected (1 = internal only, 3 = single product, 5 = cross-product, 10 = all consumers)"
+        - "Impact: business value (1 = minor, 2 = moderate, 3 = significant, 5 = critical blockers)"
+        - "Confidence: certainty about estimates (50% = speculative, 80% = likely, 100% = certain)"
+        - "Effort: estimated person-weeks (use 0.5, 1, 2, 4 as the scale)"
+        - Tasks scoring above 30 are critical; 10–30 are high; 5–10 are medium; below 5 are low
+        - Component tasks score higher Reach when many products use the component — check actual usage before scoring
+        - Accessibility and type-safety bugfixes get Impact × 1.5 multiplier to reflect compliance risk
+        - Always check ao.task.list before creating or reordering — never create duplicate tasks
+
+    tool_policy:
+      allow:
+        - "Read"
+        - "Glob"
+        - "Grep"
+        - "task.*"
+        - "requirements.*"
+        - "queue.*"
+        - "output.*"
+      deny:
+        - "Write"
+        - "Edit"
+        - "Bash"
+        - "task.delete"
+        - "requirements.delete"
+
+    mcp_servers:
+      - ao
+
+    capabilities:
+      is_requirements: true
+      mutates_state: true
+      writes_files: false
+
+    tags: ["planning", "rice", "prioritization", "backlog", "product-management"]

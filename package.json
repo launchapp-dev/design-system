@@ -32,6 +32,7 @@
     "build:storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
     "lint": "eslint src/",
+    "test": "vitest",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
@@ -92,14 +93,19 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@tailwindcss/postcss": "^4.2.2",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitest/coverage-v8": "^3.0.0",
     "autoprefixer": "^10.4.20",
     "chromatic": "^15.3.0",
+    "jsdom": "^26.0.0",
     "postcss": "^8.4.49",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "storybook": "^10.3.0",
     "tailwindcss": "^4.2.2",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
   }
 }
