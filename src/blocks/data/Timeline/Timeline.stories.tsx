@@ -146,7 +146,7 @@ const meta: Meta<typeof Timeline> = {
     layout: "padded",
     docs: {
       source: {
-        code: `import { Timeline } from "@launchapp/design-system/blocks/data";
+        code: `import { Timeline } from "@launchapp/design-system/blocks";
 
 const items = [
   {
@@ -265,4 +265,73 @@ export const Tablet: Story = {
       <Timeline items={avatarItems} />
     </div>
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <div className="max-w-lg">
+      <Timeline items={avatarItems} />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Timeline is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Avatar, AvatarFallback, AvatarImage,
+  Badge,
+} from "@launchapp/design-system";
+import { cva } from "class-variance-authority";
+import { cn } from "@launchapp/design-system/utils";
+
+// Timeline is a pure layout component styled with CVA variants.
+// Each item is a flex row containing:
+// – A connector column: vertical line + dot (or icon/Avatar as the node)
+// – Content column: title, description, timestamp, optional Badge
+// CVA variants control dot/line sizing (sm/md/lg) and color scheme
+const timelineVariants = cva("relative flex gap-4", {
+  variants: {
+    size: { sm: "text-sm", md: "text-base", lg: "text-lg" },
+  },
+  defaultVariants: { size: "md" },
+});
+
+export function Timeline({ items = [], size, className }) {
+  return (
+    <ol className={cn("space-y-4", className)}>
+      {items.map((item, i) => (
+        <li key={item.id ?? i} className={timelineVariants({ size })}>
+          <div className="flex flex-col items-center">
+            {item.avatar ? (
+              <Avatar className="h-8 w-8">
+                {item.avatar.src && <AvatarImage src={item.avatar.src} />}
+                <AvatarFallback>{item.avatar.fallback}</AvatarFallback>
+              </Avatar>
+            ) : item.icon ? (
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">{item.icon}</div>
+            ) : (
+              <div className="mt-1 h-3 w-3 rounded-full border-2 border-primary bg-background" />
+            )}
+            {i < items.length - 1 && <div className="mt-1 w-px flex-1 bg-border" />}
+          </div>
+          <div className="pb-4 min-w-0">
+            {item.title && <p className="font-medium leading-none">{item.title}</p>}
+            {item.description && <p className="mt-1 text-muted-foreground">{item.description}</p>}
+            <div className="mt-1 flex items-center gap-2">
+              {item.timestamp && <span className="text-xs text-muted-foreground">{item.timestamp}</span>}
+              {item.badge && <Badge variant="secondary" className="text-xs">{item.badge}</Badge>}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}`,
+      },
+    },
+  },
 };

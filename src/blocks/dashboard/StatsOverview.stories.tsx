@@ -59,7 +59,7 @@ const meta: Meta<typeof StatsOverview> = {
     layout: "padded",
     docs: {
       source: {
-        code: `import { StatsOverview } from "@launchapp/design-system/blocks/dashboard";
+        code: `import { StatsOverview } from "@launchapp/design-system/blocks";
 
 const items = [
   { title: "Total Revenue", value: "$45,231", trend: "up", trendValue: "+20.1%" },
@@ -159,5 +159,72 @@ export const Tablet: Story = {
       { key: "revenue", color: "hsl(var(--la-chart-1))" },
       { key: "users", color: "hsl(var(--la-chart-2))" },
     ],
+  },
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  args: {
+    title: "Performance Overview",
+    items: kpiItems,
+    cols: 4,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "StatsOverview is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Card, CardHeader, CardTitle, CardDescription, CardContent,
+  ChartContainer,
+} from "@launchapp/design-system";
+
+// StatsOverview combines a KPI stat grid with an optional trend chart below.
+// KPI items use the StatDisplay sub-component (Card + sparkline via ChartContainer).
+// The optional chart section uses ChartContainer with a composed recharts AreaChart.
+export function StatsOverview({ title, description, items = [], cols = 4, chartData, chartKeys }) {
+  return (
+    <div className="space-y-6">
+      {(title || description) && (
+        <div>
+          {title && <h2 className="text-2xl font-bold">{title}</h2>}
+          {description && <p className="text-muted-foreground">{description}</p>}
+        </div>
+      )}
+      <div className={\`grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-\${cols}\`}>
+        {items.map((item, i) => (
+          <Card key={i}>
+            <CardContent className="pt-6 space-y-1">
+              <p className="text-sm text-muted-foreground">{item.label}</p>
+              <p className="text-2xl font-bold">{item.value}</p>
+              <p className="text-xs text-muted-foreground">{item.trendLabel}</p>
+              {item.sparklineData && (
+                <ChartContainer config={{}}>
+                  {/* LineChart sparkline */}
+                </ChartContainer>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      {chartData && chartKeys && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Trend</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={{}}>
+              {/* AreaChart with chartData and chartKeys */}
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}`,
+      },
+    },
   },
 };

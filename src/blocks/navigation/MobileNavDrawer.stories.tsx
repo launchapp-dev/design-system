@@ -81,7 +81,7 @@ const meta: Meta<typeof MobileNavDrawer> = {
     layout: "centered",
     docs: {
       source: {
-        code: `import { MobileNavDrawer } from "@launchapp/design-system/blocks/navigation";
+        code: `import { MobileNavDrawer } from "@launchapp/design-system/blocks";
 
 const items = [
   { label: "Dashboard", href: "/" },
@@ -181,4 +181,99 @@ export const Tablet: Story = {
       user={sampleUser}
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <MobileNavDrawer
+      sections={sampleSections}
+      logo={<LogoMark />}
+      user={sampleUser}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "MobileNavDrawer is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Avatar, AvatarFallback,
+  Button,
+  Collapsible, CollapsibleTrigger, CollapsibleContent,
+  Sheet, SheetContent, SheetTrigger,
+  Separator,
+} from "@launchapp/design-system";
+
+// MobileNavDrawer wraps the same NavSection structure as AppSidebar inside a
+// Radix Sheet (slide-in drawer) for mobile screens. The hamburger trigger
+// is hidden on md+ breakpoints where the desktop sidebar is visible.
+export function MobileNavDrawer({ sections = [], logo, user, open, onOpenChange }) {
+  return (
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
+          {/* HamburgerMenuIcon */}
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-72 p-0">
+        <div className="flex h-full flex-col">
+          <div className="flex h-14 items-center border-b px-4">{logo}</div>
+          <nav className="flex-1 overflow-y-auto p-3 space-y-1">
+            {sections.map((section) => (
+              <div key={section.title}>
+                {section.title && (
+                  <p className="px-2 py-1 text-xs font-semibold text-muted-foreground">{section.title}</p>
+                )}
+                {section.items.map((item) =>
+                  item.children ? (
+                    <Collapsible key={item.label}>
+                      <CollapsibleTrigger asChild>
+                        <Button variant="ghost" className="w-full justify-start gap-2">
+                          {item.icon}
+                          {item.label}
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="pl-6 space-y-1">
+                        {item.children.map((child) => (
+                          <a key={child.label} href={child.href} className="block py-1 text-sm text-muted-foreground hover:text-foreground">
+                            {child.label}
+                          </a>
+                        ))}
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ) : (
+                    <a key={item.label} href={item.href} className="flex items-center gap-2 px-2 py-1.5 rounded-md text-sm text-muted-foreground hover:bg-muted">
+                      {item.icon}
+                      {item.label}
+                    </a>
+                  )
+                )}
+              </div>
+            ))}
+          </nav>
+          {user && (
+            <>
+              <Separator />
+              <div className="flex items-center gap-2 p-4">
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback>{user.avatarFallback}</AvatarFallback>
+                </Avatar>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium">{user.name}</p>
+                  <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}`,
+      },
+    },
+  },
 };

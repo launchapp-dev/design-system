@@ -54,7 +54,7 @@ const meta: Meta<typeof PricingTable> = {
   parameters: {
     docs: {
       source: {
-        code: `import { PricingTable } from "@launchapp/design-system/blocks/marketing";
+        code: `import { PricingTable } from "@launchapp/design-system/blocks";
 
 const plans = [
   {
@@ -169,4 +169,84 @@ export const Tablet: Story = {
       tiers={tiers}
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <PricingTable
+      headline="Simple, transparent pricing"
+      subheadline="Choose the plan that works best for you."
+      tiers={tiers}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "PricingTable is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import {
+  Badge,
+  Button,
+  Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
+  Separator,
+} from "@launchapp/design-system";
+
+// PricingTable renders a responsive grid of pricing tier cards.
+// Each tier card is composed from:
+// – Card with a ring highlight for the popular tier
+// – Badge (e.g. "Most popular") positioned in CardHeader
+// – Price display with period (monthly/annual)
+// – Feature list with checkmark icons
+// – Separator between features and CTA
+// – Button (default or outline) as the call-to-action
+export function PricingTable({ headline, subheadline, tiers = [] }) {
+  return (
+    <section className="py-16 px-4 space-y-10">
+      {(headline || subheadline) && (
+        <div className="text-center space-y-2">
+          {headline && <h2 className="text-3xl font-bold">{headline}</h2>}
+          {subheadline && <p className="text-muted-foreground">{subheadline}</p>}
+        </div>
+      )}
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
+        {tiers.map((tier) => (
+          <Card key={tier.id} className={tier.popular ? "ring-2 ring-primary" : ""}>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle>{tier.name}</CardTitle>
+                {tier.badge && <Badge>{tier.badge}</Badge>}
+              </div>
+              <div>
+                <span className="text-3xl font-bold">{tier.price}</span>
+                {tier.period && <span className="text-muted-foreground">/{tier.period}</span>}
+              </div>
+              {tier.description && <CardDescription>{tier.description}</CardDescription>}
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Separator />
+              <ul className="space-y-2">
+                {tier.features.map((f, i) => (
+                  <li key={i} className="flex items-center gap-2 text-sm">
+                    <span className="text-primary">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full" variant={tier.popular ? "default" : "outline"} onClick={tier.onCtaClick}>
+                {tier.ctaLabel ?? "Get started"}
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}`,
+      },
+    },
+  },
 };

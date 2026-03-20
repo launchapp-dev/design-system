@@ -82,7 +82,7 @@ const meta: Meta<typeof FeatureGrid> = {
   parameters: {
     docs: {
       source: {
-        code: `import { FeatureGrid } from "@launchapp/design-system/blocks/marketing";
+        code: `import { FeatureGrid } from "@launchapp/design-system/blocks";
 
 const features = [
   {
@@ -191,4 +191,82 @@ export const Tablet: Story = {
       features={sampleFeatures}
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <FeatureGrid
+      headline="Everything you need"
+      subheadline="A complete toolkit for building modern applications."
+      features={sampleFeatures}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "FeatureGrid is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import { FeatureGrid } from "@launchapp/design-system/blocks";
+
+// Usage — pass your own feature list:
+export default function Page() {
+  return (
+    <FeatureGrid
+      headline="Everything you need"
+      subheadline="A complete toolkit for building modern applications."
+      cols={3}
+      features={[
+        {
+          icon: <ZapIcon />,
+          title: "Fast by default",
+          description: "Optimised for Core Web Vitals out of the box.",
+        },
+        {
+          icon: <ShieldIcon />,
+          title: "Secure",
+          description: "Built-in RBAC and audit logging.",
+        },
+        {
+          icon: <LayersIcon />,
+          title: "Composable",
+          description: "Mix and match blocks to build any layout.",
+        },
+      ]}
+    />
+  );
+}
+
+// FeatureGrid internally composes Card + CardContent from the design system:
+//
+// import { Card, CardContent } from "@launchapp/design-system";
+//
+// function FeatureGrid({ headline, subheadline, features = [], cols = 3 }) {
+//   return (
+//     <section className="py-16 px-4 space-y-10">
+//       {(headline || subheadline) && (
+//         <div className="text-center max-w-2xl mx-auto space-y-2">
+//           {headline && <h2 className="text-3xl font-bold">{headline}</h2>}
+//           {subheadline && <p className="text-muted-foreground">{subheadline}</p>}
+//         </div>
+//       )}
+//       <div className={\`grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-\${cols}\`}>
+//         {features.map((f, i) => (
+//           <Card key={i}>
+//             <CardContent className="pt-6 space-y-3">
+//               {f.icon && <div className="text-primary">{f.icon}</div>}
+//               <h3 className="font-semibold">{f.title}</h3>
+//               {f.description && <p className="text-sm text-muted-foreground">{f.description}</p>}
+//             </CardContent>
+//           </Card>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }`,
+      },
+    },
+  },
 };

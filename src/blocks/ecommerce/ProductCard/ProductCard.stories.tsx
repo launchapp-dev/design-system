@@ -53,7 +53,7 @@ const meta: Meta<typeof ProductCard> = {
   parameters: {
     docs: {
       source: {
-        code: `import { ProductCardGrid } from "@launchapp/design-system/blocks/ecommerce";
+        code: `import { ProductCardGrid } from "@launchapp/design-system/blocks";
 
 const products = [
   {
@@ -252,4 +252,66 @@ export const Tablet: Story = {
       onAddToCart={() => {}}
     />
   ),
+};
+
+export const CompositionExample: Story = {
+  name: "Composition (Built From)",
+  render: () => (
+    <ProductCardGrid
+      products={sampleProducts}
+      columns={3}
+      variant="compact"
+      onAddToCart={() => {}}
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "ProductCard / ProductCardGrid is composed from these design system primitives. Use the **Show code** toggle to see the full implementation.",
+      },
+      source: {
+        code: `import { ProductCardGrid } from "@launchapp/design-system/blocks";
+import { ProductCard } from "@launchapp/design-system/blocks";
+
+// Usage — pass products and handle cart events:
+export default function Page() {
+  return (
+    <ProductCardGrid
+      products={[
+        {
+          id: "1",
+          name: "Wireless Headphones",
+          price: 79.99,
+          originalPrice: 129.99,
+          image: "/headphones.jpg",
+          badge: "Sale",
+          rating: 4.5,
+          reviewCount: 128,
+        },
+      ]}
+      columns={3}
+      variant="compact"
+      onAddToCart={(product) => console.log("Added:", product.id)}
+      onWishlist={(product) => console.log("Wishlisted:", product.id)}
+    />
+  );
+}
+
+// ProductCard internally composes these design system primitives:
+//
+// import {
+//   Badge,
+//   Button,
+//   Card, CardContent, CardFooter,
+// } from "@launchapp/design-system";
+// import { cva } from "class-variance-authority";
+//
+// CVA variants: compact | detailed | horizontal
+// compact  – image top, minimal text, single CTA button
+// detailed – image top, ratings, full description, price stack
+// horizontal – image left (40%), text right, stacked CTAs`,
+      },
+    },
+  },
 };
