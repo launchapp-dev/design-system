@@ -5,3 +5,6 @@ export * from "./settings";
 export * from "./data";
 export * from "./marketing";
 export * from "./ecommerce";
+export * from "./landing";
+export * from "./blog";
+export * from "./errors";

@@ -339,6 +339,29 @@ export { ShoppingCart } from "./blocks/ecommerce/ShoppingCart";
 export type { ShoppingCartProps, CartItem } from "./blocks/ecommerce/ShoppingCart";
 export { CheckoutForm } from "./blocks/ecommerce/CheckoutForm";
 export type { CheckoutFormProps, CheckoutValues, OrderSummaryItem } from "./blocks/ecommerce/CheckoutForm";
+export { SaaSLanding } from "./blocks/landing/SaaSLanding";
+export type { SaaSLandingProps, SaaSFeature, SaaSPricingTier } from "./blocks/landing/SaaSLanding";
+export { Portfolio } from "./blocks/landing/Portfolio";
+export type { PortfolioProps, PortfolioProject } from "./blocks/landing/Portfolio";
+export { Agency } from "./blocks/landing/Agency";
+export type { AgencyProps, AgencyService, AgencyTeamMember, AgencyCaseStudy } from "./blocks/landing/Agency";
+export { Startup } from "./blocks/landing/Startup";
+export type { StartupProps, SocialProofMetric, StartupTestimonial } from "./blocks/landing/Startup";
+
+export { PostList } from "./blocks/blog/PostList";
+export type { PostListProps, BlogPost } from "./blocks/blog/PostList";
+export { PostDetail } from "./blocks/blog/PostDetail";
+export type { PostDetailProps, TocItem } from "./blocks/blog/PostDetail";
+export { NewsletterSignup, newsletterSignupVariants } from "./blocks/blog/NewsletterSignup";
+export type { NewsletterSignupProps } from "./blocks/blog/NewsletterSignup";
+
+export { NotFound } from "./blocks/errors/NotFound";
+export type { NotFoundProps } from "./blocks/errors/NotFound";
+export { ServerError } from "./blocks/errors/ServerError";
+export type { ServerErrorProps } from "./blocks/errors/ServerError";
+export { Maintenance } from "./blocks/errors/Maintenance";
+export type { MaintenanceProps } from "./blocks/errors/Maintenance";
+
 export {
   defaultPalette,
   oceanPalette,
