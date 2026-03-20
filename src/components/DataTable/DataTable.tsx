@@ -30,6 +30,8 @@ export interface DataTableProps<TData, TValue> {
   filterPlaceholder?: string;
   pageSize?: number;
   className?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
 }
 
 function DataTableInner<TData, TValue>(
@@ -40,6 +42,8 @@ function DataTableInner<TData, TValue>(
     filterPlaceholder = "Filter...",
     pageSize = 10,
     className,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
   }: DataTableProps<TData, TValue>,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
@@ -65,6 +69,12 @@ function DataTableInner<TData, TValue>(
 
   const filterCol = filterColumn ?? columns[0]?.id ?? (columns[0] as ColumnDef<TData, TValue> & { accessorKey?: string })?.accessorKey;
 
+  if (process.env.NODE_ENV !== "production" && !ariaLabel && !ariaLabelledby) {
+    console.warn(
+      "DataTable: Missing accessible name. Provide `aria-label` or `aria-labelledby` for WCAG 1.3.1 compliance."
+    );
+  }
+
   return (
     <div ref={ref} className={cn("space-y-4", className)}>
       {filterCol && (
@@ -79,7 +89,7 @@ function DataTableInner<TData, TValue>(
         />
       )}
 
-      <Table>
+      <Table aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
