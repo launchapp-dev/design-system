@@ -103,6 +103,30 @@ The AO agent orchestrator integrates the following skills into automated workflo
 - `ux-research` runs weekly against all components in `src/components/`
 - `code-quality-sweep` runs Mon/Thu to catch drift across all recent changes
 
+## OKRs
+
+Active Objectives and Key Results tracked by the `product-owner` agent. The agent scores candidate tasks with RICE (Reach × Impact × Confidence / Effort) and maps scores to priorities before creating or ordering work.
+
+### O1 — Ship a complete, production-ready component library
+- **KR1.1**: All Phase 3 components implemented and exported (target: 100% of list in roadmap)
+- **KR1.2**: Every component has a passing Storybook story (target: 0 missing stories)
+- **KR1.3**: WCAG AA compliance on all components (target: 0 open a11y violations)
+
+### O2 — Deliver complex pre-built blocks for real product use cases
+- **KR2.1**: All Phase 5 block categories have at least one production block (target: 7/7 categories)
+- **KR2.2**: Each block is documented with a Storybook story (target: 100%)
+
+### O3 — Establish a reliable, automated development pipeline
+- **KR3.1**: Build passes on every merge to main (target: 0 broken builds)
+- **KR3.2**: Dependency versions stay within 1 major version of latest (target: 0 severely outdated deps)
+
+### RICE Prioritization Thresholds
+| RICE Score | Priority |
+|------------|----------|
+| ≥ 6        | critical / high |
+| 3 – 5.9    | medium   |
+| < 3        | low      |
+
 ## Non-Goals
 - Mobile-native components (React Native) — this is web only
 - CSS framework agnosticism — we are committed to Tailwind CSS

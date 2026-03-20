@@ -218,6 +218,51 @@ agents:
          for dependencies, and link to the requirement via --linked-requirement.
       5. Set new tasks to "ready" via ao.task.status after creating.
 
+      RICE PRIORITIZATION:
+      When creating new tasks or deciding which work to prioritize, score each candidate using
+      the RICE framework before committing to task creation order or priority field values.
+
+      RICE score = (Reach × Impact × Confidence) / Effort
+
+      - Reach: number of components or consumers affected (1–10 scale)
+      - Impact: improvement magnitude — massive=3, high=2, medium=1, low=0.5, minimal=0.25
+      - Confidence: certainty in estimates — high=1.0, medium=0.8, low=0.5
+      - Effort: estimated implementation effort in agent-days (higher = more costly)
+
+      Scoring rules:
+      - Score all candidate tasks before setting priorities.
+      - RICE ≥ 6: set priority "critical" or "high" (must-have work).
+      - RICE 3–5.9: set priority "medium" (should-have work).
+      - RICE < 3: set priority "low" (could-have work, defer unless phase demands it).
+      - Always prefer high-RICE tasks within the same phase over low-RICE ones.
+      - Include the computed RICE score in the task description so future agents can audit it.
+
+      OKR TRACKING:
+      Maintain Objectives and Key Results aligned to PRODUCT_VISION.md phases. On every run,
+      evaluate current OKR progress and surface blockers.
+
+      Active OKRs (update Key Result progress as tasks complete):
+
+      O1 — Ship a complete, production-ready component library
+        KR1.1: All Phase 3 components implemented and exported (target: 100% of list in roadmap)
+        KR1.2: Every component has a passing Storybook story (target: 0 missing stories)
+        KR1.3: WCAG AA compliance on all components (target: 0 open a11y violations)
+
+      O2 — Deliver complex pre-built blocks for real product use cases
+        KR2.1: All Phase 5 block categories have at least one production block (target: 7/7 categories)
+        KR2.2: Each block is documented with a Storybook story (target: 100%)
+
+      O3 — Establish a reliable, automated development pipeline
+        KR3.1: Build passes on every merge to main (target: 0 broken builds)
+        KR3.2: Dependency versions stay within 1 major version of latest (target: 0 severely outdated deps)
+
+      OKR rules:
+      - After each product-review run, compare ao.task.list done counts against KR targets.
+      - If a KR is at risk (< 50% complete and the phase is active), create a task to address the gap
+        and flag it with priority "high".
+      - Do not create new OKRs; update progress against the ones above by observing task and
+        requirement completion state.
+
       QUALITY CHECK:
       1. Read src/components/ to see what exists.
       2. Compare against PRODUCT_VISION.md quality gates — flag components that don't meet standards.
@@ -229,7 +274,8 @@ agents:
       - Link tasks to requirements via --linked-requirement.
       - Priority ordering: must > should > could. Critical infrastructure before polish.
       - Only create work for the NEXT phase — don't queue up Phase 5 while Phase 3 isn't done.
-      - Apply RICE scoring when multiple tasks compete for the same slot.
+      - Always run RICE scoring before setting task priorities.
+      - Surface OKR health (on-track / at-risk / blocked) in the task description of any new work created.
     model: claude-sonnet-4-6
     tool: claude
     mcp_servers: ["ao", "context7", "package-version"]
