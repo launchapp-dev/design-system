@@ -110,6 +110,22 @@ const config: Config = {
           from: { height: "var(--radix-collapsible-content-height)" },
           to: { height: "0" },
         },
+        "blur-in": {
+          from: { opacity: "0", filter: "blur(8px)" },
+          to: { opacity: "1", filter: "blur(0px)" },
+        },
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "letter-reveal": {
+          from: { opacity: "0", transform: "translateY(10px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "cursor-blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -127,6 +143,10 @@ const config: Config = {
         "scale-in": "scale-in 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-out",
         "collapsible-up": "collapsible-up 0.2s ease-out",
+        "blur-in": "blur-in 0.6s ease-out forwards",
+        "fade-up": "fade-up 0.6s ease-out forwards",
+        "letter-reveal": "letter-reveal 0.3s ease-out forwards",
+        "cursor-blink": "cursor-blink 1s step-end infinite",
       },
     },
   },
