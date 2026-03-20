@@ -116,6 +116,20 @@ export const Default: Story = {
       filterColumn="email"
       filterPlaceholder="Filter by email..."
       pageSize={10}
+      aria-label="Payments"
+    />
+  ),
+};
+
+export const WithAriaLabel: Story = {
+  render: () => (
+    <DataTable
+      columns={columns}
+      data={payments}
+      filterColumn="email"
+      filterPlaceholder="Filter by email..."
+      pageSize={5}
+      aria-label="Payments"
     />
   ),
 };
@@ -131,6 +145,7 @@ export const AllVariants: Story = {
           filterColumn="email"
           filterPlaceholder="Filter by email..."
           pageSize={5}
+          aria-label="Payments with filter and sorting"
         />
       </div>
       <div>
@@ -139,6 +154,7 @@ export const AllVariants: Story = {
           columns={columns}
           data={payments.slice(0, 8)}
           pageSize={5}
+          aria-label="Recent payments"
         />
       </div>
       <div>
@@ -148,6 +164,7 @@ export const AllVariants: Story = {
           data={[]}
           filterColumn="email"
           filterPlaceholder="Filter by email..."
+          aria-label="Payments (empty)"
         />
       </div>
     </div>
@@ -165,6 +182,7 @@ export const AllSizes: Story = {
           filterColumn="email"
           filterPlaceholder="Filter by email..."
           pageSize={5}
+          aria-label="Payments (5 per page)"
         />
       </div>
       <div>
@@ -175,6 +193,7 @@ export const AllSizes: Story = {
           filterColumn="email"
           filterPlaceholder="Filter by email..."
           pageSize={10}
+          aria-label="Payments (10 per page)"
         />
       </div>
       <div>
@@ -185,6 +204,7 @@ export const AllSizes: Story = {
           filterColumn="email"
           filterPlaceholder="Filter by email..."
           pageSize={20}
+          aria-label="Payments (20 per page)"
         />
       </div>
     </div>
@@ -196,6 +216,7 @@ export const Interactive: Story = {
     filterColumn: "email",
     filterPlaceholder: "Filter by email...",
     pageSize: 10,
+    "aria-label": "Payments",
   },
   render: (args) => (
     <DataTable
@@ -204,6 +225,7 @@ export const Interactive: Story = {
       filterColumn={args.filterColumn}
       filterPlaceholder={args.filterPlaceholder}
       pageSize={args.pageSize}
+      aria-label={args["aria-label"]}
     />
   ),
 };
@@ -216,6 +238,7 @@ export const SmallDataset: Story = {
       filterColumn="email"
       filterPlaceholder="Filter by email..."
       pageSize={10}
+      aria-label="Recent payments"
     />
   ),
 };
@@ -227,6 +250,7 @@ export const Empty: Story = {
       data={[]}
       filterColumn="email"
       filterPlaceholder="Filter by email..."
+      aria-label="Payments (empty)"
     />
   ),
 };
@@ -246,6 +270,7 @@ export const DarkMode: Story = {
       filterColumn="email"
       filterPlaceholder="Filter by email..."
       pageSize={10}
+      aria-label="Payments"
     />
   ),
 };
