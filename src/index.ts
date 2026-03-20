@@ -320,6 +320,8 @@ export { KanbanBoard } from "./blocks/data/KanbanBoard";
 export type { KanbanBoardProps, KanbanCard, KanbanColumn } from "./blocks/data/KanbanBoard";
 export { SearchableDataTable } from "./blocks/data/SearchableDataTable";
 export type { SearchableDataTableProps, SearchableDataTableFilterOption } from "./blocks/data/SearchableDataTable";
+export { Timeline } from "./blocks/data/Timeline";
+export type { TimelineProps, TimelineItem } from "./blocks/data/Timeline";
 
 export { ProductCard, productCardVariants, ProductCardGrid } from "./blocks/ecommerce/ProductCard";
 export type { ProductCardProps, ProductCardItem, ProductCardGridProps } from "./blocks/ecommerce/ProductCard";
