@@ -11,10 +11,8 @@ const SheetClose = DialogPrimitive.Close;
 
 const SheetPortal = DialogPrimitive.Portal;
 
-const SheetOverlay = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
+function SheetOverlay({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay> & { ref?: React.Ref<React.ComponentRef<typeof DialogPrimitive.Overlay>> }) {
+  return (
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
@@ -23,7 +21,8 @@ const SheetOverlay = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 SheetOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
 const sheetContentVariants = cva(
@@ -49,10 +48,8 @@ interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>,
     VariantProps<typeof sheetContentVariants> {}
 
-const SheetContent = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  SheetContentProps
->(({ side, className, children, ...props }, ref) => (
+function SheetContent({ side, className, children, ref, ...props }: SheetContentProps & { ref?: React.Ref<React.ComponentRef<typeof DialogPrimitive.Content>> }) {
+  return (
   <SheetPortal>
     <SheetOverlay />
     <DialogPrimitive.Content
@@ -83,7 +80,8 @@ const SheetContent = React.forwardRef<
       {children}
     </DialogPrimitive.Content>
   </SheetPortal>
-));
+);
+}
 SheetContent.displayName = DialogPrimitive.Content.displayName;
 
 const SheetHeader = ({
@@ -111,10 +109,8 @@ const SheetFooter = ({
 );
 SheetFooter.displayName = "SheetFooter";
 
-const SheetTitle = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
->(({ className, ...props }, ref) => (
+function SheetTitle({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title> & { ref?: React.Ref<React.ComponentRef<typeof DialogPrimitive.Title>> }) {
+  return (
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
@@ -123,19 +119,19 @@ const SheetTitle = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 SheetTitle.displayName = DialogPrimitive.Title.displayName;
 
-const SheetDescription = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
+function SheetDescription({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description> & { ref?: React.Ref<React.ComponentRef<typeof DialogPrimitive.Description>> }) {
+  return (
   <DialogPrimitive.Description
     ref={ref}
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
-));
+);
+}
 SheetDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {

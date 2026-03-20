@@ -19,8 +19,8 @@ export interface StatsOverviewProps extends React.HTMLAttributes<HTMLDivElement>
   chartKeys?: { key: string; color?: string }[];
 }
 
-const StatsOverview = React.forwardRef<HTMLDivElement, StatsOverviewProps>(
-  ({ items, cols = 4, title, description, chartData, chartKeys, className, ...props }, ref) => (
+function StatsOverview({ items, cols = 4, title, description, chartData, chartKeys, className, ref, ...props }: StatsOverviewProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div ref={ref} className={cn("space-y-6", className)} {...props}>
       {(title || description) && (
         <div className="space-y-1">
@@ -86,8 +86,8 @@ const StatsOverview = React.forwardRef<HTMLDivElement, StatsOverviewProps>(
         </Card>
       )}
     </div>
-  )
-);
+  );
+}
 StatsOverview.displayName = "StatsOverview";
 
 export { StatsOverview };

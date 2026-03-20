@@ -30,8 +30,7 @@ export interface TextareaProps
   error?: boolean;
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, resize, error, rows = 3, ...props }, ref) => {
+function Textarea({ className, resize, error, rows = 3, ref, ...props }: TextareaProps & { ref?: React.Ref<HTMLTextAreaElement> }) {
     if (
       process.env.NODE_ENV !== "production" &&
       !props.id &&
@@ -52,7 +51,6 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       />
     );
   }
-);
 
 Textarea.displayName = "Textarea";
 

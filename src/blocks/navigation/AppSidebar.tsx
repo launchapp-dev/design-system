@@ -117,20 +117,16 @@ const SidebarNavItem = ({ item, collapsed }: SidebarNavItemProps) => {
   );
 };
 
-const AppSidebar = React.forwardRef<HTMLElement, AppSidebarProps>(
-  (
-    {
+function AppSidebar({
       className,
       sections = [],
       logo,
       user,
       collapsed: controlledCollapsed,
       defaultCollapsed = false,
-      onCollapsedChange,
+      onCollapsedChange, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: AppSidebarProps & { ref?: React.Ref<HTMLElement> }) {
     const [internalCollapsed, setInternalCollapsed] = React.useState(defaultCollapsed);
     const collapsed = controlledCollapsed !== undefined ? controlledCollapsed : internalCollapsed;
 
@@ -221,7 +217,6 @@ const AppSidebar = React.forwardRef<HTMLElement, AppSidebarProps>(
       </aside>
     );
   }
-);
 
 AppSidebar.displayName = "AppSidebar";
 

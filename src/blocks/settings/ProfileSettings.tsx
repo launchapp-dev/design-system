@@ -38,8 +38,7 @@ export interface ProfileSettingsProps {
   className?: string;
 }
 
-const ProfileSettings = React.forwardRef<HTMLDivElement, ProfileSettingsProps>(
-  ({ defaultValues, avatarSrc, avatarFallback = "US", onSave, className }, ref) => {
+function ProfileSettings({ defaultValues, avatarSrc, avatarFallback = "US", onSave, className, ref}: ProfileSettingsProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [avatarPreview, setAvatarPreview] = React.useState<string | undefined>(avatarSrc);
     const [isSaving, setIsSaving] = React.useState(false);
     const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -164,7 +163,6 @@ const ProfileSettings = React.forwardRef<HTMLDivElement, ProfileSettingsProps>(
       </div>
     );
   }
-);
 
 ProfileSettings.displayName = "ProfileSettings";
 

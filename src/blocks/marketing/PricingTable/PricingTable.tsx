@@ -29,8 +29,8 @@ export interface PricingTableProps extends React.HTMLAttributes<HTMLElement> {
   subheadline?: React.ReactNode;
 }
 
-const PricingTable = React.forwardRef<HTMLElement, PricingTableProps>(
-  ({ className, tiers, headline, subheadline, ...props }, ref) => (
+function PricingTable({ className, tiers, headline, subheadline, ref, ...props }: PricingTableProps & { ref?: React.Ref<HTMLElement> }) {
+  return (
     <section ref={ref} className={cn("w-full px-4 py-16 md:py-24", className)} {...props}>
       {(headline || subheadline) && (
         <div className="mb-12 text-center space-y-3">
@@ -89,8 +89,8 @@ const PricingTable = React.forwardRef<HTMLElement, PricingTableProps>(
         ))}
       </div>
     </section>
-  )
-);
+  );
+}
 
 PricingTable.displayName = "PricingTable";
 

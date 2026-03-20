@@ -29,8 +29,8 @@ const trendClass = (trend: MetricCardItem["trend"]) => {
   return "text-muted-foreground";
 };
 
-const MetricCards = React.forwardRef<HTMLDivElement, MetricCardsProps>(
-  ({ items, className, ...props }, ref) => (
+function MetricCards({ items, className, ref, ...props }: MetricCardsProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div
       ref={ref}
       className={cn(
@@ -67,7 +67,7 @@ const MetricCards = React.forwardRef<HTMLDivElement, MetricCardsProps>(
                   )}
                 </div>
                 {normalizedData && normalizedData.length > 0 && (
-                  <div className="h-10 w-20 flex-shrink-0">
+                  <div className="h-10 w-20 shrink-0">
                     <ChartContainer height="100%">
                       <AreaChart
                         data={normalizedData}
@@ -98,8 +98,8 @@ const MetricCards = React.forwardRef<HTMLDivElement, MetricCardsProps>(
         );
       })}
     </div>
-  )
-);
+  );
+}
 MetricCards.displayName = "MetricCards";
 
 export { MetricCards };

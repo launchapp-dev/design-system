@@ -1,6 +1,118 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../../src/**/*.{ts,tsx}";
+@source "../../../../src/**/*.{ts,tsx}";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-border: hsl(var(--la-border));
+  --color-input: hsl(var(--la-input));
+  --color-ring: hsl(var(--la-ring));
+  --color-background: hsl(var(--la-background));
+  --color-foreground: hsl(var(--la-foreground));
+
+  --color-primary: hsl(var(--la-primary));
+  --color-primary-foreground: hsl(var(--la-primary-foreground));
+
+  --color-secondary: hsl(var(--la-secondary));
+  --color-secondary-foreground: hsl(var(--la-secondary-foreground));
+
+  --color-destructive: hsl(var(--la-destructive));
+  --color-destructive-foreground: hsl(var(--la-destructive-foreground));
+
+  --color-muted: hsl(var(--la-muted));
+  --color-muted-foreground: hsl(var(--la-muted-foreground));
+
+  --color-accent: hsl(var(--la-accent));
+  --color-accent-foreground: hsl(var(--la-accent-foreground));
+
+  --color-popover: hsl(var(--la-popover));
+  --color-popover-foreground: hsl(var(--la-popover-foreground));
+
+  --color-card: hsl(var(--la-card));
+  --color-card-foreground: hsl(var(--la-card-foreground));
+
+  --color-sidebar: hsl(var(--la-sidebar));
+  --color-sidebar-foreground: hsl(var(--la-sidebar-foreground));
+  --color-sidebar-border: hsl(var(--la-sidebar-border));
+
+  --color-docs: hsl(var(--la-docs-bg));
+
+  --color-chart-1: hsl(var(--la-chart-1));
+  --color-chart-2: hsl(var(--la-chart-2));
+  --color-chart-3: hsl(var(--la-chart-3));
+  --color-chart-4: hsl(var(--la-chart-4));
+  --color-chart-5: hsl(var(--la-chart-5));
+
+  --radius-lg: var(--la-radius);
+  --radius-md: calc(var(--la-radius) - 2px);
+  --radius-sm: calc(var(--la-radius) - 4px);
+
+  --font-sans: var(--la-font-sans), system-ui, sans-serif;
+  --font-mono: var(--la-font-mono), monospace;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-fade-out: fade-out 0.2s ease-out;
+  --animate-slide-in-from-left: slide-in-from-left 0.3s ease-out;
+  --animate-slide-out-to-left: slide-out-to-left 0.3s ease-out;
+  --animate-slide-in-from-right: slide-in-from-right 0.3s ease-out;
+  --animate-slide-out-to-right: slide-out-to-right 0.3s ease-out;
+  --animate-collapsible-down: collapsible-down 0.2s ease-out;
+  --animate-collapsible-up: collapsible-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slide-in-from-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-to-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes slide-in-from-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-to-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes collapsible-down {
+  from { height: 0; }
+  to { height: var(--radix-collapsible-content-height); }
+}
+
+@keyframes collapsible-up {
+  from { height: var(--radix-collapsible-content-height); }
+  to { height: 0; }
+}
 
 @layer base {
   :root {

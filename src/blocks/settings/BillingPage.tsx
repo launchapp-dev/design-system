@@ -94,9 +94,7 @@ const defaultInvoices: Invoice[] = [
   { id: "INV-003", date: "Jan 1, 2026", amount: "$29.00", status: "paid" },
 ];
 
-const BillingPage = React.forwardRef<HTMLDivElement, BillingPageProps>(
-  (
-    {
+function BillingPage({
       plan = defaultPlan,
       usage = defaultUsage,
       paymentMethod = defaultPaymentMethod,
@@ -104,10 +102,7 @@ const BillingPage = React.forwardRef<HTMLDivElement, BillingPageProps>(
       onUpgrade,
       onUpdatePayment,
       onDownloadInvoice,
-      className,
-    },
-    ref
-  ) => {
+      className, ref}: BillingPageProps & { ref?: React.Ref<HTMLDivElement> }) {
     return (
       <div ref={ref} className={cn("space-y-6", className)}>
         <div>
@@ -237,7 +232,6 @@ const BillingPage = React.forwardRef<HTMLDivElement, BillingPageProps>(
       </div>
     );
   }
-);
 
 BillingPage.displayName = "BillingPage";
 

@@ -43,8 +43,7 @@ export interface AccountSettingsProps {
   className?: string;
 }
 
-const AccountSettings = React.forwardRef<HTMLDivElement, AccountSettingsProps>(
-  ({ currentEmail = "", onEmailChange, onPasswordChange, onDeleteAccount, className }, ref) => {
+function AccountSettings({ currentEmail = "", onEmailChange, onPasswordChange, onDeleteAccount, className, ref}: AccountSettingsProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [emailSaving, setEmailSaving] = React.useState(false);
     const [passwordSaving, setPasswordSaving] = React.useState(false);
     const [deleteConfirm, setDeleteConfirm] = React.useState(false);
@@ -209,7 +208,6 @@ const AccountSettings = React.forwardRef<HTMLDivElement, AccountSettingsProps>(
       </div>
     );
   }
-);
 
 AccountSettings.displayName = "AccountSettings";
 

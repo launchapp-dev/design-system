@@ -23,16 +23,15 @@ export interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
     VariantProps<typeof avatarVariants> {}
 
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  AvatarProps
->(({ className, size, ...props }, ref) => (
+function Avatar({ className, size, ref, ...props }: AvatarProps & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Root>> }) {
+  return (
   <AvatarPrimitive.Root
     ref={ref}
     className={cn(avatarVariants({ size }), className)}
     {...props}
   />
-));
+);
+}
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
 export interface AvatarImageProps
@@ -40,10 +39,7 @@ export interface AvatarImageProps
   alt: string;
 }
 
-const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  AvatarImageProps
->(({ className, alt, ...props }, ref) => {
+function AvatarImage({ className, alt, ref, ...props }: AvatarImageProps & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Image>> }) {
   if (process.env.NODE_ENV !== "production" && !alt) {
     console.warn("AvatarImage: `alt` prop is required for WCAG 1.1.1 compliance.");
   }
@@ -55,13 +51,11 @@ const AvatarImage = React.forwardRef<
       {...props}
     />
   );
-});
+}
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
-const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
+function AvatarFallback({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Fallback>> }) {
+  return (
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
@@ -70,7 +64,8 @@ const AvatarFallback = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 export { Avatar, AvatarImage, AvatarFallback };
