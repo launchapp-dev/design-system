@@ -44,9 +44,7 @@ export interface ComboboxProps
   emptyText?: string;
 }
 
-const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
-  (
-    {
+function Combobox({
       className,
       size,
       options,
@@ -55,11 +53,9 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
       placeholder = "Select an option...",
       searchPlaceholder = "Search...",
       emptyText = "No results found.",
-      disabled,
+      disabled, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: ComboboxProps & { ref?: React.Ref<HTMLButtonElement> }) {
     const [open, setOpen] = React.useState(false);
     const listboxId = React.useId();
     const selectedOption = options.find((opt) => opt.value === value);
@@ -142,7 +138,6 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
       </Popover>
     );
   }
-);
 
 Combobox.displayName = "Combobox";
 

@@ -20,18 +20,14 @@ export interface TestimonialCarouselProps extends React.HTMLAttributes<HTMLEleme
   subheadline?: React.ReactNode;
 }
 
-const TestimonialCarousel = React.forwardRef<HTMLElement, TestimonialCarouselProps>(
-  (
-    {
+function TestimonialCarousel({
       className,
       testimonials,
       autoAdvanceInterval = 5000,
       headline,
-      subheadline,
+      subheadline, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: TestimonialCarouselProps & { ref?: React.Ref<HTMLElement> }) {
     const [current, setCurrent] = React.useState(0);
 
     React.useEffect(() => {
@@ -114,7 +110,6 @@ const TestimonialCarousel = React.forwardRef<HTMLElement, TestimonialCarouselPro
       </section>
     );
   }
-);
 
 TestimonialCarousel.displayName = "TestimonialCarousel";
 

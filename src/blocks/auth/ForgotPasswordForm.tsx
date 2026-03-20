@@ -37,14 +37,7 @@ export interface ForgotPasswordFormProps {
   className?: string;
 }
 
-const ForgotPasswordForm = React.forwardRef<
-  HTMLDivElement,
-  ForgotPasswordFormProps
->(
-  (
-    { onSubmit, onLoginClick, isLoading, error, success, className },
-    ref
-  ) => {
+function ForgotPasswordForm({ onSubmit, onLoginClick, isLoading, error, success, className, ref}: ForgotPasswordFormProps & { ref?: React.Ref<HTMLDivElement> }) {
     const form = useForm<ForgotPasswordValues>({
       resolver: zodResolver(forgotPasswordSchema),
       defaultValues: {
@@ -130,7 +123,6 @@ const ForgotPasswordForm = React.forwardRef<
       </div>
     );
   }
-);
 
 ForgotPasswordForm.displayName = "ForgotPasswordForm";
 

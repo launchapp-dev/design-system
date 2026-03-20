@@ -23,10 +23,7 @@ export interface ProgressProps
   extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
     VariantProps<typeof progressVariants> {}
 
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  ProgressProps
->(({ className, size, value, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ...props }, ref) => {
+function Progress({ className, size, value, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ref, ...props }: ProgressProps & { ref?: React.Ref<React.ComponentRef<typeof ProgressPrimitive.Root>> }) {
   if (process.env.NODE_ENV !== "production" && !ariaLabel && !ariaLabelledBy) {
     console.warn("Progress: provide `aria-label` or `aria-labelledby` for WCAG 4.1.2 compliance.");
   }
@@ -45,7 +42,7 @@ const Progress = React.forwardRef<
     />
   </ProgressPrimitive.Root>
   );
-});
+}
 
 Progress.displayName = ProgressPrimitive.Root.displayName;
 

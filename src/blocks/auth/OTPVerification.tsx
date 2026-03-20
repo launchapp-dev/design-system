@@ -119,19 +119,14 @@ export interface OTPVerificationProps {
   className?: string;
 }
 
-const OTPVerification = React.forwardRef<HTMLDivElement, OTPVerificationProps>(
-  (
-    {
+function OTPVerification({
       onSubmit,
       onResend,
       isLoading,
       error,
       resendDelay = 60,
       email,
-      className,
-    },
-    ref
-  ) => {
+      className, ref}: OTPVerificationProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [countdown, setCountdown] = React.useState(resendDelay);
     const [resending, setResending] = React.useState(false);
 
@@ -230,7 +225,6 @@ const OTPVerification = React.forwardRef<HTMLDivElement, OTPVerificationProps>(
       </div>
     );
   }
-);
 
 OTPVerification.displayName = "OTPVerification";
 

@@ -28,9 +28,7 @@ export interface HeroSectionProps
   backgroundImageSrc?: string;
 }
 
-const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
-  (
-    {
+function HeroSection({
       className,
       variant,
       badge,
@@ -39,11 +37,9 @@ const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
       primaryAction,
       secondaryAction,
       media,
-      backgroundImageSrc,
+      backgroundImageSrc, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: HeroSectionProps & { ref?: React.Ref<HTMLElement> }) {
     if (variant === "imageBackground") {
       return (
         <section
@@ -153,7 +149,6 @@ const HeroSection = React.forwardRef<HTMLElement, HeroSectionProps>(
       </section>
     );
   }
-);
 
 HeroSection.displayName = "HeroSection";
 

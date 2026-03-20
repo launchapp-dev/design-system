@@ -19,17 +19,16 @@ export interface RadioGroupProps
   extends Omit<React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>, "orientation">,
     VariantProps<typeof radioGroupVariants> {}
 
-const RadioGroup = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Root>,
-  RadioGroupProps
->(({ className, orientation, ...props }, ref) => (
+function RadioGroup({ className, orientation, ref, ...props }: RadioGroupProps & { ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Root>> }) {
+  return (
   <RadioGroupPrimitive.Root
     ref={ref}
     className={cn(radioGroupVariants({ orientation }), className)}
     orientation={orientation ?? "vertical"}
     {...props}
   />
-));
+);
+}
 
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
@@ -53,10 +52,8 @@ export interface RadioGroupItemProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
     VariantProps<typeof radioGroupItemVariants> {}
 
-const RadioGroupItem = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  RadioGroupItemProps
->(({ className, size, ...props }, ref) => (
+function RadioGroupItem({ className, size, ref, ...props }: RadioGroupItemProps & { ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Item>> }) {
+  return (
   <RadioGroupPrimitive.Item
     ref={ref}
     className={cn(radioGroupItemVariants({ size }), className)}
@@ -75,7 +72,8 @@ const RadioGroupItem = React.forwardRef<
       </svg>
     </RadioGroupPrimitive.Indicator>
   </RadioGroupPrimitive.Item>
-));
+);
+}
 
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 

@@ -72,8 +72,7 @@ function StarRating({ rating, count }: { rating: number; count?: number }) {
   );
 }
 
-const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
-  ({ className, variant, product, onAddToCart, isLoading, ...props }, ref) => {
+function ProductCard({ className, variant, product, onAddToCart, isLoading, ref, ...props }: ProductCardProps & { ref?: React.Ref<HTMLDivElement> }) {
     const currency = product.currency ?? "$";
     const discount =
       product.originalPrice
@@ -87,7 +86,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           className={cn(productCardVariants({ variant }), className)}
           {...props}
         >
-          <div className="relative w-32 flex-shrink-0 overflow-hidden rounded-l-lg sm:w-48">
+          <div className="relative w-32 shrink-0 overflow-hidden rounded-l-lg sm:w-48">
             {product.image ? (
               <img
                 src={product.image}
@@ -228,7 +227,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       </Card>
     );
   }
-);
 
 ProductCard.displayName = "ProductCard";
 
@@ -246,11 +244,8 @@ export interface ProductCardGridProps extends React.HTMLAttributes<HTMLDivElemen
   onAddToCart?: (product: ProductCardItem) => void;
 }
 
-const ProductCardGrid = React.forwardRef<HTMLDivElement, ProductCardGridProps>(
-  (
-    { className, products, columns = 3, variant = "compact", onAddToCart, ...props },
-    ref
-  ) => (
+function ProductCardGrid({ className, products, columns = 3, variant = "compact", onAddToCart, ref, ...props }: ProductCardGridProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div
       ref={ref}
       className={cn("grid gap-4", columnsClass[columns] ?? columnsClass[3], className)}
@@ -265,8 +260,8 @@ const ProductCardGrid = React.forwardRef<HTMLDivElement, ProductCardGridProps>(
         />
       ))}
     </div>
-  )
-);
+  );
+}
 
 ProductCardGrid.displayName = "ProductCardGrid";
 

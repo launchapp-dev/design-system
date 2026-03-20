@@ -27,8 +27,8 @@ export interface ActivityFeedProps extends React.HTMLAttributes<HTMLDivElement> 
   maxHeight?: number | string;
 }
 
-const ActivityFeed = React.forwardRef<HTMLDivElement, ActivityFeedProps>(
-  ({ items, title = "Activity Feed", description, maxHeight = 400, className, ...props }, ref) => (
+function ActivityFeed({ items, title = "Activity Feed", description, maxHeight = 400, className, ref, ...props }: ActivityFeedProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <Card ref={ref} className={cn("flex flex-col", className)} {...props}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
@@ -40,7 +40,7 @@ const ActivityFeed = React.forwardRef<HTMLDivElement, ActivityFeedProps>(
             {items.map((item, index) => (
               <li key={item.id}>
                 <div className="flex items-start gap-3 py-3">
-                  <Avatar size="sm" className="mt-0.5 flex-shrink-0">
+                  <Avatar size="sm" className="mt-0.5 shrink-0">
                     {item.user.avatarSrc && (
                       <AvatarImage src={item.user.avatarSrc} alt={item.user.name} />
                     )}
@@ -69,8 +69,8 @@ const ActivityFeed = React.forwardRef<HTMLDivElement, ActivityFeedProps>(
         </ScrollArea>
       </CardContent>
     </Card>
-  )
-);
+  );
+}
 ActivityFeed.displayName = "ActivityFeed";
 
 export { ActivityFeed };

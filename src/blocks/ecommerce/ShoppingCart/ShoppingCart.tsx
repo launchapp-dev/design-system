@@ -32,9 +32,7 @@ export interface ShoppingCartProps extends React.HTMLAttributes<HTMLDivElement> 
   currency?: string;
 }
 
-const ShoppingCart = React.forwardRef<HTMLDivElement, ShoppingCartProps>(
-  (
-    {
+function ShoppingCart({
       className,
       items: itemsProp,
       taxRate = 0.08,
@@ -43,11 +41,9 @@ const ShoppingCart = React.forwardRef<HTMLDivElement, ShoppingCartProps>(
       onQuantityChange,
       onRemoveItem,
       onCheckout,
-      currency = "$",
+      currency = "$", ref,
       ...props
-    },
-    ref
-  ) => {
+    }: ShoppingCartProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [items, setItems] = React.useState<CartItem[]>(itemsProp ?? []);
 
     React.useEffect(() => {
@@ -137,10 +133,10 @@ const ShoppingCart = React.forwardRef<HTMLDivElement, ShoppingCartProps>(
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="h-16 w-16 flex-shrink-0 rounded-md object-cover"
+                  className="h-16 w-16 shrink-0 rounded-md object-cover"
                 />
               ) : (
-                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground text-xs">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground text-xs">
                   IMG
                 </div>
               )}
@@ -156,7 +152,7 @@ const ShoppingCart = React.forwardRef<HTMLDivElement, ShoppingCartProps>(
                   </div>
                   <button
                     type="button"
-                    className="flex-shrink-0 text-muted-foreground transition-colors hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                    className="shrink-0 text-muted-foreground transition-colors hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
                     onClick={() => handleRemove(item.id)}
                     aria-label={`Remove ${item.name}`}
                   >
@@ -249,7 +245,6 @@ const ShoppingCart = React.forwardRef<HTMLDivElement, ShoppingCartProps>(
       </Card>
     );
   }
-);
 
 ShoppingCart.displayName = "ShoppingCart";
 

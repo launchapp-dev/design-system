@@ -152,8 +152,7 @@ const DEFAULT_COLUMNS: KanbanColumn[] = [
   { id: "done", title: "Done", cards: [] },
 ];
 
-export const KanbanBoard = React.forwardRef<HTMLDivElement, KanbanBoardProps>(
-  ({ initialColumns = DEFAULT_COLUMNS, className }, ref) => {
+export function KanbanBoard({ initialColumns = DEFAULT_COLUMNS, className, ref}: KanbanBoardProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [columns, setColumns] = React.useState<KanbanColumn[]>(initialColumns);
     const [activeCard, setActiveCard] = React.useState<KanbanCard | null>(null);
     const [addingToColumn, setAddingToColumn] = React.useState<string | null>(null);
@@ -352,6 +351,5 @@ export const KanbanBoard = React.forwardRef<HTMLDivElement, KanbanBoardProps>(
       </div>
     );
   }
-);
 
 KanbanBoard.displayName = "KanbanBoard";

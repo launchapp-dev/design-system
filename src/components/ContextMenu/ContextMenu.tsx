@@ -14,12 +14,10 @@ const ContextMenuSub = ContextMenuPrimitive.Sub;
 
 const ContextMenuRadioGroup = ContextMenuPrimitive.RadioGroup;
 
-const ContextMenuSubTrigger = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.SubTrigger>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.SubTrigger> & {
+function ContextMenuSubTrigger({ className, inset, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.SubTrigger> & {
     inset?: boolean;
-  }
->(({ className, inset, children, ...props }, ref) => (
+  } & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.SubTrigger>> }) {
+  return (
   <ContextMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
@@ -46,13 +44,12 @@ const ContextMenuSubTrigger = React.forwardRef<
       <path d="m9 18 6-6-6-6" />
     </svg>
   </ContextMenuPrimitive.SubTrigger>
-));
+);
+}
 ContextMenuSubTrigger.displayName = ContextMenuPrimitive.SubTrigger.displayName;
 
-const ContextMenuSubContent = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.SubContent>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.SubContent>
->(({ className, ...props }, ref) => (
+function ContextMenuSubContent({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.SubContent> & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.SubContent>> }) {
+  return (
   <ContextMenuPrimitive.SubContent
     ref={ref}
     className={cn(
@@ -61,13 +58,12 @@ const ContextMenuSubContent = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 ContextMenuSubContent.displayName = ContextMenuPrimitive.SubContent.displayName;
 
-const ContextMenuContent = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Content>
->(({ className, ...props }, ref) => (
+function ContextMenuContent({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.Content>> }) {
+  return (
   <ContextMenuPrimitive.Portal>
     <ContextMenuPrimitive.Content
       ref={ref}
@@ -78,15 +74,14 @@ const ContextMenuContent = React.forwardRef<
       {...props}
     />
   </ContextMenuPrimitive.Portal>
-));
+);
+}
 ContextMenuContent.displayName = ContextMenuPrimitive.Content.displayName;
 
-const ContextMenuItem = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Item> & {
+function ContextMenuItem({ className, inset, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Item> & {
     inset?: boolean;
-  }
->(({ className, inset, ...props }, ref) => (
+  } & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.Item>> }) {
+  return (
   <ContextMenuPrimitive.Item
     ref={ref}
     className={cn(
@@ -96,13 +91,12 @@ const ContextMenuItem = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 ContextMenuItem.displayName = ContextMenuPrimitive.Item.displayName;
 
-const ContextMenuCheckboxItem = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.CheckboxItem>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.CheckboxItem>
->(({ className, children, checked, ...props }, ref) => (
+function ContextMenuCheckboxItem({ className, children, checked, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.CheckboxItem> & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.CheckboxItem>> }) {
+  return (
   <ContextMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
@@ -132,13 +126,12 @@ const ContextMenuCheckboxItem = React.forwardRef<
     </span>
     {children}
   </ContextMenuPrimitive.CheckboxItem>
-));
+);
+}
 ContextMenuCheckboxItem.displayName = ContextMenuPrimitive.CheckboxItem.displayName;
 
-const ContextMenuRadioItem = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.RadioItem>
->(({ className, children, ...props }, ref) => (
+function ContextMenuRadioItem({ className, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.RadioItem> & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.RadioItem>> }) {
+  return (
   <ContextMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
@@ -167,15 +160,14 @@ const ContextMenuRadioItem = React.forwardRef<
     </span>
     {children}
   </ContextMenuPrimitive.RadioItem>
-));
+);
+}
 ContextMenuRadioItem.displayName = ContextMenuPrimitive.RadioItem.displayName;
 
-const ContextMenuLabel = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Label> & {
+function ContextMenuLabel({ className, inset, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Label> & {
     inset?: boolean;
-  }
->(({ className, inset, ...props }, ref) => (
+  } & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.Label>> }) {
+  return (
   <ContextMenuPrimitive.Label
     ref={ref}
     className={cn(
@@ -185,19 +177,19 @@ const ContextMenuLabel = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 ContextMenuLabel.displayName = ContextMenuPrimitive.Label.displayName;
 
-const ContextMenuSeparator = React.forwardRef<
-  React.ElementRef<typeof ContextMenuPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Separator>
->(({ className, ...props }, ref) => (
+function ContextMenuSeparator({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Separator> & { ref?: React.Ref<React.ComponentRef<typeof ContextMenuPrimitive.Separator>> }) {
+  return (
   <ContextMenuPrimitive.Separator
     ref={ref}
     className={cn("-mx-1 my-1 h-px bg-border", className)}
     {...props}
   />
-));
+);
+}
 ContextMenuSeparator.displayName = ContextMenuPrimitive.Separator.displayName;
 
 const ContextMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (

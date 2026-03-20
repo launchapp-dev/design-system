@@ -8,10 +8,8 @@ const Breadcrumb = React.forwardRef<
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
 Breadcrumb.displayName = "Breadcrumb";
 
-const BreadcrumbList = React.forwardRef<
-  HTMLOListElement,
-  React.ComponentPropsWithoutRef<"ol">
->(({ className, ...props }, ref) => (
+function BreadcrumbList({ className, ref, ...props }: React.ComponentPropsWithoutRef<"ol"> & { ref?: React.Ref<HTMLOListElement> }) {
+  return (
   <ol
     ref={ref}
     className={cn(
@@ -20,25 +18,22 @@ const BreadcrumbList = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 BreadcrumbList.displayName = "BreadcrumbList";
 
-const BreadcrumbItem = React.forwardRef<
-  HTMLLIElement,
-  React.ComponentPropsWithoutRef<"li">
->(({ className, ...props }, ref) => (
+function BreadcrumbItem({ className, ref, ...props }: React.ComponentPropsWithoutRef<"li"> & { ref?: React.Ref<HTMLLIElement> }) {
+  return (
   <li
     ref={ref}
     className={cn("inline-flex items-center gap-1.5", className)}
     {...props}
   />
-));
+);
+}
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
-const BreadcrumbLink = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<"a"> & { asChild?: boolean }
->(({ asChild, className, ...props }, ref) => {
+function BreadcrumbLink({ asChild, className, ref, ...props }: React.ComponentPropsWithoutRef<"a"> & { asChild?: boolean } & { ref?: React.Ref<HTMLAnchorElement> }) {
   const Comp = asChild ? Slot : "a";
   return (
     <Comp
@@ -50,13 +45,11 @@ const BreadcrumbLink = React.forwardRef<
       {...props}
     />
   );
-});
+}
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
-const BreadcrumbPage = React.forwardRef<
-  HTMLSpanElement,
-  React.ComponentPropsWithoutRef<"span">
->(({ className, ...props }, ref) => (
+function BreadcrumbPage({ className, ref, ...props }: React.ComponentPropsWithoutRef<"span"> & { ref?: React.Ref<HTMLSpanElement> }) {
+  return (
   <span
     ref={ref}
     role="link"
@@ -65,7 +58,8 @@ const BreadcrumbPage = React.forwardRef<
     className={cn("font-normal text-[hsl(var(--la-foreground))]", className)}
     {...props}
   />
-));
+);
+}
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
 const BreadcrumbSeparator = ({

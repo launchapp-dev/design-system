@@ -56,8 +56,7 @@ const defaultGroups: NotificationGroup[] = [
   },
 ];
 
-const NotificationPreferences = React.forwardRef<HTMLDivElement, NotificationPreferencesProps>(
-  ({ groups = defaultGroups, values, onChange, className }, ref) => {
+function NotificationPreferences({ groups = defaultGroups, values, onChange, className, ref}: NotificationPreferencesProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [localValues, setLocalValues] = React.useState<Record<string, boolean>>(() => {
       const initial: Record<string, boolean> = {};
       groups.forEach((g) => g.items.forEach((item) => {
@@ -123,7 +122,6 @@ const NotificationPreferences = React.forwardRef<HTMLDivElement, NotificationPre
       </div>
     );
   }
-);
 
 NotificationPreferences.displayName = "NotificationPreferences";
 
