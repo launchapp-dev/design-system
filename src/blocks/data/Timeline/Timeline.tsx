@@ -37,8 +37,7 @@ export interface TimelineProps
   compact?: boolean;
 }
 
-const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
-  ({ className, items, order = "chronological", compact = false, size, ...props }, ref) => {
+function Timeline({ className, items, order = "chronological", compact = false, size, ref, ...props }: TimelineProps & { ref?: React.Ref<HTMLDivElement> }) {
     const orderedItems = order === "reverse" ? [...items].reverse() : items;
 
     return (
@@ -99,7 +98,6 @@ const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
       </div>
     );
   }
-);
 
 Timeline.displayName = "Timeline";
 

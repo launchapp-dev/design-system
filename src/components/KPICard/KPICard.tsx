@@ -11,20 +11,16 @@ export interface KPICardProps extends React.HTMLAttributes<HTMLDivElement> {
   sparklineColor?: string;
 }
 
-const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
-  (
-    {
+function KPICard({
       label,
       value,
       trend,
       trendLabel,
       sparklineData,
       sparklineColor = "hsl(var(--la-chart-1))",
-      className,
+      className, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: KPICardProps & { ref?: React.Ref<HTMLDivElement> }) {
     const normalizedSparkline = React.useMemo(
       () => sparklineData?.map((v) => ({ value: v })),
       [sparklineData]
@@ -46,7 +42,7 @@ const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
             <p className="text-3xl font-bold tracking-tight">{value}</p>
           </div>
           {normalizedSparkline && normalizedSparkline.length > 0 && (
-            <div className="h-12 w-24 flex-shrink-0" aria-hidden="true">
+            <div className="h-12 w-24 shrink-0" aria-hidden="true">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={normalizedSparkline} margin={{ top: 2, right: 0, left: 0, bottom: 2 }}>
                   <defs>
@@ -105,7 +101,6 @@ const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
       </div>
     );
   }
-);
 KPICard.displayName = "KPICard";
 
 export { KPICard };

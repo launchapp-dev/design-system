@@ -174,7 +174,7 @@ function OrderSummaryPanel({
         <div className="space-y-3">
           {items.map((item) => (
             <div key={item.id} className="flex gap-3">
-              <div className="relative flex-shrink-0">
+              <div className="relative shrink-0">
                 {item.image ? (
                   <img
                     src={item.image}
@@ -200,7 +200,7 @@ function OrderSummaryPanel({
                     <p className="text-xs text-muted-foreground">{item.variant}</p>
                   )}
                 </div>
-                <span className="ml-2 flex-shrink-0 text-sm font-medium">
+                <span className="ml-2 shrink-0 text-sm font-medium">
                   {currency}{(item.price * item.quantity).toFixed(2)}
                 </span>
               </div>
@@ -242,20 +242,16 @@ function ReviewRow({ label, value }: { label: string; value?: string }) {
   );
 }
 
-const CheckoutForm = React.forwardRef<HTMLDivElement, CheckoutFormProps>(
-  (
-    {
+function CheckoutForm({
       className,
       orderItems = [],
       taxRate = 0.08,
       shippingCost = 5.99,
       currency = "$",
       onSubmit,
-      isLoading,
+      isLoading, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: CheckoutFormProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [step, setStep] = React.useState<Step>("shipping");
 
     const form = useForm<CheckoutValues>({
@@ -742,7 +738,6 @@ const CheckoutForm = React.forwardRef<HTMLDivElement, CheckoutFormProps>(
       </div>
     );
   }
-);
 
 CheckoutForm.displayName = "CheckoutForm";
 

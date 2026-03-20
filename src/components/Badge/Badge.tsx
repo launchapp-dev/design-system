@@ -28,8 +28,7 @@ export interface BadgeProps
  * Pass `role="status"` for live-updating badges (politely announced by screen readers)
  * or `role="alert"` for urgent announcements that require immediate attention.
  */
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
-  ({ className, variant, ...props }, ref) => {
+function Badge({ className, variant, ref, ...props }: BadgeProps & { ref?: React.Ref<HTMLDivElement> }) {
     return (
       <div
         ref={ref}
@@ -38,7 +37,6 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
       />
     );
   }
-);
 Badge.displayName = "Badge";
 
 export { Badge, badgeVariants };

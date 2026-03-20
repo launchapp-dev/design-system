@@ -46,9 +46,7 @@ export interface MultiSelectProps
   maxCount?: number;
 }
 
-const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
-  (
-    {
+function MultiSelect({
       className,
       size,
       options,
@@ -58,11 +56,9 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
       searchPlaceholder = "Search...",
       emptyText = "No results found.",
       maxCount = 3,
-      disabled,
+      disabled, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: MultiSelectProps & { ref?: React.Ref<HTMLButtonElement> }) {
     const [open, setOpen] = React.useState(false);
     const listboxId = React.useId();
 
@@ -216,7 +212,6 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
       </Popover>
     );
   }
-);
 
 MultiSelect.displayName = "MultiSelect";
 

@@ -29,8 +29,7 @@ export interface InputProps
   error?: boolean;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, size, error, ...props }, ref) => {
+function Input({ className, size, error, ref, ...props }: InputProps & { ref?: React.Ref<HTMLInputElement> }) {
     if (
       process.env.NODE_ENV !== "production" &&
       !props.id &&
@@ -50,7 +49,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       />
     );
   }
-);
 
 Input.displayName = "Input";
 

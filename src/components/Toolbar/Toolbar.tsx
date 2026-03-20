@@ -43,10 +43,8 @@ const toolbarToggleItemVariants = cva(
   }
 );
 
-const ToolbarRoot = React.forwardRef<
-  React.ElementRef<typeof ToolbarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Root>
->(({ className, ...props }, ref) => (
+function ToolbarRoot({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Root>> }) {
+  return (
   <ToolbarPrimitive.Root
     ref={ref}
     className={cn(
@@ -55,29 +53,27 @@ const ToolbarRoot = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 ToolbarRoot.displayName = ToolbarPrimitive.Root.displayName;
 
 export interface ToolbarButtonProps
   extends React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Button>,
     VariantProps<typeof toolbarButtonVariants> {}
 
-const ToolbarButton = React.forwardRef<
-  React.ElementRef<typeof ToolbarPrimitive.Button>,
-  ToolbarButtonProps
->(({ className, variant, size, ...props }, ref) => (
+function ToolbarButton({ className, variant, size, ref, ...props }: ToolbarButtonProps & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Button>> }) {
+  return (
   <ToolbarPrimitive.Button
     ref={ref}
     className={cn(toolbarButtonVariants({ variant, size }), className)}
     {...props}
   />
-));
+);
+}
 ToolbarButton.displayName = ToolbarPrimitive.Button.displayName;
 
-const ToolbarLink = React.forwardRef<
-  React.ElementRef<typeof ToolbarPrimitive.Link>,
-  React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Link>
->(({ className, ...props }, ref) => (
+function ToolbarLink({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Link> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Link>> }) {
+  return (
   <ToolbarPrimitive.Link
     ref={ref}
     className={cn(
@@ -86,47 +82,45 @@ const ToolbarLink = React.forwardRef<
     )}
     {...props}
   />
-));
+);
+}
 ToolbarLink.displayName = ToolbarPrimitive.Link.displayName;
 
-const ToolbarSeparator = React.forwardRef<
-  React.ElementRef<typeof ToolbarPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Separator>
->(({ className, ...props }, ref) => (
+function ToolbarSeparator({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Separator> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Separator>> }) {
+  return (
   <ToolbarPrimitive.Separator
     ref={ref}
     className={cn("mx-1 w-px self-stretch bg-border", className)}
     {...props}
   />
-));
+);
+}
 ToolbarSeparator.displayName = ToolbarPrimitive.Separator.displayName;
 
-const ToolbarToggleGroup = React.forwardRef<
-  React.ElementRef<typeof ToolbarPrimitive.ToggleGroup>,
-  React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.ToggleGroup>
->(({ className, ...props }, ref) => (
+function ToolbarToggleGroup({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.ToggleGroup> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.ToggleGroup>> }) {
+  return (
   <ToolbarPrimitive.ToggleGroup
     ref={ref}
     className={cn("flex items-center gap-0.5", className)}
     {...props}
   />
-));
+);
+}
 ToolbarToggleGroup.displayName = ToolbarPrimitive.ToggleGroup.displayName;
 
 export interface ToolbarToggleItemProps
   extends React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.ToggleItem>,
     VariantProps<typeof toolbarToggleItemVariants> {}
 
-const ToolbarToggleItem = React.forwardRef<
-  React.ElementRef<typeof ToolbarPrimitive.ToggleItem>,
-  ToolbarToggleItemProps
->(({ className, size, ...props }, ref) => (
+function ToolbarToggleItem({ className, size, ref, ...props }: ToolbarToggleItemProps & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.ToggleItem>> }) {
+  return (
   <ToolbarPrimitive.ToggleItem
     ref={ref}
     className={cn(toolbarToggleItemVariants({ size }), className)}
     {...props}
   />
-));
+);
+}
 ToolbarToggleItem.displayName = ToolbarPrimitive.ToggleItem.displayName;
 
 export {

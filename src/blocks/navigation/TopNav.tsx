@@ -76,20 +76,16 @@ export interface TopNavProps extends React.HTMLAttributes<HTMLElement> {
   user?: TopNavUser;
 }
 
-const TopNav = React.forwardRef<HTMLElement, TopNavProps>(
-  (
-    {
+function TopNav({
       className,
       logo,
       items = [],
       onSearchClick,
       onNotificationClick,
       notificationCount,
-      user,
+      user, ref,
       ...props
-    },
-    ref
-  ) => {
+    }: TopNavProps & { ref?: React.Ref<HTMLElement> }) {
     return (
       <header
         ref={ref}
@@ -226,7 +222,6 @@ const TopNav = React.forwardRef<HTMLElement, TopNavProps>(
       </header>
     );
   }
-);
 
 TopNav.displayName = "TopNav";
 

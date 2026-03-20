@@ -40,8 +40,7 @@ export interface LoginFormProps {
   className?: string;
 }
 
-const LoginForm = React.forwardRef<HTMLDivElement, LoginFormProps>(
-  ({ onSubmit, onSignUpClick, isLoading, error, className }, ref) => {
+function LoginForm({ onSubmit, onSignUpClick, isLoading, error, className, ref}: LoginFormProps & { ref?: React.Ref<HTMLDivElement> }) {
     const form = useForm<LoginValues>({
       resolver: zodResolver(loginSchema),
       defaultValues: {
@@ -164,7 +163,6 @@ const LoginForm = React.forwardRef<HTMLDivElement, LoginFormProps>(
       </div>
     );
   }
-);
 
 LoginForm.displayName = "LoginForm";
 

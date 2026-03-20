@@ -325,7 +325,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
   "profile-settings": () => (
     <ProfileSettings
       avatarFallback="AJ"
-      defaultValues={{ displayName: "Alice Johnson", bio: "Product designer at LaunchApp." }}
+      defaultValues={{ name: "Alice Johnson", bio: "Product designer at LaunchApp." }}
     />
   ),
   "account-settings": () => <AccountSettings />,
@@ -372,8 +372,8 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
   "checkout-form": () => (
     <CheckoutForm
       orderItems={[
-        { name: "Wireless Headphones", quantity: 1, price: 99.99 },
-        { name: "Smart Watch", quantity: 2, price: 299.99 },
+        { id: "1", name: "Wireless Headphones", quantity: 1, price: 99.99 },
+        { id: "2", name: "Smart Watch", quantity: 2, price: 299.99 },
       ]}
       taxRate={0.08}
       shippingCost={9.99}

@@ -20,8 +20,7 @@ export interface ChartContainerProps extends React.HTMLAttributes<HTMLDivElement
   "aria-labelledby"?: string;
 }
 
-const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerProps>(
-  ({ config, children, className, height = 300, aspect, minHeight, style, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ...props }, ref) => {
+function ChartContainer({ config, children, className, height = 300, aspect, minHeight, style, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ref, ...props }: ChartContainerProps & { ref?: React.Ref<HTMLDivElement> }) {
     const cssVars = React.useMemo(() => {
       if (!config) return {};
       return Object.fromEntries(
@@ -56,7 +55,6 @@ const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerProps>(
       </div>
     );
   }
-);
 ChartContainer.displayName = "ChartContainer";
 
 export type LineChartProps = React.ComponentProps<typeof RechartsLineChart>;

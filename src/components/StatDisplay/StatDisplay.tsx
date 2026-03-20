@@ -13,8 +13,8 @@ const colsVariants: Record<2 | 3 | 4, string> = {
   4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
 };
 
-const StatDisplay = React.forwardRef<HTMLDivElement, StatDisplayProps>(
-  ({ items, cols = 4, className, ...props }, ref) => (
+function StatDisplay({ items, cols = 4, className, ref, ...props }: StatDisplayProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div
       ref={ref}
       className={cn("grid gap-4", colsVariants[cols], className)}
@@ -24,8 +24,8 @@ const StatDisplay = React.forwardRef<HTMLDivElement, StatDisplayProps>(
         <KPICard key={i} {...item} />
       ))}
     </div>
-  )
-);
+  );
+}
 StatDisplay.displayName = "StatDisplay";
 
 export { StatDisplay };

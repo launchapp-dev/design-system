@@ -49,8 +49,7 @@ export interface SignUpFormProps {
   className?: string;
 }
 
-const SignUpForm = React.forwardRef<HTMLDivElement, SignUpFormProps>(
-  ({ onSubmit, onLoginClick, isLoading, error, className }, ref) => {
+function SignUpForm({ onSubmit, onLoginClick, isLoading, error, className, ref}: SignUpFormProps & { ref?: React.Ref<HTMLDivElement> }) {
     const form = useForm<SignUpValues>({
       resolver: zodResolver(signUpSchema),
       defaultValues: {
@@ -214,7 +213,6 @@ const SignUpForm = React.forwardRef<HTMLDivElement, SignUpFormProps>(
       </div>
     );
   }
-);
 
 SignUpForm.displayName = "SignUpForm";
 
