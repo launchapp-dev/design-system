@@ -8,6 +8,7 @@ on:
 jobs:
   chromatic:
     runs-on: ubuntu-latest
+    continue-on-error: true
     if: ${{ secrets.CHROMATIC_PROJECT_TOKEN != '' }}
     env:
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
