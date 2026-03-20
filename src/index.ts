@@ -1,4 +1,5 @@
 export { cn } from "./lib/utils";
+export { useReducedMotion, duration, easing, motionSafe, motionReduce } from "./lib/animation";
 export { PaletteSwitcher } from "./components/PaletteSwitcher";
 export type { PaletteSwitcherProps } from "./components/PaletteSwitcher";
 export { builtinPalettes } from "./themes/palettes";
@@ -9,6 +10,12 @@ export { Typewriter, BlurIn, FadeUp, LetterReveal } from "./components/TextAnima
 export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps } from "./components/TextAnimate";
 export { FadeInOnScroll, CountUp, Parallax } from "./components/ScrollAnimate";
 export type { FadeInOnScrollProps, CountUpProps, ParallaxProps } from "./components/ScrollAnimate";
+export { StaggeredList } from "./components/StaggeredList";
+export type { StaggeredListProps } from "./components/StaggeredList";
+export { AnimatedHeight } from "./components/AnimatedHeight";
+export type { AnimatedHeightProps } from "./components/AnimatedHeight";
+export { TabContentCrossfade, TabPanel } from "./components/TabContentCrossfade";
+export type { TabContentCrossfadeProps, TabPanelProps } from "./components/TabContentCrossfade";
 export { Button, buttonVariants } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
 export { Input } from "./components/Input";
