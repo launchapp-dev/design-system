@@ -828,13 +828,18 @@ phases:
       Sweep all open PRs for review. For each:
       1. gh pr list --state open --json number,title,headRefName,mergeable
       2. For each PR, get the task ID from branch name (e.g. ao/task-005 -> TASK-005).
-      3. Use ao.task.get to read requirements.
-      4. Check mergeable: gh pr view <number> --json mergeable
-         - If "CONFLICTING": skip this PR, it will be rebased separately.
+      3. Check mergeable: gh pr view <number> --json mergeable
+         - If "CONFLICTING": enqueue the task for rebase via ao.queue.enqueue with
+           task_id and workflow_ref="rebase-and-retry". Move to next PR.
          - If "MERGEABLE": proceed with review.
+      4. Check for existing reviews with changes requested (gh pr view <number> --json reviews).
+         If changes requested and not yet addressed: enqueue via ao.queue.enqueue with
+         task_id and workflow_ref="rework". Move to next PR.
       5. Run gh pr diff <number> to review code quality.
       6. If approved: gh pr merge <number> --merge, then ao.task.status with status "done".
-      7. If changes needed: gh pr review <number> --request-changes --body "<explanation>"
+      7. If changes needed:
+         - gh pr review <number> --request-changes --body "<explanation>"
+         - ao.queue.enqueue with task_id and workflow_ref="rework"
 
   rebase-on-main:
     mode: agent
@@ -1118,6 +1123,21 @@ workflows:
       - push-branch
       - create-pr
       - pr-review
+
+  - id: rework
+    name: "Rework"
+    description: "Address reviewer feedback, push fixes"
+    phases:
+      - address-review
+      - push-branch
+      - create-pr
+
+  - id: rebase-and-retry
+    name: "Rebase and Retry"
+    description: "Rebase conflicting branch on main, force push"
+    phases:
+      - rebase-on-main
+      - force-push
 
   - id: work-planner
     name: "Work Planner"
