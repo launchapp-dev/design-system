@@ -31,7 +31,7 @@ function Alert({ className, variant, ref, ...props }: AlertProps & { ref?: React
   return (
     <div
       ref={ref}
-      role={variant === "destructive" ? "alert" : "status"}
+      role={variant === "destructive" || variant === "warning" ? "alert" : "status"}
       className={cn(alertVariants({ variant }), className)}
       {...props}
     />
