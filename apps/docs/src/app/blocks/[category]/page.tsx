@@ -14,7 +14,7 @@ import { CodeBlock } from "@/components/CodeBlock";
 import { BlockCodeSection } from "@/components/BlockCodeSection";
 
 interface PageProps {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }
 
 const BLOCKS_ROOT = path.resolve(process.cwd(), "../../src/blocks");
@@ -31,8 +31,9 @@ export function generateStaticParams() {
   return ALL_BLOCK_CATEGORIES.map((category) => ({ category }));
 }
 
-export function generateMetadata({ params }: PageProps) {
-  const category = params.category as BlockCategory;
+export async function generateMetadata({ params }: PageProps) {
+  const { category: categoryRaw } = await params;
+  const category = categoryRaw as BlockCategory;
   if (!ALL_BLOCK_CATEGORIES.includes(category)) return {};
   const label = BLOCK_CATEGORY_LABELS[category];
   return {
@@ -42,7 +43,8 @@ export function generateMetadata({ params }: PageProps) {
 }
 
 export default async function BlockCategoryPage({ params }: PageProps) {
-  const category = params.category as BlockCategory;
+  const { category: categoryRaw } = await params;
+  const category = categoryRaw as BlockCategory;
   if (!ALL_BLOCK_CATEGORIES.includes(category)) return notFound();
 
   const categoryBlocks = getBlocksByCategory(category);

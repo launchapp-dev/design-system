@@ -6,15 +6,16 @@ import { CodeBlock } from "@/components/CodeBlock";
 import { PropsTable } from "@/components/PropsTable";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return components.map((c) => ({ slug: c.slug }));
 }
 
-export function generateMetadata({ params }: PageProps) {
-  const component = getComponent(params.slug);
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const component = getComponent(slug);
   if (!component) return {};
   return {
     title: `${component.name} — LaunchApp Design System`,
@@ -22,8 +23,9 @@ export function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default function ComponentPage({ params }: PageProps) {
-  const component = getComponent(params.slug);
+export default async function ComponentPage({ params }: PageProps) {
+  const { slug } = await params;
+  const component = getComponent(slug);
   if (!component) return notFound();
 
   return (
@@ -47,7 +49,7 @@ export default function ComponentPage({ params }: PageProps) {
       </div>
 
       <div className="mb-10">
-        <ComponentPreview slug={params.slug} />
+        <ComponentPreview slug={slug} />
       </div>
 
       <section className="mb-10">
@@ -88,7 +90,7 @@ export default function ComponentPage({ params }: PageProps) {
       </section>
 
       <div className="mt-12 flex items-center justify-between pt-6 border-t">
-        <PrevNextLinks currentSlug={params.slug} />
+        <PrevNextLinks currentSlug={slug} />
       </div>
     </div>
   );
