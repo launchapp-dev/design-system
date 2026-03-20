@@ -1,4 +1,10 @@
 export { cn } from "./lib/utils";
+export { PaletteSwitcher } from "./components/PaletteSwitcher";
+export type { PaletteSwitcherProps } from "./components/PaletteSwitcher";
+export { builtinPalettes } from "./themes/palettes";
+export type { Palette, PaletteTokenSet } from "./themes/palettes";
+export { createTheme } from "./themes/createTheme";
+export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
 export { Typewriter, BlurIn, FadeUp, LetterReveal } from "./components/TextAnimate";
 export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps } from "./components/TextAnimate";
 export { FadeInOnScroll, CountUp, Parallax } from "./components/ScrollAnimate";
