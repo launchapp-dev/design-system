@@ -6,6 +6,22 @@ const meta: Meta<typeof OTPVerification> = {
   component: OTPVerification,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        code: `import { OTPVerification } from "@launchapp/design-system/blocks/auth";
+
+export default function Page() {
+  return (
+    <OTPVerification
+      onVerify={async (otp) => {
+        console.log(otp);
+      }}
+      onResend={() => console.log("resend")}
+    />
+  );
+}`,
+      },
+    },
   },
 };
 

@@ -79,6 +79,40 @@ const sampleFeatures = [
 const meta: Meta<typeof FeatureGrid> = {
   title: "Blocks/Marketing/FeatureGrid",
   component: FeatureGrid,
+  parameters: {
+    docs: {
+      source: {
+        code: `import { FeatureGrid } from "@launchapp/design-system/blocks/marketing";
+
+const features = [
+  {
+    title: "Accessible",
+    description: "Built on Radix UI primitives for full keyboard and screen reader support.",
+    icon: "♿",
+  },
+  {
+    title: "Customizable",
+    description: "CSS custom properties and Tailwind for effortless theming.",
+    icon: "🎨",
+  },
+  {
+    title: "TypeScript",
+    description: "Fully typed APIs with IntelliSense for a great DX.",
+    icon: "📘",
+  },
+  {
+    title: "Dark Mode",
+    description: "First-class dark mode support out of the box.",
+    icon: "🌙",
+  },
+];
+
+export default function Page() {
+  return <FeatureGrid features={features} title="Why LaunchApp?" />;
+}`,
+      },
+    },
+  },
 };
 
 export default meta;

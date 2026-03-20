@@ -34,6 +34,42 @@ const meta: Meta<typeof ShoppingCart> = {
   component: ShoppingCart,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        code: `import { ShoppingCart } from "@launchapp/design-system/blocks/ecommerce";
+
+const items = [
+  {
+    id: "1",
+    name: "Wireless Headphones",
+    price: 99.99,
+    quantity: 1,
+    imageSrc: "/products/headphones.jpg",
+    imageAlt: "Wireless Headphones",
+  },
+  {
+    id: "2",
+    name: "Smart Watch",
+    price: 299.99,
+    quantity: 2,
+    imageSrc: "/products/watch.jpg",
+    imageAlt: "Smart Watch",
+  },
+];
+
+export default function Page() {
+  return (
+    <ShoppingCart
+      items={items}
+      taxRate={0.08}
+      shippingCost={9.99}
+      freeShippingThreshold={100}
+      onCheckout={() => console.log("checkout")}
+    />
+  );
+}`,
+      },
+    },
   },
 };
 

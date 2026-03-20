@@ -5,7 +5,24 @@ import { NotificationPreferences } from "./NotificationPreferences";
 const meta: Meta<typeof NotificationPreferences> = {
   title: "Blocks/Settings/NotificationPreferences",
   component: NotificationPreferences,
-  parameters: { layout: "padded" },
+  parameters: {
+    layout: "padded",
+    docs: {
+      source: {
+        code: `import { NotificationPreferences } from "@launchapp/design-system/blocks/settings";
+
+export default function Page() {
+  return (
+    <NotificationPreferences
+      onSave={async (values) => {
+        console.log(values);
+      }}
+    />
+  );
+}`,
+      },
+    },
+  },
 };
 
 export default meta;

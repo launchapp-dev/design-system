@@ -6,6 +6,22 @@ const meta: Meta<typeof SignUpForm> = {
   component: SignUpForm,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        code: `import { SignUpForm } from "@launchapp/design-system/blocks/auth";
+
+export default function Page() {
+  return (
+    <SignUpForm
+      onSubmit={async (values) => {
+        console.log(values);
+      }}
+      onSignInClick={() => console.log("sign in")}
+    />
+  );
+}`,
+      },
+    },
   },
 };
 

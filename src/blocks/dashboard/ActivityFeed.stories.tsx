@@ -67,6 +67,34 @@ const meta: Meta<typeof ActivityFeed> = {
   component: ActivityFeed,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { ActivityFeed } from "@launchapp/design-system/blocks/dashboard";
+
+const items = [
+  {
+    id: "1",
+    user: { name: "Alice Johnson", initials: "AJ" },
+    description: "created a new project",
+    timestamp: "2 minutes ago",
+    actionType: "Created",
+    actionVariant: "default",
+  },
+  {
+    id: "2",
+    user: { name: "Bob Smith", initials: "BS" },
+    description: "merged pull request #42",
+    timestamp: "1 hour ago",
+    actionType: "Merged",
+    actionVariant: "secondary",
+  },
+];
+
+export default function Page() {
+  return <ActivityFeed items={items} title="Recent Activity" />;
+}`,
+      },
+    },
   },
 };
 

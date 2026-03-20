@@ -47,6 +47,34 @@ const meta: Meta<typeof MetricCards> = {
   component: MetricCards,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { MetricCards } from "@launchapp/design-system/blocks/dashboard";
+
+const items = [
+  {
+    id: "revenue",
+    label: "Total Revenue",
+    value: "$45,231",
+    trend: "up",
+    trendValue: "+20.1%",
+    sparklineData: [30, 40, 35, 50, 49, 60, 70],
+  },
+  {
+    id: "users",
+    label: "Active Users",
+    value: "2,350",
+    trend: "up",
+    trendValue: "+15.3%",
+    sparklineData: [20, 30, 25, 40, 35, 45, 50],
+  },
+];
+
+export default function Page() {
+  return <MetricCards items={items} />;
+}`,
+      },
+    },
   },
 };
 

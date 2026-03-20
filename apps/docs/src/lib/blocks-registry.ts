@@ -33,6 +33,7 @@ export interface BlockEntry {
   description: string;
   category: BlockCategory;
   code: string;
+  sourcePath: string;
 }
 
 export const ALL_BLOCK_CATEGORIES: BlockCategory[] = [
@@ -51,6 +52,7 @@ export const blocks: BlockEntry[] = [
     name: "Login Form",
     description: "Email and password login form with remember me checkbox and validation.",
     category: "auth",
+    sourcePath: "auth/LoginForm.tsx",
     code: `import { LoginForm } from "@launchapp/design-system/blocks/auth";
 
 export default function Page() {
@@ -69,6 +71,7 @@ export default function Page() {
     name: "Sign Up Form",
     description: "User registration form with name, email, and password fields.",
     category: "auth",
+    sourcePath: "auth/SignUpForm.tsx",
     code: `import { SignUpForm } from "@launchapp/design-system/blocks/auth";
 
 export default function Page() {
@@ -87,6 +90,7 @@ export default function Page() {
     name: "Forgot Password Form",
     description: "Password reset request form with email input and success state.",
     category: "auth",
+    sourcePath: "auth/ForgotPasswordForm.tsx",
     code: `import { ForgotPasswordForm } from "@launchapp/design-system/blocks/auth";
 
 export default function Page() {
@@ -105,6 +109,7 @@ export default function Page() {
     name: "OTP Verification",
     description: "One-time password input for two-factor authentication.",
     category: "auth",
+    sourcePath: "auth/OTPVerification.tsx",
     code: `import { OTPVerification } from "@launchapp/design-system/blocks/auth";
 
 export default function Page() {
@@ -123,6 +128,7 @@ export default function Page() {
     name: "Metric Cards",
     description: "Grid of KPI metric cards with trend indicators and sparkline charts.",
     category: "dashboard",
+    sourcePath: "dashboard/MetricCards.tsx",
     code: `import { MetricCards } from "@launchapp/design-system/blocks/dashboard";
 
 const items = [
@@ -153,6 +159,7 @@ export default function Page() {
     name: "Stats Overview",
     description: "Dashboard stats overview with summary metrics and area chart.",
     category: "dashboard",
+    sourcePath: "dashboard/StatsOverview.tsx",
     code: `import { StatsOverview } from "@launchapp/design-system/blocks/dashboard";
 
 const items = [
@@ -177,6 +184,7 @@ export default function Page() {
     name: "Activity Feed",
     description: "Chronological activity feed with avatar, action badge, and timestamp.",
     category: "dashboard",
+    sourcePath: "dashboard/ActivityFeed.tsx",
     code: `import { ActivityFeed } from "@launchapp/design-system/blocks/dashboard";
 
 const items = [
@@ -207,6 +215,7 @@ export default function Page() {
     name: "Profile Settings",
     description: "User profile edit form with avatar, display name, bio, and social links.",
     category: "settings",
+    sourcePath: "settings/ProfileSettings.tsx",
     code: `import { ProfileSettings } from "@launchapp/design-system/blocks/settings";
 
 export default function Page() {
@@ -224,6 +233,7 @@ export default function Page() {
     name: "Account Settings",
     description: "Account preferences including email change, password update, and danger zone.",
     category: "settings",
+    sourcePath: "settings/AccountSettings.tsx",
     code: `import { AccountSettings } from "@launchapp/design-system/blocks/settings";
 
 export default function Page() {
@@ -241,6 +251,7 @@ export default function Page() {
     name: "Notification Preferences",
     description: "Granular notification toggle controls grouped by category.",
     category: "settings",
+    sourcePath: "settings/NotificationPreferences.tsx",
     code: `import { NotificationPreferences } from "@launchapp/design-system/blocks/settings";
 
 export default function Page() {
@@ -258,6 +269,7 @@ export default function Page() {
     name: "Billing Page",
     description: "Subscription plan comparison, usage meters, payment methods, and invoices.",
     category: "settings",
+    sourcePath: "settings/BillingPage.tsx",
     code: `import { BillingPage } from "@launchapp/design-system/blocks/settings";
 
 export default function Page() {
@@ -275,6 +287,7 @@ export default function Page() {
     name: "App Sidebar",
     description: "Collapsible application sidebar with nested navigation sections and user area.",
     category: "navigation",
+    sourcePath: "navigation/AppSidebar.tsx",
     code: `import { AppSidebar } from "@launchapp/design-system/blocks/navigation";
 
 const sections = [
@@ -309,6 +322,7 @@ export default function Page() {
     name: "Top Navigation",
     description: "Horizontal top navigation bar with logo, links, notifications, and user menu.",
     category: "navigation",
+    sourcePath: "navigation/TopNav.tsx",
     code: `import { TopNav } from "@launchapp/design-system/blocks/navigation";
 
 const items = [
@@ -336,6 +350,7 @@ export default function Page() {
     name: "Mobile Nav Drawer",
     description: "Slide-in mobile navigation drawer with menu items and close button.",
     category: "navigation",
+    sourcePath: "navigation/MobileNavDrawer.tsx",
     code: `import { MobileNavDrawer } from "@launchapp/design-system/blocks/navigation";
 
 const items = [
@@ -354,6 +369,7 @@ export default function Page() {
     name: "Full Data Table",
     description: "Feature-rich data table with sorting, filtering, pagination, and bulk actions.",
     category: "data",
+    sourcePath: "data/FullDataTable/FullDataTable.tsx",
     code: `import { FullDataTable } from "@launchapp/design-system/blocks/data";
 import type { ColumnDef } from "@tanstack/react-table";
 
@@ -387,6 +403,7 @@ export default function Page() {
     name: "Kanban Board",
     description: "Drag-and-drop Kanban board with columns and cards.",
     category: "data",
+    sourcePath: "data/KanbanBoard/KanbanBoard.tsx",
     code: `import { KanbanBoard } from "@launchapp/design-system/blocks/data";
 
 const initialColumns = [
@@ -423,6 +440,7 @@ export default function Page() {
     name: "Searchable Data Table",
     description: "Data table with search input and column visibility controls.",
     category: "data",
+    sourcePath: "data/SearchableDataTable/SearchableDataTable.tsx",
     code: `import { SearchableDataTable } from "@launchapp/design-system/blocks/data";
 import type { ColumnDef } from "@tanstack/react-table";
 
@@ -461,6 +479,7 @@ export default function Page() {
     name: "Timeline",
     description: "Vertical timeline for displaying chronological events with icons and badges.",
     category: "data",
+    sourcePath: "data/Timeline/Timeline.tsx",
     code: `import { Timeline } from "@launchapp/design-system/blocks/data";
 
 const items = [
@@ -503,6 +522,7 @@ export default function Page() {
     name: "Product Card",
     description: "Product card grid with image, title, price, rating, and add-to-cart action.",
     category: "ecommerce",
+    sourcePath: "ecommerce/ProductCard/ProductCard.tsx",
     code: `import { ProductCardGrid } from "@launchapp/design-system/blocks/ecommerce";
 
 const products = [
@@ -543,6 +563,7 @@ export default function Page() {
     name: "Shopping Cart",
     description: "Shopping cart with item list, quantity controls, and order summary.",
     category: "ecommerce",
+    sourcePath: "ecommerce/ShoppingCart/ShoppingCart.tsx",
     code: `import { ShoppingCart } from "@launchapp/design-system/blocks/ecommerce";
 
 const items = [
@@ -581,6 +602,7 @@ export default function Page() {
     name: "Checkout Form",
     description: "Multi-step checkout form with shipping address and payment information.",
     category: "ecommerce",
+    sourcePath: "ecommerce/CheckoutForm/CheckoutForm.tsx",
     code: `import { CheckoutForm } from "@launchapp/design-system/blocks/ecommerce";
 
 const orderSummary = [
@@ -604,6 +626,7 @@ export default function Page() {
     name: "Hero Section",
     description: "Landing page hero with headline, subheadline, and CTA buttons.",
     category: "marketing",
+    sourcePath: "marketing/HeroSection/HeroSection.tsx",
     code: `import { HeroSection } from "@launchapp/design-system/blocks/marketing";
 import { Button } from "@launchapp/design-system";
 
@@ -624,6 +647,7 @@ export default function Page() {
     name: "Feature Grid",
     description: "Grid layout showcasing product features with icons and descriptions.",
     category: "marketing",
+    sourcePath: "marketing/FeatureGrid/FeatureGrid.tsx",
     code: `import { FeatureGrid } from "@launchapp/design-system/blocks/marketing";
 
 const features = [
@@ -658,6 +682,7 @@ export default function Page() {
     name: "Pricing Table",
     description: "Pricing plans comparison table with feature lists and CTA buttons.",
     category: "marketing",
+    sourcePath: "marketing/PricingTable/PricingTable.tsx",
     code: `import { PricingTable } from "@launchapp/design-system/blocks/marketing";
 
 const plans = [
@@ -696,6 +721,7 @@ export default function Page() {
     name: "Testimonial Carousel",
     description: "Auto-rotating testimonials from customers with avatar and quote.",
     category: "marketing",
+    sourcePath: "marketing/TestimonialCarousel/TestimonialCarousel.tsx",
     code: `import { TestimonialCarousel } from "@launchapp/design-system/blocks/marketing";
 
 const testimonials = [

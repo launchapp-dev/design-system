@@ -50,6 +50,46 @@ const sampleProducts: ProductCardItem[] = [
 const meta: Meta<typeof ProductCard> = {
   title: "Blocks/Ecommerce/ProductCard",
   component: ProductCard,
+  parameters: {
+    docs: {
+      source: {
+        code: `import { ProductCardGrid } from "@launchapp/design-system/blocks/ecommerce";
+
+const products = [
+  {
+    id: "1",
+    name: "Wireless Headphones",
+    price: 99.99,
+    originalPrice: 149.99,
+    rating: 4.5,
+    reviewCount: 128,
+    badge: "Sale",
+    imageSrc: "/products/headphones.jpg",
+    imageAlt: "Wireless Headphones",
+  },
+  {
+    id: "2",
+    name: "Smart Watch",
+    price: 299.99,
+    rating: 4.8,
+    reviewCount: 89,
+    badge: "New",
+    imageSrc: "/products/watch.jpg",
+    imageAlt: "Smart Watch",
+  },
+];
+
+export default function Page() {
+  return (
+    <ProductCardGrid
+      products={products}
+      onAddToCart={(id) => console.log("add to cart", id)}
+    />
+  );
+}`,
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: "select",

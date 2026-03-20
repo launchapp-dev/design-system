@@ -57,6 +57,28 @@ const meta: Meta<typeof StatsOverview> = {
   component: StatsOverview,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { StatsOverview } from "@launchapp/design-system/blocks/dashboard";
+
+const items = [
+  { title: "Total Revenue", value: "$45,231", trend: "up", trendValue: "+20.1%" },
+  { title: "Subscriptions", value: "+2350", trend: "up", trendValue: "+180.1%" },
+  { title: "Sales", value: "+12,234", trend: "up", trendValue: "+19%" },
+  { title: "Active Now", value: "+573", trend: "up", trendValue: "+201" },
+];
+
+export default function Page() {
+  return (
+    <StatsOverview
+      title="Overview"
+      description="Your business performance at a glance."
+      items={items}
+    />
+  );
+}`,
+      },
+    },
   },
 };
 

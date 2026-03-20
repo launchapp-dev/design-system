@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -9,9 +11,20 @@ import {
 } from "@/lib/blocks-registry";
 import { BlockPreview } from "@/components/BlockPreview";
 import { CodeBlock } from "@/components/CodeBlock";
+import { BlockCodeSection } from "@/components/BlockCodeSection";
 
 interface PageProps {
   params: { category: string };
+}
+
+const BLOCKS_ROOT = path.resolve(process.cwd(), "../../src/blocks");
+
+function readBlockSource(sourcePath: string): string | null {
+  try {
+    return fs.readFileSync(path.join(BLOCKS_ROOT, sourcePath), "utf-8");
+  } catch {
+    return null;
+  }
 }
 
 export function generateStaticParams() {
@@ -28,7 +41,7 @@ export function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default function BlockCategoryPage({ params }: PageProps) {
+export default async function BlockCategoryPage({ params }: PageProps) {
   const category = params.category as BlockCategory;
   if (!ALL_BLOCK_CATEGORIES.includes(category)) return notFound();
 
@@ -61,18 +74,36 @@ export default function BlockCategoryPage({ params }: PageProps) {
       </div>
 
       <div className="space-y-16">
-        {categoryBlocks.map((block) => (
-          <section key={block.id} id={block.id}>
-            <div className="mb-4">
-              <h2 className="text-xl font-semibold">{block.name}</h2>
-              <p className="text-sm text-muted-foreground mt-1">{block.description}</p>
-            </div>
-            <div className="mb-4">
-              <BlockPreview blockId={block.id} />
-            </div>
-            <CodeBlock lang="tsx" title={`${block.name}.tsx`} code={block.code} />
-          </section>
-        ))}
+        {await Promise.all(
+          categoryBlocks.map(async (block) => {
+            const sourceCode = readBlockSource(block.sourcePath);
+            return (
+              <section key={block.id} id={block.id}>
+                <div className="mb-4">
+                  <h2 className="text-xl font-semibold">{block.name}</h2>
+                  <p className="text-sm text-muted-foreground mt-1">{block.description}</p>
+                </div>
+                <div className="mb-4">
+                  <BlockPreview blockId={block.id} />
+                </div>
+                <BlockCodeSection
+                  usageCode={
+                    <CodeBlock lang="tsx" title={`${block.name}.tsx`} code={block.code} />
+                  }
+                  sourceCode={
+                    sourceCode ? (
+                      <CodeBlock
+                        lang="tsx"
+                        title={block.sourcePath.split("/").pop()}
+                        code={sourceCode}
+                      />
+                    ) : null
+                  }
+                />
+              </section>
+            );
+          })
+        )}
       </div>
 
       <div className="mt-12 flex items-center justify-between pt-6 border-t">

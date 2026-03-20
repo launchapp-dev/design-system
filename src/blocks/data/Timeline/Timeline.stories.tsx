@@ -144,6 +144,46 @@ const meta: Meta<typeof Timeline> = {
   component: Timeline,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { Timeline } from "@launchapp/design-system/blocks/data";
+
+const items = [
+  {
+    id: "1",
+    title: "Project kickoff",
+    description: "Initial planning meeting with all stakeholders.",
+    date: "Jan 15, 2025",
+    status: "completed",
+  },
+  {
+    id: "2",
+    title: "Design phase",
+    description: "Created wireframes and design system.",
+    date: "Feb 1, 2025",
+    status: "completed",
+  },
+  {
+    id: "3",
+    title: "Development sprint",
+    description: "Building core features and API integration.",
+    date: "Mar 10, 2025",
+    status: "current",
+  },
+  {
+    id: "4",
+    title: "Launch",
+    description: "Public release and marketing campaign.",
+    date: "Apr 1, 2025",
+    status: "upcoming",
+  },
+];
+
+export default function Page() {
+  return <Timeline items={items} />;
+}`,
+      },
+    },
   },
 };
 

@@ -106,6 +106,37 @@ const meta: Meta<typeof FullDataTable> = {
   component: FullDataTable,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { FullDataTable } from "@launchapp/design-system/blocks/data";
+import type { ColumnDef } from "@tanstack/react-table";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: "active" | "inactive";
+}
+
+const columns: ColumnDef<User>[] = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  { accessorKey: "role", header: "Role" },
+  { accessorKey: "status", header: "Status" },
+];
+
+const data: User[] = [
+  { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Admin", status: "active" },
+  { id: "2", name: "Bob Smith", email: "bob@example.com", role: "Member", status: "active" },
+  { id: "3", name: "Carol White", email: "carol@example.com", role: "Member", status: "inactive" },
+];
+
+export default function Page() {
+  return <FullDataTable columns={columns} data={data} searchColumn="name" />;
+}`,
+      },
+    },
   },
 };
 

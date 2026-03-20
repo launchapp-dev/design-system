@@ -6,6 +6,22 @@ const meta: Meta<typeof ForgotPasswordForm> = {
   component: ForgotPasswordForm,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        code: `import { ForgotPasswordForm } from "@launchapp/design-system/blocks/auth";
+
+export default function Page() {
+  return (
+    <ForgotPasswordForm
+      onSubmit={async (values) => {
+        console.log(values);
+      }}
+      onBackToLoginClick={() => console.log("back to login")}
+    />
+  );
+}`,
+      },
+    },
   },
 };
 

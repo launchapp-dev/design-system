@@ -5,7 +5,24 @@ import { BillingPage } from "./BillingPage";
 const meta: Meta<typeof BillingPage> = {
   title: "Blocks/Settings/BillingPage",
   component: BillingPage,
-  parameters: { layout: "padded" },
+  parameters: {
+    layout: "padded",
+    docs: {
+      source: {
+        code: `import { BillingPage } from "@launchapp/design-system/blocks/settings";
+
+export default function Page() {
+  return (
+    <BillingPage
+      currentPlan="pro"
+      onUpgrade={(plan) => console.log("upgrade to", plan)}
+      onManagePayment={() => console.log("manage payment")}
+    />
+  );
+}`,
+      },
+    },
+  },
 };
 
 export default meta;

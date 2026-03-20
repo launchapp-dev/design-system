@@ -39,6 +39,34 @@ const testimonials: Testimonial[] = [
 const meta: Meta<typeof TestimonialCarousel> = {
   title: "Blocks/Marketing/TestimonialCarousel",
   component: TestimonialCarousel,
+  parameters: {
+    docs: {
+      source: {
+        code: `import { TestimonialCarousel } from "@launchapp/design-system/blocks/marketing";
+
+const testimonials = [
+  {
+    id: "1",
+    quote: "LaunchApp cut our frontend development time in half. The components are beautiful and accessible out of the box.",
+    author: "Sarah Chen",
+    role: "CTO at Startup Inc.",
+    avatarFallback: "SC",
+  },
+  {
+    id: "2",
+    quote: "The best design system I've worked with. Theming support and dark mode made our redesign a breeze.",
+    author: "Mark Rivera",
+    role: "Lead Engineer at TechCorp",
+    avatarFallback: "MR",
+  },
+];
+
+export default function Page() {
+  return <TestimonialCarousel testimonials={testimonials} />;
+}`,
+      },
+    },
+  },
   argTypes: {
     autoAdvanceInterval: {
       control: { type: "number", min: 1000, max: 10000, step: 500 },

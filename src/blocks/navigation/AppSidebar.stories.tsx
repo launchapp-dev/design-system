@@ -92,6 +92,38 @@ const meta: Meta<typeof AppSidebar> = {
   component: AppSidebar,
   parameters: {
     layout: "fullscreen",
+    docs: {
+      source: {
+        code: `import { AppSidebar } from "@launchapp/design-system/blocks/navigation";
+
+const sections = [
+  {
+    title: "Main",
+    items: [
+      { label: "Dashboard", href: "/", isActive: true },
+      { label: "Analytics", href: "/analytics" },
+      { label: "Projects", href: "/projects" },
+    ],
+  },
+  {
+    title: "Settings",
+    items: [
+      { label: "Profile", href: "/profile" },
+      { label: "Billing", href: "/billing" },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <AppSidebar
+      sections={sections}
+      user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+    />
+  );
+}`,
+      },
+    },
   },
   decorators: [
     (Story) => (

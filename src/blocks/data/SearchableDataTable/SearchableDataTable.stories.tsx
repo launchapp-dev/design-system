@@ -103,6 +103,42 @@ const meta: Meta<typeof SearchableDataTable> = {
   component: SearchableDataTable,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `import { SearchableDataTable } from "@launchapp/design-system/blocks/data";
+import type { ColumnDef } from "@tanstack/react-table";
+
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+}
+
+const columns: ColumnDef<Product>[] = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "category", header: "Category" },
+  { accessorKey: "price", header: "Price" },
+];
+
+const data: Product[] = [
+  { id: "1", name: "Wireless Headphones", category: "Electronics", price: 99 },
+  { id: "2", name: "Running Shoes", category: "Sports", price: 75 },
+  { id: "3", name: "Coffee Maker", category: "Appliances", price: 49 },
+];
+
+export default function Page() {
+  return (
+    <SearchableDataTable
+      columns={columns}
+      data={data}
+      searchColumn="name"
+      searchPlaceholder="Search products..."
+    />
+  );
+}`,
+      },
+    },
   },
 };
 
