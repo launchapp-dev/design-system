@@ -170,6 +170,35 @@ export const AreaChartStory: Story = {
   ),
 };
 
+export const AccessibleLineChart: Story = {
+  name: "Accessible LineChart (with data table)",
+  render: () => (
+    <ChartContainer
+      config={{
+        revenue: { label: "Revenue", color: "hsl(var(--la-chart-1))" },
+        expenses: { label: "Expenses", color: "hsl(var(--la-chart-2))" },
+      }}
+      height={300}
+      className="max-w-2xl"
+      description="Monthly revenue and expenses for the current fiscal year."
+      dataTable={{
+        headers: ["Month", "Revenue", "Expenses"],
+        rows: monthlyData.map((d) => [d.month, d.revenue, d.expenses]),
+      }}
+    >
+      <LineChart data={monthlyData}>
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--la-border))" vertical={false} />
+        <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <Tooltip contentStyle={tooltipStyle} />
+        <Legend />
+        <Line type="monotone" dataKey="revenue" stroke="var(--color-revenue)" strokeWidth={2} dot={false} />
+        <Line type="monotone" dataKey="expenses" stroke="var(--color-expenses)" strokeWidth={2} dot={false} />
+      </LineChart>
+    </ChartContainer>
+  ),
+};
+
 export const PieChartStory: Story = {
   name: "PieChart",
   render: () => (

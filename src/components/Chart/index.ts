@@ -8,6 +8,7 @@ export {
 } from "./Chart";
 export type {
   ChartConfig,
+  ChartDataTable,
   ChartContainerProps,
   LineChartProps,
   BarChartProps,

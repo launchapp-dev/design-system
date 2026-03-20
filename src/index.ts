@@ -280,6 +280,7 @@ export {
 } from "./components/Chart";
 export type {
   ChartConfig,
+  ChartDataTable,
   ChartContainerProps,
   LineChartProps,
   BarChartProps,
