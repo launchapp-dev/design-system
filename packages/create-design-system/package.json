@@ -1,0 +1,31 @@
+{
+  "name": "@launchapp/create-design-system",
+  "version": "0.1.0",
+  "description": "CLI tool to scaffold themed instances of the LaunchApp design system",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchapp-dev/design-system.git"
+  },
+  "type": "module",
+  "bin": {
+    "create-design-system": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.0"
+  }
+}
