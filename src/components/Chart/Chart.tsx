@@ -50,7 +50,7 @@ const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerProps>(
         style={{ ...(cssVars as React.CSSProperties), ...style }}
         {...props}
       >
-        <ResponsiveContainer width="100%" height={height} minHeight={minHeight} aspect={aspect}>
+        <ResponsiveContainer width="100%" height={height as number | `${number}%`} minHeight={minHeight} aspect={aspect}>
           {children}
         </ResponsiveContainer>
       </div>
