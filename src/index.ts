@@ -369,6 +369,34 @@ export type { ServerErrorProps } from "./blocks/errors/ServerError";
 export { Maintenance } from "./blocks/errors/Maintenance";
 export type { MaintenanceProps } from "./blocks/errors/Maintenance";
 
+export { MultiStepWizard } from "./blocks/onboarding/MultiStepWizard";
+export type { MultiStepWizardProps, WizardStep } from "./blocks/onboarding/MultiStepWizard";
+export { OnboardingChecklist } from "./blocks/onboarding/OnboardingChecklist";
+export type { OnboardingChecklistProps, ChecklistItem } from "./blocks/onboarding/OnboardingChecklist";
+export { WelcomeScreen } from "./blocks/onboarding/WelcomeScreen";
+export type { WelcomeScreenProps, WelcomeFeature } from "./blocks/onboarding/WelcomeScreen";
+
+export { DropZone } from "./blocks/files/DropZone";
+export type { DropZoneProps } from "./blocks/files/DropZone";
+export { FileList } from "./blocks/files/FileList";
+export type { FileListProps, UploadFile, UploadStatus } from "./blocks/files/FileList";
+export { ImageGallery } from "./blocks/files/ImageGallery";
+export type { ImageGalleryProps, GalleryImage } from "./blocks/files/ImageGallery";
+
+export { ChatInterface } from "./blocks/messaging/ChatInterface";
+export type { ChatInterfaceProps, ChatMessage } from "./blocks/messaging/ChatInterface";
+export { MessageBubbles } from "./blocks/messaging/MessageBubbles";
+export type { MessageBubblesProps, BubbleMessage } from "./blocks/messaging/MessageBubbles";
+export { TypingIndicator } from "./blocks/messaging/TypingIndicator";
+export type { TypingIndicatorProps } from "./blocks/messaging/TypingIndicator";
+
+export { NotificationCenter } from "./blocks/notifications/NotificationCenter";
+export type { NotificationCenterProps, AppNotification } from "./blocks/notifications/NotificationCenter";
+export { ActivityTimeline } from "./blocks/notifications/ActivityTimeline";
+export type { ActivityTimelineProps, TimelineEntry } from "./blocks/notifications/ActivityTimeline";
+export { InboxView } from "./blocks/notifications/InboxView";
+export type { InboxViewProps, InboxItem } from "./blocks/notifications/InboxView";
+
 export {
   defaultPalette,
   oceanPalette,

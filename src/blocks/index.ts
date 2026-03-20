@@ -8,3 +8,7 @@ export * from "./ecommerce";
 export * from "./landing";
 export * from "./blog";
 export * from "./errors";
+export * from "./onboarding";
+export * from "./files";
+export * from "./messaging";
+export * from "./notifications";
