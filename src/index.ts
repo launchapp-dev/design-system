@@ -3,7 +3,7 @@ export { useReducedMotion, duration, easing, motionSafe, motionReduce } from "./
 export { PaletteSwitcher } from "./components/PaletteSwitcher";
 export type { PaletteSwitcherProps } from "./components/PaletteSwitcher";
 export { builtinPalettes } from "./themes/palettes";
-export type { PaletteTokenSet } from "./themes/palettes";
+export type { PaletteTokenSet, Palette } from "./themes/palettes";
 export { createTheme } from "./themes/createTheme";
 export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
 export { Typewriter, BlurIn, FadeUp, LetterReveal } from "./components/TextAnimate";
@@ -411,7 +411,7 @@ export {
   palettes,
   paletteMap,
 } from "./themes";
-export type { Palette, PaletteTokens } from "./themes";
+export type { PaletteTokens } from "./themes";
 
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
