@@ -25,14 +25,11 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install root dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Install docs dependencies
-        run: cd apps/docs && npm ci
-
       - name: Build docs
-        run: cd apps/docs && npm run build
+        run: npm run --workspace @launchapp/docs build
         env:
           GITHUB_ACTIONS: true
 
