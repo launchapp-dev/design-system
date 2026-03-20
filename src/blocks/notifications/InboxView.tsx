@@ -17,7 +17,7 @@ export interface InboxItem {
   read: boolean;
 }
 
-export interface InboxViewProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface InboxViewProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect"> {
   items: InboxItem[];
   selectedId?: string;
   onSelect?: (id: string) => void;

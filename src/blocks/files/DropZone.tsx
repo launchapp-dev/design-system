@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 
-export interface DropZoneProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrop"> {
+export interface DropZoneProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrop" | "onError"> {
   accept?: string;
   maxSize?: number;
   multiple?: boolean;
