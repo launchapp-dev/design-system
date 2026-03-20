@@ -105,7 +105,7 @@ function DataTableInner<TData, TValue>(
                     <span className="inline-flex items-center gap-1">
                       {flexRender(header.column.columnDef.header, header.getContext())}
                       {header.column.getCanSort() && (
-                        <span className="text-muted-foreground">
+                        <span aria-hidden="true" className="text-muted-foreground">
                           {header.column.getIsSorted() === "asc"
                             ? "↑"
                             : header.column.getIsSorted() === "desc"
