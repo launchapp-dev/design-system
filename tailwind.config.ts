@@ -126,6 +126,18 @@ const config: Config = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0" },
         },
+        "gradient-mesh": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        aurora: {
+          "0%, 100%": { backgroundPosition: "0% 50%", opacity: "0.5" },
+          "50%": { backgroundPosition: "100% 50%", opacity: "0.9" },
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -147,6 +159,9 @@ const config: Config = {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "letter-reveal": "letter-reveal 0.3s ease-out forwards",
         "cursor-blink": "cursor-blink 1s step-end infinite",
+        "gradient-mesh": "gradient-mesh 8s ease infinite",
+        aurora: "aurora 10s ease infinite",
+        shimmer: "shimmer 2s linear infinite",
       },
     },
   },
