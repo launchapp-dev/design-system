@@ -84,6 +84,17 @@ export function Sidebar() {
           >
             Design Tokens
           </Link>
+          <Link
+            href="/palettes"
+            className={cn(
+              "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
+              pathname === "/palettes"
+                ? "bg-accent text-accent-foreground font-medium"
+                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+            )}
+          >
+            Palettes
+          </Link>
         </div>
 
         <div className="mt-4">
