@@ -34,26 +34,59 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {
   isActive?: boolean;
-} & React.ComponentProps<"a">;
+  disabled?: boolean;
+} & React.ComponentPropsWithoutRef<"a">;
 
 const PaginationLink = ({
   className,
   isActive,
+  disabled,
+  href,
+  onClick,
   ...props
-}: PaginationLinkProps) => (
-  <a
-    aria-current={isActive ? "page" : undefined}
-    className={cn(
-      buttonVariants({
-        variant: isActive ? "outline" : "ghost",
-        size: "icon",
-      }),
-      "h-9 w-9",
-      className
-    )}
-    {...props}
-  />
-);
+}: PaginationLinkProps) => {
+  const handleClick = (e: React.MouseEvent) => {
+    if (disabled) {
+      e.preventDefault();
+      return;
+    }
+    onClick?.(e as React.MouseEvent<HTMLAnchorElement>);
+  };
+
+  const sharedClassName = cn(
+    buttonVariants({
+      variant: isActive ? "outline" : "ghost",
+      size: "icon",
+    }),
+    "h-9 w-9",
+    className
+  );
+
+  if (!href) {
+    return (
+      <button
+        type="button"
+        aria-current={isActive ? "page" : undefined}
+        aria-disabled={disabled ? true : undefined}
+        disabled={disabled}
+        className={sharedClassName}
+        onClick={handleClick}
+        {...(props as React.ComponentPropsWithoutRef<"button">)}
+      />
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      aria-current={isActive ? "page" : undefined}
+      aria-disabled={disabled ? true : undefined}
+      className={sharedClassName}
+      onClick={handleClick}
+      {...props}
+    />
+  );
+};
 PaginationLink.displayName = "PaginationLink";
 
 const PaginationPrevious = ({

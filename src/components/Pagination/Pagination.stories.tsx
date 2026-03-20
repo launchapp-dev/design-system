@@ -219,6 +219,30 @@ export const FirstPage: Story = {
   ),
 };
 
+export const CurrentAndDisabled: Story = {
+  render: () => (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious disabled />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  ),
+};
+
 export const LastPage: Story = {
   render: () => (
     <Pagination>
