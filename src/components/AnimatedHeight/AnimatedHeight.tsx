@@ -43,6 +43,7 @@ const AnimatedHeight = React.forwardRef<HTMLDivElement, AnimatedHeightProps>(
     return (
       <div
         ref={ref}
+        aria-hidden={!isOpen || undefined}
         className={cn("overflow-hidden", className)}
         style={{
           height: height === "auto" ? "auto" : `${height}px`,
