@@ -11,6 +11,7 @@ function AnimatedHeight({ children, isOpen = true, duration = 250, className, st
   const prefersReducedMotion = useReducedMotion();
   const innerRef = React.useRef<HTMLDivElement>(null);
   const [height, setHeight] = React.useState<number | "auto">(isOpen ? "auto" : 0);
+  const [isHidden, setIsHidden] = React.useState(!isOpen);
   const isFirstRender = React.useRef(true);
 
   React.useEffect(() => {
@@ -22,10 +23,12 @@ function AnimatedHeight({ children, isOpen = true, duration = 250, className, st
 
     if (prefersReducedMotion) {
       setHeight(isOpen ? "auto" : 0);
+      setIsHidden(!isOpen);
       return;
     }
 
     if (isOpen) {
+      setIsHidden(false);
       const contentHeight = innerRef.current.scrollHeight;
       setHeight(contentHeight);
       const timer = setTimeout(() => setHeight("auto"), duration);
@@ -36,6 +39,8 @@ function AnimatedHeight({ children, isOpen = true, duration = 250, className, st
       requestAnimationFrame(() => {
         requestAnimationFrame(() => setHeight(0));
       });
+      const timer = setTimeout(() => setIsHidden(true), duration);
+      return () => clearTimeout(timer);
     }
   }, [isOpen, duration, prefersReducedMotion]);
 
@@ -52,7 +57,7 @@ function AnimatedHeight({ children, isOpen = true, duration = 250, className, st
       }}
       {...props}
     >
-      <div ref={innerRef}>{children}</div>
+      <div ref={innerRef} inert={isHidden ? true : undefined}>{children}</div>
     </div>
   );
 }
