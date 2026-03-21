@@ -126,6 +126,14 @@ export {
   DialogDescription,
 } from "./components/Dialog";
 export {
+  Lightbox,
+  lightboxVariants,
+  lightboxContentVariants,
+  lightboxImageVariants,
+  lightboxThumbnailVariants,
+} from "./components/Lightbox";
+export type { LightboxProps, LightboxImage } from "./components/Lightbox";
+export {
   Form,
   FormField,
   FormItem,
