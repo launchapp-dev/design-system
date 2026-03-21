@@ -454,3 +454,77 @@ export type {
   ShimmerButtonProps,
   AnimatedBorderCardProps,
 } from "./components/MagicCard";
+
+export {
+  ChatBubble,
+  ChatBubbleContent,
+  ChatBubbleCode,
+  ChatBubbleCodeInline,
+  chatBubbleVariants,
+} from "./components/ChatBubble";
+export type { ChatBubbleProps } from "./components/ChatBubble";
+
+export {
+  ChatInput,
+  chatInputVariants,
+} from "./components/ChatInput";
+export type { ChatInputProps, AttachmentFile } from "./components/ChatInput";
+
+export {
+  StreamingText,
+  StreamingTextBlock,
+  streamingTextVariants,
+} from "./components/StreamingText";
+export type { StreamingTextProps, StreamingTextBlockProps } from "./components/StreamingText";
+
+export {
+  ThinkingIndicator,
+  thinkingIndicatorVariants,
+} from "./components/ThinkingIndicator";
+export type { ThinkingIndicatorProps, ThinkingStep } from "./components/ThinkingIndicator";
+
+export {
+  SourceCitation,
+  SourceCitationList,
+  SourceCitationInline,
+  sourceCitationVariants,
+} from "./components/SourceCitation";
+export type { SourceCitationProps, SourceCitationListProps, SourceCitationInlineProps, Source } from "./components/SourceCitation";
+
+export {
+  FeedbackButtons,
+  FeedbackButton,
+  feedbackButtonsVariants,
+} from "./components/FeedbackButtons";
+export type { FeedbackButtonsProps } from "./components/FeedbackButtons";
+
+export {
+  CopilotPanel,
+  CopilotPanelTrigger,
+  CopilotPanelClose,
+  CopilotPanelContent,
+  CopilotPanelHeader,
+  CopilotPanelFooter,
+  CopilotPanelOverlay,
+  SuggestionChip,
+  SuggestionChipGroup,
+  ContextDisplay,
+  ContextDisplayGroup,
+  copilotPanelVariants,
+} from "./components/CopilotPanel";
+export type { CopilotPanelContentProps, SuggestionChipProps, ContextDisplayProps } from "./components/CopilotPanel";
+
+export {
+  AICommandBar,
+  AICommandBarTrigger,
+  AICommandBarOverlay,
+  AICommandBarContent,
+  AICommandBarList,
+  AICommandBarEmpty,
+  AICommandBarItem,
+  AICommandBarGroup,
+  AICommandBarSeparator,
+  AIResponse,
+  aiCommandBarVariants,
+} from "./components/AICommandBar";
+export type { AICommandBarContentProps, AICommandBarItemProps, AIResponseProps } from "./components/AICommandBar";

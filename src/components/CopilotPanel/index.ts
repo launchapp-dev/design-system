@@ -1,0 +1,17 @@
+export {
+  CopilotPanel,
+  CopilotPanelTrigger,
+  CopilotPanelClose,
+  CopilotPanelContent,
+  CopilotPanelHeader,
+  CopilotPanelFooter,
+  CopilotPanelOverlay,
+  SuggestionChip,
+  SuggestionChipGroup,
+  ContextDisplay,
+  ContextDisplayGroup,
+  copilotPanelVariants,
+  type CopilotPanelContentProps,
+  type SuggestionChipProps,
+  type ContextDisplayProps,
+} from "./CopilotPanel";
