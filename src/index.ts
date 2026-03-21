@@ -435,6 +435,8 @@ export {
 } from "./themes";
 export type { PaletteTokens } from "./themes";
 
+export * from './components/BentoGrid';
+export * from './components/Masonry';
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
 
