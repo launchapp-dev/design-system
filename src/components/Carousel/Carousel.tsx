@@ -29,6 +29,19 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   onSlideChange?: (index: number) => void;
 }
 
+const flattenChildren = (children: React.ReactNode): React.ReactNode[] => {
+  const result: React.ReactNode[] = [];
+  React.Children.forEach(children, (child) => {
+    if (React.isValidElement(child) && child.type === React.Fragment) {
+      const fragmentProps = child.props as { children?: React.ReactNode };
+      result.push(...flattenChildren(fragmentProps.children));
+    } else {
+      result.push(child);
+    }
+  });
+  return result;
+};
+
 const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
   (
     {
@@ -51,7 +64,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     const containerRef = React.useRef<HTMLDivElement>(null);
     const autoPlayRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
-    const slides = React.Children.toArray(children);
+    const slides = flattenChildren(children);
     const totalSlides = slides.length;
 
     const goToSlide = (index: number) => {
