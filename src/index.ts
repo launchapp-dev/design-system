@@ -438,6 +438,9 @@ export type { PaletteTokens } from "./themes";
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
 
+export { ColorPicker, colorPickerTriggerVariants, DEFAULT_PRESETS } from "./components/ColorPicker";
+export type { ColorPickerProps } from "./components/ColorPicker";
+
 export {
   TiltCard,
   SpotlightCard,
