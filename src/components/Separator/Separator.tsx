@@ -19,4 +19,6 @@ function Separator({ className, orientation = "horizontal", decorative = true, r
 }
 Separator.displayName = SeparatorPrimitive.Root.displayName;
 
+export type SeparatorProps = React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof SeparatorPrimitive.Root>> };
+
 export { Separator };

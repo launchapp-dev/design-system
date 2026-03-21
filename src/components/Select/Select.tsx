@@ -201,6 +201,17 @@ function SelectSeparator({ className, ref, ...props }: React.ComponentPropsWitho
 }
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
+export type SelectRootProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>;
+export type SelectGroupProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Group>;
+export type SelectValueProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Value>;
+export type SelectTriggerProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & VariantProps<typeof selectTriggerVariants> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Trigger>> };
+export type SelectContentProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Content>> };
+export type SelectLabelProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Label>> };
+export type SelectItemProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Item>> };
+export type SelectSeparatorProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Separator>> };
+export type SelectScrollUpButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollUpButton>> };
+export type SelectScrollDownButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollDownButton>> };
+
 export {
   SelectRoot,
   SelectGroup,

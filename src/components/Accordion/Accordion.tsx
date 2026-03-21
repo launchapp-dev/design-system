@@ -61,4 +61,9 @@ function AccordionContent({ className, children, ref, ...props }: React.Componen
 }
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
+export type AccordionRootProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>;
+export type AccordionItemProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Item>> };
+export type AccordionTriggerProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Trigger>> };
+export type AccordionContentProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Content>> };
+
 export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent };
