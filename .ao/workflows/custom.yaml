@@ -59,8 +59,8 @@ agents:
       ENQUEUE RULES:
       - Use ao.queue.list to check current queue — NEVER enqueue duplicates.
       - Enqueue in priority order: critical first, then high, medium, low.
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   component-author:
@@ -152,8 +152,8 @@ agents:
       4. Compare against task requirements AND the design system criteria above.
       5. APPROVE and MERGE if all criteria pass. Mark task "done".
       6. If changes needed: gh pr review --request-changes with detailed explanation.
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7"]
 
   a11y-auditor:
@@ -173,8 +173,8 @@ agents:
       - Use ao.task.list first — NEVER create duplicates.
       - task_type: "bugfix" for a11y violations, "chore" for improvements.
       - Priority: critical for WCAG AA violations, high for keyboard nav issues, medium for enhancements.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   product-owner:
@@ -304,8 +304,8 @@ agents:
       - Only create work for the NEXT phase — don't queue up Phase 5 while Phase 3 isn't done.
       - Always run RICE scoring before setting task priorities.
       - Surface OKR health (on-track / at-risk / blocked) in the task description of any new work created.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7", "package-version"]
 
   product-strategist:
@@ -366,8 +366,8 @@ agents:
       - Always tag new work with OKR alignment (O1/O2/O3 + KR).
       - Document RICE scores in task descriptions as:
         "RICE: R=<n> I=<n> C=<n>% E=<n> → Score=<n>"
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7"]
 
   competitive-analyst:
@@ -410,8 +410,8 @@ agents:
       - Focus recommendations on gaps that align with PRODUCT_VISION.md priorities.
       - task_type: "chore" for DX improvements, "feature" for coverage gaps.
       - Priority: high for gaps where a competitor scores 5 and we score ≤ 2.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
 
@@ -450,8 +450,8 @@ agents:
       - NEVER create duplicate tasks. Always check ao.task.list first.
       - Group related updates (e.g. all Radix packages) into a single task.
       - Always check migration guides via context7 before recommending major updates.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7", "package-version"]
 
   rice-planner:
@@ -474,8 +474,8 @@ agents:
       - Score each task and update priority via ao.task.set-priority
       - Accessibility and type-safety tasks get 1.5× Impact multiplier
       - NEVER create duplicate tasks — only re-prioritize existing ones
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   reconciler:
@@ -489,8 +489,8 @@ agents:
       4. Drop entries whose task is already "done".
       5. Check for tasks marked "in-progress" with no active workflow. Mark them "ready".
       6. Check for merged PRs whose tasks are not "done" and mark them done.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   design-advisor:
@@ -524,8 +524,8 @@ agents:
       4. Verify CVA axis naming, token usage, and dark mode.
       5. Verify forwardRef, cn(), and export completeness.
       6. Output a structured report: PASS / NEEDS CHANGES, with specific file:line citations.
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["context7"]
 
   changelog-generator:
@@ -564,8 +564,8 @@ agents:
       - Keep entries concise (one line per commit).
       - Skip merge commits and commits with no user-visible impact.
       - If CHANGELOG.md has an [Unreleased] section already, merge new entries into it.
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
 
   ux-researcher:
     system_prompt: |
@@ -604,8 +604,8 @@ agents:
       - task_type: "chore" for UX improvements, "bugfix" for critical usability issues.
       - Priority: high for broken affordances, medium for inconsistency, low for enhancements.
       - Reference the specific heuristic violated in the task description.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7"]
 
   code-quality-reviewer:
@@ -640,8 +640,8 @@ agents:
       - Fix obvious issues (unused imports, dead code) directly in the PR branch.
       - Do not refactor beyond what was touched — only review changed files.
       - Do not add comments in code unless a piece of logic is genuinely non-obvious.
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   design-engineer:
@@ -679,8 +679,8 @@ agents:
       4. For critical issues (broken visual hierarchy, incorrect color semantics):
          ao.queue.enqueue with workflow_ref="rework".
       5. For polish issues: create a task (task_type: "chore", priority: low).
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7"]
 
   token-generator:
@@ -722,8 +722,8 @@ agents:
       - Never overwrite existing tokens without reading them first.
       - Preserve all existing --la-* tokens — only add or update.
       - Keep dark mode token values semantically correct (not just inverted).
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["context7"]
 
   adoption-analyst:
@@ -762,8 +762,8 @@ agents:
       - Use ao.task.list before creating any new tasks — never create duplicates.
       - task_type: "chore" for adoption improvements, "bugfix" for critical usability gaps.
       - Focus on components with both low adoption AND high rework — highest ROI for fixes.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   visual-regression:
@@ -787,8 +787,8 @@ agents:
       Run Storybook build to at least verify all stories compile:
         npx storybook build --quiet
       If the build fails, flag it as a blocker.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   component-scaffolder:
@@ -893,8 +893,8 @@ agents:
         - Hardcoded colors: task_type "chore", priority "medium", title "Replace hardcoded colors in <ComponentName>"
       Set each new task to "ready" via ao.task.status.
       If NO issues found, output a summary confirming compliance and create no tasks.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao"]
 
   story-generator:
@@ -956,8 +956,8 @@ agents:
       - Read existing test files first to avoid duplication
       - Do not add yourself as author or co-author.
       - Do not add comments in the code unless requested.
-    model: kimi-k2.5
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7"]
 
   docs-writer:
@@ -997,8 +997,8 @@ agents:
       - Use ao.task.list first — NEVER create duplicates.
       - task_type: "bugfix" for blocking type errors, "chore" for improvements.
       - Priority: high for any/object in public API, medium for missing VariantProps export, low for style issues.
-    model: minimax/MiniMax-M2.7
-    tool: oai-runner
+    model: gemini-3.1-pro-preview
+    tool: gemini
     mcp_servers: ["ao", "context7"]
 
 phases:
@@ -1235,39 +1235,35 @@ phases:
     mode: agent
     agent: product-owner
     directive: |
-      Conduct a product review of the design system.
+      You MUST use ao MCP tools on every run. Do not exit without calling at least ao.requirements.list and ao.task.list.
 
-      1. Read PRODUCT_VISION.md for the current roadmap and quality gates.
-      2. Read src/components/ to see what components exist.
-      3. Use ao.requirements.list to get all requirements and their statuses.
-      4. Use ao.task.list to get all tasks and their statuses.
+      STEP 1 — GET CURRENT STATE (MANDATORY):
+      Call ao.requirements.list to get all requirements.
+      Call ao.task.list to get all tasks.
 
-      REQUIREMENT STATUS MANAGEMENT:
-      5. For each requirement, evaluate and update its status:
-         - "draft" with clear acceptance criteria → update to "refined" via ao.requirements.update
-         - "refined" with linked tasks created → update to "planned"
-         - "planned" with tasks in-progress → update to "in-progress"
-         - "in-progress" with ALL linked tasks done → update to "done"
-      6. Link completed tasks to their requirements via ao.requirements.update --linked-task-id.
+      STEP 2 — FIND REQUIREMENTS THAT NEED TASKS:
+      For each requirement with status "refined" that has NO linked tasks:
+        - Create 1-3 implementation tasks via ao.task.create with --linked-requirement <REQ_ID>
+        - Set each task to "ready" via ao.task.status
+        - Update the requirement to "planned" via ao.requirements.update --status planned
 
-      NEW WORK IDENTIFICATION:
-      7. Compare PRODUCT_VISION.md roadmap against existing requirements.
-         If a phase in the roadmap has no requirements, create them via ao.requirements.create.
-      8. For requirements that are "refined" or "planned" but have no tasks,
-         compute RICE score first, then create implementation tasks via ao.task.create with
-         --linked-requirement. Include "Depends on:" lines, RICE breakdown, and OKR tag.
-         Set new tasks to "ready" via ao.task.status.
-      9. Only create work for the NEXT incomplete phase — don't skip ahead.
+      STEP 3 — UPDATE REQUIREMENT STATUSES:
+      For each requirement with status "draft": update to "refined" via ao.requirements.update --status refined
+      For each requirement with status "planned" where tasks are done: update to "done"
 
-      QUALITY AUDIT:
-      10. Check quality gates from PRODUCT_VISION.md against existing components.
-          Compute RICE for each gap and create tasks ordered by RICE score descending.
+      STEP 4 — CREATE TASKS FOR THESE SPECIFIC REQUIREMENTS IF THEY HAVE NONE:
+      REQ-028: Magic UI animated components — create tasks for animated text, backgrounds, cards, buttons, borders
+      REQ-029: Bento Grid layouts — create tasks for BentoGrid, Masonry, Marquee, Dock
+      REQ-030: Rich Media — create tasks for image comparison, lightbox, carousel, terminal
+      REQ-031: Data Visualization — create tasks for heatmap, funnel, gauge, sparkline
+      REQ-032: AI/Chat Interface — create tasks for ChatBubble, StreamingText, CopilotPanel
+      REQ-033: Advanced Forms — create tasks for wizard, tag input, color picker
+      REQ-034: Notifications — create tasks for NotificationBell, Banner, StatusPage
 
       RULES:
-      - NEVER create duplicate requirements or tasks.
-      - Always check ao.requirements.list and ao.task.list before creating.
-      - Always compute RICE before assigning priority — never use must/should/could alone.
-      - Always include OKR alignment (O1/O2/O3) in new requirements and tasks.
+      - Use ao.task.list FIRST to check for existing tasks — NEVER create duplicates.
+      - Set task priority to "high" for must requirements, "medium" for should.
+      - Set each new task to "ready" via ao.task.status after creating.
 
   strategic-planning:
     mode: agent
