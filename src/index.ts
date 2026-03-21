@@ -550,3 +550,15 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+
+export { CodeBlock, codeBlockVariants } from "./components/CodeBlock";
+export type { CodeBlockProps, CodeLine } from "./components/CodeBlock";
+
+export { Terminal, terminalVariants } from "./components/Terminal";
+export type { TerminalProps, TerminalLine } from "./components/Terminal";
+
+export { TimelineComponent, timelineVariants, timelineItemVariants, timelineDotVariants } from "./components/TimelineComponent";
+export type { TimelineProps as TimelineComponentProps, TimelineItemData } from "./components/TimelineComponent";
+
+export { TestimonialCard, TestimonialCardGrid, StarRating, testimonialCardVariants, starRatingVariants } from "./components/TestimonialCard";
+export type { TestimonialCardProps } from "./components/TestimonialCard";
