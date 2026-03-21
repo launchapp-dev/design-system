@@ -1156,14 +1156,17 @@ phases:
 
       STEP 2: For EACH open PR (process up to 5 per run):
         a. Extract the task ID from branch name (ao/task-XXX -> TASK-XXX)
-        b. Check mergeable status
-           - If CONFLICTING: run ao.queue.enqueue with task_id and workflow_ref="rebase-and-retry", skip to next
-        c. Run: gh pr diff <number> — read the actual code changes
-        d. Check: does the code look reasonable? No obvious errors, no empty files?
-        e. If acceptable: run gh pr merge <number> --merge, then ao.task.status --id TASK-XXX --status done
-        f. If not acceptable: run gh pr review <number> --request-changes --body "reason"
+        b. Check if the task is already "done" via ao.task.get. If done, close the PR:
+           gh pr close <number> --comment "Task already completed." Skip to next PR.
+        c. Check mergeable status
+           - If CONFLICTING: close the PR with gh pr close <number> --comment "Conflicts — will be re-implemented." Skip to next.
+        d. Run: gh pr diff <number> — read the actual code changes
+        e. Check: does the code look reasonable? No obvious errors, no empty files?
+        f. If acceptable: run gh pr merge <number> --merge, then ao.task.status --id TASK-XXX --status done
+        g. If not acceptable: run gh pr review <number> --request-changes --body "reason"
 
       IMPORTANT: You MUST merge or review at least one PR per run. Do not exit without action.
+      IMPORTANT: NEVER enqueue rebase-and-retry. Just close conflicting PRs — the task will be re-implemented fresh.
 
   rebase-on-main:
     mode: agent
