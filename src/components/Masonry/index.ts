@@ -1,2 +1,2 @@
-export { Masonry } from "./Masonry";
-export type { MasonryProps } from "./Masonry";
+export { Masonry, masonryVariants, MasonryItem, masonryItemVariants } from "./Masonry";
+export type { MasonryProps, MasonryItemProps } from "./Masonry";
