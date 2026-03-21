@@ -8,9 +8,9 @@ const checkboxVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-3.5 w-3.5",
-        md: "h-4 w-4",
-        lg: "h-5 w-5",
+        sm: "h-5 w-5 md:h-3.5 md:w-3.5 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 p-2.5 md:p-0",
+        md: "h-6 w-6 md:h-4 md:w-4 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 p-2.5 md:p-0",
+        lg: "h-6 w-6 min-h-[44px] min-w-[44px] p-2.5",
       },
     },
     defaultVariants: {
@@ -40,7 +40,10 @@ function Checkbox({ className, size, ref, ...props }: CheckboxProps & { ref?: Re
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="h-3 w-3 group-data-[state=indeterminate]:hidden"
+        className={cn(
+          "group-data-[state=indeterminate]:hidden",
+          size === "sm" ? "h-3 w-3 md:h-3 md:w-3" : size === "lg" ? "h-3.5 w-3.5" : "h-3 w-3 md:h-3 md:w-3"
+        )}
       >
         <polyline points="20 6 9 17 4 12" />
       </svg>
@@ -52,7 +55,10 @@ function Checkbox({ className, size, ref, ...props }: CheckboxProps & { ref?: Re
         stroke="currentColor"
         strokeWidth="3"
         strokeLinecap="round"
-        className="h-3 w-3 group-data-[state=checked]:hidden"
+        className={cn(
+          "group-data-[state=checked]:hidden",
+          size === "sm" ? "h-3 w-3 md:h-3 md:w-3" : size === "lg" ? "h-3.5 w-3.5" : "h-3 w-3 md:h-3 md:w-3"
+        )}
       >
         <line x1="5" y1="12" x2="19" y2="12" />
       </svg>

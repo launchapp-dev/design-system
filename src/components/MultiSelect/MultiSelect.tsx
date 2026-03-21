@@ -17,9 +17,9 @@ const multiSelectTriggerVariants = cva(
   {
     variants: {
       size: {
-        sm: "min-h-8 px-2.5 py-1 text-xs",
-        md: "min-h-10 px-3 py-2 text-sm",
-        lg: "min-h-12 px-4 py-2 text-base",
+        sm: "min-h-11 md:min-h-8 px-3 md:px-2.5 py-2 md:py-1 text-sm md:text-xs min-h-[44px] md:min-h-0",
+        md: "min-h-12 md:min-h-10 px-4 md:px-3 py-3 md:py-2 text-base md:text-sm min-h-[44px] md:min-h-0",
+        lg: "min-h-12 px-4 py-2 text-base min-h-[44px]",
       },
     },
     defaultVariants: {

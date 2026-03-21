@@ -7,9 +7,9 @@ const inputVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-8 px-3 py-1 text-xs",
-        md: "h-10 px-3 py-2 text-sm",
-        lg: "h-12 px-4 py-3 text-base",
+        sm: "h-11 md:h-8 px-3 py-2 md:py-1 text-sm md:text-xs min-h-[44px] md:min-h-0",
+        md: "h-12 md:h-10 px-3 py-3 md:py-2 text-sm md:text-sm min-h-[44px] md:min-h-0",
+        lg: "h-12 px-4 py-3 text-base min-h-[44px]",
       },
       error: {
         true: "border-destructive focus-visible:ring-destructive",

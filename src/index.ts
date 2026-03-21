@@ -334,12 +334,15 @@ export type { TopNavProps, TopNavItem, TopNavUser } from "./blocks/navigation";
 export { MobileNavDrawer } from "./blocks/navigation";
 export type { MobileNavDrawerProps } from "./blocks/navigation";
 
+export { MobileNav } from "./components/MobileNav";
+export type { MobileNavProps, MobileNavItem } from "./components/MobileNav";
+
 export { ProfileSettings } from "./blocks/settings";
 export type { ProfileSettingsProps } from "./blocks/settings";
 export { AccountSettings } from "./blocks/settings";
 export type { AccountSettingsProps } from "./blocks/settings";
 export { NotificationPreferences } from "./blocks/settings";
-export type { NotificationPreferencesProps, NotificationGroup, NotificationItem } from "./blocks/settings";
+export type { NotificationPreferencesProps, NotificationGroup, SettingsNotificationItem as SettingsNotificationItem } from "./blocks/settings";
 export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./blocks/settings";
 
