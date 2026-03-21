@@ -477,6 +477,12 @@ export {
   MagneticButton,
   ShimmerButton,
   AnimatedBorderCard,
+  HolographicCard,
+  NeonGlowCard,
+  RippleButton,
+  GlowPulseButton,
+  MorphButton,
+  morphVariants,
 } from "./components/MagicCard";
 export type {
   TiltCardProps,
@@ -485,6 +491,11 @@ export type {
   MagneticButtonProps,
   ShimmerButtonProps,
   AnimatedBorderCardProps,
+  HolographicCardProps,
+  NeonGlowCardProps,
+  RippleButtonProps,
+  GlowPulseButtonProps,
+  MorphButtonProps,
 } from "./components/MagicCard";
 
 export { MultiStepWizard as AdvancedMultiStepWizard } from "./components/MultiStepWizard";
