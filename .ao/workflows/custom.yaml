@@ -1156,14 +1156,17 @@ phases:
 
       STEP 2: For EACH open PR (process up to 5 per run):
         a. Extract the task ID from branch name (ao/task-XXX -> TASK-XXX)
-        b. Check mergeable status
-           - If CONFLICTING: run ao.queue.enqueue with task_id and workflow_ref="rebase-and-retry", skip to next
-        c. Run: gh pr diff <number> — read the actual code changes
-        d. Check: does the code look reasonable? No obvious errors, no empty files?
-        e. If acceptable: run gh pr merge <number> --merge, then ao.task.status --id TASK-XXX --status done
-        f. If not acceptable: run gh pr review <number> --request-changes --body "reason"
+        b. Check if the task is already "done" via ao.task.get. If done, close the PR:
+           gh pr close <number> --comment "Task already completed." Skip to next PR.
+        c. Check mergeable status
+           - If CONFLICTING: close the PR with gh pr close <number> --comment "Conflicts — will be re-implemented." Skip to next.
+        d. Run: gh pr diff <number> — read the actual code changes
+        e. Check: does the code look reasonable? No obvious errors, no empty files?
+        f. If acceptable: run gh pr merge <number> --merge, then ao.task.status --id TASK-XXX --status done
+        g. If not acceptable: run gh pr review <number> --request-changes --body "reason"
 
       IMPORTANT: You MUST merge or review at least one PR per run. Do not exit without action.
+      IMPORTANT: NEVER enqueue rebase-and-retry. Just close conflicting PRs — the task will be re-implemented fresh.
 
   rebase-on-main:
     mode: agent
@@ -1211,17 +1214,21 @@ phases:
     mode: agent
     agent: planner
     directive: |
-      QUEUE BALANCE (CHECK FIRST):
-      1. Use ao.queue.list to check current queue size.
-      2. If queue has 10 or more entries (pending + assigned), STOP. Do not enqueue anything.
-         The queue is full — wait for tasks to complete before adding more.
-      3. Only enqueue enough tasks to bring the queue up to 10, not beyond.
+      PR BACKLOG CHECK (FIRST):
+      1. Run: gh pr list --state open --json number | wc -l
+      2. If there are 5 or more open PRs, STOP. Do not enqueue anything.
+         Let the reviewer merge existing PRs before creating more work.
 
-      ENQUEUE PROCESS (only if queue < 10):
-      4. Use ao.task.list to get all tasks. Parse "Depends on:" lines in descriptions.
-      5. Only enqueue tasks whose dependencies are ALL "done" and not already queued.
-      6. Enqueue in priority order: critical first, then high, medium, low.
-      7. Use "component" workflow for new component tasks, "scaffold" for infra/config, "quick-fix" for bugfixes.
+      QUEUE BALANCE (CHECK SECOND):
+      3. Use ao.queue.list to check current queue size.
+      4. If queue has 10 or more entries (pending + assigned), STOP.
+      5. Only enqueue enough tasks to bring the queue up to 10, not beyond.
+
+      ENQUEUE PROCESS (only if open PRs < 5 AND queue < 10):
+      6. Use ao.task.list to get all tasks. Parse "Depends on:" lines in descriptions.
+      7. Only enqueue tasks whose dependencies are ALL "done" and not already queued.
+      8. Enqueue in priority order: critical first, then high, medium, low.
+      9. Use "component" workflow for new component tasks, "scaffold" for infra/config, "quick-fix" for bugfixes.
 
   a11y-audit:
     mode: agent

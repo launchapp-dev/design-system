@@ -6,8 +6,9 @@ export { builtinPalettes } from "./themes/palettes";
 export type { PaletteTokenSet, Palette } from "./themes/palettes";
 export { createTheme } from "./themes/createTheme";
 export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
-export { Typewriter, BlurIn, FadeUp, LetterReveal } from "./components/TextAnimate";
-export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps } from "./components/TextAnimate";
+export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText } from "./components/TextAnimate";
+export { gradientTextVariants } from "./components/TextAnimate";
+export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps, WordRevealProps, GradientTextProps } from "./components/TextAnimate";
 export { FadeInOnScroll, CountUp, Parallax } from "./components/ScrollAnimate";
 export type { FadeInOnScrollProps, CountUpProps, ParallaxProps } from "./components/ScrollAnimate";
 export { StaggeredList } from "./components/StaggeredList";
@@ -124,6 +125,14 @@ export {
   DialogTitle,
   DialogDescription,
 } from "./components/Dialog";
+export {
+  Lightbox,
+  lightboxVariants,
+  lightboxContentVariants,
+  lightboxImageVariants,
+  lightboxThumbnailVariants,
+} from "./components/Lightbox";
+export type { LightboxProps, LightboxImage } from "./components/Lightbox";
 export {
   Form,
   FormField,
@@ -242,6 +251,8 @@ export { Calendar } from "./components/Calendar";
 export type { CalendarProps } from "./components/Calendar";
 export { DatePicker } from "./components/DatePicker";
 export type { DatePickerProps } from "./components/DatePicker";
+export { ColorPicker } from "./components/ColorPicker";
+export type { ColorPickerProps } from "./components/ColorPicker";
 export {
   ToolbarRoot,
   ToolbarButton,
@@ -461,6 +472,12 @@ export type { LiveIndicatorProps } from "./components/LiveIndicator";
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
 
+export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid } from "./components/AnimatedBackground";
+export type { ParticlesProps, StarsProps, MatrixRainProps, NoiseTextureProps, AnimatedGridProps } from "./components/AnimatedBackground";
+
+export { Spotlight } from "./components/Spotlight";
+export type { SpotlightProps } from "./components/Spotlight";
+
 export {
   ChatBubble,
   ChatBubbleGroup,
@@ -477,6 +494,12 @@ export {
   MagneticButton,
   ShimmerButton,
   AnimatedBorderCard,
+  HolographicCard,
+  NeonGlowCard,
+  RippleButton,
+  GlowPulseButton,
+  MorphButton,
+  morphVariants,
 } from "./components/MagicCard";
 export type {
   TiltCardProps,
@@ -485,6 +508,11 @@ export type {
   MagneticButtonProps,
   ShimmerButtonProps,
   AnimatedBorderCardProps,
+  HolographicCardProps,
+  NeonGlowCardProps,
+  RippleButtonProps,
+  GlowPulseButtonProps,
+  MorphButtonProps,
 } from "./components/MagicCard";
 
 export { MultiStepWizard as AdvancedMultiStepWizard } from "./components/MultiStepWizard";
@@ -542,10 +570,53 @@ export type { SankeyDiagramProps, SankeyNode, SankeyLink } from "./components/Sa
 export { DashboardGrid, dashboardGridVariants } from "./components/DashboardGrid";
 export type { DashboardGridProps, DashboardWidget } from "./components/DashboardGrid";
 
-export { 
-  RealtimeTicker, 
-  realtimeTickerVariants, 
-  tickerValueVariants, 
-  tickerChangeVariants 
+export {
+  RealtimeTicker,
+  realtimeTickerVariants,
+  tickerValueVariants,
+  tickerChangeVariants
 } from "./components/RealtimeTicker";
 export type { RealtimeTickerProps, TickerItem } from "./components/RealtimeTicker";
+
+export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants } from "./components/Terminal";
+export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./components/Terminal";
+
+export { AnimatedBorder } from "./components/AnimatedBorder";
+export type { AnimatedBorderProps } from "./components/AnimatedBorder";
+
+export {
+  StickySection,
+  StickyHeader,
+  HorizontalScroll,
+  ScrollProgress,
+  RevealOnScroll,
+  ScrollSnapContainer,
+  ScrollSnapItem,
+} from "./components/ScrollEffects";
+export type {
+  StickySectionProps,
+  StickyHeaderProps,
+  HorizontalScrollProps,
+  ScrollProgressProps,
+  RevealOnScrollProps,
+  ScrollSnapContainerProps,
+  ScrollSnapItemProps,
+} from "./components/ScrollEffects";
+
+export {
+  PageTransition,
+  TransitionGroup,
+  RouteTransition,
+  AnimatePresence,
+  MorphTransition,
+} from "./components/PageTransition";
+export type {
+  PageTransitionProps,
+  TransitionGroupProps,
+  RouteTransitionProps,
+  AnimatePresenceProps,
+  MorphTransitionProps,
+} from "./components/PageTransition";
+
+export { Dock, dockVariants, dockItemVariants } from "./components/Dock";
+export type { DockProps, DockItemData } from "./components/Dock";

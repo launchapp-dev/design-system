@@ -5,6 +5,12 @@ export {
   MagneticButton,
   ShimmerButton,
   AnimatedBorderCard,
+  HolographicCard,
+  NeonGlowCard,
+  RippleButton,
+  GlowPulseButton,
+  MorphButton,
+  morphVariants,
 } from "./MagicCard";
 export type {
   TiltCardProps,
@@ -13,4 +19,9 @@ export type {
   MagneticButtonProps,
   ShimmerButtonProps,
   AnimatedBorderCardProps,
+  HolographicCardProps,
+  NeonGlowCardProps,
+  RippleButtonProps,
+  GlowPulseButtonProps,
+  MorphButtonProps,
 } from "./MagicCard";
