@@ -517,3 +517,6 @@ export type {
   CopilotSuggestionProps,
   CopilotPanelSuggestionsProps,
 } from "./components/CopilotPanel";
+
+export { AnnouncementBar, announcementBarVariants } from "./components/AnnouncementBar";
+export type { AnnouncementBarProps, AnnouncementBarAction } from "./components/AnnouncementBar";

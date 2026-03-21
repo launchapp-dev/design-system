@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { 
-  Banner, 
+import {
+  Banner,
   BannerContent,
-  BannerTitle, 
-  BannerDescription, 
+  BannerTitle,
+  BannerDescription,
   BannerAction,
   BannerActions,
-  BannerDismiss 
+  BannerDismiss
 } from "./index";
 
 const meta = {
@@ -59,19 +59,19 @@ const CheckCircleIcon = () => (
   </svg>
 );
 
-function DismissibleBanner({ 
-  variant = "info", 
-  title, 
-  description 
-}: { 
+function DismissibleBanner({
+  variant = "info",
+  title,
+  description
+}: {
   variant?: "info" | "warning" | "error" | "success";
   title: string;
   description: string;
 }) {
   const [open, setOpen] = useState(true);
-  
+
   if (!open) return null;
-  
+
   return (
     <Banner variant={variant} open={open} onOpenChange={setOpen}>
       <BannerContent>
@@ -308,10 +308,10 @@ export const DarkMode: Story = {
 export const ControlledState: Story = {
   render: function ControlledBanner() {
     const [open, setOpen] = useState(true);
-    
+
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "600px" }}>
-        <button 
+        <button
           onClick={() => setOpen(true)}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-fit"
         >

@@ -45,9 +45,9 @@ function Banner({
   ...props
 }: BannerProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
-  
+
   const isOpen = controlledOpen !== undefined ? controlledOpen : uncontrolledOpen;
-  
+
   const handleDismiss = React.useCallback(() => {
     if (onOpenChange) {
       onOpenChange(false);
@@ -143,7 +143,7 @@ function BannerActions({ className, ref, ...props }: React.HTMLAttributes<HTMLDi
 }
 BannerActions.displayName = "BannerActions";
 
-function BannerDismiss({ className, onOpenChange, ref, ...props }: Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> & { 
+function BannerDismiss({ className, onOpenChange, ref, ...props }: Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> & {
   ref?: React.Ref<HTMLButtonElement>;
   onOpenChange?: (open: boolean) => void;
 }) {
@@ -186,13 +186,13 @@ function BannerDismiss({ className, onOpenChange, ref, ...props }: Omit<React.Bu
 }
 BannerDismiss.displayName = "BannerDismiss";
 
-export { 
-  Banner, 
+export {
+  Banner,
   BannerContent,
-  BannerTitle, 
-  BannerDescription, 
+  BannerTitle,
+  BannerDescription,
   BannerAction,
   BannerActions,
   BannerDismiss,
-  bannerVariants 
+  bannerVariants
 };

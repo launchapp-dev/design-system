@@ -216,7 +216,6 @@ export const HighCount: Story = {
 export const AllRead: Story = {
   render: () => {
     const readNotifications = sampleNotifications.map((n) => ({ ...n, read: true }));
-
     return <NotificationBell notifications={readNotifications} />;
   },
 };
