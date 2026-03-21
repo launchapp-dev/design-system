@@ -265,4 +265,5 @@ function ProductCardGrid({ className, products, columns = 3, variant = "compact"
 
 ProductCardGrid.displayName = "ProductCardGrid";
 
+export type ProductCardVariantProps = VariantProps<typeof productCardVariants>;
 export { ProductCard, productCardVariants, ProductCardGrid };

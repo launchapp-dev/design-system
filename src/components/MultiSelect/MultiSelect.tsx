@@ -215,4 +215,5 @@ function MultiSelect({
 
 MultiSelect.displayName = "MultiSelect";
 
+export type MultiSelectTriggerVariantProps = VariantProps<typeof multiSelectTriggerVariants>;
 export { MultiSelect, multiSelectTriggerVariants };

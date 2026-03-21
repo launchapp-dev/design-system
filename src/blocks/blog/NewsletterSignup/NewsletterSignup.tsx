@@ -144,4 +144,5 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
 
 NewsletterSignup.displayName = "NewsletterSignup";
 
+export type NewsletterSignupVariantProps = VariantProps<typeof newsletterSignupVariants>;
 export { NewsletterSignup, newsletterSignupVariants };

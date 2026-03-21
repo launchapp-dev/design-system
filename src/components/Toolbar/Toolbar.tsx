@@ -133,3 +133,5 @@ export {
   toolbarButtonVariants,
   toolbarToggleItemVariants,
 };
+export type ToolbarButtonVariantProps = VariantProps<typeof toolbarButtonVariants>;
+export type ToolbarToggleItemVariantProps = VariantProps<typeof toolbarToggleItemVariants>;

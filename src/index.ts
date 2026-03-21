@@ -17,7 +17,7 @@ export type { AnimatedHeightProps } from "./components/AnimatedHeight";
 export { TabContentCrossfade, TabPanel } from "./components/TabContentCrossfade";
 export type { TabContentCrossfadeProps, TabPanelProps } from "./components/TabContentCrossfade";
 export { Button, buttonVariants } from "./components/Button";
-export type { ButtonProps } from "./components/Button";
+export type { ButtonProps, ButtonVariantProps } from "./components/Button";
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 export { Label } from "./components/Label";
@@ -25,7 +25,7 @@ export type { LabelProps } from "./components/Label";
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/Card";
 export type { CardProps, CardHeaderProps, CardTitleProps, CardDescriptionProps, CardContentProps, CardFooterProps } from "./components/Card";
 export { Badge, badgeVariants } from "./components/Badge";
-export type { BadgeProps } from "./components/Badge";
+export type { BadgeProps, BadgeVariantProps } from "./components/Badge";
 export {
   SelectRoot,
   SelectGroup,
@@ -100,8 +100,8 @@ export {
   toast,
   dismiss,
 } from "./components/Toast";
-export type { ToastData, ToastInput, ToastVariant } from "./components/Toast";
-export { Toggle, toggleVariants, type ToggleProps } from "./components/Toggle";
+export type { ToastData, ToastInput, ToastVariant, ToastVariantProps } from "./components/Toast";
+export { Toggle, toggleVariants, type ToggleProps, type ToggleVariantProps } from "./components/Toggle";
 export {
   ToggleGroup,
   ToggleGroupItem,
@@ -135,7 +135,7 @@ export {
   useFormField,
 } from "./components/Form";
 export { Alert, AlertTitle, AlertDescription, alertVariants } from "./components/Alert";
-export type { AlertProps } from "./components/Alert";
+export type { AlertProps, AlertVariantProps } from "./components/Alert";
 export { Toaster as SonnerToaster, toast as sonnerToast } from "./components/Sonner";
 export type { ToasterProps as SonnerToasterProps } from "./components/Sonner";
 export {
@@ -241,7 +241,7 @@ export {
   toolbarButtonVariants,
   toolbarToggleItemVariants,
 } from "./components/Toolbar";
-export type { ToolbarButtonProps, ToolbarToggleItemProps } from "./components/Toolbar";
+export type { ToolbarButtonProps, ToolbarToggleItemProps, ToolbarButtonVariantProps, ToolbarToggleItemVariantProps } from "./components/Toolbar";
 export {
   ContextMenu,
   ContextMenuTrigger,
@@ -278,9 +278,9 @@ export {
   MenubarRadioGroup,
 } from "./components/Menubar";
 export { Combobox, comboboxTriggerVariants } from "./components/Combobox";
-export type { ComboboxProps, ComboboxOption } from "./components/Combobox";
+export type { ComboboxProps, ComboboxOption, ComboboxTriggerVariantProps } from "./components/Combobox";
 export { MultiSelect, multiSelectTriggerVariants } from "./components/MultiSelect";
-export type { MultiSelectProps, MultiSelectOption } from "./components/MultiSelect";
+export type { MultiSelectProps, MultiSelectOption, MultiSelectTriggerVariantProps } from "./components/MultiSelect";
 export {
   ChartContainer,
   LineChart,
@@ -338,7 +338,7 @@ export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./blocks/settings";
 
 export { HeroSection, heroSectionVariants } from "./blocks/marketing/HeroSection";
-export type { HeroSectionProps } from "./blocks/marketing/HeroSection";
+export type { HeroSectionProps, HeroSectionVariantProps } from "./blocks/marketing/HeroSection";
 export { FeatureGrid } from "./blocks/marketing/FeatureGrid";
 export type { FeatureGridProps, Feature } from "./blocks/marketing/FeatureGrid";
 export { PricingTable } from "./blocks/marketing/PricingTable";
@@ -363,7 +363,7 @@ export { Timeline } from "./blocks/data/Timeline";
 export type { TimelineProps, TimelineItem } from "./blocks/data/Timeline";
 
 export { ProductCard, productCardVariants, ProductCardGrid } from "./blocks/ecommerce/ProductCard";
-export type { ProductCardProps, ProductCardItem, ProductCardGridProps } from "./blocks/ecommerce/ProductCard";
+export type { ProductCardProps, ProductCardItem, ProductCardGridProps, ProductCardVariantProps } from "./blocks/ecommerce/ProductCard";
 export { ShoppingCart } from "./blocks/ecommerce/ShoppingCart";
 export type { ShoppingCartProps, CartItem } from "./blocks/ecommerce/ShoppingCart";
 export { CheckoutForm } from "./blocks/ecommerce/CheckoutForm";
@@ -382,7 +382,7 @@ export type { PostListProps, BlogPost } from "./blocks/blog/PostList";
 export { PostDetail } from "./blocks/blog/PostDetail";
 export type { PostDetailProps, TocItem } from "./blocks/blog/PostDetail";
 export { NewsletterSignup, newsletterSignupVariants } from "./blocks/blog/NewsletterSignup";
-export type { NewsletterSignupProps } from "./blocks/blog/NewsletterSignup";
+export type { NewsletterSignupProps, NewsletterSignupVariantProps } from "./blocks/blog/NewsletterSignup";
 
 export { NotFound } from "./blocks/errors/NotFound";
 export type { NotFoundProps } from "./blocks/errors/NotFound";

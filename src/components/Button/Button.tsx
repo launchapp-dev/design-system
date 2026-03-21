@@ -53,4 +53,5 @@ function Button({ className, variant, size, asChild = false, ref, ...props }: Bu
 
 Button.displayName = "Button";
 
+export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 export { Button, buttonVariants };

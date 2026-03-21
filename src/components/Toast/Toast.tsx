@@ -150,4 +150,5 @@ export {
   Toaster,
   toastVariants,
 };
+export type ToastVariantProps = VariantProps<typeof toastVariants>;
 export type { VariantProps };

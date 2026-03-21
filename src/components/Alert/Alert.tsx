@@ -61,4 +61,5 @@ function AlertDescription({ className, ref, ...props }: React.HTMLAttributes<HTM
 }
 AlertDescription.displayName = "AlertDescription";
 
+export type AlertVariantProps = VariantProps<typeof alertVariants>;
 export { Alert, AlertTitle, AlertDescription, alertVariants };

@@ -142,4 +142,5 @@ function Combobox({
 
 Combobox.displayName = "Combobox";
 
+export type ComboboxTriggerVariantProps = VariantProps<typeof comboboxTriggerVariants>;
 export { Combobox, comboboxTriggerVariants };

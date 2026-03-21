@@ -152,4 +152,5 @@ function HeroSection({
 
 HeroSection.displayName = "HeroSection";
 
+export type HeroSectionVariantProps = VariantProps<typeof heroSectionVariants>;
 export { HeroSection, heroSectionVariants };

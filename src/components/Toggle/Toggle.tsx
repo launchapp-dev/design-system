@@ -41,4 +41,5 @@ function Toggle({ className, variant, size, ref, ...props }: ToggleProps & { ref
 
 Toggle.displayName = TogglePrimitive.Root.displayName;
 
+export type ToggleVariantProps = VariantProps<typeof toggleVariants>;
 export { Toggle, toggleVariants };
