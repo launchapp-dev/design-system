@@ -5,7 +5,7 @@ import { Separator } from "../../components/Separator";
 import { Card, CardHeader, CardTitle, CardContent } from "../../components/Card";
 import { cn } from "../../lib/utils";
 
-export interface NotificationItem {
+export interface NotificationPreferenceItem {
   id: string;
   label: string;
   description: string;
@@ -15,7 +15,7 @@ export interface NotificationItem {
 export interface NotificationGroup {
   id: string;
   title: string;
-  items: NotificationItem[];
+  items: NotificationPreferenceItem[];
 }
 
 export interface NotificationPreferencesProps {
