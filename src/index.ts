@@ -492,3 +492,27 @@ export type { TagInputProps } from "./components/TagInput";
 
 export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from "./components/Marquee";
 export type { MarqueeProps, MarqueeItemProps } from "./components/Marquee";
+
+export { ImageComparison, imageComparisonVariants } from "./components/ImageComparison";
+export type { ImageComparisonProps } from "./components/ImageComparison";
+
+export { Lightbox, LightboxTrigger, lightboxVariants } from "./components/Lightbox";
+export type { LightboxProps, LightboxImage } from "./components/Lightbox";
+
+export { VideoPlayer, videoPlayerVariants } from "./components/VideoPlayer";
+export type { VideoPlayerProps } from "./components/VideoPlayer";
+
+export { CodeBlock, CodeInline, codeBlockVariants } from "./components/CodeBlock";
+export type { CodeBlockProps } from "./components/CodeBlock";
+
+export { Terminal, terminalVariants } from "./components/Terminal";
+export type { TerminalProps, TerminalLine } from "./components/Terminal";
+
+export { TimelineDisplay, timelineDisplayVariants } from "./components/TimelineDisplay";
+export type { TimelineDisplayProps, TimelineDisplayItem } from "./components/TimelineDisplay";
+
+export { Carousel, carouselVariants } from "./components/Carousel";
+export type { CarouselProps, CarouselSlide } from "./components/Carousel";
+
+export { TestimonialCard, TestimonialCardGrid, testimonialCardVariants } from "./components/TestimonialCard";
+export type { TestimonialCardProps } from "./components/TestimonialCard";
