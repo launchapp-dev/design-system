@@ -136,6 +136,17 @@ export {
 } from "./components/Form";
 export { Alert, AlertTitle, AlertDescription, alertVariants } from "./components/Alert";
 export type { AlertProps } from "./components/Alert";
+export { 
+  Banner, 
+  BannerContent,
+  BannerTitle, 
+  BannerDescription, 
+  BannerAction,
+  BannerActions,
+  BannerDismiss,
+  bannerVariants 
+} from "./components/Banner";
+export type { BannerProps, BannerActionProps } from "./components/Banner";
 export { Toaster as SonnerToaster, toast as sonnerToast } from "./components/Sonner";
 export type { ToasterProps as SonnerToasterProps } from "./components/Sonner";
 export {
