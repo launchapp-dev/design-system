@@ -557,6 +557,15 @@ export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./compone
 export { AnimatedBorder } from "./components/AnimatedBorder";
 export type { AnimatedBorderProps } from "./components/AnimatedBorder";
 
+export { BeamBorder, beamBorderVariants } from "./components/BeamBorder";
+export type { BeamBorderProps } from "./components/BeamBorder";
+
+export { GradientBorder, gradientBorderVariants } from "./components/GradientBorder";
+export type { GradientBorderProps } from "./components/GradientBorder";
+
+export { AnimatedDashBorder, animatedDashBorderVariants } from "./components/AnimatedDashBorder";
+export type { AnimatedDashBorderProps } from "./components/AnimatedDashBorder";
+
 export {
   StickySection,
   StickyHeader,
