@@ -44,9 +44,94 @@ function generateGlobalsCss(opts: {
   fontSans: string;
   fontMono: string;
 }): string {
-  return `@tailwind base;
-@tailwind components;
-@tailwind utilities;
+  return `@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-border: hsl(var(--la-border));
+  --color-input: hsl(var(--la-input));
+  --color-ring: hsl(var(--la-ring));
+  --color-background: hsl(var(--la-background));
+  --color-foreground: hsl(var(--la-foreground));
+
+  --color-primary: hsl(var(--la-primary));
+  --color-primary-foreground: hsl(var(--la-primary-foreground));
+
+  --color-secondary: hsl(var(--la-secondary));
+  --color-secondary-foreground: hsl(var(--la-secondary-foreground));
+
+  --color-destructive: hsl(var(--la-destructive));
+  --color-destructive-foreground: hsl(var(--la-destructive-foreground));
+
+  --color-muted: hsl(var(--la-muted));
+  --color-muted-foreground: hsl(var(--la-muted-foreground));
+
+  --color-accent: hsl(var(--la-accent));
+  --color-accent-foreground: hsl(var(--la-accent-foreground));
+
+  --color-popover: hsl(var(--la-popover));
+  --color-popover-foreground: hsl(var(--la-popover-foreground));
+
+  --color-card: hsl(var(--la-card));
+  --color-card-foreground: hsl(var(--la-card-foreground));
+
+  --color-chart-1: hsl(var(--la-chart-1));
+  --color-chart-2: hsl(var(--la-chart-2));
+  --color-chart-3: hsl(var(--la-chart-3));
+  --color-chart-4: hsl(var(--la-chart-4));
+  --color-chart-5: hsl(var(--la-chart-5));
+
+  --radius-lg: var(--la-radius);
+  --radius-md: calc(var(--la-radius) - 2px);
+  --radius-sm: calc(var(--la-radius) - 4px);
+
+  --font-sans: var(--la-font-sans), system-ui, sans-serif;
+  --font-mono: var(--la-font-mono), monospace;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-fade-out: fade-out 0.2s ease-out;
+  --animate-scale-in: scale-in 0.2s ease-out;
+  --animate-collapsible-down: collapsible-down 0.2s ease-out;
+  --animate-collapsible-up: collapsible-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes collapsible-down {
+  from { height: 0; }
+  to { height: var(--radix-collapsible-content-height); }
+}
+
+@keyframes collapsible-up {
+  from { height: var(--radix-collapsible-content-height); }
+  to { height: 0; }
+}
 
 @layer base {
   :root {
@@ -137,108 +222,6 @@ function generateGlobalsCss(opts: {
 `;
 }
 
-function generateTailwindConfig(opts: {
-  fontSans: string;
-  fontMono: string;
-}): string {
-  return `import type { Config } from "tailwindcss";
-
-const config: Config = {
-  content: ["./src/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}"],
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        border: "hsl(var(--la-border))",
-        input: "hsl(var(--la-input))",
-        ring: "hsl(var(--la-ring))",
-        background: "hsl(var(--la-background))",
-        foreground: "hsl(var(--la-foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--la-primary))",
-          foreground: "hsl(var(--la-primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--la-secondary))",
-          foreground: "hsl(var(--la-secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--la-destructive))",
-          foreground: "hsl(var(--la-destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--la-muted))",
-          foreground: "hsl(var(--la-muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--la-accent))",
-          foreground: "hsl(var(--la-accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--la-popover))",
-          foreground: "hsl(var(--la-popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--la-card))",
-          foreground: "hsl(var(--la-card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--la-radius)",
-        md: "calc(var(--la-radius) - 2px)",
-        sm: "calc(var(--la-radius) - 4px)",
-      },
-      fontFamily: {
-        sans: ["var(--la-font-sans)", "${opts.fontSans}", "system-ui", "sans-serif"],
-        mono: ["var(--la-font-mono)", "${opts.fontMono}", "monospace"],
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "fade-in": {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        "fade-out": {
-          from: { opacity: "1" },
-          to: { opacity: "0" },
-        },
-        "scale-in": {
-          from: { opacity: "0", transform: "scale(0.95)" },
-          to: { opacity: "1", transform: "scale(1)" },
-        },
-        "collapsible-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-collapsible-content-height)" },
-        },
-        "collapsible-up": {
-          from: { height: "var(--radix-collapsible-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.2s ease-out",
-        "fade-out": "fade-out 0.2s ease-out",
-        "scale-in": "scale-in 0.2s ease-out",
-        "collapsible-down": "collapsible-down 0.2s ease-out",
-        "collapsible-up": "collapsible-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [],
-};
-
-export default config;
-`;
-}
 
 function generateStorybookMain(projectName: string): string {
   return `import type { StorybookConfig } from "@storybook/react-vite";
@@ -318,8 +301,7 @@ export default preview;
 function generatePostcssConfig(): string {
   return `export default {
   plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
+    "@tailwindcss/postcss": {},
   },
 };
 `;
@@ -422,7 +404,6 @@ async function main(): Promise<void> {
   const primaryDarkHsl = hexToHsl(answers.primaryDarkColor as string);
 
   const globalsPath = path.join(targetDir, "src", "styles", "globals.css");
-  const tailwindPath = path.join(targetDir, "tailwind.config.ts");
   const postcssPath = path.join(targetDir, "postcss.config.js");
 
   writeFile(
@@ -431,14 +412,6 @@ async function main(): Promise<void> {
       primaryHsl,
       primaryDarkHsl,
       radius: answers.borderRadius as string,
-      fontSans: answers.fontSans as string,
-      fontMono: answers.fontMono as string,
-    })
-  );
-
-  writeFile(
-    tailwindPath,
-    generateTailwindConfig({
       fontSans: answers.fontSans as string,
       fontMono: answers.fontMono as string,
     })
@@ -460,7 +433,6 @@ async function main(): Promise<void> {
   console.log(`\n  Created project: ${answers.projectName}\n`);
   console.log("  Files generated:");
   console.log(`    ${path.relative(process.cwd(), globalsPath)}`);
-  console.log(`    ${path.relative(process.cwd(), tailwindPath)}`);
   console.log(`    ${path.relative(process.cwd(), postcssPath)}`);
 
   if (answers.includeStorybook) {
@@ -470,7 +442,7 @@ async function main(): Promise<void> {
 
   console.log("\n  Next steps:\n");
   console.log(`    cd ${answers.projectName}`);
-  console.log("    npm install @launchapp/design-system tailwindcss postcss autoprefixer");
+  console.log("    npm install @launchapp/design-system tailwindcss @tailwindcss/postcss postcss");
 
   if (answers.fontSans !== "system-ui") {
     console.log(`    # Add "${answers.fontSans}" to your HTML via Google Fonts or your font provider`);
