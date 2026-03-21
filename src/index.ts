@@ -550,3 +550,6 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+
+export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants } from "./components/Terminal";
+export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./components/Terminal";
