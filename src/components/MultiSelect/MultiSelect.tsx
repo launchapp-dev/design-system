@@ -150,7 +150,6 @@ function MultiSelect({
               aria-disabled={disabled}
               disabled={disabled}
               className="flex shrink-0 items-center rounded-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-              onClick={(e) => e.stopPropagation()}
               onKeyDown={(e) => {
                 if (!disabled && (e.key === "Enter" || e.key === " ")) {
                   e.preventDefault();
