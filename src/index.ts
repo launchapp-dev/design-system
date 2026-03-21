@@ -442,6 +442,32 @@ export { ColorPicker, colorPickerTriggerVariants, DEFAULT_PRESETS } from "./comp
 export type { ColorPickerProps } from "./components/ColorPicker";
 
 export {
+  RichTextEditor,
+  richTextEditorVariants,
+  richTextEditorToolbarButtonVariants,
+} from "./components/RichTextEditor";
+export type { RichTextEditorProps } from "./components/RichTextEditor";
+
+export {
+  PhoneInput,
+  phoneInputVariants,
+  DEFAULT_COUNTRIES,
+} from "./components/PhoneInput";
+export type { PhoneInputProps, Country } from "./components/PhoneInput";
+
+export {
+  AddressAutocomplete,
+  addressAutocompleteVariants,
+} from "./components/AddressAutocomplete";
+export type {
+  AddressAutocompleteProps,
+  AddressSuggestion,
+} from "./components/AddressAutocomplete";
+
+export { SignaturePad, signaturePadVariants } from "./components/SignaturePad";
+export type { SignaturePadProps } from "./components/SignaturePad";
+
+export {
   TiltCard,
   SpotlightCard,
   GlassCard,

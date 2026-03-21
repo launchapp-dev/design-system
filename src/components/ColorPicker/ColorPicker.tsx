@@ -165,7 +165,8 @@ function ColorPicker({
   placeholder = "Pick a color",
   variant,
   size,
-}: ColorPickerProps) {
+  ref,
+}: ColorPickerProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const [open, setOpen] = React.useState(false);
   const [format, setFormat] = React.useState<ColorFormat>("hex");
   const [hexInput, setHexInput] = React.useState(value);
@@ -246,6 +247,7 @@ function ColorPicker({
     <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
       <PopoverPrimitive.Trigger asChild>
         <button
+          ref={ref}
           disabled={disabled}
           className={cn(
             colorPickerTriggerVariants({ variant, size }),
