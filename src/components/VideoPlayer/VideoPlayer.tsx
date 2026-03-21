@@ -21,7 +21,7 @@ const videoPlayerVariants = cva(
 );
 
 export interface VideoPlayerProps
-  extends Omit<React.VideoHTMLAttributes<HTMLVideoElement>, "children">,
+  extends Omit<React.VideoHTMLAttributes<HTMLVideoElement>, "children" | "onTimeUpdate">,
     VariantProps<typeof videoPlayerVariants> {
   src: string;
   poster?: string;
@@ -199,7 +199,6 @@ function VideoPlayer({
       tabIndex={0}
       role="application"
       aria-label="Video player"
-      {...props}
     >
       <video
         ref={videoRef}
@@ -213,6 +212,7 @@ function VideoPlayer({
         onWaiting={() => setIsLoading(true)}
         onCanPlay={() => setIsLoading(false)}
         autoPlay={autoPlay}
+        {...props}
       />
 
       {isLoading && (

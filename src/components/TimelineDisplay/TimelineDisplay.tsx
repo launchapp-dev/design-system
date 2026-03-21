@@ -71,7 +71,7 @@ function TimelineDisplay({
         <TimelineDisplayItemComponent
           key={item.id}
           item={item}
-          orientation={orientation}
+          orientation={orientation ?? undefined}
           animated={animated}
           isLast={index === items.length - 1}
           onClick={() => onItemClick?.(item)}

@@ -350,7 +350,7 @@ export type { ProfileSettingsProps } from "./blocks/settings";
 export { AccountSettings } from "./blocks/settings";
 export type { AccountSettingsProps } from "./blocks/settings";
 export { NotificationPreferences } from "./blocks/settings";
-export type { NotificationPreferencesProps, NotificationGroup, NotificationItem } from "./blocks/settings";
+export type { NotificationPreferencesProps, NotificationGroup, NotificationItem as SettingsNotificationItem } from "./blocks/settings";
 export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./blocks/settings";
 
