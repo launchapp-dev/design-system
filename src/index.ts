@@ -492,3 +492,18 @@ export type { TagInputProps } from "./components/TagInput";
 
 export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from "./components/Marquee";
 export type { MarqueeProps, MarqueeItemProps } from "./components/Marquee";
+
+export {
+  Terminal,
+  TerminalOutput,
+  TerminalCommand,
+  TerminalCursor,
+  terminalVariants,
+} from "./components/Terminal";
+export type {
+  TerminalProps,
+  TerminalOutputProps,
+  TerminalCommandProps,
+  TerminalCursorProps,
+  TerminalLine,
+} from "./components/Terminal";

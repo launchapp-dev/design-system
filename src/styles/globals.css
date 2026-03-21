@@ -155,6 +155,11 @@
   to { transform: translateY(0); }
 }
 
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 @layer utilities {
   .animate-marquee-left {
     animation: marquee-left var(--marquee-duration, 30s) linear infinite;
@@ -167,6 +172,9 @@
   }
   .animate-marquee-down {
     animation: marquee-down var(--marquee-duration, 30s) linear infinite;
+  }
+  .animate-cursor-blink {
+    animation: cursor-blink 1s step-end infinite;
   }
 }
 
