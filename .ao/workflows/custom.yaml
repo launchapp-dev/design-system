@@ -152,8 +152,8 @@ agents:
       4. Compare against task requirements AND the design system criteria above.
       5. APPROVE and MERGE if all criteria pass. Mark task "done".
       6. If changes needed: gh pr review --request-changes with detailed explanation.
-    model: gemini-3.1-pro-preview
-    tool: gemini
+    model: claude-sonnet-4-6
+    tool: claude
     mcp_servers: ["ao", "context7"]
 
   a11y-auditor:
@@ -1149,21 +1149,21 @@ phases:
     mode: agent
     agent: reviewer
     directive: |
-      Sweep all open PRs for review. For each:
-      1. gh pr list --state open --json number,title,headRefName,mergeable
-      2. For each PR, get the task ID from branch name (e.g. ao/task-005 -> TASK-005).
-      3. Check mergeable: gh pr view <number> --json mergeable
-         - If "CONFLICTING": enqueue the task for rebase via ao.queue.enqueue with
-           task_id and workflow_ref="rebase-and-retry". Move to next PR.
-         - If "MERGEABLE": proceed with review.
-      4. Check for existing reviews with changes requested (gh pr view <number> --json reviews).
-         If changes requested and not yet addressed: enqueue via ao.queue.enqueue with
-         task_id and workflow_ref="rework". Move to next PR.
-      5. Run gh pr diff <number> to review code quality.
-      6. If approved: gh pr merge <number> --merge, then ao.task.status with status "done".
-      7. If changes needed:
-         - gh pr review <number> --request-changes --body "<explanation>"
-         - ao.queue.enqueue with task_id and workflow_ref="rework"
+      You MUST run gh pr list on every invocation. Do not exit without checking for open PRs.
+
+      STEP 1: Run: gh pr list --state open --json number,title,headRefName,mergeable
+      If there are no open PRs, output "No open PRs" and exit.
+
+      STEP 2: For EACH open PR (process up to 5 per run):
+        a. Extract the task ID from branch name (ao/task-XXX -> TASK-XXX)
+        b. Check mergeable status
+           - If CONFLICTING: run ao.queue.enqueue with task_id and workflow_ref="rebase-and-retry", skip to next
+        c. Run: gh pr diff <number> — read the actual code changes
+        d. Check: does the code look reasonable? No obvious errors, no empty files?
+        e. If acceptable: run gh pr merge <number> --merge, then ao.task.status --id TASK-XXX --status done
+        f. If not acceptable: run gh pr review <number> --request-changes --body "reason"
+
+      IMPORTANT: You MUST merge or review at least one PR per run. Do not exit without action.
 
   rebase-on-main:
     mode: agent
