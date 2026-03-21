@@ -145,4 +145,78 @@ function LetterReveal({ text, staggerDelay = 30, className, ref, ...props }: Let
 }
 LetterReveal.displayName = "LetterReveal";
 
-export { Typewriter, BlurIn, FadeUp, LetterReveal };
+export interface WordRevealProps extends React.HTMLAttributes<HTMLSpanElement> {
+  text: string;
+  staggerDelay?: number;
+}
+
+function WordReveal({
+  text,
+  staggerDelay = 100,
+  className,
+  ref,
+  ...props
+}: WordRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
+  const words = text.split(" ");
+  return (
+    <span
+      ref={ref}
+      className={cn("inline-block", className)}
+      aria-label={text}
+      {...props}
+    >
+      {words.map((word, i) => (
+        <span key={i} className="inline-block">
+          <span
+            aria-hidden="true"
+            className="inline-block opacity-0 animate-fade-up motion-reduce:animate-none motion-reduce:opacity-100"
+            style={{ animationDelay: `${i * staggerDelay}ms` }}
+          >
+            {word}
+          </span>
+          {i < words.length - 1 && <span aria-hidden="true"> </span>}
+        </span>
+      ))}
+    </span>
+  );
+}
+WordReveal.displayName = "WordReveal";
+
+const gradientTextVariants = cva("inline-block", {
+  variants: {
+    variant: {
+      default: "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+      primary: "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-primary)/0.7)] bg-clip-text text-transparent",
+      rainbow: "bg-gradient-to-r from-[hsl(var(--la-destructive))] via-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+      sunset: "bg-gradient-to-r from-[#f97316] via-[#ec4899] to-[#8b5cf6] bg-clip-text text-transparent",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+export interface GradientTextProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof gradientTextVariants> {}
+
+function GradientText({
+  className,
+  variant,
+  children,
+  ref,
+  ...props
+}: GradientTextProps & { ref?: React.Ref<HTMLSpanElement> }) {
+  return (
+    <span
+      ref={ref}
+      className={cn(gradientTextVariants({ variant }), className)}
+      {...props}
+    >
+      {children}
+    </span>
+  );
+}
+GradientText.displayName = "GradientText";
+
+export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText, gradientTextVariants };

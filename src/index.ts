@@ -6,8 +6,9 @@ export { builtinPalettes } from "./themes/palettes";
 export type { PaletteTokenSet, Palette } from "./themes/palettes";
 export { createTheme } from "./themes/createTheme";
 export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
-export { Typewriter, BlurIn, FadeUp, LetterReveal } from "./components/TextAnimate";
-export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps } from "./components/TextAnimate";
+export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText } from "./components/TextAnimate";
+export { gradientTextVariants } from "./components/TextAnimate";
+export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps, WordRevealProps, GradientTextProps } from "./components/TextAnimate";
 export { FadeInOnScroll, CountUp, Parallax } from "./components/ScrollAnimate";
 export type { FadeInOnScrollProps, CountUpProps, ParallaxProps } from "./components/ScrollAnimate";
 export { StaggeredList } from "./components/StaggeredList";
@@ -437,6 +438,12 @@ export type { PaletteTokens } from "./themes";
 
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
+
+export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid } from "./components/AnimatedBackground";
+export type { ParticlesProps, StarsProps, MatrixRainProps, NoiseTextureProps, AnimatedGridProps } from "./components/AnimatedBackground";
+
+export { Spotlight } from "./components/Spotlight";
+export type { SpotlightProps } from "./components/Spotlight";
 
 export {
   TiltCard,
