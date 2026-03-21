@@ -138,8 +138,17 @@ function CountUp(
     return () => observer.disconnect();
   }, [to, from, duration, threshold, prefersReducedMotion]);
 
+  const formattedFinal = `${prefix}${to.toFixed(decimals)}${suffix}`;
+
   return (
-    <span ref={setRefs} className={cn("tabular-nums", className)} {...props}>
+    <span
+      ref={setRefs}
+      className={cn("tabular-nums", className)}
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label={formattedFinal}
+      {...props}
+    >
       {prefix}
       {value.toFixed(decimals)}
       {suffix}
