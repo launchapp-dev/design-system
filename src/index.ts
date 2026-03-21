@@ -454,3 +454,15 @@ export type {
   ShimmerButtonProps,
   AnimatedBorderCardProps,
 } from "./components/MagicCard";
+
+export { AICommandBar } from "./components/AICommandBar";
+export type { AICommandBarProps, AICommandItem } from "./components/AICommandBar";
+
+export { ThinkingIndicator } from "./components/ThinkingIndicator";
+export type { ThinkingIndicatorProps, ReasoningStep } from "./components/ThinkingIndicator";
+
+export { SourceCitation } from "./components/SourceCitation";
+export type { SourceCitationProps } from "./components/SourceCitation";
+
+export { FeedbackButtons } from "./components/FeedbackButtons";
+export type { FeedbackButtonsProps } from "./components/FeedbackButtons";
