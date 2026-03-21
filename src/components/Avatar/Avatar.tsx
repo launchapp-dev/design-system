@@ -54,7 +54,10 @@ function AvatarImage({ className, alt, ref, ...props }: AvatarImageProps & { ref
 }
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
-function AvatarFallback({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Fallback>> }) {
+export interface AvatarFallbackProps
+  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> {}
+
+function AvatarFallback({ className, ref, ...props }: AvatarFallbackProps & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Fallback>> }) {
   return (
   <AvatarPrimitive.Fallback
     ref={ref}

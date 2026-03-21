@@ -53,7 +53,7 @@ export type {
 export { Checkbox, type CheckboxProps } from "./components/Checkbox";
 export { Switch, type SwitchProps } from "./components/Switch";
 export { Avatar, AvatarImage, AvatarFallback } from "./components/Avatar";
-export type { AvatarProps } from "./components/Avatar";
+export type { AvatarProps, AvatarImageProps, AvatarFallbackProps } from "./components/Avatar";
 export { Separator } from "./components/Separator";
 export type { SeparatorProps } from "./components/Separator";
 export { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "./components/Tooltip";
