@@ -6,9 +6,9 @@ export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   tabKey: string;
 }
 
-function TabPanel({ className, children, tabKey: _tabKey, ref, ...props }: TabPanelProps & { ref?: React.Ref<HTMLDivElement> }) {
+function TabPanel({ className, children, tabKey, ref, "aria-labelledby": ariaLabelledBy, ...props }: TabPanelProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
-    <div ref={ref} role="tabpanel" className={cn(className)} {...props}>
+    <div ref={ref} role="tabpanel" aria-labelledby={ariaLabelledBy ?? `tab-${tabKey}`} className={cn(className)} {...props}>
       {children}
     </div>
   );
