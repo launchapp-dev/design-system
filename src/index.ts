@@ -478,3 +478,40 @@ export type { InlineEditableProps } from "./components/InlineEditable";
 
 export { TagInput } from "./components/TagInput";
 export type { TagInputProps } from "./components/TagInput";
+
+export {
+  OfflineProvider,
+  useOffline,
+  OfflineIndicator,
+  indicatorVariants,
+} from "./components/OfflineProvider";
+export type {
+  OfflineContextValue,
+  OfflineProviderProps,
+  OfflineIndicatorProps,
+} from "./components/OfflineProvider";
+
+export { CachedDataWrapper } from "./components/OfflineProvider/CachedDataWrapper";
+export type { CachedDataWrapperProps } from "./components/OfflineProvider/CachedDataWrapper";
+
+export {
+  setCache,
+  getCache,
+  deleteCache,
+  clearCache,
+  getCacheMetadata,
+  getAllCacheKeys,
+  pruneExpiredCache,
+} from "./lib/cache";
+
+export {
+  queueMutation,
+  getPendingMutations,
+  removeMutation,
+  clearPendingMutations,
+  getPendingMutationsCount,
+  processPendingMutations,
+} from "./lib/sync";
+
+export { useCachedData } from "./lib/useCachedData";
+export { useOfflineSync } from "./lib/useOfflineSync";
