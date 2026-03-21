@@ -489,3 +489,6 @@ export type { InlineEditableProps } from "./components/InlineEditable";
 
 export { TagInput } from "./components/TagInput";
 export type { TagInputProps } from "./components/TagInput";
+
+export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from "./components/Marquee";
+export type { MarqueeProps, MarqueeItemProps } from "./components/Marquee";

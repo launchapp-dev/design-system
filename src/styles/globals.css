@@ -135,6 +135,41 @@
   to { height: 0; }
 }
 
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes marquee-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes marquee-down {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@layer utilities {
+  .animate-marquee-left {
+    animation: marquee-left var(--marquee-duration, 30s) linear infinite;
+  }
+  .animate-marquee-right {
+    animation: marquee-right var(--marquee-duration, 30s) linear infinite;
+  }
+  .animate-marquee-up {
+    animation: marquee-up var(--marquee-duration, 30s) linear infinite;
+  }
+  .animate-marquee-down {
+    animation: marquee-down var(--marquee-duration, 30s) linear infinite;
+  }
+}
+
 @layer base {
   :root {
     --la-background: 0 0% 100%;
