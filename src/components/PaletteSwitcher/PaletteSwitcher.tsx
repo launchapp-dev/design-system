@@ -38,55 +38,54 @@ function applyPaletteTokens(palette: Palette, scope: HTMLElement) {
   });
 }
 
-const PaletteSwitcher = React.forwardRef<HTMLButtonElement, PaletteSwitcherProps>(
-  (
-    {
-      palettes = builtinPalettes,
-      value,
-      defaultValue,
-      onValueChange,
-      scope,
-      size,
-      className,
-      triggerClassName,
-      ...props
+function PaletteSwitcher(
+  {
+    palettes = builtinPalettes,
+    value,
+    defaultValue,
+    onValueChange,
+    scope,
+    size,
+    className,
+    triggerClassName,
+    ref,
+    ...props
+  }: PaletteSwitcherProps & { ref?: React.Ref<HTMLButtonElement> }
+) {
+  const [internalValue, setInternalValue] = React.useState(
+    defaultValue ?? palettes[0]?.name ?? ""
+  );
+  const currentValue = value ?? internalValue;
+  const currentPalette = palettes.find((p) => p.name === currentValue) ?? palettes[0];
+
+  React.useEffect(() => {
+    const target = scope ?? document.documentElement;
+    if (currentPalette) {
+      applyPaletteTokens(currentPalette, target);
+    }
+  }, [currentPalette, scope]);
+
+  const handleValueChange = React.useCallback(
+    (newValue: string) => {
+      const palette = palettes.find((p) => p.name === newValue);
+      if (!palette) return;
+      if (value === undefined) setInternalValue(newValue);
+      onValueChange?.(newValue, palette);
     },
-    ref
-  ) => {
-    const [internalValue, setInternalValue] = React.useState(
-      defaultValue ?? palettes[0]?.name ?? ""
-    );
-    const currentValue = value ?? internalValue;
-    const currentPalette = palettes.find((p) => p.name === currentValue) ?? palettes[0];
+    [palettes, value, onValueChange]
+  );
 
-    React.useEffect(() => {
-      const target = scope ?? document.documentElement;
-      if (currentPalette) {
-        applyPaletteTokens(currentPalette, target);
-      }
-    }, [currentPalette, scope]);
-
-    const handleValueChange = React.useCallback(
-      (newValue: string) => {
-        const palette = palettes.find((p) => p.name === newValue);
-        if (!palette) return;
-        if (value === undefined) setInternalValue(newValue);
-        onValueChange?.(newValue, palette);
-      },
-      [palettes, value, onValueChange]
-    );
-
-    return (
-      <SelectPrimitive.Root
-        value={currentValue}
-        onValueChange={handleValueChange}
-        {...props}
+  return (
+    <SelectPrimitive.Root
+      value={currentValue}
+      onValueChange={handleValueChange}
+      {...props}
+    >
+      <SelectPrimitive.Trigger
+        ref={ref}
+        className={cn(paletteSwitcherTriggerVariants({ size }), triggerClassName)}
+        aria-label="Switch color palette"
       >
-        <SelectPrimitive.Trigger
-          ref={ref}
-          className={cn(paletteSwitcherTriggerVariants({ size }), triggerClassName)}
-          aria-label="Switch color palette"
-        >
           <span className="flex items-center gap-2">
             <span
               className="inline-block h-3 w-3 shrink-0 rounded-full border border-black/10"
@@ -159,9 +158,8 @@ const PaletteSwitcher = React.forwardRef<HTMLButtonElement, PaletteSwitcherProps
           </SelectPrimitive.Content>
         </SelectPrimitive.Portal>
       </SelectPrimitive.Root>
-    );
-  }
-);
+  );
+}
 
 PaletteSwitcher.displayName = "PaletteSwitcher";
 

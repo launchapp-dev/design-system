@@ -25,9 +25,9 @@ function ResizablePanelGroup({ className, ref, ...props }: GroupProps & { ref?: 
 }
 ResizablePanelGroup.displayName = "ResizablePanelGroup";
 
-const ResizablePanel = React.forwardRef<PanelImperativeHandle, PanelProps>(
-  (props, ref) => <Panel panelRef={ref} {...props} />
-);
+function ResizablePanel({ ref, ...props }: PanelProps & { ref?: React.Ref<PanelImperativeHandle> }) {
+  return <Panel panelRef={ref} {...props} />;
+}
 ResizablePanel.displayName = "ResizablePanel";
 
 interface ResizableHandleProps extends SeparatorProps {

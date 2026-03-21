@@ -2,10 +2,9 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "../../lib/utils";
 
-const Breadcrumb = React.forwardRef<
-  HTMLElement,
-  React.ComponentPropsWithoutRef<"nav"> & { separator?: React.ReactNode }
->(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
+function Breadcrumb({ ref, ...props }: React.ComponentProps<"nav"> & { separator?: React.ReactNode }) {
+  return <nav ref={ref} aria-label="breadcrumb" {...props} />;
+}
 Breadcrumb.displayName = "Breadcrumb";
 
 function BreadcrumbList({ className, ref, ...props }: React.ComponentPropsWithoutRef<"ol"> & { ref?: React.Ref<HTMLOListElement> }) {
