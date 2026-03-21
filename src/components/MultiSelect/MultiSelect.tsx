@@ -13,7 +13,7 @@ import {
 import { Badge } from "../Badge";
 
 const multiSelectTriggerVariants = cva(
-  "flex w-full cursor-pointer items-center justify-between gap-2 rounded-md border border-input bg-background text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 aria-disabled:cursor-not-allowed aria-disabled:opacity-50",
+  "flex w-full cursor-pointer items-center justify-between gap-2 rounded-md border border-input bg-background text-foreground ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 aria-disabled:cursor-not-allowed aria-disabled:opacity-50",
   {
     variants: {
       size: {
@@ -84,23 +84,11 @@ function MultiSelect({
         <PopoverTrigger asChild>
           <div
             ref={ref}
-            role="combobox"
-            tabIndex={disabled ? -1 : 0}
-            aria-expanded={open}
-            aria-haspopup="listbox"
-            aria-multiselectable="true"
-            aria-controls={listboxId}
             aria-disabled={disabled}
-            onKeyDown={(e) => {
-              if (!disabled && (e.key === "Enter" || e.key === " ")) {
-                e.preventDefault();
-                setOpen(!open);
-              }
-            }}
             className={cn(multiSelectTriggerVariants({ size }), className)}
             {...props}
           >
-            <div className="flex flex-1 flex-wrap gap-1 overflow-hidden">
+            <div className="flex flex-1 flex-wrap items-center gap-1 overflow-hidden">
               {value.length === 0 ? (
                 <span className="text-muted-foreground">{placeholder}</span>
               ) : (
@@ -151,22 +139,42 @@ function MultiSelect({
                 </>
               )}
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="shrink-0 opacity-50"
-              aria-hidden="true"
+            <button
+              type="button"
+              role="combobox"
+              tabIndex={disabled ? -1 : 0}
+              aria-expanded={open}
+              aria-haspopup="listbox"
+              aria-multiselectable="true"
+              aria-controls={listboxId}
+              aria-disabled={disabled}
+              disabled={disabled}
+              className="flex shrink-0 items-center rounded-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              onClick={(e) => e.stopPropagation()}
+              onKeyDown={(e) => {
+                if (!disabled && (e.key === "Enter" || e.key === " ")) {
+                  e.preventDefault();
+                  setOpen((prev) => !prev);
+                }
+              }}
             >
-              <path d="m7 15 5 5 5-5" />
-              <path d="m7 9 5-5 5 5" />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="opacity-50"
+                aria-hidden="true"
+              >
+                <path d="m7 15 5 5 5-5" />
+                <path d="m7 9 5-5 5 5" />
+              </svg>
+            </button>
           </div>
         </PopoverTrigger>
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
