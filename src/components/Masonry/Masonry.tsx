@@ -7,13 +7,18 @@ export interface MasonryProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const colsMap: Record<number, string> = {
   1: "columns-1",
-  2: "columns-2",
-  3: "columns-3",
-  4: "columns-4",
-  5: "columns-5",
+  2: "columns-1 sm:columns-2",
+  3: "columns-1 sm:columns-2 md:columns-3",
+  4: "columns-1 sm:columns-2 md:columns-3 lg:columns-4",
+  5: "columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5",
 };
 
-function Masonry({ className, cols = 3, ref, ...props }: MasonryProps & { ref?: React.Ref<HTMLDivElement> }) {
+function Masonry({
+  className,
+  cols = 3,
+  ref,
+  ...props
+}: MasonryProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}
