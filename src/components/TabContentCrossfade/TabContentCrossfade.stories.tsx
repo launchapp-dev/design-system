@@ -34,6 +34,7 @@ function TabBar({ active, onChange }: { active: string; onChange: (key: string) 
       {tabs.map((tab) => (
         <button
           key={tab.key}
+          id={`tab-${tab.key}`}
           onClick={() => onChange(tab.key)}
           style={{
             padding: "6px 16px",
@@ -135,6 +136,7 @@ export const WithStaggeredContent: Story = {
           {panels.map((p) => (
             <button
               key={p.key}
+              id={`tab-${p.key}`}
               onClick={() => setActive(p.key)}
               style={{
                 padding: "6px 14px",
