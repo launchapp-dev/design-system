@@ -59,8 +59,8 @@ agents:
       ENQUEUE RULES:
       - Use ao.queue.list to check current queue — NEVER enqueue duplicates.
       - Enqueue in priority order: critical first, then high, medium, low.
-    model: claude-sonnet-4-6
-    tool: claude
+    model: kimi-k2.5
+    tool: oai-runner
     mcp_servers: ["ao"]
 
   component-author:
@@ -152,8 +152,8 @@ agents:
       4. Compare against task requirements AND the design system criteria above.
       5. APPROVE and MERGE if all criteria pass. Mark task "done".
       6. If changes needed: gh pr review --request-changes with detailed explanation.
-    model: claude-sonnet-4-6
-    tool: claude
+    model: kimi-k2.5
+    tool: oai-runner
     mcp_servers: ["ao", "context7"]
 
   a11y-auditor:
@@ -304,8 +304,8 @@ agents:
       - Only create work for the NEXT phase — don't queue up Phase 5 while Phase 3 isn't done.
       - Always run RICE scoring before setting task priorities.
       - Surface OKR health (on-track / at-risk / blocked) in the task description of any new work created.
-    model: claude-sonnet-4-6
-    tool: claude
+    model: minimax/MiniMax-M2.7
+    tool: oai-runner
     mcp_servers: ["ao", "context7", "package-version"]
 
   product-strategist:
@@ -366,8 +366,8 @@ agents:
       - Always tag new work with OKR alignment (O1/O2/O3 + KR).
       - Document RICE scores in task descriptions as:
         "RICE: R=<n> I=<n> C=<n>% E=<n> → Score=<n>"
-    model: claude-sonnet-4-6
-    tool: claude
+    model: kimi-k2.5
+    tool: oai-runner
     mcp_servers: ["ao", "context7"]
 
   competitive-analyst:
@@ -489,8 +489,8 @@ agents:
       4. Drop entries whose task is already "done".
       5. Check for tasks marked "in-progress" with no active workflow. Mark them "ready".
       6. Check for merged PRs whose tasks are not "done" and mark them done.
-    model: claude-sonnet-4-6
-    tool: claude
+    model: minimax/MiniMax-M2.7
+    tool: oai-runner
     mcp_servers: ["ao"]
 
   design-advisor:
@@ -524,8 +524,8 @@ agents:
       4. Verify CVA axis naming, token usage, and dark mode.
       5. Verify forwardRef, cn(), and export completeness.
       6. Output a structured report: PASS / NEEDS CHANGES, with specific file:line citations.
-    model: claude-sonnet-4-6
-    tool: claude
+    model: kimi-k2.5
+    tool: oai-runner
     mcp_servers: ["context7"]
 
   changelog-generator:
