@@ -593,3 +593,17 @@ export type {
 
 export { Dock, dockVariants, dockItemVariants } from "./components/Dock";
 export type { DockProps, DockItemData } from "./components/Dock";
+
+export {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  CarouselDots,
+  carouselVariants,
+  carouselContentVariants,
+  carouselItemVariants,
+  carouselButtonVariants,
+} from "./components/Carousel";
+export type { CarouselProps, CarouselApi } from "./components/Carousel";
