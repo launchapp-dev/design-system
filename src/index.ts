@@ -194,6 +194,8 @@ export {
 } from "./components/Table";
 export { Skeleton } from "./components/Skeleton";
 export type { SkeletonProps } from "./components/Skeleton";
+export { ThinkingIndicator, thinkingIndicatorVariants } from "./components/ThinkingIndicator";
+export type { ThinkingIndicatorProps } from "./components/ThinkingIndicator";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/Collapsible";
 export type { CollapsibleProps, CollapsibleTriggerProps, CollapsibleContentProps } from "./components/Collapsible";
 export { DataTable } from "./components/DataTable";
