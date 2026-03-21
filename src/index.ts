@@ -524,8 +524,65 @@ export type {
 export { StatusPage, overallStatusVariants } from "./components/StatusPage";
 export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./components/StatusPage";
 
-export { Changelog, tagVariants } from "./components/Changelog";
+export { Changelog, changelogTagVariants } from "./components/Changelog";
 export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+
+export {
+  BentoGrid,
+  BentoCard,
+  BentoCardHeader,
+  BentoCardFooter,
+  bentoGridVariants,
+  bentoCardVariants,
+} from "./components/BentoGrid";
+export type {
+  BentoGridProps,
+  BentoCardProps,
+  BentoCardHeaderProps,
+  BentoCardFooterProps,
+} from "./components/BentoGrid";
+
+export { Masonry, MasonryItem, masonryVariants } from "./components/Masonry";
+export type { MasonryProps, MasonryItemProps } from "./components/Masonry";
+
+export {
+  Dock,
+  DockItem,
+  DockDivider,
+  DockLabel,
+  dockVariants,
+} from "./components/Dock";
+export type {
+  DockProps,
+  DockItemProps,
+  DockDividerProps,
+  DockLabelProps,
+} from "./components/Dock";
+
+export {
+  Globe,
+  GlobeRing,
+  globeVariants,
+} from "./components/Globe";
+export type {
+  GlobeProps,
+  GlobeLocation,
+  GlobeRingProps,
+} from "./components/Globe";
+
+export {
+  Beam,
+  BeamLine,
+  BeamDot,
+  beamContainerVariants,
+} from "./components/Beam";
+export type {
+  BeamProps,
+  BeamPoint,
+  BeamConnection,
+  BeamLineProps,
+  BeamDotProps,
+} from "./components/Beam";
