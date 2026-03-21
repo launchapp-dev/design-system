@@ -105,6 +105,7 @@ function Combobox({
                     key={option.value}
                     value={option.label}
                     disabled={option.disabled}
+                    aria-selected={option.value === value}
                     onSelect={() => {
                       onValueChange?.(option.value === value ? "" : option.value);
                       setOpen(false);
