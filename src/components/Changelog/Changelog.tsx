@@ -28,7 +28,7 @@ export interface ChangelogProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
 }
 
-const tagVariants = cva(
+const changelogTagVariants = cva(
   "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold",
   {
     variants: {
@@ -96,7 +96,7 @@ function ChangelogEntryCard({ entry }: { entry: ChangelogEntry }) {
           {entry.changes.map((change, i) => (
             <li key={i} className="flex items-start gap-2 text-sm">
               {change.tag && (
-                <span className={cn(tagVariants({ tag: change.tag }), "mt-0.5 flex-shrink-0")}>
+                <span className={cn(changelogTagVariants({ tag: change.tag }), "mt-0.5 flex-shrink-0")}>
                   {TAG_LABELS[change.tag]}
                 </span>
               )}
@@ -149,4 +149,4 @@ function Changelog({
 }
 
 Changelog.displayName = "Changelog";
-export { Changelog, tagVariants };
+export { Changelog, changelogTagVariants };
