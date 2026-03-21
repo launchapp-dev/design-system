@@ -345,6 +345,9 @@ export type { TopNavProps, TopNavItem, TopNavUser } from "./blocks/navigation";
 export { MobileNavDrawer } from "./blocks/navigation";
 export type { MobileNavDrawerProps } from "./blocks/navigation";
 
+export { MobileNav } from "./components/MobileNav";
+export type { MobileNavProps, MobileNavItem } from "./components/MobileNav";
+
 export { ProfileSettings } from "./blocks/settings";
 export type { ProfileSettingsProps } from "./blocks/settings";
 export { AccountSettings } from "./blocks/settings";

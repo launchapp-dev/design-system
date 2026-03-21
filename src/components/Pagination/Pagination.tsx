@@ -56,7 +56,7 @@ const PaginationLink = ({
       variant: isActive ? "outline" : "ghost",
       size: "icon",
     }),
-    "h-9 w-9",
+    "h-11 w-11 md:h-9 md:w-9 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0",
     className
   );
 
@@ -93,7 +93,7 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    className={cn("gap-1 pl-2.5 w-auto px-3", className)}
+    className={cn("gap-1 pl-2.5 w-auto px-3 min-h-[44px] md:min-h-0", className)}
     {...props}
   >
     <svg
@@ -111,7 +111,7 @@ const PaginationPrevious = ({
     >
       <path d="m15 18-6-6 6-6" />
     </svg>
-    <span>Previous</span>
+    <span className="hidden sm:inline">Previous</span>
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -122,10 +122,10 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
-    className={cn("gap-1 pr-2.5 w-auto px-3", className)}
+    className={cn("gap-1 pr-2.5 w-auto px-3 min-h-[44px] md:min-h-0", className)}
     {...props}
   >
-    <span>Next</span>
+    <span className="hidden sm:inline">Next</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -151,7 +151,7 @@ const PaginationEllipsis = ({
 }: React.ComponentProps<"span">) => (
   <span
     aria-hidden="true"
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    className={cn("flex h-11 w-11 items-center justify-center md:h-9 md:w-9 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0", className)}
     {...props}
   >
     <svg

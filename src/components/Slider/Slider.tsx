@@ -52,7 +52,7 @@ function Slider({ className, orientation, value, defaultValue, thumbLabels, ref,
         <SliderPrimitive.Thumb
           key={i}
           aria-label={getThumbLabel(i)}
-          className="block h-4 w-4 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+          className="block h-6 w-6 md:h-4 md:w-4 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 p-2.5 md:p-0"
         />
       ))}
     </SliderPrimitive.Root>

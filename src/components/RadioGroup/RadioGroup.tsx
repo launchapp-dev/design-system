@@ -37,9 +37,9 @@ const radioGroupItemVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-3.5 w-3.5",
-        md: "h-4 w-4",
-        lg: "h-5 w-5",
+        sm: "h-5 w-5 md:h-3.5 md:w-3.5 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 p-2.5 md:p-0",
+        md: "h-6 w-6 md:h-4 md:w-4 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 p-2.5 md:p-0",
+        lg: "h-6 w-6 min-h-[44px] min-w-[44px] p-2.5",
       },
     },
     defaultVariants: {
@@ -65,7 +65,7 @@ function RadioGroupItem({ className, size, ref, ...props }: RadioGroupItemProps 
         viewBox="0 0 8 8"
         className={cn(
           "fill-current",
-          size === "sm" ? "h-1.5 w-1.5" : size === "lg" ? "h-2.5 w-2.5" : "h-2 w-2"
+          size === "sm" ? "h-1.5 w-1.5 md:h-1.5 md:w-1.5" : size === "lg" ? "h-2.5 w-2.5" : "h-2 w-2 md:h-2 md:w-2"
         )}
       >
         <circle cx="4" cy="4" r="4" />

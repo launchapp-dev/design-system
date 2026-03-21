@@ -8,9 +8,9 @@ const selectTriggerVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-8 px-2.5 text-xs",
-        md: "h-10 px-3 py-2 text-sm",
-        lg: "h-12 px-4 text-base",
+        sm: "h-11 md:h-8 px-3 md:px-2.5 text-sm md:text-xs min-h-[44px] md:min-h-0",
+        md: "h-12 md:h-10 px-3 py-3 md:py-2 text-sm min-h-[44px] md:min-h-0",
+        lg: "h-12 px-4 text-base min-h-[44px]",
       },
     },
     defaultVariants: {
@@ -161,12 +161,12 @@ function SelectItem({ className, children, ref, ...props }: React.ComponentProps
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-4 md:py-1.5 pl-10 md:pl-8 pr-3 md:pr-2 text-base md:text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 min-h-[44px] md:min-h-0",
       className
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-3 md:left-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
         <svg
           xmlns="http://www.w3.org/2000/svg"

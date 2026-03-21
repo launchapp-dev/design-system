@@ -16,9 +16,9 @@ const comboboxTriggerVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-8 px-2.5 text-xs",
-        md: "h-10 px-3 py-2 text-sm",
-        lg: "h-12 px-4 text-base",
+        sm: "h-11 md:h-8 px-3 md:px-2.5 text-sm md:text-xs min-h-[44px] md:min-h-0",
+        md: "h-12 md:h-10 px-4 md:px-3 py-3 md:py-2 text-base md:text-sm min-h-[44px] md:min-h-0",
+        lg: "h-12 px-4 text-base min-h-[44px]",
       },
     },
     defaultVariants: {

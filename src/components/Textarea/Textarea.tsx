@@ -45,7 +45,7 @@ function Textarea({ className, resize, error, rows = 3, ref, ...props }: Textare
       <textarea
         ref={ref}
         rows={rows}
-        className={cn(textareaVariants({ resize, error }), "px-3 py-2", className)}
+        className={cn(textareaVariants({ resize, error }), "px-4 py-4 md:px-3 md:py-2 text-base md:text-sm", className)}
         aria-invalid={error || undefined}
         {...props}
       />
