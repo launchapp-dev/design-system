@@ -553,3 +553,40 @@ export type { CookieConsentProps, CookieCategory } from "./components/CookieCons
 
 export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants } from "./components/Terminal";
 export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./components/Terminal";
+
+export { AnimatedBorder } from "./components/AnimatedBorder";
+export type { AnimatedBorderProps } from "./components/AnimatedBorder";
+
+export {
+  StickySection,
+  StickyHeader,
+  HorizontalScroll,
+  ScrollProgress,
+  RevealOnScroll,
+  ScrollSnapContainer,
+  ScrollSnapItem,
+} from "./components/ScrollEffects";
+export type {
+  StickySectionProps,
+  StickyHeaderProps,
+  HorizontalScrollProps,
+  ScrollProgressProps,
+  RevealOnScrollProps,
+  ScrollSnapContainerProps,
+  ScrollSnapItemProps,
+} from "./components/ScrollEffects";
+
+export {
+  PageTransition,
+  TransitionGroup,
+  RouteTransition,
+  AnimatePresence,
+  MorphTransition,
+} from "./components/PageTransition";
+export type {
+  PageTransitionProps,
+  TransitionGroupProps,
+  RouteTransitionProps,
+  AnimatePresenceProps,
+  MorphTransitionProps,
+} from "./components/PageTransition";
