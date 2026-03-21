@@ -34,13 +34,22 @@ function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...pr
 
   return (
     <span ref={ref} className={cn("inline-block", className)} {...props}>
-      {displayed}
-      {showCursor && (
-        <span
-          aria-hidden="true"
-          className="inline-block animate-cursor-blink border-r-2 border-current ml-0.5"
-        />
-      )}
+      <span aria-hidden="true">
+        {displayed}
+        {showCursor && (
+          <span
+            aria-hidden="true"
+            className="inline-block animate-cursor-blink border-r-2 border-current ml-0.5"
+          />
+        )}
+      </span>
+      <span
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {text}
+      </span>
     </span>
   );
 }
