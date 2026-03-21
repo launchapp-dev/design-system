@@ -312,6 +312,8 @@ export { KPICard } from "./components/KPICard";
 export type { KPICardProps } from "./components/KPICard";
 export { StatDisplay } from "./components/StatDisplay";
 export type { StatDisplayProps } from "./components/StatDisplay";
+export { Sparkline, sparklineVariants } from "./components/Sparkline";
+export type { SparklineProps } from "./components/Sparkline";
 export { VisuallyHidden } from "./components/VisuallyHidden";
 export type { VisuallyHiddenProps } from "./components/VisuallyHidden";
 export { Portal } from "./components/Portal";
