@@ -439,6 +439,15 @@ export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Back
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
 
 export {
+  ChatBubble,
+  ChatBubbleGroup,
+  ChatBubbleLinkPreview,
+  chatBubbleVariants,
+  chatBubbleContentVariants,
+} from "./components/ChatBubble";
+export type { ChatBubbleProps, ChatBubbleGroupProps, LinkPreviewProps } from "./components/ChatBubble";
+
+export {
   TiltCard,
   SpotlightCard,
   GlassCard,
