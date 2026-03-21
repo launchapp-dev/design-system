@@ -454,3 +454,12 @@ export type {
   ShimmerButtonProps,
   AnimatedBorderCardProps,
 } from "./components/MagicCard";
+
+export { MultiStepWizard as AdvancedMultiStepWizard } from "./components/MultiStepWizard";
+export type { MultiStepWizardProps as AdvancedMultiStepWizardProps, WizardStep as AdvancedWizardStep } from "./components/MultiStepWizard";
+
+export { InlineEditable } from "./components/InlineEditable";
+export type { InlineEditableProps } from "./components/InlineEditable";
+
+export { TagInput } from "./components/TagInput";
+export type { TagInputProps } from "./components/TagInput";
