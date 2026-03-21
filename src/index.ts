@@ -561,6 +561,23 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
 
+export { TreeMap, treeMapVariants } from "./components/TreeMap";
+export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";
+
+export { SankeyDiagram, sankeyDiagramVariants } from "./components/SankeyDiagram";
+export type { SankeyDiagramProps, SankeyNode, SankeyLink } from "./components/SankeyDiagram";
+
+export { DashboardGrid, dashboardGridVariants } from "./components/DashboardGrid";
+export type { DashboardGridProps, DashboardWidget } from "./components/DashboardGrid";
+
+export {
+  RealtimeTicker,
+  realtimeTickerVariants,
+  tickerValueVariants,
+  tickerChangeVariants
+} from "./components/RealtimeTicker";
+export type { RealtimeTickerProps, TickerItem } from "./components/RealtimeTicker";
+
 export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants } from "./components/Terminal";
 export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./components/Terminal";
 
