@@ -492,3 +492,28 @@ export type { TagInputProps } from "./components/TagInput";
 
 export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from "./components/Marquee";
 export type { MarqueeProps, MarqueeItemProps } from "./components/Marquee";
+
+export {
+  CopilotPanel,
+  CopilotPanelTrigger,
+  CopilotPanelClose,
+  CopilotPanelHeader,
+  CopilotPanelTitle,
+  CopilotPanelDescription,
+  CopilotPanelContent,
+  CopilotPanelFooter,
+  CopilotPanelContext,
+  CopilotPanelContextList,
+  CopilotPanelSuggestions,
+  CopilotPanelSuggestion,
+  CopilotPanelDivider,
+  copilotPanelVariants,
+  copilotSuggestionVariants,
+} from "./components/CopilotPanel";
+export type {
+  CopilotPanelProps,
+  CopilotPanelContextProps,
+  CopilotPanelContextListProps,
+  CopilotSuggestionProps,
+  CopilotPanelSuggestionsProps,
+} from "./components/CopilotPanel";
