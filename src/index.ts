@@ -527,8 +527,40 @@ export type {
 export { StatusPage, overallStatusVariants } from "./components/StatusPage";
 export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./components/StatusPage";
 
-export { Changelog, tagVariants } from "./components/Changelog";
+export { Changelog, tagVariants as changelogTagVariants } from "./components/Changelog";
 export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+
+export {
+  Heatmap,
+  heatmapVariants,
+  defaultColorScales,
+  interpolateColor,
+} from "./components/Heatmap";
+export type {
+  HeatmapProps,
+  HeatmapCell,
+  ColorScale,
+  ColorScaleFunction,
+} from "./components/Heatmap";
+
+export {
+  Funnel,
+  funnelVariants,
+  funnelItemVariants,
+} from "./components/FunnelChart";
+export type {
+  FunnelProps,
+  FunnelStep,
+} from "./components/FunnelChart";
+
+export {
+  Gauge,
+  gaugeVariants,
+  needleVariants,
+} from "./components/Gauge";
+export type {
+  GaugeProps,
+} from "./components/Gauge";
