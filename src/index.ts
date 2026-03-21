@@ -136,6 +136,17 @@ export {
 } from "./components/Form";
 export { Alert, AlertTitle, AlertDescription, alertVariants } from "./components/Alert";
 export type { AlertProps } from "./components/Alert";
+export { 
+  Banner, 
+  BannerContent,
+  BannerTitle, 
+  BannerDescription, 
+  BannerAction,
+  BannerActions,
+  BannerDismiss,
+  bannerVariants 
+} from "./components/Banner";
+export type { BannerProps, BannerActionProps } from "./components/Banner";
 export { Toaster as SonnerToaster, toast as sonnerToast } from "./components/Sonner";
 export type { ToasterProps as SonnerToasterProps } from "./components/Sonner";
 export {
@@ -342,7 +353,7 @@ export type { ProfileSettingsProps } from "./blocks/settings";
 export { AccountSettings } from "./blocks/settings";
 export type { AccountSettingsProps } from "./blocks/settings";
 export { NotificationPreferences } from "./blocks/settings";
-export type { NotificationPreferencesProps, NotificationGroup, SettingsNotificationItem as SettingsNotificationItem } from "./blocks/settings";
+export type { NotificationPreferencesProps, NotificationGroup, NotificationPreferenceItem } from "./blocks/settings";
 export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./blocks/settings";
 
@@ -444,6 +455,9 @@ export {
 } from "./themes";
 export type { PaletteTokens } from "./themes";
 
+export { LiveIndicator, liveIndicatorVariants, liveDotVariants } from "./components/LiveIndicator";
+export type { LiveIndicatorProps } from "./components/LiveIndicator";
+
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
 
@@ -479,5 +493,42 @@ export type { MultiStepWizardProps as AdvancedMultiStepWizardProps, WizardStep a
 export { InlineEditable } from "./components/InlineEditable";
 export type { InlineEditableProps } from "./components/InlineEditable";
 
-export { TagInput } from "./components/TagInput";
+export { TagInput, tagInputVariants, tagVariants } from "./components/TagInput";
 export type { TagInputProps } from "./components/TagInput";
+
+export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from "./components/Marquee";
+export type { MarqueeProps, MarqueeItemProps } from "./components/Marquee";
+
+export {
+  CopilotPanel,
+  CopilotPanelTrigger,
+  CopilotPanelClose,
+  CopilotPanelHeader,
+  CopilotPanelTitle,
+  CopilotPanelDescription,
+  CopilotPanelContent,
+  CopilotPanelFooter,
+  CopilotPanelContext,
+  CopilotPanelContextList,
+  CopilotPanelSuggestions,
+  CopilotPanelSuggestion,
+  CopilotPanelDivider,
+  copilotPanelVariants,
+  copilotSuggestionVariants,
+} from "./components/CopilotPanel";
+export type {
+  CopilotPanelProps,
+  CopilotPanelContextProps,
+  CopilotPanelContextListProps,
+  CopilotSuggestionProps,
+  CopilotPanelSuggestionsProps,
+} from "./components/CopilotPanel";
+
+export { StatusPage, overallStatusVariants } from "./components/StatusPage";
+export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./components/StatusPage";
+
+export { Changelog, tagVariants } from "./components/Changelog";
+export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
+
+export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
+export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
