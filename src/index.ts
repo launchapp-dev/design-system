@@ -329,7 +329,7 @@ export type { SparklineProps } from "./components/Sparkline";
 export { VisuallyHidden } from "./components/VisuallyHidden";
 export type { VisuallyHiddenProps } from "./components/VisuallyHidden";
 export { ThinkingIndicator, thinkingIndicatorVariants } from "./components/ThinkingIndicator";
-export type { ThinkingIndicatorProps } from "./components/ThinkingIndicator";
+export type { ThinkingIndicatorProps, ReasoningStep } from "./components/ThinkingIndicator";
 export { Portal } from "./components/Portal";
 export type { PortalProps } from "./components/Portal";
 export { FocusScope } from "./components/FocusScope";
@@ -550,3 +550,12 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+
+export { AICommandBar } from "./components/AICommandBar";
+export type { AICommandBarProps, AICommandItem } from "./components/AICommandBar";
+
+export { SourceCitation } from "./components/SourceCitation";
+export type { SourceCitationProps } from "./components/SourceCitation";
+
+export { FeedbackButtons } from "./components/FeedbackButtons";
+export type { FeedbackButtonsProps } from "./components/FeedbackButtons";

@@ -20,9 +20,10 @@ const meta: Meta<typeof ThinkingIndicator> = {
       control: "text",
       description: "Optional label text",
     },
+    isThinking: { control: "boolean" },
     steps: {
       control: "object",
-      description: "Array of reasoning steps (for chain variant)",
+      description: "Array of reasoning steps (string[] for chain variant, ReasoningStep[] for collapsible reasoning)",
     },
     currentStep: {
       control: { type: "number", min: 0 },
@@ -33,6 +34,7 @@ const meta: Meta<typeof ThinkingIndicator> = {
     variant: "dots",
     size: "md",
     label: "Thinking...",
+    isThinking: true,
   },
 };
 
@@ -146,6 +148,31 @@ export const ChainAutoCycle: Story = {
   ),
 };
 
+export const WithReasoningChain: Story = {
+  args: {
+    isThinking: true,
+    label: "Analyzing",
+    steps: [
+      { label: "Searching knowledge base", status: "done" },
+      { label: "Analyzing relevant documents", status: "done" },
+      { label: "Synthesizing response", status: "active" },
+      { label: "Formatting output", status: "pending" },
+    ],
+  },
+};
+
+export const DoneThinking: Story = {
+  args: {
+    isThinking: false,
+    label: "Done",
+    steps: [
+      { label: "Searched knowledge base", status: "done" },
+      { label: "Analyzed documents", status: "done" },
+      { label: "Synthesized response", status: "done" },
+    ],
+  },
+};
+
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -163,6 +190,18 @@ export const AllVariants: Story = {
           variant="chain"
           steps={["Step 1: Analyze...", "Step 2: Process...", "Step 3: Generate..."]}
           currentStep={2}
+        />
+      </div>
+      <div>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "8px", display: "block" }}>Reasoning Steps</span>
+        <ThinkingIndicator
+          isThinking={true}
+          label="Analyzing"
+          steps={[
+            { label: "Searching...", status: "done" },
+            { label: "Processing...", status: "active" },
+            { label: "Responding...", status: "pending" },
+          ]}
         />
       </div>
     </div>
