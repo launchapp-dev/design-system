@@ -51,8 +51,6 @@ function BreadcrumbPage({ className, ref, ...props }: React.ComponentPropsWithou
   return (
   <span
     ref={ref}
-    role="link"
-    aria-disabled="true"
     aria-current="page"
     className={cn("font-normal text-[hsl(var(--la-foreground))]", className)}
     {...props}
