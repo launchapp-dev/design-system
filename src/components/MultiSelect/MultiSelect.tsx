@@ -35,7 +35,7 @@ export interface MultiSelectOption {
 }
 
 export interface MultiSelectProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "value" | "onChange">,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange">,
     VariantProps<typeof multiSelectTriggerVariants> {
   options: MultiSelectOption[];
   value?: string[];
@@ -44,6 +44,7 @@ export interface MultiSelectProps
   searchPlaceholder?: string;
   emptyText?: string;
   maxCount?: number;
+  disabled?: boolean;
 }
 
 function MultiSelect({
@@ -58,7 +59,7 @@ function MultiSelect({
       maxCount = 3,
       disabled, ref,
       ...props
-    }: MultiSelectProps & { ref?: React.Ref<HTMLButtonElement> }) {
+    }: MultiSelectProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [open, setOpen] = React.useState(false);
     const listboxId = React.useId();
 
@@ -80,15 +81,27 @@ function MultiSelect({
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <button
+          <div
             ref={ref}
             role="combobox"
             aria-expanded={open}
             aria-haspopup="listbox"
             aria-multiselectable="true"
             aria-controls={listboxId}
-            disabled={disabled}
-            className={cn(multiSelectTriggerVariants({ size }), className)}
+            aria-disabled={disabled ? true : undefined}
+            tabIndex={disabled ? -1 : 0}
+            onKeyDown={(e) => {
+              if ((e.key === "Enter" || e.key === " ") && !disabled) {
+                e.preventDefault();
+                setOpen((prev) => !prev);
+              }
+            }}
+            className={cn(
+              multiSelectTriggerVariants({ size }),
+              disabled && "cursor-not-allowed opacity-50 pointer-events-none",
+              "cursor-pointer",
+              className
+            )}
             {...props}
           >
             <div className="flex flex-1 flex-wrap gap-1 overflow-hidden">
@@ -158,7 +171,7 @@ function MultiSelect({
               <path d="m7 15 5 5 5-5" />
               <path d="m7 9 5-5 5 5" />
             </svg>
-          </button>
+          </div>
         </PopoverTrigger>
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
           <Command>
