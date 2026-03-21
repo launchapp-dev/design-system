@@ -52,38 +52,36 @@ function StaggeredItem({
   );
 }
 
-const StaggeredList = React.forwardRef<HTMLDivElement, StaggeredListProps>(
-  (
-    {
-      children,
-      staggerDelay = 80,
-      duration = 400,
-      initialDelay = 0,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const prefersReducedMotion = useReducedMotion();
+function StaggeredList(
+  {
+    children,
+    staggerDelay = 80,
+    duration = 400,
+    initialDelay = 0,
+    className,
+    ref,
+    ...props
+  }: StaggeredListProps & { ref?: React.Ref<HTMLDivElement> }
+) {
+  const prefersReducedMotion = useReducedMotion();
 
-    return (
-      <div ref={ref} className={cn("flex flex-col", className)} {...props}>
-        {React.Children.map(children, (child, i) => (
-          <StaggeredItem
-            key={i}
-            index={i}
-            staggerDelay={staggerDelay}
-            duration={duration}
-            initialDelay={initialDelay}
-            prefersReducedMotion={prefersReducedMotion}
-          >
-            {child}
-          </StaggeredItem>
-        ))}
-      </div>
-    );
-  }
-);
+  return (
+    <div ref={ref} className={cn("flex flex-col", className)} {...props}>
+      {React.Children.map(children, (child, i) => (
+        <StaggeredItem
+          key={i}
+          index={i}
+          staggerDelay={staggerDelay}
+          duration={duration}
+          initialDelay={initialDelay}
+          prefersReducedMotion={prefersReducedMotion}
+        >
+          {child}
+        </StaggeredItem>
+      ))}
+    </div>
+  );
+}
 StaggeredList.displayName = "StaggeredList";
 
 export { StaggeredList };

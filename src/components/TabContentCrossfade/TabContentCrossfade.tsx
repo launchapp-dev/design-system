@@ -6,13 +6,13 @@ export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   tabKey: string;
 }
 
-const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
-  ({ className, children, tabKey: _tabKey, ...props }, ref) => (
+function TabPanel({ className, children, tabKey: _tabKey, ref, ...props }: TabPanelProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div ref={ref} role="tabpanel" className={cn(className)} {...props}>
       {children}
     </div>
-  )
-);
+  );
+}
 TabPanel.displayName = "TabPanel";
 
 export interface TabContentCrossfadeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -21,52 +21,50 @@ export interface TabContentCrossfadeProps extends React.HTMLAttributes<HTMLDivEl
   children: React.ReactElement<TabPanelProps> | React.ReactElement<TabPanelProps>[];
 }
 
-const TabContentCrossfade = React.forwardRef<HTMLDivElement, TabContentCrossfadeProps>(
-  ({ activeKey, duration = 200, children, className, ...props }, ref) => {
-    const prefersReducedMotion = useReducedMotion();
-    const [displayedKey, setDisplayedKey] = React.useState(activeKey);
-    const [opacity, setOpacity] = React.useState(1);
-    const pendingKey = React.useRef(activeKey);
+function TabContentCrossfade({ activeKey, duration = 200, children, className, ref, ...props }: TabContentCrossfadeProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const prefersReducedMotion = useReducedMotion();
+  const [displayedKey, setDisplayedKey] = React.useState(activeKey);
+  const [opacity, setOpacity] = React.useState(1);
+  const pendingKey = React.useRef(activeKey);
 
-    React.useEffect(() => {
-      if (activeKey === displayedKey) return;
-      pendingKey.current = activeKey;
+  React.useEffect(() => {
+    if (activeKey === displayedKey) return;
+    pendingKey.current = activeKey;
 
-      if (prefersReducedMotion) {
-        setDisplayedKey(activeKey);
-        return;
-      }
+    if (prefersReducedMotion) {
+      setDisplayedKey(activeKey);
+      return;
+    }
 
-      setOpacity(0);
+    setOpacity(0);
 
-      const fadeOut = setTimeout(() => {
-        setDisplayedKey(pendingKey.current);
-        setOpacity(1);
-      }, duration);
+    const fadeOut = setTimeout(() => {
+      setDisplayedKey(pendingKey.current);
+      setOpacity(1);
+    }, duration);
 
-      return () => clearTimeout(fadeOut);
-    }, [activeKey, displayedKey, duration, prefersReducedMotion]);
+    return () => clearTimeout(fadeOut);
+  }, [activeKey, displayedKey, duration, prefersReducedMotion]);
 
-    const panels = React.Children.toArray(children) as React.ReactElement<TabPanelProps>[];
-    const activePanel = panels.find((panel) => panel.props.tabKey === displayedKey);
+  const panels = React.Children.toArray(children) as React.ReactElement<TabPanelProps>[];
+  const activePanel = panels.find((panel) => panel.props.tabKey === displayedKey);
 
-    return (
-      <div
-        ref={ref}
-        className={cn("relative", className)}
-        style={{
-          opacity,
-          transitionProperty: "opacity",
-          transitionDuration: prefersReducedMotion ? "0ms" : `${duration}ms`,
-          transitionTimingFunction: "ease-in-out",
-        }}
-        {...props}
-      >
-        {activePanel}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      ref={ref}
+      className={cn("relative", className)}
+      style={{
+        opacity,
+        transitionProperty: "opacity",
+        transitionDuration: prefersReducedMotion ? "0ms" : `${duration}ms`,
+        transitionTimingFunction: "ease-in-out",
+      }}
+      {...props}
+    >
+      {activePanel}
+    </div>
+  );
+}
 TabContentCrossfade.displayName = "TabContentCrossfade";
 
 export { TabContentCrossfade, TabPanel };

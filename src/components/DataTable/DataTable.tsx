@@ -24,6 +24,7 @@ import { Button } from "../Button";
 import { cn } from "../../lib/utils";
 
 export interface DataTableProps<TData, TValue> {
+  ref?: React.Ref<HTMLDivElement>;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   filterColumn?: string;
@@ -34,8 +35,9 @@ export interface DataTableProps<TData, TValue> {
   "aria-labelledby"?: string;
 }
 
-function DataTableInner<TData, TValue>(
+export function DataTable<TData, TValue>(
   {
+    ref,
     columns,
     data,
     filterColumn,
@@ -44,8 +46,7 @@ function DataTableInner<TData, TValue>(
     className,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledby,
-  }: DataTableProps<TData, TValue>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  }: DataTableProps<TData, TValue>
 ) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -194,9 +195,3 @@ function DataTableInner<TData, TValue>(
     </div>
   );
 }
-
-export const DataTable = React.forwardRef(DataTableInner) as <TData, TValue>(
-  props: DataTableProps<TData, TValue> & { ref?: React.ForwardedRef<HTMLDivElement> }
-) => React.ReactElement;
-
-(DataTable as React.ForwardRefExoticComponent<DataTableProps<unknown, unknown>>).displayName = "DataTable";

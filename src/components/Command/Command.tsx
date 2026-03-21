@@ -77,16 +77,15 @@ function CommandList({ className, ref, ...props }: React.ComponentPropsWithoutRe
 }
 CommandList.displayName = CommandPrimitive.List.displayName;
 
-const CommandEmpty = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Empty>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
->((props, ref) => (
-  <CommandPrimitive.Empty
-    ref={ref}
-    className="py-6 text-center text-sm text-muted-foreground"
-    {...props}
-  />
-));
+function CommandEmpty({ ref, ...props }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
+  return (
+    <CommandPrimitive.Empty
+      ref={ref}
+      className="py-6 text-center text-sm text-muted-foreground"
+      {...props}
+    />
+  );
+}
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
 
 function CommandGroup({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group> & { ref?: React.Ref<React.ComponentRef<typeof CommandPrimitive.Group>> }) {
