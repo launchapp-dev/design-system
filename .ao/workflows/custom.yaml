@@ -1211,17 +1211,21 @@ phases:
     mode: agent
     agent: planner
     directive: |
-      QUEUE BALANCE (CHECK FIRST):
-      1. Use ao.queue.list to check current queue size.
-      2. If queue has 10 or more entries (pending + assigned), STOP. Do not enqueue anything.
-         The queue is full — wait for tasks to complete before adding more.
-      3. Only enqueue enough tasks to bring the queue up to 10, not beyond.
+      PR BACKLOG CHECK (FIRST):
+      1. Run: gh pr list --state open --json number | wc -l
+      2. If there are 5 or more open PRs, STOP. Do not enqueue anything.
+         Let the reviewer merge existing PRs before creating more work.
 
-      ENQUEUE PROCESS (only if queue < 10):
-      4. Use ao.task.list to get all tasks. Parse "Depends on:" lines in descriptions.
-      5. Only enqueue tasks whose dependencies are ALL "done" and not already queued.
-      6. Enqueue in priority order: critical first, then high, medium, low.
-      7. Use "component" workflow for new component tasks, "scaffold" for infra/config, "quick-fix" for bugfixes.
+      QUEUE BALANCE (CHECK SECOND):
+      3. Use ao.queue.list to check current queue size.
+      4. If queue has 10 or more entries (pending + assigned), STOP.
+      5. Only enqueue enough tasks to bring the queue up to 10, not beyond.
+
+      ENQUEUE PROCESS (only if open PRs < 5 AND queue < 10):
+      6. Use ao.task.list to get all tasks. Parse "Depends on:" lines in descriptions.
+      7. Only enqueue tasks whose dependencies are ALL "done" and not already queued.
+      8. Enqueue in priority order: critical first, then high, medium, low.
+      9. Use "component" workflow for new component tasks, "scaffold" for infra/config, "quick-fix" for bugfixes.
 
   a11y-audit:
     mode: agent
