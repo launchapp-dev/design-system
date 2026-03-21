@@ -452,6 +452,9 @@ export {
 } from "./themes";
 export type { PaletteTokens } from "./themes";
 
+export { LiveIndicator, liveIndicatorVariants, liveDotVariants } from "./components/LiveIndicator";
+export type { LiveIndicatorProps } from "./components/LiveIndicator";
+
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
 
@@ -517,3 +520,12 @@ export type {
   CopilotSuggestionProps,
   CopilotPanelSuggestionsProps,
 } from "./components/CopilotPanel";
+
+export { StatusPage, overallStatusVariants } from "./components/StatusPage";
+export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./components/StatusPage";
+
+export { Changelog, tagVariants } from "./components/Changelog";
+export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
+
+export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
+export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
