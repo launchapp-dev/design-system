@@ -490,7 +490,7 @@ export type { MultiStepWizardProps as AdvancedMultiStepWizardProps, WizardStep a
 export { InlineEditable } from "./components/InlineEditable";
 export type { InlineEditableProps } from "./components/InlineEditable";
 
-export { TagInput } from "./components/TagInput";
+export { TagInput, tagInputVariants, tagVariants } from "./components/TagInput";
 export type { TagInputProps } from "./components/TagInput";
 
 export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from "./components/Marquee";
