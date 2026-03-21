@@ -1,18 +1,25 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import { Popover, PopoverContent, PopoverAnchor } from "../Popover";
+import { Badge } from "../Badge";
+import { Input } from "../Input";
 
 const tagInputVariants = cva(
-  "flex flex-wrap items-center gap-1.5 min-h-10 w-full rounded-md border bg-background px-3 py-2 text-sm transition-colors",
+  "flex flex-wrap gap-1.5 rounded-md border bg-background p-2 transition-colors focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
   {
     variants: {
+      size: {
+        sm: "min-h-8 text-xs",
+        md: "min-h-10 text-sm",
+        lg: "min-h-12 text-base",
+      },
       error: {
         true: "border-destructive focus-within:ring-destructive",
-        false: "border-input focus-within:ring-ring",
+        false: "border-input",
       },
     },
     defaultVariants: {
+      size: "md",
       error: false,
     },
   }
@@ -34,214 +41,286 @@ const tagVariants = cva(
   }
 );
 
-export interface TagInputProps extends VariantProps<typeof tagInputVariants> {
-  value: string[];
-  onChange: (value: string[]) => void;
-  suggestions?: string[];
-  placeholder?: string;
-  disabled?: boolean;
-  allowCreate?: boolean;
-  maxTags?: number;
-  className?: string;
-  tagVariant?: VariantProps<typeof tagVariants>["variant"];
-  "aria-label"?: string;
+export interface TagInputTag {
+  id: string;
+  label: string;
+  value: string;
 }
 
-function TagInput({
-  value,
-  onChange,
-  suggestions = [],
-  placeholder = "Add tag…",
-  disabled = false,
-  allowCreate = true,
-  maxTags,
-  className,
-  error,
-  tagVariant = "default",
-  "aria-label": ariaLabel,
-}: TagInputProps) {
-  const [inputValue, setInputValue] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-  const [highlightedIndex, setHighlightedIndex] = React.useState<number>(-1);
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
+export interface TagInputProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "value">,
+    VariantProps<typeof tagInputVariants> {
+  value: string[] | TagInputTag[];
+  onChange: (tags: string[] | TagInputTag[]) => void;
+  suggestions?: string[] | TagInputTag[];
+  onSuggestionSelect?: (tag: string | TagInputTag) => void;
+  placeholder?: string;
+  maxTags?: number;
+  allowCreate?: boolean;
+  createLabel?: string;
+  disabled?: boolean;
+  delimiter?: string;
+  tagVariant?: VariantProps<typeof tagVariants>["variant"];
+}
 
-  const isAtMax = maxTags !== undefined && value.length >= maxTags;
+function createTagFromString(label: string): TagInputTag {
+  const id = `tag-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  return { id, label, value: label.toLowerCase().replace(/\s+/g, "-") };
+}
+
+function isTagInputTagArray(arr: unknown[]): arr is TagInputTag[] {
+  return arr.length > 0 && typeof arr[0] === "object" && "id" in (arr[0] as TagInputTag);
+}
+
+function TagInput(
+  {
+    value,
+    onChange,
+    suggestions = [],
+    onSuggestionSelect,
+    placeholder = "Add tag...",
+    maxTags,
+    allowCreate = true,
+    createLabel = "Create",
+    disabled = false,
+    delimiter = ",",
+    size = "md",
+    error,
+    tagVariant = "default",
+    className,
+    ...props
+  }: TagInputProps,
+  ref: React.ForwardedRef<HTMLDivElement>
+) {
+  const [inputValue, setInputValue] = React.useState("");
+  const [showSuggestions, setShowSuggestions] = React.useState(false);
+  const [highlightedIndex, setHighlightedIndex] = React.useState(0);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const listboxRef = React.useRef<HTMLUListElement>(null);
+
+  const isObjectMode = isTagInputTagArray(value as TagInputTag[]);
+
+  const normalizeSuggestions = React.useMemo(() => {
+    if (isTagInputTagArray(suggestions as TagInputTag[])) {
+      return suggestions as TagInputTag[];
+    }
+    return (suggestions as string[]).map((s) => createTagFromString(s));
+  }, [suggestions]);
+
+  const normalizedValue = React.useMemo(() => {
+    if (isObjectMode) {
+      return value as TagInputTag[];
+    }
+    return (value as string[]).map((s) => createTagFromString(s));
+  }, [value, isObjectMode]);
 
   const filteredSuggestions = React.useMemo(() => {
-    const q = inputValue.trim().toLowerCase();
-    if (!q) return [];
-    return suggestions.filter(
-      (s) =>
-        s.toLowerCase().includes(q) &&
-        !value.includes(s)
+    if (!inputValue.trim()) return [];
+    const query = inputValue.toLowerCase().trim();
+    const existingIds = new Set(normalizedValue.map((t) => t.value));
+    return normalizeSuggestions.filter(
+      (s) => !existingIds.has(s.value) && s.label.toLowerCase().includes(query)
     );
-  }, [inputValue, suggestions, value]);
+  }, [inputValue, normalizeSuggestions, normalizedValue]);
 
-  const canCreate =
-    allowCreate &&
-    inputValue.trim().length > 0 &&
-    !value.includes(inputValue.trim()) &&
-    !suggestions.includes(inputValue.trim());
+  const canAddTag = !maxTags || normalizedValue.length < maxTags;
 
-  const listItems: string[] = [
-    ...filteredSuggestions,
-    ...(canCreate ? [`Create "${inputValue.trim()}"`] : []),
-  ];
-
-  const addTag = (tag: string) => {
-    const trimmed = tag.trim();
-    if (!trimmed || value.includes(trimmed) || isAtMax) return;
-    onChange([...value, trimmed]);
-    setInputValue("");
-    setOpen(false);
-    setHighlightedIndex(-1);
-    inputRef.current?.focus();
-  };
-
-  const removeTag = (tag: string) => {
-    onChange(value.filter((t) => t !== tag));
-    inputRef.current?.focus();
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    setHighlightedIndex(-1);
-    setOpen(e.target.value.trim().length > 0);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault();
-      if (highlightedIndex >= 0 && highlightedIndex < listItems.length) {
-        const item = listItems[highlightedIndex];
-        if (item !== undefined) {
-          const isCreate = item.startsWith('Create "');
-          addTag(isCreate ? inputValue.trim() : item);
-        }
-      } else if (inputValue.trim()) {
-        addTag(inputValue.trim());
+  const addTag = React.useCallback(
+    (tag: TagInputTag) => {
+      if (!canAddTag) return;
+      const exists = normalizedValue.some((t) => t.value === tag.value);
+      if (!exists) {
+        const newValue = isObjectMode 
+          ? [...normalizedValue, tag]
+          : [...(value as string[]), tag.label];
+        onChange(newValue);
+        onSuggestionSelect?.(isObjectMode ? tag : tag.label);
       }
-    } else if (e.key === "Backspace" && inputValue === "" && value.length > 0) {
-      removeTag(value[value.length - 1] as string);
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setHighlightedIndex((i) => Math.min(i + 1, listItems.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setHighlightedIndex((i) => Math.max(i - 1, -1));
-    } else if (e.key === "Escape") {
-      setOpen(false);
-      setHighlightedIndex(-1);
-    }
-  };
+      setInputValue("");
+      setShowSuggestions(false);
+      setHighlightedIndex(0);
+    },
+    [canAddTag, normalizedValue, value, isObjectMode, onChange, onSuggestionSelect]
+  );
 
-  const handleContainerClick = () => {
-    if (!disabled) inputRef.current?.focus();
-  };
+  const removeTag = React.useCallback(
+    (tagId: string) => {
+      if (isObjectMode) {
+        onChange((value as TagInputTag[]).filter((t) => t.id !== tagId));
+      } else {
+        const tag = normalizedValue.find((t) => t.id === tagId);
+        if (tag) {
+          onChange((value as string[]).filter((v) => v !== tag.label));
+        }
+      }
+    },
+    [normalizedValue, value, isObjectMode, onChange]
+  );
+
+  const handleInputChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setInputValue(newValue);
+      setShowSuggestions(true);
+      setHighlightedIndex(0);
+
+      if (delimiter && newValue.includes(delimiter)) {
+        const parts = newValue.split(delimiter);
+        const tags = parts
+          .map((p) => p.trim())
+          .filter((p) => p.length > 0)
+          .map(createTagFromString);
+        tags.forEach(addTag);
+      }
+    },
+    [delimiter, addTag]
+  );
+
+  const handleKeyDown = React.useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Backspace" && !inputValue && normalizedValue.length > 0) {
+        e.preventDefault();
+        removeTag(normalizedValue[normalizedValue.length - 1].id);
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const maxIndex = allowCreate && inputValue
+          ? filteredSuggestions.length
+          : filteredSuggestions.length - 1;
+        setHighlightedIndex((prev) => Math.min(prev + 1, maxIndex));
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setHighlightedIndex((prev) => Math.max(prev - 1, 0));
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (filteredSuggestions.length > 0 && highlightedIndex < filteredSuggestions.length) {
+          addTag(filteredSuggestions[highlightedIndex]);
+        } else if (allowCreate && inputValue.trim()) {
+          addTag(createTagFromString(inputValue.trim()));
+        }
+      } else if (e.key === "Escape") {
+        setShowSuggestions(false);
+        setHighlightedIndex(0);
+      }
+    },
+    [inputValue, normalizedValue, filteredSuggestions, highlightedIndex, allowCreate, addTag, removeTag]
+  );
+
+  const handleFocus = React.useCallback(() => {
+    if (inputValue.trim()) {
+      setShowSuggestions(true);
+    }
+  }, [inputValue]);
+
+  const handleBlur = React.useCallback((e: React.FocusEvent) => {
+    if (!containerRef.current?.contains(e.relatedTarget as Node)) {
+      setShowSuggestions(false);
+      setHighlightedIndex(0);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (listboxRef.current) {
+      const highlightedItem = listboxRef.current.children[highlightedIndex] as HTMLElement;
+      highlightedItem?.scrollIntoView({ block: "nearest" });
+    }
+  }, [highlightedIndex]);
 
   return (
-    <div ref={containerRef}>
-      <Popover open={open && listItems.length > 0} onOpenChange={setOpen}>
-        <PopoverAnchor asChild>
-          <div
-            role="group"
-            aria-label={ariaLabel ?? "Tag input"}
-            onClick={handleContainerClick}
+    <div
+      ref={containerRef}
+      className={cn("relative", className)}
+      onBlur={handleBlur}
+      {...props}
+    >
+      <div
+        ref={ref}
+        className={cn(tagInputVariants({ size, error }), disabled && "opacity-50 cursor-not-allowed")}
+      >
+        {normalizedValue.map((tag) => (
+          <Badge
+            key={tag.id}
+            variant="secondary"
             className={cn(
-              tagInputVariants({ error }),
-              "focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 cursor-text",
-              disabled && "pointer-events-none opacity-50",
-              className
+              "flex items-center gap-1 pr-1",
+              size === "sm" && "text-xs",
+              size === "lg" && "text-base",
+              tagVariant === "default" && "bg-primary/10 text-primary hover:bg-primary/20",
+              tagVariant === "outline" && "border border-border text-foreground hover:bg-accent"
             )}
           >
-            {value.map((tag) => (
-              <span key={tag} className={cn(tagVariants({ variant: tagVariant }))}>
-                {tag}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    removeTag(tag);
-                  }}
-                  aria-label={`Remove tag ${tag}`}
-                  className="ml-0.5 rounded-full hover:bg-black/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                </button>
-              </span>
-            ))}
-            {!isAtMax && (
-              <input
-                ref={inputRef}
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyDown}
-                onBlur={() => setTimeout(() => setOpen(false), 150)}
-                onFocus={() => {
-                  if (inputValue.trim() && listItems.length > 0) setOpen(true);
-                }}
-                placeholder={value.length === 0 ? placeholder : ""}
-                disabled={disabled}
-                aria-autocomplete="list"
-                aria-expanded={open}
-                className="flex-1 min-w-[120px] bg-transparent outline-none placeholder:text-muted-foreground text-sm"
-              />
-            )}
-          </div>
-        </PopoverAnchor>
-        <PopoverContent
-          className="p-1 w-[var(--radix-popover-trigger-width)]"
-          align="start"
-          sideOffset={4}
-          onOpenAutoFocus={(e) => e.preventDefault()}
+            <span>{tag.label}</span>
+            <button
+              type="button"
+              onClick={() => removeTag(tag.id)}
+              disabled={disabled}
+              className="ml-1 rounded-sm hover:bg-foreground/20 focus:outline-none focus:ring-1 focus:ring-ring"
+              aria-label={`Remove ${tag.label}`}
+            >
+              <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </Badge>
+        ))}
+        {canAddTag && (
+          <Input
+            ref={inputRef}
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            onFocus={handleFocus}
+            placeholder={normalizedValue.length === 0 ? placeholder : ""}
+            disabled={disabled}
+            className="h-auto flex-1 min-w-[120px] border-0 bg-transparent p-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            aria-label="Add tag"
+            aria-expanded={showSuggestions}
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            aria-activedescendant={showSuggestions ? `tag-option-${highlightedIndex}` : undefined}
+          />
+        )}
+      </div>
+
+      {showSuggestions && (filteredSuggestions.length > 0 || (allowCreate && inputValue.trim())) && (
+        <ul
+          ref={listboxRef}
+          role="listbox"
+          className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md border bg-popover shadow-md"
         >
-          <ul role="listbox" className="max-h-48 overflow-y-auto">
-            {listItems.map((item, i) => {
-              const isCreate = item.startsWith('Create "');
-              return (
-                <li key={item} role="option" aria-selected={i === highlightedIndex}>
-                  <button
-                    type="button"
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      addTag(isCreate ? inputValue.trim() : item);
-                    }}
-                    onMouseEnter={() => setHighlightedIndex(i)}
-                    className={cn(
-                      "w-full text-left px-2 py-1.5 rounded-sm text-sm transition-colors",
-                      "hover:bg-accent hover:text-accent-foreground",
-                      i === highlightedIndex && "bg-accent text-accent-foreground",
-                      isCreate && "text-primary font-medium"
-                    )}
-                  >
-                    {item}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </PopoverContent>
-      </Popover>
-      {maxTags !== undefined && (
-        <p className="mt-1 text-xs text-muted-foreground" aria-live="polite">
-          {value.length}/{maxTags} tags
-        </p>
+          {filteredSuggestions.map((suggestion, index) => (
+            <li
+              key={suggestion.id}
+              id={`tag-option-${index}`}
+              role="option"
+              aria-selected={highlightedIndex === index}
+              className={cn(
+                "px-3 py-2 cursor-pointer",
+                highlightedIndex === index && "bg-accent text-accent-foreground"
+              )}
+              onClick={() => addTag(suggestion)}
+              onMouseEnter={() => setHighlightedIndex(index)}
+            >
+              {suggestion.label}
+            </li>
+          ))}
+          {allowCreate && inputValue.trim() && filteredSuggestions.every((s) => s.label !== inputValue.trim()) && (
+            <li
+              id={`tag-option-${filteredSuggestions.length}`}
+              role="option"
+              aria-selected={highlightedIndex === filteredSuggestions.length}
+              className={cn(
+                "px-3 py-2 cursor-pointer border-t",
+                highlightedIndex === filteredSuggestions.length && "bg-accent text-accent-foreground"
+              )}
+              onClick={() => addTag(createTagFromString(inputValue.trim()))}
+              onMouseEnter={() => setHighlightedIndex(filteredSuggestions.length)}
+            >
+              <span className="text-muted-foreground">{createLabel}: </span>
+              <span className="font-medium">{inputValue.trim()}</span>
+            </li>
+          )}
+        </ul>
       )}
     </div>
   );
@@ -249,4 +328,5 @@ function TagInput({
 
 TagInput.displayName = "TagInput";
 
-export { TagInput };
+export { TagInput, tagInputVariants, createTagFromString };
+export type { TagInputTag };

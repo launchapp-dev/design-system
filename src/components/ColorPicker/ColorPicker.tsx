@@ -1,284 +1,376 @@
 import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "../Popover";
+import { Input } from "../Input";
+import { Button } from "../Button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../Popover";
 
-type ColorMode = "hex" | "rgb" | "hsl";
+const colorPickerVariants = cva("", {
+  variants: {
+    size: {
+      sm: "h-8 w-8",
+      md: "h-10 w-10",
+      lg: "h-12 w-12",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
-const DEFAULT_PRESETS = [
-  "#ef4444", "#f97316", "#eab308", "#22c55e",
-  "#3b82f6", "#8b5cf6", "#ec4899", "#14b8a6",
-  "#64748b", "#1e293b", "#ffffff", "#000000",
+interface ColorPreset {
+  label: string;
+  value: string;
+}
+
+const defaultPresets: ColorPreset[] = [
+  { label: "Red", value: "#EF4444" },
+  { label: "Orange", value: "#F97316" },
+  { label: "Amber", value: "#F59E0B" },
+  { label: "Yellow", value: "#EAB308" },
+  { label: "Lime", value: "#84CC16" },
+  { label: "Green", value: "#22C55E" },
+  { label: "Emerald", value: "#10B981" },
+  { label: "Teal", value: "#14B8A6" },
+  { label: "Cyan", value: "#06B6D4" },
+  { label: "Sky", value: "#0EA5E9" },
+  { label: "Blue", value: "#3B82F6" },
+  { label: "Indigo", value: "#6366F1" },
+  { label: "Violet", value: "#8B5CF6" },
+  { label: "Purple", value: "#A855F7" },
+  { label: "Fuchsia", value: "#D946EF" },
+  { label: "Pink", value: "#EC4899" },
+  { label: "Rose", value: "#F43F5E" },
+  { label: "Slate", value: "#64748B" },
+  { label: "Gray", value: "#6B7280" },
+  { label: "Zinc", value: "#71717A" },
+  { label: "Neutral", value: "#737373" },
+  { label: "Stone", value: "#78716C" },
+  { label: "Black", value: "#000000" },
+  { label: "White", value: "#FFFFFF" },
 ];
 
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+type ColorFormat = "hex" | "rgb" | "hsl";
+
+interface RGB {
+  r: number;
+  g: number;
+  b: number;
+}
+
+interface HSL {
+  h: number;
+  s: number;
+  l: number;
+}
+
+interface ParsedColor {
+  rgb: RGB;
+  hex: string;
+  hsl: HSL;
+}
+
+function hexToRgb(hex: string): RGB | null {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
-    ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
     : null;
 }
 
-function rgbToHex(r: number, g: number, b: number): string {
-  return "#" + [r, g, b]
-    .map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, "0"))
-    .join("");
+function rgbToHex(rgb: RGB): string {
+  const toHex = (n: number) => {
+    const hex = Math.round(Math.max(0, Math.min(255, n))).toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  };
+  return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
 }
 
-function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
-  const rn = r / 255, gn = g / 255, bn = b / 255;
-  const max = Math.max(rn, gn, bn), min = Math.min(rn, gn, bn);
+function rgbToHsl(rgb: RGB): HSL {
+  const r = rgb.r / 255;
+  const g = rgb.g / 255;
+  const b = rgb.b / 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let h = 0;
+  let s = 0;
   const l = (max + min) / 2;
-  let h = 0, s = 0;
+
   if (max !== min) {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
     switch (max) {
-      case rn: h = ((gn - bn) / d + (gn < bn ? 6 : 0)) / 6; break;
-      case gn: h = ((bn - rn) / d + 2) / 6; break;
-      case bn: h = ((rn - gn) / d + 4) / 6; break;
+      case r:
+        h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+        break;
+      case g:
+        h = ((b - r) / d + 2) / 6;
+        break;
+      case b:
+        h = ((r - g) / d + 4) / 6;
+        break;
     }
   }
-  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
-}
 
-function hslToRgb(h: number, s: number, l: number): { r: number; g: number; b: number } {
-  const hn = h / 360, sn = s / 100, ln = l / 100;
-  if (sn === 0) {
-    const v = Math.round(ln * 255);
-    return { r: v, g: v, b: v };
-  }
-  const hue2rgb = (p: number, q: number, t: number) => {
-    if (t < 0) t += 1;
-    if (t > 1) t -= 1;
-    if (t < 1 / 6) return p + (q - p) * 6 * t;
-    if (t < 1 / 2) return q;
-    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-    return p;
-  };
-  const q = ln < 0.5 ? ln * (1 + sn) : ln + sn - ln * sn;
-  const p = 2 * ln - q;
   return {
-    r: Math.round(hue2rgb(p, q, hn + 1 / 3) * 255),
-    g: Math.round(hue2rgb(p, q, hn) * 255),
-    b: Math.round(hue2rgb(p, q, hn - 1 / 3) * 255),
+    h: Math.round(h * 360),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100),
   };
 }
 
-function clamp(v: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, v));
+function hslToRgb(hsl: HSL): RGB {
+  const h = hsl.h / 360;
+  const s = hsl.s / 100;
+  const l = hsl.l / 100;
+
+  let r, g, b;
+
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    const hue2rgb = (p: number, q: number, t: number) => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    };
+
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1 / 3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1 / 3);
+  }
+
+  return {
+    r: Math.round(r * 255),
+    g: Math.round(g * 255),
+    b: Math.round(b * 255),
+  };
 }
 
-const EyeDropperIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M17.5 3 21 6.5l-8.5 8.5L9 11.5 17.5 3z" />
-    <path d="m16 7 1.5 1.5" />
-    <path d="M9.96 11.25 3 18.21V21h2.79l6.96-6.96" />
-  </svg>
-);
+function parseColor(value: string): ParsedColor | null {
+  let rgb: RGB | null = null;
 
-export interface ColorPickerProps {
-  value?: string;
-  onChange?: (value: string) => void;
-  presets?: string[];
-  disabled?: boolean;
-  className?: string;
-}
-
-function ColorPicker({
-  value = "#3b82f6",
-  onChange,
-  presets = DEFAULT_PRESETS,
-  disabled,
-  className,
-  ref,
-}: ColorPickerProps & { ref?: React.Ref<HTMLButtonElement> }) {
-  const [open, setOpen] = React.useState(false);
-  const [mode, setMode] = React.useState<ColorMode>("hex");
-
-  const [hexInput, setHexInput] = React.useState(() => value);
-  const [rgbInput, setRgbInput] = React.useState(() => hexToRgb(value) ?? { r: 59, g: 130, b: 246 });
-  const [hslInput, setHslInput] = React.useState(() => {
-    const rgb = hexToRgb(value);
-    return rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : { h: 217, s: 91, l: 60 };
-  });
-
-  const [eyedropperSupported] = React.useState(
-    () => typeof window !== "undefined" && "EyeDropper" in window
-  );
-
-  const syncFromHex = React.useCallback((hex: string) => {
-    setHexInput(hex);
-    const rgb = hexToRgb(hex);
-    if (rgb) {
-      setRgbInput(rgb);
-      setHslInput(rgbToHsl(rgb.r, rgb.g, rgb.b));
+  if (value.startsWith("#")) {
+    rgb = hexToRgb(value);
+  } else if (value.startsWith("rgb")) {
+    const match = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+      rgb = {
+        r: parseInt(match[1]),
+        g: parseInt(match[2]),
+        b: parseInt(match[3]),
+      };
     }
-  }, []);
+  } else if (value.startsWith("hsl")) {
+    const match = value.match(/hsla?\((\d+),\s*(\d+)%,\s*(\d+)%/);
+    if (match) {
+      rgb = hslToRgb({
+        h: parseInt(match[1]),
+        s: parseInt(match[2]),
+        l: parseInt(match[3]),
+      });
+    }
+  }
+
+  if (!rgb) return null;
+
+  return {
+    rgb,
+    hex: rgbToHex(rgb),
+    hsl: rgbToHsl(rgb),
+  };
+}
+
+export interface ColorPickerProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "value">,
+    VariantProps<typeof colorPickerVariants> {
+  value: string;
+  onChange: (value: string) => void;
+  presets?: ColorPreset[];
+  format?: ColorFormat;
+  showEyedropper?: boolean;
+  showInput?: boolean;
+  disabled?: boolean;
+}
+
+function ColorPicker(
+  {
+    value,
+    onChange,
+    presets = defaultPresets,
+    format = "hex",
+    showEyedropper = true,
+    showInput = true,
+    disabled = false,
+    size,
+    className,
+    ...props
+  }: ColorPickerProps,
+  ref: React.ForwardedRef<HTMLDivElement>
+) {
+  const [open, setOpen] = React.useState(false);
+  const [currentFormat, setCurrentFormat] = React.useState<ColorFormat>(format);
+  const [internalColor, setInternalColor] = React.useState(() => parseColor(value) || parseColor("#000000")!);
 
   React.useEffect(() => {
-    syncFromHex(value);
-  }, [value, syncFromHex]);
-
-  const commit = (hex: string) => {
-    syncFromHex(hex);
-    onChange?.(hex);
-  };
-
-  const handleHexChange = (raw: string) => {
-    setHexInput(raw);
-    const hex = raw.startsWith("#") ? raw : `#${raw}`;
-    if (/^#[0-9a-fA-F]{6}$/.test(hex)) {
-      commit(hex);
+    const parsed = parseColor(value);
+    if (parsed) {
+      setInternalColor(parsed);
     }
-  };
+  }, [value]);
 
-  const handleRgbChange = (channel: "r" | "g" | "b", raw: string) => {
-    const n = parseInt(raw, 10);
-    const next = { ...rgbInput, [channel]: isNaN(n) ? 0 : clamp(n, 0, 255) };
-    setRgbInput(next);
-    commit(rgbToHex(next.r, next.g, next.b));
-  };
+  const handleColorChange = React.useCallback(
+    (hex: string) => {
+      const parsed = parseColor(hex);
+      if (parsed) {
+        setInternalColor(parsed);
+        onChange(hex);
+      }
+    },
+    [onChange]
+  );
 
-  const handleHslChange = (channel: "h" | "s" | "l", raw: string) => {
-    const n = parseInt(raw, 10);
-    const max = channel === "h" ? 360 : 100;
-    const next = { ...hslInput, [channel]: isNaN(n) ? 0 : clamp(n, 0, max) };
-    setHslInput(next);
-    const rgb = hslToRgb(next.h, next.s, next.l);
-    commit(rgbToHex(rgb.r, rgb.g, rgb.b));
-  };
+  const handleEyedropper = React.useCallback(async () => {
+    if (!("EyeDropper" in window)) {
+      console.warn("EyeDropper API not supported");
+      return;
+    }
 
-  const handleEyedropper = async () => {
     try {
-      type EyeDropperAPI = { open: () => Promise<{ sRGBHex: string }> };
-      const dropper = new (window as unknown as { EyeDropper: new () => EyeDropperAPI }).EyeDropper();
-      const result = await dropper.open();
-      commit(result.sRGBHex);
-    } catch {
+      const eyeDropper = new (window as any).EyeDropper();
+      const result = await eyeDropper.open();
+      handleColorChange(result.sRGBHex);
+    } catch (e) {
+      // User cancelled or error
     }
-  };
+  }, [handleColorChange]);
+
+  const formatColorValue = React.useCallback(
+    (rgb: RGB, hex: string, hsl: HSL, fmt: ColorFormat): string => {
+      switch (fmt) {
+        case "rgb":
+          return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        case "hsl":
+          return `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+        default:
+          return hex;
+      }
+    },
+    []
+  );
+
+  const displayValue = formatColorValue(
+    internalColor.rgb,
+    internalColor.hex,
+    internalColor.hsl,
+    currentFormat
+  );
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <button
-          ref={ref}
-          disabled={disabled}
-          aria-label={`Color picker, current color ${value}`}
-          aria-haspopup="dialog"
-          aria-expanded={open}
-          className={cn(
-            "flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-input ring-offset-background",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            "disabled:cursor-not-allowed disabled:opacity-50",
-            className
-          )}
-          style={{ backgroundColor: value }}
-        />
-      </PopoverTrigger>
-      <PopoverContent className="w-64 p-3" align="start">
-        <div className="space-y-3">
-          <div className="grid grid-cols-6 gap-1.5">
-            {presets.map((preset) => (
-              <button
-                key={preset}
-                aria-label={`Select color ${preset}`}
-                onClick={() => commit(preset)}
-                className={cn(
-                  "h-7 w-7 rounded border border-border transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  value.toLowerCase() === preset.toLowerCase() && "ring-2 ring-ring ring-offset-1"
-                )}
-                style={{ backgroundColor: preset }}
-              />
-            ))}
-          </div>
+    <div ref={ref} className={cn("inline-block", className)} {...props}>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            disabled={disabled}
+            className={cn(
+              colorPickerVariants({ size }),
+              "rounded-md border border-input overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            )}
+            style={{ backgroundColor: internalColor.hex }}
+            aria-label={`Choose color. Current: ${internalColor.hex}`}
+          >
+            <span className="sr-only">{internalColor.hex}</span>
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-64" align="start">
+          <div className="space-y-4">
+            <div className="grid grid-cols-6 gap-1.5">
+              {presets.map((preset) => (
+                <button
+                  key={preset.value}
+                  type="button"
+                  className={cn(
+                    "h-6 w-6 rounded border transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
+                    internalColor.hex.toUpperCase() === preset.value.toUpperCase() &&
+                      "ring-2 ring-ring ring-offset-1"
+                  )}
+                  style={{ backgroundColor: preset.value }}
+                  onClick={() => handleColorChange(preset.value)}
+                  aria-label={preset.label}
+                  title={preset.label}
+                />
+              ))}
+            </div>
 
-          <div className="flex rounded-md border border-input text-xs overflow-hidden">
-            {(["hex", "rgb", "hsl"] as ColorMode[]).map((m) => (
-              <button
-                key={m}
-                onClick={() => setMode(m)}
-                className={cn(
-                  "flex-1 py-1 font-medium uppercase transition-colors",
-                  mode === m
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-muted"
-                )}
-              >
-                {m}
-              </button>
-            ))}
-          </div>
+            {showInput && (
+              <div className="space-y-2">
+                <div className="flex gap-1">
+                  {(["hex", "rgb", "hsl"] as const).map((fmt) => (
+                    <button
+                      key={fmt}
+                      type="button"
+                      onClick={() => setCurrentFormat(fmt)}
+                      className={cn(
+                        "flex-1 px-2 py-1 text-xs rounded border transition-colors",
+                        currentFormat === fmt
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "border-input hover:bg-accent"
+                      )}
+                    >
+                      {fmt.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+                <Input
+                  value={displayValue}
+                  onChange={(e) => {
+                    const parsed = parseColor(e.target.value);
+                    if (parsed) {
+                      handleColorChange(parsed.hex);
+                    }
+                  }}
+                  className="font-mono text-sm"
+                  aria-label="Color value"
+                />
+              </div>
+            )}
 
-          <div className="flex items-center gap-1.5">
-            {mode === "hex" && (
-              <input
-                aria-label="Hex color value"
-                value={hexInput}
-                onChange={(e) => handleHexChange(e.target.value)}
-                maxLength={7}
-                spellCheck={false}
-                className="h-8 w-full rounded-md border border-input bg-background px-2 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-            )}
-            {mode === "rgb" && (
-              <>
-                {(["r", "g", "b"] as const).map((ch) => (
-                  <div key={ch} className="flex flex-col items-center gap-0.5 flex-1">
-                    <input
-                      aria-label={`RGB ${ch.toUpperCase()} channel`}
-                      type="number"
-                      min={0}
-                      max={255}
-                      value={rgbInput[ch]}
-                      onChange={(e) => handleRgbChange(ch, e.target.value)}
-                      className="h-8 w-full rounded-md border border-input bg-background px-1 text-xs text-center font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    />
-                    <span className="text-[10px] text-muted-foreground uppercase">{ch}</span>
-                  </div>
-                ))}
-              </>
-            )}
-            {mode === "hsl" && (
-              <>
-                {(["h", "s", "l"] as const).map((ch) => (
-                  <div key={ch} className="flex flex-col items-center gap-0.5 flex-1">
-                    <input
-                      aria-label={`HSL ${ch.toUpperCase()} channel`}
-                      type="number"
-                      min={0}
-                      max={ch === "h" ? 360 : 100}
-                      value={hslInput[ch]}
-                      onChange={(e) => handleHslChange(ch, e.target.value)}
-                      className="h-8 w-full rounded-md border border-input bg-background px-1 text-xs text-center font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    />
-                    <span className="text-[10px] text-muted-foreground uppercase">{ch}</span>
-                  </div>
-                ))}
-              </>
-            )}
-            {eyedropperSupported && (
-              <button
-                aria-label="Pick color from screen"
+            {showEyedropper && "EyeDropper" in window && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full"
                 onClick={handleEyedropper}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-input bg-background text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors"
               >
-                <EyeDropperIcon />
-              </button>
+                <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                Pick from screen
+              </Button>
             )}
           </div>
-
-          <div
-            className="h-8 w-full rounded-md border border-input"
-            style={{ backgroundColor: value }}
-            aria-label={`Color preview: ${value}`}
-            role="img"
-          />
-        </div>
-      </PopoverContent>
-    </Popover>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }
 
 ColorPicker.displayName = "ColorPicker";
 
-export { ColorPicker };
+export { ColorPicker, colorPickerVariants, defaultPresets };
+export type { ColorPreset, RGB, HSL, ParsedColor };

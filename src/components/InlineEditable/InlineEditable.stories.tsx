@@ -1,69 +1,121 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { useForm, Controller } from "react-hook-form";
-import { InlineEditable } from "./index";
+import type { Meta, StoryObj } from "@storybook/react";
+import { InlineEditable } from "./InlineEditable";
 
 const meta: Meta<typeof InlineEditable> = {
   title: "Components/InlineEditable",
   component: InlineEditable,
+  tags: ["autodocs"],
   argTypes: {
-    size: { control: "select", options: ["sm", "md", "lg"] },
-    disabled: { control: "boolean" },
-    multiline: { control: "boolean" },
+    variant: {
+      control: "select",
+      options: ["default", "underline", "ghost"],
+    },
+    size: {
+      control: "select",
+      options: ["sm", "md", "lg"],
+    },
+    editOnDoubleClick: {
+      control: "boolean",
+    },
+    editable: {
+      control: "boolean",
+    },
+    multiline: {
+      control: "boolean",
+    },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof InlineEditable>;
 
 export const Default: Story = {
-  render: () => {
-    const [value, setValue] = React.useState("Click me to edit this text");
-    return (
-      <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "8px" }}>
-          Click the text below to edit it. Press Enter or click away to save, Escape to cancel.
-        </p>
-        <InlineEditable value={value} onChange={setValue} />
-        <p style={{ marginTop: "12px", fontSize: "12px", color: "hsl(var(--muted-foreground))" }}>
-          Current value: <strong>{value}</strong>
-        </p>
-      </div>
-    );
+  args: {
+    value: "Click to edit",
+    onChange: (value) => console.log("Changed:", value),
+    onCommit: (value) => console.log("Committed:", value),
+  },
+};
+
+export const UnderlineVariant: Story = {
+  args: {
+    value: "Hover for underline effect",
+    variant: "underline",
+    onChange: (value) => console.log("Changed:", value),
+  },
+};
+
+export const GhostVariant: Story = {
+  args: {
+    value: "No visible hover state",
+    variant: "ghost",
+    onChange: (value) => console.log("Changed:", value),
+  },
+};
+
+export const Small: Story = {
+  args: {
+    value: "Small editable text",
+    size: "sm",
+    onChange: (value) => console.log("Changed:", value),
+  },
+};
+
+export const Large: Story = {
+  args: {
+    value: "Large editable text",
+    size: "lg",
+    onChange: (value) => console.log("Changed:", value),
+  },
+};
+
+export const Placeholder: Story = {
+  args: {
+    value: "",
+    placeholder: "Click to add text...",
+    onChange: (value) => console.log("Changed:", value),
+  },
+};
+
+export const NotEditable: Story = {
+  args: {
+    value: "This text cannot be edited",
+    editable: false,
+    onChange: () => {},
+  },
+};
+
+export const DoubleClickToEdit: Story = {
+  args: {
+    value: "Double-click to edit",
+    editOnDoubleClick: true,
+    onChange: (value) => console.log("Changed:", value),
+  },
+};
+
+export const WithMaxLength: Story = {
+  args: {
+    value: "Limited to 20 characters",
+    maxLength: 20,
+    onChange: (value) => console.log("Changed:", value),
   },
 };
 
 export const Multiline: Story = {
-  render: () => {
-    const [value, setValue] = React.useState("This is a multiline editable field.\nPress Escape to cancel or click away to save.");
-    return (
-      <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "8px" }}>
-          Multiline mode — click to open a textarea.
-        </p>
-        <InlineEditable value={value} onChange={setValue} multiline />
-      </div>
-    );
-  },
-};
-
-export const WithPlaceholder: Story = {
-  render: () => {
-    const [value, setValue] = React.useState("");
-    return (
-      <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <InlineEditable value={value} onChange={setValue} placeholder="Add a description…" />
-      </div>
-    );
+  args: {
+    value: "This is a multiline editable field.\nPress Escape to cancel or click away to save.",
+    multiline: true,
+    onChange: (value) => console.log("Changed:", value),
   },
 };
 
 export const Disabled: Story = {
-  render: () => (
-    <div style={{ padding: "40px", maxWidth: "400px" }}>
-      <InlineEditable value="This field is read-only" onChange={() => {}} disabled />
-    </div>
-  ),
+  args: {
+    value: "This field is read-only",
+    editable: false,
+    onChange: () => {},
+  },
 };
 
 export const Sizes: Story = {
@@ -81,31 +133,70 @@ export const Sizes: Story = {
   },
 };
 
-export const WithReactHookForm: Story = {
-  render: () => {
-    const { control, watch } = useForm({ defaultValues: { title: "My Document Title" } });
-    const title = watch("title");
-    return (
-      <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "8px" }}>
-          Controlled via react-hook-form:
-        </p>
-        <Controller
-          control={control}
-          name="title"
-          render={({ field }) => (
-            <InlineEditable
-              value={field.value}
-              onChange={field.onChange}
-              size="lg"
-              aria-label="Document title"
-            />
-          )}
+function InteractiveExample() {
+  const [text, setText] = React.useState("Hello World");
+  const [savedText, setSavedText] = React.useState<string | null>(null);
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <span className="text-sm text-muted-foreground">Current value: </span>
+        <InlineEditable
+          value={text}
+          onChange={setText}
+          onCommit={(value) => {
+            setSavedText(value);
+            console.log("Saved:", value);
+          }}
         />
-        <p style={{ marginTop: "12px", fontSize: "12px", color: "hsl(var(--muted-foreground))" }}>
-          Form value: <strong>{title}</strong>
-        </p>
       </div>
-    );
-  },
+      {savedText && (
+        <p className="text-sm text-muted-foreground">
+          Last saved: {savedText}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export const Interactive: Story = {
+  render: () => <InteractiveExample />,
+};
+
+function MultipleFields() {
+  const [fields, setFields] = React.useState({
+    name: "John Doe",
+    email: "john@example.com",
+    phone: "+1 234 567 8900",
+  });
+
+  return (
+    <div className="space-y-2">
+      <div className="flex gap-2">
+        <span className="text-sm font-medium w-16">Name:</span>
+        <InlineEditable
+          value={fields.name}
+          onChange={(v) => setFields({ ...fields, name: v })}
+        />
+      </div>
+      <div className="flex gap-2">
+        <span className="text-sm font-medium w-16">Email:</span>
+        <InlineEditable
+          value={fields.email}
+          onChange={(v) => setFields({ ...fields, email: v })}
+        />
+      </div>
+      <div className="flex gap-2">
+        <span className="text-sm font-medium w-16">Phone:</span>
+        <InlineEditable
+          value={fields.phone}
+          onChange={(v) => setFields({ ...fields, phone: v })}
+        />
+      </div>
+    </div>
+  );
+}
+
+export const MultipleFieldsExample: Story = {
+  render: () => <MultipleFields />,
 };

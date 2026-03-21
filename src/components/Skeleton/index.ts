@@ -1,2 +1,1 @@
-export { Skeleton } from "./Skeleton";
-export type { SkeletonProps } from "./Skeleton";
+export { Skeleton, type SkeletonProps } from "./Skeleton";

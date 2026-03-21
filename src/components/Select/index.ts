@@ -9,6 +9,16 @@ export {
   SelectSeparator,
   SelectScrollUpButton,
   SelectScrollDownButton,
+  type SelectRootProps,
+  type SelectGroupProps,
+  type SelectValueProps,
+  type SelectTriggerProps,
+  type SelectContentProps,
+  type SelectLabelProps,
+  type SelectItemProps,
+  type SelectSeparatorProps,
+  type SelectScrollUpButtonProps,
+  type SelectScrollDownButtonProps,
 } from "./Select";
 export type {
   SelectRootProps,

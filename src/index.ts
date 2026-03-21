@@ -54,14 +54,37 @@ export { Checkbox, type CheckboxProps } from "./components/Checkbox";
 export { Switch, type SwitchProps } from "./components/Switch";
 export { Avatar, AvatarImage, AvatarFallback } from "./components/Avatar";
 export type { AvatarProps } from "./components/Avatar";
-export { Separator } from "./components/Separator";
-export type { SeparatorProps } from "./components/Separator";
-export { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "./components/Tooltip";
-export type { TooltipProviderProps, TooltipRootProps, TooltipTriggerProps, TooltipContentProps } from "./components/Tooltip";
-export { TabsRoot, TabsList, TabsTrigger, TabsContent } from "./components/Tabs";
-export type { TabsRootProps, TabsListProps, TabsTriggerProps, TabsContentProps } from "./components/Tabs";
-export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "./components/Accordion";
-export type { AccordionRootProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from "./components/Accordion";
+export { Separator, type SeparatorProps } from "./components/Separator";
+export {
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+  TooltipContent,
+  type TooltipProviderProps,
+  type TooltipRootProps,
+  type TooltipTriggerProps,
+  type TooltipContentProps,
+} from "./components/Tooltip";
+export {
+  TabsRoot,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  type TabsRootProps,
+  type TabsListProps,
+  type TabsTriggerProps,
+  type TabsContentProps,
+} from "./components/Tabs";
+export {
+  AccordionRoot,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  type AccordionRootProps,
+  type AccordionItemProps,
+  type AccordionTriggerProps,
+  type AccordionContentProps,
+} from "./components/Accordion";
 export {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -147,6 +170,22 @@ export {
   bannerVariants 
 } from "./components/Banner";
 export type { BannerProps, BannerActionProps } from "./components/Banner";
+export { FormWizard, wizardVariants } from "./components/FormWizard";
+export type { FormWizardProps, FormWizardStep, WizardFormData } from "./components/FormWizard";
+export { InlineEditable, inlineEditVariants } from "./components/InlineEditable";
+export type { InlineEditableProps } from "./components/InlineEditable";
+export { TagInput, tagInputVariants } from "./components/TagInput";
+export type { TagInputProps, TagInputTag } from "./components/TagInput";
+export { ColorPicker, colorPickerVariants, defaultPresets } from "./components/ColorPicker";
+export type { ColorPickerProps } from "./components/ColorPicker";
+export { RichTextEditor, richTextEditorVariants } from "./components/RichTextEditor";
+export type { RichTextEditorProps } from "./components/RichTextEditor";
+export { PhoneNumberInput, phoneInputVariants, defaultCountries } from "./components/PhoneNumberInput";
+export type { PhoneNumberInputProps, Country } from "./components/PhoneNumberInput";
+export { AddressAutocomplete, addressAutocompleteVariants } from "./components/AddressAutocomplete";
+export type { AddressAutocompleteProps, AddressSuggestion, AddressValue } from "./components/AddressAutocomplete";
+export { SignaturePad, signaturePadVariants } from "./components/SignaturePad";
+export type { SignaturePadProps } from "./components/SignaturePad";
 export { Toaster as SonnerToaster, toast as sonnerToast } from "./components/Sonner";
 export type { ToasterProps as SonnerToasterProps } from "./components/Sonner";
 export {
@@ -183,16 +222,21 @@ export {
   SheetTitle,
   SheetDescription,
 } from "./components/Sheet";
-export { ScrollArea, ScrollBar } from "./components/ScrollArea";
-export type { ScrollAreaProps, ScrollBarProps } from "./components/ScrollArea";
-export { AspectRatio } from "./components/AspectRatio";
-export type { AspectRatioProps } from "./components/AspectRatio";
+export {
+  ScrollArea,
+  ScrollBar,
+  type ScrollAreaProps,
+  type ScrollBarProps,
+} from "./components/ScrollArea";
+export { AspectRatio, type AspectRatioProps } from "./components/AspectRatio";
 export {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
+  type ResizablePanelGroupProps,
+  type ResizablePanelProps,
+  type ResizableHandleProps,
 } from "./components/Resizable";
-export type { ResizablePanelGroupProps, ResizablePanelProps, ResizableHandleProps } from "./components/Resizable";
 export {
   Table,
   TableHeader,
@@ -203,10 +247,15 @@ export {
   TableCell,
   TableCaption,
 } from "./components/Table";
-export { Skeleton } from "./components/Skeleton";
-export type { SkeletonProps } from "./components/Skeleton";
-export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/Collapsible";
-export type { CollapsibleProps, CollapsibleTriggerProps, CollapsibleContentProps } from "./components/Collapsible";
+export { Skeleton, type SkeletonProps } from "./components/Skeleton";
+export {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+  type CollapsibleProps,
+  type CollapsibleTriggerProps,
+  type CollapsibleContentProps,
+} from "./components/Collapsible";
 export { DataTable } from "./components/DataTable";
 export type { DataTableProps } from "./components/DataTable";
 export {
@@ -483,9 +532,3 @@ export type {
 
 export { MultiStepWizard as AdvancedMultiStepWizard } from "./components/MultiStepWizard";
 export type { MultiStepWizardProps as AdvancedMultiStepWizardProps, WizardStep as AdvancedWizardStep } from "./components/MultiStepWizard";
-
-export { InlineEditable } from "./components/InlineEditable";
-export type { InlineEditableProps } from "./components/InlineEditable";
-
-export { TagInput } from "./components/TagInput";
-export type { TagInputProps } from "./components/TagInput";

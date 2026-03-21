@@ -1,6 +1,30 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { Input } from "../Input";
+import { Button } from "../Button";
+
+const inlineEditVariants = cva(
+  "group inline-flex items-center gap-1 rounded px-1 py-0.5 transition-colors",
+  {
+    variants: {
+      variant: {
+        default: "hover:bg-accent/50",
+        underline: "hover:underline decoration-dashed underline-offset-4",
+        ghost: "",
+      },
+      size: {
+        sm: "text-sm",
+        md: "text-base",
+        lg: "text-lg",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+    },
+  }
+);
 
 const inlineEditableVariants = cva(
   "w-full rounded transition-colors",
@@ -19,138 +43,225 @@ const inlineEditableVariants = cva(
 );
 
 export interface InlineEditableProps
-  extends VariantProps<typeof inlineEditableVariants> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">,
+    VariantProps<typeof inlineEditVariants> {
   value: string;
   onChange: (value: string) => void;
+  onCommit?: (value: string) => void;
+  onCancel?: () => void;
   placeholder?: string;
-  disabled?: boolean;
-  className?: string;
   inputClassName?: string;
+  editable?: boolean;
+  editOnDoubleClick?: boolean;
+  selectAllOnFocus?: boolean;
+  maxLength?: number;
   multiline?: boolean;
-  onEditStart?: () => void;
-  onEditEnd?: (value: string) => void;
-  "aria-label"?: string;
 }
 
-function InlineEditable({
-  value,
-  onChange,
-  placeholder = "Click to edit…",
-  disabled = false,
-  className,
-  inputClassName,
-  size,
-  multiline = false,
-  onEditStart,
-  onEditEnd,
-  "aria-label": ariaLabel,
-}: InlineEditableProps) {
-  const [editing, setEditing] = React.useState(false);
-  const [draft, setDraft] = React.useState(value);
+function InlineEditable(
+  {
+    value,
+    onChange,
+    onCommit,
+    onCancel,
+    placeholder = "Click to edit",
+    inputClassName,
+    editable = true,
+    editOnDoubleClick = false,
+    selectAllOnFocus = true,
+    maxLength,
+    variant = "default",
+    size = "md",
+    className,
+    multiline = false,
+    ...props
+  }: InlineEditableProps,
+  ref: React.ForwardedRef<HTMLDivElement>
+) {
+  const [isEditing, setIsEditing] = React.useState(false);
+  const [localValue, setLocalValue] = React.useState(value);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   React.useEffect(() => {
-    if (editing) {
-      setDraft(value);
+    setLocalValue(value);
+  }, [value]);
+
+  const handleStartEdit = React.useCallback(() => {
+    if (!editable) return;
+    setIsEditing(true);
+    setLocalValue(value);
+  }, [editable, value]);
+
+  const handleCommit = React.useCallback(() => {
+    setIsEditing(false);
+    onChange(localValue);
+    onCommit?.(localValue);
+  }, [localValue, onChange, onCommit]);
+
+  const handleCancel = React.useCallback(() => {
+    setIsEditing(false);
+    setLocalValue(value);
+    onCancel?.();
+  }, [value, onCancel]);
+
+  const handleKeyDown = React.useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (e.key === "Enter" && !multiline) {
+        e.preventDefault();
+        handleCommit();
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        handleCancel();
+      }
+    },
+    [handleCommit, handleCancel, multiline]
+  );
+
+  const handleFocus = React.useCallback(() => {
+    if (selectAllOnFocus) {
+      inputRef.current?.select();
+    }
+  }, [selectAllOnFocus]);
+
+  React.useEffect(() => {
+    if (isEditing) {
       if (multiline) {
         textareaRef.current?.focus();
         textareaRef.current?.select();
       } else {
         inputRef.current?.focus();
-        inputRef.current?.select();
       }
     }
-  }, [editing, value, multiline]);
+  }, [isEditing, multiline]);
 
-  const handleStart = () => {
-    if (disabled) return;
-    setEditing(true);
-    onEditStart?.();
-  };
+  if (!isEditing) {
+    return (
+      <div
+        ref={ref}
+        className={cn(inlineEditVariants({ variant, size }), className)}
+        onClick={editOnDoubleClick ? undefined : handleStartEdit}
+        onDoubleClick={editOnDoubleClick ? handleStartEdit : undefined}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleStartEdit();
+          }
+        }}
+        role="button"
+        tabIndex={editable ? 0 : undefined}
+        aria-label={`Edit: ${value || placeholder}`}
+        {...props}
+      >
+        <span className={cn(!value && "text-muted-foreground italic")}>
+          {value || placeholder}
+        </span>
+        {editable && (
+          <svg
+            className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+            />
+          </svg>
+        )}
+      </div>
+    );
+  }
 
-  const handleCommit = () => {
-    setEditing(false);
-    onChange(draft);
-    onEditEnd?.(draft);
-  };
-
-  const handleCancel = () => {
-    setEditing(false);
-    setDraft(value);
-    onEditEnd?.(value);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !multiline) {
-      e.preventDefault();
-      handleCommit();
-    } else if (e.key === "Escape") {
-      e.preventDefault();
-      handleCancel();
-    }
-  };
-
-  const displayValue = value || placeholder;
-  const isPlaceholder = !value;
-
-  const sharedInputClass = cn(
-    inlineEditableVariants({ size }),
-    "bg-background border border-ring px-2 py-1 outline-none",
-    "focus:ring-2 focus:ring-ring focus:ring-offset-1",
-    inputClassName
-  );
-
-  if (editing) {
-    if (multiline) {
-      return (
+  if (multiline) {
+    return (
+      <div className={cn("inline-flex flex-col gap-1 w-full", className)} ref={ref}>
         <textarea
           ref={textareaRef}
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onBlur={handleCommit}
+          value={localValue}
+          onChange={(e) => setLocalValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          aria-label={ariaLabel}
-          className={cn(sharedInputClass, "resize-none min-h-[80px]", className)}
+          onBlur={handleCancel}
+          maxLength={maxLength}
+          className={cn(
+            inlineEditableVariants({ size }),
+            "bg-background border border-ring px-2 py-1 outline-none resize-none min-h-[80px]",
+            "focus:ring-2 focus:ring-ring focus:ring-offset-1",
+            inputClassName
+          )}
           rows={3}
+          aria-label="Edit value"
         />
-      );
-    }
-    return (
-      <input
-        ref={inputRef}
-        type="text"
-        value={draft}
-        onChange={(e) => setDraft(e.target.value)}
-        onBlur={handleCommit}
-        onKeyDown={handleKeyDown}
-        aria-label={ariaLabel}
-        className={cn(sharedInputClass, className)}
-      />
+        <div className="inline-flex gap-1 self-end">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={handleCommit}
+          >
+            Save
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={handleCancel}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
     );
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleStart}
-      disabled={disabled}
-      aria-label={ariaLabel ?? `Edit: ${displayValue}`}
-      className={cn(
-        inlineEditableVariants({ size }),
-        "text-left w-full px-2 py-1 rounded",
-        "hover:bg-accent hover:text-accent-foreground",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
-        "disabled:pointer-events-none disabled:opacity-50",
-        isPlaceholder && "text-muted-foreground italic",
-        className
-      )}
-    >
-      {displayValue}
-    </button>
+    <div className={cn("inline-flex items-center gap-1", className)} ref={ref}>
+      <Input
+        ref={inputRef}
+        value={localValue}
+        onChange={(e) => setLocalValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleCancel}
+        maxLength={maxLength}
+        className={cn("h-auto py-0.5 px-1", size === "sm" && "text-sm", size === "lg" && "text-lg", inputClassName)}
+        aria-label="Edit value"
+      />
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        className="h-6 w-6"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={handleCommit}
+        aria-label="Save"
+      >
+        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      </Button>
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        className="h-6 w-6"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={handleCancel}
+        aria-label="Cancel"
+      >
+        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </Button>
+    </div>
   );
 }
 
 InlineEditable.displayName = "InlineEditable";
 
-export { InlineEditable };
+export { InlineEditable, inlineEditVariants };

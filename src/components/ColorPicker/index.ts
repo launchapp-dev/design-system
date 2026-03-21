@@ -1,2 +1,2 @@
-export { ColorPicker } from "./ColorPicker";
-export type { ColorPickerProps } from "./ColorPicker";
+export { ColorPicker, colorPickerVariants, defaultPresets } from "./ColorPicker";
+export type { ColorPickerProps, ColorPreset, RGB, HSL, ParsedColor } from "./ColorPicker";
