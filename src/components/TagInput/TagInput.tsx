@@ -329,4 +329,3 @@ function TagInput(
 TagInput.displayName = "TagInput";
 
 export { TagInput, tagInputVariants, createTagFromString };
-export type { TagInputTag };

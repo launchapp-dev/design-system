@@ -20,15 +20,3 @@ export {
   type SelectScrollUpButtonProps,
   type SelectScrollDownButtonProps,
 } from "./Select";
-export type {
-  SelectRootProps,
-  SelectGroupProps,
-  SelectValueProps,
-  SelectTriggerProps,
-  SelectContentProps,
-  SelectLabelProps,
-  SelectItemProps,
-  SelectSeparatorProps,
-  SelectScrollUpButtonProps,
-  SelectScrollDownButtonProps,
-} from "./Select";
