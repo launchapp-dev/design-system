@@ -538,7 +538,7 @@ export type {
 export { StatusPage, overallStatusVariants } from "./components/StatusPage";
 export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./components/StatusPage";
 
-export { Changelog, tagVariants } from "./components/Changelog";
+export { Changelog, changelogTagVariants } from "./components/Changelog";
 export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
