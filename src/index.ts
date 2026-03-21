@@ -308,6 +308,22 @@ export type {
   AreaChartProps,
   PieChartProps,
 } from "./components/Chart";
+export { Heatmap, heatmapVariants } from "./components/Heatmap";
+export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
+export { FunnelChart, funnelVariants } from "./components/FunnelChart";
+export type { FunnelChartProps, FunnelStage } from "./components/FunnelChart";
+export { Gauge, gaugeVariants } from "./components/Gauge";
+export type { GaugeProps } from "./components/Gauge";
+export { Sparkline, sparklineVariants } from "./components/Sparkline";
+export type { SparklineProps, SparklineDataPoint } from "./components/Sparkline";
+export { TreeMap, treeMapVariants } from "./components/TreeMap";
+export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";
+export { SankeyDiagram, sankeyVariants } from "./components/SankeyDiagram";
+export type { SankeyDiagramProps, SankeyData, SankeyNode, SankeyLink } from "./components/SankeyDiagram";
+export { DashboardGrid, dashboardGridVariants } from "./components/DashboardGrid";
+export type { DashboardGridProps, DashboardWidget } from "./components/DashboardGrid";
+export { DataTicker, dataTickerVariants } from "./components/DataTicker";
+export type { DataTickerProps, TickerItem } from "./components/DataTicker";
 export { KPICard } from "./components/KPICard";
 export type { KPICardProps } from "./components/KPICard";
 export { StatDisplay } from "./components/StatDisplay";
