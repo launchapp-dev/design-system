@@ -28,6 +28,28 @@ export type { CardProps, CardHeaderProps, CardTitleProps, CardDescriptionProps, 
 export { Badge, badgeVariants } from "./components/Badge";
 export type { BadgeProps } from "./components/Badge";
 export {
+  BentoGrid,
+  BentoGridItem,
+  bentoGridVariants,
+  BentoCard,
+  BentoCardTitle,
+  BentoCardDescription,
+  BentoCardContent,
+  BentoCardFooter,
+  BentoCardIcon,
+  bentoCardVariants,
+  Masonry,
+  MasonryItem,
+  masonryVariants,
+} from "./components/BentoGrid";
+export type {
+  BentoGridProps,
+  BentoGridItemProps,
+  BentoCardProps,
+  MasonryProps,
+  MasonryItemProps,
+} from "./components/BentoGrid";
+export {
   SelectRoot,
   SelectGroup,
   SelectValue,
