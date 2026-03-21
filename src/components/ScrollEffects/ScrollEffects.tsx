@@ -1,15 +1,6 @@
 import * as React from "react";
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import { cn } from "../../lib/utils";
-
-function usePrefersReducedMotion() {
-  return React.useMemo(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
-  );
-}
+import { useReducedMotion } from "../../lib/animation";
 
 export interface StickySectionProps extends React.HTMLAttributes<HTMLDivElement> {
   offset?: number;
@@ -80,7 +71,7 @@ function HorizontalScroll({
   ref,
   ...props
 }: HorizontalScrollProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const reduced = usePrefersReducedMotion();
+  const reduced = useReducedMotion();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = React.useState(false);
   const [startX, setStartX] = React.useState(0);
@@ -107,6 +98,12 @@ function HorizontalScroll({
     }
   }, [isDragging, startX, scrollLeft, scrollSpeed, reduced]);
 
+  const handleWheel = React.useCallback((e: React.WheelEvent) => {
+    if (!containerRef.current) return;
+    e.preventDefault();
+    containerRef.current.scrollLeft += e.deltaY * scrollSpeed;
+  }, [scrollSpeed]);
+
   return (
     <div
       ref={(node) => {
@@ -124,9 +121,10 @@ function HorizontalScroll({
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
       onMouseMove={handleMouseMove}
+      onWheel={handleWheel}
       {...props}
     >
-      <div className={cn("inline-flex", !showScrollbar && "[&::-webkit-scrollbar]:hidden [&::-webkit-scrollbar]:hidden", showScrollbar && "[&::-webkit-scrollbar]:h-2")}>
+      <div className={cn("inline-flex", !showScrollbar && "[&::-webkit-scrollbar]:hidden")}>
         {children}
       </div>
     </div>
@@ -237,7 +235,7 @@ function RevealOnScroll({
 }: RevealOnScrollProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [isVisible, setIsVisible] = React.useState(false);
   const localRef = React.useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
   const setRefs = React.useCallback(
     (node: HTMLDivElement | null) => {
@@ -370,6 +368,132 @@ function ScrollSnapItem({
 }
 ScrollSnapItem.displayName = "ScrollSnapItem";
 
+export interface ParallaxSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  speed?: number;
+  direction?: "up" | "down";
+  scale?: number;
+}
+
+const ParallaxSection = React.forwardRef<HTMLDivElement, ParallaxSectionProps>(
+  ({ children, className, speed = 0.5, direction = "up", scale = 1, style, ...props }, ref) => {
+    const [offset, setOffset] = React.useState(0);
+    const localRef = React.useRef<HTMLDivElement>(null);
+    const prefersReducedMotion = useReducedMotion();
+
+    const setRefs = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        if (typeof ref === "function") ref(node);
+        else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      },
+      [ref]
+    );
+
+    React.useEffect(() => {
+      if (prefersReducedMotion) return;
+
+      const handleScroll = () => {
+        if (!localRef.current) return;
+        const rect = localRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const elementCenter = rect.top + rect.height / 2;
+        const viewportCenter = viewportHeight / 2;
+        const distanceFromCenter = elementCenter - viewportCenter;
+        const maxDistance = viewportHeight;
+        const normalizedOffset = distanceFromCenter / maxDistance;
+        const parallaxOffset = normalizedOffset * speed * 100 * (direction === "up" ? -1 : 1);
+        setOffset(parallaxOffset);
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, [speed, direction, prefersReducedMotion]);
+
+    return (
+      <div
+        ref={setRefs}
+        className={cn("relative overflow-hidden", className)}
+        style={{
+          ...style,
+        }}
+        {...props}
+      >
+        <div
+          className="will-change-transform h-full w-full"
+          style={{
+            transform: prefersReducedMotion
+              ? `scale(${scale})`
+              : `translateY(${offset}px) scale(${scale})`,
+            transition: prefersReducedMotion ? "none" : "transform 0.1s linear",
+          }}
+        >
+          {children}
+        </div>
+      </div>
+    );
+  }
+);
+ParallaxSection.displayName = "ParallaxSection";
+
+export interface ProgressIndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
+  position?: "top" | "bottom";
+  color?: string;
+  height?: number;
+  showOnScroll?: boolean;
+}
+
+const ProgressIndicator = React.forwardRef<HTMLDivElement, ProgressIndicatorProps>(
+  ({ className, position = "top", color = "hsl(var(--la-primary))", height = 3, showOnScroll = false, style, ...props }, ref) => {
+    const [progress, setProgress] = React.useState(0);
+    const prefersReducedMotion = useReducedMotion();
+
+    React.useEffect(() => {
+      const updateProgress = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const newProgress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        setProgress(newProgress);
+      };
+
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      updateProgress();
+      return () => window.removeEventListener("scroll", updateProgress);
+    }, []);
+
+    const isVisible = !showOnScroll || progress > 0;
+
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "fixed left-0 right-0 z-50 pointer-events-none",
+          position === "top" ? "top-0" : "bottom-0",
+          isVisible ? "opacity-100" : "opacity-0",
+          prefersReducedMotion ? "" : "transition-opacity duration-200",
+          className
+        )}
+        style={{ height: `${height}px`, ...style }}
+        role="progressbar"
+        aria-valuenow={Math.round(progress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Page scroll progress"
+        {...props}
+      >
+        <div
+          className="h-full"
+          style={{
+            width: `${progress}%`,
+            backgroundColor: color,
+          }}
+        />
+      </div>
+    );
+  }
+);
+ProgressIndicator.displayName = "ProgressIndicator";
+
 export {
   StickySection,
   StickyHeader,
@@ -378,4 +502,6 @@ export {
   RevealOnScroll,
   ScrollSnapContainer,
   ScrollSnapItem,
+  ParallaxSection,
+  ProgressIndicator,
 };

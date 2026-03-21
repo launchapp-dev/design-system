@@ -8,6 +8,8 @@ import {
   RevealOnScroll,
   ScrollSnapContainer,
   ScrollSnapItem,
+  ParallaxSection,
+  ProgressIndicator,
 } from "./index";
 
 const meta: Meta = {
@@ -290,6 +292,75 @@ export const ReducedMotion: StoryObj = {
           ))}
         </HorizontalScroll>
       </div>
+    </div>
+  ),
+};
+
+export const ParallaxSectionStory: StoryObj = {
+  name: "ParallaxSection",
+  render: () => (
+    <div style={{ height: 500, overflow: "auto", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+      <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", background: "hsl(var(--la-muted))" }}>
+        <p>Scroll down to see parallax effect</p>
+      </div>
+      <ParallaxSection speed={0.3} style={{ height: 300 }}>
+        <div style={{ 
+          height: "100%", 
+          background: "linear-gradient(135deg, hsl(var(--la-primary)) 0%, hsl(var(--la-accent)) 100%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "hsl(var(--la-primary-foreground))",
+        }}>
+          <div style={{ textAlign: "center" }}>
+            <p style={{ fontSize: 24, fontWeight: 700 }}>Parallax Background</p>
+            <p style={{ fontSize: 14, opacity: 0.8 }}>Moving at 0.3x scroll speed</p>
+          </div>
+        </div>
+      </ParallaxSection>
+      <div style={{ height: 200, padding: 24 }}>
+        <p>Content between parallax sections</p>
+      </div>
+      <ParallaxSection speed={0.5} direction="down" style={{ height: 250 }}>
+        <div style={{ 
+          height: "100%", 
+          background: "linear-gradient(135deg, hsl(var(--la-secondary)) 0%, hsl(var(--la-muted)) 100%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <div style={{ textAlign: "center" }}>
+            <p style={{ fontSize: 24, fontWeight: 700 }}>Reverse Parallax</p>
+            <p style={{ fontSize: 14, opacity: 0.6 }}>Moving at 0.5x speed, opposite direction</p>
+          </div>
+        </div>
+      </ParallaxSection>
+      <div style={{ height: 150, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <p>End of scroll content</p>
+      </div>
+    </div>
+  ),
+};
+
+export const ProgressIndicatorStory: StoryObj = {
+  name: "ProgressIndicator (Page-Level)",
+  parameters: {
+    layout: "fullscreen",
+  },
+  render: () => (
+    <div>
+      <ProgressIndicator color="hsl(var(--la-primary))" height={4} />
+      <div style={{ padding: 24, textAlign: "center" }}>
+        <p style={{ fontSize: 14, opacity: 0.6, marginBottom: 16 }}>
+          Scroll the page to see the progress bar at the top.
+        </p>
+      </div>
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div key={i} style={{ padding: 24, borderBottom: "1px solid hsl(var(--la-border))" }}>
+          <p style={{ fontWeight: 500 }}>Section {i + 1}</p>
+          <p style={{ fontSize: 12, opacity: 0.5 }}>Scroll to see the progress indicator</p>
+        </div>
+      ))}
     </div>
   ),
 };
