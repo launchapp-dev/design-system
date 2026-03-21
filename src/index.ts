@@ -543,3 +543,18 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+
+export {
+  Terminal,
+  TerminalOutput,
+  TerminalCommand,
+  TerminalCursor,
+  terminalVariants,
+} from "./components/Terminal";
+export type {
+  TerminalProps,
+  TerminalOutputProps,
+  TerminalCommandProps,
+  TerminalCursorProps,
+  TerminalLine,
+} from "./components/Terminal";
