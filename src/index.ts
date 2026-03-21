@@ -527,8 +527,25 @@ export type {
 export { StatusPage, overallStatusVariants } from "./components/StatusPage";
 export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./components/StatusPage";
 
-export { Changelog, tagVariants } from "./components/Changelog";
+export { Changelog, changelogTagVariants } from "./components/Changelog";
 export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+
+export { TreeMap, treeMapVariants } from "./components/TreeMap";
+export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";
+
+export { SankeyDiagram, sankeyDiagramVariants } from "./components/SankeyDiagram";
+export type { SankeyDiagramProps, SankeyNode, SankeyLink } from "./components/SankeyDiagram";
+
+export { DashboardGrid, dashboardGridVariants } from "./components/DashboardGrid";
+export type { DashboardGridProps, DashboardWidget } from "./components/DashboardGrid";
+
+export { 
+  RealtimeTicker, 
+  realtimeTickerVariants, 
+  tickerValueVariants, 
+  tickerChangeVariants 
+} from "./components/RealtimeTicker";
+export type { RealtimeTickerProps, TickerItem } from "./components/RealtimeTicker";
