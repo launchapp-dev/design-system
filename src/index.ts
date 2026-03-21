@@ -590,3 +590,6 @@ export type {
   AnimatePresenceProps,
   MorphTransitionProps,
 } from "./components/PageTransition";
+
+export { Dock, dockVariants, dockItemVariants } from "./components/Dock";
+export type { DockProps, DockItemData } from "./components/Dock";
