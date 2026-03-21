@@ -150,4 +150,3 @@ export {
   Toaster,
   toastVariants,
 };
-export type { VariantProps };
