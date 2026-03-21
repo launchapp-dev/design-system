@@ -13,7 +13,7 @@ import {
 import { Badge } from "../Badge";
 
 const multiSelectTriggerVariants = cva(
-  "flex w-full items-center justify-between gap-2 rounded-md border border-input bg-background text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "flex w-full cursor-pointer items-center justify-between gap-2 rounded-md border border-input bg-background text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 aria-disabled:cursor-not-allowed aria-disabled:opacity-50",
   {
     variants: {
       size: {
@@ -35,7 +35,7 @@ export interface MultiSelectOption {
 }
 
 export interface MultiSelectProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "value" | "onChange">,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange">,
     VariantProps<typeof multiSelectTriggerVariants> {
   options: MultiSelectOption[];
   value?: string[];
@@ -44,6 +44,7 @@ export interface MultiSelectProps
   searchPlaceholder?: string;
   emptyText?: string;
   maxCount?: number;
+  disabled?: boolean;
 }
 
 function MultiSelect({
@@ -56,9 +57,10 @@ function MultiSelect({
       searchPlaceholder = "Search...",
       emptyText = "No results found.",
       maxCount = 3,
-      disabled, ref,
+      disabled,
+      ref,
       ...props
-    }: MultiSelectProps & { ref?: React.Ref<HTMLButtonElement> }) {
+    }: MultiSelectProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [open, setOpen] = React.useState(false);
     const listboxId = React.useId();
 
@@ -80,14 +82,21 @@ function MultiSelect({
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <button
+          <div
             ref={ref}
             role="combobox"
+            tabIndex={disabled ? -1 : 0}
             aria-expanded={open}
             aria-haspopup="listbox"
             aria-multiselectable="true"
             aria-controls={listboxId}
-            disabled={disabled}
+            aria-disabled={disabled}
+            onKeyDown={(e) => {
+              if (!disabled && (e.key === "Enter" || e.key === " ")) {
+                e.preventDefault();
+                setOpen(!open);
+              }
+            }}
             className={cn(multiSelectTriggerVariants({ size }), className)}
             {...props}
           >
@@ -158,7 +167,7 @@ function MultiSelect({
               <path d="m7 15 5 5 5-5" />
               <path d="m7 9 5-5 5 5" />
             </svg>
-          </button>
+          </div>
         </PopoverTrigger>
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
           <Command>
