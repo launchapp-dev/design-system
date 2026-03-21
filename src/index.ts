@@ -553,3 +553,15 @@ export type { CookieConsentProps, CookieCategory } from "./components/CookieCons
 
 export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants } from "./components/Terminal";
 export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./components/Terminal";
+
+export { ImageComparison, imageComparisonVariants } from "./components/ImageComparison";
+export type { ImageComparisonProps } from "./components/ImageComparison";
+
+export { Lightbox, lightboxVariants } from "./components/Lightbox";
+export type { LightboxProps } from "./components/Lightbox";
+
+export { VideoPlayer, videoPlayerVariants } from "./components/VideoPlayer";
+export type { VideoPlayerProps } from "./components/VideoPlayer";
+
+export { Carousel, CarouselSlide, carouselVariants } from "./components/Carousel";
+export type { CarouselProps, CarouselSlideProps } from "./components/Carousel";
