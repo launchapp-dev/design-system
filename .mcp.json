@@ -4,10 +4,10 @@
       "args": [
         "run",
         "--manifest-path",
-        "/Users/samishukri/design-system/crates/orchestrator-cli/Cargo.toml",
+        "/Users/samishukri/brain/repos/design-system/crates/orchestrator-cli/Cargo.toml",
         "--",
         "--project-root",
-        "/Users/samishukri/design-system",
+        "/Users/samishukri/brain/repos/design-system",
         "mcp",
         "serve"
       ],
