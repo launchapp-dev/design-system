@@ -70,4 +70,11 @@ function CardFooter({ className, ref, ...props }: React.HTMLAttributes<HTMLDivEl
 }
 CardFooter.displayName = "CardFooter";
 
+export type CardProps = React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> };
+export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> };
+export type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement> & { ref?: React.Ref<HTMLHeadingElement> };
+export type CardDescriptionProps = React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.Ref<HTMLParagraphElement> };
+export type CardContentProps = React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> };
+export type CardFooterProps = React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> };
+
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };

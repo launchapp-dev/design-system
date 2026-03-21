@@ -23,6 +23,7 @@ export type { InputProps } from "./components/Input";
 export { Label } from "./components/Label";
 export type { LabelProps } from "./components/Label";
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/Card";
+export type { CardProps, CardHeaderProps, CardTitleProps, CardDescriptionProps, CardContentProps, CardFooterProps } from "./components/Card";
 export { Badge, badgeVariants } from "./components/Badge";
 export type { BadgeProps } from "./components/Badge";
 export {
@@ -37,14 +38,30 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
 } from "./components/Select";
+export type {
+  SelectRootProps,
+  SelectGroupProps,
+  SelectValueProps,
+  SelectTriggerProps,
+  SelectContentProps,
+  SelectLabelProps,
+  SelectItemProps,
+  SelectSeparatorProps,
+  SelectScrollUpButtonProps,
+  SelectScrollDownButtonProps,
+} from "./components/Select";
 export { Checkbox, type CheckboxProps } from "./components/Checkbox";
 export { Switch, type SwitchProps } from "./components/Switch";
 export { Avatar, AvatarImage, AvatarFallback } from "./components/Avatar";
 export type { AvatarProps } from "./components/Avatar";
 export { Separator } from "./components/Separator";
+export type { SeparatorProps } from "./components/Separator";
 export { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "./components/Tooltip";
+export type { TooltipProviderProps, TooltipRootProps, TooltipTriggerProps, TooltipContentProps } from "./components/Tooltip";
 export { TabsRoot, TabsList, TabsTrigger, TabsContent } from "./components/Tabs";
+export type { TabsRootProps, TabsListProps, TabsTriggerProps, TabsContentProps } from "./components/Tabs";
 export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "./components/Accordion";
+export type { AccordionRootProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from "./components/Accordion";
 export {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -156,12 +173,15 @@ export {
   SheetDescription,
 } from "./components/Sheet";
 export { ScrollArea, ScrollBar } from "./components/ScrollArea";
+export type { ScrollAreaProps, ScrollBarProps } from "./components/ScrollArea";
 export { AspectRatio } from "./components/AspectRatio";
+export type { AspectRatioProps } from "./components/AspectRatio";
 export {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
 } from "./components/Resizable";
+export type { ResizablePanelGroupProps, ResizablePanelProps, ResizableHandleProps } from "./components/Resizable";
 export {
   Table,
   TableHeader,
@@ -173,7 +193,9 @@ export {
   TableCaption,
 } from "./components/Table";
 export { Skeleton } from "./components/Skeleton";
+export type { SkeletonProps } from "./components/Skeleton";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/Collapsible";
+export type { CollapsibleProps, CollapsibleTriggerProps, CollapsibleContentProps } from "./components/Collapsible";
 export { DataTable } from "./components/DataTable";
 export type { DataTableProps } from "./components/DataTable";
 export {

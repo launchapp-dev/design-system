@@ -25,4 +25,9 @@ function TooltipContent({ className, sideOffset = 4, ref, ...props }: React.Comp
 }
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
+export type TooltipProviderProps = React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>;
+export type TooltipRootProps = React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root>;
+export type TooltipTriggerProps = React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Trigger>;
+export type TooltipContentProps = React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof TooltipPrimitive.Content>> };
+
 export { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent };

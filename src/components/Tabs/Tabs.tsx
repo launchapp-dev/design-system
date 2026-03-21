@@ -46,4 +46,9 @@ function TabsContent({ className, ref, ...props }: React.ComponentPropsWithoutRe
 }
 TabsContent.displayName = TabsPrimitive.Content.displayName;
 
+export type TabsRootProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>;
+export type TabsListProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.List>> };
+export type TabsTriggerProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.Trigger>> };
+export type TabsContentProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.Content>> };
+
 export { TabsRoot, TabsList, TabsTrigger, TabsContent };

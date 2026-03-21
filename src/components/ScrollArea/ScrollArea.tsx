@@ -40,4 +40,7 @@ function ScrollBar({ className, orientation = "vertical", ref, ...props }: React
 }
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
+export type ScrollAreaProps = React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof ScrollAreaPrimitive.Root>> };
+export type ScrollBarProps = React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> & { ref?: React.Ref<React.ComponentRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>> };
+
 export { ScrollArea, ScrollBar };

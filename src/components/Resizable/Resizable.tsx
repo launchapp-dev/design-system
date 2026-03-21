@@ -68,4 +68,8 @@ function ResizableHandle({ withHandle, className, ref, ...props }: ResizableHand
 }
 ResizableHandle.displayName = "ResizableHandle";
 
+export type ResizablePanelGroupProps = GroupProps & { ref?: React.Ref<GroupImperativeHandle> };
+export type ResizablePanelProps = PanelProps & { ref?: React.Ref<PanelImperativeHandle> };
+export type { ResizableHandleProps };
+
 export { ResizablePanelGroup, ResizablePanel, ResizableHandle };

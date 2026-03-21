@@ -13,4 +13,6 @@ function AspectRatio({ className, ref, ...props }: React.ComponentPropsWithoutRe
 }
 AspectRatio.displayName = AspectRatioPrimitive.Root.displayName;
 
+export type AspectRatioProps = React.ComponentPropsWithoutRef<typeof AspectRatioPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof AspectRatioPrimitive.Root>> };
+
 export { AspectRatio };
