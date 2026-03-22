@@ -46,7 +46,9 @@ export interface MultiSelectProps
   maxCount?: number;
 }
 
-function MultiSelect({
+const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
+  (
+    {
       className,
       size,
       options,
@@ -56,11 +58,19 @@ function MultiSelect({
       searchPlaceholder = "Search...",
       emptyText = "No results found.",
       maxCount = 3,
-      disabled, ref,
+      disabled,
+      id,
       ...props
-    }: MultiSelectProps & { ref?: React.Ref<HTMLButtonElement> }) {
+    },
+    ref
+  ) => {
     const [open, setOpen] = React.useState(false);
+    const [focusedTagIndex, setFocusedTagIndex] = React.useState<number | null>(null);
     const listboxId = React.useId();
+    const triggerId = id || React.useId();
+    const tagRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
+    const internalRef = React.useRef<HTMLButtonElement>(null);
+    const composedRef = ref || internalRef;
 
     const handleSelect = (optionValue: string) => {
       const newValue = value.includes(optionValue)
@@ -69,26 +79,85 @@ function MultiSelect({
       onValueChange?.(newValue);
     };
 
-    const handleRemove = (optionValue: string, e: React.MouseEvent | React.KeyboardEvent) => {
-      e.stopPropagation();
+    const handleRemove = (optionValue: string, e?: React.MouseEvent | React.KeyboardEvent) => {
+      e?.stopPropagation();
       onValueChange?.(value.filter((v) => v !== optionValue));
+    };
+
+    const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (disabled) return;
+
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        setOpen(true);
+      } else if (e.key === "Enter" || e.key === " ") {
+        if (focusedTagIndex !== null && value.length > 0) {
+          e.preventDefault();
+          const tagToRemove = value[focusedTagIndex];
+          if (tagToRemove) {
+            handleRemove(tagToRemove, e);
+            setFocusedTagIndex(null);
+          }
+        } else {
+          e.preventDefault();
+          setOpen(!open);
+        }
+      } else if (e.key === "Escape") {
+        setOpen(false);
+      } else if (e.key === "Backspace" || e.key === "Delete") {
+        if (focusedTagIndex !== null && value.length > 0) {
+          e.preventDefault();
+          const tagToRemove = value[focusedTagIndex];
+          if (tagToRemove) {
+            handleRemove(tagToRemove, e);
+            const newIndex = Math.min(focusedTagIndex, value.length - 2);
+            setFocusedTagIndex(newIndex >= 0 ? newIndex : null);
+          }
+        }
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        if (value.length > 0) {
+          e.preventDefault();
+          const direction = e.key === "ArrowLeft" ? -1 : 1;
+          setFocusedTagIndex((prev) => {
+            if (prev === null) {
+              return direction === 1 ? 0 : value.length - 1;
+            }
+            const next = prev + direction;
+            if (next < 0 || next >= value.length) {
+              return null;
+            }
+            return next;
+          });
+        }
+      }
     };
 
     const visibleValues = value.slice(0, maxCount);
     const hiddenCount = value.length - visibleValues.length;
 
+    const selectedLabels = React.useMemo(() => {
+      return value.map((v) => options.find((o) => o.value === v)?.label ?? v);
+    }, [value, options]);
+
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <button
-            ref={ref}
+            ref={composedRef}
+            id={triggerId}
             role="combobox"
             aria-expanded={open}
             aria-haspopup="listbox"
             aria-multiselectable="true"
             aria-controls={listboxId}
+            aria-label={
+              value.length > 0
+                ? `${selectedLabels.length} selected: ${selectedLabels.join(", ")}`
+                : placeholder
+            }
             disabled={disabled}
             className={cn(multiSelectTriggerVariants({ size }), className)}
+            onKeyDown={handleTriggerKeyDown}
             {...props}
           >
             <div className="flex flex-1 flex-wrap gap-1 overflow-hidden">
@@ -96,15 +165,23 @@ function MultiSelect({
                 <span className="text-muted-foreground">{placeholder}</span>
               ) : (
                 <>
-                  {visibleValues.map((v) => {
+                  {visibleValues.map((v, index) => {
                     const opt = options.find((o) => o.value === v);
                     return (
                       <Badge
                         key={v}
                         variant="secondary"
-                        className="flex items-center gap-1 rounded pr-0.5"
+                        className={cn(
+                          "flex items-center gap-1 rounded pr-0.5",
+                          focusedTagIndex === index && "ring-2 ring-ring"
+                        )}
+                        ref={(el) => {
+                          tagRefs.current[index] = el;
+                        }}
+                        tabIndex={-1}
+                        aria-label={`${opt?.label ?? v}, press Backspace or Delete to remove`}
                       >
-                        {opt?.label ?? v}
+                        <span>{opt?.label ?? v}</span>
                         <button
                           type="button"
                           aria-label={`Remove ${opt?.label ?? v}`}
@@ -116,6 +193,7 @@ function MultiSelect({
                               handleRemove(v, e);
                             }
                           }}
+                          tabIndex={-1}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +215,9 @@ function MultiSelect({
                     );
                   })}
                   {hiddenCount > 0 && (
-                    <Badge variant="secondary">+{hiddenCount} more</Badge>
+                    <Badge variant="secondary" aria-label={`${hiddenCount} more items selected`}>
+                      +{hiddenCount} more
+                    </Badge>
                   )}
                 </>
               )}
@@ -163,7 +243,7 @@ function MultiSelect({
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
           <Command>
             <CommandInput placeholder={searchPlaceholder} />
-            <CommandList id={listboxId}>
+            <CommandList id={listboxId} role="listbox" aria-multiselectable="true">
               <CommandEmpty>{emptyText}</CommandEmpty>
               <CommandGroup>
                 {options.map((option) => {
@@ -175,6 +255,8 @@ function MultiSelect({
                       disabled={option.disabled}
                       onSelect={() => handleSelect(option.value)}
                       aria-selected={isSelected}
+                      role="option"
+                      aria-checked={isSelected}
                     >
                       <div
                         className={cn(
@@ -183,6 +265,7 @@ function MultiSelect({
                             ? "bg-primary text-primary-foreground"
                             : "opacity-50"
                         )}
+                        aria-hidden="true"
                       >
                         {isSelected && (
                           <svg
@@ -212,6 +295,7 @@ function MultiSelect({
       </Popover>
     );
   }
+);
 
 MultiSelect.displayName = "MultiSelect";
 
