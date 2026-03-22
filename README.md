@@ -1,5 +1,7 @@
 # @launchapp/design-system
 
+[![Chromatic](https://img.shields.io/badge/Chromatic-visual%20testing-4a48f5?logo=chromatic&labelColor=4a48f5)](https://www.chromatic.com/library?appId=<your-app-id>)
+
 A React + TypeScript component library built on Radix UI primitives, styled with Tailwind CSS.
 
 ## Quick start
