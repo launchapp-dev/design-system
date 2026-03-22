@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "./index";
+import userEvent from "@testing-library/user-event";
 
 const meta = {
   title: "Components/Tooltip",
   component: TooltipContent,
   decorators: [
     (Story) => (
-      <TooltipProvider>
+      <TooltipProvider delayDuration={0}>
         <Story />
       </TooltipProvider>
     ),
@@ -18,6 +19,17 @@ const meta = {
     },
     sideOffset: {
       control: "number",
+    },
+  },
+  parameters: {
+    chromatic: {
+      modes: {
+        light: { ...globalThis.DEFAULT.parameters?.chromatic },
+        dark: {
+          ...globalThis.DEFAULT.parameters?.chromatic,
+          backgrounds: { ...globalThis.DEFAULT.parameters?.chromatic?.backgrounds, value: '#09090b' },
+        },
+      },
     },
   },
 } satisfies Meta<typeof TooltipContent>;

@@ -53,6 +53,37 @@ The GitHub Actions workflow (`.github/workflows/chromatic.yml`) runs Chromatic:
   - Uses parallel builds for speed
   - Auto-accepts changes on `main`
   - Only tests changed stories when possible
+  - Supports manual trigger with `workflow_dispatch`
+
+## Configuration
+
+### chromatic.config.json
+
+The root-level configuration file (`chromatic.config.json`) contains:
+
+- **exitZeroOnChanges**: Exits with code 0 if only non-breaking changes detected
+- **autoAcceptChanges**: Auto-accepts changes when the target branch is `main`
+- **onlyChanged**: Only tests stories affected by the current changes
+- **parallel**: Number of parallel Storybook builds (default: 3)
+- **traceChanged**: Provides detailed diff information for changed stories
+
+### Story-level Configuration
+
+Individual stories can customize Chromatic behavior using parameters:
+
+```typescript
+export const MyStory: Story = {
+  parameters: {
+    chromatic: {
+      disable: true, // Disable visual testing for this story
+      modes: {
+        light: { /* light mode config */ },
+        dark: { /* dark mode config */ }, // Test both light and dark modes
+      },
+    },
+  },
+};
+```
 
 ## Storybook Configuration
 
@@ -64,9 +95,10 @@ addons: ['@storybook/addon-docs', '@chromatic-com/storybook'],
 
 The preview configuration (`.storybook/preview.ts`) includes:
 
-- Dark/Light theme switching
+- Dark/Light theme switching with global toolbar
 - Centered layout for component stories
-- Global decorator support
+- Chromatic interaction testing via `withTests`
+- Default chromatic parameters for all stories
 
 ## Visual Test Files
 
@@ -75,6 +107,7 @@ Stories using Chromatic's interaction testing can use the `@chromatic-com/storyb
 - Visual comparison after interactions
 - Component state testing
 - Responsive behavior testing
+- Dark mode testing across all stories
 
 ## Interpreting Results
 
@@ -101,3 +134,11 @@ Ensure stories are in the correct location:
 
 - Enable `onlyChanged: true` to test only affected stories
 - Use parallel builds with `parallel: 3` in the config
+- Check the `chromatic.config.json` for tuning options
+
+### CI Timeout
+
+The workflow has a 30-minute timeout. For large projects:
+- Increase `timeout-minutes` in the workflow
+- Enable `onlyChanged: true` to reduce test scope
+- Use story-level chromatic disable for stable components

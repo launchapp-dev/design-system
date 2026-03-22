@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
 import type { Decorator, Preview } from '@storybook/react';
+import { withTests } from '@chromatic-com/storybook';
+import { defineConfig } from '@chromatic-com/storybook';
 import '../src/styles/globals.css';
+
+const chromaticConfig = defineConfig({
+  // Enable chromatic for all stories by default
+  // Individual stories can opt-out with chromatic: { disable: true }
+});
 
 const withDarkMode: Decorator = (Story, context) => {
   const theme = context.globals.theme as string;
@@ -33,8 +40,14 @@ const preview: Preview = {
   parameters: {
     backgrounds: { disable: true },
     layout: 'centered',
+    chromatic: chromaticConfig,
   },
-  decorators: [withDarkMode],
+  decorators: [
+    withDarkMode,
+    withTests({
+      // Chromatic will automatically detect and run tests
+    }),
+  ],
 };
 
 export default preview;

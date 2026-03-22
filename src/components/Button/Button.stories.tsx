@@ -21,6 +21,18 @@ const meta: Meta<typeof Button> = {
     size: "md",
     disabled: false,
   },
+  parameters: {
+    chromatic: {
+      // Test all variants in different states
+      modes: {
+        light: { ...globalThis.DEFAULT.parameters?.chromatic },
+        dark: {
+          ...globalThis.DEFAULT.parameters?.chromatic,
+          backgrounds: { ...globalThis.DEFAULT.parameters?.chromatic?.backgrounds, value: '#09090b' },
+        },
+      },
+    },
+  },
 };
 
 export default meta;
@@ -94,6 +106,40 @@ export const IconSize: Story = {
       <Button size="icon" variant="ghost" aria-label="Add">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
       </Button>
+    </div>
+  ),
+};
+
+export const DarkMode: Story = {
+  parameters: {
+    backgrounds: { default: "dark", values: [{ name: "dark", value: "#09090b" }] },
+  },
+  decorators: [
+    (Story) => (
+      <div className="dark" style={{ padding: "24px", borderRadius: "8px" }}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+      {(["default", "secondary", "outline", "ghost", "destructive"] as const).map((variant) => (
+        <div key={variant} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <Button variant={variant}>Button</Button>
+          <Button variant={variant} disabled>Disabled</Button>
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+export const Loading: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+      <Button isLoading>Loading</Button>
+      <Button variant="outline" isLoading>Loading</Button>
+      <Button variant="ghost" isLoading>Loading</Button>
+      <Button variant="destructive" isLoading>Loading</Button>
     </div>
   ),
 };

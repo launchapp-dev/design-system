@@ -78,6 +78,15 @@ const meta: Meta<typeof SaaSLanding> = {
   component: SaaSLanding,
   parameters: {
     layout: "fullscreen",
+    chromatic: {
+      modes: {
+        light: { ...globalThis.DEFAULT.parameters?.chromatic },
+        dark: {
+          ...globalThis.DEFAULT.parameters?.chromatic,
+          backgrounds: { ...globalThis.DEFAULT.parameters?.chromatic?.backgrounds, value: '#09090b' },
+        },
+      },
+    },
     docs: {
       source: {
         code: `import { SaaSLanding } from "@launchapp/design-system";

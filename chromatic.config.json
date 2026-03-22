@@ -1,0 +1,32 @@
+{
+  "$schema": "https://www.chromatic.com/schema/config.json",
+  "projectToken": "${CHROMATIC_PROJECT_TOKEN}",
+  "buildScriptName": "build:storybook",
+  "storybookBaseDir": ".",
+  "exitOnceUploaded": false,
+  "exitZeroOnChanges": true,
+  "autoAcceptChanges": "main",
+  "onlyChanged": true,
+  "onlyStoryFiles": false,
+  "traceChanged": true,
+  "skipUpdateCheck": false,
+  "externals": [],
+  "fromCI": true,
+  "parallel": 3,
+  "workerAllocator": {
+    "type": "balanced",
+    "stickyBuilds": true
+  },
+  "diagnostics": {
+    "writeStatsJson": true,
+    "exitAfterUpload": false
+  },
+  "uploadMetadata": {
+    "commitInfo": {
+      "owner": "${GITHUB_ACTOR}",
+      "branch": "${GITHUB_REF_NAME}",
+      "commit": "${GITHUB_SHA}",
+      "commitMessage": "${GITHUB_COMMIT_MESSAGE}"
+    }
+  }
+}
