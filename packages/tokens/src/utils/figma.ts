@@ -1,4 +1,4 @@
-import type { FigmaTokensSchema, FigmaTokenGroup, ThemeTokens, ThemeConfig } from "../utils/types.js";
+import type { FigmaTokensSchema, FigmaTokenGroup, ThemeTokens, ThemeConfig, FigmaTokenValue } from "../utils/types.js";
 import { hexToHsl, hslToHex } from "../utils/color.js";
 
 const TOKEN_PREFIX = "la-";
@@ -9,9 +9,9 @@ function flattenTokens(group: FigmaTokenGroup, prefix = ""): Map<string, string>
   for (const [key, value] of Object.entries(group)) {
     const fullKey = prefix ? `${prefix}-${key}` : key;
 
-    if ("value" in value) {
-      result.set(fullKey, value.value);
-    } else {
+    if (typeof value === "object" && value !== null && "value" in value) {
+      result.set(fullKey, (value as FigmaTokenValue).value);
+    } else if (typeof value === "object" && value !== null) {
       const nested = flattenTokens(value as FigmaTokenGroup, fullKey);
       for (const [k, v] of nested) {
         result.set(k, v);

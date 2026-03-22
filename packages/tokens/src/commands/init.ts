@@ -99,23 +99,29 @@ export async function initCommand(options?: Partial<InitOptions>): Promise<void>
 
   const opts = options ?? (await promptForOptions());
 
-  const targetDir = path.resolve(process.cwd(), opts.outputDir, opts.projectName);
+  const projectName = opts.projectName || "my-theme";
+  const outputDir = opts.outputDir || ".";
 
-  if (opts.outputDir === "." || opts.outputDir === "./") {
+  const targetDir = path.resolve(process.cwd(), outputDir, projectName);
+
+  if (outputDir === "." || outputDir === "./") {
     console.log(`\n  Initializing theme in current directory...\n`);
   } else {
-    console.log(`\n  Creating theme: ${opts.projectName}\n`);
+    console.log(`\n  Creating theme: ${projectName}\n`);
   }
 
   ensureDirectory(targetDir);
 
   const theme = createDefaultTheme({
-    primaryColor: opts.primaryColor,
-    primaryDarkColor: opts.primaryDarkColor,
-    borderRadius: opts.borderRadius,
-    fontSans: opts.fontSans,
-    fontMono: opts.fontMono,
+    primaryColor: opts.primaryColor || "#4C3AFF",
+    primaryDarkColor: opts.primaryDarkColor || "#7C5FFF",
+    borderRadius: opts.borderRadius || "0.5rem",
+    fontSans: opts.fontSans || "Inter",
+    fontMono: opts.fontMono || "JetBrains Mono",
   });
+
+  const fontSans = opts.fontSans || "Inter";
+  const fontMono = opts.fontMono || "JetBrains Mono";
 
   const globalsPath = path.join(targetDir, "src", "styles", "globals.css");
   const tailwindPath = path.join(targetDir, "tailwind.config.ts");
@@ -123,7 +129,7 @@ export async function initCommand(options?: Partial<InitOptions>): Promise<void>
   const tokensPath = path.join(targetDir, "tokens.json");
 
   writeFile(globalsPath, generateGlobalsCss(theme));
-  writeFile(tailwindPath, generateTailwindConfig({ fontSans: opts.fontSans, fontMono: opts.fontMono }));
+  writeFile(tailwindPath, generateTailwindConfig({ fontSans, fontMono }));
   writeFile(postcssPath, generatePostcssConfig());
   writeFile(tokensPath, generateTokensJson(theme));
 
@@ -134,11 +140,11 @@ export async function initCommand(options?: Partial<InitOptions>): Promise<void>
   console.log(`    ${path.relative(process.cwd(), tokensPath)}`);
 
   console.log("\n  Next steps:\n");
-  console.log(`    cd ${opts.projectName}`);
+  console.log(`    cd ${projectName}`);
   console.log("    npm install @launchapp/design-system tailwindcss postcss autoprefixer");
 
-  if (opts.fontSans !== "system-ui") {
-    console.log(`    # Add "${opts.fontSans}" via Google Fonts or your font provider`);
+  if (fontSans !== "system-ui") {
+    console.log(`    # Add "${fontSans}" via Google Fonts or your font provider`);
   }
 
   console.log("\n  Import the design system styles in your entry file:");
