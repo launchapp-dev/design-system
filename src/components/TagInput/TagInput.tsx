@@ -89,10 +89,13 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     const [inputValue, setInputValue] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const [highlightedIndex, setHighlightedIndex] = React.useState<number>(-1);
+    const [focusedTagIndex, setFocusedTagIndex] = React.useState<number | null>(null);
     const inputRef = React.useRef<HTMLInputElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
+    const tagRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
     const generatedId = React.useId();
     const listboxId = id ? `${id}-listbox` : `${generatedId}-listbox`;
+    const inputId = id || generatedId;
 
     const isAtMax = maxTags !== undefined && value.length >= maxTags;
 
@@ -133,10 +136,11 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.target.value);
       setHighlightedIndex(-1);
+      setFocusedTagIndex(null);
       setOpen(e.target.value.trim().length > 0);
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter" || e.key === ",") {
         e.preventDefault();
         if (highlightedIndex >= 0 && highlightedIndex < listItems.length) {
@@ -148,17 +152,76 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
         } else if (inputValue.trim()) {
           addTag(inputValue.trim());
         }
-      } else if (e.key === "Backspace" && inputValue === "" && value.length > 0) {
-        removeTag(value[value.length - 1] as string);
+      } else if (e.key === "Backspace") {
+        if (inputValue === "" && value.length > 0) {
+          if (focusedTagIndex !== null) {
+            e.preventDefault();
+            const tagToRemove = value[focusedTagIndex];
+            if (tagToRemove) {
+              removeTag(tagToRemove);
+              const newIndex = focusedTagIndex - 1;
+              setFocusedTagIndex(newIndex >= 0 ? newIndex : null);
+            }
+          } else {
+            e.preventDefault();
+            setFocusedTagIndex(value.length - 1);
+          }
+        }
+      } else if (e.key === "Delete") {
+        if (inputValue === "" && focusedTagIndex !== null && value.length > 0) {
+          e.preventDefault();
+          const tagToRemove = value[focusedTagIndex];
+          if (tagToRemove) {
+            removeTag(tagToRemove);
+            const newIndex = focusedTagIndex >= value.length - 1 ? value.length - 2 : focusedTagIndex;
+            setFocusedTagIndex(newIndex >= 0 ? newIndex : null);
+          }
+        }
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
-        setHighlightedIndex((i) => Math.min(i + 1, listItems.length - 1));
+        setFocusedTagIndex(null);
+        if (listItems.length > 0) {
+          setHighlightedIndex((i) => Math.min(i + 1, listItems.length - 1));
+          setOpen(true);
+        }
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
+        setFocusedTagIndex(null);
         setHighlightedIndex((i) => Math.max(i - 1, -1));
       } else if (e.key === "Escape") {
-        setOpen(false);
-        setHighlightedIndex(-1);
+        if (open) {
+          e.preventDefault();
+          setOpen(false);
+          setHighlightedIndex(-1);
+        }
+        setFocusedTagIndex(null);
+      } else if (e.key === "ArrowLeft") {
+        if (inputValue === "" && value.length > 0) {
+          e.preventDefault();
+          setFocusedTagIndex((prev) => {
+            if (prev === null) return value.length - 1;
+            return prev > 0 ? prev - 1 : prev;
+          });
+        }
+      } else if (e.key === "ArrowRight") {
+        if (inputValue === "" && focusedTagIndex !== null) {
+          e.preventDefault();
+          setFocusedTagIndex((prev) => {
+            if (prev === null) return null;
+            return prev < value.length - 1 ? prev + 1 : null;
+          });
+        }
+      } else if (e.key === "Home") {
+        if (inputValue === "" && value.length > 0) {
+          e.preventDefault();
+          setFocusedTagIndex(0);
+        }
+      } else if (e.key === "End") {
+        if (inputValue === "" && focusedTagIndex !== null) {
+          e.preventDefault();
+          setFocusedTagIndex(null);
+          inputRef.current?.focus();
+        }
       }
     };
 
@@ -167,6 +230,42 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     };
 
     React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+
+    React.useEffect(() => {
+      if (focusedTagIndex !== null && tagRefs.current[focusedTagIndex]) {
+        tagRefs.current[focusedTagIndex]?.focus();
+      }
+    }, [focusedTagIndex]);
+
+    const handleTagKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>, index: number) => {
+      if (e.key === "Backspace" || e.key === "Delete") {
+        e.preventDefault();
+        const tagToRemove = value[index];
+        if (tagToRemove) {
+          removeTag(tagToRemove);
+          const newIndex = e.key === "Backspace" ? index - 1 : index;
+          setFocusedTagIndex(newIndex >= 0 ? newIndex : null);
+        }
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        setFocusedTagIndex(index > 0 ? index - 1 : 0);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        if (index < value.length - 1) {
+          setFocusedTagIndex(index + 1);
+        } else {
+          setFocusedTagIndex(null);
+          inputRef.current?.focus();
+        }
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        setFocusedTagIndex(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        setFocusedTagIndex(null);
+        inputRef.current?.focus();
+      }
+    };
 
     return (
       <div ref={containerRef} {...props}>
@@ -177,6 +276,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
               aria-expanded={open}
               aria-haspopup="listbox"
               aria-controls={listboxId}
+              aria-label={`${value.length} tag${value.length !== 1 ? "s" : ""} selected${value.length > 0 ? `: ${value.join(", ")}` : ""}`}
               onClick={handleContainerClick}
               className={cn(
                 tagInputVariants({ size, error }),
@@ -188,7 +288,18 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
               {value.map((tag, index) => (
                 <span
                   key={tag}
-                  className={cn(tagVariants({ variant: tagVariant, size }))}
+                  ref={(el) => {
+                    tagRefs.current[index] = el;
+                  }}
+                  tabIndex={focusedTagIndex === index ? 0 : -1}
+                  onKeyDown={(e) => handleTagKeyDown(e, index)}
+                  onFocus={() => setFocusedTagIndex(index)}
+                  onBlur={() => setFocusedTagIndex(null)}
+                  className={cn(
+                    tagVariants({ variant: tagVariant, size }),
+                    focusedTagIndex === index && "ring-2 ring-[hsl(var(--la-ring))] ring-offset-1"
+                  )}
+                  aria-label={`${tag}, press Backspace or Delete to remove`}
                 >
                   {tag}
                   <button
@@ -225,9 +336,10 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   type="text"
                   value={inputValue}
                   onChange={handleInputChange}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handleInputKeyDown}
                   onBlur={() => setTimeout(() => setOpen(false), 150)}
                   onFocus={() => {
+                    setFocusedTagIndex(null);
                     if (inputValue.trim() && listItems.length > 0) setOpen(true);
                   }}
                   placeholder={value.length === 0 ? placeholder : ""}
@@ -237,7 +349,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   aria-activedescendant={
                     highlightedIndex >= 0 ? `${listboxId}-${highlightedIndex}` : undefined
                   }
-                  id={id}
+                  id={inputId}
                   className="flex-1 min-w-[120px] bg-transparent outline-none placeholder:text-[hsl(var(--la-muted-foreground))]"
                 />
               )}
@@ -287,6 +399,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
           <p
             className="mt-1 text-xs text-[hsl(var(--la-muted-foreground))]"
             aria-live="polite"
+            role="status"
           >
             {value.length}/{maxTags} tags
           </p>
