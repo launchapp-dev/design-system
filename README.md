@@ -19,6 +19,43 @@ export default function App() {
 
 ---
 
+## Development
+
+### Prerequisites
+
+- Node.js 20+
+- npm 10+
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/launchapp-dev/design-system.git
+cd design-system
+
+# Install dependencies
+npm install
+
+# Start Storybook development server
+npm run dev
+```
+
+### Visual Testing
+
+This project uses Chromatic for visual regression testing. All Storybook stories are automatically tested for visual changes.
+
+```bash
+# Run visual tests locally (requires CHROMATIC_PROJECT_TOKEN)
+npm run test:visual
+
+# Run Chromatic with only changed stories (faster)
+npm run chromatic:only-changed
+```
+
+See [VISUAL_TESTING.md](./VISUAL_TESTING.md) for comprehensive documentation.
+
+---
+
 ## npm installation
 
 ### Install the package

@@ -1,0 +1,129 @@
+name: Chromatic PR Comment
+
+on:
+  workflow_run:
+    workflows: ["Chromatic"]
+    types:
+      - completed
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion != 'skipped'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download Chromatic artifacts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id,
+            });
+            
+            const chromaticArtifact = artifacts.artifacts.find(artifact => 
+              artifact.name.includes('chromatic')
+            );
+            
+            if (chromaticArtifact) {
+              const { data: downloadUrl } = await github.rest.actions.downloadArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: chromaticArtifact.id,
+                archive_format: 'zip',
+              });
+              console.log('Chromatic artifact downloaded');
+            }
+
+      - name: Get PR number
+        uses: actions/github-script@v7
+        id: pr-number
+        with:
+          script: |
+            const { data: pulls } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              head: `${context.payload.workflow_run.head_repository.owner.login}:${context.payload.workflow_run.head_branch}`,
+            });
+            
+            if (pulls.length > 0) {
+              return pulls[0].number;
+            }
+            return null;
+          result-encoding: string
+
+      - name: Comment on PR
+        if: steps.pr-number.outputs.result != 'null'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = parseInt('${{ steps.pr-number.outputs.result }}');
+            
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('🔍 Chromatic Visual Review')
+            );
+            
+            const status = '${{ github.event.workflow_run.conclusion }}' === 'success' ? '✅' : '❌';
+            const statusText = '${{ github.event.workflow_run.conclusion }}' === 'success' 
+              ? 'Visual tests passed' 
+              : 'Visual tests detected changes';
+            
+            const body = `### ${status} Chromatic Visual Review
+            
+            **Status:** ${statusText}
+            **Branch:** ${{ github.event.workflow_run.head_branch }}
+            **Commit:** ${{ github.event.workflow_run.head_sha }}
+            
+            ---
+            
+            📸 **What happens next:**
+            - Chromatic captures visual snapshots of all Storybook stories
+            - Visual differences are compared against the baseline
+            - Review changes in the [Chromatic dashboard](https://www.chromatic.com/)
+            
+            🎯 **Auto-approval rules:**
+            - Changes on \`main\` branch are auto-accepted (baseline updates)
+            - PR changes require manual review before merge
+            - Small visual changes may be auto-approved based on tolerance settings
+            
+            ---
+            
+            <details>
+            <summary>🔧 Configuration</summary>
+            
+            This visual testing is configured to:
+            - Run on all pull requests and pushes to main
+            - Capture screenshots for every Storybook story
+            - Auto-accept changes on the main branch
+            - Require manual review for PR visual changes
+            
+            See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
+            </details>`;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: body
+              });
+            }

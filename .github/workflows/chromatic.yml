@@ -3,12 +3,14 @@ name: Chromatic
 on:
   push:
     branches:
+      - main
+  pull_request:
+    branches:
       - "**"
 
 jobs:
   chromatic:
     runs-on: ubuntu-latest
-    continue-on-error: true
     if: ${{ secrets.CHROMATIC_PROJECT_TOKEN != '' }}
     env:
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
@@ -27,8 +29,75 @@ jobs:
       - name: Run Chromatic
         if: env.CHROMATIC_PROJECT_TOKEN != ''
         uses: chromaui/action@v11
+        id: chromatic
         with:
           projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: true
+          exitZeroOnChanges: false
           autoAcceptChanges: "main"
-          onlyChanged: true
+          onlyChanged: false
+          storybookBaseDir: ./
+
+      - name: Publish Summary
+        if: always() && steps.chromatic.outcome != 'skipped'
+        run: |
+          echo "### 🎨 Chromatic Visual Tests" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Build URL:** ${{ steps.chromatic.outputs.url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Storybook URL:** ${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ steps.chromatic.outputs.changeCount }}" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Changes detected:** ${{ steps.chromatic.outputs.changeCount }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Comment PR
+        if: github.event_name == 'pull_request' && steps.chromatic.outcome != 'skipped'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('🎨 Chromatic Visual Tests')
+            );
+            
+            const body = `### 🎨 Chromatic Visual Tests
+            
+            **Build URL:** ${{ steps.chromatic.outputs.url }}
+            **Storybook URL:** ${{ steps.chromatic.outputs.storybookUrl }}
+            
+            ${'${{ steps.chromatic.outputs.changeCount }}' ? '⚠️ **Changes detected:** ${{ steps.chromatic.outputs.changeCount }}\n\nReview the visual changes in the Chromatic UI before merging.' : '✅ No visual changes detected.'}
+            
+            ---
+            
+            <details>
+            <summary>📖 About Visual Testing</summary>
+            
+            Chromatic captures visual snapshots of every Storybook story and compares them against the baseline. This helps catch unintended UI changes.
+            
+            - **Accept** changes that are intentional design updates
+            - **Deny** changes that are unintended regressions
+            
+            [Learn more about Chromatic](https://www.chromatic.com/docs/)
+            </details>`;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }

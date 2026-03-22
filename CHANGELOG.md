@@ -2,6 +2,7 @@
 
 ### Features
 
+* **chromatic:** integrate visual regression testing with Chromatic [TASK-269] — Add comprehensive visual testing setup with PR comments, auto-approval rules, and documentation
 * **ci:** integrate design system workflow skills — TASK-062 ([c461c0f](https://github.com/launchapp-dev/design-system/commit/c461c0f5446ddb11b43cb6b3a02f835ed689aa09))
 * **registry:** host registry.json on GitHub Pages [TASK-084] ([5abcd56](https://github.com/launchapp-dev/design-system/commit/5abcd560ff54876c3234eac23b50f8f3f73d352f))
 * set up NPM publishing pipeline via GitHub Actions [TASK-087] ([0859a2f](https://github.com/launchapp-dev/design-system/commit/0859a2fdcbadbc6366c3cb9c3588520579cf9837))

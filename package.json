@@ -31,9 +31,13 @@
     "build": "tsup",
     "build:storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
+    "chromatic:ci": "chromatic --exit-zero-on-changes=false",
+    "chromatic:only-changed": "chromatic --only-changed",
+    "chromatic:skip-flaky": "chromatic --skip '@(LiveFeed|AnimatedComponent)*'",
     "generate-registry": "node scripts/generate-registry.mjs",
     "lint": "eslint src/",
     "test": "vitest",
+    "test:visual": "npm run build:storybook && npm run chromatic",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
