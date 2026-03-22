@@ -530,6 +530,30 @@ export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from ".
 export type { MarqueeProps, MarqueeItemProps } from "./components/Marquee";
 
 export {
+  Carousel,
+  CarouselItem,
+  CarouselContent,
+  CarouselPrev,
+  CarouselNext,
+  CarouselDots,
+  CarouselAutoplay,
+  carouselVariants,
+  carouselItemVariants,
+  carouselButtonVariants,
+  carouselDotVariants,
+  useCarousel,
+} from "./components/Carousel";
+export type {
+  CarouselProps,
+  CarouselItemProps,
+  CarouselContentProps,
+  CarouselPrevProps,
+  CarouselNextProps,
+  CarouselDotsProps,
+  CarouselAutoplayProps,
+} from "./components/Carousel";
+
+export {
   CopilotPanel,
   CopilotPanelTrigger,
   CopilotPanelClose,
