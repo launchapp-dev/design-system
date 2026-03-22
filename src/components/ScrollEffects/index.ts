@@ -6,6 +6,8 @@ export {
   RevealOnScroll,
   ScrollSnapContainer,
   ScrollSnapItem,
+  ParallaxSection,
+  ProgressIndicator,
 } from "./ScrollEffects";
 export type {
   StickySectionProps,
@@ -15,4 +17,6 @@ export type {
   RevealOnScrollProps,
   ScrollSnapContainerProps,
   ScrollSnapItemProps,
+  ParallaxSectionProps,
+  ProgressIndicatorProps,
 } from "./ScrollEffects";
