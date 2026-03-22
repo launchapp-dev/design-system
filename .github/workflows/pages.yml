@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - registry.json
+      - src/components/**
+      - src/blocks/**
+      - scripts/generate-registry.mjs
   workflow_dispatch:
 
 permissions:
@@ -29,9 +32,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Prepare site
         run: |
           mkdir -p _site
+          npm run generate-registry
           cp registry.json _site/registry.json
 
       - name: Upload artifact
