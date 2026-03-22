@@ -632,3 +632,6 @@ export {
   imageComparisonHandleVariants,
 } from "./components/ImageComparison";
 export type { ImageComparisonProps } from "./components/ImageComparison";
+
+export { Heatmap, heatmapVariants, cellVariants } from "./components/Heatmap";
+export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
