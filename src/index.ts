@@ -677,3 +677,10 @@ export {
   masonryColumnVariants,
 } from "./components/Masonry";
 export type { MasonryProps, MasonryVariantsProps } from "./components/Masonry";
+
+export {
+  VideoPlayer,
+  videoPlayerVariants,
+  videoPlayerOverlayVariants,
+} from "./components/VideoPlayer";
+export type { VideoPlayerProps } from "./components/VideoPlayer";
