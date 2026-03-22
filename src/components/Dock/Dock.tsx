@@ -74,126 +74,140 @@ export interface DockProps
   tooltipSideOffset?: number;
 }
 
-function Dock({
-  className,
-  items,
-  size = "md",
-  magnification = 1.5,
-  magnificationDistance = 140,
-  baseSize = 48,
-  tooltipDelayDuration = 300,
-  tooltipSideOffset = 8,
-  ...props
-}: DockProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const [mouseX, setMouseX] = React.useState<number>(-1000);
-  const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const itemRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+const Dock = React.forwardRef<HTMLDivElement, DockProps>(
+  (
+    {
+      className,
+      items,
+      size = "md",
+      magnification = 1.5,
+      magnificationDistance = 140,
+      baseSize = 48,
+      tooltipDelayDuration = 300,
+      tooltipSideOffset = 8,
+      ...props
+    },
+    forwardedRef
+  ) => {
+    const [mouseX, setMouseX] = React.useState<number>(-1000);
+    const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const itemRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
 
-  const handleMouseMove = React.useCallback((event: React.MouseEvent) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      setMouseX(event.clientX - rect.left);
-    }
-  }, []);
+    const setRef = React.useCallback(
+      (el: HTMLDivElement | null) => {
+        containerRef.current = el;
+        if (typeof forwardedRef === "function") {
+          forwardedRef(el);
+        } else if (forwardedRef) {
+          forwardedRef.current = el;
+        }
+      },
+      [forwardedRef]
+    );
 
-  const handleMouseLeave = React.useCallback(() => {
-    setMouseX(-1000);
-  }, []);
-
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      const currentIndex = focusedIndex;
-      let newIndex = currentIndex;
-
-      switch (event.key) {
-        case "ArrowLeft":
-        case "ArrowUp":
-          event.preventDefault();
-          newIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
-          break;
-        case "ArrowRight":
-        case "ArrowDown":
-          event.preventDefault();
-          newIndex = currentIndex >= items.length - 1 ? 0 : currentIndex + 1;
-          break;
-        case "Home":
-          event.preventDefault();
-          newIndex = 0;
-          break;
-        case "End":
-          event.preventDefault();
-          newIndex = items.length - 1;
-          break;
-        default:
-          return;
+    const handleMouseMove = React.useCallback((event: React.MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setMouseX(event.clientX - rect.left);
       }
+    }, []);
 
-      setFocusedIndex(newIndex);
-      itemRefs.current[newIndex]?.focus();
-    },
-    [focusedIndex, items.length]
-  );
+    const handleMouseLeave = React.useCallback(() => {
+      setMouseX(-1000);
+    }, []);
 
-  const handleFocus = React.useCallback(
-    (index: number) => {
+    const handleKeyDown = React.useCallback(
+      (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const currentIndex = focusedIndex;
+        let newIndex = currentIndex;
+
+        switch (event.key) {
+          case "ArrowLeft":
+          case "ArrowUp":
+            event.preventDefault();
+            newIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
+            break;
+          case "ArrowRight":
+          case "ArrowDown":
+            event.preventDefault();
+            newIndex = currentIndex >= items.length - 1 ? 0 : currentIndex + 1;
+            break;
+          case "Home":
+            event.preventDefault();
+            newIndex = 0;
+            break;
+          case "End":
+            event.preventDefault();
+            newIndex = items.length - 1;
+            break;
+          default:
+            return;
+        }
+
+        setFocusedIndex(newIndex);
+        itemRefs.current[newIndex]?.focus();
+      },
+      [focusedIndex, items.length]
+    );
+
+    const handleFocus = React.useCallback((index: number) => {
       setFocusedIndex(index);
-    },
-    []
-  );
+    }, []);
 
-  const contextValue = React.useMemo<DockContextValue>(
-    () => ({
-      mouseX,
-      magnification,
-      magnificationDistance,
-      baseSize,
-      size: size as "sm" | "md" | "lg",
-      focusedIndex,
-      setFocusedIndex: handleFocus,
-    }),
-    [
-      mouseX,
-      magnification,
-      magnificationDistance,
-      baseSize,
-      size,
-      focusedIndex,
-      handleFocus,
-    ]
-  );
+    const contextValue = React.useMemo<DockContextValue>(
+      () => ({
+        mouseX,
+        magnification,
+        magnificationDistance,
+        baseSize,
+        size: size as "sm" | "md" | "lg",
+        focusedIndex,
+        setFocusedIndex: handleFocus,
+      }),
+      [
+        mouseX,
+        magnification,
+        magnificationDistance,
+        baseSize,
+        size,
+        focusedIndex,
+        handleFocus,
+      ]
+    );
 
-  return (
-    <TooltipPrimitive.Provider delayDuration={tooltipDelayDuration}>
-      <div
-        ref={containerRef}
-        className={cn(dockVariants({ size, className }))}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onKeyDown={handleKeyDown}
-        role="toolbar"
-        aria-label="Dock navigation"
-        tabIndex={0}
-        {...props}
-      >
-        <DockContext.Provider value={contextValue}>
-          {items.map((item, index) => (
-            <DockItem
-              key={item.id}
-              item={item}
-              index={index}
-              isFocused={focusedIndex === index}
-              tooltipSideOffset={tooltipSideOffset}
-              itemRef={(el) => {
-                itemRefs.current[index] = el;
-              }}
-            />
-          ))}
-        </DockContext.Provider>
-      </div>
-    </TooltipPrimitive.Provider>
-  );
-}
+    return (
+      <TooltipPrimitive.Provider delayDuration={tooltipDelayDuration}>
+        <div
+          ref={setRef}
+          className={cn(dockVariants({ size, className }))}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          onKeyDown={handleKeyDown}
+          role="toolbar"
+          aria-label="Dock navigation"
+          tabIndex={0}
+          {...props}
+        >
+          <DockContext.Provider value={contextValue}>
+            {items.map((item, index) => (
+              <DockItem
+                key={item.id}
+                item={item}
+                index={index}
+                isFocused={focusedIndex === index}
+                tooltipSideOffset={tooltipSideOffset}
+                itemRef={(el) => {
+                  itemRefs.current[index] = el;
+                }}
+              />
+            ))}
+          </DockContext.Provider>
+        </div>
+      </TooltipPrimitive.Provider>
+    );
+  }
+);
 Dock.displayName = "Dock";
 
 interface DockItemProps {
