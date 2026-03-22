@@ -65,7 +65,7 @@ export default {
         "changelog",
       ],
     ],
-    "scope-case": [2, "always", "pascal-case"],
+    "scope-case": [2, "always", "lower-case"],
     "type-enum": [
       2,
       "always",
