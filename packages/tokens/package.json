@@ -1,0 +1,47 @@
+{
+  "name": "@launchapp/tokens",
+  "version": "0.1.0",
+  "description": "CLI tool for design token management and theme scaffolding",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchapp-dev/design-system.git"
+  },
+  "type": "module",
+  "bin": {
+    "launchapp-tokens": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "design-tokens",
+    "cli",
+    "theme",
+    "figma-tokens",
+    "design-system"
+  ]
+}
