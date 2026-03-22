@@ -650,3 +650,30 @@ export {
   chatInputButtonVariants,
 } from "./components/ChatInput";
 export type { ChatInputProps } from "./components/ChatInput";
+
+export {
+  BentoGrid,
+  BentoCard,
+  BentoCardHeader,
+  BentoCardTitle,
+  BentoCardDescription,
+  BentoCardBody,
+  BentoCardFooter,
+  bentoGridVariants,
+  bentoCardVariants,
+} from "./components/BentoGrid";
+export type {
+  BentoGridProps,
+  BentoCardProps,
+  BentoGridVariantsProps,
+  BentoCardVariantsProps,
+} from "./components/BentoGrid";
+
+export {
+  Masonry,
+  MasonryCard,
+  MasonryItem,
+  masonryVariants,
+  masonryColumnVariants,
+} from "./components/Masonry";
+export type { MasonryProps, MasonryVariantsProps } from "./components/Masonry";
