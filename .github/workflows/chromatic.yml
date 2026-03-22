@@ -37,3 +37,4 @@ jobs:
           autoAcceptChanges: "main"
           onlyChanged: true
           storybookBaseDir: .
+          traceChanged: true

@@ -243,6 +243,29 @@ Full component documentation is available in the docs app.
 
 ---
 
+## Visual Regression Testing
+
+This project uses [Chromatic](https://www.chromatic.com/) for visual regression testing. Chromatic automatically captures snapshots of every Storybook story and detects unintended UI changes on every pull request.
+
+### How It Works
+
+- **Automated Testing**: Every PR triggers Chromatic to build Storybook and capture screenshots
+- **Visual Diff Detection**: Chromatic compares screenshots against the accepted baseline
+- **PR Comments**: Visual changes are automatically flagged in PR comments with detailed diffs
+- **Auto-Approval**: Changes on the `main` branch are auto-approved to keep baselines up to date
+
+### Setup for Contributors
+
+The visual regression tests run automatically in CI. To run Chromatic locally:
+
+```bash
+CHROMATIC_PROJECT_TOKEN=<your-token> npm run chromatic
+```
+
+For detailed setup instructions, see [CHROMATIC.md](./CHROMATIC.md).
+
+---
+
 ## License
 
 MIT
