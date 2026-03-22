@@ -624,3 +624,6 @@ export type {
 
 export { Dock, dockVariants, dockItemVariants } from "./components/Dock";
 export type { DockProps, DockItemData } from "./components/Dock";
+
+export { Heatmap, heatmapVariants, cellVariants } from "./components/Heatmap";
+export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
