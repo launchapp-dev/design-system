@@ -340,6 +340,8 @@ export { VisuallyHidden } from "./components/VisuallyHidden";
 export type { VisuallyHiddenProps } from "./components/VisuallyHidden";
 export { ThinkingIndicator, thinkingIndicatorVariants } from "./components/ThinkingIndicator";
 export type { ThinkingIndicatorProps } from "./components/ThinkingIndicator";
+export { StreamingText, streamingTextVariants } from "./components/StreamingText";
+export type { StreamingTextProps } from "./components/StreamingText";
 export { Portal } from "./components/Portal";
 export type { PortalProps } from "./components/Portal";
 export { FocusScope } from "./components/FocusScope";
