@@ -640,3 +640,10 @@ export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
 
 export { Gauge, gaugeVariants } from "./components/Gauge";
 export type { GaugeProps, GaugeColorZone } from "./components/Gauge";
+
+export {
+  ChatInput,
+  chatInputVariants,
+  chatInputButtonVariants,
+} from "./components/ChatInput";
+export type { ChatInputProps } from "./components/ChatInput";
