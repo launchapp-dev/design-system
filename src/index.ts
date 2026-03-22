@@ -624,3 +624,11 @@ export type {
 
 export { Dock, dockVariants, dockItemVariants } from "./components/Dock";
 export type { DockProps, DockItemData } from "./components/Dock";
+
+export {
+  ImageComparison,
+  imageComparisonVariants,
+  imageComparisonSliderVariants,
+  imageComparisonHandleVariants,
+} from "./components/ImageComparison";
+export type { ImageComparisonProps } from "./components/ImageComparison";
