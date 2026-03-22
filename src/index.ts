@@ -635,3 +635,6 @@ export type { ImageComparisonProps } from "./components/ImageComparison";
 
 export { Heatmap, heatmapVariants, cellVariants } from "./components/Heatmap";
 export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
+
+export { FunnelChart, funnelChartVariants } from "./components/FunnelChart";
+export type { FunnelChartProps, FunnelStep } from "./components/FunnelChart";
