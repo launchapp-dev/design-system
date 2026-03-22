@@ -16,8 +16,10 @@ export type ToggleGroupProps = React.ComponentPropsWithoutRef<
 > &
   VariantProps<typeof toggleVariants>;
 
-function ToggleGroup({ className, variant, size, children, ref, ...props }: ToggleGroupProps & { ref?: React.Ref<React.ComponentRef<typeof ToggleGroupPrimitive.Root>> }) {
-  return (
+const ToggleGroup = React.forwardRef<
+  React.ComponentRef<typeof ToggleGroupPrimitive.Root>,
+  ToggleGroupProps
+>(({ className, variant, size, children, ...props }, ref) => (
   <ToggleGroupPrimitive.Root
     ref={ref}
     className={cn("flex items-center justify-center gap-1", className)}
@@ -27,8 +29,7 @@ function ToggleGroup({ className, variant, size, children, ref, ...props }: Togg
       {children}
     </ToggleGroupContext.Provider>
   </ToggleGroupPrimitive.Root>
-);
-}
+));
 
 ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName;
 
@@ -37,7 +38,10 @@ export type ToggleGroupItemProps = React.ComponentPropsWithoutRef<
 > &
   VariantProps<typeof toggleVariants>;
 
-function ToggleGroupItem({ className, variant, size, ref, ...props }: ToggleGroupItemProps & { ref?: React.Ref<React.ComponentRef<typeof ToggleGroupPrimitive.Item>> }) {
+const ToggleGroupItem = React.forwardRef<
+  React.ComponentRef<typeof ToggleGroupPrimitive.Item>,
+  ToggleGroupItemProps
+>(({ className, variant, size, ...props }, ref) => {
   const context = React.useContext(ToggleGroupContext);
   return (
     <ToggleGroupPrimitive.Item
@@ -52,7 +56,7 @@ function ToggleGroupItem({ className, variant, size, ref, ...props }: ToggleGrou
       {...props}
     />
   );
-}
+});
 
 ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
 

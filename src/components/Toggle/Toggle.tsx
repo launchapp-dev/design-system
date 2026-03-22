@@ -29,15 +29,16 @@ export interface ToggleProps
   extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>,
     VariantProps<typeof toggleVariants> {}
 
-function Toggle({ className, variant, size, ref, ...props }: ToggleProps & { ref?: React.Ref<React.ComponentRef<typeof TogglePrimitive.Root>> }) {
-  return (
+const Toggle = React.forwardRef<
+  React.ComponentRef<typeof TogglePrimitive.Root>,
+  ToggleProps
+>(({ className, variant, size, ...props }, ref) => (
   <TogglePrimitive.Root
     ref={ref}
     className={cn(toggleVariants({ variant, size }), className)}
     {...props}
   />
-);
-}
+));
 
 Toggle.displayName = TogglePrimitive.Root.displayName;
 
