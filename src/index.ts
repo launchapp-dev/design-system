@@ -641,6 +641,9 @@ export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
 export { Gauge, gaugeVariants } from "./components/Gauge";
 export type { GaugeProps, GaugeColorZone } from "./components/Gauge";
 
+export { FunnelChart, funnelChartVariants, funnelStageVariants } from "./components/FunnelChart";
+export type { FunnelChartProps, FunnelStage } from "./components/FunnelChart";
+
 export {
   ChatInput,
   chatInputVariants,
