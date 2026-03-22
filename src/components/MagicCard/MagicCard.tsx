@@ -492,7 +492,7 @@ function GlowPulseButton({
     <button
       ref={ref}
       className={cn(
-        "relative inline-flex items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "group relative inline-flex items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         reduced ? "" : "hover:scale-[var(--pulse-scale)]",
         className
       )}
