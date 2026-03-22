@@ -640,3 +640,7 @@ export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
 
 export { Gauge, gaugeVariants } from "./components/Gauge";
 export type { GaugeProps, GaugeColorZone } from "./components/Gauge";
+
+export { BentoGrid, BentoCard, bentoGridVariants, bentoCardVariants } from "./components/BentoGrid";
+
+export { Masonry, MasonryItem, masonryVariants, masonryColumnCountVariants } from "./components/Masonry";
