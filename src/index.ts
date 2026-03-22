@@ -625,5 +625,13 @@ export type {
 export { Dock, dockVariants, dockItemVariants } from "./components/Dock";
 export type { DockProps, DockItemData } from "./components/Dock";
 
+export {
+  ImageComparison,
+  imageComparisonVariants,
+  imageComparisonSliderVariants,
+  imageComparisonHandleVariants,
+} from "./components/ImageComparison";
+export type { ImageComparisonProps } from "./components/ImageComparison";
+
 export { Heatmap, heatmapVariants, cellVariants } from "./components/Heatmap";
 export type { HeatmapProps, HeatmapCell } from "./components/Heatmap";
