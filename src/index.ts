@@ -593,3 +593,32 @@ export type {
 
 export { Dock, dockVariants, dockItemVariants } from "./components/Dock";
 export type { DockProps, DockItemData } from "./components/Dock";
+
+export {
+  BentoGrid,
+  BentoCell,
+  bentoGridVariants,
+  bentoCellVariants,
+} from "./components/BentoGrid";
+export type { BentoGridProps, BentoCellProps } from "./components/BentoGrid";
+
+export {
+  BentoCard,
+  BentoCardHeader,
+  BentoCardTitle,
+  BentoCardDescription,
+  BentoCardIcon,
+  BentoCardContent,
+  BentoCardFooter,
+  BentoCardBackground,
+  bentoCardVariants,
+} from "./components/BentoGrid";
+export type { BentoCardProps } from "./components/BentoGrid";
+
+export {
+  Masonry,
+  MasonryItem,
+  masonryVariants,
+  masonryItemVariants,
+} from "./components/BentoGrid";
+export type { MasonryProps, MasonryItemProps } from "./components/BentoGrid";
