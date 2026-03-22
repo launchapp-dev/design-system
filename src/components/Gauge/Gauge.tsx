@@ -88,27 +88,31 @@ function valueToAngle(
   return startAngle + normalized * (endAngle - startAngle);
 }
 
-function Gauge({
-  value,
-  min = 0,
-  max = 100,
-  label,
-  unit,
-  showValue = true,
-  showMinMax = true,
-  colorZones,
-  trackColor = "hsl(var(--la-muted))",
-  needleColor = "hsl(var(--la-primary))",
-  centerColor = "hsl(var(--la-card))",
-  startAngle = 135,
-  endAngle = 405,
-  animationDuration = 500,
-  size,
-  className,
-  "aria-label": ariaLabel,
-  formatValue,
-  ...props
-}: GaugeProps & { ref?: React.Ref<HTMLDivElement> }) {
+const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
+  (
+    {
+      value,
+      min = 0,
+      max = 100,
+      label,
+      unit,
+      showValue = true,
+      showMinMax = true,
+      colorZones,
+      trackColor = "hsl(var(--la-muted))",
+      needleColor = "hsl(var(--la-primary))",
+      centerColor = "hsl(var(--la-card))",
+      startAngle = 135,
+      endAngle = 405,
+      animationDuration = 500,
+      size,
+      className,
+      "aria-label": ariaLabel,
+      formatValue,
+      ...props
+    },
+    ref
+  ) => {
   const reducedMotion = useReducedMotion();
   const clampedValue = Math.max(min, Math.min(max, value));
   const needleAngle = valueToAngle(clampedValue, min, max, startAngle, endAngle);
@@ -135,7 +139,7 @@ function Gauge({
 
   return (
     <div
-      ref={props.ref}
+      ref={ref}
       className={cn(gaugeVariants({ size }), "flex-col", className)}
       role="img"
       aria-label={autoAriaLabel}
@@ -236,7 +240,8 @@ function Gauge({
       )}
     </div>
   );
-}
+  }
+);
 
 Gauge.displayName = "Gauge";
 
