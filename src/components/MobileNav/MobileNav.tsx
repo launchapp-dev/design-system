@@ -94,7 +94,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
           "hover:bg-accent hover:text-accent-foreground",
           "focus:bg-accent focus:text-accent-foreground focus:outline-none",
           "min-h-[44px]",
-          depth > 0 && "pl-8"
+          depth > 0 && "ps-8"
         )}
         aria-expanded={hasChildren ? expanded : undefined}
       >

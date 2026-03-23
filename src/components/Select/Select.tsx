@@ -161,7 +161,7 @@ function SelectItem({ className, children, ref, ...props }: React.ComponentProps
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-sm py-4 md:py-1.5 pl-10 md:pl-8 pr-3 md:pr-2 text-base md:text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 min-h-[44px] md:min-h-0",
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-4 md:py-1.5 ps-10 md:ps-8 pe-3 md:pe-2 text-base md:text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 min-h-[44px] md:min-h-0",
       className
     )}
     {...props}

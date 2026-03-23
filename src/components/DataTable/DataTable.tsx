@@ -173,7 +173,7 @@ export function DataTable<TData, TValue>(
         </div>
         
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-          <span className="text-sm text-muted-foreground text-center sm:text-left">
+          <span className="text-sm text-muted-foreground text-center sm:text-start">
             Page {table.getState().pagination.pageIndex + 1} of{" "}
             {table.getPageCount()}
           </span>

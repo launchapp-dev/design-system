@@ -126,7 +126,7 @@ function PaletteSwitcher(
                 <SelectPrimitive.Item
                   key={palette.name}
                   value={palette.name}
-                  className="relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 pl-3 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                  className="relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 ps-3 pe-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
                 >
                   <span
                     className="inline-block h-3 w-3 shrink-0 rounded-full border border-black/10"

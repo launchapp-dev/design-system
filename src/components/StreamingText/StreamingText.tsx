@@ -181,7 +181,7 @@ const StreamingText = React.forwardRef<HTMLDivElement, StreamingTextProps>(
           {showCursor && (
             <span
               className={cn(
-                "inline-block ml-0.5 border-r-2 border-current",
+                "inline-block ms-0.5 border-e-2 border-current",
                 isStreaming && !reducedMotion && "animate-cursor-blink",
                 isComplete && !reducedMotion && "animate-cursor-blink-slow"
               )}

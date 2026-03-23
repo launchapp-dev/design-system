@@ -360,14 +360,14 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
           <div className="flex">
             {showLabels && rowLabels && rowLabels.length > 0 && (
               <div
-                className="flex flex-col pr-2"
+                className="flex flex-col pe-2"
                 style={{ gap: cellGap }}
                 aria-hidden="true"
               >
                 {rowLabels.map((label, index) => (
                   <div
                     key={`row-label-${index}`}
-                    className="flex items-center justify-end text-muted-foreground pr-2"
+                    className="flex items-center justify-end text-muted-foreground pe-2"
                     style={{
                       height: cellHeight,
                       minWidth: `${Math.max(...rowLabels.map((l) => l.length))}ch`,

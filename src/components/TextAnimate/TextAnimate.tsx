@@ -39,7 +39,7 @@ function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...pr
         {showCursor && (
           <span
             aria-hidden="true"
-            className="inline-block animate-cursor-blink border-r-2 border-current ml-0.5"
+            className="inline-block animate-cursor-blink border-e-2 border-current ms-0.5"
           />
         )}
       </span>

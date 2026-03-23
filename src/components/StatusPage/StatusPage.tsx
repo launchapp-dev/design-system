@@ -168,7 +168,7 @@ function StatusPage({
                     </span>
                   </div>
                   {service.description && (
-                    <p className="mt-0.5 pl-4 text-xs text-[hsl(var(--la-muted-foreground))]">
+                    <p className="mt-0.5 ps-4 text-xs text-[hsl(var(--la-muted-foreground))]">
                       {service.description}
                     </p>
                   )}
@@ -184,7 +184,7 @@ function StatusPage({
               </div>
 
               {history.length > 0 && (
-                <div className="mt-3 pl-4">
+                <div className="mt-3 ps-4">
                   <div className="flex items-end gap-0.5">
                     {history.map((entry, i) => (
                       <div

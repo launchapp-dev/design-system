@@ -47,7 +47,7 @@ function CommandInput({ className, ref, ...props }: React.ComponentPropsWithoutR
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="mr-2 h-4 w-4 shrink-0 opacity-50"
+      className="me-2 h-4 w-4 shrink-0 opacity-50"
       aria-hidden="true"
     >
       <circle cx="11" cy="11" r="8" />
@@ -129,7 +129,7 @@ CommandItem.displayName = CommandPrimitive.Item.displayName;
 
 const CommandShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
   <span
-    className={cn("ml-auto text-xs tracking-widest text-muted-foreground", className)}
+    className={cn("ms-auto text-xs tracking-widest text-muted-foreground", className)}
     {...props}
   />
 );

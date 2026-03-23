@@ -172,7 +172,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                         key={v}
                         variant="secondary"
                         className={cn(
-                          "flex items-center gap-1 rounded pr-0.5",
+                          "flex items-center gap-1 rounded pe-0.5",
                           focusedTagIndex === index && "ring-2 ring-ring"
                         )}
                         ref={(el) => {
@@ -185,7 +185,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                         <button
                           type="button"
                           aria-label={`Remove ${opt?.label ?? v}`}
-                          className="ml-0.5 rounded-full p-0.5 hover:bg-secondary-foreground/20 focus:outline-none focus:ring-1 focus:ring-ring"
+                          className="ms-0.5 rounded-full p-0.5 hover:bg-secondary-foreground/20 focus:outline-none focus:ring-1 focus:ring-ring"
                           onClick={(e) => handleRemove(v, e)}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
@@ -260,7 +260,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                     >
                       <div
                         className={cn(
-                          "mr-2 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-primary",
+                          "me-2 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-primary",
                           isSelected
                             ? "bg-primary text-primary-foreground"
                             : "opacity-50"

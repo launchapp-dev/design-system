@@ -190,7 +190,7 @@ function TerminalLineComponent({
         {showCursor && !isTyping && (
           <span
             aria-hidden="true"
-            className="animate-cursor-blink border-r-2 border-current ml-0.5"
+            className="animate-cursor-blink border-e-2 border-current ms-0.5"
           />
         )}
       </span>

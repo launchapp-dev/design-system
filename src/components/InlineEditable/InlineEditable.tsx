@@ -138,7 +138,7 @@ function InlineEditable({
       aria-label={ariaLabel ?? `Edit: ${displayValue}`}
       className={cn(
         inlineEditableVariants({ size }),
-        "text-left w-full px-2 py-1 rounded",
+        "text-start w-full px-2 py-1 rounded",
         "hover:bg-accent hover:text-accent-foreground",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         "disabled:pointer-events-none disabled:opacity-50",
