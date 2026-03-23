@@ -262,6 +262,100 @@
   .space-start-4 > * + * {
     margin-inline-start: 1rem;
   }
+
+  .start-0 {
+    inset-inline-start: 0;
+  }
+  .end-0 {
+    inset-inline-end: 0;
+  }
+  .start-1 {
+    inset-inline-start: 0.25rem;
+  }
+  .end-1 {
+    inset-inline-end: 0.25rem;
+  }
+  .start-2 {
+    inset-inline-start: 0.5rem;
+  }
+  .end-2 {
+    inset-inline-end: 0.5rem;
+  }
+  .start-3 {
+    inset-inline-start: 0.75rem;
+  }
+  .end-3 {
+    inset-inline-end: 0.75rem;
+  }
+  .start-4 {
+    inset-inline-start: 1rem;
+  }
+  .end-4 {
+    inset-inline-end: 1rem;
+  }
+
+  .-start-0\.5 {
+    inset-inline-start: -0.125rem;
+  }
+  .-start-1 {
+    inset-inline-start: -0.25rem;
+  }
+  .-end-0\.5 {
+    inset-inline-end: -0.125rem;
+  }
+  .-end-1 {
+    inset-inline-end: -0.25rem;
+  }
+
+  .border-s {
+    border-inline-start-width: 1px;
+  }
+  .border-e {
+    border-inline-end-width: 1px;
+  }
+
+  .rounded-s {
+    border-start-start-radius: var(--la-radius);
+    border-end-start-radius: var(--la-radius);
+  }
+  .rounded-e {
+    border-start-end-radius: var(--la-radius);
+    border-end-end-radius: var(--la-radius);
+  }
+
+  .rounded-ts {
+    border-start-start-radius: var(--la-radius);
+  }
+  .rounded-te {
+    border-start-end-radius: var(--la-radius);
+  }
+  .rounded-bs {
+    border-end-start-radius: var(--la-radius);
+  }
+  .rounded-be {
+    border-end-end-radius: var(--la-radius);
+  }
+
+  .text-start {
+    text-align: start;
+  }
+  .text-end {
+    text-align: end;
+  }
+
+  .float-start {
+    float: inline-start;
+  }
+  .float-end {
+    float: inline-end;
+  }
+
+  .clear-start {
+    clear: inline-start;
+  }
+  .clear-end {
+    clear: inline-end;
+  }
 }
 
 @layer base {

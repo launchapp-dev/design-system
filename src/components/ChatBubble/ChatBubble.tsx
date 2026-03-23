@@ -243,7 +243,7 @@ const ChatBubble = React.forwardRef<HTMLDivElement, ChatBubbleProps>(
             <time
               className={cn(
                 "text-xs text-muted-foreground",
-                effectiveVariant === "user" ? "text-right" : "text-left"
+                effectiveVariant === "user" ? "text-end" : "text-start"
               )}
               dateTime={timestamp}
             >

@@ -225,7 +225,7 @@ function ImageComparison({
         />
         {showLabels && (
           <div
-            className="absolute right-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
+            className="absolute end-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
             aria-hidden="true"
           >
             {afterLabel}
@@ -249,7 +249,7 @@ function ImageComparison({
         />
         {showLabels && (
           <div
-            className="absolute left-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
+            className="absolute start-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
             aria-hidden="true"
           >
             {beforeLabel}

@@ -58,7 +58,7 @@ function NavigationMenuTrigger({ className, children, ref, ...props }: React.Com
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+      className="relative top-[1px] ms-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
       aria-hidden="true"
     >
       <path d="m6 9 6 6 6-6" />
@@ -73,7 +73,7 @@ function NavigationMenuContent({ className, ref, ...props }: React.ComponentProp
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "left-0 top-0 w-full md:absolute md:w-auto",
+      "start-0 top-0 w-full md:absolute md:w-auto",
       "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52",
       className
     )}
@@ -87,7 +87,7 @@ const NavigationMenuLink = NavigationMenuPrimitive.Link;
 
 function NavigationMenuViewport({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport> & { ref?: React.Ref<React.ComponentRef<typeof NavigationMenuPrimitive.Viewport>> }) {
   return (
-  <div className={cn("absolute left-0 top-full flex justify-center")}>
+  <div className={cn("absolute start-0 top-full flex justify-center")}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
         "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] text-[hsl(var(--la-popover-foreground))] shadow-lg md:w-[var(--radix-navigation-menu-viewport-width)]",

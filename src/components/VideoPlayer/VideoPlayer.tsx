@@ -401,15 +401,15 @@ function VideoPlayerInner(
       )}
 
       {showControls && showControlsState && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 pt-12">
+        <div className="absolute bottom-0 start-0 end-0 bg-gradient-to-t from-black/80 to-transparent p-4 pt-12">
           <div className="mb-2">
             <div className="relative h-1 bg-white/30 rounded-full cursor-pointer group/progress">
               <div
-                className="absolute inset-y-0 left-0 bg-white/50 rounded-full"
+                className="absolute inset-y-0 start-0 bg-white/50 rounded-full"
                 style={{ width: `${buffered}%` }}
               />
               <div
-                className="absolute inset-y-0 left-0 bg-primary rounded-full"
+                className="absolute inset-y-0 start-0 bg-primary rounded-full"
                 style={{ width: `${progressPercent}%` }}
               />
               <Slider
@@ -502,7 +502,7 @@ function VideoPlayerInner(
                   </button>
                   {showSpeedMenu && (
                     <div
-                      className="absolute bottom-full right-0 mb-2 py-1 bg-black/90 rounded-[--la-radius] shadow-lg min-w-[80px]"
+                      className="absolute bottom-full end-0 mb-2 py-1 bg-black/90 rounded-[--la-radius] shadow-lg min-w-[80px]"
                       role="listbox"
                       aria-label="Select playback speed"
                     >
@@ -511,7 +511,7 @@ function VideoPlayerInner(
                           key={speed}
                           onClick={() => handlePlaybackRateChange(speed)}
                           className={cn(
-                            "w-full px-4 py-1 text-sm text-left hover:bg-white/20 transition-colors min-h-[36px]",
+                            "w-full px-4 py-1 text-sm text-start hover:bg-white/20 transition-colors min-h-[36px]",
                             playbackRate === speed ? "text-primary font-medium" : "text-white"
                           )}
                           role="option"

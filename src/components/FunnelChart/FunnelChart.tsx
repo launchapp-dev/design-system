@@ -266,7 +266,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                     aria-label={`${stage.label}: ${formatValue(stage.value)}, ${percentage.toFixed(1)}%`}
                   >
                     {showLabels && (
-                      <div className="w-24 text-right text-muted-foreground truncate">
+                      <div className="w-24 text-end text-muted-foreground truncate">
                         {stage.label}
                       </div>
                     )}
@@ -287,12 +287,12 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                       />
                     </div>
                     {showValues && (
-                      <div className="w-20 text-right tabular-nums">
+                      <div className="w-20 text-end tabular-nums">
                         {formatValue(stage.value)}
                       </div>
                     )}
                     {showPercentage && (
-                      <div className="w-16 text-right text-muted-foreground tabular-nums">
+                      <div className="w-16 text-end text-muted-foreground tabular-nums">
                         {percentage.toFixed(0)}%
                       </div>
                     )}

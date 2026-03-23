@@ -113,7 +113,7 @@ function CookieConsent({
         />
         <DialogPrimitive.Content
           className={cn(
-            "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
+            "fixed start-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
             "w-full max-w-lg max-h-[90vh] overflow-y-auto",
             "rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] shadow-lg",
             "p-6",
@@ -190,7 +190,7 @@ function CookieConsent({
 
           <DialogPrimitive.Close
             className={cn(
-              "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-[hsl(var(--la-background))]",
+              "absolute end-4 top-4 rounded-sm opacity-70 ring-offset-[hsl(var(--la-background))]",
               "transition-opacity hover:opacity-100",
               "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2",
               "disabled:pointer-events-none"

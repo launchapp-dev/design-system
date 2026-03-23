@@ -169,7 +169,7 @@ function TerminalLineComponent({
   return (
     <div className="flex items-start gap-2 group">
       {showLineNumbers && (
-        <span className="select-none text-muted-foreground/40 w-6 text-right flex-shrink-0">
+        <span className="select-none text-muted-foreground/40 w-6 text-end flex-shrink-0">
           {index + 1}
         </span>
       )}
@@ -184,7 +184,7 @@ function TerminalLineComponent({
         {isTyping && (
           <span
             aria-hidden="true"
-            className="animate-cursor-blink border-r-2 border-current ml-0.5"
+            className="animate-cursor-blink border-e-2 border-current ms-0.5"
           />
         )}
         {showCursor && !isTyping && (

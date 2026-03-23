@@ -306,7 +306,7 @@ function Lightbox({
         >
           <DialogPrimitive.Close
             className={cn(
-              "absolute right-4 top-4 z-10 rounded-full p-2 transition-colors",
+              "absolute end-4 top-4 z-10 rounded-full p-2 transition-colors",
               "bg-black/50 text-white hover:bg-black/70",
               "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
               "min-h-[44px] min-w-[44px] flex items-center justify-center"
@@ -333,7 +333,7 @@ function Lightbox({
           {showCounter && images.length > 1 && (
             <div
               className={cn(
-                "absolute left-4 top-4 z-10 rounded-full px-4 py-2 text-sm font-medium",
+                "absolute start-4 top-4 z-10 rounded-full px-4 py-2 text-sm font-medium",
                 isLightVariant ? "bg-black/10 text-foreground" : "bg-black/50 text-white"
               )}
               aria-live="polite"
@@ -347,7 +347,7 @@ function Lightbox({
               <button
                 onClick={goToPrevious}
                 className={cn(
-                  "absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 transition-colors",
+                  "absolute start-4 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 transition-colors",
                   isLightVariant
                     ? "bg-black/10 text-foreground hover:bg-black/20"
                     : "bg-black/50 text-white hover:bg-black/70",
@@ -374,7 +374,7 @@ function Lightbox({
               <button
                 onClick={goToNext}
                 className={cn(
-                  "absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 transition-colors",
+                  "absolute end-4 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 transition-colors",
                   isLightVariant
                     ? "bg-black/10 text-foreground hover:bg-black/20"
                     : "bg-black/50 text-white hover:bg-black/70",

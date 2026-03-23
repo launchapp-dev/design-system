@@ -74,7 +74,7 @@ const DotsIndicator = React.forwardRef<
       />
     ))}
     {label && (
-      <span className="ml-1 text-muted-foreground">{label}</span>
+      <span className="ms-1 text-muted-foreground">{label}</span>
     )}
   </div>
 ));

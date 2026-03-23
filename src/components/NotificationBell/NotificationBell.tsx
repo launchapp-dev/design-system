@@ -36,9 +36,9 @@ const badgeVariants = cva(
   {
     variants: {
       size: {
-        sm: "-right-0.5 -top-0.5 h-4 min-w-4 px-1 text-[9px]",
-        md: "-right-0.5 -top-0.5 h-4 min-w-4 px-1 text-[10px]",
-        lg: "-right-1 -top-1 h-5 min-w-5 px-1.5 text-[10px]",
+        sm: "-end-0.5 -top-0.5 h-4 min-w-4 px-1 text-[9px]",
+        md: "-end-0.5 -top-0.5 h-4 min-w-4 px-1 text-[10px]",
+        lg: "-end-1 -top-1 h-5 min-w-5 px-1.5 text-[10px]",
       },
     },
     defaultVariants: {
