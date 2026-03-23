@@ -3,4 +3,9 @@ dist/
 .turbo/
 *.tsbuildinfo
 storybook-static/
+.next/
 .DS_Store
+coverage/
+.env
+.env.local
+*.log

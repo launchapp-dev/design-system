@@ -2,24 +2,80 @@
 
 A React + TypeScript component library built on Radix UI primitives, styled with Tailwind CSS.
 
-## Quick start
+## Monorepo Structure
 
-```bash
-npm install @launchapp/design-system
+This is a Turborepo-powered monorepo containing:
+
+```
+├── apps/
+│   ├── docs/              # Documentation site (Next.js)
+│   └── web/               # Example web app
+├── packages/
+│   ├── design-system/     # Main design system package
+│   └── create-design-system/  # CLI scaffolding tool
+├── turbo.json             # Turborepo pipeline configuration
+└── tsconfig.base.json     # Shared TypeScript configuration
 ```
 
-```tsx
-import { Button } from "@launchapp/design-system";
-import "@launchapp/design-system/styles.css";
+### Monorepo Setup
 
-export default function App() {
-  return <Button>Hello world</Button>;
+1. **Install dependencies:**
+
+```bash
+pnpm install
+```
+
+2. **Build all packages:**
+
+```bash
+pnpm build
+```
+
+3. **Run development servers:**
+
+```bash
+# Run all apps in development mode
+pnpm dev
+
+# Run a specific app
+pnpm --filter @launchapp/web dev
+pnpm --filter @launchapp/docs dev
+```
+
+4. **Run tests:**
+
+```bash
+pnpm test
+```
+
+5. **Lint and typecheck:**
+
+```bash
+pnpm lint
+pnpm typecheck
+```
+
+6. **Clean build artifacts:**
+
+```bash
+pnpm clean
+```
+
+### Consuming from Workspace
+
+To consume the design system from another workspace package, use the `workspace:*` protocol:
+
+```json
+{
+  "dependencies": {
+    "@launchapp/design-system": "workspace:*"
+  }
 }
 ```
 
 ---
 
-## npm installation
+## Quick Start (Published Package)
 
 ### Install the package
 
