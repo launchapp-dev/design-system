@@ -75,6 +75,7 @@ interface MobileNavItemComponentProps {
 function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemComponentProps) {
   const [expanded, setExpanded] = React.useState(false);
   const hasChildren = item.children && item.children.length > 0;
+  const contentId = React.useId();
 
   const handleClick = () => {
     if (hasChildren) {
@@ -84,6 +85,28 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
       onNavigate();
     }
   };
+
+  if (item.href && !hasChildren) {
+    return (
+      <a
+        href={item.href}
+        onClick={(e) => {
+          e.preventDefault();
+          item.onClick?.();
+          onNavigate();
+        }}
+        className={cn(
+          "flex items-center rounded-md px-4 py-3 text-sm font-medium transition-colors",
+          "hover:bg-accent hover:text-accent-foreground",
+          "focus:bg-accent focus:text-accent-foreground focus:outline-none",
+          "min-h-[44px]",
+          depth > 0 && "pl-8"
+        )}
+      >
+        {item.label}
+      </a>
+    );
+  }
 
   return (
     <div>
@@ -97,14 +120,9 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
           depth > 0 && "pl-8"
         )}
         aria-expanded={hasChildren ? expanded : undefined}
+        aria-controls={hasChildren ? contentId : undefined}
       >
-        {item.href ? (
-          <a href={item.href} onClick={(e) => { e.preventDefault(); handleClick(); }}>
-            {item.label}
-          </a>
-        ) : (
-          <span>{item.label}</span>
-        )}
+        <span>{item.label}</span>
         {hasChildren && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +145,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
         )}
       </button>
       {hasChildren && expanded && (
-        <div className="mt-1">
+        <div id={contentId} className="mt-1">
           {item.children!.map((child, index) => (
             <MobileNavItemComponent
               key={index}
