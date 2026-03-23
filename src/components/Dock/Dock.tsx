@@ -269,9 +269,8 @@ function DockItem({
             setScale(1);
           }}
           tabIndex={isFocused ? 0 : -1}
-          role="button"
           aria-label={item.label}
-          aria-pressed={item.active}
+          aria-pressed={item.active ?? false}
         >
           {item.icon}
           {item.active && (
