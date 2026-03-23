@@ -22,7 +22,7 @@ function DropdownMenuSubTrigger({ className, inset, children, ref, ...props }: R
     ref={ref}
     className={cn(
       "flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-3 md:py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] md:min-h-0",
-      inset && "pl-8",
+      inset && "ps-8",
       className
     )}
     {...props}
@@ -38,7 +38,7 @@ function DropdownMenuSubTrigger({ className, inset, children, ref, ...props }: R
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="ml-auto"
+      className="ms-auto rtl:rotate-180"
       aria-hidden="true"
     >
       <path d="m9 18 6-6-6-6" />
@@ -87,7 +87,7 @@ function DropdownMenuItem({ className, inset, ref, ...props }: React.ComponentPr
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-3 md:py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] md:min-h-0",
-      inset && "pl-8",
+      inset && "ps-8",
       className
     )}
     {...props}
@@ -101,13 +101,13 @@ function DropdownMenuCheckboxItem({ className, children, checked, ref, ...props 
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 ps-8 pe-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -136,12 +136,12 @@ function DropdownMenuRadioItem({ className, children, ref, ...props }: React.Com
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 ps-8 pe-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,7 @@ function DropdownMenuLabel({ className, inset, ref, ...props }: React.ComponentP
     ref={ref}
     className={cn(
       "px-2 py-1.5 text-xs font-semibold text-muted-foreground",
-      inset && "pl-8",
+      inset && "ps-8",
       className
     )}
     {...props}
@@ -195,7 +195,7 @@ DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
 const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
   <span
-    className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+    className={cn("ms-auto text-xs tracking-widest opacity-60", className)}
     {...props}
   />
 );

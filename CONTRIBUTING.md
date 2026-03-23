@@ -1,5 +1,100 @@
 # Contributing to @launchapp/design-system
 
+## RTL (Right-to-Left) Support
+
+This design system supports RTL layouts for Arabic, Hebrew, and other RTL languages. All components use logical CSS properties to automatically adapt to the document direction.
+
+### Usage
+
+To enable RTL mode, set the `dir` attribute on your document root or any container element:
+
+```html
+<html dir="rtl">
+  <!-- Your app content -->
+</html>
+```
+
+Or dynamically with JavaScript:
+
+```tsx
+document.documentElement.setAttribute('dir', 'rtl');
+```
+
+### useDirection Hook
+
+Use the `useDirection` hook to detect and control the current direction:
+
+```tsx
+import { useDirection, useSetDirection, DirectionProvider } from "@launchapp/design-system";
+
+function MyComponent() {
+  const direction = useDirection();
+  const setDirection = useSetDirection();
+  
+  return (
+    <div>
+      <p>Current direction: {direction}</p>
+      <button onClick={() => setDirection(direction === 'ltr' ? 'rtl' : 'ltr')}>
+        Toggle Direction
+      </button>
+    </div>
+  );
+}
+
+// Optional: Wrap your app with DirectionProvider for context-based control
+function App() {
+  return (
+    <DirectionProvider defaultDirection="ltr">
+      <MyComponent />
+    </DirectionProvider>
+  );
+}
+```
+
+### Logical CSS Properties
+
+When writing component styles, use logical properties instead of physical ones:
+
+| Physical Property | Logical Property |
+|------------------|------------------|
+| `margin-left` | `margin-inline-start` (or `ms-*` in Tailwind) |
+| `margin-right` | `margin-inline-end` (or `me-*` in Tailwind) |
+| `padding-left` | `padding-inline-start` (or `ps-*` in Tailwind) |
+| `padding-right` | `padding-inline-end` (or `pe-*` in Tailwind) |
+| `left` | `inset-inline-start` (or `start-*` in Tailwind) |
+| `right` | `inset-inline-end` (or `end-*` in Tailwind) |
+| `border-left` | `border-inline-start` (or `border-s-*` in Tailwind) |
+| `border-right` | `border-inline-end` (or `border-e-*` in Tailwind) |
+| `text-align: left` | `text-align: start` (or `text-start` in Tailwind) |
+| `text-align: right` | `text-align: end` (or `text-end` in Tailwind) |
+
+### Flipping Icons
+
+Directional icons (arrows, chevrons) should flip in RTL mode:
+
+```tsx
+<svg className="rtl:rotate-180">
+  {/* icon content */}
+</svg>
+```
+
+Or use the utility class:
+
+```tsx
+<svg className="flip-rtl">
+  {/* icon content */}
+</svg>
+```
+
+### Testing RTL
+
+All components are tested in both LTR and RTL modes. When adding new components:
+
+1. Use logical CSS properties (`ps-*`, `pe-*`, `ms-*`, `me-*`, etc.)
+2. Flip directional icons with `rtl:rotate-180`
+3. Add RTL stories in Storybook to demonstrate RTL behavior
+4. Test with Arabic or Hebrew content
+
 ## Release Process
 
 Releases are published automatically to npm via GitHub Actions when a version tag is pushed.

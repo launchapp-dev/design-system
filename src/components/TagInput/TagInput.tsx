@@ -310,7 +310,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                       removeTag(tag);
                     }}
                     aria-label={`Remove ${tag}`}
-                    className="ml-0.5 rounded-full hover:bg-black/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--la-ring))]"
+                    className="ms-0.5 rounded-full hover:bg-black/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--la-ring))]"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -380,7 +380,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                       }}
                       onMouseEnter={() => setHighlightedIndex(i)}
                       className={cn(
-                        "w-full text-left px-2 py-1.5 rounded-sm text-sm transition-colors",
+                        "w-full text-start px-2 py-1.5 rounded-sm text-sm transition-colors",
                         "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
                         i === highlightedIndex &&
                           "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",

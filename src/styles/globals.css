@@ -243,6 +243,25 @@
   .animate-marquee-down {
     animation: marquee-down var(--marquee-duration, 30s) linear infinite;
   }
+
+  .flip-rtl {
+    [dir="rtl"] & {
+      transform: scaleX(-1);
+    }
+  }
+
+  .space-start-1 > * + * {
+    margin-inline-start: 0.25rem;
+  }
+  .space-start-2 > * + * {
+    margin-inline-start: 0.5rem;
+  }
+  .space-start-3 > * + * {
+    margin-inline-start: 0.75rem;
+  }
+  .space-start-4 > * + * {
+    margin-inline-start: 1rem;
+  }
 }
 
 @layer base {

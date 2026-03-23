@@ -48,7 +48,7 @@ function MenubarSubTrigger({ className, inset, children, ref, ...props }: React.
     ref={ref}
     className={cn(
       "flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-      inset && "pl-8",
+      inset && "ps-8",
       className
     )}
     {...props}
@@ -64,7 +64,7 @@ function MenubarSubTrigger({ className, inset, children, ref, ...props }: React.
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="ml-auto"
+      className="ms-auto rtl:rotate-180"
       aria-hidden="true"
     >
       <path d="m9 18 6-6-6-6" />
@@ -115,7 +115,7 @@ function MenubarItem({ className, inset, ref, ...props }: React.ComponentPropsWi
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center gap-2 rounded-sm px-3 md:px-2 py-4 md:py-1.5 text-base md:text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] md:min-h-0",
-      inset && "pl-8",
+      inset && "ps-8",
       className
     )}
     {...props}
@@ -129,13 +129,13 @@ function MenubarCheckboxItem({ className, children, checked, ref, ...props }: Re
   <MenubarPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 ps-8 pe-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -164,12 +164,12 @@ function MenubarRadioItem({ className, children, ref, ...props }: React.Componen
   <MenubarPrimitive.RadioItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 ps-8 pe-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +201,7 @@ function MenubarLabel({ className, inset, ref, ...props }: React.ComponentPropsW
     ref={ref}
     className={cn(
       "px-2 py-1.5 text-xs font-semibold text-muted-foreground",
-      inset && "pl-8",
+      inset && "ps-8",
       className
     )}
     {...props}
@@ -223,7 +223,7 @@ MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName;
 
 const MenubarShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
   <span
-    className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+    className={cn("ms-auto text-xs tracking-widest opacity-60", className)}
     {...props}
   />
 );

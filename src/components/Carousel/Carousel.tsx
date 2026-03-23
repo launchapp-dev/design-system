@@ -270,7 +270,7 @@ function CarouselPrev({ className, children, ref, ...props }: CarouselPrevProps 
       aria-label="Previous slide"
       className={cn(
         carouselButtonVariants({ orientation }),
-        orientation === "horizontal" ? "left-4" : "top-4 rotate-90",
+        orientation === "horizontal" ? "start-4" : "top-4 rotate-90",
         className
       )}
       {...props}
@@ -287,6 +287,7 @@ function CarouselPrev({ className, children, ref, ...props }: CarouselPrevProps 
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
+          className="rtl:rotate-180"
         >
           <path d="m15 18-6-6 6-6" />
         </svg>
@@ -310,7 +311,7 @@ function CarouselNext({ className, children, ref, ...props }: CarouselNextProps 
       aria-label="Next slide"
       className={cn(
         carouselButtonVariants({ orientation }),
-        orientation === "horizontal" ? "right-4" : "bottom-4 rotate-90",
+        orientation === "horizontal" ? "end-4" : "bottom-4 rotate-90",
         className
       )}
       {...props}
@@ -327,6 +328,7 @@ function CarouselNext({ className, children, ref, ...props }: CarouselNextProps 
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
+          className="rtl:rotate-180"
         >
           <path d="m9 18 6-6-6-6" />
         </svg>

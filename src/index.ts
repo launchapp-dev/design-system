@@ -1,5 +1,6 @@
 export { cn } from "./lib/utils";
 export { useReducedMotion, duration, easing, motionSafe, motionReduce } from "./lib/animation";
+export { useDirection, useSetDirection, DirectionProvider, type Direction } from "./hooks";
 export { PaletteSwitcher } from "./components/PaletteSwitcher";
 export type { PaletteSwitcherProps } from "./components/PaletteSwitcher";
 export { builtinPalettes } from "./themes/palettes";

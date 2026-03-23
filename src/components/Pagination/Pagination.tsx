@@ -93,7 +93,7 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    className={cn("gap-1 pl-2.5 w-auto px-3 min-h-[44px] md:min-h-0", className)}
+    className={cn("gap-1 ps-2.5 w-auto px-3 min-h-[44px] md:min-h-0", className)}
     {...props}
   >
     <svg
@@ -106,7 +106,7 @@ const PaginationPrevious = ({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-4 w-4"
+      className="h-4 w-4 rtl:rotate-180"
       aria-hidden="true"
     >
       <path d="m15 18-6-6 6-6" />
@@ -122,7 +122,7 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
-    className={cn("gap-1 pr-2.5 w-auto px-3 min-h-[44px] md:min-h-0", className)}
+    className={cn("gap-1 pe-2.5 w-auto px-3 min-h-[44px] md:min-h-0", className)}
     {...props}
   >
     <span className="hidden sm:inline">Next</span>
@@ -136,7 +136,7 @@ const PaginationNext = ({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-4 w-4"
+      className="h-4 w-4 rtl:rotate-180"
       aria-hidden="true"
     >
       <path d="m9 18 6-6-6-6" />

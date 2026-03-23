@@ -32,8 +32,8 @@ function AlertDialogContent({ className, children, ref, ...props }: React.Compon
         "fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-lg border border-border bg-background p-4 md:p-6 shadow-lg duration-200 data-[state=open]:animate-scale-in data-[state=closed]:animate-fade-out max-h-[90vh] overflow-y-auto",
         "pt-[calc(1rem+env(safe-area-inset-top))] md:pt-6",
         "pb-[calc(1rem+env(safe-area-inset-bottom))] md:pb-6",
-        "pl-[calc(1rem+env(safe-area-inset-left))] md:pl-6",
-        "pr-[calc(1rem+env(safe-area-inset-right))] md:pr-6",
+        "ps-[calc(1rem+env(safe-area-inset-left))] md:ps-6",
+        "pe-[calc(1rem+env(safe-area-inset-right))] md:pe-6",
         className
       )}
       {...props}
@@ -50,7 +50,7 @@ const AlertDialogHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("flex flex-col gap-1.5 text-center sm:text-left", className)}
+    className={cn("flex flex-col gap-1.5 text-center sm:text-start", className)}
     {...props}
   />
 );
