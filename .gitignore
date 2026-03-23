@@ -3,4 +3,5 @@ dist/
 .turbo/
 *.tsbuildinfo
 storybook-static/
+chromatic-results/
 .DS_Store

@@ -23,7 +23,6 @@ jobs:
   chromatic:
     name: Visual Regression Tests
     runs-on: ubuntu-latest
-    continue-on-error: true
     timeout-minutes: 30
     env:
       CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
