@@ -1,9 +1,11 @@
-name: Chromatic
+name: Visual Regression (Chromatic)
 
 on:
   push:
     branches:
-      - "**"
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   chromatic:
@@ -23,6 +25,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build Storybook
+        run: npm run build:storybook
 
       - name: Run Chromatic
         if: env.CHROMATIC_PROJECT_TOKEN != ''
