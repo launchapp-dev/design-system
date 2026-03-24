@@ -708,3 +708,6 @@ export {
   videoPlayerOverlayVariants,
 } from "./components/VideoPlayer";
 export type { VideoPlayerProps } from "./components/VideoPlayer";
+
+export { analyzeImageColors } from "./lib/vision";
+export type { VisionThemeOptions, VisionColorMap, VisionThemeResult } from "./lib/vision";
