@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && node scripts/copy-templates.js",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit"
   },

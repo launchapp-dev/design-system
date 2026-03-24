@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import prompts from "prompts";
 
 const COMMUNITY_THEMES = {
@@ -477,6 +478,44 @@ function writeFile(filePath: string, content: string): void {
   fs.writeFileSync(filePath, content, "utf-8");
 }
 
+function copyTemplate(
+  templateDir: string,
+  targetDir: string,
+  replacements: Record<string, string>
+): void {
+  if (!fs.existsSync(templateDir)) {
+    console.error(`Error: Template directory not found: ${templateDir}`);
+    process.exit(1);
+  }
+
+  const copyDir = (src: string, dest: string) => {
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest, { recursive: true });
+    }
+
+    const files = fs.readdirSync(src);
+    files.forEach((file) => {
+      const srcPath = path.join(src, file);
+      const destPath = path.join(dest, file);
+      const stat = fs.statSync(srcPath);
+
+      if (stat.isDirectory()) {
+        copyDir(srcPath, destPath);
+      } else {
+        let content = fs.readFileSync(srcPath, "utf-8");
+
+        for (const [key, value] of Object.entries(replacements)) {
+          content = content.replace(new RegExp(key, "g"), value);
+        }
+
+        writeFile(destPath, content);
+      }
+    });
+  };
+
+  copyDir(templateDir, targetDir);
+}
+
 function generateCommunityCss(
   theme: (typeof COMMUNITY_THEMES)[keyof typeof COMMUNITY_THEMES]
 ): string {
@@ -548,6 +587,16 @@ async function main(): Promise<void> {
 
   const answers = await prompts(
     [
+      {
+        type: "select",
+        name: "template",
+        message: "Choose a template",
+        choices: [
+          { title: "Next.js", value: "nextjs", description: "Full-stack React with Server Components" },
+          { title: "Vite", value: "vite", description: "Fast lightweight bundler with React" },
+        ],
+        initial: 0,
+      },
       {
         type: "text",
         name: "projectName",
@@ -630,6 +679,16 @@ async function main(): Promise<void> {
 
   const primaryHsl = hexToHsl(answers.primaryColor as string);
   const primaryDarkHsl = hexToHsl(answers.primaryDarkColor as string);
+  const template = answers.template as string;
+
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  const templatePath = path.join(__dirname, "..", "templates", template);
+
+  const replacements = {
+    "{{projectName}}": answers.projectName as string,
+  };
+
+  copyTemplate(templatePath, targetDir, replacements);
 
   const globalsPath = path.join(targetDir, "src", "styles", "globals.css");
   const tailwindPath = path.join(targetDir, "tailwind.config.ts");
@@ -667,35 +726,42 @@ async function main(): Promise<void> {
     );
   }
 
-  console.log(`\n  Created project: ${answers.projectName}\n`);
-  console.log("  Files generated:");
+  console.log(`\n  ✓ Created project: ${answers.projectName}`);
+  console.log(`  ✓ Template: ${template === "nextjs" ? "Next.js" : "Vite"}\n`);
+  console.log("  Generated files:");
   console.log(`    ${path.relative(process.cwd(), globalsPath)}`);
   console.log(`    ${path.relative(process.cwd(), tailwindPath)}`);
   console.log(`    ${path.relative(process.cwd(), postcssPath)}`);
 
-  if (answers.includeStorybook) {
+  if (answers.includeStorybook && template === "nextjs") {
     console.log(`    ${answers.projectName}/.storybook/main.ts`);
     console.log(`    ${answers.projectName}/.storybook/preview.ts`);
   }
 
   console.log("\n  Next steps:\n");
   console.log(`    cd ${answers.projectName}`);
-  console.log("    npm install @launchapp/design-system tailwindcss postcss autoprefixer");
+  console.log("    npm install");
 
   if (answers.fontSans !== "system-ui") {
     console.log(`    # Add "${answers.fontSans}" to your HTML via Google Fonts or your font provider`);
   }
 
-  if (answers.includeStorybook) {
+  if (template === "nextjs") {
+    console.log(`    npm run dev`);
+  } else {
+    console.log(`    npm run dev`);
+  }
+
+  if (answers.includeStorybook && template === "nextjs") {
+    console.log("\n  To set up Storybook:");
     console.log("    npm install -D storybook @storybook/react-vite @storybook/addon-docs");
     console.log("    npx storybook dev");
   }
 
-  console.log("\n  Import the design system styles in your entry file:");
-  console.log('    import "@launchapp/design-system/styles.css"');
-  console.log('    import "./src/styles/globals.css"\n');
-
-  console.log("  To install a community theme, run:");
+  console.log("\n  To customize your theme:\n");
+  console.log("  1. Edit src/styles/globals.css to modify colors and tokens");
+  console.log("  2. Edit tailwind.config.ts to adjust fonts and spacing");
+  console.log("\n  To install a community theme, run:");
   console.log('    npx @launchapp/create-design-system add <theme-id>\n');
   console.log("  Available themes:");
   Object.entries(COMMUNITY_THEMES).forEach(([id, theme]) => {
