@@ -2,6 +2,150 @@ import fs from "node:fs";
 import path from "node:path";
 import prompts from "prompts";
 
+const COMMUNITY_THEMES = {
+  dracula: {
+    name: "Dracula",
+    tokens: {
+      light: {
+        "--la-background": "0 0% 100%",
+        "--la-foreground": "231 15% 18%",
+        "--la-card": "0 0% 100%",
+        "--la-card-foreground": "231 15% 18%",
+        "--la-popover": "0 0% 100%",
+        "--la-popover-foreground": "231 15% 18%",
+        "--la-primary": "265 89% 66%",
+        "--la-primary-foreground": "0 0% 100%",
+        "--la-secondary": "231 15% 95%",
+        "--la-secondary-foreground": "231 15% 25%",
+        "--la-muted": "231 15% 90%",
+        "--la-muted-foreground": "231 15% 45%",
+        "--la-accent": "265 89% 66%",
+        "--la-accent-foreground": "0 0% 100%",
+        "--la-destructive": "0 100% 67%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "231 15% 88%",
+        "--la-input": "231 15% 88%",
+        "--la-ring": "265 89% 66%",
+      },
+      dark: {
+        "--la-background": "231 15% 18%",
+        "--la-foreground": "60 30% 96%",
+        "--la-card": "231 15% 22%",
+        "--la-card-foreground": "60 30% 96%",
+        "--la-popover": "231 15% 22%",
+        "--la-popover-foreground": "60 30% 96%",
+        "--la-primary": "189 100% 74%",
+        "--la-primary-foreground": "231 15% 18%",
+        "--la-secondary": "231 15% 35%",
+        "--la-secondary-foreground": "60 30% 96%",
+        "--la-muted": "231 15% 40%",
+        "--la-muted-foreground": "231 15% 70%",
+        "--la-accent": "189 100% 74%",
+        "--la-accent-foreground": "231 15% 18%",
+        "--la-destructive": "0 100% 67%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "231 15% 32%",
+        "--la-input": "231 15% 32%",
+        "--la-ring": "189 100% 74%",
+      },
+    },
+  },
+  nord: {
+    name: "Nord",
+    tokens: {
+      light: {
+        "--la-background": "0 0% 100%",
+        "--la-foreground": "219 16% 27%",
+        "--la-card": "0 0% 100%",
+        "--la-card-foreground": "219 16% 27%",
+        "--la-popover": "0 0% 100%",
+        "--la-popover-foreground": "219 16% 27%",
+        "--la-primary": "218 88% 52%",
+        "--la-primary-foreground": "0 0% 100%",
+        "--la-secondary": "219 16% 95%",
+        "--la-secondary-foreground": "219 16% 30%",
+        "--la-muted": "219 16% 90%",
+        "--la-muted-foreground": "219 16% 45%",
+        "--la-accent": "218 88% 52%",
+        "--la-accent-foreground": "0 0% 100%",
+        "--la-destructive": "0 86% 59%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "219 16% 88%",
+        "--la-input": "219 16% 88%",
+        "--la-ring": "218 88% 52%",
+      },
+      dark: {
+        "--la-background": "219 16% 20%",
+        "--la-foreground": "218 17% 92%",
+        "--la-card": "219 16% 24%",
+        "--la-card-foreground": "218 17% 92%",
+        "--la-popover": "219 16% 24%",
+        "--la-popover-foreground": "218 17% 92%",
+        "--la-primary": "218 88% 65%",
+        "--la-primary-foreground": "219 16% 20%",
+        "--la-secondary": "219 16% 35%",
+        "--la-secondary-foreground": "218 17% 92%",
+        "--la-muted": "219 16% 42%",
+        "--la-muted-foreground": "219 16% 70%",
+        "--la-accent": "218 88% 65%",
+        "--la-accent-foreground": "219 16% 20%",
+        "--la-destructive": "0 86% 59%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "219 16% 32%",
+        "--la-input": "219 16% 32%",
+        "--la-ring": "218 88% 65%",
+      },
+    },
+  },
+  gruvbox: {
+    name: "Gruvbox",
+    tokens: {
+      light: {
+        "--la-background": "0 0% 100%",
+        "--la-foreground": "14 8% 23%",
+        "--la-card": "0 0% 100%",
+        "--la-card-foreground": "14 8% 23%",
+        "--la-popover": "0 0% 100%",
+        "--la-popover-foreground": "14 8% 23%",
+        "--la-primary": "25 83% 60%",
+        "--la-primary-foreground": "0 0% 100%",
+        "--la-secondary": "14 8% 95%",
+        "--la-secondary-foreground": "14 8% 30%",
+        "--la-muted": "14 8% 90%",
+        "--la-muted-foreground": "14 8% 45%",
+        "--la-accent": "25 83% 60%",
+        "--la-accent-foreground": "0 0% 100%",
+        "--la-destructive": "0 100% 62%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "14 8% 88%",
+        "--la-input": "14 8% 88%",
+        "--la-ring": "25 83% 60%",
+      },
+      dark: {
+        "--la-background": "14 8% 18%",
+        "--la-foreground": "60 23% 92%",
+        "--la-card": "14 8% 22%",
+        "--la-card-foreground": "60 23% 92%",
+        "--la-popover": "14 8% 22%",
+        "--la-popover-foreground": "60 23% 92%",
+        "--la-primary": "25 83% 70%",
+        "--la-primary-foreground": "14 8% 18%",
+        "--la-secondary": "14 8% 35%",
+        "--la-secondary-foreground": "60 23% 92%",
+        "--la-muted": "14 8% 42%",
+        "--la-muted-foreground": "14 8% 70%",
+        "--la-accent": "25 83% 70%",
+        "--la-accent-foreground": "14 8% 18%",
+        "--la-destructive": "0 100% 62%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "14 8% 32%",
+        "--la-input": "14 8% 32%",
+        "--la-ring": "25 83% 70%",
+      },
+    },
+  },
+};
+
 function hexToHsl(hex: string): string {
   const clean = hex.replace("#", "");
   const r = parseInt(clean.slice(0, 2), 16) / 255;
@@ -333,7 +477,73 @@ function writeFile(filePath: string, content: string): void {
   fs.writeFileSync(filePath, content, "utf-8");
 }
 
+function generateCommunityCss(
+  theme: (typeof COMMUNITY_THEMES)[keyof typeof COMMUNITY_THEMES]
+): string {
+  const renderTokens = (
+    tokens: Record<string, string>,
+    selector: string
+  ): string => {
+    const entries = Object.entries(tokens)
+      .map(([key, value]) => `    ${key}: ${value};`)
+      .join("\n");
+    return `  ${selector} {\n${entries}\n  }`;
+  };
+
+  return `@layer base {\n${renderTokens(
+    theme.tokens.light,
+    ":root"
+  )}\n\n${renderTokens(theme.tokens.dark, ".dark")}\n}`;
+}
+
+async function installCommunityTheme(themeId: string): Promise<void> {
+  const theme = COMMUNITY_THEMES[themeId as keyof typeof COMMUNITY_THEMES];
+
+  if (!theme) {
+    console.error(
+      `\n  Error: Theme "${themeId}" not found.\n`
+    );
+    console.log("  Available themes:");
+    Object.keys(COMMUNITY_THEMES).forEach((id) => {
+      console.log(`    - ${id}`);
+    });
+    console.log();
+    process.exit(1);
+  }
+
+  const themesDir = path.join(process.cwd(), "src", "styles", "themes");
+
+  if (!fs.existsSync(themesDir)) {
+    fs.mkdirSync(themesDir, { recursive: true });
+  }
+
+  const themeFile = path.join(themesDir, `${themeId}.css`);
+  const cssContent = generateCommunityCss(theme);
+
+  fs.writeFileSync(themeFile, cssContent, "utf-8");
+
+  console.log(`\n  ✓ Installed ${theme.name} theme\n`);
+  console.log("  Import the theme in your entry file:\n");
+  console.log(`    import "./src/styles/themes/${themeId}.css";\n`);
+}
+
 async function main(): Promise<void> {
+  const args = process.argv.slice(2);
+
+  if (args[0] === "add" && args[1]) {
+    await installCommunityTheme(args[1]);
+    return;
+  }
+
+  if (args[0] === "list") {
+    console.log("\n  Available community themes:\n");
+    Object.entries(COMMUNITY_THEMES).forEach(([id, theme]) => {
+      console.log(`    ${id.padEnd(15)} - ${theme.name}`);
+    });
+    console.log();
+    return;
+  }
+
   console.log("\n  LaunchApp Design System — Project Scaffolder\n");
 
   const answers = await prompts(
@@ -484,6 +694,14 @@ async function main(): Promise<void> {
   console.log("\n  Import the design system styles in your entry file:");
   console.log('    import "@launchapp/design-system/styles.css"');
   console.log('    import "./src/styles/globals.css"\n');
+
+  console.log("  To install a community theme, run:");
+  console.log('    npx @launchapp/create-design-system add <theme-id>\n');
+  console.log("  Available themes:");
+  Object.entries(COMMUNITY_THEMES).forEach(([id, theme]) => {
+    console.log(`    - ${id} (${theme.name})`);
+  });
+  console.log();
 }
 
 main().catch((err: unknown) => {

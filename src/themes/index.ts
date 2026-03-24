@@ -502,3 +502,15 @@ export const palettes: Palette[] = [
 export const paletteMap: Record<string, Palette> = Object.fromEntries(
   palettes.map((p) => [p.name, p])
 );
+
+export type { CommunityTheme, CommunityThemeAuthor, CommunityThemeTokens } from "./community-themes";
+export {
+  validateCommunityTheme,
+  validateHslValue,
+  getCommunityThemesCssString,
+} from "./community-themes";
+export {
+  getCommunityThemeRegistry,
+  getCommunityThemeById,
+  listCommunityThemes,
+} from "./community-registry";

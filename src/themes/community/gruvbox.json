@@ -1,0 +1,58 @@
+{
+  "id": "gruvbox",
+  "name": "Gruvbox",
+  "description": "Retro groove color scheme with warm earthy tones",
+  "author": {
+    "name": "Gruvbox Theme",
+    "url": "https://github.com/morhetz/gruvbox"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "previewColor": "25 83% 60%",
+  "keywords": ["warm", "earthy", "retro", "brown"],
+  "repository": "https://github.com/morhetz/gruvbox",
+  "tokens": {
+    "light": {
+      "--la-background": "0 0% 100%",
+      "--la-foreground": "14 8% 23%",
+      "--la-card": "0 0% 100%",
+      "--la-card-foreground": "14 8% 23%",
+      "--la-popover": "0 0% 100%",
+      "--la-popover-foreground": "14 8% 23%",
+      "--la-primary": "25 83% 60%",
+      "--la-primary-foreground": "0 0% 100%",
+      "--la-secondary": "14 8% 95%",
+      "--la-secondary-foreground": "14 8% 30%",
+      "--la-muted": "14 8% 90%",
+      "--la-muted-foreground": "14 8% 45%",
+      "--la-accent": "25 83% 60%",
+      "--la-accent-foreground": "0 0% 100%",
+      "--la-destructive": "0 100% 62%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "14 8% 88%",
+      "--la-input": "14 8% 88%",
+      "--la-ring": "25 83% 60%"
+    },
+    "dark": {
+      "--la-background": "14 8% 18%",
+      "--la-foreground": "60 23% 92%",
+      "--la-card": "14 8% 22%",
+      "--la-card-foreground": "60 23% 92%",
+      "--la-popover": "14 8% 22%",
+      "--la-popover-foreground": "60 23% 92%",
+      "--la-primary": "25 83% 70%",
+      "--la-primary-foreground": "14 8% 18%",
+      "--la-secondary": "14 8% 35%",
+      "--la-secondary-foreground": "60 23% 92%",
+      "--la-muted": "14 8% 42%",
+      "--la-muted-foreground": "14 8% 70%",
+      "--la-accent": "25 83% 70%",
+      "--la-accent-foreground": "14 8% 18%",
+      "--la-destructive": "0 100% 62%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "14 8% 32%",
+      "--la-input": "14 8% 32%",
+      "--la-ring": "25 83% 70%"
+    }
+  }
+}

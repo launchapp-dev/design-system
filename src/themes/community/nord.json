@@ -1,0 +1,58 @@
+{
+  "id": "nord",
+  "name": "Nord",
+  "description": "An arctic, north-bluish color palette for a fresh, cold aesthetic",
+  "author": {
+    "name": "Nord Theme",
+    "url": "https://www.nordtheme.com"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "previewColor": "218 88% 52%",
+  "keywords": ["dark", "cool", "blue", "arctic"],
+  "repository": "https://github.com/arcticicestudio/nord",
+  "tokens": {
+    "light": {
+      "--la-background": "0 0% 100%",
+      "--la-foreground": "219 16% 27%",
+      "--la-card": "0 0% 100%",
+      "--la-card-foreground": "219 16% 27%",
+      "--la-popover": "0 0% 100%",
+      "--la-popover-foreground": "219 16% 27%",
+      "--la-primary": "218 88% 52%",
+      "--la-primary-foreground": "0 0% 100%",
+      "--la-secondary": "219 16% 95%",
+      "--la-secondary-foreground": "219 16% 30%",
+      "--la-muted": "219 16% 90%",
+      "--la-muted-foreground": "219 16% 45%",
+      "--la-accent": "218 88% 52%",
+      "--la-accent-foreground": "0 0% 100%",
+      "--la-destructive": "0 86% 59%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "219 16% 88%",
+      "--la-input": "219 16% 88%",
+      "--la-ring": "218 88% 52%"
+    },
+    "dark": {
+      "--la-background": "219 16% 20%",
+      "--la-foreground": "218 17% 92%",
+      "--la-card": "219 16% 24%",
+      "--la-card-foreground": "218 17% 92%",
+      "--la-popover": "219 16% 24%",
+      "--la-popover-foreground": "218 17% 92%",
+      "--la-primary": "218 88% 65%",
+      "--la-primary-foreground": "219 16% 20%",
+      "--la-secondary": "219 16% 35%",
+      "--la-secondary-foreground": "218 17% 92%",
+      "--la-muted": "219 16% 42%",
+      "--la-muted-foreground": "219 16% 70%",
+      "--la-accent": "218 88% 65%",
+      "--la-accent-foreground": "219 16% 20%",
+      "--la-destructive": "0 86% 59%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "219 16% 32%",
+      "--la-input": "219 16% 32%",
+      "--la-ring": "218 88% 65%"
+    }
+  }
+}

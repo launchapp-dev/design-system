@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LaunchApp Community Theme",
+  "description": "Schema for community-contributed color themes for the LaunchApp design system",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "description",
+    "author",
+    "version",
+    "tokens",
+    "license"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the theme (lowercase, alphanumeric, hyphens allowed)",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the theme",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the theme",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "author": {
+      "type": "object",
+      "description": "Author information",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Author's name",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "url": {
+          "type": "string",
+          "description": "Author's website or profile URL",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "description": "Author's email address",
+          "format": "email"
+        }
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the theme",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
+    },
+    "license": {
+      "type": "string",
+      "description": "License identifier (e.g., MIT, Apache-2.0)",
+      "examples": ["MIT", "Apache-2.0", "BSD-3-Clause", "ISC"]
+    },
+    "previewColor": {
+      "type": "string",
+      "description": "Preview color in HSL format (e.g., '262 83% 58%')",
+      "pattern": "^\\d{1,3}\\s+\\d{1,3}%\\s+\\d{1,3}%$"
+    },
+    "keywords": {
+      "type": "array",
+      "description": "Keywords for categorization (e.g., 'dark', 'vibrant', 'minimal')",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20
+      },
+      "maxItems": 10
+    },
+    "repository": {
+      "type": "string",
+      "description": "Repository URL (GitHub, GitLab, etc.)",
+      "format": "uri"
+    },
+    "tokens": {
+      "type": "object",
+      "description": "Color tokens for light and dark modes",
+      "required": ["light", "dark"],
+      "additionalProperties": false,
+      "properties": {
+        "light": {
+          "$ref": "#/definitions/tokenSet"
+        },
+        "dark": {
+          "$ref": "#/definitions/tokenSet"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "tokenSet": {
+      "type": "object",
+      "description": "Set of design tokens in HSL format",
+      "required": [
+        "--la-background",
+        "--la-foreground",
+        "--la-card",
+        "--la-card-foreground",
+        "--la-popover",
+        "--la-popover-foreground",
+        "--la-primary",
+        "--la-primary-foreground",
+        "--la-secondary",
+        "--la-secondary-foreground",
+        "--la-muted",
+        "--la-muted-foreground",
+        "--la-accent",
+        "--la-accent-foreground",
+        "--la-destructive",
+        "--la-destructive-foreground",
+        "--la-border",
+        "--la-input",
+        "--la-ring"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "--la-background": { "$ref": "#/definitions/hslValue" },
+        "--la-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-card": { "$ref": "#/definitions/hslValue" },
+        "--la-card-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-popover": { "$ref": "#/definitions/hslValue" },
+        "--la-popover-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-primary": { "$ref": "#/definitions/hslValue" },
+        "--la-primary-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-secondary": { "$ref": "#/definitions/hslValue" },
+        "--la-secondary-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-muted": { "$ref": "#/definitions/hslValue" },
+        "--la-muted-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-accent": { "$ref": "#/definitions/hslValue" },
+        "--la-accent-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-destructive": { "$ref": "#/definitions/hslValue" },
+        "--la-destructive-foreground": { "$ref": "#/definitions/hslValue" },
+        "--la-border": { "$ref": "#/definitions/hslValue" },
+        "--la-input": { "$ref": "#/definitions/hslValue" },
+        "--la-ring": { "$ref": "#/definitions/hslValue" }
+      }
+    },
+    "hslValue": {
+      "type": "string",
+      "description": "HSL color value in the format 'H S% L%'",
+      "pattern": "^\\d{1,3}\\s+\\d{1,3}%\\s+\\d{1,3}%$"
+    }
+  }
+}

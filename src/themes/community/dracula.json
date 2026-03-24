@@ -1,0 +1,58 @@
+{
+  "id": "dracula",
+  "name": "Dracula",
+  "description": "A dark theme inspired by the popular Dracula color scheme",
+  "author": {
+    "name": "Dracula Theme Community",
+    "url": "https://draculatheme.com"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "previewColor": "189 100% 74%",
+  "keywords": ["dark", "purple", "vibrant"],
+  "repository": "https://github.com/dracula/dracula-theme",
+  "tokens": {
+    "light": {
+      "--la-background": "0 0% 100%",
+      "--la-foreground": "231 15% 18%",
+      "--la-card": "0 0% 100%",
+      "--la-card-foreground": "231 15% 18%",
+      "--la-popover": "0 0% 100%",
+      "--la-popover-foreground": "231 15% 18%",
+      "--la-primary": "265 89% 66%",
+      "--la-primary-foreground": "0 0% 100%",
+      "--la-secondary": "231 15% 95%",
+      "--la-secondary-foreground": "231 15% 25%",
+      "--la-muted": "231 15% 90%",
+      "--la-muted-foreground": "231 15% 45%",
+      "--la-accent": "265 89% 66%",
+      "--la-accent-foreground": "0 0% 100%",
+      "--la-destructive": "0 100% 67%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "231 15% 88%",
+      "--la-input": "231 15% 88%",
+      "--la-ring": "265 89% 66%"
+    },
+    "dark": {
+      "--la-background": "231 15% 18%",
+      "--la-foreground": "60 30% 96%",
+      "--la-card": "231 15% 22%",
+      "--la-card-foreground": "60 30% 96%",
+      "--la-popover": "231 15% 22%",
+      "--la-popover-foreground": "60 30% 96%",
+      "--la-primary": "189 100% 74%",
+      "--la-primary-foreground": "231 15% 18%",
+      "--la-secondary": "231 15% 35%",
+      "--la-secondary-foreground": "60 30% 96%",
+      "--la-muted": "231 15% 40%",
+      "--la-muted-foreground": "231 15% 70%",
+      "--la-accent": "189 100% 74%",
+      "--la-accent-foreground": "231 15% 18%",
+      "--la-destructive": "0 100% 67%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "231 15% 32%",
+      "--la-input": "231 15% 32%",
+      "--la-ring": "189 100% 74%"
+    }
+  }
+}
