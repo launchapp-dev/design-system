@@ -711,3 +711,11 @@ export type { VideoPlayerProps } from "./components/VideoPlayer";
 
 export { analyzeImageColors } from "./lib/vision";
 export type { VisionThemeOptions, VisionColorMap, VisionThemeResult } from "./lib/vision";
+
+export { AIComponentGenerator, aiComponentGeneratorVariants } from "./components/AIComponentGenerator";
+export type { AIComponentGeneratorProps } from "./components/AIComponentGenerator";
+
+export { parseComponentRequirements } from "./lib/ai/nlp-parser";
+export type { ParsedRequirements, ParsedProp } from "./lib/ai/nlp-parser";
+export { generateComponent } from "./lib/ai/code-generator";
+export type { GeneratedComponent } from "./lib/ai/code-generator";
