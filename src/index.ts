@@ -17,7 +17,7 @@ export { AnimatedHeight } from "./components/AnimatedHeight";
 export type { AnimatedHeightProps } from "./components/AnimatedHeight";
 export { TabContentCrossfade, TabPanel } from "./components/TabContentCrossfade";
 export type { TabContentCrossfadeProps, TabPanelProps } from "./components/TabContentCrossfade";
-export { Button, buttonVariants } from "./components/Button";
+export { Button, buttonVariants, getButtonVariants } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
@@ -25,7 +25,7 @@ export { Label } from "./components/Label";
 export type { LabelProps } from "./components/Label";
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/Card";
 export type { CardProps, CardHeaderProps, CardTitleProps, CardDescriptionProps, CardContentProps, CardFooterProps } from "./components/Card";
-export { Badge, badgeVariants } from "./components/Badge";
+export { Badge, badgeVariants, getBadgeVariants } from "./components/Badge";
 export type { BadgeProps } from "./components/Badge";
 export {
   SelectRoot,
@@ -711,3 +711,13 @@ export type { VideoPlayerProps } from "./components/VideoPlayer";
 
 export { analyzeImageColors } from "./lib/vision";
 export type { VisionThemeOptions, VisionColorMap, VisionThemeResult } from "./lib/vision";
+
+// Plugin System
+export {
+  PluginRegistry,
+  getPluginRegistry,
+  createPlugin,
+} from "./lib/plugin-system";
+export type { ComponentPlugin } from "./lib/plugin-system";
+export { cvaWithPlugins, createExtensibleVariants } from "./lib/cva-with-plugins";
+export { premiumButtonPlugin, statusBadgePlugin } from "./plugins";
