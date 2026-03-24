@@ -2,31 +2,68 @@
 
 ## Release Process
 
-Releases are published automatically to npm via GitHub Actions when a version tag is pushed.
+This project uses [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing to npm. Releases are published automatically to npm via GitHub Actions when changes are merged to `main`.
+
+### Creating a Changeset
+
+Changesets allow you to document version bumps and changelogs alongside your code changes. To create a changeset:
+
+1. Add a `.changeset/*.md` file describing the changes:
+   ```bash
+   # Automatic (interactive prompt)
+   npm run changeset
+
+   # Manual: create `.changeset/my-feature.md`
+   ---
+   "@launchapp/design-system": minor
+   ---
+
+   Description of the changes in this release
+   ```
+
+   Version bump types:
+   - `patch` - Bug fixes and minor improvements (0.1.0 → 0.1.1)
+   - `minor` - New features (0.1.0 → 0.2.0)
+   - `major` - Breaking changes (0.1.0 → 1.0.0)
+
+2. Commit the changeset file alongside your code changes
+
+3. When the PR is merged to `main`, the `release.yml` GitHub Actions workflow will:
+   - Create a "Version Packages" PR that applies all pending changesets
+   - Update `package.json` version and `CHANGELOG.md`
+   - Publish the new version to npm with `npm publish --access public`
+
+### Pre-release (Alpha) Versions
+
+To publish a pre-release version (e.g., `0.1.1-alpha.0`):
+
+1. Create a changeset as above
+2. Run locally to test:
+   ```bash
+   npm run changeset:version  # Bumps version based on changesets
+   npm run build             # Build dist files
+   npm publish --tag alpha --access public  # Publish with alpha tag
+   ```
+
+3. Install the pre-release:
+   ```bash
+   npm install @launchapp/design-system@alpha
+   ```
 
 ### Publishing a New Version
 
-1. Update the version in `package.json`:
-   ```bash
-   npm version patch   # 0.1.0 → 0.1.1
-   npm version minor   # 0.1.0 → 0.2.0
-   npm version major   # 0.1.0 → 1.0.0
-   ```
-   This creates a commit and a git tag automatically.
+The traditional npm version approach is no longer used. All releases now go through changesets:
 
-2. Push the commit and tag:
-   ```bash
-   git push origin main --follow-tags
-   ```
+1. Create and commit a changeset file (see above)
+2. Push to a branch and create a PR
+3. When merged to `main`, the GitHub Actions workflow handles versioning and publishing
 
-3. The `release.yml` workflow triggers on `v*.*.*` tags and:
-   - Installs dependencies
-   - Runs `npm run build` (tsup)
-   - Publishes to npm with `npm publish --access public`
+### Required Secrets
 
-### Required Secret
+The repository must have the following GitHub Actions secrets configured:
 
-The repository must have `NPM_TOKEN` set in GitHub Actions secrets with publish access to the `@launchapp` npm scope.
+- `NPM_TOKEN` - npm token with publish access to the `@launchapp` npm scope. Generate at https://www.npmjs.com/settings/~/tokens with "Automation" type for CI/CD
+- `GITHUB_TOKEN` - Automatically provided by GitHub Actions
 
 ## Visual Regression Testing
 
