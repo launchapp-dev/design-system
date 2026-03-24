@@ -59,7 +59,7 @@ agents:
       ENQUEUE RULES:
       - Use ao.queue.list to check current queue — NEVER enqueue duplicates.
       - Enqueue in priority order: critical first, then high, medium, low.
-    model: gemini-3.1-pro-preview
+    model: claude-haiku-4-5
     tool: gemini
     mcp_servers: ["ao"]
 
