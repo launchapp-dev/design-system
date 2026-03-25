@@ -12,3 +12,4 @@ export * from "./onboarding";
 export * from "./files";
 export * from "./messaging";
 export * from "./notifications";
+export * from "./community";
