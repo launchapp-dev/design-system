@@ -1,0 +1,8 @@
+{
+  "Design System Import": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "import-ds",
+    "body": "import { $1 } from '@launchapp/design-system';",
+    "description": "Import from LaunchApp Design System"
+  }
+}

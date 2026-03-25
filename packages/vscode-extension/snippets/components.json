@@ -1,0 +1,7 @@
+{
+  "Component Snippets": {
+    "scope": "typescriptreact",
+    "description": "LaunchApp Design System component snippets",
+    "body": "// Component snippets will be generated and populated by build process"
+  }
+}
