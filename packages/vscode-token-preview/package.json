@@ -1,0 +1,54 @@
+{
+  "name": "vscode-token-preview",
+  "displayName": "Design Token Preview",
+  "description": "VS Code extension to preview design tokens with color swatches and typography information",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:css",
+    "onLanguage:scss",
+    "onLanguage:less",
+    "onLanguage:html",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Design Token Preview",
+        "properties": {
+          "designTokenPreview.configPath": {
+            "type": "string",
+            "default": "./src/styles/globals.css",
+            "description": "Path to the design tokens configuration file"
+          },
+          "designTokenPreview.tokenPattern": {
+            "type": "string",
+            "default": "--la-.*",
+            "description": "Regex pattern to match design tokens"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "dev": "tsc -p ./ -w",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {}
+}
