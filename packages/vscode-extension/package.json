@@ -1,0 +1,85 @@
+{
+  "name": "@launchapp/vscode-design-system",
+  "displayName": "LaunchApp Design System",
+  "description": "VS Code extension providing component snippets, prop autocomplete, and design token preview for LaunchApp design system",
+  "version": "0.1.0",
+  "publisher": "launchapp",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "icon": "icons/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchapp-dev/design-system"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/components.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/imports.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "launchapp-ds.insertComponent",
+        "title": "Insert LaunchApp Component"
+      },
+      {
+        "command": "launchapp-ds.previewToken",
+        "title": "Preview Design Token"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "launchapp-ds.insertComponent",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l",
+        "when": "editorTextFocus"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "launchapp-ds-explorer",
+          "name": "LaunchApp Design System",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    }
+  },
+  "activationEvents": [
+    "onLanguage:typescriptreact",
+    "onLanguage:typescript",
+    "onLanguage:jsx",
+    "onLanguage:javascript",
+    "onCommand:launchapp-ds.insertComponent",
+    "onCommand:launchapp-ds.previewToken",
+    "onView:launchapp-ds-explorer"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "build": "esbuild ./src/extension.ts --bundle --external:vscode --outfile=dist/extension.js --platform=node --target=es2020",
+    "watch": "npm run build -- --watch",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.19.0",
+    "typescript": "^5.3.0",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "@launchapp/design-system": "workspace:*"
+  }
+}
