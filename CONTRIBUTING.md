@@ -35,20 +35,41 @@ Changesets allow you to document version bumps and changelogs alongside your cod
 
 ### Pre-release (Alpha) Versions
 
-To publish a pre-release version (e.g., `0.1.1-alpha.0`):
+To publish a pre-release version (e.g., `0.2.1-alpha.0`):
 
 1. Create a changeset as above
-2. Run locally to test:
+2. Enter pre-release mode:
    ```bash
-   npm run changeset:version  # Bumps version based on changesets
+   npm run changeset -- pre enter alpha
+   ```
+3. Create another changeset for the alpha bump:
+   ```bash
+   npm run changeset -- add --empty
+   # Edit the changeset to specify patch/minor/major bump
+   ```
+4. Run locally to test:
+   ```bash
+   npm run changeset:version  # Bumps version to X.Y.Z-alpha.0
    npm run build             # Build dist files
-   npm publish --tag alpha --access public  # Publish with alpha tag
+   npm publish --tag alpha --access public  # Publish with alpha tag (requires npm auth)
    ```
 
-3. Install the pre-release:
+5. Install the pre-release:
    ```bash
    npm install @launchapp/design-system@alpha
    ```
+
+6. After publishing the alpha version, exit pre-release mode:
+   ```bash
+   npm run changeset -- pre exit
+   ```
+
+### Verifying Pre-release Versions
+
+After publishing:
+- View on npm: https://www.npmjs.com/package/@launchapp/design-system
+- Install alpha tag: `npm install @launchapp/design-system@alpha`
+- View GitHub Releases for changelog: https://github.com/launchapp-dev/design-system/releases
 
 ### Publishing a New Version
 
