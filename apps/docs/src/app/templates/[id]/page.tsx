@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getTemplateById, ALL_TEMPLATE_IDS, templates } from "@/lib/templates-registry";
+import { getTemplateById, ALL_TEMPLATE_IDS, type TemplateId } from "@/lib/templates-registry";
 import { CodeBlock } from "@/components/CodeBlock";
 
 interface PageProps {
@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
-  const template = getTemplateById(id as any);
+  const template = getTemplateById(id as TemplateId);
   if (!template) return {};
   return {
     title: `${template.name} Template — LaunchApp Design System`,
@@ -21,18 +21,17 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default async function TemplatePage({ params }: PageProps) {
+export default async function TemplateDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const template = getTemplateById(id as any);
+  const template = getTemplateById(id as TemplateId);
+  if (!template) return notFound();
 
-  if (!template) {
-    notFound();
-  }
+  const currentIdx = ALL_TEMPLATE_IDS.indexOf(id as TemplateId);
+  const prevId = currentIdx > 0 ? ALL_TEMPLATE_IDS[currentIdx - 1] : null;
+  const nextId = currentIdx < ALL_TEMPLATE_IDS.length - 1 ? ALL_TEMPLATE_IDS[currentIdx + 1] : null;
 
-  const currentIdx = templates.findIndex((t) => t.id === template.id);
-  const prevTemplate = currentIdx > 0 ? templates[currentIdx - 1] : null;
-  const nextTemplate =
-    currentIdx < templates.length - 1 ? templates[currentIdx + 1] : null;
+  const prevTemplate = prevId ? getTemplateById(prevId) : null;
+  const nextTemplate = nextId ? getTemplateById(nextId) : null;
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
@@ -49,106 +48,92 @@ export default async function TemplatePage({ params }: PageProps) {
       </nav>
 
       <div className="mb-10">
-        <div className="inline-flex px-3 py-1 rounded-full border text-xs font-medium text-muted-foreground mb-4">
-          {template.category}
+        <div className="flex items-center gap-3 mb-2">
+          <h1 className="text-4xl font-bold tracking-tight">{template.name}</h1>
+          <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground capitalize">
+            {template.category}
+          </span>
         </div>
-        <h1 className="text-4xl font-bold tracking-tight mb-4">{template.name}</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          {template.description}
+        <p className="text-lg text-muted-foreground leading-relaxed">{template.description}</p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-8 mb-12">
+        <section>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">
+            Key Features
+          </h2>
+          <ul className="space-y-2">
+            {template.features.map((feature, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="text-primary mt-0.5 flex-shrink-0">✓</span>
+                <span className="text-base">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">
+            Components Used
+          </h2>
+          <div className="space-y-2">
+            {template.blocks.map((block, i) => (
+              <div key={i} className="inline-flex items-center rounded-md border bg-muted px-3 py-1 text-sm text-muted-foreground mr-2 mb-2">
+                {block}
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <section className="mb-12 p-6 rounded-xl border bg-muted/30">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">
+          Quick Start
+        </h2>
+        <p className="text-sm text-muted-foreground mb-4">
+          Scaffold this template in your project using the CLI:
         </p>
-      </div>
+        <CodeBlock
+          lang="bash"
+          code={template.scaffoldCommand}
+          title="Terminal"
+        />
+      </section>
 
-      <div className="grid grid-cols-2 gap-6 mb-12">
-        <div className="space-y-4">
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-              Key Features
-            </h2>
-            <ul className="space-y-2">
-              {template.features.map((feature, i) => (
-                <li key={i} className="text-sm text-foreground flex items-start gap-2">
-                  <span className="text-primary mt-0.5 font-bold">✓</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold mb-4">Usage Example</h2>
+        <CodeBlock
+          lang="tsx"
+          title={`${template.name.replace(/\s+/g, '')}.tsx`}
+          code={template.previewCode}
+        />
+      </section>
 
-        <div className="space-y-4">
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-              Components & Blocks
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {template.blocks.map((block, i) => (
-                <span
-                  key={i}
-                  className="text-xs px-3 py-1.5 rounded-md border bg-muted text-foreground hover:border-primary transition-colors"
-                >
-                  {block}
-                </span>
-              ))}
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold mb-4">About This Template</h2>
+        <div className="rounded-lg border p-6 bg-muted/30">
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-1">Template ID</h3>
+              <p className="font-mono text-sm">{template.id}</p>
             </div>
-          </div>
-
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-              Quick Start
-            </h2>
-            <p className="text-sm text-muted-foreground mb-2">Use the CLI to scaffold this template:</p>
-            <div className="bg-muted p-3 rounded-lg border">
-              <code className="text-xs text-foreground font-mono">
-                {template.scaffoldCommand}
-              </code>
+            <div>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-1">Source File</h3>
+              <p className="font-mono text-sm">{template.sourceFile}</p>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-1">Category</h3>
+              <p className="text-sm">{template.category}</p>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="space-y-8 mb-12">
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Preview</h2>
-          <div className="rounded-lg border bg-muted/30 p-8 min-h-96 flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <p className="mb-2">Live preview coming soon</p>
-              <p className="text-sm">See the code below to implement this template</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Implementation</h2>
-          <CodeBlock
-            lang="tsx"
-            title={`${template.name}.tsx`}
-            code={template.previewCode}
-          />
-        </div>
-
-        <div className="rounded-xl border bg-accent/30 p-6">
-          <h3 className="font-semibold mb-2">Full Source Code</h3>
-          <p className="text-sm text-muted-foreground mb-4">
-            The complete implementation of this template is available in the design system repository.
-          </p>
-          <div className="space-y-2 text-sm">
-            <p>
-              <strong>File:</strong> <code className="text-xs bg-muted px-2 py-1 rounded">{template.sourceFile}</code>
-            </p>
-            <p>
-              <strong>Repository:</strong> <a href="https://github.com/launchapp-dev/design-system" target="_blank" rel="noreferrer" className="text-primary hover:underline">
-                github.com/launchapp-dev/design-system
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
+      </section>
 
       <div className="mt-12 flex items-center justify-between pt-6 border-t">
         <div>
           {prevTemplate && (
             <Link
-              href={`/templates/${prevTemplate.id}`}
+              href={`/templates/${prevId}`}
               className="flex flex-col gap-1 group"
             >
               <span className="text-xs text-muted-foreground">← Previous</span>
@@ -158,16 +143,10 @@ export default async function TemplatePage({ params }: PageProps) {
             </Link>
           )}
         </div>
-        <Link
-          href="/templates"
-          className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-        >
-          Back to Templates
-        </Link>
         <div className="text-right">
           {nextTemplate && (
             <Link
-              href={`/templates/${nextTemplate.id}`}
+              href={`/templates/${nextId}`}
               className="flex flex-col gap-1 items-end group"
             >
               <span className="text-xs text-muted-foreground">Next →</span>
