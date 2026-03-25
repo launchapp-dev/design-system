@@ -1,0 +1,73 @@
+{
+  "name": "launchapp-design-system",
+  "displayName": "LaunchApp Design System",
+  "description": "VS Code extension providing component snippets, prop autocomplete, and token preview for the LaunchApp design system",
+  "version": "0.1.0",
+  "publisher": "launchapp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchapp-dev/design-system.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "design-system",
+    "components",
+    "radix-ui",
+    "react",
+    "autocomplete"
+  ],
+  "activationEvents": [
+    "onLanguage:typescriptreact",
+    "onLanguage:javascriptreact",
+    "onCommand:launchapp-design-system.previewToken"
+  ],
+  "main": "./dist/extension.js",
+  "extensionKind": ["ui"],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/components.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/components.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "launchapp-design-system.previewToken",
+        "title": "Preview Design Token",
+        "category": "LaunchApp Design System"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "launchapp-design-system.previewToken",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc -p ./ && cp -r snippets dist/ && cp .vscodeignore dist/",
+    "dev": "npm run watch",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {}
+}

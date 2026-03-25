@@ -1,0 +1,240 @@
+{
+  "Button": {
+    "prefix": "button",
+    "body": [
+      "<Button",
+      "  variant=\"${1|default,destructive,outline,secondary,ghost,link|}\"",
+      "  size=\"${2|sm,md,lg,icon|}\"",
+      "  onClick={${3:handleClick}}",
+      ">",
+      "  ${4:Click me}",
+      "</Button>"
+    ],
+    "description": "Button component with variants and sizes"
+  },
+  "Button Outline": {
+    "prefix": "button-outline",
+    "body": [
+      "<Button variant=\"outline\" size=\"md\">",
+      "  ${1:Button text}",
+      "</Button>"
+    ],
+    "description": "Outlined button variant"
+  },
+  "Badge": {
+    "prefix": "badge",
+    "body": [
+      "<Badge variant=\"${1|default,secondary,outline,destructive|}\">",
+      "  ${2:Badge}",
+      "</Badge>"
+    ],
+    "description": "Badge component with variants"
+  },
+  "Card": {
+    "prefix": "card",
+    "body": [
+      "<Card>",
+      "  <CardHeader>",
+      "    <CardTitle>${1:Card Title}</CardTitle>",
+      "    <CardDescription>${2:Card description}</CardDescription>",
+      "  </CardHeader>",
+      "  <CardContent>",
+      "    ${3:Content}",
+      "  </CardContent>",
+      "</Card>"
+    ],
+    "description": "Card container with header and content"
+  },
+  "Input": {
+    "prefix": "input",
+    "body": [
+      "<Input",
+      "  type=\"${1|text,email,password,number,checkbox,radio|}\"\n  placeholder=\"${2:Enter text}\"",
+      "  value={${3:value}}}",
+      "  onChange={(e) => ${4:setValue}(e.target.value)}",
+      "/>"
+    ],
+    "description": "Input field component"
+  },
+  "Label": {
+    "prefix": "label",
+    "body": [
+      "<Label htmlFor=\"${1:input-id}\">${2:Label text}</Label>"
+    ],
+    "description": "Form label component"
+  },
+  "Dialog": {
+    "prefix": "dialog",
+    "body": [
+      "<Dialog open={${1:open}}} onOpenChange={${2:setOpen}}}> ",
+      "  <DialogTrigger>Open</DialogTrigger>",
+      "  <DialogContent>",
+      "    <DialogHeader>",
+      "      <DialogTitle>${3:Dialog Title}</DialogTitle>",
+      "      <DialogDescription>",
+      "        ${4:Dialog description}",
+      "      </DialogDescription>",
+      "    </DialogHeader>",
+      "    ${5:Content}",
+      "  </DialogContent>",
+      "</Dialog>"
+    ],
+    "description": "Dialog modal component"
+  },
+  "Dropdown Menu": {
+    "prefix": "dropdown",
+    "body": [
+      "<DropdownMenu>",
+      "  <DropdownMenuTrigger>",
+      "    ${1:Menu}",
+      "  </DropdownMenuTrigger>",
+      "  <DropdownMenuContent>",
+      "    <DropdownMenuItem>${2:Item 1}</DropdownMenuItem>",
+      "    <DropdownMenuItem>${3:Item 2}</DropdownMenuItem>",
+      "    <DropdownMenuSeparator />",
+      "    <DropdownMenuItem>${4:Item 3}</DropdownMenuItem>",
+      "  </DropdownMenuContent>",
+      "</DropdownMenu>"
+    ],
+    "description": "Dropdown menu component"
+  },
+  "Select": {
+    "prefix": "select",
+    "body": [
+      "<Select value={${1:value}}} onValueChange={${2:setValue}}}>",
+      "  <SelectTrigger>",
+      "    <SelectValue placeholder=\"${3:Select...}\" />",
+      "  </SelectTrigger>",
+      "  <SelectContent>",
+      "    <SelectItem value=\"${4:option1}\">${5:Option 1}</SelectItem>",
+      "    <SelectItem value=\"${6:option2}\">${7:Option 2}</SelectItem>",
+      "  </SelectContent>",
+      "</Select>"
+    ],
+    "description": "Select dropdown component"
+  },
+  "Tabs": {
+    "prefix": "tabs",
+    "body": [
+      "<Tabs defaultValue=\"${1:tab1}\" className=\"w-full\">",
+      "  <TabsList>",
+      "    <TabsTrigger value=\"${2:tab1}\">${3:Tab 1}</TabsTrigger>",
+      "    <TabsTrigger value=\"${4:tab2}\">${5:Tab 2}</TabsTrigger>",
+      "  </TabsList>",
+      "  <TabsContent value=\"${6:tab1}\">${7:Content 1}</TabsContent>",
+      "  <TabsContent value=\"${8:tab2}\">${9:Content 2}</TabsContent>",
+      "</Tabs>"
+    ],
+    "description": "Tabbed content component"
+  },
+  "Checkbox": {
+    "prefix": "checkbox",
+    "body": [
+      "<div className=\"flex items-center space-x-2\">",
+      "  <Checkbox",
+      "    id=\"${1:checkbox}\"",
+      "    checked={${2:checked}}}",
+      "    onCheckedChange={${3:setChecked}}}",
+      "  />",
+      "  <Label htmlFor=\"${4:checkbox}\">${5:Check me}</Label>",
+      "</div>"
+    ],
+    "description": "Checkbox with label"
+  },
+  "Radio Group": {
+    "prefix": "radio",
+    "body": [
+      "<RadioGroup value={${1:value}}} onValueChange={${2:setValue}}}>",
+      "  <div className=\"flex items-center space-x-2\">",
+      "    <RadioGroupItem value=\"${3:option1}\" id=\"${4:option1}\" />",
+      "    <Label htmlFor=\"${5:option1}\">${6:Option 1}</Label>",
+      "  </div>",
+      "  <div className=\"flex items-center space-x-2\">",
+      "    <RadioGroupItem value=\"${7:option2}\" id=\"${8:option2}\" />",
+      "    <Label htmlFor=\"${9:option2}\">${10:Option 2}</Label>",
+      "  </div>",
+      "</RadioGroup>"
+    ],
+    "description": "Radio group component"
+  },
+  "Table": {
+    "prefix": "table",
+    "body": [
+      "<Table>",
+      "  <TableHeader>",
+      "    <TableRow>",
+      "      <TableHead>${1:Column 1}</TableHead>",
+      "      <TableHead>${2:Column 2}</TableHead>",
+      "    </TableRow>",
+      "  </TableHeader>",
+      "  <TableBody>",
+      "    <TableRow>",
+      "      <TableCell>${3:Data 1}</TableCell>",
+      "      <TableCell>${4:Data 2}</TableCell>",
+      "    </TableRow>",
+      "  </TableBody>",
+      "</Table>"
+    ],
+    "description": "Data table component"
+  },
+  "Alert": {
+    "prefix": "alert",
+    "body": [
+      "<Alert>",
+      "  <AlertCircle className=\"h-4 w-4\" />",
+      "  <AlertTitle>${1:Alert}</AlertTitle>",
+      "  <AlertDescription>${2:Alert description}</AlertDescription>",
+      "</Alert>"
+    ],
+    "description": "Alert component"
+  },
+  "Toast": {
+    "prefix": "toast",
+    "body": [
+      "toast(${1:{",
+      "  title: \"${2:Success}\",",
+      "  description: \"${3:Description}\",",
+      "  variant: \"${4|default,destructive|}\",",
+      "}})"
+    ],
+    "description": "Toast notification"
+  },
+  "Tooltip": {
+    "prefix": "tooltip",
+    "body": [
+      "<Tooltip>",
+      "  <TooltipTrigger>${1:Hover me}</TooltipTrigger>",
+      "  <TooltipContent>",
+      "    <p>${2:Tooltip content}</p>",
+      "  </TooltipContent>",
+      "</Tooltip>"
+    ],
+    "description": "Tooltip component"
+  },
+  "Avatar": {
+    "prefix": "avatar",
+    "body": [
+      "<Avatar>",
+      "  <AvatarImage src=\"${1:https://}\" alt=\"${2:User}\" />",
+      "  <AvatarFallback>${3:UN}</AvatarFallback>",
+      "</Avatar>"
+    ],
+    "description": "Avatar component"
+  },
+  "Accordion": {
+    "prefix": "accordion",
+    "body": [
+      "<Accordion type=\"${1|single,multiple|}\" collapsible>",
+      "  <AccordionItem value=\"${2:item-1}\">",
+      "    <AccordionTrigger>${3:Section 1}</AccordionTrigger>",
+      "    <AccordionContent>${4:Content 1}</AccordionContent>",
+      "  </AccordionItem>",
+      "  <AccordionItem value=\"${5:item-2}\">",
+      "    <AccordionTrigger>${6:Section 2}</AccordionTrigger>",
+      "    <AccordionContent>${7:Content 2}</AccordionContent>",
+      "  </AccordionItem>",
+      "</Accordion>"
+    ],
+    "description": "Accordion component"
+  }
+}
