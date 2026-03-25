@@ -33,6 +33,7 @@
     "build:storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
     "generate-registry": "node scripts/generate-registry.mjs",
+    "generate-vscode-snippets": "node scripts/generate-vscode-snippets.mjs",
     "fix-a11y": "node scripts/fix-a11y.mjs",
     "fix-a11y:auto": "node scripts/fix-a11y.mjs --fix",
     "lint": "eslint src/",
