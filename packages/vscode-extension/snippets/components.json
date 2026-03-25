@@ -1,0 +1,93 @@
+{
+  "Button": {
+    "prefix": "labutton",
+    "body": ["<Button>$1</Button>"],
+    "description": "LaunchApp Button component"
+  },
+  "Input": {
+    "prefix": "lainput",
+    "body": ["<Input placeholder=\"$1\" />"],
+    "description": "LaunchApp Input component"
+  },
+  "Dialog": {
+    "prefix": "ladialog",
+    "body": [
+      "<Dialog>",
+      "  <DialogTrigger>$1</DialogTrigger>",
+      "  <DialogContent>",
+      "    <DialogHeader>",
+      "      <DialogTitle>$2</DialogTitle>",
+      "    </DialogHeader>",
+      "    <DialogBody>",
+      "      $3",
+      "    </DialogBody>",
+      "  </DialogContent>",
+      "</Dialog>"
+    ],
+    "description": "LaunchApp Dialog component"
+  },
+  "Card": {
+    "prefix": "lacard",
+    "body": [
+      "<Card>",
+      "  <CardHeader>",
+      "    <CardTitle>$1</CardTitle>",
+      "  </CardHeader>",
+      "  <CardContent>",
+      "    $2",
+      "  </CardContent>",
+      "</Card>"
+    ],
+    "description": "LaunchApp Card component"
+  },
+  "Label": {
+    "prefix": "lalabel",
+    "body": ["<Label htmlFor=\"$1\">$2</Label>"],
+    "description": "LaunchApp Label component"
+  },
+  "Checkbox": {
+    "prefix": "lacheckbox",
+    "body": ["<Checkbox id=\"$1\" />"],
+    "description": "LaunchApp Checkbox component"
+  },
+  "Select": {
+    "prefix": "laselect",
+    "body": [
+      "<Select>",
+      "  <SelectTrigger>",
+      "    <SelectValue placeholder=\"$1\" />",
+      "  </SelectTrigger>",
+      "  <SelectContent>",
+      "    <SelectItem value=\"$2\">$3</SelectItem>",
+      "  </SelectContent>",
+      "</Select>"
+    ],
+    "description": "LaunchApp Select component"
+  },
+  "Tabs": {
+    "prefix": "latabs",
+    "body": [
+      "<Tabs defaultValue=\"$1\">",
+      "  <TabsList>",
+      "    <TabsTrigger value=\"$1\">$2</TabsTrigger>",
+      "  </TabsList>",
+      "  <TabsContent value=\"$1\">$3</TabsContent>",
+      "</Tabs>"
+    ],
+    "description": "LaunchApp Tabs component"
+  },
+  "Accordion": {
+    "prefix": "laaccordion",
+    "body": [
+      "<Accordion type=\"single\" collapsible>",
+      "  <AccordionItem value=\"$1\">",
+      "    <AccordionTrigger>$2</AccordionTrigger>",
+      "    <AccordionContent>",
+      "      $3",
+      "    </AccordionContent>",
+      "  </AccordionItem>",
+      "</Accordion>"
+    ],
+    "description": "LaunchApp Accordion component"
+  }
+}
