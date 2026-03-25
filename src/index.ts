@@ -711,3 +711,19 @@ export type { VideoPlayerProps } from "./components/VideoPlayer";
 
 export { analyzeImageColors } from "./lib/vision";
 export type { VisionThemeOptions, VisionColorMap, VisionThemeResult } from "./lib/vision";
+
+export { SmartThemingGenerator } from "./components/SmartThemingGenerator";
+export type { SmartThemingGeneratorProps } from "./components/SmartThemingGenerator";
+
+export {
+  generateTheme,
+  exportThemeAsCss,
+  exportThemeAsJson,
+  exportThemeAsTailwindConfig,
+  applyThemeToElement,
+  getThemeTokens,
+} from "./lib/themeGenerator";
+export type {
+  ThemeGeneratorOptions,
+  GeneratedTheme,
+} from "./lib/themeGenerator";
