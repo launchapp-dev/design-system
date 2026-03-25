@@ -762,7 +762,7 @@ async function main(): Promise<void> {
   console.log("  1. Edit src/styles/globals.css to modify colors and tokens");
   console.log("  2. Edit tailwind.config.ts to adjust fonts and spacing");
   console.log("\n  To install a community theme, run:");
-  console.log('    npx @launchapp/create-design-system add <theme-id>\n');
+  console.log('    npx @launchapp/ds add <theme-id>\n');
   console.log("  Available themes:");
   Object.entries(COMMUNITY_THEMES).forEach(([id, theme]) => {
     console.log(`    - ${id} (${theme.name})`);
