@@ -1,0 +1,27 @@
+{
+  "Design System Import": {
+    "prefix": "laImport",
+    "body": ["import { $1 } from \"@launchapp/design-system\";"],
+    "description": "Import from LaunchApp design system"
+  },
+  "Button Import": {
+    "prefix": "laImportButton",
+    "body": ["import { Button } from \"@launchapp/design-system\";"],
+    "description": "Import Button component"
+  },
+  "Input Import": {
+    "prefix": "laImportInput",
+    "body": ["import { Input } from \"@launchapp/design-system\";"],
+    "description": "Import Input component"
+  },
+  "Dialog Imports": {
+    "prefix": "laImportDialog",
+    "body": ["import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogBody } from \"@launchapp/design-system\";"],
+    "description": "Import Dialog components"
+  },
+  "Card Imports": {
+    "prefix": "laImportCard",
+    "body": ["import { Card, CardHeader, CardTitle, CardContent } from \"@launchapp/design-system\";"],
+    "description": "Import Card components"
+  }
+}
