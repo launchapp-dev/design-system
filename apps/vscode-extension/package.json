@@ -1,0 +1,53 @@
+{
+  "name": "@launchapp/vscode-extension",
+  "displayName": "LaunchApp Design System",
+  "description": "Component snippets, prop autocomplete, and token preview for LaunchApp design system",
+  "version": "0.1.0",
+  "publisher": "launchapp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchapp-dev/design-system.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:typescriptreact",
+    "onLanguage:javascriptreact"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [],
+    "configuration": {
+      "title": "LaunchApp Design System",
+      "properties": {
+        "launchapp.enableAutocomplete": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable component prop autocomplete"
+        },
+        "launchapp.showDocumentation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show detailed documentation in autocomplete items"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {}
+}

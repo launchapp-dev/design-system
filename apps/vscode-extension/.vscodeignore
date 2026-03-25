@@ -1,0 +1,8 @@
+**/*.ts
+**/*.tsx
+.git
+.gitignore
+tsconfig.json
+node_modules
+dist
+*.map
