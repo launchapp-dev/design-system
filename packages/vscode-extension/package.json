@@ -5,17 +5,41 @@
   "version": "0.1.0",
   "publisher": "launchapp",
   "license": "MIT",
+  "author": {
+    "name": "LaunchApp"
+  },
+  "homepage": "https://github.com/launchapp-dev/design-system#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchapp-dev/design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/launchapp-dev/design-system/issues"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Snippets",
+    "Programming Languages",
+    "Themes",
     "Other"
   ],
+  "keywords": [
+    "design-system",
+    "components",
+    "snippets",
+    "react",
+    "typescript",
+    "tailwind",
+    "radix-ui",
+    "autocomplete",
+    "tokens"
+  ],
   "icon": "icons/icon.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/launchapp-dev/design-system"
+  "galleryBanner": {
+    "color": "#f3f4f6",
+    "theme": "light"
   },
   "contributes": {
     "snippets": [
@@ -69,8 +93,11 @@
   "scripts": {
     "build": "esbuild ./src/extension.ts --bundle --external:vscode --outfile=dist/extension.js --platform=node --target=es2020",
     "watch": "npm run build -- --watch",
-    "package": "vsce package",
-    "publish": "vsce publish"
+    "package": "npm run build && vsce package --out vscode-design-system.vsix",
+    "publish": "npm run package && vsce publish",
+    "publish:pre": "npm run package && vsce publish --pre-release",
+    "test-package": "npm run build && vsce package --out test-build.vsix && echo '✓ Package created successfully'",
+    "clean": "rm -rf dist *.vsix"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

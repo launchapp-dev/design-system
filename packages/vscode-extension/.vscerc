@@ -1,0 +1,5 @@
+{
+  "baseContentUrl": "https://github.com/launchapp-dev/design-system/tree/main/packages/vscode-extension",
+  "baseImagesUrl": "https://github.com/launchapp-dev/design-system/raw/main/packages/vscode-extension",
+  "github": true
+}

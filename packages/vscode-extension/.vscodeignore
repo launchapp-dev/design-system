@@ -2,5 +2,17 @@ src/**
 tsconfig.json
 *.ts
 .gitignore
+.gitkeep
 node_modules/**
 .turbo
+**/*.map
+**/*.d.ts
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+*.tsbuildinfo
+assets/**
+.github/**
+.claude/**
+.ao/**
