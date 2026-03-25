@@ -109,6 +109,14 @@ export default function TemplatesPage() {
           Design System. Each template demonstrates best practices and can be used as a
           starting point for your projects.
         </p>
+        <div className="flex flex-wrap gap-3 mt-6">
+          <Link
+            href="/templates/contribute"
+            className="inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Submit Your Template
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -117,7 +125,7 @@ export default function TemplatesPage() {
         ))}
       </div>
 
-      <div className="rounded-xl border bg-muted/50 p-8">
+      <div className="rounded-xl border bg-muted/50 p-8 mb-12">
         <h2 className="text-xl font-semibold mb-4">Getting Started</h2>
         <p className="text-muted-foreground mb-6">
           Each template includes all source code and can be scaffolded via CLI or cloned from
@@ -130,6 +138,87 @@ export default function TemplatesPage() {
           <p>🌙 <strong>Dark mode support</strong> included</p>
         </div>
       </div>
+
+      <section className="mt-16">
+        <h2 className="text-3xl font-bold tracking-tight mb-6">Submit Your Template</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="rounded-lg border p-8 bg-card">
+            <h3 className="text-lg font-semibold mb-3">Contribute a Template</h3>
+            <p className="text-muted-foreground mb-6">
+              Have a great application template built with the design system? We'd love to feature it in our gallery!
+            </p>
+            <div className="space-y-4 text-sm">
+              <div>
+                <h4 className="font-medium mb-2">Requirements</h4>
+                <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                  <li>Uses only LaunchApp design system components</li>
+                  <li>Production-ready and fully accessible</li>
+                  <li>Documented implementation notes</li>
+                  <li>Clear usage examples and code comments</li>
+                  <li>Responsive design with mobile support</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg border p-8 bg-card">
+            <h3 className="text-lg font-semibold mb-3">How to Submit</h3>
+            <ol className="space-y-4 text-sm">
+              <li className="flex gap-3">
+                <span className="font-semibold text-primary min-w-6">1</span>
+                <span className="text-muted-foreground">Create your template following the design system guidelines</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-semibold text-primary min-w-6">2</span>
+                <span className="text-muted-foreground">Push your code to a public GitHub repository with clear documentation</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-semibold text-primary min-w-6">3</span>
+                <span className="text-muted-foreground">Open an issue on the design system repo with your template details</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-semibold text-primary min-w-6">4</span>
+                <span className="text-muted-foreground">Our team will review and potentially feature your template</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-lg border bg-muted/30 p-6">
+          <h3 className="text-lg font-semibold mb-3">Template Structure</h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Your template submission should include:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <h4 className="text-sm font-medium mb-2">Source Code</h4>
+              <p className="text-xs text-muted-foreground">Well-organized React/TypeScript components using design system primitives</p>
+            </div>
+            <div>
+              <h4 className="text-sm font-medium mb-2">Documentation</h4>
+              <p className="text-xs text-muted-foreground">README with setup instructions, feature overview, and customization guide</p>
+            </div>
+            <div>
+              <h4 className="text-sm font-medium mb-2">Examples</h4>
+              <p className="text-xs text-muted-foreground">Live demos or screenshots showing the template in action</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-lg border-l-4 border-primary bg-primary/5 p-6">
+          <h3 className="text-lg font-semibold mb-2">Community Standards</h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Submitted templates are evaluated based on:
+          </p>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li><strong>Accessibility:</strong> WCAG compliance and keyboard navigation</li>
+            <li><strong>Design Quality:</strong> Consistent visual hierarchy and spacing</li>
+            <li><strong>Code Quality:</strong> Clean, maintainable, and well-typed code</li>
+            <li><strong>Documentation:</strong> Clear instructions and usage examples</li>
+            <li><strong>Originality:</strong> Unique use cases or variations of application types</li>
+          </ul>
+        </div>
+      </section>
     </div>
   );
 }
