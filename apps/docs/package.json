@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.3",
     "@launchapp/design-system": "file:../..",
     "@radix-ui/react-slot": "^1.2.4",
     "clsx": "^2.1.1",
