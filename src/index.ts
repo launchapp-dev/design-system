@@ -733,3 +733,19 @@ export type {
   A11yAnalysisResult,
   A11yFixerOptions,
 } from "./lib/a11y-fixer";
+
+export {
+  PluginRegistry,
+  globalPluginRegistry,
+  createPlugin,
+  withPlugins,
+} from "./lib/plugin-system";
+export type {
+  Plugin,
+  ComponentExtension,
+  ComponentVariantDefinition,
+  ComponentHook,
+} from "./lib/plugin-system";
+
+export { customButtonPlugin } from "./plugins/custom-button-plugin";
+export { hoverCardPlugin } from "./plugins/hover-card-plugin";
