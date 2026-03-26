@@ -20,6 +20,11 @@ export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
 export { getCommunityThemeRegistry, getCommunityThemeById, listCommunityThemes, getFeaturedCommunityThemeIds } from "./themes/community-registry";
 export { validateCommunityTheme, validateHslValue, getCommunityThemesCssString } from "./themes/community-themes";
 export type { CommunityTheme, CommunityThemeAuthor, CommunityThemeTokens } from "./themes/community-themes";
+export { extractBrandColorsFromUrl, extractBrandColorsFromImage } from "./lib/extract-brand-colors";
+export type { ExtractedColor } from "./lib/extract-brand-colors";
+export { generatePaletteFromColors } from "./themes/generatePaletteFromColors";
+export { ThemeGenerator } from "./components/ThemeGenerator";
+export type { ThemeGeneratorProps } from "./components/ThemeGenerator";
 export { SmartThemingGenerator } from "./components/SmartThemingGenerator";
 export type { SmartThemingGeneratorProps } from "./components/SmartThemingGenerator";
 export { ThemePreview } from "./components/ThemePreview";
@@ -781,3 +786,47 @@ export type {
   CustomVariant,
   VariantRegistry,
 } from "./lib/plugins";
+
+export {
+  createRegistry,
+  defaultRegistry,
+} from "./plugins/registry";
+export type {
+  ComponentPlugin,
+  PluginMetadata,
+  RegisterPluginOptions,
+  PluginQueryResult,
+  PluginVariants,
+  PluginDefaultVariants,
+  BeforeRenderHook,
+  AfterRenderHook,
+  VariantStyleConfig,
+  VariantGroup,
+} from "./plugins/types";
+export {
+  mergeVariants,
+  mergeDefaultVariants,
+  applyPluginHooks,
+  applyAfterRenderHooks,
+  getActivePlugins,
+  collectPluginVariants,
+  collectPluginDefaultVariants,
+} from "./plugins/utils";
+export {
+  useComponentPlugins,
+  usePluginVariants,
+  usePluginDefaultVariants,
+  useApplyPlugins,
+  useApplyAfterRenderHooks,
+} from "./plugins/hooks";
+export {
+  gradientButtonPlugin,
+  badgeSizePlugin,
+  themeVariantPlugin,
+  loadingStatePlugin,
+  tooltipPlugin,
+  statusBadgePlugin,
+  characterCountPlugin,
+  examplePlugins,
+  registerExamplePlugins,
+} from "./plugins/examples";
