@@ -39,7 +39,8 @@ export interface SwitchProps
   extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
     VariantProps<typeof switchVariants> {}
 
-function Switch({ className, size, ref, ...props }: SwitchProps & { ref?: React.Ref<React.ComponentRef<typeof SwitchPrimitive.Root>> }) {
+const Switch = React.forwardRef<React.Ref<React.ComponentRef<typeof SwitchPrimitive.Root>>, SwitchProps>(
+  ({ className, size, ...props }, ref) => {
   return (
   <SwitchPrimitive.Root
     ref={ref}

@@ -29,7 +29,8 @@ export interface InputProps
   error?: boolean;
 }
 
-function Input({ className, size, error, ref, ...props }: InputProps & { ref?: React.Ref<HTMLInputElement> }) {
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, size, error, ...props }, ref) => {
     if (
       process.env.NODE_ENV !== "production" &&
       !props.id &&
@@ -37,9 +38,12 @@ function Input({ className, size, error, ref, ...props }: InputProps & { ref?: R
       !props["aria-labelledby"]
     ) {
       console.warn(
-        "Input: missing label association. Use either:\n" +
-        "  1. `aria-label=\"...\"` (recommended for single inputs)\n" +
-        "  2. `aria-labelledby=\"id-of-label\"` (for associated labels)\n" +
+        "Input: missing label association. Use either:
+" +
+        "  1. `aria-label=\"...\"` (recommended for single inputs)
+" +
+        "  2. `aria-labelledby=\"id-of-label\"` (for associated labels)
+" +
         "  3. `id` paired with <Label htmlFor> (recommended for forms)"
       );
     }

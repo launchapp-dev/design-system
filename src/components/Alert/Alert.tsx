@@ -27,7 +27,8 @@ export interface AlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertVariants> {}
 
-function Alert({ className, variant, ref, ...props }: AlertProps & { ref?: React.Ref<HTMLDivElement> }) {
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  ({ className, variant, ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -36,10 +37,11 @@ function Alert({ className, variant, ref, ...props }: AlertProps & { ref?: React
       {...props}
     />
   );
-}
+});
 Alert.displayName = "Alert";
 
-function AlertTitle({ className, ref, ...props }: React.HTMLAttributes<HTMLHeadingElement> & { ref?: React.Ref<HTMLParagraphElement> }) {
+const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => {
   return (
   <h5
     ref={ref}
@@ -47,10 +49,11 @@ function AlertTitle({ className, ref, ...props }: React.HTMLAttributes<HTMLHeadi
     {...props}
   />
 );
-}
+});
 AlertTitle.displayName = "AlertTitle";
 
-function AlertDescription({ className, ref, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.Ref<HTMLParagraphElement> }) {
+const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+  ({ className, ...props }, ref) => {
   return (
   <div
     ref={ref}
@@ -58,7 +61,7 @@ function AlertDescription({ className, ref, ...props }: React.HTMLAttributes<HTM
     {...props}
   />
 );
-}
+});
 AlertDescription.displayName = "AlertDescription";
 
 export { Alert, AlertTitle, AlertDescription, alertVariants };

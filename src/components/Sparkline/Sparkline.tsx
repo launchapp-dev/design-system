@@ -44,8 +44,8 @@ export interface SparklineProps
   "aria-label"?: string;
 }
 
-function Sparkline({
-  data,
+const Sparkline = React.forwardRef<SVGSVGElement, SparklineProps>(
+  ({ data,
   width,
   height,
   strokeWidth = 1.5,
@@ -57,9 +57,7 @@ function Sparkline({
   colorScheme,
   className,
   "aria-label": ariaLabel,
-  ref,
-  ...props
-}: SparklineProps & { ref?: React.Ref<SVGSVGElement> }) {
+  ...props }, ref) => {
   const svgRef = ref || React.useRef<SVGSVGElement>(null);
   
   const defaultWidth = size === "sm" ? 48 : size === "lg" ? 112 : 80;

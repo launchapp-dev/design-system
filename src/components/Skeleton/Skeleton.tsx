@@ -1,7 +1,8 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-function Skeleton({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
+const Skeleton = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -11,6 +12,7 @@ function Skeleton({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElem
     />
   );
 }
+);
 Skeleton.displayName = "Skeleton";
 
 export type SkeletonProps = React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> };

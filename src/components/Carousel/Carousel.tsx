@@ -112,8 +112,8 @@ export interface CarouselProps
   onIndexChange?: (index: number) => void;
 }
 
-function Carousel({
-  className,
+const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
+  ({ className,
   children,
   variant = "default",
   orientation = "horizontal",
@@ -122,9 +122,7 @@ function Carousel({
   loop = false,
   index,
   onIndexChange,
-  ref,
-  ...props
-}: CarouselProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
   const plugins = React.useMemo(() => {
@@ -234,12 +232,13 @@ function Carousel({
       </div>
     </CarouselContext.Provider>
   );
-}
+});
 Carousel.displayName = "Carousel";
 
 export interface CarouselItemProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-function CarouselItem({ className, children, ref, ...props }: CarouselItemProps & { ref?: React.Ref<HTMLDivElement> }) {
+const CarouselItem = React.forwardRef<HTMLDivElement, CarouselItemProps>(
+  ({ className, children, ...props }, ref) => {
   const { variant, orientation } = useCarousel();
 
   return (
@@ -253,12 +252,13 @@ function CarouselItem({ className, children, ref, ...props }: CarouselItemProps 
       {children}
     </div>
   );
-}
+});
 CarouselItem.displayName = "CarouselItem";
 
 export interface CarouselPrevProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-function CarouselPrev({ className, children, ref, ...props }: CarouselPrevProps & { ref?: React.Ref<HTMLButtonElement> }) {
+const CarouselPrev = React.forwardRef<HTMLButtonElement, CarouselPrevProps>(
+  ({ className, children, ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -293,12 +293,13 @@ function CarouselPrev({ className, children, ref, ...props }: CarouselPrevProps 
       )}
     </button>
   );
-}
+});
 CarouselPrev.displayName = "CarouselPrev";
 
 export interface CarouselNextProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-function CarouselNext({ className, children, ref, ...props }: CarouselNextProps & { ref?: React.Ref<HTMLButtonElement> }) {
+const CarouselNext = React.forwardRef<HTMLButtonElement, CarouselNextProps>(
+  ({ className, children, ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
@@ -333,12 +334,13 @@ function CarouselNext({ className, children, ref, ...props }: CarouselNextProps 
       )}
     </button>
   );
-}
+});
 CarouselNext.displayName = "CarouselNext";
 
 export interface CarouselDotsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-function CarouselDots({ className, ref, ...props }: CarouselDotsProps & { ref?: React.Ref<HTMLDivElement> }) {
+const CarouselDots = React.forwardRef<HTMLDivElement, CarouselDotsProps>(
+  ({ className, ...props }, ref) => {
   const { scrollSnaps, selectedIndex, scrollTo } = useCarousel();
 
   return (
@@ -362,7 +364,7 @@ function CarouselDots({ className, ref, ...props }: CarouselDotsProps & { ref?: 
       ))}
     </div>
   );
-}
+});
 CarouselDots.displayName = "CarouselDots";
 
 export interface CarouselAutoplayProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -370,13 +372,11 @@ export interface CarouselAutoplayProps extends React.HTMLAttributes<HTMLDivEleme
   pauseIcon?: React.ReactNode;
 }
 
-function CarouselAutoplay({
-  className,
+const CarouselAutoplay = React.forwardRef<HTMLDivElement, CarouselAutoplayProps>(
+  ({ className,
   playIcon,
   pauseIcon,
-  ref,
-  ...props
-}: CarouselAutoplayProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const { api, autoplay } = useCarousel();
   const [isPlaying, setIsPlaying] = React.useState(autoplay);
 
@@ -440,12 +440,13 @@ function CarouselAutoplay({
       </button>
     </div>
   );
-}
+});
 CarouselAutoplay.displayName = "CarouselAutoplay";
 
 export interface CarouselContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-function CarouselContent({ className, children, ref, ...props }: CarouselContentProps & { ref?: React.Ref<HTMLDivElement> }) {
+const CarouselContent = React.forwardRef<HTMLDivElement, CarouselContentProps>(
+  ({ className, children ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -464,6 +465,7 @@ function CarouselContent({ className, children, ref, ...props }: CarouselContent
     </div>
   );
 }
+);
 CarouselContent.displayName = "CarouselContent";
 
 export {

@@ -23,7 +23,8 @@ export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
     VariantProps<typeof checkboxVariants> {}
 
-function Checkbox({ className, size, ref, ...props }: CheckboxProps & { ref?: React.Ref<React.ComponentRef<typeof CheckboxPrimitive.Root>> }) {
+const Checkbox = React.forwardRef<React.Ref<React.ComponentRef<typeof CheckboxPrimitive.Root>>, CheckboxProps>(
+  ({ className, size, ...props }, ref) => {
   return (
   <CheckboxPrimitive.Root
     ref={ref}

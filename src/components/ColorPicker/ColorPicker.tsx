@@ -83,14 +83,12 @@ export interface ColorPickerProps {
   className?: string;
 }
 
-function ColorPicker({
-  value = "#3b82f6",
+const ColorPicker = React.forwardRef<HTMLButtonElement, ColorPickerProps>(
+  ({ value = "#3b82f6",
   onChange,
   presets = DEFAULT_PRESETS,
   disabled,
-  className,
-  ref,
-}: ColorPickerProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  className }, ref) => {
   const [open, setOpen] = React.useState(false);
   const [mode, setMode] = React.useState<ColorMode>("hex");
 

@@ -19,7 +19,8 @@ export interface RadioGroupProps
   extends Omit<React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>, "orientation">,
     VariantProps<typeof radioGroupVariants> {}
 
-function RadioGroup({ className, orientation, ref, ...props }: RadioGroupProps & { ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Root>> }) {
+const RadioGroup = React.forwardRef<React.ComponentRef<typeof RadioGroupPrimitive.Root>, RadioGroupProps>(
+  ({ className, orientation, ...props }, ref) => {
   return (
   <RadioGroupPrimitive.Root
     ref={ref}
@@ -52,7 +53,8 @@ export interface RadioGroupItemProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
     VariantProps<typeof radioGroupItemVariants> {}
 
-function RadioGroupItem({ className, size, ref, ...props }: RadioGroupItemProps & { ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Item>> }) {
+const RadioGroupItem = React.forwardRef<React.ComponentRef<typeof RadioGroupPrimitive.Item>, RadioGroupItemProps>(
+  ({ className, size, ...props }, ref) => {
   return (
   <RadioGroupPrimitive.Item
     ref={ref}

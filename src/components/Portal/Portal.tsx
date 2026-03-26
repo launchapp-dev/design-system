@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 export interface PortalProps
   extends React.ComponentPropsWithoutRef<typeof PortalPrimitive.Root> {}
 
-function Portal({ className, ref, ...props }: PortalProps & { ref?: React.Ref<React.ComponentRef<typeof PortalPrimitive.Root>> }) {
+const Portal = React.forwardRef<React.Ref<React.ComponentRef<typeof PortalPrimitive.Root>>, PortalProps>(
+  ({ className ...props }, ref) => {
   return (
   <PortalPrimitive.Root
     ref={ref}
@@ -14,6 +15,7 @@ function Portal({ className, ref, ...props }: PortalProps & { ref?: React.Ref<Re
   />
 );
 }
+);
 Portal.displayName = "Portal";
 
 export { Portal };

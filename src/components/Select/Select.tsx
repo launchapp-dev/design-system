@@ -25,8 +25,9 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
-function SelectTrigger({ className, size, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> &
-    VariantProps<typeof selectTriggerVariants> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Trigger>> }) {
+const SelectTrigger = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> &
+    VariantProps<typeof selectTriggerVariants>>(
+  ({ className, size, children, ...props }, ref) => {
   return (
   <SelectPrimitive.Trigger
     ref={ref}
@@ -53,10 +54,11 @@ function SelectTrigger({ className, size, children, ref, ...props }: React.Compo
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 );
-}
+});
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
-function SelectScrollUpButton({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollUpButton>> }) {
+const SelectScrollUpButton = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.ScrollUpButton>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>>(
+  ({ className, ...props }, ref) => {
   return (
   <SelectPrimitive.ScrollUpButton
     ref={ref}
@@ -82,10 +84,11 @@ function SelectScrollUpButton({ className, ref, ...props }: React.ComponentProps
     </svg>
   </SelectPrimitive.ScrollUpButton>
 );
-}
+});
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
 
-function SelectScrollDownButton({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollDownButton>> }) {
+const SelectScrollDownButton = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.ScrollDownButton>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>>(
+  ({ className, ...props }, ref) => {
   return (
   <SelectPrimitive.ScrollDownButton
     ref={ref}
@@ -111,10 +114,11 @@ function SelectScrollDownButton({ className, ref, ...props }: React.ComponentPro
     </svg>
   </SelectPrimitive.ScrollDownButton>
 );
-}
+});
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
 
-function SelectContent({ className, children, position = "popper", ref, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Content>> }) {
+const SelectContent = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Content>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>>(
+  ({ className, children, position = "popper", ...props }, ref) => {
   return (
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
@@ -142,10 +146,11 @@ function SelectContent({ className, children, position = "popper", ref, ...props
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
 );
-}
+});
 SelectContent.displayName = SelectPrimitive.Content.displayName;
 
-function SelectLabel({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Label>> }) {
+const SelectLabel = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Label>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>>(
+  ({ className, ...props }, ref) => {
   return (
   <SelectPrimitive.Label
     ref={ref}
@@ -153,10 +158,11 @@ function SelectLabel({ className, ref, ...props }: React.ComponentPropsWithoutRe
     {...props}
   />
 );
-}
+});
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
-function SelectItem({ className, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Item>> }) {
+const SelectItem = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Item>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>>(
+  ({ className, children, ...props }, ref) => {
   return (
   <SelectPrimitive.Item
     ref={ref}
@@ -187,10 +193,11 @@ function SelectItem({ className, children, ref, ...props }: React.ComponentProps
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 );
-}
+});
 SelectItem.displayName = SelectPrimitive.Item.displayName;
 
-function SelectSeparator({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Separator>> }) {
+const SelectSeparator = React.forwardRef<React.ComponentRef<typeof SelectPrimitive.Separator>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>>(
+  ({ className, ...props }, ref) => {
   return (
   <SelectPrimitive.Separator
     ref={ref}
@@ -198,19 +205,19 @@ function SelectSeparator({ className, ref, ...props }: React.ComponentPropsWitho
     {...props}
   />
 );
-}
+});
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
 export type SelectRootProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>;
 export type SelectGroupProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Group>;
 export type SelectValueProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Value>;
-export type SelectTriggerProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & VariantProps<typeof selectTriggerVariants> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Trigger>> };
-export type SelectContentProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Content>> };
-export type SelectLabelProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Label>> };
-export type SelectItemProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Item>> };
-export type SelectSeparatorProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.Separator>> };
-export type SelectScrollUpButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollUpButton>> };
-export type SelectScrollDownButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollDownButton>> };
+export type SelectTriggerProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & VariantProps<typeof selectTriggerVariants>;
+export type SelectContentProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>;
+export type SelectLabelProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>;
+export type SelectItemProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>;
+export type SelectSeparatorProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>;
+export type SelectScrollUpButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>;
+export type SelectScrollDownButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>;
 
 export {
   SelectRoot,

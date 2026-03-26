@@ -12,7 +12,8 @@ const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
 );
 Pagination.displayName = "Pagination";
 
-function PaginationContent({ className, ref, ...props }: React.ComponentPropsWithoutRef<"ul"> & { ref?: React.Ref<HTMLUListElement> }) {
+const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentPropsWithoutRef<"ul">>(
+  ({ className ...props }, ref) => {
   return (
   <ul
     ref={ref}
@@ -21,13 +22,16 @@ function PaginationContent({ className, ref, ...props }: React.ComponentPropsWit
   />
 );
 }
+);
 PaginationContent.displayName = "PaginationContent";
 
-function PaginationItem({ className, ref, ...props }: React.ComponentPropsWithoutRef<"li"> & { ref?: React.Ref<HTMLLIElement> }) {
+const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<"li">>(
+  ({ className ...props }, ref) => {
   return (
   <li ref={ref} className={cn("", className)} {...props} />
 );
 }
+);
 PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {

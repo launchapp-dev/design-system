@@ -11,7 +11,8 @@ export interface LabelProps
   extends React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>,
     VariantProps<typeof labelVariants> {}
 
-function Label({ className, ref, ...props }: LabelProps & { ref?: React.Ref<React.ComponentRef<typeof LabelPrimitive.Root>> }) {
+const Label = React.forwardRef<React.Ref<React.ComponentRef<typeof LabelPrimitive.Root>>, LabelProps>(
+  ({ className ...props }, ref) => {
   return (
   <LabelPrimitive.Root
     ref={ref}
@@ -20,6 +21,7 @@ function Label({ className, ref, ...props }: LabelProps & { ref?: React.Ref<Reac
   />
 );
 }
+);
 
 Label.displayName = LabelPrimitive.Root.displayName;
 

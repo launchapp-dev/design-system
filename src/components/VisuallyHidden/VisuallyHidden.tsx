@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 export interface VisuallyHiddenProps
   extends React.ComponentPropsWithoutRef<typeof VisuallyHiddenPrimitive.Root> {}
 
-function VisuallyHidden({ className, ref, ...props }: VisuallyHiddenProps & { ref?: React.Ref<React.ComponentRef<typeof VisuallyHiddenPrimitive.Root>> }) {
+const VisuallyHidden = React.forwardRef<React.Ref<React.ComponentRef<typeof VisuallyHiddenPrimitive.Root>>, VisuallyHiddenProps>(
+  ({ className ...props }, ref) => {
   return (
   <VisuallyHiddenPrimitive.Root
     ref={ref}
@@ -14,6 +15,7 @@ function VisuallyHidden({ className, ref, ...props }: VisuallyHiddenProps & { re
   />
 );
 }
+);
 VisuallyHidden.displayName = "VisuallyHidden";
 
 export { VisuallyHidden };

@@ -58,16 +58,15 @@ const DEFAULT_CATEGORIES: CookieCategory[] = [
   },
 ];
 
-function CookieConsent({
-  open,
+const CookieConsent = React.forwardRef<HTMLElement, CookieConsentProps>(
+  ({ open,
   onOpenChange,
   onAcceptAll,
   onRejectAll,
   onSavePreferences,
   categories = DEFAULT_CATEGORIES,
   title = "Cookie Preferences",
-  description = "We use cookies to enhance your browsing experience and analyse our traffic. Please choose which cookies you are happy for us to use.",
-}: CookieConsentProps) {
+  description = "We use cookies to enhance your browsing experience and analyse our traffic. Please choose which cookies you are happy for us to use." }, ref) => {
   const [preferences, setPreferences] = React.useState<Record<string, boolean>>(
     () => Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
   );

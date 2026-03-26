@@ -34,16 +34,14 @@ export interface BannerProps
   defaultOpen?: boolean;
 }
 
-function Banner({
-  className,
+const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+  ({ className,
   variant,
   position,
   open: controlledOpen,
   onOpenChange,
   defaultOpen = true,
-  ref,
-  ...props
-}: BannerProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
   
   const isOpen = controlledOpen !== undefined ? controlledOpen : uncontrolledOpen;
@@ -74,10 +72,11 @@ function Banner({
       {...props}
     />
   );
-}
+});
 Banner.displayName = "Banner";
 
-function BannerContent({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
+const BannerContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -86,9 +85,11 @@ function BannerContent({ className, ref, ...props }: React.HTMLAttributes<HTMLDi
     />
   );
 }
+);
 BannerContent.displayName = "BannerContent";
 
-function BannerTitle({ className, ref, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.Ref<HTMLParagraphElement> }) {
+const BannerTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+  ({ className ...props }, ref) => {
   return (
     <p
       ref={ref}
@@ -97,9 +98,11 @@ function BannerTitle({ className, ref, ...props }: React.HTMLAttributes<HTMLPara
     />
   );
 }
+);
 BannerTitle.displayName = "BannerTitle";
 
-function BannerDescription({ className, ref, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.Ref<HTMLParagraphElement> }) {
+const BannerDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+  ({ className ...props }, ref) => {
   return (
     <p
       ref={ref}
@@ -108,13 +111,15 @@ function BannerDescription({ className, ref, ...props }: React.HTMLAttributes<HT
     />
   );
 }
+);
 BannerDescription.displayName = "BannerDescription";
 
 export interface BannerActionProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
 }
 
-function BannerAction({ className, asChild = false, ref, ...props }: BannerActionProps & { ref?: React.Ref<HTMLButtonElement> }) {
+const BannerAction = React.forwardRef<HTMLButtonElement, BannerActionProps>(
+  ({ className, asChild = false ...props }, ref) => {
   const Comp = asChild ? Slot : "button";
   return (
     <Comp
@@ -130,9 +135,11 @@ function BannerAction({ className, asChild = false, ref, ...props }: BannerActio
     />
   );
 }
+);
 BannerAction.displayName = "BannerAction";
 
-function BannerActions({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
+const BannerActions = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -141,6 +148,7 @@ function BannerActions({ className, ref, ...props }: React.HTMLAttributes<HTMLDi
     />
   );
 }
+);
 BannerActions.displayName = "BannerActions";
 
 function BannerDismiss({ className, onOpenChange, ref, ...props }: Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> & { 

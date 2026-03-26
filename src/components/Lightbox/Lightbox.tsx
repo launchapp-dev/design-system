@@ -101,8 +101,8 @@ interface TouchState {
   currentY: number;
 }
 
-function Lightbox({
-  images,
+const Lightbox = React.forwardRef<React.Ref<React.ComponentRef<typeof DialogPrimitive.Content>>, LightboxProps>(
+  ({ images,
   initialIndex = 0,
   open,
   onOpenChange,
@@ -117,9 +117,7 @@ function Lightbox({
   onIndexChange,
   className,
   children,
-  ref,
-  ...props
-}: LightboxProps & { ref?: React.Ref<React.ComponentRef<typeof DialogPrimitive.Content>> }) {
+  ...props }, ref) => {
   const [currentIndex, setCurrentIndex] = React.useState(initialIndex);
   const [isZoomed, setIsZoomed] = React.useState(false);
   const [zoomLevel, setZoomLevel] = React.useState(1);

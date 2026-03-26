@@ -19,7 +19,8 @@ export interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
   scale?: number;
 }
 
-function TiltCard({ className, children, maxTilt = 12, scale = 1.02, style, ref, ...props }: TiltCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
+  ({ className, children, maxTilt = 12, scale = 1.02, style, ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const internalRef = React.useRef<HTMLDivElement>(null);
   const [transform, setTransform] = React.useState("");
@@ -68,7 +69,7 @@ function TiltCard({ className, children, maxTilt = 12, scale = 1.02, style, ref,
       {children}
     </div>
   );
-}
+});
 TiltCard.displayName = "TiltCard";
 
 export interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -76,14 +77,12 @@ export interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement>
   spotlightSize?: number;
 }
 
-function SpotlightCard({
-  className,
+const SpotlightCard = React.forwardRef<HTMLDivElement, SpotlightCardProps>(
+  ({ className,
   children,
   spotlightColor = "hsl(var(--la-primary) / 0.15)",
   spotlightSize = 400,
-  ref,
-  ...props
-}: SpotlightCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [spotlight, setSpotlight] = React.useState({ x: 0, y: 0, visible: false });
 
   const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -117,7 +116,7 @@ function SpotlightCard({
       {children}
     </div>
   );
-}
+});
 SpotlightCard.displayName = "SpotlightCard";
 
 export interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -131,7 +130,8 @@ const blurMap = {
   xl: "backdrop-blur-xl",
 };
 
-function GlassCard({ className, blur = "md", children, ref, ...props }: GlassCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
+  ({ className, blur = "md", children, ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -145,14 +145,15 @@ function GlassCard({ className, blur = "md", children, ref, ...props }: GlassCar
       {children}
     </div>
   );
-}
+});
 GlassCard.displayName = "GlassCard";
 
 export interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   strength?: number;
 }
 
-function MagneticButton({ className, children, strength = 0.3, style, ref, ...props }: MagneticButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButtonProps>(
+  ({ className, children, strength = 0.3, style, ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const internalRef = React.useRef<HTMLButtonElement>(null);
   const [offset, setOffset] = React.useState({ x: 0, y: 0 });
@@ -198,14 +199,15 @@ function MagneticButton({ className, children, strength = 0.3, style, ref, ...pr
       {children}
     </button>
   );
-}
+});
 MagneticButton.displayName = "MagneticButton";
 
 export interface ShimmerButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   shimmerColor?: string;
 }
 
-function ShimmerButton({ className, children, shimmerColor = "rgba(255,255,255,0.35)", ref, ...props }: ShimmerButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
+  ({ className, children, shimmerColor = "rgba(255,255,255,0.35)", ...props }, ref) => {
   return (
     <button
       ref={ref}
@@ -225,7 +227,7 @@ function ShimmerButton({ className, children, shimmerColor = "rgba(255,255,255,0
       />
     </button>
   );
-}
+});
 ShimmerButton.displayName = "ShimmerButton";
 
 export interface AnimatedBorderCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -233,7 +235,8 @@ export interface AnimatedBorderCardProps extends React.HTMLAttributes<HTMLDivEle
   duration?: number;
 }
 
-function AnimatedBorderCard({ className, children, borderColor = "hsl(var(--la-primary))", duration = 3, ref, ...props }: AnimatedBorderCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+const AnimatedBorderCard = React.forwardRef<HTMLDivElement, AnimatedBorderCardProps>(
+  ({ className, children, borderColor = "hsl(var(--la-primary))", duration = 3, ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   return (
     <div
@@ -254,20 +257,18 @@ function AnimatedBorderCard({ className, children, borderColor = "hsl(var(--la-p
       </div>
     </div>
   );
-}
+});
 AnimatedBorderCard.displayName = "AnimatedBorderCard";
 
 export interface HolographicCardProps extends React.HTMLAttributes<HTMLDivElement> {
   intensity?: number;
 }
 
-function HolographicCard({ 
-  className, 
+const HolographicCard = React.forwardRef<HTMLDivElement, HolographicCardProps>(
+  ({ className, 
   children, 
   intensity = 1, 
-  ref, 
-  ...props 
-}: HolographicCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [mousePos, setMousePos] = React.useState({ x: 0.5, y: 0.5 });
 
@@ -326,7 +327,7 @@ function HolographicCard({
       <div className="relative z-10">{children}</div>
     </div>
   );
-}
+});
 HolographicCard.displayName = "HolographicCard";
 
 export interface NeonGlowCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -341,15 +342,13 @@ const glowIntensityMap = {
   lg: { blur: 24, spread: 6 },
 };
 
-function NeonGlowCard({ 
-  className, 
+const NeonGlowCard = React.forwardRef<HTMLDivElement, NeonGlowCardProps>(
+  ({ className, 
   children, 
   glowColor = "hsl(var(--la-primary))",
   glowIntensity = "md",
-  animate = true,
-  ref, 
-  ...props 
-}: NeonGlowCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  animate = true, 
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [isHovered, setIsHovered] = React.useState(false);
   const intensity = glowIntensityMap[glowIntensity];
@@ -382,7 +381,7 @@ function NeonGlowCard({
       </div>
     </div>
   );
-}
+});
 NeonGlowCard.displayName = "NeonGlowCard";
 
 export interface RippleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -396,13 +395,11 @@ interface Ripple {
   size: number;
 }
 
-function RippleButton({ 
-  className, 
+const RippleButton = React.forwardRef<HTMLButtonElement, RippleButtonProps>(
+  ({ className, 
   children, 
   rippleColor = "rgba(255, 255, 255, 0.35)",
-  ref,
-  ...props 
-}: RippleButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [ripples, setRipples] = React.useState<Ripple[]>([]);
   const internalRef = React.useRef<HTMLButtonElement>(null);
@@ -463,7 +460,7 @@ function RippleButton({
       ))}
     </button>
   );
-}
+});
 RippleButton.displayName = "RippleButton";
 
 export interface GlowPulseButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -477,14 +474,12 @@ const pulseIntensityMap = {
   lg: { scale: 1.06, blur: 24 },
 };
 
-function GlowPulseButton({ 
-  className, 
+const GlowPulseButton = React.forwardRef<HTMLButtonElement, GlowPulseButtonProps>(
+  ({ className, 
   children, 
   glowColor = "hsl(var(--la-primary))",
   pulseIntensity = "md",
-  ref,
-  ...props 
-}: GlowPulseButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const intensity = pulseIntensityMap[pulseIntensity];
 
@@ -514,7 +509,7 @@ function GlowPulseButton({
       <span className="relative z-10">{children}</span>
     </button>
   );
-}
+});
 GlowPulseButton.displayName = "GlowPulseButton";
 
 export interface MorphButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -539,13 +534,11 @@ const morphVariants = cva(
 
 type MorphButtonVariantProps = VariantProps<typeof morphVariants>;
 
-function MorphButton({ 
-  className, 
+const MorphButton = React.forwardRef<HTMLButtonElement, MorphButtonProps & MorphButtonVariantProps>(
+  ({ className, 
   children, 
   morphStyle = "blob",
-  ref,
-  ...props 
-}: MorphButtonProps & MorphButtonVariantProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [morphState, setMorphState] = React.useState(0);
 
@@ -574,7 +567,7 @@ function MorphButton({
       {children}
     </button>
   );
-}
+});
 MorphButton.displayName = "MorphButton";
 
 export { 

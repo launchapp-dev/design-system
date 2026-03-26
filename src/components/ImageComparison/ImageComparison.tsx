@@ -68,8 +68,8 @@ export interface ImageComparisonProps
   handleSize?: "sm" | "md" | "lg";
 }
 
-function ImageComparison({
-  beforeSrc,
+const ImageComparison = React.forwardRef<HTMLDivElement, ImageComparisonProps>(
+  ({ beforeSrc,
   beforeAlt,
   afterSrc,
   afterAlt,
@@ -83,9 +83,7 @@ function ImageComparison({
   handleSize = "md",
   size,
   className,
-  ref,
-  ...props
-}: ImageComparisonProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [internalPosition, setInternalPosition] = React.useState(initialPosition);
   const [isDragging, setIsDragging] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);

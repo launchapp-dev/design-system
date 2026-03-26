@@ -38,9 +38,8 @@ function applyPaletteTokens(palette: Palette, scope: HTMLElement) {
   });
 }
 
-function PaletteSwitcher(
-  {
-    palettes = builtinPalettes,
+const PaletteSwitcher = React.forwardRef<HTMLButtonElement, PaletteSwitcherProps>(
+  ({ palettes = builtinPalettes,
     value,
     defaultValue,
     onValueChange,
@@ -48,10 +47,7 @@ function PaletteSwitcher(
     size,
     className,
     triggerClassName,
-    ref,
-    ...props
-  }: PaletteSwitcherProps & { ref?: React.Ref<HTMLButtonElement> }
-) {
+    ...props }, ref) => {
   const [internalValue, setInternalValue] = React.useState(
     defaultValue ?? palettes[0]?.name ?? ""
   );

@@ -6,7 +6,8 @@ interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   "aria-labelledby"?: string;
 }
 
-function Table({ className, ref, ...props }: TableProps & { ref?: React.Ref<HTMLTableElement> }) {
+const Table = React.forwardRef<HTMLTableElement, TableProps>(
+  ({ className, ...props }, ref) => {
     if (
       process.env.NODE_ENV !== "production" &&
       !props["aria-label"] &&
@@ -28,18 +29,21 @@ function Table({ className, ref, ...props }: TableProps & { ref?: React.Ref<HTML
   }
 Table.displayName = "Table";
 
-function TableHeader({ className, ref, ...props }: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) {
+const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(
+  ({ className ...props }, ref) => {
   return (
     <thead ref={ref} className={cn("[&_tr]:border-b [&_tr]:border-border", className)} {...props} />
   );
 }
+);
 TableHeader.displayName = "TableHeader";
 
 interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {
   striped?: boolean;
 }
 
-function TableBody({ className, striped, ref, ...props }: TableBodyProps & { ref?: React.Ref<HTMLTableSectionElement> }) {
+const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
+  ({ className, striped ...props }, ref) => {
   return (
     <tbody
       ref={ref}
@@ -52,9 +56,11 @@ function TableBody({ className, striped, ref, ...props }: TableBodyProps & { ref
     />
   );
 }
+);
 TableBody.displayName = "TableBody";
 
-function TableFooter({ className, ref, ...props }: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) {
+const TableFooter = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(
+  ({ className ...props }, ref) => {
   return (
     <tfoot
       ref={ref}
@@ -63,9 +69,11 @@ function TableFooter({ className, ref, ...props }: React.HTMLAttributes<HTMLTabl
     />
   );
 }
+);
 TableFooter.displayName = "TableFooter";
 
-function TableRow({ className, ref, ...props }: React.HTMLAttributes<HTMLTableRowElement> & { ref?: React.Ref<HTMLTableRowElement> }) {
+const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(
+  ({ className ...props }, ref) => {
   return (
     <tr
       ref={ref}
@@ -77,9 +85,11 @@ function TableRow({ className, ref, ...props }: React.HTMLAttributes<HTMLTableRo
     />
   );
 }
+);
 TableRow.displayName = "TableRow";
 
-function TableHead({ className, ref, ...props }: React.ThHTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }) {
+const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<HTMLTableCellElement>>(
+  ({ className ...props }, ref) => {
   return (
     <th
       ref={ref}
@@ -91,9 +101,11 @@ function TableHead({ className, ref, ...props }: React.ThHTMLAttributes<HTMLTabl
     />
   );
 }
+);
 TableHead.displayName = "TableHead";
 
-function TableCell({ className, ref, ...props }: React.TdHTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }) {
+const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement>>(
+  ({ className ...props }, ref) => {
   return (
     <td
       ref={ref}
@@ -102,9 +114,11 @@ function TableCell({ className, ref, ...props }: React.TdHTMLAttributes<HTMLTabl
     />
   );
 }
+);
 TableCell.displayName = "TableCell";
 
-function TableCaption({ className, ref, ...props }: React.HTMLAttributes<HTMLTableCaptionElement> & { ref?: React.Ref<HTMLTableCaptionElement> }) {
+const TableCaption = React.forwardRef<HTMLTableCaptionElement, React.HTMLAttributes<HTMLTableCaptionElement>>(
+  ({ className ...props }, ref) => {
   return (
     <caption
       ref={ref}
@@ -113,6 +127,7 @@ function TableCaption({ className, ref, ...props }: React.HTMLAttributes<HTMLTab
     />
   );
 }
+);
 TableCaption.displayName = "TableCaption";
 
 export {

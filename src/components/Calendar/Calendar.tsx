@@ -4,7 +4,8 @@ import { cn } from "../../lib/utils";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
-function Calendar({ className, classNames, showOutsideDays = true, ref, ...props }: CalendarProps & { ref?: React.Ref<HTMLDivElement> }) {
+const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
+  ({ className, classNames, showOutsideDays = true, ...props }, ref) => {
     return (
       <div ref={ref} className={cn("p-3", className)}>
         <DayPicker

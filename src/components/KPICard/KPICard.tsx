@@ -11,16 +11,15 @@ export interface KPICardProps extends React.HTMLAttributes<HTMLDivElement> {
   sparklineColor?: string;
 }
 
-function KPICard({
-      label,
+const KPICard = React.forwardRef<HTMLDivElement, KPICardProps>(
+  ({ label,
       value,
       trend,
       trendLabel,
       sparklineData,
       sparklineColor = "hsl(var(--la-chart-1))",
-      className, ref,
-      ...props
-    }: KPICardProps & { ref?: React.Ref<HTMLDivElement> }) {
+      className,
+      ...props }, ref) => {
     const normalizedSparkline = React.useMemo(
       () => sparklineData?.map((v) => ({ value: v })),
       [sparklineData]

@@ -7,15 +7,13 @@ export interface SpotlightProps extends React.HTMLAttributes<HTMLDivElement> {
   followsMouse?: boolean;
 }
 
-function Spotlight({
-  size = 600,
+const Spotlight = React.forwardRef<HTMLDivElement, SpotlightProps>(
+  ({ size = 600,
   spring = false,
   followsMouse = true,
   className,
   style,
-  ref,
-  ...props
-}: SpotlightProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [position, setPosition] = React.useState({ x: 50, y: 50 });
   const [isHovered, setIsHovered] = React.useState(false);
   const reduced = React.useMemo(
@@ -89,7 +87,7 @@ function Spotlight({
       )}
     </div>
   );
-}
+});
 Spotlight.displayName = "Spotlight";
 
 export { Spotlight };

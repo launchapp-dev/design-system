@@ -13,7 +13,8 @@ const colsVariants: Record<2 | 3 | 4, string> = {
   4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
 };
 
-function StatDisplay({ items, cols = 4, className, ref, ...props }: StatDisplayProps & { ref?: React.Ref<HTMLDivElement> }) {
+const StatDisplay = React.forwardRef<HTMLDivElement, StatDisplayProps>(
+  ({ items, cols = 4, className, ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -25,7 +26,7 @@ function StatDisplay({ items, cols = 4, className, ref, ...props }: StatDisplayP
       ))}
     </div>
   );
-}
+});
 StatDisplay.displayName = "StatDisplay";
 
 export { StatDisplay };

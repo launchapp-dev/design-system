@@ -43,7 +43,8 @@ const toolbarToggleItemVariants = cva(
   }
 );
 
-function ToolbarRoot({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Root>> }) {
+const ToolbarRoot = React.forwardRef<React.ComponentRef<typeof ToolbarPrimitive.Root>, React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Root>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToolbarPrimitive.Root
     ref={ref}
@@ -54,14 +55,15 @@ function ToolbarRoot({ className, ref, ...props }: React.ComponentPropsWithoutRe
     {...props}
   />
 );
-}
+});
 ToolbarRoot.displayName = ToolbarPrimitive.Root.displayName;
 
 export interface ToolbarButtonProps
   extends React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Button>,
     VariantProps<typeof toolbarButtonVariants> {}
 
-function ToolbarButton({ className, variant, size, ref, ...props }: ToolbarButtonProps & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Button>> }) {
+const ToolbarButton = React.forwardRef<React.ComponentRef<typeof ToolbarPrimitive.Button>, ToolbarButtonProps>(
+  ({ className, variant, size, ...props }, ref) => {
   return (
   <ToolbarPrimitive.Button
     ref={ref}
@@ -69,10 +71,11 @@ function ToolbarButton({ className, variant, size, ref, ...props }: ToolbarButto
     {...props}
   />
 );
-}
+});
 ToolbarButton.displayName = ToolbarPrimitive.Button.displayName;
 
-function ToolbarLink({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Link> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Link>> }) {
+const ToolbarLink = React.forwardRef<React.ComponentRef<typeof ToolbarPrimitive.Link>, React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Link>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToolbarPrimitive.Link
     ref={ref}
@@ -83,10 +86,11 @@ function ToolbarLink({ className, ref, ...props }: React.ComponentPropsWithoutRe
     {...props}
   />
 );
-}
+});
 ToolbarLink.displayName = ToolbarPrimitive.Link.displayName;
 
-function ToolbarSeparator({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Separator> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.Separator>> }) {
+const ToolbarSeparator = React.forwardRef<React.ComponentRef<typeof ToolbarPrimitive.Separator>, React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.Separator>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToolbarPrimitive.Separator
     ref={ref}
@@ -94,10 +98,11 @@ function ToolbarSeparator({ className, ref, ...props }: React.ComponentPropsWith
     {...props}
   />
 );
-}
+});
 ToolbarSeparator.displayName = ToolbarPrimitive.Separator.displayName;
 
-function ToolbarToggleGroup({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.ToggleGroup> & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.ToggleGroup>> }) {
+const ToolbarToggleGroup = React.forwardRef<React.ComponentRef<typeof ToolbarPrimitive.ToggleGroup>, React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.ToggleGroup>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToolbarPrimitive.ToggleGroup
     ref={ref}
@@ -105,14 +110,15 @@ function ToolbarToggleGroup({ className, ref, ...props }: React.ComponentPropsWi
     {...props}
   />
 );
-}
+});
 ToolbarToggleGroup.displayName = ToolbarPrimitive.ToggleGroup.displayName;
 
 export interface ToolbarToggleItemProps
   extends React.ComponentPropsWithoutRef<typeof ToolbarPrimitive.ToggleItem>,
     VariantProps<typeof toolbarToggleItemVariants> {}
 
-function ToolbarToggleItem({ className, size, ref, ...props }: ToolbarToggleItemProps & { ref?: React.Ref<React.ComponentRef<typeof ToolbarPrimitive.ToggleItem>> }) {
+const ToolbarToggleItem = React.forwardRef<React.ComponentRef<typeof ToolbarPrimitive.ToggleItem>, ToolbarToggleItemProps>(
+  ({ className, size, ...props }, ref) => {
   return (
   <ToolbarPrimitive.ToggleItem
     ref={ref}
@@ -120,7 +126,7 @@ function ToolbarToggleItem({ className, size, ref, ...props }: ToolbarToggleItem
     {...props}
   />
 );
-}
+});
 ToolbarToggleItem.displayName = ToolbarPrimitive.ToggleItem.displayName;
 
 export {

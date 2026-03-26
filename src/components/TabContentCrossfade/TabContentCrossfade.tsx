@@ -6,13 +6,14 @@ export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   tabKey: string;
 }
 
-function TabPanel({ className, children, tabKey, ref, "aria-labelledby": ariaLabelledBy, ...props }: TabPanelProps & { ref?: React.Ref<HTMLDivElement> }) {
+const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
+  ({ className, children, tabKey, "aria-labelledby": ariaLabelledBy, ...props }, ref) => {
   return (
     <div ref={ref} role="tabpanel" aria-labelledby={ariaLabelledBy ?? `tab-${tabKey}`} className={cn(className)} {...props}>
       {children}
     </div>
   );
-}
+});
 TabPanel.displayName = "TabPanel";
 
 export interface TabContentCrossfadeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -21,7 +22,8 @@ export interface TabContentCrossfadeProps extends React.HTMLAttributes<HTMLDivEl
   children: React.ReactElement<TabPanelProps> | React.ReactElement<TabPanelProps>[];
 }
 
-function TabContentCrossfade({ activeKey, duration = 200, children, className, ref, ...props }: TabContentCrossfadeProps & { ref?: React.Ref<HTMLDivElement> }) {
+const TabContentCrossfade = React.forwardRef<HTMLDivElement, TabContentCrossfadeProps>(
+  ({ activeKey, duration = 200, children, className, ...props }, ref) => {
   const prefersReducedMotion = useReducedMotion();
   const [displayedKey, setDisplayedKey] = React.useState(activeKey);
   const [opacity, setOpacity] = React.useState(1);
@@ -64,7 +66,7 @@ function TabContentCrossfade({ activeKey, duration = 200, children, className, r
       {activePanel}
     </div>
   );
-}
+});
 TabContentCrossfade.displayName = "TabContentCrossfade";
 
 export { TabContentCrossfade, TabPanel };

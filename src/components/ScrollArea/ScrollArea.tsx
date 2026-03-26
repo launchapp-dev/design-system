@@ -2,7 +2,8 @@ import * as React from "react";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import { cn } from "@/lib/utils";
 
-function ScrollArea({ className, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof ScrollAreaPrimitive.Root>> }) {
+const ScrollArea = React.forwardRef<React.ComponentRef<typeof ScrollAreaPrimitive.Root>, React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>>(
+  ({ className, children ...props }, ref) => {
   return (
   <ScrollAreaPrimitive.Root
     ref={ref}
@@ -17,9 +18,11 @@ function ScrollArea({ className, children, ref, ...props }: React.ComponentProps
   </ScrollAreaPrimitive.Root>
 );
 }
+);
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
 
-function ScrollBar({ className, orientation = "vertical", ref, ...props }: React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> & { ref?: React.Ref<React.ComponentRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>> }) {
+const ScrollBar = React.forwardRef<React.ComponentRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>, React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>>(
+  ({ className, orientation = "vertical" ...props }, ref) => {
   return (
   <ScrollAreaPrimitive.ScrollAreaScrollbar
     ref={ref}
@@ -38,9 +41,10 @@ function ScrollBar({ className, orientation = "vertical", ref, ...props }: React
   </ScrollAreaPrimitive.ScrollAreaScrollbar>
 );
 }
+);
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
-export type ScrollAreaProps = React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof ScrollAreaPrimitive.Root>> };
-export type ScrollBarProps = React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> & { ref?: React.Ref<React.ComponentRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>> };
+export type ScrollAreaProps = React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & { ref?: React.ComponentRef<typeof ScrollAreaPrimitive.Root> };
+export type ScrollBarProps = React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> & { ref?: React.ComponentRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> };
 
 export { ScrollArea, ScrollBar };

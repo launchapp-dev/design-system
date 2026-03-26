@@ -8,7 +8,8 @@ export interface TypewriterProps extends React.HTMLAttributes<HTMLSpanElement> {
   showCursor?: boolean;
 }
 
-function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...props }: TypewriterProps & { ref?: React.Ref<HTMLSpanElement> }) {
+const Typewriter = React.forwardRef<HTMLSpanElement, TypewriterProps>(
+  ({ text, speed = 50, showCursor = true, className, ...props }, ref) => {
   const [displayed, setDisplayed] = React.useState("");
   const prefersReducedMotion = React.useMemo(
     () =>
@@ -52,7 +53,7 @@ function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...pr
       </span>
     </span>
   );
-}
+});
 Typewriter.displayName = "Typewriter";
 
 const blurInVariants = cva(
@@ -73,7 +74,8 @@ export interface BlurInProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof blurInVariants> {}
 
-function BlurIn({ className, size, children, ref, ...props }: BlurInProps & { ref?: React.Ref<HTMLSpanElement> }) {
+const BlurIn = React.forwardRef<HTMLSpanElement, BlurInProps>(
+  ({ className, size, children, ...props }, ref) => {
   return (
     <span
       ref={ref}
@@ -83,7 +85,7 @@ function BlurIn({ className, size, children, ref, ...props }: BlurInProps & { re
       {children}
     </span>
   );
-}
+});
 BlurIn.displayName = "BlurIn";
 
 const fadeUpVariants = cva(
@@ -104,7 +106,8 @@ export interface FadeUpProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof fadeUpVariants> {}
 
-function FadeUp({ className, size, children, ref, ...props }: FadeUpProps & { ref?: React.Ref<HTMLSpanElement> }) {
+const FadeUp = React.forwardRef<HTMLSpanElement, FadeUpProps>(
+  ({ className, size, children, ...props }, ref) => {
   return (
     <span
       ref={ref}
@@ -114,7 +117,7 @@ function FadeUp({ className, size, children, ref, ...props }: FadeUpProps & { re
       {children}
     </span>
   );
-}
+});
 FadeUp.displayName = "FadeUp";
 
 export interface LetterRevealProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -122,7 +125,8 @@ export interface LetterRevealProps extends React.HTMLAttributes<HTMLSpanElement>
   staggerDelay?: number;
 }
 
-function LetterReveal({ text, staggerDelay = 30, className, ref, ...props }: LetterRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
+const LetterReveal = React.forwardRef<HTMLSpanElement, LetterRevealProps>(
+  ({ text, staggerDelay = 30, className, ...props }, ref) => {
   return (
     <span
       ref={ref}
@@ -142,7 +146,7 @@ function LetterReveal({ text, staggerDelay = 30, className, ref, ...props }: Let
       ))}
     </span>
   );
-}
+});
 LetterReveal.displayName = "LetterReveal";
 
 export interface WordRevealProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -150,13 +154,11 @@ export interface WordRevealProps extends React.HTMLAttributes<HTMLSpanElement> {
   staggerDelay?: number;
 }
 
-function WordReveal({
-  text,
+const WordReveal = React.forwardRef<HTMLSpanElement, WordRevealProps>(
+  ({ text,
   staggerDelay = 100,
   className,
-  ref,
-  ...props
-}: WordRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
+  ...props }, ref) => {
   const words = text.split(" ");
   return (
     <span
@@ -179,7 +181,7 @@ function WordReveal({
       ))}
     </span>
   );
-}
+});
 WordReveal.displayName = "WordReveal";
 
 const gradientTextVariants = cva("inline-block", {
@@ -200,13 +202,11 @@ export interface GradientTextProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof gradientTextVariants> {}
 
-function GradientText({
-  className,
+const GradientText = React.forwardRef<HTMLSpanElement, GradientTextProps>(
+  ({ className,
   variant,
   children,
-  ref,
-  ...props
-}: GradientTextProps & { ref?: React.Ref<HTMLSpanElement> }) {
+  ...props }, ref) => {
   return (
     <span
       ref={ref}
@@ -216,7 +216,7 @@ function GradientText({
       {children}
     </span>
   );
-}
+});
 GradientText.displayName = "GradientText";
 
 export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText, gradientTextVariants };

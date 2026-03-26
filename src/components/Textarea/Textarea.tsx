@@ -30,7 +30,8 @@ export interface TextareaProps
   error?: boolean;
 }
 
-function Textarea({ className, resize, error, rows = 3, ref, ...props }: TextareaProps & { ref?: React.Ref<HTMLTextAreaElement> }) {
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, resize, error, rows = 3, ...props }, ref) => {
     if (
       process.env.NODE_ENV !== "production" &&
       !props.id &&

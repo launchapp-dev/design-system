@@ -199,8 +199,8 @@ function flattenNodes(
   return layoutNodes;
 }
 
-function TreeMap({
-  data,
+const TreeMap = React.forwardRef<HTMLDivElement, TreeMapProps>(
+  ({ data,
   height,
   size,
   colorScheme = "chart",
@@ -209,9 +209,7 @@ function TreeMap({
   className,
   onNodeClick,
   "aria-label": ariaLabel,
-  ref,
-  ...props
-}: TreeMapProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = React.useState(0);
 

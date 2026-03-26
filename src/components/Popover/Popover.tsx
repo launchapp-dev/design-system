@@ -8,7 +8,8 @@ const PopoverTrigger = PopoverPrimitive.Trigger;
 
 const PopoverAnchor = PopoverPrimitive.Anchor;
 
-function PopoverContent({ className, align = "center", sideOffset = 4, ref, ...props }: React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof PopoverPrimitive.Content>> }) {
+const PopoverContent = React.forwardRef<React.ComponentRef<typeof PopoverPrimitive.Content>, React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>>(
+  ({ className, align = "center", sideOffset = 4 ...props }, ref) => {
   return (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
@@ -24,9 +25,11 @@ function PopoverContent({ className, align = "center", sideOffset = 4, ref, ...p
   </PopoverPrimitive.Portal>
 );
 }
+);
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
-function PopoverArrow({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow> & { ref?: React.Ref<React.ComponentRef<typeof PopoverPrimitive.Arrow>> }) {
+const PopoverArrow = React.forwardRef<React.ComponentRef<typeof PopoverPrimitive.Arrow>, React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow>>(
+  ({ className ...props }, ref) => {
   return (
   <PopoverPrimitive.Arrow
     ref={ref}
@@ -35,6 +38,7 @@ function PopoverArrow({ className, ref, ...props }: React.ComponentPropsWithoutR
   />
 );
 }
+);
 PopoverArrow.displayName = PopoverPrimitive.Arrow.displayName;
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverAnchor };

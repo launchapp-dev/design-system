@@ -17,14 +17,13 @@ interface StaggeredItemProps {
   prefersReducedMotion: boolean;
 }
 
-function StaggeredItem({
-  children,
+const StaggeredItem = React.forwardRef<HTMLElement, StaggeredItemProps>(
+  ({ children,
   index,
   staggerDelay,
   duration,
   initialDelay,
-  prefersReducedMotion,
-}: StaggeredItemProps) {
+  prefersReducedMotion }, ref) => {
   const [visible, setVisible] = React.useState(prefersReducedMotion);
 
   React.useEffect(() => {
@@ -52,17 +51,13 @@ function StaggeredItem({
   );
 }
 
-function StaggeredList(
-  {
-    children,
+const StaggeredList = React.forwardRef<HTMLDivElement, StaggeredListProps>(
+  ({ children,
     staggerDelay = 80,
     duration = 400,
     initialDelay = 0,
     className,
-    ref,
-    ...props
-  }: StaggeredListProps & { ref?: React.Ref<HTMLDivElement> }
-) {
+    ...props }, ref) => {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -81,7 +76,7 @@ function StaggeredList(
       ))}
     </div>
   );
-}
+});
 StaggeredList.displayName = "StaggeredList";
 
 export { StaggeredList };

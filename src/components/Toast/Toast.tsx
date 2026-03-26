@@ -25,7 +25,8 @@ const toastVariants = cva(
 
 const ToastProvider = ToastPrimitive.Provider;
 
-function ToastViewport({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport> & { ref?: React.Ref<React.ComponentRef<typeof ToastPrimitive.Viewport>> }) {
+const ToastViewport = React.forwardRef<React.Ref<React.ComponentRef<typeof ToastPrimitive.Viewport>>, React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToastPrimitive.Viewport
     ref={ref}
@@ -36,11 +37,12 @@ function ToastViewport({ className, ref, ...props }: React.ComponentPropsWithout
     {...props}
   />
 );
-}
+});
 ToastViewport.displayName = ToastPrimitive.Viewport.displayName;
 
-function ToastRoot({ className, variant, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root> &
-    VariantProps<typeof toastVariants> & { ref?: React.Ref<React.ComponentRef<typeof ToastPrimitive.Root>> }) {
+const ToastRoot = React.forwardRef<React.Ref<React.ComponentRef<typeof ToastPrimitive.Root>>, React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root> &
+    VariantProps<typeof toastVariants>>(
+  ({ className, variant, ...props }, ref) => {
   return (
   <ToastPrimitive.Root
     ref={ref}
@@ -48,10 +50,11 @@ function ToastRoot({ className, variant, ref, ...props }: React.ComponentPropsWi
     {...props}
   />
 );
-}
+});
 ToastRoot.displayName = ToastPrimitive.Root.displayName;
 
-function ToastTitle({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Title> & { ref?: React.Ref<React.ComponentRef<typeof ToastPrimitive.Title>> }) {
+const ToastTitle = React.forwardRef<React.Ref<React.ComponentRef<typeof ToastPrimitive.Title>>, React.ComponentPropsWithoutRef<typeof ToastPrimitive.Title>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToastPrimitive.Title
     ref={ref}
@@ -59,10 +62,11 @@ function ToastTitle({ className, ref, ...props }: React.ComponentPropsWithoutRef
     {...props}
   />
 );
-}
+});
 ToastTitle.displayName = ToastPrimitive.Title.displayName;
 
-function ToastDescription({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Description> & { ref?: React.Ref<React.ComponentRef<typeof ToastPrimitive.Description>> }) {
+const ToastDescription = React.forwardRef<React.Ref<React.ComponentRef<typeof ToastPrimitive.Description>>, React.ComponentPropsWithoutRef<typeof ToastPrimitive.Description>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToastPrimitive.Description
     ref={ref}
@@ -70,10 +74,11 @@ function ToastDescription({ className, ref, ...props }: React.ComponentPropsWith
     {...props}
   />
 );
-}
+});
 ToastDescription.displayName = ToastPrimitive.Description.displayName;
 
-function ToastAction({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action> & { ref?: React.Ref<React.ComponentRef<typeof ToastPrimitive.Action>> }) {
+const ToastAction = React.forwardRef<React.Ref<React.ComponentRef<typeof ToastPrimitive.Action>>, React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToastPrimitive.Action
     ref={ref}
@@ -84,10 +89,11 @@ function ToastAction({ className, ref, ...props }: React.ComponentPropsWithoutRe
     {...props}
   />
 );
-}
+});
 ToastAction.displayName = ToastPrimitive.Action.displayName;
 
-function ToastClose({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Close> & { ref?: React.Ref<React.ComponentRef<typeof ToastPrimitive.Close>> }) {
+const ToastClose = React.forwardRef<React.Ref<React.ComponentRef<typeof ToastPrimitive.Close>>, React.ComponentPropsWithoutRef<typeof ToastPrimitive.Close>>(
+  ({ className, ...props }, ref) => {
   return (
   <ToastPrimitive.Close
     ref={ref}
@@ -116,7 +122,7 @@ function ToastClose({ className, ref, ...props }: React.ComponentPropsWithoutRef
     </svg>
   </ToastPrimitive.Close>
 );
-}
+});
 ToastClose.displayName = ToastPrimitive.Close.displayName;
 
 function Toaster() {

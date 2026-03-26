@@ -18,18 +18,16 @@ export interface PageTransitionProps extends React.HTMLAttributes<HTMLDivElement
   show?: boolean;
 }
 
-function PageTransition({
-  children,
+const PageTransition = React.forwardRef<HTMLDivElement, PageTransitionProps>(
+  ({ children,
   className,
   variant = "fade",
   direction = "up",
   duration = 400,
   delay = 0,
   show = true,
-  ref,
   style,
-  ...props
-}: PageTransitionProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [isVisible, setIsVisible] = React.useState(show);
   const [isAnimating, setIsAnimating] = React.useState(false);
@@ -84,20 +82,18 @@ function PageTransition({
       {children}
     </div>
   );
-}
+});
 PageTransition.displayName = "PageTransition";
 
 export interface TransitionGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   mode?: "single" | "out-in" | "in-out";
 }
 
-function TransitionGroup({
-  children,
+const TransitionGroup = React.forwardRef<HTMLDivElement, TransitionGroupProps>(
+  ({ children,
   className,
   mode = "out-in",
-  ref,
-  ...props
-}: TransitionGroupProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [currentKey, setCurrentKey] = React.useState<React.Key | null>(null);
   const [currentChild, setCurrentChild] = React.useState<React.ReactNode>(null);
   const [isTransitioning, setIsTransitioning] = React.useState(false);
@@ -128,7 +124,7 @@ function TransitionGroup({
       {currentChild}
     </div>
   );
-}
+});
 TransitionGroup.displayName = "TransitionGroup";
 
 export interface RouteTransitionProps extends React.ComponentPropsWithoutRef<"div">, Omit<PageTransitionProps, "show"> {
@@ -136,14 +132,12 @@ export interface RouteTransitionProps extends React.ComponentPropsWithoutRef<"di
   routes?: Array<{ path: string; element: React.ReactNode }>;
 }
 
-function RouteTransition({
-  children,
+const RouteTransition = React.forwardRef<HTMLDivElement, RouteTransitionProps>(
+  ({ children,
   className,
   activeRoute,
   routes = [],
-  ref,
-  ...props
-}: RouteTransitionProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [displayedRoute, setDisplayedRoute] = React.useState(activeRoute);
   const [isAnimating, setIsAnimating] = React.useState(false);
   const reduced = usePrefersReducedMotion();
@@ -180,20 +174,18 @@ function RouteTransition({
       {element}
     </div>
   );
-}
+});
 RouteTransition.displayName = "RouteTransition";
 
 export interface AnimatePresenceProps extends React.HTMLAttributes<HTMLDivElement> {
   mode?: "sync" | "wait" | "popLayout";
 }
 
-function AnimatePresence({
-  children,
+const AnimatePresence = React.forwardRef<HTMLDivElement, AnimatePresenceProps>(
+  ({ children,
   className,
-  mode = "sync",
-  ref,
-  ...props
-}: AnimatePresenceProps & { ref?: React.Ref<HTMLDivElement> }) {
+  mode = "sync"
+  ...props }, ref) => {
   const [childrenState, setChildrenState] = React.useState<React.ReactNode>(children);
   const [isExiting, setIsExiting] = React.useState(false);
   const reduced = usePrefersReducedMotion();
@@ -208,6 +200,7 @@ function AnimatePresence({
     </div>
   );
 }
+);
 AnimatePresence.displayName = "AnimatePresence";
 
 export interface MorphTransitionProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -215,15 +208,13 @@ export interface MorphTransitionProps extends React.HTMLAttributes<HTMLDivElemen
   duration?: number;
 }
 
-function MorphTransition({
-  children,
+const MorphTransition = React.forwardRef<HTMLDivElement, MorphTransitionProps>(
+  ({ children,
   className,
   isActive = true,
   duration = 500,
-  ref,
   style,
-  ...props
-}: MorphTransitionProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [prevChildren, setPrevChildren] = React.useState<React.ReactNode>(null);
   const [isMorphing, setIsMorphing] = React.useState(false);
@@ -278,7 +269,7 @@ function MorphTransition({
       </div>
     </div>
   );
-}
+});
 MorphTransition.displayName = "MorphTransition";
 
 export {

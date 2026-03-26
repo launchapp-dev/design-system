@@ -4,7 +4,8 @@ import { cn } from "../../lib/utils";
 
 const AccordionRoot = AccordionPrimitive.Root;
 
-function AccordionItem({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Item>> }) {
+const AccordionItem = React.forwardRef<React.ComponentRef<typeof AccordionPrimitive.Item>, React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>>(
+  ({ className, ...props }, ref) => {
   return (
   <AccordionPrimitive.Item
     ref={ref}
@@ -12,10 +13,11 @@ function AccordionItem({ className, ref, ...props }: React.ComponentPropsWithout
     {...props}
   />
 );
-}
+});
 AccordionItem.displayName = AccordionPrimitive.Item.displayName;
 
-function AccordionTrigger({ className, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Trigger>> }) {
+const AccordionTrigger = React.forwardRef<React.ComponentRef<typeof AccordionPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>>(
+  ({ className, children, ...props }, ref) => {
   return (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
@@ -45,10 +47,11 @@ function AccordionTrigger({ className, children, ref, ...props }: React.Componen
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 );
-}
+});
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
-function AccordionContent({ className, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Content>> }) {
+const AccordionContent = React.forwardRef<React.ComponentRef<typeof AccordionPrimitive.Content>, React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>>(
+  ({ className, children, ...props }, ref) => {
   return (
   <AccordionPrimitive.Content
     ref={ref}
@@ -58,12 +61,12 @@ function AccordionContent({ className, children, ref, ...props }: React.Componen
     <div className={cn("pb-4 pt-0", className)}>{children}</div>
   </AccordionPrimitive.Content>
 );
-}
+});
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
 export type AccordionRootProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>;
-export type AccordionItemProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Item>> };
-export type AccordionTriggerProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Trigger>> };
-export type AccordionContentProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof AccordionPrimitive.Content>> };
+export type AccordionItemProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>;
+export type AccordionTriggerProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>;
+export type AccordionContentProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>;
 
 export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent };

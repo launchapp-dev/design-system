@@ -7,7 +7,8 @@ export interface SliderProps
   thumbLabels?: string[];
 }
 
-function Slider({ className, orientation, value, defaultValue, thumbLabels, ref, ...props }: SliderProps & { ref?: React.Ref<React.ComponentRef<typeof SliderPrimitive.Root>> }) {
+const Slider = React.forwardRef<React.Ref<React.ComponentRef<typeof SliderPrimitive.Root>>, SliderProps>(
+  ({ className, orientation, value, defaultValue, thumbLabels, ...props }, ref) => {
   const values = value ?? defaultValue ?? [0];
   const thumbCount = Array.isArray(values) ? values.length : 1;
 

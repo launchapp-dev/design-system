@@ -24,18 +24,16 @@ const sizeMap = {
   lg: 3,
 };
 
-function AnimatedBorder({
-  children,
+const AnimatedBorder = React.forwardRef<HTMLDivElement, AnimatedBorderProps>(
+  ({ children,
   className,
   variant = "beam",
   borderColor = "hsl(var(--la-primary))",
   secondaryColor,
   duration = 4,
   size = "md",
-  ref,
   style,
-  ...props
-}: AnimatedBorderProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const borderWidth = sizeMap[size];
   const secondary = secondaryColor || borderColor;
@@ -120,7 +118,7 @@ function AnimatedBorder({
       `}</style>
     </div>
   );
-}
+});
 AnimatedBorder.displayName = "AnimatedBorder";
 
 export { AnimatedBorder };

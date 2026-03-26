@@ -202,8 +202,8 @@ function AnimatedValue({
   );
 }
 
-function RealtimeTicker({
-  items,
+const RealtimeTicker = React.forwardRef<HTMLDivElement, RealtimeTickerProps>(
+  ({ items,
   updateInterval = 2000,
   showTrend = true,
   showChange = true,
@@ -212,9 +212,7 @@ function RealtimeTicker({
   variant,
   className,
   onUpdate,
-  ref,
-  ...props
-}: RealtimeTickerProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [currentItems, setCurrentItems] = React.useState<TickerItem[]>(items);
   const [previousItems, setPreviousItems] = React.useState<TickerItem[]>([]);
   

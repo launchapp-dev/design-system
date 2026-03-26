@@ -142,15 +142,13 @@ function WidgetOverlay({ widget }: { widget: DashboardWidget }) {
   );
 }
 
-function DashboardGrid({
-  widgets: initialWidgets,
+const DashboardGrid = React.forwardRef<HTMLDivElement, DashboardGridProps>(
+  ({ widgets: initialWidgets,
   columns,
   className,
   onReorder,
   editable = false,
-  ref,
-  ...props
-}: DashboardGridProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const [widgets, setWidgets] = React.useState<DashboardWidget[]>(initialWidgets);
   const [activeWidget, setActiveWidget] = React.useState<DashboardWidget | null>(null);
 

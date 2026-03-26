@@ -34,14 +34,14 @@ export interface DatePickerProps {
   calendarProps?: Omit<CalendarProps, "mode" | "selected" | "onSelect">;
 }
 
-function DatePicker({
-      selected,
+const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
+  ({ selected,
       onSelect,
       placeholder = "Pick a date",
       disabled,
       className,
       dateFormat = "PPP",
-      calendarProps, ref}: DatePickerProps & { ref?: React.Ref<HTMLButtonElement> }) {
+      calendarProps }, ref) => {
     const [open, setOpen] = React.useState(false);
     return (
       <Popover open={open} onOpenChange={setOpen}>

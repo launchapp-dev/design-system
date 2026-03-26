@@ -190,8 +190,8 @@ function layoutSankey(
   return { layoutNodes: Array.from(nodeMap.values()), layoutLinks };
 }
 
-function SankeyDiagram({
-  nodes,
+const SankeyDiagram = React.forwardRef<HTMLDivElement, SankeyDiagramProps>(
+  ({ nodes,
   links,
   height,
   size,
@@ -203,9 +203,7 @@ function SankeyDiagram({
   onNodeClick,
   onLinkClick,
   "aria-label": ariaLabel,
-  ref,
-  ...props
-}: SankeyDiagramProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = React.useState(0);
 

@@ -4,7 +4,8 @@ import { cn } from "../../lib/utils";
 
 const TabsRoot = TabsPrimitive.Root;
 
-function TabsList({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.List>> }) {
+const TabsList = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.List>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>>(
+  ({ className ...props }, ref) => {
   return (
   <TabsPrimitive.List
     ref={ref}
@@ -16,9 +17,11 @@ function TabsList({ className, ref, ...props }: React.ComponentPropsWithoutRef<t
   />
 );
 }
+);
 TabsList.displayName = TabsPrimitive.List.displayName;
 
-function TabsTrigger({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.Trigger>> }) {
+const TabsTrigger = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>>(
+  ({ className ...props }, ref) => {
   return (
   <TabsPrimitive.Trigger
     ref={ref}
@@ -30,9 +33,11 @@ function TabsTrigger({ className, ref, ...props }: React.ComponentPropsWithoutRe
   />
 );
 }
+);
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
-function TabsContent({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.Content>> }) {
+const TabsContent = React.forwardRef<React.ComponentRef<typeof TabsPrimitive.Content>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>>(
+  ({ className ...props }, ref) => {
   return (
   <TabsPrimitive.Content
     ref={ref}
@@ -44,11 +49,12 @@ function TabsContent({ className, ref, ...props }: React.ComponentPropsWithoutRe
   />
 );
 }
+);
 TabsContent.displayName = TabsPrimitive.Content.displayName;
 
 export type TabsRootProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>;
-export type TabsListProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.List>> };
-export type TabsTriggerProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.Trigger>> };
-export type TabsContentProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.Content>> };
+export type TabsListProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & { ref?: React.ComponentRef<typeof TabsPrimitive.List> };
+export type TabsTriggerProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & { ref?: React.ComponentRef<typeof TabsPrimitive.Trigger> };
+export type TabsContentProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & { ref?: React.ComponentRef<typeof TabsPrimitive.Content> };
 
 export { TabsRoot, TabsList, TabsTrigger, TabsContent };

@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 export interface FocusScopeProps
   extends React.ComponentPropsWithoutRef<typeof FocusScopePrimitive.Root> {}
 
-function FocusScope({ className, ref, ...props }: FocusScopeProps & { ref?: React.Ref<React.ComponentRef<typeof FocusScopePrimitive.Root>> }) {
+const FocusScope = React.forwardRef<React.Ref<React.ComponentRef<typeof FocusScopePrimitive.Root>>, FocusScopeProps>(
+  ({ className ...props }, ref) => {
   return (
   <FocusScopePrimitive.Root
     ref={ref}
@@ -14,6 +15,7 @@ function FocusScope({ className, ref, ...props }: FocusScopeProps & { ref?: Reac
   />
 );
 }
+);
 FocusScope.displayName = "FocusScope";
 
 export { FocusScope };

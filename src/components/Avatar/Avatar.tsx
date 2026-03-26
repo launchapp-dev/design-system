@@ -23,7 +23,8 @@ export interface AvatarProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
     VariantProps<typeof avatarVariants> {}
 
-function Avatar({ className, size, ref, ...props }: AvatarProps & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Root>> }) {
+const Avatar = React.forwardRef<React.Ref<React.ComponentRef<typeof AvatarPrimitive.Root>>, AvatarProps>(
+  ({ className, size, ...props }, ref) => {
   return (
   <AvatarPrimitive.Root
     ref={ref}
@@ -31,7 +32,7 @@ function Avatar({ className, size, ref, ...props }: AvatarProps & { ref?: React.
     {...props}
   />
 );
-}
+});
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
 export interface AvatarImageProps
@@ -39,7 +40,8 @@ export interface AvatarImageProps
   alt: string;
 }
 
-function AvatarImage({ className, alt, ref, ...props }: AvatarImageProps & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Image>> }) {
+const AvatarImage = React.forwardRef<React.Ref<React.ComponentRef<typeof AvatarPrimitive.Image>>, AvatarImageProps>(
+  ({ className, alt, ...props }, ref) => {
   if (process.env.NODE_ENV !== "production" && !alt) {
     console.warn("AvatarImage: `alt` prop is required for WCAG 1.1.1 compliance.");
   }
@@ -51,10 +53,11 @@ function AvatarImage({ className, alt, ref, ...props }: AvatarImageProps & { ref
       {...props}
     />
   );
-}
+});
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
-function AvatarFallback({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & { ref?: React.Ref<React.ComponentRef<typeof AvatarPrimitive.Fallback>> }) {
+const AvatarFallback = React.forwardRef<React.Ref<React.ComponentRef<typeof AvatarPrimitive.Fallback>>, React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>>(
+  ({ className, ...props }, ref) => {
   return (
   <AvatarPrimitive.Fallback
     ref={ref}
@@ -65,7 +68,7 @@ function AvatarFallback({ className, ref, ...props }: React.ComponentPropsWithou
     {...props}
   />
 );
-}
+});
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 export { Avatar, AvatarImage, AvatarFallback };

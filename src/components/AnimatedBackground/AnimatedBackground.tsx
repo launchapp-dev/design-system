@@ -21,16 +21,14 @@ export interface ParticlesProps extends React.HTMLAttributes<HTMLDivElement> {
   maxSize?: number;
 }
 
-function Particles({
-  count = 50,
+const Particles = React.forwardRef<HTMLDivElement, ParticlesProps>(
+  ({ count = 50,
   speed = 1,
   color = "hsl(var(--la-primary))",
   size = 4,
   maxSize = 8,
   className,
-  ref,
-  ...props
-}: ParticlesProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [particles, setParticles] = React.useState<Array<{
     id: number;
@@ -126,7 +124,7 @@ function Particles({
       </div>
     </div>
   );
-}
+});
 Particles.displayName = "Particles";
 
 export interface StarsProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -137,16 +135,14 @@ export interface StarsProps extends React.HTMLAttributes<HTMLDivElement> {
   starColor?: string;
 }
 
-function Stars({
-  count = 100,
+const Stars = React.forwardRef<HTMLDivElement, StarsProps>(
+  ({ count = 100,
   speed = 0.5,
   minSize = 1,
   maxSize = 3,
   starColor = "#ffffff",
   className,
-  ref,
-  ...props
-}: StarsProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const [stars, setStars] = React.useState<Array<{
     id: number;
@@ -202,7 +198,7 @@ function Stars({
       `}</style>
     </div>
   );
-}
+});
 Stars.displayName = "Stars";
 
 export interface MatrixRainProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -213,16 +209,14 @@ export interface MatrixRainProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: string;
 }
 
-function MatrixRain({
-  characters = "01",
+const MatrixRain = React.forwardRef<HTMLDivElement, MatrixRainProps>(
+  ({ characters = "01",
   columns = 30,
   speed = 100,
   fontSize = 14,
   color = "#00ff00",
   className,
-  ref,
-  ...props
-}: MatrixRainProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [drops, setDrops] = React.useState<number[]>([]);
@@ -306,7 +300,7 @@ function MatrixRain({
       </div>
     </div>
   );
-}
+});
 MatrixRain.displayName = "MatrixRain";
 
 export interface NoiseTextureProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -314,13 +308,11 @@ export interface NoiseTextureProps extends React.HTMLAttributes<HTMLDivElement> 
   noiseFrequency?: number;
 }
 
-function NoiseTexture({
-  opacity = 0.4,
+const NoiseTexture = React.forwardRef<HTMLDivElement, NoiseTextureProps>(
+  ({ opacity = 0.4,
   noiseFrequency = 0.5,
   className,
-  ref,
-  ...props
-}: NoiseTextureProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [noiseData, setNoiseData] = React.useState<string>("");
 
@@ -373,7 +365,7 @@ function NoiseTexture({
       />
     </div>
   );
-}
+});
 NoiseTexture.displayName = "NoiseTexture";
 
 export interface AnimatedGridProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -384,16 +376,14 @@ export interface AnimatedGridProps extends React.HTMLAttributes<HTMLDivElement> 
   animationSpeed?: number;
 }
 
-function AnimatedGrid({
-  cellSize = 40,
+const AnimatedGrid = React.forwardRef<HTMLDivElement, AnimatedGridProps>(
+  ({ cellSize = 40,
   color = "hsl(var(--la-border))",
   strokeWidth = 1,
   animated = true,
   animationSpeed = 3,
   className,
-  ref,
-  ...props
-}: AnimatedGridProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   const id = React.useId();
 
@@ -450,7 +440,7 @@ function AnimatedGrid({
       `}</style>
     </div>
   );
-}
+});
 AnimatedGrid.displayName = "AnimatedGrid";
 
 export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid };

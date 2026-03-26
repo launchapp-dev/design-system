@@ -6,7 +6,8 @@ const Collapsible = CollapsiblePrimitive.Root;
 
 const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
 
-function CollapsibleContent({ className, ref, ...props }: React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof CollapsiblePrimitive.Content>> }) {
+const CollapsibleContent = React.forwardRef<React.ComponentRef<typeof CollapsiblePrimitive.Content>, React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.Content>>(
+  ({ className ...props }, ref) => {
   return (
   <CollapsiblePrimitive.Content
     ref={ref}
@@ -18,10 +19,11 @@ function CollapsibleContent({ className, ref, ...props }: React.ComponentPropsWi
   />
 );
 }
+);
 CollapsibleContent.displayName = CollapsiblePrimitive.Content.displayName;
 
 export type CollapsibleProps = React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.Root>;
 export type CollapsibleTriggerProps = React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleTrigger>;
-export type CollapsibleContentProps = React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.Content> & { ref?: React.Ref<React.ComponentRef<typeof CollapsiblePrimitive.Content>> };
+export type CollapsibleContentProps = React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.Content> & { ref?: React.ComponentRef<typeof CollapsiblePrimitive.Content> };
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };

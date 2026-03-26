@@ -18,14 +18,12 @@ export interface GradientMeshProps extends React.HTMLAttributes<HTMLDivElement> 
   speed?: number;
 }
 
-function GradientMesh({
-  className,
+const GradientMesh = React.forwardRef<HTMLDivElement, GradientMeshProps>(
+  ({ className,
   colors = ["#ee7752", "#e73c7e", "#23a6d5", "#23d5ab"],
   speed = 8,
   style,
-  ref,
-  ...props
-}: GradientMeshProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   return (
     <div
@@ -40,7 +38,7 @@ function GradientMesh({
       {...props}
     />
   );
-}
+});
 GradientMesh.displayName = "GradientMesh";
 
 export interface AuroraProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -48,14 +46,12 @@ export interface AuroraProps extends React.HTMLAttributes<HTMLDivElement> {
   speed?: number;
 }
 
-function Aurora({
-  className,
+const Aurora = React.forwardRef<HTMLDivElement, AuroraProps>(
+  ({ className,
   colors = ["#3b82f6", "#8b5cf6", "#ec4899", "#06b6d4"],
   speed = 10,
   children,
-  ref,
-  ...props
-}: AuroraProps & { ref?: React.Ref<HTMLDivElement> }) {
+  ...props }, ref) => {
   const reduced = usePrefersReducedMotion();
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)} {...props}>
@@ -71,7 +67,7 @@ function Aurora({
       {children}
     </div>
   );
-}
+});
 Aurora.displayName = "Aurora";
 
 export interface GridPatternProps extends React.SVGAttributes<SVGSVGElement> {
@@ -83,17 +79,15 @@ export interface GridPatternProps extends React.SVGAttributes<SVGSVGElement> {
   squares?: [number, number][];
 }
 
-function GridPattern({
-  className,
+const GridPattern = React.forwardRef<SVGSVGElement, GridPatternProps>(
+  ({ className,
   width = 40,
   height = 40,
   x = -1,
   y = -1,
   strokeDasharray = "0",
   squares,
-  ref,
-  ...props
-}: GridPatternProps & { ref?: React.Ref<SVGSVGElement> }) {
+  ...props }, ref) => {
   const id = React.useId();
   return (
     <svg
@@ -139,7 +133,7 @@ function GridPattern({
       )}
     </svg>
   );
-}
+});
 GridPattern.displayName = "GridPattern";
 
 export interface DotPatternProps extends React.SVGAttributes<SVGSVGElement> {
@@ -150,7 +144,8 @@ export interface DotPatternProps extends React.SVGAttributes<SVGSVGElement> {
   cr?: number;
 }
 
-function DotPattern({ className, width = 16, height = 16, cx = 1, cy = 1, cr = 1, ref, ...props }: DotPatternProps & { ref?: React.Ref<SVGSVGElement> }) {
+const DotPattern = React.forwardRef<SVGSVGElement, DotPatternProps>(
+  ({ className, width = 16, height = 16, cx = 1, cy = 1, cr = 1, ...props }, ref) => {
   const id = React.useId();
   return (
     <svg
@@ -176,7 +171,7 @@ function DotPattern({ className, width = 16, height = 16, cx = 1, cy = 1, cr = 1
       <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />
     </svg>
   );
-}
+});
 DotPattern.displayName = "DotPattern";
 
 export { GradientMesh, Aurora, GridPattern, DotPattern };
