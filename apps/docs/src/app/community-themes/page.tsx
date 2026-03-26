@@ -6,6 +6,7 @@ import {
   type CommunityTheme,
   getCommunityThemeRegistry,
   getCommunityThemesCssString,
+  getFeaturedCommunityThemeIds,
 } from "@launchapp/design-system";
 import { cn } from "@/lib/utils";
 
@@ -198,17 +199,21 @@ function ThemeDetailsPanel({ theme }: { theme: CommunityTheme }) {
 export default function CommunityThemesPage() {
   const [activeThemeId, setActiveThemeId] = React.useState<string | null>(null);
   const [themes, setThemes] = React.useState<CommunityTheme[]>([]);
+  const [featuredIds, setFeaturedIds] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     const registry = getCommunityThemeRegistry();
     const communityThemes = registry.map((entry) => entry.theme);
     setThemes(communityThemes);
+    setFeaturedIds(getFeaturedCommunityThemeIds());
     if (communityThemes.length > 0) {
       setActiveThemeId(communityThemes[0].id);
     }
   }, []);
 
   const activeTheme = themes.find((t) => t.id === activeThemeId);
+  const featuredThemes = themes.filter((t) => featuredIds.includes(t.id));
+  const otherThemes = themes.filter((t) => !featuredIds.includes(t.id));
 
   const handleSelect = React.useCallback((theme: CommunityTheme) => {
     setActiveThemeId(theme.id);
@@ -232,17 +237,47 @@ export default function CommunityThemesPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {themes.map((theme) => (
-              <CommunityThemeCard
-                key={theme.id}
-                theme={theme}
-                isActive={activeThemeId === theme.id}
-                onClick={() => handleSelect(theme)}
-              />
-            ))}
-          </div>
+        <div className="lg:col-span-2 space-y-8">
+          {featuredThemes.length > 0 && (
+            <div>
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold">Featured Themes</h2>
+                <p className="text-sm text-muted-foreground">Handpicked community contributions</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {featuredThemes.map((theme) => (
+                  <CommunityThemeCard
+                    key={theme.id}
+                    theme={theme}
+                    isActive={activeThemeId === theme.id}
+                    onClick={() => handleSelect(theme)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {otherThemes.length > 0 && (
+            <div>
+              {featuredThemes.length > 0 && (
+                <div className="h-px bg-border my-6" />
+              )}
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold">All Themes</h2>
+                <p className="text-sm text-muted-foreground">{otherThemes.length} more available</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {otherThemes.map((theme) => (
+                  <CommunityThemeCard
+                    key={theme.id}
+                    theme={theme}
+                    isActive={activeThemeId === theme.id}
+                    onClick={() => handleSelect(theme)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {activeTheme && (

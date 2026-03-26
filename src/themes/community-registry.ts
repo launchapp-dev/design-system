@@ -207,3 +207,7 @@ export function getCommunityThemeById(id: string): CommunityTheme | undefined {
 export function listCommunityThemes(): CommunityTheme[] {
   return getCommunityThemeRegistry().map((entry) => entry.theme);
 }
+
+export function getFeaturedCommunityThemeIds(): string[] {
+  return ["dracula", "nord", "gruvbox"];
+}
