@@ -22,7 +22,22 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [],
+    "commands": [
+      {
+        "command": "launchapp.showComponentDocs",
+        "title": "Show Component Documentation"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "typescriptreact",
+        "path": "../../snippets/components.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "../../snippets/components.json"
+      }
+    ],
     "configuration": {
       "title": "LaunchApp Design System",
       "properties": {
@@ -30,6 +45,11 @@
           "type": "boolean",
           "default": true,
           "description": "Enable component prop autocomplete"
+        },
+        "launchapp.showTokenPreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show design token preview on hover"
         },
         "launchapp.showDocumentation": {
           "type": "boolean",

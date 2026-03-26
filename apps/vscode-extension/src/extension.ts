@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
 import { DesignSystemCompletionProvider } from "./completion-provider";
+import { TokenHoverProvider, TokenCompletionProvider } from "./token-provider";
 
 let completionProvider: DesignSystemCompletionProvider;
 
@@ -32,6 +33,37 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(completionRegistration);
+
+  // Register token providers
+  const tokenHoverProvider = new TokenHoverProvider();
+  const hoverRegistration = vscode.languages.registerHoverProvider(
+    [
+      { language: "typescriptreact", scheme: "file" },
+      { language: "javascriptreact", scheme: "file" },
+      { language: "css", scheme: "file" },
+      { language: "scss", scheme: "file" },
+      { language: "postcss", scheme: "file" },
+    ],
+    tokenHoverProvider
+  );
+
+  context.subscriptions.push(hoverRegistration);
+
+  const tokenCompletionProvider = new TokenCompletionProvider();
+  const tokenCompletionRegistration =
+    vscode.languages.registerCompletionItemProvider(
+      [
+        { language: "typescriptreact", scheme: "file" },
+        { language: "javascriptreact", scheme: "file" },
+        { language: "css", scheme: "file" },
+        { language: "scss", scheme: "file" },
+        { language: "postcss", scheme: "file" },
+      ],
+      tokenCompletionProvider,
+      "-" // Trigger on the dash before token name
+    );
+
+  context.subscriptions.push(tokenCompletionRegistration);
 
   // Register commands
   const showDocCommand = vscode.commands.registerCommand(
