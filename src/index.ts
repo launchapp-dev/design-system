@@ -6,7 +6,7 @@ export { builtinPalettes } from "./themes/palettes";
 export type { PaletteTokenSet, Palette } from "./themes/palettes";
 export { createTheme } from "./themes/createTheme";
 export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
-export { getCommunityThemeRegistry, getCommunityThemeById, listCommunityThemes } from "./themes/community-registry";
+export { getCommunityThemeRegistry, getCommunityThemeById, listCommunityThemes, getFeaturedCommunityThemeIds } from "./themes/community-registry";
 export { validateCommunityTheme, validateHslValue, getCommunityThemesCssString } from "./themes/community-themes";
 export type { CommunityTheme, CommunityThemeAuthor, CommunityThemeTokens } from "./themes/community-themes";
 export { SmartThemingGenerator } from "./components/SmartThemingGenerator";

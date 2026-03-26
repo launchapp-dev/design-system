@@ -1,0 +1,59 @@
+{
+  "id": "my-theme-id",
+  "name": "My Theme Name",
+  "description": "A brief description of your theme and its aesthetic",
+  "author": {
+    "name": "Your Name",
+    "url": "https://yourwebsite.com",
+    "email": "your.email@example.com"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "previewColor": "262 83% 58%",
+  "keywords": ["dark", "vibrant", "minimal"],
+  "repository": "https://github.com/username/theme-repo",
+  "tokens": {
+    "light": {
+      "--la-background": "0 0% 100%",
+      "--la-foreground": "200 14% 10%",
+      "--la-card": "0 0% 100%",
+      "--la-card-foreground": "200 14% 10%",
+      "--la-popover": "0 0% 100%",
+      "--la-popover-foreground": "200 14% 10%",
+      "--la-primary": "262 83% 58%",
+      "--la-primary-foreground": "0 0% 100%",
+      "--la-secondary": "200 14% 95%",
+      "--la-secondary-foreground": "200 14% 30%",
+      "--la-muted": "200 14% 90%",
+      "--la-muted-foreground": "200 14% 45%",
+      "--la-accent": "262 83% 58%",
+      "--la-accent-foreground": "0 0% 100%",
+      "--la-destructive": "0 100% 62%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "200 14% 88%",
+      "--la-input": "200 14% 88%",
+      "--la-ring": "262 83% 58%"
+    },
+    "dark": {
+      "--la-background": "200 14% 10%",
+      "--la-foreground": "200 14% 95%",
+      "--la-card": "200 14% 15%",
+      "--la-card-foreground": "200 14% 95%",
+      "--la-popover": "200 14% 15%",
+      "--la-popover-foreground": "200 14% 95%",
+      "--la-primary": "262 83% 68%",
+      "--la-primary-foreground": "200 14% 10%",
+      "--la-secondary": "200 14% 30%",
+      "--la-secondary-foreground": "200 14% 95%",
+      "--la-muted": "200 14% 40%",
+      "--la-muted-foreground": "200 14% 70%",
+      "--la-accent": "262 83% 68%",
+      "--la-accent-foreground": "200 14% 10%",
+      "--la-destructive": "0 100% 62%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "200 14% 22%",
+      "--la-input": "200 14% 22%",
+      "--la-ring": "262 83% 68%"
+    }
+  }
+}
