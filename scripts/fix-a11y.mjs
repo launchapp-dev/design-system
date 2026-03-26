@@ -191,6 +191,7 @@ async function main() {
   const autoFix = args.includes("--fix") || args.includes("-f");
   const interactive = args.includes("--interactive") || args.includes("-i");
   const reportOnly = args.includes("--report") || args.includes("-r");
+  const useAxeVerify = args.includes("--verify") || args.includes("-v");
 
   const rl = interactive ? createReadlineInterface() : null;
 

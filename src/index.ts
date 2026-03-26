@@ -731,6 +731,7 @@ export {
   generateComponentFix,
   batchAnalyzeComponents,
   generateA11yReport,
+  verifyWithAxeCore,
 } from "./lib/a11y-fixer";
 export type {
   A11yViolation,
