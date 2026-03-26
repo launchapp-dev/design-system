@@ -461,6 +461,11 @@ export type { ActivityTimelineProps, TimelineEntry } from "./blocks/notification
 export { InboxView } from "./blocks/notifications/InboxView";
 export type { InboxViewProps, InboxItem } from "./blocks/notifications/InboxView";
 
+export { ThemeSubmissionForm } from "./blocks/community/ThemeSubmissionForm";
+export type { ThemeSubmissionFormProps } from "./blocks/community/ThemeSubmissionForm";
+export { CommunityThemesGallery } from "./blocks/community/CommunityThemesGallery";
+export type { CommunityThemesGalleryProps } from "./blocks/community/CommunityThemesGallery";
+
 export {
   defaultPalette,
   oceanPalette,

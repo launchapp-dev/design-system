@@ -92,7 +92,7 @@ export interface ThemeSubmissionFormProps {
 function ThemeSubmissionForm(
   { onSubmit, onCancel, isLoading, error, className }: ThemeSubmissionFormProps,
   ref: React.Ref<HTMLDivElement>
-) {
+): JSX.Element {
   const [previewColors, setPreviewColors] = React.useState<Record<string, string> | null>(null);
 
   const form = useForm<ThemeSubmissionValues>({
@@ -590,7 +590,9 @@ function hexToHsl(hex: string): string {
   return `${Math.round(h * 360)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`;
 }
 
-const ThemeSubmissionFormComponent = React.forwardRef(ThemeSubmissionForm);
+const ThemeSubmissionFormComponent = React.forwardRef<HTMLDivElement, ThemeSubmissionFormProps>(
+  ThemeSubmissionForm
+);
 ThemeSubmissionFormComponent.displayName = "ThemeSubmissionForm";
 
 export { ThemeSubmissionFormComponent as ThemeSubmissionForm };

@@ -15,7 +15,8 @@ import {
 } from "../../components/Dialog";
 import { ScrollArea } from "../../components/ScrollArea";
 import { Separator } from "../../components/Separator";
-import { listCommunityThemes, type CommunityTheme } from "../../themes/community-themes";
+import { listCommunityThemes } from "../../themes/community-registry";
+import type { CommunityTheme } from "../../themes/community-themes";
 
 export interface CommunityThemesGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   themes?: CommunityTheme[];
