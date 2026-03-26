@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   type CommunityTheme,
   getCommunityThemeRegistry,
@@ -218,10 +219,16 @@ export default function CommunityThemesPage() {
     <div className="max-w-7xl mx-auto px-6 py-10">
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight mb-3">Community Themes</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
+        <p className="text-lg text-muted-foreground leading-relaxed mb-4">
           Explore and install color themes contributed by the LaunchApp community. Click any theme to preview it
           and see installation instructions.
         </p>
+        <Link
+          href="/community-themes/contribute"
+          className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm"
+        >
+          Submit Your Theme
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
