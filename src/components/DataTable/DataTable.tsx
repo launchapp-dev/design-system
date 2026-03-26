@@ -184,6 +184,7 @@ export function DataTable<TData, TValue>(
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
               className="min-h-[44px] px-4"
+              aria-label="Previous page"
             >
               <span className="hidden sm:inline">Previous</span>
               <svg className="h-4 w-4 sm:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -196,6 +197,7 @@ export function DataTable<TData, TValue>(
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
               className="min-h-[44px] px-4"
+              aria-label="Next page"
             >
               <span className="hidden sm:inline">Next</span>
               <svg className="h-4 w-4 sm:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
