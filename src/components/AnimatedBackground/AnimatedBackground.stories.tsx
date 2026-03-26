@@ -4,12 +4,47 @@ import { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid } from "./inde
 
 const meta: Meta = {
   title: "Components/AnimatedBackground",
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Design Pattern
+- **Decorative Elements**: Animated backgrounds are purely decorative and marked with \`aria-hidden="true"\`
+- **No Interactive Content**: These components do not interfere with keyboard navigation or screen reader order
+- **Animation Control**: Respects \`prefers-reduced-motion\` media query for users sensitive to motion
+
+### Screen Reader Behavior
+- Completely hidden from screen readers via \`aria-hidden\` attribute
+- No semantic meaning conveyed to assistive technologies
+- Focus management unaffected
+
+### Keyboard Navigation
+- No keyboard interaction required or provided
+- These components do not receive focus
+- Content layered on top of animations remains fully accessible
+
+### Motion Sensitivity
+- Animations are disabled for users with \`prefers-reduced-motion: reduce\` preference
+- Alternative static versions available for all animated components
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
 
 export const ParticlesStory: StoryObj = {
   name: "Particles",
+  parameters: {
+    docs: {
+      description: {
+        story: `Decorative particle animation with configurable count, size, and speed. Respects motion preferences.`,
+      },
+    },
+  },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div>
@@ -36,6 +71,13 @@ export const ParticlesStory: StoryObj = {
 
 export const StarsStory: StoryObj = {
   name: "Stars",
+  parameters: {
+    docs: {
+      description: {
+        story: `Decorative starfield animation with configurable star count and size.`,
+      },
+    },
+  },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div>
@@ -62,6 +104,13 @@ export const StarsStory: StoryObj = {
 
 export const MatrixRainStory: StoryObj = {
   name: "MatrixRain",
+  parameters: {
+    docs: {
+      description: {
+        story: `Decorative Matrix-style character rain animation. Characters are decorative only.`,
+      },
+    },
+  },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div>
@@ -88,6 +137,13 @@ export const MatrixRainStory: StoryObj = {
 
 export const NoiseTextureStory: StoryObj = {
   name: "NoiseTexture",
+  parameters: {
+    docs: {
+      description: {
+        story: `Decorative noise texture overlay with adjustable opacity.`,
+      },
+    },
+  },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div>
@@ -138,6 +194,13 @@ export const NoiseTextureStory: StoryObj = {
 
 export const AnimatedGridStory: StoryObj = {
   name: "AnimatedGrid",
+  parameters: {
+    docs: {
+      description: {
+        story: `Decorative grid animation with configurable cell size and animation speed. Static option available.`,
+      },
+    },
+  },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div>
@@ -198,6 +261,13 @@ export const AnimatedGridStory: StoryObj = {
 
 export const AllAnimatedBackgrounds: StoryObj = {
   name: "All Animated Backgrounds",
+  parameters: {
+    docs: {
+      description: {
+        story: `Complete showcase of all animated background effects. All animations are decorative.`,
+      },
+    },
+  },
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "40px", padding: "24px" }}>
       <section>

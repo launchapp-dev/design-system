@@ -30,6 +30,39 @@ const meta: Meta<typeof Marquee> = {
       description: "Width of the gradient fade (in pixels)",
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Design Pattern
+- Content continuously scrolls for visual effect (decorative)
+- Content must be available elsewhere for accessibility
+- Marquee respects \`prefers-reduced-motion\` setting
+
+### Keyboard Navigation
+- No keyboard interaction (decorative animation)
+- Pause on hover allows reading of static content
+- Content must be accessible in alternative form
+
+### Screen Reader Behavior
+- Marquee marked with \`aria-hidden="true"\` if purely decorative
+- If content is important, provide static version or full content separately
+- Animation does not affect tab order or focus
+
+### Motion Sensitivity
+- Animation disabled for users with \`prefers-reduced-motion: reduce\`
+- Static content display available
+- Pause on hover for manual reading
+
+### Alternative Content
+- Provide full text content separately for screen readers
+- If marquee displays important information, duplicate it accessibly
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

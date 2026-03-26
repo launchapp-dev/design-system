@@ -97,6 +97,41 @@ function SignInForm() {
 const meta: Meta = {
   title: "Components/Form",
   component: Form,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Form fields have associated \`<label>\` elements
+- Required fields marked with \`aria-required="true"\`
+- Error messages linked with \`aria-describedby\`
+- Help text associated with \`aria-helptext\`
+
+### Keyboard Navigation
+- **Tab**: Navigate through form fields
+- **Shift+Tab**: Navigate backwards
+- **Enter**: Submit form from any control
+- **Space**: Toggle checkboxes/radios
+- **Arrow Keys**: Navigate radio groups/select options
+
+### Screen Reader Behavior
+- Form controls announced with their labels
+- Required status announced
+- Error messages announced as form descriptions
+- Help text announced when focused
+- Form submission status announced
+
+### Focus Management
+- First error field receives focus on validation failure
+- Clear focus indicators on all form controls
+- Label click properly focuses associated control
+- Focus management for dynamic fields
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

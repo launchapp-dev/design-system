@@ -4,6 +4,40 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "./index";
 
 const meta: Meta = {
   title: "Components/Resizable",
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Resize handle has \`role="separator"\`
+- Handle has \`aria-label\` describing panels (e.g., "Resize between sidebar and content")
+- Handle has \`aria-orientation="vertical"\` or \`"horizontal"\`
+- \`aria-valuenow\` shows current panel size percentage
+
+### Keyboard Navigation
+- **Tab**: Focus resize handle
+- **Left/Right Arrow** (horizontal): Resize panels left/right
+- **Up/Down Arrow** (vertical): Resize panels up/down
+- **Home/End**: Min/max resize positions
+- Shift+Arrow for larger increments
+
+### Screen Reader Behavior
+- Handle purpose announced
+- Current panel sizes announced
+- Resize constraints announced if applicable
+- Dimension changes announced as adjusted
+
+### Focus Management
+- Handle is keyboard focusable
+- Clear focus indicator on handle
+- Tab order naturally includes handle
+- Visual feedback on resize actions
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

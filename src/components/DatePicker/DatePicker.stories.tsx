@@ -10,6 +10,41 @@ const meta: Meta<typeof DatePicker> = {
     placeholder: { control: "text" },
     dateFormat: { control: "text" },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Input has \`aria-label\` and associated label
+- Popup has \`role="dialog"\` with \`aria-labelledby\`
+- Calendar days have \`aria-label\` with full date
+- Selected date marked with \`aria-selected="true"\`
+
+### Keyboard Navigation
+- **Tab**: Focus input and calendar controls
+- **Arrow Keys**: Navigate calendar days
+- **Enter**: Select date
+- **Escape**: Close popup
+- **Ctrl+Shift+T**: Jump to today
+
+### Screen Reader Behavior
+- Input purpose announced
+- Calendar popup announced as dialog
+- Current month/year announced
+- Each day announced with its full date
+- Selection state announced
+
+### Focus Management
+- Focus on input initially
+- Focus moves to calendar when open
+- Return focus to input after selection
+- Clear visible focus indicator
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

@@ -91,6 +91,43 @@ const meta: Meta<typeof TreeMap> = {
     showValues: true,
     data: simpleData,
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Data Accessibility
+- TreeMap has \`aria-label\` describing visualization
+- Each rectangle has \`aria-label\` with name and value
+- Hierarchical structure conveyed via aria-posinset/aria-setsize
+- Provide data table alternative
+
+### Keyboard Navigation
+- Rectangles focusable via Tab
+- Tooltips accessible on focus
+- Drill-down navigation via keyboard if implemented
+
+### Screen Reader Behavior
+- TreeMap announced as hierarchical chart
+- Category names and values announced
+- Size relationships described in labels
+- Parent-child relationships announced
+
+### Visual Indicators
+- Labels shown on rectangles if \`showLabels=true\`
+- Values displayed if \`showValues=true\`
+- Color coding indicates different categories or ranges
+- Rectangle size proportional to data value
+
+### Data Table Alternative
+- Provide hierarchical data table
+- Table shows name, parent, and value for each node
+- Useful for understanding full data structure
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

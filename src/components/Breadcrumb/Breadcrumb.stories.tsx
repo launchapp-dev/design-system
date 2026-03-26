@@ -13,12 +13,51 @@ import {
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Roles & Attributes
+- **BreadcrumbList**: Uses \`role="navigation"\` with \`aria-label="Breadcrumb"\`
+- **BreadcrumbSeparator**: Marked as \`aria-hidden="true"\` as decorative
+- **BreadcrumbPage**: Current page marked with \`aria-current="page"\`
+- **BreadcrumbEllipsis**: Button with \`aria-label="More pages"\` for expandable navigation
+
+### Keyboard Navigation
+- **Tab**: Navigate through breadcrumb links
+- **Enter**: Activate breadcrumb link
+- **Ellipsis button**: Expanded with keyboard interaction
+
+### Screen Reader Behavior
+- Navigation landmark announced as "Breadcrumb navigation"
+- Links announced with their text content
+- Current page (last item) announced with aria-current="page"
+- Separators hidden from screen readers
+- Ellipsis expands to show hidden items
+
+### Focus Management
+- All links receive keyboard focus in tab order
+- Visual focus indicator on links
+- Ellipsis button toggle manages hidden items
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Breadcrumb>;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Standard breadcrumb navigation. Last item has aria-current="page". All links are keyboard accessible.`,
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>
@@ -39,6 +78,13 @@ export const Default: Story = {
 };
 
 export const WithEllipsis: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Breadcrumb with ellipsis button. Button has aria-label="More pages" for screen reader context.`,
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>
@@ -63,6 +109,13 @@ export const WithEllipsis: Story = {
 };
 
 export const ThreeLevelWithEllipsis: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Deep navigation breadcrumb with hidden levels shown via ellipsis.`,
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>
@@ -91,6 +144,13 @@ export const ThreeLevelWithEllipsis: Story = {
 };
 
 export const CustomSeparator: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Breadcrumb with custom text separator. Separator still marked aria-hidden.`,
+      },
+    },
+  },
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>
@@ -111,6 +171,13 @@ export const CustomSeparator: Story = {
 };
 
 export const LongText: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Breadcrumb with long text that wraps. Accessibility maintained with proper link attributes.`,
+      },
+    },
+  },
   render: () => (
     <div className="max-w-sm">
       <Breadcrumb>
@@ -133,6 +200,13 @@ export const LongText: Story = {
 };
 
 export const DarkMode: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Dark mode breadcrumb with maintained accessibility and contrast.`,
+      },
+    },
+  },
   decorators: [
     (Story) => {
       React.useEffect(() => {

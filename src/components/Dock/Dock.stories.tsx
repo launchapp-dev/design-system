@@ -7,6 +7,36 @@ const meta = {
   component: Dock,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Dock container has \`role="toolbar"\` or \`role="navigation"\`
+- Each dock item is a button with clear \`aria-label\`
+- Active/current item marked with \`aria-current="page"\` if applicable
+
+### Keyboard Navigation
+- **Tab**: Focus individual dock items
+- **Arrow Keys**: Navigate between dock items
+- **Enter/Space**: Activate dock item
+- **Escape**: Deactivate focus if needed
+
+### Screen Reader Behavior
+- Dock announced as toolbar or navigation
+- Each item announced with its label
+- Tooltips announced on hover/focus
+- Current selection status announced
+
+### Focus Management
+- Each dock item is individually focusable
+- Clear visible focus indicator
+- Magnification/hover effects announced via tooltip
+- No focus trap - natural tab order
+        `,
+      },
+    },
   },
   argTypes: {
     size: {

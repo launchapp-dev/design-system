@@ -11,6 +11,39 @@ const meta: Meta<typeof Combobox> = {
     emptyText: { control: "text" },
     disabled: { control: "boolean" },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Roles & Attributes
+- Combobox has \`role="combobox"\` with \`aria-expanded\` showing popup state
+- Listbox has \`role="listbox"\` with proper item markup
+- Active option marked with \`aria-selected="true"\`
+- Input has \`aria-autocomplete="list"\` for predictive text
+
+### Keyboard Navigation
+- **Arrow Up/Down**: Navigate options
+- **Enter**: Select focused option
+- **Escape**: Close popup
+- **Type**: Filter options by search
+- **Home/End**: Jump to first/last option
+
+### Screen Reader Behavior
+- Announces "combobox" role with autocomplete capability
+- Option count announced
+- Selected value announced
+- Filtered results announced as list updates
+
+### Focus Management
+- Input receives focus initially
+- Focus moves within listbox when open
+- Focus returns to input after selection
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
@@ -46,6 +79,13 @@ const ControlledCombobox = (props: React.ComponentProps<typeof Combobox>) => {
 };
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Basic combobox with searchable options. Use arrow keys to navigate, Enter to select.`,
+      },
+    },
+  },
   render: () => (
     <div className="w-full max-w-sm">
       <ControlledCombobox options={frameworks} placeholder="Select a framework..." />

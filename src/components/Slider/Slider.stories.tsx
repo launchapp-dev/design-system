@@ -22,6 +22,40 @@ const meta: Meta<typeof Slider> = {
     disabled: false,
     orientation: "horizontal",
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Slider has \`role="slider"\`
+- \`aria-valuemin\`, \`aria-valuemax\`, \`aria-valuenow\` show range and value
+- \`aria-label\` describes slider purpose (e.g., "Volume")
+- \`aria-orientation\` indicates horizontal or vertical
+
+### Keyboard Navigation
+- **Left/Right Arrow** (horizontal): Decrease/increase value
+- **Up/Down Arrow** (vertical): Increase/decrease value
+- **Home/End**: Jump to minimum/maximum
+- **Page Up/Down**: Larger increments
+- Tab to focus slider
+
+### Screen Reader Behavior
+- Current value announced as slider value
+- Min/max range announced
+- Value changes announced as adjusted
+- Disabled state announced if applicable
+
+### Focus Management
+- Slider is keyboard focusable
+- Clear visual focus indicator
+- Value announced on every change
+- Focus does not move, only value updates
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

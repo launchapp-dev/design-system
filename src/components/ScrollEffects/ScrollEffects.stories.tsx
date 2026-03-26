@@ -14,6 +14,43 @@ import {
 
 const meta: Meta = {
   title: "Components/ScrollEffects",
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Design Pattern
+- Scroll effects are visual enhancements
+- Content remains accessible and navigable
+- Effects respect \`prefers-reduced-motion\` setting
+
+### Screen Reader Behavior
+- Content read normally in document order
+- Progress indicators announced with current percentage
+- Fixed/sticky elements not removed from focus order
+- All text readable regardless of scroll effects
+
+### Keyboard Navigation
+- Tab navigation unaffected by scroll effects
+- Sticky elements remain keyboard accessible
+- Focus visible even when element is sticky
+- Scroll snap does not trap focus
+
+### Motion Sensitivity
+- All effects disabled for \`prefers-reduced-motion: reduce\`
+- Static layout displayed immediately
+- Content hierarchy and flow preserved
+
+### Visual Accessibility
+- Progress bars have numeric value announced
+- Sticky headers announce their state
+- Text contrast maintained through scroll effects
+- Focus indicators clearly visible
+        `,
+      },
+    },
+  },
 };
 export default meta;
 

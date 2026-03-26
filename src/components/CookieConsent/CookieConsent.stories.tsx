@@ -5,6 +5,37 @@ import { CookieConsent, DEFAULT_CATEGORIES } from "./index";
 const meta: Meta<typeof CookieConsent> = {
   title: "Components/CookieConsent",
   component: CookieConsent,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Roles & Attributes
+- Dialog has \`role="dialog"\` with \`aria-labelledby\` pointing to title
+- Checkboxes have proper \`aria-label\` descriptions
+- Buttons clearly labeled (Accept, Reject, Preferences)
+
+### Keyboard Navigation
+- **Tab**: Navigate through all controls
+- **Space**: Toggle checkbox
+- **Enter**: Activate buttons
+- **Escape**: Close dialog (if allowed)
+
+### Screen Reader Behavior
+- Modal announced as dialog
+- Purpose and available options described
+- Current checkbox states announced
+- Button functions clearly stated
+
+### Focus Management
+- Focus trap within dialog
+- Return focus to trigger button after close
+- Clear focus indicators on all controls
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

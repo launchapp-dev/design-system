@@ -23,6 +23,38 @@ const meta: Meta<typeof Gauge> = {
     showValue: { control: "boolean" },
     showMinMax: { control: "boolean" },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Container has \`role="progressbar"\` or \`role="meter"\`
+- \`aria-valuenow\` shows current value
+- \`aria-valuemin\` and \`aria-valuemax\` define range
+- \`aria-label\` describes gauge purpose (e.g., "Memory usage")
+
+### Screen Reader Behavior
+- Current value announced as percentage or absolute number
+- Min/max values announced if shown
+- Color status zones announced (e.g., "Critical", "Optimal")
+- Gauge purpose clearly stated
+
+### Visual Indicators
+- Color zones provide visual status indication
+- Numeric value displayed for clarity
+- Clear min/max labels when shown
+- High contrast between gauge and background
+
+### Focus Management
+- Gauge is non-interactive (no keyboard focus needed)
+- Used for display/monitoring purposes
+- Screen reader announces all values
+        `,
+      },
+    },
+  },
   args: {
     size: "md",
     value: 65,

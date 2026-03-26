@@ -108,6 +108,43 @@ const meta: Meta<typeof SankeyDiagram> = {
     nodes: simpleNodes,
     links: simpleLinks,
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Data Accessibility
+- Diagram should include \`aria-label\` describing data flow
+- Node labels announced by screen readers
+- Flow values announced for links
+- Provide data table alternative
+
+### Keyboard Navigation
+- Nodes and links focusable via Tab
+- Tooltips accessible on focus
+- No special key handling required
+
+### Screen Reader Behavior
+- Sankey announced as diagram or chart
+- Source and target nodes announced
+- Flow values announced for each link
+- Labels announced when available
+
+### Visual Indicators
+- Labels shown on nodes if \`showLabels=true\`
+- Values shown on links if \`showValues=true\`
+- Color coding indicates different data categories
+- Width proportional to flow magnitude
+
+### Data Table Alternative
+- Provide table showing all nodes and links
+- Table includes source, target, and value
+- Useful for screen reader users to understand full dataset
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
