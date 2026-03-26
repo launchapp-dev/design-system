@@ -189,7 +189,7 @@ export class TokenHoverProvider implements vscode.HoverProvider {
     }
 
     const word = document.getText(range);
-    const line = document.lineAt(position).text;
+    const line = document.lineAt(position.line).text;
 
     // Check if we're looking at a design token reference
     const tokenMatch = line.match(/--la-[\w-]+/g);
@@ -245,7 +245,7 @@ export class TokenCompletionProvider implements vscode.CompletionItemProvider {
     context: vscode.CompletionContext
   ): vscode.CompletionItem[] {
     // Only provide token completions after --la- prefix
-    const line = document.lineAt(position).text;
+    const line = document.lineAt(position.line).text;
     const linePrefix = line.substring(0, position.character);
 
     // Check if we're in a context where tokens are relevant

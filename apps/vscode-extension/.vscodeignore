@@ -1,8 +1,13 @@
+src
 **/*.ts
 **/*.tsx
 .git
 .gitignore
+.gitattributes
 tsconfig.json
 node_modules
-dist
 *.map
+**/*.test.js
+**/*.spec.js
+.vscode-test/
+.github/

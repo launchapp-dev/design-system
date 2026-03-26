@@ -3,6 +3,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { DesignSystemCompletionProvider } from "./completion-provider";
 import { TokenHoverProvider, TokenCompletionProvider } from "./token-provider";
+import { QuickInsertProvider } from "./quick-insert";
 
 let completionProvider: DesignSystemCompletionProvider;
 
@@ -65,7 +66,11 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(tokenCompletionRegistration);
 
-  // Register commands
+  // Register quick-insert commands
+  const quickInsertProvider = new QuickInsertProvider(designSystemPath);
+  quickInsertProvider.registerCommands(context);
+
+  // Register show documentation command
   const showDocCommand = vscode.commands.registerCommand(
     "launchapp.showComponentDocs",
     (componentName: string) => {
