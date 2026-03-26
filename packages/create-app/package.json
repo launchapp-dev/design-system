@@ -1,0 +1,32 @@
+{
+  "name": "@launchapp/create-app",
+  "version": "0.1.0",
+  "description": "CLI tool to scaffold complete applications with LaunchApp design system pre-integrated",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchapp-dev/design-system.git"
+  },
+  "type": "module",
+  "bin": {
+    "create-app": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsup && node scripts/copy-templates.js",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.0"
+  }
+}
