@@ -577,6 +577,8 @@ function MorphButton({
 }
 MorphButton.displayName = "MorphButton";
 
+export type MorphVariants = VariantProps<typeof morphVariants>;
+
 export { 
   TiltCard, 
   SpotlightCard, 

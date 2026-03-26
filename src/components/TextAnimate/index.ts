@@ -7,3 +7,6 @@ export type {
   WordRevealProps,
   GradientTextProps,
 } from "./TextAnimate";
+export type { BlurInVariants } from "./TextAnimate";
+export type { FadeUpVariants } from "./TextAnimate";
+export type { GradientTextVariants } from "./TextAnimate";

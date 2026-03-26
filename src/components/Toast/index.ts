@@ -11,3 +11,4 @@ export {
 } from "./Toast";
 export { useToast, toast, dismiss } from "./useToast";
 export type { ToastData, ToastInput, ToastVariant } from "./useToast";
+export type { ToastVariants } from "./Toast";

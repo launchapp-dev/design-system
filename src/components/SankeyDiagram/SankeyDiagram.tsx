@@ -401,4 +401,6 @@ function SankeyDiagram({
 
 SankeyDiagram.displayName = "SankeyDiagram";
 
+export type SankeyDiagramVariants = VariantProps<typeof sankeyDiagramVariants>;
+
 export { SankeyDiagram, sankeyDiagramVariants };

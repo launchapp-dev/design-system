@@ -15,3 +15,5 @@ export type {
   BentoGridVariantsProps,
   BentoCardVariantsProps,
 } from "./BentoGrid";
+export type { BentoGridVariants } from "./BentoGrid";
+export type { BentoCardVariants } from "./BentoGrid";

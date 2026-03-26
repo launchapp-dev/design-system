@@ -262,4 +262,7 @@ const NotificationBell = React.forwardRef<
 
 NotificationBell.displayName = "NotificationBell";
 
+export type NotificationBellVariants = VariantProps<typeof notificationBellVariants>;
+export type BadgeVariants = VariantProps<typeof badgeVariants>;
+
 export { NotificationBell, notificationBellVariants };

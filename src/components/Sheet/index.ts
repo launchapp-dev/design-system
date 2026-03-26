@@ -8,3 +8,4 @@ export {
   SheetTitle,
   SheetDescription,
 } from "./Sheet";
+export type { SheetContentVariants } from "./Sheet";

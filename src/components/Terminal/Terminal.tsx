@@ -240,4 +240,7 @@ function TerminalHeader({
 }
 TerminalHeader.displayName = "TerminalHeader";
 
+export type TerminalVariants = VariantProps<typeof terminalVariants>;
+export type TerminalHeaderVariants = VariantProps<typeof terminalHeaderVariants>;
+
 export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants };

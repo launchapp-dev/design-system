@@ -134,6 +134,8 @@ function SheetDescription({ className, ref, ...props }: React.ComponentPropsWith
 }
 SheetDescription.displayName = DialogPrimitive.Description.displayName;
 
+export type SheetContentVariants = VariantProps<typeof sheetContentVariants>;
+
 export {
   Sheet,
   SheetTrigger,

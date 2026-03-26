@@ -299,4 +299,6 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
 
 MultiSelect.displayName = "MultiSelect";
 
+export type MultiSelectTriggerVariants = VariantProps<typeof multiSelectTriggerVariants>;
+
 export { MultiSelect, multiSelectTriggerVariants };

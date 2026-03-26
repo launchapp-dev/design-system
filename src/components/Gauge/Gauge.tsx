@@ -245,4 +245,6 @@ const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
 
 Gauge.displayName = "Gauge";
 
+export type GaugeVariants = VariantProps<typeof gaugeVariants>;
+
 export { Gauge, gaugeVariants };

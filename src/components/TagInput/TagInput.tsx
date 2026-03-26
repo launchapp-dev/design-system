@@ -411,4 +411,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
 
 TagInput.displayName = "TagInput";
 
+export type TagInputVariants = VariantProps<typeof tagInputVariants>;
+export type TagVariants = VariantProps<typeof tagVariants>;
+
 export { TagInput, tagInputVariants, tagVariants };

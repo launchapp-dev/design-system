@@ -6,3 +6,4 @@ export {
   masonryColumnVariants,
 } from "./Masonry";
 export type { MasonryProps, MasonryVariantsProps } from "./Masonry";
+export type { MasonryColumnVariants } from "./Masonry";

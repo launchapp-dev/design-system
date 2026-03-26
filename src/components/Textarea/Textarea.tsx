@@ -54,4 +54,6 @@ function Textarea({ className, resize, error, rows = 3, ref, ...props }: Textare
 
 Textarea.displayName = "Textarea";
 
+export type TextareaVariants = VariantProps<typeof textareaVariants>;
+
 export { Textarea };

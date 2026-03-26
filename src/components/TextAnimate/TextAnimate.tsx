@@ -219,4 +219,8 @@ function GradientText({
 }
 GradientText.displayName = "GradientText";
 
+export type BlurInVariants = VariantProps<typeof blurInVariants>;
+export type FadeUpVariants = VariantProps<typeof fadeUpVariants>;
+export type GradientTextVariants = VariantProps<typeof gradientTextVariants>;
+
 export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText, gradientTextVariants };

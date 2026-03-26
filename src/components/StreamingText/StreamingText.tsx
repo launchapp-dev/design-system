@@ -220,4 +220,6 @@ const StreamingText = React.forwardRef<HTMLDivElement, StreamingTextProps>(
 
 StreamingText.displayName = "StreamingText";
 
+export type StreamingTextVariants = VariantProps<typeof streamingTextVariants>;
+
 export { StreamingText, streamingTextVariants };

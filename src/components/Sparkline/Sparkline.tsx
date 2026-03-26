@@ -234,4 +234,6 @@ function Sparkline({
 
 Sparkline.displayName = "Sparkline";
 
+export type SparklineVariants = VariantProps<typeof sparklineVariants>;
+
 export { Sparkline, sparklineVariants };

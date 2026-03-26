@@ -139,6 +139,8 @@ function Toaster() {
   );
 }
 
+export type ToastVariants = VariantProps<typeof toastVariants>;
+
 export {
   ToastProvider,
   ToastViewport,

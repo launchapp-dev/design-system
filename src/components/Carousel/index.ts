@@ -22,3 +22,7 @@ export type {
   CarouselDotsProps,
   CarouselAutoplayProps,
 } from "./Carousel";
+export type { CarouselVariants } from "./Carousel";
+export type { CarouselItemVariants } from "./Carousel";
+export type { CarouselButtonVariants } from "./Carousel";
+export type { CarouselDotVariants } from "./Carousel";

@@ -169,4 +169,7 @@ const MarqueeItem = React.forwardRef<HTMLDivElement, MarqueeItemProps>(
 
 MarqueeItem.displayName = "MarqueeItem";
 
+export type MarqueeVariants = VariantProps<typeof marqueeVariants>;
+export type MarqueeContentVariants = VariantProps<typeof marqueeContentVariants>;
+
 export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants };

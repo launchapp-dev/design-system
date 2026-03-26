@@ -77,4 +77,7 @@ function RadioGroupItem({ className, size, ref, ...props }: RadioGroupItemProps 
 
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
+export type RadioGroupVariants = VariantProps<typeof radioGroupVariants>;
+export type RadioGroupItemVariants = VariantProps<typeof radioGroupItemVariants>;
+
 export { RadioGroup, RadioGroupItem };

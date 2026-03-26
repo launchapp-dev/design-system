@@ -53,4 +53,7 @@ function Switch({ className, size, ref, ...props }: SwitchProps & { ref?: React.
 
 Switch.displayName = SwitchPrimitive.Root.displayName;
 
+export type SwitchVariants = VariantProps<typeof switchVariants>;
+export type SwitchThumbVariants = VariantProps<typeof switchThumbVariants>;
+
 export { Switch };

@@ -466,6 +466,11 @@ function CarouselContent({ className, children, ref, ...props }: CarouselContent
 }
 CarouselContent.displayName = "CarouselContent";
 
+export type CarouselVariants = VariantProps<typeof carouselVariants>;
+export type CarouselItemVariants = VariantProps<typeof carouselItemVariants>;
+export type CarouselButtonVariants = VariantProps<typeof carouselButtonVariants>;
+export type CarouselDotVariants = VariantProps<typeof carouselDotVariants>;
+
 export {
   Carousel,
   CarouselItem,

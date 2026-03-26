@@ -22,3 +22,5 @@ export type {
   CopilotSuggestionProps,
   CopilotPanelSuggestionsProps,
 } from "./CopilotPanel";
+export type { CopilotPanelVariants } from "./CopilotPanel";
+export type { CopilotSuggestionVariants } from "./CopilotPanel";

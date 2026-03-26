@@ -25,3 +25,4 @@ export type {
   GlowPulseButtonProps,
   MorphButtonProps,
 } from "./MagicCard";
+export type { MorphVariants } from "./MagicCard";

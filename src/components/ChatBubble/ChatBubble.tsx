@@ -322,6 +322,10 @@ const ChatBubbleLinkPreview = React.forwardRef<HTMLAnchorElement, LinkPreviewPro
 );
 ChatBubbleLinkPreview.displayName = "ChatBubbleLinkPreview";
 
+export type ChatBubbleVariants = VariantProps<typeof chatBubbleVariants>;
+export type ChatBubbleContentVariants = VariantProps<typeof chatBubbleContentVariants>;
+export type CodeBlockVariants = VariantProps<typeof codeBlockVariants>;
+
 export {
   ChatBubble,
   ChatBubbleGroup,

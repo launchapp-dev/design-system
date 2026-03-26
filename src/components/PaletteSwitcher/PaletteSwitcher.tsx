@@ -163,4 +163,6 @@ function PaletteSwitcher(
 
 PaletteSwitcher.displayName = "PaletteSwitcher";
 
+export type PaletteSwitcherTriggerVariants = VariantProps<typeof paletteSwitcherTriggerVariants>;
+
 export { PaletteSwitcher };

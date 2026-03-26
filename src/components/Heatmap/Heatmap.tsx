@@ -433,4 +433,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
 
 Heatmap.displayName = "Heatmap";
 
+export type HeatmapVariants = VariantProps<typeof heatmapVariants>;
+export type CellVariants = VariantProps<typeof cellVariants>;
+
 export { Heatmap, heatmapVariants, cellVariants };

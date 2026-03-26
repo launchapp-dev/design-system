@@ -489,4 +489,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
 
 FunnelChart.displayName = "FunnelChart";
 
+export type FunnelChartVariants = VariantProps<typeof funnelChartVariants>;
+export type FunnelStageVariants = VariantProps<typeof funnelStageVariants>;
+
 export { FunnelChart, funnelChartVariants, funnelStageVariants };
