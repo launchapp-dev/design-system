@@ -583,17 +583,18 @@ async function main(): Promise<void> {
     return;
   }
 
-  console.log("\n  LaunchApp Design System — Project Scaffolder\n");
+  console.log("\n  LaunchApp Design System — App Scaffolder\n");
 
   const answers = await prompts(
     [
       {
         type: "select",
-        name: "template",
-        message: "Choose a template",
+        name: "appType",
+        message: "Choose an application template",
         choices: [
-          { title: "Next.js", value: "nextjs", description: "Full-stack React with Server Components" },
-          { title: "Vite", value: "vite", description: "Fast lightweight bundler with React" },
+          { title: "SaaS", value: "saas", description: "Complete SaaS app with auth, dashboard, and settings" },
+          { title: "Marketing", value: "marketing", description: "Landing page with hero, features, and pricing" },
+          { title: "Admin", value: "admin", description: "Admin dashboard with tables, charts, and data management" },
         ],
         initial: 0,
       },
@@ -655,12 +656,6 @@ async function main(): Promise<void> {
         ],
         initial: 0,
       },
-      {
-        type: "confirm",
-        name: "includeStorybook",
-        message: "Scaffold Storybook config?",
-        initial: false,
-      },
     ],
     {
       onCancel: () => {
@@ -679,10 +674,10 @@ async function main(): Promise<void> {
 
   const primaryHsl = hexToHsl(answers.primaryColor as string);
   const primaryDarkHsl = hexToHsl(answers.primaryDarkColor as string);
-  const template = answers.template as string;
+  const appType = answers.appType as string;
 
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  const templatePath = path.join(__dirname, "..", "templates", template);
+  const templatePath = path.join(__dirname, "..", "templates", appType);
 
   const replacements = {
     "{{projectName}}": answers.projectName as string,
@@ -715,28 +710,18 @@ async function main(): Promise<void> {
 
   writeFile(postcssPath, generatePostcssConfig());
 
-  if (answers.includeStorybook) {
-    writeFile(
-      path.join(targetDir, ".storybook", "main.ts"),
-      generateStorybookMain(answers.projectName as string)
-    );
-    writeFile(
-      path.join(targetDir, ".storybook", "preview.ts"),
-      generateStorybookPreview()
-    );
-  }
+  const appTypeLabels: Record<string, string> = {
+    saas: "SaaS",
+    marketing: "Marketing",
+    admin: "Admin Dashboard",
+  };
 
   console.log(`\n  ✓ Created project: ${answers.projectName}`);
-  console.log(`  ✓ Template: ${template === "nextjs" ? "Next.js" : "Vite"}\n`);
+  console.log(`  ✓ Template: ${appTypeLabels[appType]}\n`);
   console.log("  Generated files:");
   console.log(`    ${path.relative(process.cwd(), globalsPath)}`);
   console.log(`    ${path.relative(process.cwd(), tailwindPath)}`);
   console.log(`    ${path.relative(process.cwd(), postcssPath)}`);
-
-  if (answers.includeStorybook && template === "nextjs") {
-    console.log(`    ${answers.projectName}/.storybook/main.ts`);
-    console.log(`    ${answers.projectName}/.storybook/preview.ts`);
-  }
 
   console.log("\n  Next steps:\n");
   console.log(`    cd ${answers.projectName}`);
@@ -746,23 +731,13 @@ async function main(): Promise<void> {
     console.log(`    # Add "${answers.fontSans}" to your HTML via Google Fonts or your font provider`);
   }
 
-  if (template === "nextjs") {
-    console.log(`    npm run dev`);
-  } else {
-    console.log(`    npm run dev`);
-  }
-
-  if (answers.includeStorybook && template === "nextjs") {
-    console.log("\n  To set up Storybook:");
-    console.log("    npm install -D storybook @storybook/react-vite @storybook/addon-docs");
-    console.log("    npx storybook dev");
-  }
+  console.log("    npm run dev");
 
   console.log("\n  To customize your theme:\n");
   console.log("  1. Edit src/styles/globals.css to modify colors and tokens");
   console.log("  2. Edit tailwind.config.ts to adjust fonts and spacing");
   console.log("\n  To install a community theme, run:");
-  console.log('    npx @launchapp/create-design-system add <theme-id>\n');
+  console.log("    npx @launchapp/ds add <theme-id>\n");
   console.log("  Available themes:");
   Object.entries(COMMUNITY_THEMES).forEach(([id, theme]) => {
     console.log(`    - ${id} (${theme.name})`);
