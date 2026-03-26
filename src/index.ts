@@ -15,6 +15,8 @@ export { ThemePreview } from "./components/ThemePreview";
 export type { ThemePreviewProps } from "./components/ThemePreview";
 export { ThemeCard } from "./components/ThemeCard";
 export type { ThemeCardProps } from "./components/ThemeCard";
+export { BrandThemeGenerator } from "./components/BrandThemeGenerator";
+export type { BrandThemeGeneratorProps } from "./components/BrandThemeGenerator";
 export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText } from "./components/TextAnimate";
 export { gradientTextVariants } from "./components/TextAnimate";
 export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps, WordRevealProps, GradientTextProps } from "./components/TextAnimate";
@@ -725,6 +727,8 @@ export type { VideoPlayerProps } from "./components/VideoPlayer";
 
 export { analyzeImageColors } from "./lib/vision";
 export type { VisionThemeOptions, VisionColorMap, VisionThemeResult } from "./lib/vision";
+export { analyzeBrandColors } from "./lib/brand-color-analyzer";
+export type { BrandColorAnalysisResult } from "./lib/brand-color-analyzer";
 
 export {
   analyzeComponentA11y,
