@@ -12,7 +12,7 @@ const toastVariants = cva(
         default:
           "border-border bg-background text-foreground",
         success:
-          "border-green-200 bg-green-50 text-green-900 dark:border-green-800 dark:bg-green-900/20 dark:text-green-100",
+          "border-[hsl(var(--la-success)/0.5)] bg-[hsl(var(--la-success)/0.15)] text-[hsl(var(--la-success-foreground))]",
         destructive:
           "border-destructive bg-destructive text-destructive-foreground",
       },
@@ -92,7 +92,7 @@ function ToastClose({ className, ref, ...props }: React.ComponentPropsWithoutRef
   <ToastPrimitive.Close
     ref={ref}
     className={cn(
-      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring group-hover:opacity-100 group-[.destructive]:text-destructive-foreground/50 group-[.destructive]:hover:text-destructive-foreground",
+      "absolute right-2 top-2 rounded-md p-1 text-foreground/60 opacity-0 transition-all hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring group-hover:opacity-100 group-[.destructive]:text-destructive-foreground/60 group-[.destructive]:hover:text-destructive-foreground",
       className
     )}
     aria-label="Close"

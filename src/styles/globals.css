@@ -263,7 +263,7 @@
     --la-secondary-foreground: 240 5.9% 10%;
 
     --la-muted: 240 4.8% 95.9%;
-    --la-muted-foreground: 240 3.8% 46.1%;
+    --la-muted-foreground: 240 3.8% 35%;
 
     --la-accent: 240 4.8% 95.9%;
     --la-accent-foreground: 240 5.9% 10%;
@@ -285,6 +285,15 @@
     --la-chart-3: 150 60% 45%;
     --la-chart-4: 30 90% 55%;
     --la-chart-5: 350 80% 55%;
+
+    --la-info: 210 100% 50%;
+    --la-info-foreground: 210 100% 9%;
+
+    --la-warning: 38 92% 50%;
+    --la-warning-foreground: 38 100% 11%;
+
+    --la-success: 120 100% 40%;
+    --la-success-foreground: 120 100% 9%;
   }
 
   .dark {
@@ -304,7 +313,7 @@
     --la-secondary-foreground: 0 0% 98%;
 
     --la-muted: 240 3.7% 15.9%;
-    --la-muted-foreground: 240 5% 64.9%;
+    --la-muted-foreground: 240 5% 55%;
 
     --la-accent: 240 3.7% 15.9%;
     --la-accent-foreground: 0 0% 98%;
@@ -321,6 +330,15 @@
     --la-chart-3: 150 55% 55%;
     --la-chart-4: 30 85% 65%;
     --la-chart-5: 350 75% 65%;
+
+    --la-info: 210 100% 60%;
+    --la-info-foreground: 210 100% 9%;
+
+    --la-warning: 38 92% 60%;
+    --la-warning-foreground: 38 100% 9%;
+
+    --la-success: 120 100% 50%;
+    --la-success-foreground: 120 100% 9%;
   }
 
   * {

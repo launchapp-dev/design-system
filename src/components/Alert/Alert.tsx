@@ -8,13 +8,13 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "border-border bg-background text-foreground [&>svg]:text-foreground",
-        info: "border-blue-500/50 bg-blue-500/15 text-blue-700 dark:border-blue-500 dark:text-blue-400 [&>svg]:text-blue-700 dark:[&>svg]:text-blue-400",
+        info: "border-[hsl(var(--la-info)/0.5)] bg-[hsl(var(--la-info)/0.15)] text-[hsl(var(--la-info-foreground))] [&>svg]:text-[hsl(var(--la-info-foreground))]",
         destructive:
           "border-destructive/50 bg-destructive/15 text-destructive dark:border-destructive [&>svg]:text-destructive",
         warning:
-          "border-amber-500/50 bg-amber-500/15 text-amber-700 dark:border-amber-500 dark:text-amber-400 [&>svg]:text-amber-700 dark:[&>svg]:text-amber-400",
+          "border-[hsl(var(--la-warning)/0.5)] bg-[hsl(var(--la-warning)/0.15)] text-[hsl(var(--la-warning-foreground))] [&>svg]:text-[hsl(var(--la-warning-foreground))]",
         success:
-          "border-green-500/50 bg-green-500/15 text-green-700 dark:border-green-500 dark:text-green-400 [&>svg]:text-green-700 dark:[&>svg]:text-green-400",
+          "border-[hsl(var(--la-success)/0.5)] bg-[hsl(var(--la-success)/0.15)] text-[hsl(var(--la-success-foreground))] [&>svg]:text-[hsl(var(--la-success-foreground))]",
       },
     },
     defaultVariants: {
