@@ -37,7 +37,10 @@ function Input({ className, size, error, ref, ...props }: InputProps & { ref?: R
       !props["aria-labelledby"]
     ) {
       console.warn(
-        "Input: missing label association. Provide `id` paired with a <Label htmlFor>, or pass `aria-label`/`aria-labelledby`."
+        "Input: missing label association. Use either:\n" +
+        "  1. `aria-label=\"...\"` (recommended for single inputs)\n" +
+        "  2. `aria-labelledby=\"id-of-label\"` (for associated labels)\n" +
+        "  3. `id` paired with <Label htmlFor> (recommended for forms)"
       );
     }
     return (
