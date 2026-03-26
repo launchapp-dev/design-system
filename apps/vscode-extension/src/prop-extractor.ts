@@ -258,7 +258,8 @@ export class PropExtractor {
     const componentFile = path.join(componentsDir, name, `${name}.tsx`);
 
     if (fs.existsSync(componentFile)) {
-      return this.extractComponent(componentFile, name);
+      const result = this.extractComponent(componentFile, name);
+      return result || undefined;
     }
 
     return undefined;
