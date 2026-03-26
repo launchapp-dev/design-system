@@ -9,6 +9,8 @@ function Toaster({ theme = "system", ref, ...props }: ToasterProps & { ref?: Rea
       ref={ref}
       theme={theme}
       className="toaster group"
+      visibleToasts={3}
+      ariaLive="polite"
       toastOptions={{
         classNames: {
           toast:
