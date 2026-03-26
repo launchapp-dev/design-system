@@ -1,7 +1,7 @@
 {
   "name": "@launchapp/vscode-extension",
   "displayName": "LaunchApp Design System",
-  "description": "Component snippets, prop autocomplete, and token preview for LaunchApp design system",
+  "description": "Component snippets, prop autocomplete, design token preview, and quick-insert actions for LaunchApp design system",
   "version": "0.1.0",
   "publisher": "launchapp",
   "license": "MIT",
@@ -9,12 +9,25 @@
     "type": "git",
     "url": "https://github.com/launchapp-dev/design-system.git"
   },
+  "homepage": "https://github.com/launchapp-dev/design-system",
+  "bugs": {
+    "url": "https://github.com/launchapp-dev/design-system/issues"
+  },
+  "keywords": [
+    "design-system",
+    "components",
+    "snippets",
+    "radix-ui",
+    "tailwindcss",
+    "autocomplete",
+    "launchapp"
+  ],
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Snippets",
-    "Other"
+    "Productivity"
   ],
   "activationEvents": [
     "onLanguage:typescriptreact",
@@ -24,8 +37,33 @@
   "contributes": {
     "commands": [
       {
+        "command": "launchapp.insertComponent",
+        "title": "Insert Component",
+        "category": "LaunchApp Design System"
+      },
+      {
+        "command": "launchapp.insertBlock",
+        "title": "Insert Block",
+        "category": "LaunchApp Design System"
+      },
+      {
         "command": "launchapp.showComponentDocs",
-        "title": "Show Component Documentation"
+        "title": "Show Component Documentation",
+        "category": "LaunchApp Design System"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "launchapp.insertComponent",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus && editorLangId =~ /^(typescriptreact|javascriptreact)$/"
+      },
+      {
+        "command": "launchapp.insertBlock",
+        "key": "ctrl+shift+b",
+        "mac": "cmd+shift+b",
+        "when": "editorTextFocus && editorLangId =~ /^(typescriptreact|javascriptreact)$/"
       }
     ],
     "snippets": [
@@ -62,7 +100,9 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "package": "vsce package",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

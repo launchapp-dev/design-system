@@ -28,7 +28,7 @@ export class DesignSystemCompletionProvider
     token: vscode.CancellationToken,
     context: vscode.CompletionContext
   ): vscode.CompletionItem[] {
-    const line = document.lineAt(position).text;
+    const line = document.lineAt(position.line).text;
     const linePrefix = line.substring(0, position.character);
 
     // Check if we're in a JSX context
