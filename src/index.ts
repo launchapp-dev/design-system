@@ -11,6 +11,8 @@ export { validateCommunityTheme, validateHslValue, getCommunityThemesCssString }
 export type { CommunityTheme, CommunityThemeAuthor, CommunityThemeTokens } from "./themes/community-themes";
 export { SmartThemingGenerator } from "./components/SmartThemingGenerator";
 export type { SmartThemingGeneratorProps } from "./components/SmartThemingGenerator";
+export { AIComponentGenerator } from "./components/AIComponentGenerator";
+export type { AIComponentGeneratorProps } from "./components/AIComponentGenerator";
 export { ThemePreview } from "./components/ThemePreview";
 export type { ThemePreviewProps } from "./components/ThemePreview";
 export { ThemeCard } from "./components/ThemeCard";
