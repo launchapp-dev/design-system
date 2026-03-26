@@ -4,6 +4,7 @@ import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import Anthropic from "@anthropic-ai/sdk";
 import { existsSync } from "fs";
+import { createInterface } from "readline";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -31,6 +32,21 @@ const WCAG_RULES = {
     message: "WCAG 4.1.3 - Dynamic content needs aria-live",
   },
 };
+
+function createReadlineInterface() {
+  return createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+}
+
+function prompt(rl, question) {
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      resolve(answer.toLowerCase());
+    });
+  });
+}
 
 async function readComponent(filePath) {
   const code = await readFile(filePath, "utf-8");
@@ -173,7 +189,10 @@ async function main() {
 
   const args = process.argv.slice(2);
   const autoFix = args.includes("--fix") || args.includes("-f");
+  const interactive = args.includes("--interactive") || args.includes("-i");
   const reportOnly = args.includes("--report") || args.includes("-r");
+
+  const rl = interactive ? createReadlineInterface() : null;
 
   console.log("🔍 Scanning components for accessibility violations...\n");
 
@@ -216,25 +235,76 @@ async function main() {
 
       totalViolations += analysis.violations.length;
 
-      if (autoFix) {
+      if (autoFix || interactive) {
         console.log(`   🔧 Generating fix...`);
         const fixedCode = await generateFix(component, analysis.violations, client);
 
         if (fixedCode) {
-          await writeFile(component.filePath, fixedCode);
-          console.log(`   ✅ Fixed and saved to ${component.filePath}`);
+          if (interactive && rl) {
+            console.log(`\n   📝 Preview of suggested fix:`);
+            console.log(`   ${"─".repeat(56)}`);
+            const fixLines = fixedCode.split("\n").slice(0, 10);
+            fixLines.forEach((line) => {
+              console.log(`   ${line}`);
+            });
+            if (fixedCode.split("\n").length > 10) {
+              console.log(`   ... (${fixedCode.split("\n").length - 10} more lines)`);
+            }
+            console.log(`   ${"─".repeat(56)}`);
+
+            const answer = await prompt(rl, `\n   Apply this fix? (y/n) [y]: `);
+            if (answer === "n" || answer === "no") {
+              console.log(`   ⏭️  Skipped`);
+              results.push({
+                component: component.name,
+                filePath: component.filePath,
+                violations: analysis.violations,
+                wcagLevel: analysis.wcagLevel,
+                improvementScore: analysis.improvementScore,
+                skipped: true,
+              });
+            } else {
+              await writeFile(component.filePath, fixedCode);
+              console.log(`   ✅ Fixed and saved to ${component.filePath}`);
+              results.push({
+                component: component.name,
+                filePath: component.filePath,
+                violations: analysis.violations,
+                wcagLevel: analysis.wcagLevel,
+                improvementScore: analysis.improvementScore,
+                applied: true,
+              });
+            }
+          } else {
+            await writeFile(component.filePath, fixedCode);
+            console.log(`   ✅ Fixed and saved to ${component.filePath}`);
+            results.push({
+              component: component.name,
+              filePath: component.filePath,
+              violations: analysis.violations,
+              wcagLevel: analysis.wcagLevel,
+              improvementScore: analysis.improvementScore,
+            });
+          }
         } else {
           console.log(`   ⚠️  Could not auto-fix, manual review needed`);
+          results.push({
+            component: component.name,
+            filePath: component.filePath,
+            violations: analysis.violations,
+            wcagLevel: analysis.wcagLevel,
+            improvementScore: analysis.improvementScore,
+          });
         }
+      } else {
+        results.push({
+          component: component.name,
+          filePath: component.filePath,
+          violations: analysis.violations,
+          wcagLevel: analysis.wcagLevel,
+          improvementScore: analysis.improvementScore,
+        });
       }
-
-      results.push({
-        component: component.name,
-        filePath: component.filePath,
-        violations: analysis.violations,
-        wcagLevel: analysis.wcagLevel,
-        improvementScore: analysis.improvementScore,
-      });
     } else {
       console.log(`✅ ${component.name} - No violations found`);
     }
@@ -248,15 +318,20 @@ async function main() {
   console.log(`   🔴 Errors: ${totalErrors}`);
   console.log(`   🟡 Warnings: ${totalWarnings}`);
 
-  if (autoFix) {
+  if (interactive) {
+    console.log(
+      "\n✨ Interactive review complete! Please test the changes thoroughly."
+    );
+    rl.close();
+  } else if (autoFix) {
     console.log(
       "\n✨ Auto-fix complete! Please review the changes and test thoroughly."
     );
   }
 
-  if (totalViolations > 0 && !autoFix && !reportOnly) {
+  if (totalViolations > 0 && !autoFix && !interactive && !reportOnly) {
     console.log(
-      '\n💡 Run with --fix to automatically fix violations, or --report to generate a detailed report.'
+      '\n💡 Run with --fix to automatically fix violations, --interactive to review fixes, or --report to generate a detailed report.'
     );
   }
 }

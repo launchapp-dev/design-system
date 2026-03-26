@@ -26,6 +26,16 @@ ANTHROPIC_API_KEY=sk-... npm run fix-a11y
 
 This will scan all components in `src/components/` and report violations without making changes.
 
+### Interactive Approval Mode
+
+Review and approve fixes before applying them:
+
+```bash
+ANTHROPIC_API_KEY=sk-... npm run fix-a11y:approve
+```
+
+This mode analyzes components, generates fixes, and asks for your approval before applying each fix. You can review the suggested changes and decide whether to apply or skip them.
+
 ### Auto-Fix Mode
 
 Automatically fix accessibility violations in all components:
@@ -34,7 +44,7 @@ Automatically fix accessibility violations in all components:
 ANTHROPIC_API_KEY=sk-... npm run fix-a11y:auto
 ```
 
-This will analyze each component, generate fixes, and write the corrected code back to files.
+This will analyze each component, generate fixes, and write the corrected code back to files without asking for approval.
 
 ## Features
 
@@ -221,8 +231,9 @@ Total violations: 12
 
 The following npm scripts are available:
 
-- `npm run fix-a11y` - Run accessibility analysis on all components
-- `npm run fix-a11y:auto` - Auto-fix accessibility violations in components
+- `npm run fix-a11y` - Run accessibility analysis on all components (report only)
+- `npm run fix-a11y:approve` - Interactively review and approve fixes with human approval
+- `npm run fix-a11y:auto` - Auto-fix accessibility violations in components without approval
 
 ## Technical Details
 
@@ -314,6 +325,45 @@ Potential improvements:
 - Automated testing to verify fixes don't break functionality
 - Visual regression detection for styling changes
 - Historical tracking of accessibility improvements
+
+## Command-Line Flags
+
+The fix-a11y script supports the following flags:
+
+- `--fix` or `-f` - Automatically apply all fixes without asking
+- `--interactive` or `-i` - Review and approve each fix before applying (human approval)
+- `--report` or `-r` - Generate a detailed markdown report of violations
+
+Examples:
+
+```bash
+# Analysis only (default)
+npm run fix-a11y
+
+# Interactive approval mode (asks before applying fixes)
+npm run fix-a11y:approve
+# or
+npm run fix-a11y -- --interactive
+
+# Auto-fix without approval
+npm run fix-a11y:auto
+# or
+npm run fix-a11y -- --fix
+
+# Generate detailed report
+npm run fix-a11y -- --report
+```
+
+## Human Approval Workflow
+
+The interactive approval mode enables a workflow where an AI agent detects and suggests fixes, but each fix requires human approval before being applied:
+
+1. **Detection Phase**: The AI analyzes all components and identifies accessibility violations
+2. **Fix Generation**: For each violation, the AI generates a corrected version of the code
+3. **Human Approval**: The user reviews the suggested fix and can approve or skip it
+4. **Application**: Only approved fixes are written to the component files
+
+This ensures that complex or edge-case fixes are reviewed by a human before they're applied to the codebase.
 
 ## Contributing
 
