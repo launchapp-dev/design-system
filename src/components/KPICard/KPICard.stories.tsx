@@ -17,6 +17,37 @@ const meta: Meta<typeof KPICard> = {
   },
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Card has \`role="region"\` with \`aria-label\` (e.g., "Revenue KPI")
+- KPI value has \`aria-label\` with full description
+- Trend indicator announced (up/down/neutral)
+- Sparkline chart has alt text describing trend
+
+### Screen Reader Behavior
+- KPI name announced (e.g., "Revenue")
+- Current value announced with unit
+- Trend direction announced (e.g., "up 12%")
+- Time period announced if applicable
+- Comparison value announced if shown
+
+### Visual Indicators
+- Clear color coding for trend (green for up, red for down)
+- Value displayed prominently for clarity
+- Sparkline shows historical trend
+- Unit clearly associated with value
+
+### Focus Management
+- Card is non-interactive by default
+- If card is clickable, receives focus and has keyboard support
+- Trend and values are part of card's accessible name
+        `,
+      },
+    },
   },
 };
 

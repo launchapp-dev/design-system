@@ -9,6 +9,39 @@ const meta: Meta<typeof SmartThemingGenerator> = {
   component: SmartThemingGenerator,
   parameters: {
     layout: "padded",
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Keyboard Navigation
+- **Tab**: Navigate through color inputs and controls
+- **Arrow Keys**: Adjust color values
+- **Space/Enter**: Apply theme changes
+- **Escape**: Cancel changes if in modal
+
+### Screen Reader Behavior
+- Theme generator announced as application
+- Color inputs labeled with descriptive names
+- Generated color palette announced with contrast ratios
+- Contrast issues highlighted in announcements
+- Preview updates announced
+
+### Visual Accessibility
+- High contrast color picker interface
+- Sufficient contrast between controls and background
+- Clear labels for all inputs
+- WCAG contrast ratio display for generated colors
+- Magnified color preview available
+
+### Color Vision Deficiency Support
+- Simulated vision mode shows how colors appear
+- Protanopia, Deuteranopia, Tritanopia modes available
+- Contrast checker identifies accessibility issues
+- Generates theme from accessible color
+        `,
+      },
+    },
   },
   tags: ["autodocs"],
 };

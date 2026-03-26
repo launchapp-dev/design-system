@@ -17,6 +17,39 @@ const meta: Meta<typeof RadioGroup> = {
     orientation: "vertical",
     disabled: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Roles & Attributes
+- RadioGroup has \`role="radiogroup"\`
+- Each option has \`role="radio"\` with \`aria-checked\` state
+- Group has \`aria-label\` or \`aria-labelledby\` describing purpose
+- Disabled items marked with \`aria-disabled="true"\`
+
+### Keyboard Navigation
+- **Tab**: Enter radio group and focus selected option
+- **Arrow Keys**: Move between options (within group)
+- **Space**: Select focused option
+- Only one option in tab order (selected or first)
+
+### Screen Reader Behavior
+- Group purpose announced
+- Selected option announced
+- Disabled state announced for unavailable options
+- Options read in order with selection status
+
+### Focus Management
+- Only selected (or first) option in tab order
+- Arrow key navigation without leaving group
+- Visual focus indicator on radio button
+- Label associated with each radio option
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

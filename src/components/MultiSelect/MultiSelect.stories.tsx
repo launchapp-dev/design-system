@@ -12,6 +12,41 @@ const meta: Meta<typeof MultiSelect> = {
     disabled: { control: "boolean" },
     maxCount: { control: "number" },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Container has \`role="combobox"\` with \`aria-expanded\` showing popup state
+- Selected items shown in main control
+- Listbox has \`role="listbox"\` with proper markup
+- Options marked with \`aria-selected\` state
+
+### Keyboard Navigation
+- **Tab**: Focus control
+- **Arrow Keys**: Navigate options (when open)
+- **Enter**: Toggle selected option
+- **Escape**: Close dropdown
+- **Backspace**: Remove last selected item
+- **Type**: Filter options
+
+### Screen Reader Behavior
+- Control announced as combobox with multiple selections
+- Number of selected items announced
+- Each option announced with selection state
+- Filtered results count announced
+
+### Focus Management
+- Input receives focus initially
+- Focus moves within dropdown when open
+- Focus returns to input after selection
+- Selected items marked with visual and ARIA indicators
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

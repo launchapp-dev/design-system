@@ -9,12 +9,49 @@ const meta: Meta<typeof ColorPicker> = {
     disabled: { control: "boolean" },
     value: { control: "color" },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Attributes
+- Color input has \`aria-label\` describing purpose
+- Slider has \`aria-valuenow\`, \`aria-valuemin\`, \`aria-valuemax\`
+- Preset buttons have clear labels
+
+### Keyboard Navigation
+- **Tab**: Navigate through color picker controls
+- **Arrow Keys**: Adjust color value/saturation
+- **Space/Enter**: Select preset color
+- Escape to close picker if modal
+
+### Screen Reader Behavior
+- Current color value announced as hex/RGB
+- Slider position announced for hue/saturation/brightness
+- Preset colors announced by visual appearance
+
+### Focus Management
+- Visible focus indicator on all controls
+- Focus trap within picker modal if applicable
+- Return focus to trigger after selection
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Basic color picker with hex value display. Use arrow keys to adjust color.`,
+      },
+    },
+  },
   render: () => {
     const [color, setColor] = React.useState("#3b82f6");
     return (
@@ -29,6 +66,13 @@ export const Default: Story = {
 };
 
 export const CustomPresets: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Color picker with custom preset swatches. Press Space to select a preset with keyboard.`,
+      },
+    },
+  },
   render: () => {
     const [color, setColor] = React.useState("#10b981");
     const presets = [

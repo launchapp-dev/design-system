@@ -14,6 +14,40 @@ import { cn } from "../../lib/utils";
 const meta: Meta<typeof NavigationMenu> = {
   title: "Components/NavigationMenu",
   component: NavigationMenu,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Roles & Attributes
+- Navigation menu has \`role="navigation"\`
+- Triggers have \`aria-expanded\` indicating submenu state
+- Submenu lists have \`role="menu"\` with proper item markup
+- Current page link marked with \`aria-current="page"\`
+
+### Keyboard Navigation
+- **Tab**: Navigate menu triggers
+- **Arrow Right/Left**: Open/close submenus
+- **Arrow Down/Up**: Navigate submenu items
+- **Enter/Space**: Activate link or trigger
+- **Escape**: Close submenu
+
+### Screen Reader Behavior
+- Navigation landmark announced
+- Menu triggers announced with open/closed state
+- Submenu items announced within menu context
+- Links within submenus announced with context
+
+### Focus Management
+- Menu items in tab order
+- Focus management for submenu opening/closing
+- Return focus to trigger after submenu closes
+- Clear visual focus indicator on all items
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

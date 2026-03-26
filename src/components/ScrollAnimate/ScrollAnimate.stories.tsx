@@ -4,6 +4,41 @@ import { FadeInOnScroll, CountUp, Parallax } from "./index";
 
 const meta: Meta = {
   title: "Components/ScrollAnimate",
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Design Pattern
+- Scroll-triggered animations are visual enhancements
+- Content remains accessible regardless of animation state
+- Respects \`prefers-reduced-motion\` for users sensitive to motion
+
+### Screen Reader Behavior
+- Content announced normally by screen readers
+- Animations do not affect tab order or focus
+- CountUp values announced at final state
+- Parallax effects do not impair content readability
+
+### Keyboard Navigation
+- No keyboard interaction required
+- Content in scroll animations remains tabbable
+- Focus order not affected by animations
+
+### Motion Sensitivity
+- All scroll animations disabled for \`prefers-reduced-motion: reduce\`
+- Static versions displayed immediately
+- Content remains fully accessible without animation
+
+### Visual Accessibility
+- Sufficient contrast maintained during animations
+- Text remains readable throughout animation
+- Focus indicators visible when needed
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

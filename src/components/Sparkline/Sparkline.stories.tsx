@@ -53,6 +53,37 @@ const meta: Meta<typeof Sparkline> = {
     pointRadius: 1.5,
     data: generateData(12, 0, 100, "up"),
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Data Accessibility
+- Sparkline has \`aria-label\` describing trend (e.g., "Monthly sales trend")
+- Numeric data values available via data attribute
+- Summary statistics provided (min, max, average)
+
+### Screen Reader Behavior
+- Current trend announced (up/down/neutral)
+- Key metrics announced (start, end, min, max values)
+- Data point count announced
+- Sparkline typically announces summary rather than each point
+
+### Visual Indicators
+- Trend direction clear from line shape
+- Color coding indicates positive/negative movement
+- Area fill provides visual weight
+- Points visible when enabled
+
+### Data Table Alternative
+- Provide data table with all values
+- Table shows date/time and corresponding values
+- More detailed than sparkline visualization
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

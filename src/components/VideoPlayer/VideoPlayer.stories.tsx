@@ -42,6 +42,48 @@ const meta: Meta<typeof VideoPlayer> = {
     autoHideControls: true,
     autoHideDelay: 3000,
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA & Media Attributes
+- Video element properly configured with controls
+- Captions/subtitles provided for video content
+- Audio descriptions available for visual information
+- Poster image has alt text
+
+### Keyboard Navigation
+- **Space/K**: Play/pause
+- **F**: Fullscreen
+- **M**: Mute/unmute
+- **Arrow Right/Left**: Seek forward/backward
+- **Up/Down**: Volume control
+- **Tab**: Navigate controls
+
+### Screen Reader Behavior
+- Video purpose announced via title/label
+- Play/pause status announced
+- Current time and duration announced
+- Volume level announced on changes
+- Caption availability announced
+
+### Visual Accessibility
+- High contrast controls
+- Large touch targets for mobile
+- Captions/subtitles high contrast
+- Focus indicators visible on all controls
+- Fullscreen still shows controls and captions
+
+### Caption & Audio Descriptions
+- Multiple caption track support
+- Audio descriptions track available
+- Transcripts provided alongside player
+        `,
+      },
+    },
+  },
 };
 
 export default meta;

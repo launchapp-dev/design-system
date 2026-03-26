@@ -6,12 +6,51 @@ import type { DateRange } from "react-day-picker";
 const meta: Meta<typeof Calendar> = {
   title: "Components/Calendar",
   component: Calendar,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### ARIA Roles & Attributes
+- Date buttons use \`role="button"\` with semantic \`aria-pressed\` for selection state
+- Month/year navigation buttons are properly labeled
+- Calendar grid uses semantic table structure for screen readers
+- Selected dates announced with \`aria-selected="true"\`
+
+### Keyboard Navigation
+- **Tab**: Navigate through calendar buttons
+- **Arrow Keys**: Move between days within the calendar grid
+- **Enter/Space**: Select/deselect a date
+- **Escape**: Close date picker if within a date input
+
+### Screen Reader Behavior
+- Announces current month and year
+- Day buttons announce their date and selection status
+- Navigation buttons announce "Previous month" / "Next month"
+- Disabled dates announced as unavailable
+
+### Focus Management
+- Initial focus on current day or today's date
+- Focus visible indicator on all interactive elements
+- Focus traps within modal if used as popup
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const SingleMode: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Single date selection mode. Use arrow keys to navigate dates and Enter/Space to select. Screen readers announce each date's selection state.`,
+      },
+    },
+  },
   render: () => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
     return (
@@ -34,6 +73,13 @@ export const SingleMode: Story = {
 };
 
 export const RangeMode: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Range selection mode. Select a start date, then an end date. Screen readers announce range boundaries.`,
+      },
+    },
+  },
   render: () => {
     const [range, setRange] = React.useState<DateRange | undefined>(undefined);
     return (
@@ -56,6 +102,13 @@ export const RangeMode: Story = {
 };
 
 export const MultipleMode: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Multiple date selection mode. Select multiple dates independently. Screen readers announce count of selected dates.`,
+      },
+    },
+  },
   render: () => {
     const [selected, setSelected] = React.useState<Date[] | undefined>(undefined);
     return (
@@ -78,6 +131,13 @@ export const MultipleMode: Story = {
 };
 
 export const WithDisabledDates: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Disabled dates are announced as unavailable to screen readers. These dates cannot be selected via keyboard or mouse.`,
+      },
+    },
+  },
   render: () => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
     const today = new Date();

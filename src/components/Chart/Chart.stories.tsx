@@ -78,6 +78,34 @@ const meta: Meta<typeof ChartContainer> = {
   component: ChartContainer,
   parameters: {
     layout: "padded",
+    docs: {
+      description: {
+        component: `
+## Accessibility Features
+
+### Data Accessibility
+- Chart data should include alt text describing the key information
+- Use \`aria-label\` on container to summarize data
+- Provide data table alternative for screen reader users
+- Legend must be announced to screen readers
+
+### Keyboard Navigation
+- Tooltips accessible via keyboard hover/focus
+- Chart container receives focus to allow tooltip interaction
+- All interactive elements tab-accessible
+
+### Screen Reader Behavior
+- Chart announced with descriptive aria-label containing summary
+- Axes labeled and announced
+- Legend readable by screen readers
+- Tooltip content announced on hover
+
+### Data Table Alternative
+- Provide accessible data table alongside chart for screen readers
+- Table contains all data points shown in visualization
+        `,
+      },
+    },
   },
 };
 
@@ -86,6 +114,13 @@ type Story = StoryObj<typeof ChartContainer>;
 
 export const LineChartStory: Story = {
   name: "LineChart",
+  parameters: {
+    docs: {
+      description: {
+        story: `Line chart showing trends over time. Tooltip content accessible on hover/focus with keyboard support.`,
+      },
+    },
+  },
   render: () => (
     <ChartContainer
       config={{
@@ -110,6 +145,13 @@ export const LineChartStory: Story = {
 
 export const BarChartStory: Story = {
   name: "BarChart",
+  parameters: {
+    docs: {
+      description: {
+        story: `Bar chart comparing categories. Each bar's value accessible via legend and tooltip.`,
+      },
+    },
+  },
   render: () => (
     <ChartContainer
       config={{
@@ -138,6 +180,13 @@ export const BarChartStory: Story = {
 
 export const AreaChartStory: Story = {
   name: "AreaChart",
+  parameters: {
+    docs: {
+      description: {
+        story: `Area chart showing growth over time with filled regions. Legend and tooltips are fully accessible.`,
+      },
+    },
+  },
   render: () => (
     <ChartContainer
       config={{
@@ -172,6 +221,13 @@ export const AreaChartStory: Story = {
 
 export const PieChartStory: Story = {
   name: "PieChart",
+  parameters: {
+    docs: {
+      description: {
+        story: `Pie chart showing market share distribution. Slice labels and tooltips are accessible.`,
+      },
+    },
+  },
   render: () => (
     <ChartContainer height={300} className="max-w-md">
       <PieChart>
