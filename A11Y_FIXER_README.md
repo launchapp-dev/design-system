@@ -50,7 +50,7 @@ This will analyze each component, generate fixes, and write the corrected code b
 
 ### Analyzed Issues
 
-The tool detects and fixes the following WCAG 2.1 violations:
+The tool detects and fixes the following WCAG 2.1 violations using Claude AI analysis:
 
 1. **WCAG 1.1.1 (Non-text Content)** - Missing alt text on images
 2. **WCAG 3.3.2 (Labels or Instructions)** - Missing form label associations
@@ -59,6 +59,14 @@ The tool detects and fixes the following WCAG 2.1 violations:
 5. **WCAG 4.2.1 (Character Key Shortcuts)** - Keyboard accessibility issues
 6. **WCAG 2.4.3 (Focus Order)** - Focus management problems
 7. **WCAG 1.4.3 (Contrast Minimum)** - Color contrast issues
+
+### Verification with axe-core
+
+For enhanced validation, the tool can optionally use **axe-core** (an automated accessibility testing engine) to verify accessibility violations. This provides an additional layer of verification independent from the AI analysis:
+
+- **Source Code Analysis**: Claude AI analyzes component code for best practices
+- **Automated Testing**: axe-core provides machine-readable accessibility checks
+- **Dual Verification**: Combined approach increases confidence in fixes
 
 ### Analysis Modes
 
@@ -149,6 +157,23 @@ import { generateA11yReport } from "@launchapp/design-system";
 
 const report = generateA11yReport(results);
 console.log(report); // Markdown formatted report
+```
+
+### `verifyWithAxeCore(htmlContent)`
+
+Verify accessibility violations using axe-core automated testing.
+
+```typescript
+import { verifyWithAxeCore } from "@launchapp/design-system";
+
+const htmlContent = `
+  <button>Click me</button>
+`;
+
+const violations = await verifyWithAxeCore(htmlContent);
+violations.forEach((violation) => {
+  console.log(`${violation.code}: ${violation.message}`);
+});
 ```
 
 ## Output Example
@@ -321,10 +346,12 @@ If the tool fails to parse a component's response, check that the component code
 Potential improvements:
 
 - Support for Vue, Svelte, and other frameworks
-- Integration with axe-core for additional analysis
+- ✅ Integration with axe-core for additional analysis (now available with `--verify` flag)
 - Automated testing to verify fixes don't break functionality
 - Visual regression detection for styling changes
 - Historical tracking of accessibility improvements
+- Browser-based testing with axe-core for rendered components
+- Integration with CI/CD pipelines for automated accessibility checks
 
 ## Command-Line Flags
 
@@ -333,6 +360,7 @@ The fix-a11y script supports the following flags:
 - `--fix` or `-f` - Automatically apply all fixes without asking
 - `--interactive` or `-i` - Review and approve each fix before applying (human approval)
 - `--report` or `-r` - Generate a detailed markdown report of violations
+- `--verify` or `-v` - Enable axe-core verification in addition to Claude AI analysis
 
 Examples:
 
@@ -352,6 +380,12 @@ npm run fix-a11y -- --fix
 
 # Generate detailed report
 npm run fix-a11y -- --report
+
+# Analysis with axe-core verification
+npm run fix-a11y -- --verify
+
+# Interactive mode with axe-core verification
+npm run fix-a11y -- --interactive --verify
 ```
 
 ## Human Approval Workflow

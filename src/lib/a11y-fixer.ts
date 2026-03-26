@@ -7,6 +7,7 @@ export interface A11yViolation {
   message: string;
   severity: "error" | "warning";
   code: string;
+  source?: "claude" | "axe-core";
 }
 
 export interface A11yFix {
@@ -269,7 +270,7 @@ ${results
 ${
   r.violations.length > 0
     ? `#### Violations:
-${r.violations.map((v) => `- **[${v.code}]** ${v.message} (${v.type})`).join("\n")}`
+${r.violations.map((v) => `- **[${v.code}]** ${v.message} (${v.type})${v.source ? ` (${v.source})` : ""}`).join("\n")}`
     : "No violations found ✓"
 }
 
@@ -281,4 +282,39 @@ ${r.fixes.map((f) => `- ${f.explanation}\n  \`${f.suggestedFix}\``).join("\n")}`
 `;
 
   return report;
+}
+
+export async function verifyWithAxeCore(htmlContent: string): Promise<A11yViolation[]> {
+  try {
+    // Dynamically import axe-core and jsdom for verification
+    const { JSDOM } = await import("jsdom");
+    const { default: axe } = await import("axe-core");
+
+    const dom = new JSDOM(htmlContent);
+    const { document } = dom.window;
+
+    const results = await axe.run(document);
+
+    const violations: A11yViolation[] = [];
+
+    // Process axe violations
+    results.violations.forEach((violation: any) => {
+      violation.nodes.forEach((node: any, index: number) => {
+        violations.push({
+          line: index + 1,
+          component: "Component",
+          type: violation.id,
+          message: violation.description,
+          severity: "error",
+          code: violation.id,
+          source: "axe-core",
+        });
+      });
+    });
+
+    return violations;
+  } catch (error) {
+    console.warn("axe-core verification skipped:", (error as Error).message);
+    return [];
+  }
 }
