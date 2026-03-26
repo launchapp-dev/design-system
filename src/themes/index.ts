@@ -503,6 +503,8 @@ export const paletteMap: Record<string, Palette> = Object.fromEntries(
   palettes.map((p) => [p.name, p])
 );
 
+export { generatePaletteFromColors } from "./generatePaletteFromColors";
+
 export type { CommunityTheme, CommunityThemeAuthor, CommunityThemeTokens } from "./community-themes";
 export {
   validateCommunityTheme,

@@ -3,9 +3,9 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entry: ["src/index.ts"],
   format: ["esm", "cjs"],
-  dts: true,
+  dts: { compilerOptions: { skipLibCheck: true } },
   sourcemap: true,
   clean: true,
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "@anthropic-ai/sdk"],
   treeshake: true,
 });
