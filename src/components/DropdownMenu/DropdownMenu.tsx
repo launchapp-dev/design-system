@@ -193,8 +193,8 @@ function DropdownMenuSeparator({ className, ref, ...props }: React.ComponentProp
 }
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
-const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
-  <span
+const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+  <kbd
     className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
     {...props}
   />
