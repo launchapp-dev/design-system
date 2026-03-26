@@ -110,7 +110,7 @@ function InlineEditable({
           onChange={(e) => setDraft(e.target.value)}
           onBlur={handleCommit}
           onKeyDown={handleKeyDown}
-          aria-label={ariaLabel}
+          aria-label={ariaLabel ?? `Edit: ${draft || placeholder}`}
           className={cn(sharedInputClass, "resize-none min-h-[80px]", className)}
           rows={3}
         />
@@ -124,7 +124,7 @@ function InlineEditable({
         onChange={(e) => setDraft(e.target.value)}
         onBlur={handleCommit}
         onKeyDown={handleKeyDown}
-        aria-label={ariaLabel}
+        aria-label={ariaLabel ?? `Edit: ${draft || placeholder}`}
         className={cn(sharedInputClass, className)}
       />
     );
