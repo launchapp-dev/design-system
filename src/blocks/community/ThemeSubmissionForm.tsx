@@ -92,7 +92,7 @@ export interface ThemeSubmissionFormProps {
 function ThemeSubmissionForm(
   { onSubmit, onCancel, isLoading, error, className }: ThemeSubmissionFormProps,
   ref: React.Ref<HTMLDivElement>
-) {
+): React.ReactNode {
   const [previewColors, setPreviewColors] = React.useState<Record<string, string> | null>(null);
 
   const form = useForm<ThemeSubmissionValues>({
