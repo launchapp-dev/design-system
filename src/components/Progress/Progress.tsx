@@ -46,4 +46,6 @@ function Progress({ className, size, value, "aria-label": ariaLabel, "aria-label
 
 Progress.displayName = ProgressPrimitive.Root.displayName;
 
+export type ProgressVariants = VariantProps<typeof progressVariants>;
+
 export { Progress };

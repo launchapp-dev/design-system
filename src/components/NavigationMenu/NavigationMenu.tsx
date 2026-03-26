@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 function NavigationMenu({ className, children, ref, ...props }: React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root> & { ref?: React.Ref<React.ComponentRef<typeof NavigationMenuPrimitive.Root>> }) {
@@ -120,6 +120,8 @@ function NavigationMenuIndicator({ className, ref, ...props }: React.ComponentPr
 }
 NavigationMenuIndicator.displayName =
   NavigationMenuPrimitive.Indicator.displayName;
+
+export type NavigationMenuTriggerStyleVariants = VariantProps<typeof navigationMenuTriggerStyle>;
 
 export {
   NavigationMenu,

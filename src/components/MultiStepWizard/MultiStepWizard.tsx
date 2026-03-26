@@ -187,4 +187,6 @@ function MultiStepWizard({
 
 MultiStepWizard.displayName = "MultiStepWizard";
 
+export type MultiStepWizardVariants = VariantProps<typeof multiStepWizardVariants>;
+
 export { MultiStepWizard };

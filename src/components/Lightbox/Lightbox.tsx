@@ -476,6 +476,11 @@ function Lightbox({
 
 Lightbox.displayName = "Lightbox";
 
+export type LightboxVariants = VariantProps<typeof lightboxVariants>;
+export type LightboxContentVariants = VariantProps<typeof lightboxContentVariants>;
+export type LightboxImageVariants = VariantProps<typeof lightboxImageVariants>;
+export type LightboxThumbnailVariants = VariantProps<typeof lightboxThumbnailVariants>;
+
 export {
   Lightbox,
   lightboxVariants,

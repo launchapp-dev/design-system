@@ -9,3 +9,4 @@ export {
   bannerVariants 
 } from "./Banner";
 export type { BannerProps, BannerActionProps } from "./Banner";
+export type { BannerVariants } from "./Banner";

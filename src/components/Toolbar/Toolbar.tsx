@@ -123,6 +123,9 @@ function ToolbarToggleItem({ className, size, ref, ...props }: ToolbarToggleItem
 }
 ToolbarToggleItem.displayName = ToolbarPrimitive.ToggleItem.displayName;
 
+export type ToolbarButtonVariants = VariantProps<typeof toolbarButtonVariants>;
+export type ToolbarToggleItemVariants = VariantProps<typeof toolbarToggleItemVariants>;
+
 export {
   ToolbarRoot,
   ToolbarButton,

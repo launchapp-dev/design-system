@@ -212,6 +212,8 @@ export type SelectSeparatorProps = React.ComponentPropsWithoutRef<typeof SelectP
 export type SelectScrollUpButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollUpButton>> };
 export type SelectScrollDownButtonProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton> & { ref?: React.Ref<React.ComponentRef<typeof SelectPrimitive.ScrollDownButton>> };
 
+export type SelectTriggerVariants = VariantProps<typeof selectTriggerVariants>;
+
 export {
   SelectRoot,
   SelectGroup,

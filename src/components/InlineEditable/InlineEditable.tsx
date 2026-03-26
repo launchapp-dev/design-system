@@ -153,4 +153,6 @@ function InlineEditable({
 
 InlineEditable.displayName = "InlineEditable";
 
+export type InlineEditableVariants = VariantProps<typeof inlineEditableVariants>;
+
 export { InlineEditable };

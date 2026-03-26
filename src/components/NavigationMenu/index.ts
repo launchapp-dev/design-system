@@ -9,3 +9,4 @@ export {
   NavigationMenuIndicator,
   navigationMenuTriggerStyle,
 } from "./NavigationMenu";
+export type { NavigationMenuTriggerStyleVariants } from "./NavigationMenu";

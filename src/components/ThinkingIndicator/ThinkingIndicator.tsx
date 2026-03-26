@@ -272,4 +272,6 @@ function ThinkingIndicator({
 
 ThinkingIndicator.displayName = "ThinkingIndicator";
 
+export type ThinkingIndicatorVariants = VariantProps<typeof thinkingIndicatorVariants>;
+
 export { ThinkingIndicator, thinkingIndicatorVariants };

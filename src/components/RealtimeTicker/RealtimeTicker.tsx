@@ -302,4 +302,8 @@ function RealtimeTicker({
 
 RealtimeTicker.displayName = "RealtimeTicker";
 
+export type RealtimeTickerVariants = VariantProps<typeof realtimeTickerVariants>;
+export type TickerValueVariants = VariantProps<typeof tickerValueVariants>;
+export type TickerChangeVariants = VariantProps<typeof tickerChangeVariants>;
+
 export { RealtimeTicker, realtimeTickerVariants, tickerValueVariants, tickerChangeVariants };

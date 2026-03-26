@@ -262,6 +262,9 @@ const CopilotPanelDivider = React.forwardRef<
 ));
 CopilotPanelDivider.displayName = "CopilotPanelDivider";
 
+export type CopilotPanelVariants = VariantProps<typeof copilotPanelVariants>;
+export type CopilotSuggestionVariants = VariantProps<typeof copilotSuggestionVariants>;
+
 export {
   CopilotPanel,
   CopilotPanelTrigger,

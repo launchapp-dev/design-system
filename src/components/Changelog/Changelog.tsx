@@ -149,4 +149,6 @@ function Changelog({
 }
 
 Changelog.displayName = "Changelog";
+export type ChangelogTagVariants = VariantProps<typeof changelogTagVariants>;
+
 export { Changelog, changelogTagVariants };

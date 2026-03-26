@@ -186,6 +186,8 @@ function BannerDismiss({ className, onOpenChange, ref, ...props }: Omit<React.Bu
 }
 BannerDismiss.displayName = "BannerDismiss";
 
+export type BannerVariants = VariantProps<typeof bannerVariants>;
+
 export { 
   Banner, 
   BannerContent,

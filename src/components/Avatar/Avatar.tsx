@@ -68,4 +68,6 @@ function AvatarFallback({ className, ref, ...props }: React.ComponentPropsWithou
 }
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
+export type AvatarVariants = VariantProps<typeof avatarVariants>;
+
 export { Avatar, AvatarImage, AvatarFallback };

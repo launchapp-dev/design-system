@@ -23,4 +23,6 @@ function Label({ className, ref, ...props }: LabelProps & { ref?: React.Ref<Reac
 
 Label.displayName = LabelPrimitive.Root.displayName;
 
+export type LabelVariants = VariantProps<typeof labelVariants>;
+
 export { Label };

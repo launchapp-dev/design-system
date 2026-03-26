@@ -225,4 +225,6 @@ function DashboardGrid({
 
 DashboardGrid.displayName = "DashboardGrid";
 
+export type DashboardGridVariants = VariantProps<typeof dashboardGridVariants>;
+
 export { DashboardGrid, dashboardGridVariants };

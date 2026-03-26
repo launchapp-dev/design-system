@@ -311,6 +311,10 @@ function ImageComparison({
 
 ImageComparison.displayName = "ImageComparison";
 
+export type ImageComparisonVariants = VariantProps<typeof imageComparisonVariants>;
+export type ImageComparisonSliderVariants = VariantProps<typeof imageComparisonSliderVariants>;
+export type ImageComparisonHandleVariants = VariantProps<typeof imageComparisonHandleVariants>;
+
 export {
   ImageComparison,
   imageComparisonVariants,

@@ -159,6 +159,9 @@ MasonryCard.displayName = "MasonryCard";
 
 export type MasonryVariantsProps = VariantProps<typeof masonryVariants>;
 
+export type MasonryVariants = VariantProps<typeof masonryVariants>;
+export type MasonryColumnVariants = VariantProps<typeof masonryColumnVariants>;
+
 export {
   Masonry,
   MasonryCard,

@@ -295,4 +295,7 @@ function DockItem({
 }
 DockItem.displayName = "DockItem";
 
+export type DockVariants = VariantProps<typeof dockVariants>;
+export type DockItemVariants = VariantProps<typeof dockItemVariants>;
+
 export { Dock, dockVariants, dockItemVariants };

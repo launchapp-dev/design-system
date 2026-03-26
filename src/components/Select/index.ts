@@ -22,3 +22,4 @@ export type {
   SelectScrollUpButtonProps,
   SelectScrollDownButtonProps,
 } from "./Select";
+export type { SelectTriggerVariants } from "./Select";

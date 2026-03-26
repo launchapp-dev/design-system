@@ -210,6 +210,9 @@ BentoCardFooter.displayName = "BentoCardFooter";
 export type BentoGridVariantsProps = VariantProps<typeof bentoGridVariants>;
 export type BentoCardVariantsProps = VariantProps<typeof bentoCardVariants>;
 
+export type BentoGridVariants = VariantProps<typeof bentoGridVariants>;
+export type BentoCardVariants = VariantProps<typeof bentoCardVariants>;
+
 export {
   BentoGrid,
   BentoCard,

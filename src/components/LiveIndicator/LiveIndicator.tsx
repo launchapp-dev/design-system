@@ -70,4 +70,7 @@ function LiveIndicator({
 }
 
 LiveIndicator.displayName = "LiveIndicator";
+export type LiveIndicatorVariants = VariantProps<typeof liveIndicatorVariants>;
+export type LiveDotVariants = VariantProps<typeof liveDotVariants>;
+
 export { LiveIndicator, liveIndicatorVariants, liveDotVariants };

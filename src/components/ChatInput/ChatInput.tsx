@@ -296,6 +296,10 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
 
 ChatInput.displayName = "ChatInput";
 
+export type ChatInputVariants = VariantProps<typeof chatInputVariants>;
+export type ChatInputTextareaVariants = VariantProps<typeof chatInputTextareaVariants>;
+export type ChatInputButtonVariants = VariantProps<typeof chatInputButtonVariants>;
+
 export {
   ChatInput,
   chatInputVariants,

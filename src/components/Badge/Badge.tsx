@@ -39,4 +39,6 @@ function Badge({ className, variant, ref, ...props }: BadgeProps & { ref?: React
   }
 Badge.displayName = "Badge";
 
+export type BadgeVariants = VariantProps<typeof badgeVariants>;
+
 export { Badge, badgeVariants };

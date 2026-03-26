@@ -551,4 +551,7 @@ const VideoPlayer = React.forwardRef(VideoPlayerInner) as React.ForwardRefExotic
 
 VideoPlayer.displayName = "VideoPlayer";
 
+export type VideoPlayerVariants = VariantProps<typeof videoPlayerVariants>;
+export type VideoPlayerOverlayVariants = VariantProps<typeof videoPlayerOverlayVariants>;
+
 export { VideoPlayer, videoPlayerVariants, videoPlayerOverlayVariants };

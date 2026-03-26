@@ -371,4 +371,6 @@ function TreeMap({
 
 TreeMap.displayName = "TreeMap";
 
+export type TreeMapVariants = VariantProps<typeof treeMapVariants>;
+
 export { TreeMap, treeMapVariants };

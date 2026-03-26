@@ -69,4 +69,6 @@ function Checkbox({ className, size, ref, ...props }: CheckboxProps & { ref?: Re
 
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
+export type CheckboxVariants = VariantProps<typeof checkboxVariants>;
+
 export { Checkbox };

@@ -213,5 +213,7 @@ function StatusPage({
 }
 
 StatusPage.displayName = "StatusPage";
+export type OverallStatusVariants = VariantProps<typeof overallStatusVariants>;
+
 export { StatusPage, overallStatusVariants };
 export type { VariantProps };
