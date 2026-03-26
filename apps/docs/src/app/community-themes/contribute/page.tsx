@@ -215,7 +215,15 @@ export default function ContributeCommunityThemePage() {
         <section>
           <h2 className="text-2xl font-bold tracking-tight mb-6">Theme JSON Schema</h2>
           <p className="text-muted-foreground mb-4">
-            Here's the required structure for your community theme JSON file:
+            Here's the required structure for your community theme JSON file. You can also{" "}
+            <a
+              href="/theme-template.json"
+              download="theme-template.json"
+              className="text-primary hover:underline font-medium"
+            >
+              download a template file
+            </a>
+            {" "}to get started quickly.
           </p>
           <CodeBlock
             lang="json"
