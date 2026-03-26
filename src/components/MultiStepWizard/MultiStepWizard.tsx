@@ -56,6 +56,7 @@ function MultiStepWizard({
   const isFirst = currentStep === 0;
   const isLast = currentStep === steps.length - 1;
   const progress = steps.length > 0 ? ((currentStep + 1) / steps.length) * 100 : 0;
+  const stepTitleId = `wizard-step-${currentStep}-title`;
 
   const handleNext = async () => {
     if (step?.validate) {
@@ -125,7 +126,7 @@ function MultiStepWizard({
       {(step?.title || step?.description) && (
         <div className="mb-6">
           {step.title && (
-            <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
+            <h3 id={stepTitleId} className="text-lg font-semibold text-foreground">{step.title}</h3>
           )}
           {step.description && (
             <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
@@ -133,7 +134,7 @@ function MultiStepWizard({
         </div>
       )}
 
-      <div className="mb-6">{step?.content}</div>
+      <div className="mb-6" aria-labelledby={step?.title ? stepTitleId : undefined}>{step?.content}</div>
 
       <div className="flex items-center justify-between gap-3">
         <div className="flex gap-2">
@@ -141,6 +142,7 @@ function MultiStepWizard({
             type="button"
             onClick={handlePrev}
             disabled={isFirst}
+            aria-label={`Go to previous step (Step ${Math.max(1, currentStep)} of ${steps.length})`}
             className={cn(
               "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
               "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
@@ -155,6 +157,7 @@ function MultiStepWizard({
             <button
               type="button"
               onClick={() => onSaveDraft(currentStep)}
+              aria-label={`Save draft at step ${currentStep + 1} of ${steps.length}`}
               className={cn(
                 "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
                 "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
@@ -170,6 +173,7 @@ function MultiStepWizard({
           type="button"
           onClick={handleNext}
           disabled={validating}
+          aria-label={isLast ? `${completeLabel} wizard` : `Go to next step (Step ${currentStep + 2} of ${steps.length})`}
           className={cn(
             "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
             "bg-primary text-primary-foreground hover:bg-primary/90",
