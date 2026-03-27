@@ -1,7 +1,7 @@
 {
-  "name": "@launchapp/create-design-system",
+  "name": "@launchapp/ds",
   "version": "0.1.0",
-  "description": "CLI tool to scaffold themed instances of the LaunchApp design system",
+  "description": "CLI tool to scaffold complete applications with the LaunchApp design system",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   },
   "type": "module",
   "bin": {
-    "create-design-system": "./dist/index.js"
+    "create-app": "./dist/index.js"
   },
   "files": [
     "dist"

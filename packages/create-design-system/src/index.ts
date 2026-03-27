@@ -535,6 +535,17 @@ function generateCommunityCss(
   )}\n\n${renderTokens(theme.tokens.dark, ".dark")}\n}`;
 }
 
+function getTemplateName(template: string): string {
+  const names: Record<string, string> = {
+    "saas-dashboard": "SaaS Dashboard",
+    "marketing-site": "Marketing Site",
+    "admin-panel": "Admin Panel",
+    nextjs: "Next.js",
+    vite: "Vite",
+  };
+  return names[template] || template;
+}
+
 async function installCommunityTheme(themeId: string): Promise<void> {
   const theme = COMMUNITY_THEMES[themeId as keyof typeof COMMUNITY_THEMES];
 
@@ -583,17 +594,18 @@ async function main(): Promise<void> {
     return;
   }
 
-  console.log("\n  LaunchApp Design System — Project Scaffolder\n");
+  console.log("\n  LaunchApp Design System — Create App\n");
 
   const answers = await prompts(
     [
       {
         type: "select",
         name: "template",
-        message: "Choose a template",
+        message: "Choose an app template",
         choices: [
-          { title: "Next.js", value: "nextjs", description: "Full-stack React with Server Components" },
-          { title: "Vite", value: "vite", description: "Fast lightweight bundler with React" },
+          { title: "SaaS Dashboard", value: "saas-dashboard", description: "Modern SaaS dashboard with analytics and management panels" },
+          { title: "Marketing Site", value: "marketing-site", description: "Beautiful marketing website with conversion optimized layouts" },
+          { title: "Admin Panel", value: "admin-panel", description: "Powerful admin dashboard for data management" },
         ],
         initial: 0,
       },
@@ -727,13 +739,13 @@ async function main(): Promise<void> {
   }
 
   console.log(`\n  ✓ Created project: ${answers.projectName}`);
-  console.log(`  ✓ Template: ${template === "nextjs" ? "Next.js" : "Vite"}\n`);
+  console.log(`  ✓ Template: ${getTemplateName(template)}\n`);
   console.log("  Generated files:");
   console.log(`    ${path.relative(process.cwd(), globalsPath)}`);
   console.log(`    ${path.relative(process.cwd(), tailwindPath)}`);
   console.log(`    ${path.relative(process.cwd(), postcssPath)}`);
 
-  if (answers.includeStorybook && template === "nextjs") {
+  if (answers.includeStorybook) {
     console.log(`    ${answers.projectName}/.storybook/main.ts`);
     console.log(`    ${answers.projectName}/.storybook/preview.ts`);
   }
@@ -746,13 +758,9 @@ async function main(): Promise<void> {
     console.log(`    # Add "${answers.fontSans}" to your HTML via Google Fonts or your font provider`);
   }
 
-  if (template === "nextjs") {
-    console.log(`    npm run dev`);
-  } else {
-    console.log(`    npm run dev`);
-  }
+  console.log(`    npm run dev`);
 
-  if (answers.includeStorybook && template === "nextjs") {
+  if (answers.includeStorybook) {
     console.log("\n  To set up Storybook:");
     console.log("    npm install -D storybook @storybook/react-vite @storybook/addon-docs");
     console.log("    npx storybook dev");
@@ -762,7 +770,7 @@ async function main(): Promise<void> {
   console.log("  1. Edit src/styles/globals.css to modify colors and tokens");
   console.log("  2. Edit tailwind.config.ts to adjust fonts and spacing");
   console.log("\n  To install a community theme, run:");
-  console.log('    npx @launchapp/create-design-system add <theme-id>\n');
+  console.log('    npx @launchapp/ds add <theme-id>\n');
   console.log("  Available themes:");
   Object.entries(COMMUNITY_THEMES).forEach(([id, theme]) => {
     console.log(`    - ${id} (${theme.name})`);
