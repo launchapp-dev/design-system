@@ -13,6 +13,11 @@
   "bugs": {
     "url": "https://github.com/launchapp-dev/design-system/issues"
   },
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0066cc",
+    "theme": "dark"
+  },
   "keywords": [
     "design-system",
     "components",

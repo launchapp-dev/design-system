@@ -6,8 +6,12 @@ src
 .gitattributes
 tsconfig.json
 node_modules
-*.map
 **/*.test.js
 **/*.spec.js
 .vscode-test/
 .github/
+**/*.d.ts
+icon.svg
+PUBLISHING.md
+INSTALLATION.md
+USAGE.md

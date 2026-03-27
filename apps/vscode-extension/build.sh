@@ -15,6 +15,8 @@ npx -p 'typescript@^5.9.3' tsc \
   --skipLibCheck \
   --lib ES2020 \
   --types node \
-  --moduleResolution node
+  --moduleResolution node \
+  --sourceMap \
+  --declaration
 
 echo "Build complete: ${SCRIPT_DIR}/dist/"
