@@ -35,6 +35,8 @@ export { StaggeredList } from "./components/StaggeredList";
 export type { StaggeredListProps } from "./components/StaggeredList";
 export { AnimatedHeight } from "./components/AnimatedHeight";
 export type { AnimatedHeightProps } from "./components/AnimatedHeight";
+export { AnimatedText, TextTransition } from "./components/AnimatedText";
+export type { AnimatedTextProps, TextTransitionProps } from "./components/AnimatedText";
 export { TabContentCrossfade, TabPanel } from "./components/TabContentCrossfade";
 export type { TabContentCrossfadeProps, TabPanelProps } from "./components/TabContentCrossfade";
 export { Button, buttonVariants } from "./components/Button";
