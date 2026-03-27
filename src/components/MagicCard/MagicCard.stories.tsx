@@ -12,6 +12,9 @@ import {
   RippleButton,
   GlowPulseButton,
   MorphButton,
+  MagicCard,
+  HoverCard,
+  AnimatedCard,
 } from "./index";
 
 const meta: Meta = {
@@ -309,6 +312,83 @@ export const AllMagicButtons: StoryObj = {
   ),
 };
 
+export const MagicCardStory: StoryObj = {
+  name: "MagicCard",
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 32, padding: 24 }}>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — No Effect</p>
+        <MagicCard style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — Tilt Effect</p>
+        <MagicCard effect="tilt" style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — Spotlight Effect</p>
+        <MagicCard effect="spotlight" style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — Glow Effect</p>
+        <MagicCard effect="glow" intensity={1.5} style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
+      </div>
+    </div>
+  ),
+};
+
+export const HoverCardStory: StoryObj = {
+  name: "HoverCard",
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>HoverCard — Default</p>
+        <HoverCard style={{ maxWidth: 320 }}>{cardContent}</HoverCard>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>HoverCard — Large Shadow</p>
+        <HoverCard hoverShadow="lg" hoverScale={1.05} style={{ maxWidth: 320 }}>{cardContent}</HoverCard>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>HoverCard — No Border</p>
+        <HoverCard showBorder={false} style={{ maxWidth: 320 }}>{cardContent}</HoverCard>
+      </div>
+    </div>
+  ),
+};
+
+export const AnimatedCardStory: StoryObj = {
+  name: "AnimatedCard",
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>AnimatedCard — Fade Slide</p>
+        <AnimatedCard animationType="fade-slide" style={{ maxWidth: 320 }}>{cardContent}</AnimatedCard>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>AnimatedCard — Scale Fade</p>
+        <AnimatedCard animationType="scale-fade" animationDelay={100} style={{ maxWidth: 320 }}>{cardContent}</AnimatedCard>
+      </div>
+      <div>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>AnimatedCard — Slide Up</p>
+        <AnimatedCard animationType="slide-up" animationDelay={200} style={{ maxWidth: 320 }}>{cardContent}</AnimatedCard>
+      </div>
+    </div>
+  ),
+};
+
+export const AnimatedCardGrid: StoryObj = {
+  name: "AnimatedCard — Grid Layout",
+  render: () => (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, padding: 24 }}>
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <AnimatedCard key={i} animationType="fade-slide" animationDelay={i * 100} style={{ maxWidth: 320 }}>
+          {cardContent}
+        </AnimatedCard>
+      ))}
+    </div>
+  ),
+};
+
 export const ReducedMotionTest: StoryObj = {
   name: "Reduced Motion — All Components",
   render: () => (
@@ -324,6 +404,9 @@ export const ReducedMotionTest: StoryObj = {
         <ShimmerButton>Shimmer (respects reduced motion)</ShimmerButton>
         <RippleButton>Ripple (respects reduced motion)</RippleButton>
         <MorphButton>Morph (respects reduced motion)</MorphButton>
+        <AnimatedCard style={{ maxWidth: 200 }}>
+          <div style={{ padding: 16 }}>AnimatedCard (respects reduced motion)</div>
+        </AnimatedCard>
       </div>
     </div>
   ),

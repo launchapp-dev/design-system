@@ -11,6 +11,9 @@ export {
   GlowPulseButton,
   MorphButton,
   morphVariants,
+  MagicCard,
+  HoverCard,
+  AnimatedCard,
 } from "./MagicCard";
 export type {
   TiltCardProps,
@@ -24,5 +27,8 @@ export type {
   RippleButtonProps,
   GlowPulseButtonProps,
   MorphButtonProps,
+  MagicCardProps,
+  HoverCardProps,
+  AnimatedCardProps,
 } from "./MagicCard";
 export type { MorphVariants } from "./MagicCard";

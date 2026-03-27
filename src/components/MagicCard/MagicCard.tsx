@@ -579,12 +579,238 @@ MorphButton.displayName = "MorphButton";
 
 export type MorphVariants = VariantProps<typeof morphVariants>;
 
-export { 
-  TiltCard, 
-  SpotlightCard, 
-  GlassCard, 
-  MagneticButton, 
-  ShimmerButton, 
+export interface MagicCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  effect?: "tilt" | "spotlight" | "glow" | "none";
+  intensity?: number;
+}
+
+function MagicCard({
+  className,
+  children,
+  effect = "none",
+  intensity = 1,
+  ref,
+  ...props
+}: MagicCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const reduced = usePrefersReducedMotion();
+  const [state, setState] = React.useState({ x: 0, y: 0, visible: false, transform: "" });
+
+  const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (reduced) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    if (effect === "tilt") {
+      const xPercent = (x / rect.width - 0.5) * 2;
+      const yPercent = (y / rect.height - 0.5) * 2;
+      setState({
+        x,
+        y,
+        visible: true,
+        transform: `perspective(1000px) rotateY(${xPercent * 12 * intensity}deg) rotateX(${-yPercent * 12 * intensity}deg) scale(1.02)`,
+      });
+    } else if (effect === "spotlight") {
+      setState({
+        x,
+        y,
+        visible: true,
+        transform: "",
+      });
+    } else if (effect === "glow") {
+      setState({
+        x,
+        y,
+        visible: true,
+        transform: "scale(1.01)",
+      });
+    }
+  }, [effect, intensity, reduced]);
+
+  const handleMouseLeave = React.useCallback(() => {
+    setState({ x: 0, y: 0, visible: false, transform: "" });
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "relative overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm",
+        className
+      )}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: state.transform,
+        transition: reduced ? "none" : "transform 0.15s ease-out",
+        transformStyle: "preserve-3d",
+        willChange: effect === "none" ? "auto" : "transform",
+      }}
+      {...props}
+    >
+      {effect === "spotlight" && state.visible && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+          style={{
+            opacity: state.visible ? 1 : 0,
+            background: `radial-gradient(300px circle at ${state.x}px ${state.y}px, hsl(var(--la-primary) / 0.15), transparent 60%)`,
+          }}
+        />
+      )}
+      {effect === "glow" && state.visible && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            boxShadow: `inset 0 0 20px hsl(var(--la-primary) / ${0.1 * intensity})`,
+          }}
+        />
+      )}
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
+MagicCard.displayName = "MagicCard";
+
+export interface HoverCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  hoverScale?: number;
+  hoverShadow?: "sm" | "md" | "lg";
+  showBorder?: boolean;
+}
+
+function HoverCard({
+  className,
+  children,
+  hoverScale = 1.02,
+  hoverShadow = "md",
+  showBorder = true,
+  ref,
+  ...props
+}: HoverCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const reduced = usePrefersReducedMotion();
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  const shadowMap = {
+    sm: "shadow-md",
+    md: "shadow-lg",
+    lg: "shadow-2xl",
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "rounded-lg bg-card text-card-foreground",
+        showBorder && "border border-border",
+        !reduced && "transition-all duration-300",
+        isHovered && !reduced && shadowMap[hoverShadow],
+        className
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        transform: !reduced && isHovered ? `scale(${hoverScale})` : "scale(1)",
+        transformOrigin: "center",
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+HoverCard.displayName = "HoverCard";
+
+export interface AnimatedCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  animationDelay?: number;
+  animationType?: "fade-slide" | "scale-fade" | "slide-up";
+}
+
+function AnimatedCard({
+  className,
+  children,
+  animationDelay = 0,
+  animationType = "fade-slide",
+  ref,
+  style,
+  ...props
+}: AnimatedCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const reduced = usePrefersReducedMotion();
+
+  const animationMap = {
+    "fade-slide": "animate-fade-slide",
+    "scale-fade": "animate-scale-fade",
+    "slide-up": "animate-slide-up",
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "rounded-lg border border-border bg-card text-card-foreground shadow-sm",
+        !reduced && animationMap[animationType],
+        className
+      )}
+      style={{
+        animation: reduced ? "none" : undefined,
+        animationDelay: reduced ? "0ms" : `${animationDelay}ms`,
+        ...style,
+      }}
+      {...props}
+    >
+      {children}
+      <style>{`
+        @keyframes animate-fade-slide {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes animate-scale-fade {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        @keyframes animate-slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-slide {
+          animation: animate-fade-slide 0.4s ease-out forwards;
+        }
+        .animate-scale-fade {
+          animation: animate-scale-fade 0.4s ease-out forwards;
+        }
+        .animate-slide-up {
+          animation: animate-slide-up 0.4s ease-out forwards;
+        }
+      `}</style>
+    </div>
+  );
+}
+AnimatedCard.displayName = "AnimatedCard";
+
+export {
+  TiltCard,
+  SpotlightCard,
+  GlassCard,
+  MagneticButton,
+  ShimmerButton,
   AnimatedBorderCard,
   HolographicCard,
   NeonGlowCard,
@@ -592,4 +818,7 @@ export {
   GlowPulseButton,
   MorphButton,
   morphVariants,
+  MagicCard,
+  HoverCard,
+  AnimatedCard,
 };
