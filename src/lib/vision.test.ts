@@ -18,9 +18,10 @@ function makeFetchResponse(body: unknown, ok = true, status = 200) {
   } as Response);
 }
 
-function makeOpenAIResponse(content: unknown) {
+function makeAnthropicResponse(content: unknown) {
   return {
-    choices: [{ message: { role: "assistant", content: JSON.stringify(content) } }],
+    content: [{ type: "text", text: JSON.stringify(content) }],
+    usage: { input_tokens: 100, output_tokens: 50 },
   };
 }
 
@@ -32,9 +33,9 @@ beforeEach(() => {
 
 describe("analyzeImageColors", () => {
   it("returns colors and theme for a valid API response", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeOpenAIResponse(VALID_COLORS))));
+    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS))));
 
-    const result = await analyzeImageColors("https://example.com/logo.png", OPTIONS);
+    const result = await analyzeImageColors("data:image/jpeg;base64,/9j/4AAQSkZJRgABA...", OPTIONS);
 
     expect(result.colors).toEqual(VALID_COLORS);
     expect(result.theme).toBeDefined();
@@ -43,42 +44,50 @@ describe("analyzeImageColors", () => {
     expect(typeof result.theme.cssString).toBe("string");
   });
 
-  it("passes the image URL in the request body", async () => {
-    const fetchMock = vi.fn().mockReturnValue(makeFetchResponse(makeOpenAIResponse(VALID_COLORS)));
+  it("converts image URL to base64 and includes in request", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockReturnValueOnce(
+        Promise.resolve({
+          ok: true,
+          blob: () => Promise.resolve(new Blob(["fake-image-data"], { type: "image/jpeg" })),
+        })
+      )
+      .mockReturnValueOnce(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
     vi.stubGlobal("fetch", fetchMock);
 
     await analyzeImageColors("https://example.com/image.jpg", OPTIONS);
 
-    const [, init] = fetchMock.mock.calls[0] as [string, RequestInit];
-    const body = JSON.parse(init.body as string);
-    const imagePart = body.messages[1].content.find(
-      (p: { type: string; image_url?: { url: string } }) => p.type === "image_url"
-    );
-    expect(imagePart?.image_url?.url).toBe("https://example.com/image.jpg");
+    const calls = fetchMock.mock.calls;
+    expect(calls.length).toBe(2);
+    expect(calls[0][0]).toBe("https://example.com/image.jpg");
   });
 
   it("uses the provided model override", async () => {
-    const fetchMock = vi.fn().mockReturnValue(makeFetchResponse(makeOpenAIResponse(VALID_COLORS)));
+    const fetchMock = vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
     vi.stubGlobal("fetch", fetchMock);
 
-    await analyzeImageColors("https://example.com/img.png", { ...OPTIONS, model: "gpt-4-turbo" });
+    await analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", {
+      ...OPTIONS,
+      model: "claude-3-opus-20250219",
+    });
 
     const [, init] = fetchMock.mock.calls[0] as [string, RequestInit];
     const body = JSON.parse(init.body as string);
-    expect(body.model).toBe("gpt-4-turbo");
+    expect(body.model).toBe("claude-3-opus-20250219");
   });
 
   it("uses a custom baseUrl when provided", async () => {
-    const fetchMock = vi.fn().mockReturnValue(makeFetchResponse(makeOpenAIResponse(VALID_COLORS)));
+    const fetchMock = vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
     vi.stubGlobal("fetch", fetchMock);
 
-    await analyzeImageColors("https://example.com/img.png", {
+    await analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", {
       ...OPTIONS,
-      baseUrl: "https://my-proxy.example.com/v1",
+      baseUrl: "https://my-proxy.example.com",
     });
 
     const [url] = fetchMock.mock.calls[0] as [string];
-    expect(url).toContain("https://my-proxy.example.com/v1");
+    expect(url).toContain("https://my-proxy.example.com/v1/messages");
   });
 
   it("throws when the API returns a non-OK status", async () => {
@@ -88,33 +97,33 @@ describe("analyzeImageColors", () => {
     );
 
     await expect(
-      analyzeImageColors("https://example.com/img.png", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
     ).rejects.toThrow("Vision API request failed (401)");
   });
 
-  it("throws when choices array is missing", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse({ choices: [] })));
+  it("throws when content array is missing", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse({ content: [] })));
 
     await expect(
-      analyzeImageColors("https://example.com/img.png", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
     ).rejects.toThrow("Vision API returned unexpected response shape");
   });
 
   it("throws when a required color key is missing", async () => {
     const incomplete = { primary: "#3b82f6", secondary: "#6366f1" };
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeOpenAIResponse(incomplete))));
+    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(incomplete))));
 
     await expect(
-      analyzeImageColors("https://example.com/img.png", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
     ).rejects.toThrow(/missing or invalid hex for "muted"/);
   });
 
   it("throws when a color value is not a valid hex", async () => {
     const badColors = { ...VALID_COLORS, primary: "blue" };
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeOpenAIResponse(badColors))));
+    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(badColors))));
 
     await expect(
-      analyzeImageColors("https://example.com/img.png", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
     ).rejects.toThrow(/missing or invalid hex for "primary"/);
   });
 
@@ -123,13 +132,13 @@ describe("analyzeImageColors", () => {
       "fetch",
       vi.fn().mockReturnValue(
         makeFetchResponse({
-          choices: [{ message: { role: "assistant", content: JSON.stringify(null) } }],
+          content: [{ type: "text", text: JSON.stringify(null) }],
         })
       )
     );
 
     await expect(
-      analyzeImageColors("https://example.com/img.png", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
     ).rejects.toThrow("Vision API returned non-object JSON");
   });
 });
