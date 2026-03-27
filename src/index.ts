@@ -739,3 +739,25 @@ export type {
   A11yAnalysisResult,
   A11yFixerOptions,
 } from "./lib/a11y-fixer";
+
+export {
+  pluginRegistry,
+  pluginLoader,
+  PluginLoader,
+  mergeVariants,
+  applyBehaviorExtensions,
+  getComponentExtensionsForName,
+  getExtendedVariantsForComponent,
+  wrapComponentWithBehaviors,
+} from "./lib/plugin-system";
+export type {
+  DesignSystemPlugin,
+  PluginMetadata,
+  ComponentExtension,
+  VariantExtension,
+  BehaviorExtension,
+  PluginRegistry,
+  PluginLoadOptions,
+} from "./lib/plugin-system";
+
+export { CustomButtonVariantsPlugin, AccessibilityEnhancementPlugin } from "./lib/plugin-system/examples";
