@@ -48,6 +48,90 @@ function prompt(rl, question) {
   });
 }
 
+function generateReportMarkdown(results, components) {
+  const totalViolations = results.reduce((sum, r) => sum + r.violations.length, 0);
+  const errors = results.reduce(
+    (sum, r) => sum + r.violations.filter((v) => v.severity === "error").length,
+    0
+  );
+  const warnings = results.reduce(
+    (sum, r) => sum + r.violations.filter((v) => v.severity === "warning").length,
+    0
+  );
+
+  let report = `# Accessibility Analysis Report
+
+Generated: ${new Date().toISOString()}
+
+## Summary
+
+- **Total Violations:** ${totalViolations}
+- **Errors:** ${errors}
+- **Warnings:** ${warnings}
+- **Components Analyzed:** ${components.length}
+- **Pass Rate:** ${((components.length - results.length) / components.length * 100).toFixed(1)}%
+
+## Component Details
+
+`;
+
+  results.forEach((r) => {
+    report += `
+### ${r.component}
+
+- **WCAG Level:** ${r.wcagLevel}
+- **Improvement Score:** ${r.improvementScore}%
+- **Total Violations:** ${r.violations.length}
+
+`;
+
+    if (r.violations.length > 0) {
+      const componentErrors = r.violations.filter((v) => v.severity === "error");
+      const componentWarnings = r.violations.filter((v) => v.severity === "warning");
+
+      if (componentErrors.length > 0) {
+        report += `**Errors (${componentErrors.length}):**\n`;
+        componentErrors.forEach((v) => {
+          report += `- \`[${v.code}]\` ${v.message}\n`;
+        });
+        report += "\n";
+      }
+
+      if (componentWarnings.length > 0) {
+        report += `**Warnings (${componentWarnings.length}):**\n`;
+        componentWarnings.forEach((v) => {
+          report += `- \`[${v.code}]\` ${v.message}\n`;
+        });
+        report += "\n";
+      }
+    } else {
+      report += "✅ No violations found\n\n";
+    }
+  });
+
+  report += `
+## WCAG Compliance Levels
+
+- **Level A:** Basic accessibility
+- **Level AA:** Enhanced accessibility (recommended)
+- **Level AAA:** Expert-level accessibility
+
+## Recommendations
+
+1. Review all errors first - these are required for compliance
+2. Address warnings to improve user experience
+3. Test with keyboard navigation and screen readers
+4. Use the interactive mode (\`--interactive\`) to review fixes before applying
+
+## Next Steps
+
+- Run with \`--fix\` to automatically apply all fixes
+- Run with \`--interactive\` to review and approve fixes one by one
+`;
+
+  return report;
+}
+
 async function readComponent(filePath) {
   const code = await readFile(filePath, "utf-8");
   const name = basename(dirname(filePath));
@@ -308,6 +392,13 @@ async function main() {
       }
     } else {
       console.log(`✅ ${component.name} - No violations found`);
+      results.push({
+        component: component.name,
+        filePath: component.filePath,
+        violations: [],
+        wcagLevel: analysis.wcagLevel,
+        improvementScore: analysis.improvementScore,
+      });
     }
   }
 
@@ -319,7 +410,12 @@ async function main() {
   console.log(`   🔴 Errors: ${totalErrors}`);
   console.log(`   🟡 Warnings: ${totalWarnings}`);
 
-  if (interactive) {
+  if (reportOnly) {
+    const reportMarkdown = generateReportMarkdown(results, components);
+    const reportPath = join(ROOT, "ACCESSIBILITY_AUDIT.md");
+    await writeFile(reportPath, reportMarkdown, "utf-8");
+    console.log(`\n📄 Detailed report saved to: ${reportPath}`);
+  } else if (interactive) {
     console.log(
       "\n✨ Interactive review complete! Please test the changes thoroughly."
     );
