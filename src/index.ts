@@ -739,3 +739,22 @@ export type {
   A11yAnalysisResult,
   A11yFixerOptions,
 } from "./lib/a11y-fixer";
+
+export {
+  getPluginManager,
+  resetPluginManager,
+  useVariant,
+  getCustomVariant,
+  getComponentVariants,
+  hasCustomVariant,
+} from "./lib/plugins";
+export type {
+  PluginConfig,
+  PluginContext,
+  PluginManager,
+  HookName,
+  HookCallback,
+  HookContext,
+  CustomVariant,
+  VariantRegistry,
+} from "./lib/plugins";

@@ -1,0 +1,65 @@
+{
+  "name": "@yourorg/design-system-plugin-brand",
+  "version": "1.0.0",
+  "description": "Official brand variants for LaunchApp Design System - custom Button, Badge, and Card styles",
+  "keywords": [
+    "design-system",
+    "plugin",
+    "variants",
+    "react",
+    "tailwindcss",
+    "radix-ui"
+  ],
+  "homepage": "https://github.com/yourorg/design-system-plugin-brand",
+  "bugs": {
+    "url": "https://github.com/yourorg/design-system-plugin-brand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourorg/design-system-plugin-brand.git"
+  },
+  "license": "MIT",
+  "author": "Your Organization <support@yourorg.com>",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "@launchapp/design-system": "^0.2.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "@launchapp/design-system": "^0.2.0",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.0"
+  }
+}
