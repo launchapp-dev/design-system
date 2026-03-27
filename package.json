@@ -16,6 +16,9 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "create-app": "./packages/create-design-system/dist/index.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -25,7 +28,8 @@
     "./styles.css": "./dist/styles.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "packages/create-design-system/dist"
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",

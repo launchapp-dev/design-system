@@ -592,8 +592,11 @@ async function main(): Promise<void> {
         name: "template",
         message: "Choose a template",
         choices: [
-          { title: "Next.js", value: "nextjs", description: "Full-stack React with Server Components" },
-          { title: "Vite", value: "vite", description: "Fast lightweight bundler with React" },
+          { title: "SaaS Dashboard", value: "saas-dashboard", description: "Complete SaaS dashboard with analytics and components" },
+          { title: "Marketing Site", value: "marketing-site", description: "Marketing website with landing page and CTA" },
+          { title: "Admin Panel", value: "admin-panel", description: "Admin interface with data tables and forms" },
+          { title: "Next.js Blank", value: "nextjs", description: "Full-stack React with Server Components" },
+          { title: "Vite Blank", value: "vite", description: "Fast lightweight bundler with React" },
         ],
         initial: 0,
       },
@@ -727,7 +730,8 @@ async function main(): Promise<void> {
   }
 
   console.log(`\n  ✓ Created project: ${answers.projectName}`);
-  console.log(`  ✓ Template: ${template === "nextjs" ? "Next.js" : "Vite"}\n`);
+  const templateDisplay = template === "nextjs" ? "Next.js Blank" : template === "vite" ? "Vite Blank" : template === "saas-dashboard" ? "SaaS Dashboard" : template === "marketing-site" ? "Marketing Site" : "Admin Panel";
+  console.log(`  ✓ Template: ${templateDisplay}\n`);
   console.log("  Generated files:");
   console.log(`    ${path.relative(process.cwd(), globalsPath)}`);
   console.log(`    ${path.relative(process.cwd(), tailwindPath)}`);
