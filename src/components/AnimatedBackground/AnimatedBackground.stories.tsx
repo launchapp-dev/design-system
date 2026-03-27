@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid } from "./index";
+import { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid, GradientBackground, AnimatedGradient, ShimmerBackground } from "./index";
 
 const meta: Meta = {
   title: "Components/AnimatedBackground",
@@ -259,6 +259,105 @@ export const AnimatedGridStory: StoryObj = {
   ),
 };
 
+export const GradientBackgroundStory: StoryObj = {
+  name: "GradientBackground",
+  parameters: {
+    docs: {
+      description: {
+        story: `Animated gradient background with smooth color transitions. Supports linear, radial, and conic gradients.`,
+      },
+    },
+  },
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Linear gradient</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <GradientBackground colors={["#ff006e", "#8338ec", "#3a86ff"]} speed={8} />
+        </div>
+      </div>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Radial gradient</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <GradientBackground colors={["#f093fb", "#f5576c", "#4facfe"]} speed={6} direction="radial" />
+        </div>
+      </div>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Conic gradient</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <GradientBackground colors={["#06b6d4", "#0891b2", "#0e7490"]} speed={10} direction="conic" />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const AnimatedGradientStory: StoryObj = {
+  name: "AnimatedGradient",
+  parameters: {
+    docs: {
+      description: {
+        story: `Complex animated gradient with multi-step color transitions for dynamic backgrounds.`,
+      },
+    },
+  },
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Default animated gradient</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <AnimatedGradient />
+        </div>
+      </div>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Blue-to-cyan gradient</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <AnimatedGradient colors={["#3b82f6", "#06b6d4", "#14b8a6"]} speed={5} />
+        </div>
+      </div>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Warm gradient</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <AnimatedGradient colors={["#fbbf24", "#f97316", "#dc2626"]} speed={7} />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const ShimmerBackgroundStory: StoryObj = {
+  name: "ShimmerBackground",
+  parameters: {
+    docs: {
+      description: {
+        story: `Shimmer effect for loading states and highlight animations. Configurable speed and intensity.`,
+      },
+    },
+  },
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Default shimmer</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden", background: "#e5e7eb" }}>
+          <ShimmerBackground />
+        </div>
+      </div>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Fast shimmer</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden", background: "#f3f4f6" }}>
+          <ShimmerBackground speed={1} intensity={0.6} />
+        </div>
+      </div>
+      <div>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Slow shimmer with custom color</p>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden", background: "#1f2937" }}>
+          <ShimmerBackground color="#60a5fa" speed={3} intensity={0.4} />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 export const AllAnimatedBackgrounds: StoryObj = {
   name: "All Animated Backgrounds",
   parameters: {
@@ -316,6 +415,30 @@ export const AllAnimatedBackgrounds: StoryObj = {
         </h3>
         <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
           <AnimatedGrid />
+        </div>
+      </section>
+      <section>
+        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+          Gradient Background
+        </h3>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <GradientBackground colors={["#ff006e", "#8338ec", "#3a86ff"]} />
+        </div>
+      </section>
+      <section>
+        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+          Animated Gradient
+        </h3>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden" }}>
+          <AnimatedGradient colors={["#ff006e", "#8338ec", "#3a86ff"]} />
+        </div>
+      </section>
+      <section>
+        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+          Shimmer Background
+        </h3>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden", background: "#e5e7eb" }}>
+          <ShimmerBackground />
         </div>
       </section>
     </div>

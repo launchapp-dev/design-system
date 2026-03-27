@@ -453,4 +453,155 @@ function AnimatedGrid({
 }
 AnimatedGrid.displayName = "AnimatedGrid";
 
-export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid };
+export interface GradientBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+  colors?: string[];
+  speed?: number;
+  direction?: "linear" | "radial" | "conic";
+  angle?: number;
+}
+
+function GradientBackground({
+  colors = ["hsl(var(--la-primary))", "hsl(var(--la-secondary))", "hsl(var(--la-accent))"],
+  speed = 8,
+  direction = "linear",
+  angle = 45,
+  className,
+  ref,
+  ...props
+}: GradientBackgroundProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const reduced = usePrefersReducedMotion();
+  const colorString = colors.join(", ");
+
+  let gradientStyle: React.CSSProperties = {};
+
+  if (direction === "linear") {
+    gradientStyle = {
+      background: `linear-gradient(${angle}deg, ${colorString})`,
+      backgroundSize: "400% 400%",
+      animation: reduced ? "none" : `gradient-shift ${speed}s ease infinite`,
+    };
+  } else if (direction === "radial") {
+    gradientStyle = {
+      background: `radial-gradient(circle, ${colorString})`,
+      backgroundSize: "400% 400%",
+      animation: reduced ? "none" : `gradient-shift ${speed}s ease infinite`,
+    };
+  } else if (direction === "conic") {
+    gradientStyle = {
+      background: `conic-gradient(${colorString})`,
+      backgroundSize: "400% 400%",
+      animation: reduced ? "none" : `gradient-shift ${speed}s ease infinite`,
+    };
+  }
+
+  return (
+    <div
+      ref={ref}
+      className={cn("relative overflow-hidden", className)}
+      style={gradientStyle}
+      {...props}
+    >
+      <style>{`
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
+    </div>
+  );
+}
+GradientBackground.displayName = "GradientBackground";
+
+export interface AnimatedGradientProps extends React.HTMLAttributes<HTMLDivElement> {
+  colors?: string[];
+  speed?: number;
+  size?: number;
+}
+
+function AnimatedGradient({
+  colors = ["#ff006e", "#8338ec", "#3a86ff"],
+  speed = 6,
+  size = 200,
+  className,
+  ref,
+  ...props
+}: AnimatedGradientProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const reduced = usePrefersReducedMotion();
+
+  return (
+    <div
+      ref={ref}
+      className={cn("relative overflow-hidden", className)}
+      {...props}
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(45deg, ${colors.join(", ")})`,
+          backgroundSize: "300% 300%",
+          animation: reduced ? "none" : `animated-gradient ${speed}s ease infinite`,
+        }}
+      />
+      <style>{`
+        @keyframes animated-gradient {
+          0% { background-position: 0% 50%; }
+          25% { background-position: 100% 50%; }
+          50% { background-position: 100% 0%; }
+          75% { background-position: 0% 100%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
+    </div>
+  );
+}
+AnimatedGradient.displayName = "AnimatedGradient";
+
+export interface ShimmerBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+  color?: string;
+  speed?: number;
+  intensity?: number;
+  width?: number;
+}
+
+function ShimmerBackground({
+  color = "hsl(var(--la-primary))",
+  speed = 2,
+  intensity = 0.5,
+  width = 100,
+  className,
+  ref,
+  ...props
+}: ShimmerBackgroundProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const reduced = usePrefersReducedMotion();
+
+  return (
+    <div
+      ref={ref}
+      className={cn("relative overflow-hidden", className)}
+      {...props}
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(90deg, transparent 0%, ${color} 50%, transparent 100%)`,
+          backgroundSize: `${width}% 100%`,
+          backgroundPosition: "-100% 0",
+          animation: reduced ? "none" : `shimmer ${speed}s infinite`,
+          opacity: intensity,
+        }}
+      />
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -100% 0; }
+          100% { background-position: 100% 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+ShimmerBackground.displayName = "ShimmerBackground";
+
+export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid, GradientBackground, AnimatedGradient, ShimmerBackground };
