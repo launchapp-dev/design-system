@@ -191,9 +191,129 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
     },
   };
 
+  const catppuccin: CommunityTheme = {
+    id: "catppuccin-mocha",
+    name: "Catppuccin Mocha",
+    description: "Soothing pastel theme with a soft, warm aesthetic inspired by Catppuccin",
+    author: {
+      name: "Catppuccin Community",
+      url: "https://catppuccin.com",
+    },
+    version: "1.0.0",
+    license: "MIT",
+    previewColor: "136 74% 72%",
+    keywords: ["dark", "pastel", "warm", "cozy"],
+    repository: "https://github.com/catppuccin/catppuccin",
+    tokens: {
+      light: {
+        "--la-background": "0 0% 100%",
+        "--la-foreground": "230 25% 23%",
+        "--la-card": "0 0% 100%",
+        "--la-card-foreground": "230 25% 23%",
+        "--la-popover": "0 0% 100%",
+        "--la-popover-foreground": "230 25% 23%",
+        "--la-primary": "136 74% 72%",
+        "--la-primary-foreground": "0 0% 100%",
+        "--la-secondary": "230 25% 95%",
+        "--la-secondary-foreground": "230 25% 30%",
+        "--la-muted": "230 25% 90%",
+        "--la-muted-foreground": "230 25% 45%",
+        "--la-accent": "136 74% 72%",
+        "--la-accent-foreground": "0 0% 100%",
+        "--la-destructive": "343 81% 75%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "230 25% 88%",
+        "--la-input": "230 25% 88%",
+        "--la-ring": "136 74% 72%",
+      },
+      dark: {
+        "--la-background": "230 25% 23%",
+        "--la-foreground": "226 64% 88%",
+        "--la-card": "230 23% 30%",
+        "--la-card-foreground": "226 64% 88%",
+        "--la-popover": "230 23% 30%",
+        "--la-popover-foreground": "226 64% 88%",
+        "--la-primary": "136 74% 72%",
+        "--la-primary-foreground": "230 25% 23%",
+        "--la-secondary": "230 25% 40%",
+        "--la-secondary-foreground": "226 64% 88%",
+        "--la-muted": "230 25% 48%",
+        "--la-muted-foreground": "226 64% 70%",
+        "--la-accent": "136 74% 72%",
+        "--la-accent-foreground": "230 25% 23%",
+        "--la-destructive": "343 81% 75%",
+        "--la-destructive-foreground": "230 25% 23%",
+        "--la-border": "230 25% 38%",
+        "--la-input": "230 25% 38%",
+        "--la-ring": "136 74% 72%",
+      },
+    },
+  };
+
+  const oneDark: CommunityTheme = {
+    id: "one-dark-pro",
+    name: "One Dark Pro",
+    description: "A refined dark theme with blue-tinted colors, inspired by Atom's One Dark",
+    author: {
+      name: "One Dark Theme Community",
+      url: "https://onedark.app",
+    },
+    version: "1.0.0",
+    license: "MIT",
+    previewColor: "219 85% 60%",
+    keywords: ["dark", "blue", "professional", "minimal"],
+    repository: "https://github.com/atom/one-dark-syntax",
+    tokens: {
+      light: {
+        "--la-background": "0 0% 100%",
+        "--la-foreground": "219 14% 20%",
+        "--la-card": "0 0% 100%",
+        "--la-card-foreground": "219 14% 20%",
+        "--la-popover": "0 0% 100%",
+        "--la-popover-foreground": "219 14% 20%",
+        "--la-primary": "219 85% 60%",
+        "--la-primary-foreground": "0 0% 100%",
+        "--la-secondary": "219 14% 95%",
+        "--la-secondary-foreground": "219 14% 25%",
+        "--la-muted": "219 14% 90%",
+        "--la-muted-foreground": "219 14% 45%",
+        "--la-accent": "219 85% 60%",
+        "--la-accent-foreground": "0 0% 100%",
+        "--la-destructive": "0 100% 65%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "219 14% 88%",
+        "--la-input": "219 14% 88%",
+        "--la-ring": "219 85% 60%",
+      },
+      dark: {
+        "--la-background": "219 14% 20%",
+        "--la-foreground": "220 14% 88%",
+        "--la-card": "219 14% 25%",
+        "--la-card-foreground": "220 14% 88%",
+        "--la-popover": "219 14% 25%",
+        "--la-popover-foreground": "220 14% 88%",
+        "--la-primary": "219 85% 65%",
+        "--la-primary-foreground": "219 14% 20%",
+        "--la-secondary": "219 14% 35%",
+        "--la-secondary-foreground": "220 14% 88%",
+        "--la-muted": "219 14% 42%",
+        "--la-muted-foreground": "219 14% 70%",
+        "--la-accent": "219 85% 65%",
+        "--la-accent-foreground": "219 14% 20%",
+        "--la-destructive": "0 100% 65%",
+        "--la-destructive-foreground": "0 0% 100%",
+        "--la-border": "219 14% 32%",
+        "--la-input": "219 14% 32%",
+        "--la-ring": "219 85% 65%",
+      },
+    },
+  };
+
   themes.push({ id: dracula.id, theme: dracula });
   themes.push({ id: nord.id, theme: nord });
   themes.push({ id: gruvbox.id, theme: gruvbox });
+  themes.push({ id: catppuccin.id, theme: catppuccin });
+  themes.push({ id: oneDark.id, theme: oneDark });
 
   cachedRegistry = themes;
   return themes;
@@ -209,5 +329,5 @@ export function listCommunityThemes(): CommunityTheme[] {
 }
 
 export function getFeaturedCommunityThemeIds(): string[] {
-  return ["dracula", "nord", "gruvbox"];
+  return ["dracula", "nord", "gruvbox", "catppuccin-mocha", "one-dark-pro"];
 }
