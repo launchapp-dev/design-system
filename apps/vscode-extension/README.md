@@ -88,26 +88,48 @@ To install:
 
 ### Build the extension:
 
+The extension uses TypeScript which must be compiled to JavaScript. Due to monorepo configuration, use the provided build script:
+
 ```bash
-npm run build
+./build.sh
 ```
+
+This will compile TypeScript sources in `src/` to JavaScript in `dist/`.
 
 ### Watch mode (auto-compile on changes):
 
 ```bash
-npm run dev
+npx -p typescript tsc --watch --project . --outDir dist
 ```
 
 ### Type checking:
 
 ```bash
-npm run typecheck
+npx -p typescript tsc --noEmit
 ```
+
+### Package for distribution:
+
+First ensure the extension is built, then:
+
+```bash
+npx vsce package
+```
+
+This creates a `.vsix` file that can be installed locally or published to the marketplace.
+
+### Publish to VS Code Marketplace:
+
+1. Create a publisher account at https://marketplace.visualstudio.com
+2. Install vsce: `npm install -g vsce`
+3. Create a Personal Access Token on the publisher account
+4. Login to vsce: `vsce login <publisher-name>`
+5. Publish: `vsce publish [major|minor|patch]`
 
 ### Generate snippets:
 
 ```bash
-npm run generate-vscode-snippets
+cd ../../ && npm run generate-vscode-snippets
 ```
 
 ## File Structure
@@ -121,10 +143,21 @@ apps/vscode-extension/
 │   ├── token-provider.ts      # Design token hover and completion
 │   ├── quick-insert.ts        # Quick-insert commands
 │   ├── vscode.d.ts           # VS Code API type definitions
-├── dist/                      # Compiled JavaScript
+├── dist/                      # Compiled JavaScript (built by build.sh)
+├── build.sh                  # Build script (recommended for monorepo)
 ├── package.json              # Extension manifest
+├── tsconfig.json            # TypeScript compiler options
 └── README.md
 ```
+
+## Build Dependencies
+
+- **Node.js** ≥ 16.19.0
+- **npm** ≥ 8.19.3 (or pnpm ≥ 8.0 for monorepo workspace)
+- **TypeScript** (installed automatically via npx)
+- **@types/node** and **@types/vscode** (dev dependencies)
+
+The extension has no runtime dependencies - all dependencies are dev tools for building and testing.
 
 ## License
 
