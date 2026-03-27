@@ -16,6 +16,8 @@ interface GeneratorState {
   error: string | null;
   colors: VisionColorMap | null;
   imagePreview: string | null;
+  inputMode: "upload" | "url";
+  imageUrl: string;
 }
 
 const defaultColors: VisionColorMap = {
@@ -35,6 +37,8 @@ export const SmartThemingGenerator = React.forwardRef<
     error: null,
     colors: null,
     imagePreview: null,
+    inputMode: "upload",
+    imageUrl: "",
   });
 
   const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -81,6 +85,36 @@ export const SmartThemingGenerator = React.forwardRef<
     [apiKey, onThemeGenerated]
   );
 
+  const handleUrlSubmit = React.useCallback(
+    async (url: string) => {
+      if (!url.trim()) {
+        setState((prev) => ({ ...prev, error: "Please enter a valid URL" }));
+        return;
+      }
+
+      setState((prev) => ({ ...prev, loading: true, error: null }));
+
+      try {
+        const options: VisionThemeOptions = { apiKey };
+        const result = await analyzeImageColors(url, options);
+        setState((prev) => ({
+          ...prev,
+          colors: result.colors,
+          imagePreview: url,
+          loading: false,
+        }));
+        onThemeGenerated?.(result.colors);
+      } catch (err) {
+        setState((prev) => ({
+          ...prev,
+          error: err instanceof Error ? err.message : "Failed to analyze image from URL",
+          loading: false,
+        }));
+      }
+    },
+    [apiKey, onThemeGenerated]
+  );
+
   const handleColorChange = React.useCallback(
     (key: keyof VisionColorMap, value: string) => {
       setState((prev) => ({
@@ -106,25 +140,70 @@ export const SmartThemingGenerator = React.forwardRef<
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="image-upload">Upload Image</Label>
-            <div className="flex gap-2">
-              <Input
-                id="image-upload"
-                type="file"
-                accept="image/*"
-                onChange={handleImageSelect}
-                disabled={disabled || state.loading}
-                ref={fileInputRef}
-              />
+          <div className="space-y-3">
+            <div className="flex gap-2 border-b">
               <Button
-                variant="outline"
-                onClick={() => fileInputRef.current?.click()}
+                variant={state.inputMode === "upload" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setState((prev) => ({ ...prev, inputMode: "upload" }))}
                 disabled={disabled || state.loading}
+                className="rounded-b-none"
               >
-                {state.loading ? "Analyzing..." : "Browse"}
+                Upload Image
+              </Button>
+              <Button
+                variant={state.inputMode === "url" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setState((prev) => ({ ...prev, inputMode: "url" }))}
+                disabled={disabled || state.loading}
+                className="rounded-b-none"
+              >
+                Image URL
               </Button>
             </div>
+
+            {state.inputMode === "upload" ? (
+              <div className="space-y-2 pt-2">
+                <Label htmlFor="image-upload">Select Image File</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageSelect}
+                    disabled={disabled || state.loading}
+                    ref={fileInputRef}
+                  />
+                  <Button
+                    variant="outline"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={disabled || state.loading}
+                  >
+                    {state.loading ? "Analyzing..." : "Browse"}
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2 pt-2">
+                <Label htmlFor="image-url">Image URL</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="image-url"
+                    type="text"
+                    placeholder="https://example.com/image.jpg"
+                    value={state.imageUrl}
+                    onChange={(e) => setState((prev) => ({ ...prev, imageUrl: e.target.value }))}
+                    disabled={disabled || state.loading}
+                  />
+                  <Button
+                    onClick={() => handleUrlSubmit(state.imageUrl)}
+                    disabled={disabled || state.loading || !state.imageUrl.trim()}
+                  >
+                    {state.loading ? "Analyzing..." : "Analyze"}
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
 
           {state.error && (
@@ -138,7 +217,7 @@ export const SmartThemingGenerator = React.forwardRef<
               <Label>Image Preview</Label>
               <img
                 src={state.imagePreview}
-                alt="Uploaded"
+                alt="Preview"
                 className="max-h-48 w-full rounded-md object-cover"
               />
             </div>

@@ -61,6 +61,37 @@ function ColorSwatch({ label, hslValue, hexValue }: ColorSwatchProps) {
   );
 }
 
+const exportThemeAsJson = (colors: VisionColorMap | null, theme: ReturnType<typeof createTheme> | null) => {
+  if (!colors || !theme) return;
+
+  const themeExport = {
+    metadata: {
+      version: "1.0.0",
+      generated: new Date().toISOString(),
+      name: "Generated Theme",
+    },
+    colors: {
+      extracted: colors,
+    },
+    tokens: {
+      light: theme.light,
+      dark: theme.dark,
+    },
+    css: theme.cssString,
+  };
+
+  const json = JSON.stringify(themeExport, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `theme-${new Date().toISOString().split("T")[0]}.json`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};
+
 export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
   ({ colors, className }, ref) => {
     const [isDark, setIsDark] = React.useState(false);
@@ -102,15 +133,25 @@ export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
               <CardTitle>Theme Preview</CardTitle>
               <CardDescription>Live preview of your generated theme</CardDescription>
             </div>
-            <div className="flex items-center gap-2">
-              <Label htmlFor="dark-mode-toggle" className="text-sm font-medium">
-                Dark Mode
-              </Label>
-              <Switch
-                id="dark-mode-toggle"
-                checked={isDark}
-                onCheckedChange={setIsDark}
-              />
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <Label htmlFor="dark-mode-toggle" className="text-sm font-medium">
+                  Dark Mode
+                </Label>
+                <Switch
+                  id="dark-mode-toggle"
+                  checked={isDark}
+                  onCheckedChange={setIsDark}
+                />
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => exportThemeAsJson(colors, theme)}
+                disabled={!colors || !theme}
+              >
+                Export JSON
+              </Button>
             </div>
           </CardHeader>
         </Card>
