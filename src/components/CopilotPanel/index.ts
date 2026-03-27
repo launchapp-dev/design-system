@@ -12,6 +12,8 @@ export {
   CopilotPanelSuggestions,
   CopilotPanelSuggestion,
   CopilotPanelDivider,
+  CopilotPanelInput,
+  CopilotPanelChatHistory,
   copilotPanelVariants,
   copilotSuggestionVariants,
 } from "./CopilotPanel";
@@ -21,6 +23,8 @@ export type {
   CopilotPanelContextListProps,
   CopilotSuggestionProps,
   CopilotPanelSuggestionsProps,
+  CopilotPanelInputProps,
+  CopilotPanelChatHistoryProps,
 } from "./CopilotPanel";
 export type { CopilotPanelVariants } from "./CopilotPanel";
 export type { CopilotSuggestionVariants } from "./CopilotPanel";

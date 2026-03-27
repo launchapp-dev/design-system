@@ -11,6 +11,8 @@ import {
   SheetDescription,
 } from "../Sheet";
 import { ScrollArea } from "../ScrollArea";
+import { ChatInput } from "../ChatInput";
+import { ChatBubbleGroup } from "../ChatBubble";
 import { cn } from "../../lib/utils";
 
 const copilotPanelVariants = cva(
@@ -262,6 +264,47 @@ const CopilotPanelDivider = React.forwardRef<
 ));
 CopilotPanelDivider.displayName = "CopilotPanelDivider";
 
+export interface CopilotPanelInputProps
+  extends React.ComponentPropsWithoutRef<typeof ChatInput> {
+  onSend?: (value: string) => void;
+}
+
+const CopilotPanelInput = React.forwardRef<
+  HTMLTextAreaElement,
+  CopilotPanelInputProps
+>(({ onSend, ...props }, ref) => (
+  <ChatInput
+    ref={ref}
+    onSend={onSend}
+    size="md"
+    placeholder="Ask me anything..."
+    {...props}
+  />
+));
+CopilotPanelInput.displayName = "CopilotPanelInput";
+
+export interface CopilotPanelChatHistoryProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+}
+
+const CopilotPanelChatHistory = React.forwardRef<
+  HTMLDivElement,
+  CopilotPanelChatHistoryProps
+>(({ className, children, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col gap-4", className)}
+    role="log"
+    aria-label="Chat history"
+    aria-live="polite"
+    {...props}
+  >
+    {children ? children : <ChatBubbleGroup />}
+  </div>
+));
+CopilotPanelChatHistory.displayName = "CopilotPanelChatHistory";
+
 export type CopilotPanelVariants = VariantProps<typeof copilotPanelVariants>;
 export type CopilotSuggestionVariants = VariantProps<typeof copilotSuggestionVariants>;
 
@@ -279,6 +322,8 @@ export {
   CopilotPanelSuggestions,
   CopilotPanelSuggestion,
   CopilotPanelDivider,
+  CopilotPanelInput,
+  CopilotPanelChatHistory,
   copilotPanelVariants,
   copilotSuggestionVariants,
 };
