@@ -8,6 +8,7 @@ import { MobileNav } from "./MobileNav";
 const navLinks = [
   { href: "/docs", label: "Documentation" },
   { href: "/components", label: "Components" },
+  { href: "/generator", label: "AI Generator" },
   { href: "/community-themes", label: "Community Themes" },
   { href: "/examples", label: "Examples" },
   { href: "https://github.com/launchapp/design-system", label: "GitHub" },

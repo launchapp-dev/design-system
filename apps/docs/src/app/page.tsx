@@ -64,6 +64,12 @@ export default function HomePage() {
             Browse Components
           </Link>
           <Link
+            href="/generator"
+            className="inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            AI Generator
+          </Link>
+          <Link
             href="/tokens"
             className="inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
           >
