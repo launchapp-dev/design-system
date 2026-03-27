@@ -1,0 +1,118 @@
+name: Publish VS Code Extension
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/vscode-extension/**'
+      - '.github/workflows/publish-vscode-extension.yml'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish to marketplace'
+        required: true
+        default: 'false'
+
+jobs:
+  build:
+    name: Build and Package Extension
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build Extension
+        run: |
+          cd apps/vscode-extension
+          bash build.sh
+
+      - name: Check if VSIX build is needed
+        id: check-publish
+        run: |
+          if [ "${{ github.event.inputs.publish }}" = "true" ] || [ "${{ github.event_name }}" = "push" ]; then
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install vsce
+        if: steps.check-publish.outputs.should_publish == 'true'
+        run: npm install -g @vscode/vsce
+
+      - name: Package Extension
+        if: steps.check-publish.outputs.should_publish == 'true'
+        run: |
+          cd apps/vscode-extension
+          vsce package
+
+      - name: Upload Extension as Artifact
+        if: steps.check-publish.outputs.should_publish == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: vscode-extension
+          path: apps/vscode-extension/*.vsix
+
+  publish:
+    name: Publish to VS Code Marketplace
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event.inputs.publish == 'true' && github.actor != 'dependabot[bot]'
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build Extension
+        run: |
+          cd apps/vscode-extension
+          bash build.sh
+
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+      - name: Package Extension
+        run: |
+          cd apps/vscode-extension
+          vsce package
+
+      - name: Publish to Marketplace
+        if: github.event.inputs.publish == 'true'
+        run: |
+          cd apps/vscode-extension
+          vsce publish -p ${{ secrets.VSCE_PAT }}
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Create Release
+        if: github.event.inputs.publish == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: apps/vscode-extension/*.vsix
+          tag_name: vscode-extension-v${{ github.run_number }}
+          body: |
+            ## VS Code Extension Release
+
+            Published to [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=launchapp.design-system)
+
+            ### Features
+            - Component snippets (843+ ready-to-use)
+            - Prop autocomplete with type hints
+            - Design token preview on hover
+            - Quick-insert actions
+            - Documentation inline
+
+            [Install now](https://marketplace.visualstudio.com/items?itemName=launchapp.design-system)

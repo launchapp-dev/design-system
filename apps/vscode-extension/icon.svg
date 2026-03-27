@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0066cc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0052a3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#grad)"/>
+  <g fill="white" opacity="0.95">
+    <!-- Component grid representation -->
+    <rect x="16" y="16" width="32" height="32" rx="4"/>
+    <rect x="60" y="16" width="32" height="32" rx="4" opacity="0.7"/>
+    <rect x="16" y="60" width="32" height="32" rx="4" opacity="0.7"/>
+    <rect x="60" y="60" width="32" height="32" rx="4" opacity="0.5"/>
+
+    <!-- Component dots/indicators -->
+    <circle cx="24" cy="24" r="3" fill="#0066cc" opacity="0.3"/>
+    <circle cx="40" cy="40" r="3" fill="#0066cc" opacity="0.3"/>
+    <circle cx="68" cy="24" r="2.5" fill="#0066cc" opacity="0.2"/>
+    <circle cx="84" cy="40" r="2.5" fill="#0066cc" opacity="0.2"/>
+  </g>
+</svg>
