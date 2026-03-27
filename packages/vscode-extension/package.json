@@ -80,6 +80,6 @@
     "vsce": "^2.15.0"
   },
   "dependencies": {
-    "@launchapp/design-system": "workspace:*"
+    "@launchapp/design-system": "file:../.."
   }
 }
