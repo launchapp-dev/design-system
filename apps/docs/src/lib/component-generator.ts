@@ -126,7 +126,90 @@ export interface ComponentGeneratorOptions {
 export interface GeneratedComponent {
   code: string;
   componentName: string;
+  story: string;
   timestamp: string;
+  metadata: {
+    hasForwardRef: boolean;
+    hasCVA: boolean;
+    hasTypeScript: boolean;
+    hasAccessibility: boolean;
+  };
+}
+
+function extractComponentName(description: string): string {
+  return (
+    description
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join("") || "GeneratedComponent"
+  );
+}
+
+function validateComponent(code: string): {
+  hasForwardRef: boolean;
+  hasCVA: boolean;
+  hasTypeScript: boolean;
+  hasAccessibility: boolean;
+} {
+  return {
+    hasForwardRef: code.includes("React.forwardRef"),
+    hasCVA: code.includes("cva("),
+    hasTypeScript:
+      code.includes("interface") ||
+      code.includes(": ") ||
+      code.includes("type "),
+    hasAccessibility:
+      code.includes("aria-") ||
+      code.includes("role=") ||
+      code.includes("Radix"),
+  };
+}
+
+async function generateStorybook(
+  componentCode: string,
+  componentName: string,
+  description: string,
+  client: Anthropic
+): Promise<string> {
+  const storyPrompt = `Given the following React component code, generate a Storybook story (CSF 3 format) for it.
+
+Component Name: ${componentName}
+Description: ${description}
+
+Component Code:
+\`\`\`tsx
+${componentCode}
+\`\`\`
+
+Generate ONLY the Storybook story code in CSF 3 format. The story file should:
+1. Import the component and necessary dependencies
+2. Export default metadata with title and component
+3. Create multiple story variants (default, and any variants the component supports)
+4. Include proper TypeScript types
+5. Show different use cases and states
+
+Return ONLY the story code - no markdown, no explanations. Start directly with the imports.`;
+
+  const message = await client.messages.create({
+    model: "claude-opus-4-6",
+    max_tokens: 1024,
+    messages: [
+      {
+        role: "user",
+        content: storyPrompt,
+      },
+    ],
+  });
+
+  const story =
+    message.content[0].type === "text" ? message.content[0].text : "";
+
+  if (!story) {
+    throw new Error("Failed to generate Storybook story");
+  }
+
+  return story;
 }
 
 export async function generateComponent(
@@ -139,6 +222,8 @@ export async function generateComponent(
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new Error("ANTHROPIC_API_KEY environment variable is not set");
   }
+
+  const componentName = extractComponentName(options.description);
 
   const prompt = `${DESIGN_SYSTEM_CONTEXT}
 
@@ -178,17 +263,22 @@ Return ONLY the component code - no markdown formatting, no code blocks, no expl
     throw new Error("Failed to generate component code");
   }
 
-  // Extract component name from description (simple heuristic)
-  const componentName =
-    options.description
-      .split(/\s+/)
-      .slice(0, 2)
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join("") || "GeneratedComponent";
+  // Generate Storybook story
+  const story = await generateStorybook(
+    generatedCode,
+    componentName,
+    options.description,
+    client
+  );
+
+  // Validate component structure
+  const metadata = validateComponent(generatedCode);
 
   return {
     code: generatedCode,
     componentName,
+    story,
     timestamp: new Date().toISOString(),
+    metadata,
   };
 }
