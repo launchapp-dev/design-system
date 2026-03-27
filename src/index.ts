@@ -499,8 +499,8 @@ export type { LiveIndicatorProps } from "./components/LiveIndicator";
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
 export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
 
-export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid } from "./components/AnimatedBackground";
-export type { ParticlesProps, StarsProps, MatrixRainProps, NoiseTextureProps, AnimatedGridProps } from "./components/AnimatedBackground";
+export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid, GradientBackground, AnimatedGradient, ShimmerBackground } from "./components/AnimatedBackground";
+export type { ParticlesProps, StarsProps, MatrixRainProps, NoiseTextureProps, AnimatedGridProps, GradientBackgroundProps, AnimatedGradientProps, ShimmerBackgroundProps } from "./components/AnimatedBackground";
 
 export { Spotlight } from "./components/Spotlight";
 export type { SpotlightProps } from "./components/Spotlight";
