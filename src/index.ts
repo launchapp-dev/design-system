@@ -163,6 +163,13 @@ export {
   FormMessage,
   useFormField,
 } from "./components/Form";
+export {
+  FormWizard,
+  FormWizardProgress,
+  FormWizardNav,
+  FormWizardContent,
+  useFormWizard,
+} from "./components/FormWizard";
 export { Alert, AlertTitle, AlertDescription, alertVariants } from "./components/Alert";
 export type { AlertProps } from "./components/Alert";
 export { 
