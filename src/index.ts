@@ -1,5 +1,16 @@
 export { cn } from "./lib/utils";
 export { useReducedMotion, duration, easing, motionSafe, motionReduce } from "./lib/animation";
+export {
+  generateComponent,
+  generateComponentFromDescription,
+  type ComponentGenerationRequest,
+  type ComponentGenerationResponse,
+} from "./lib/ai-component-generator";
+export {
+  handleComponentGenerationRequest,
+  type APIRequest,
+  type APIResponse,
+} from "./lib/ai-component-generator-api";
 export { PaletteSwitcher } from "./components/PaletteSwitcher";
 export type { PaletteSwitcherProps } from "./components/PaletteSwitcher";
 export { builtinPalettes } from "./themes/palettes";
