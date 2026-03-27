@@ -592,6 +592,8 @@ export {
   CopilotPanelSuggestions,
   CopilotPanelSuggestion,
   CopilotPanelDivider,
+  CopilotPanelInput,
+  CopilotPanelChatHistory,
   copilotPanelVariants,
   copilotSuggestionVariants,
 } from "./components/CopilotPanel";
@@ -601,6 +603,8 @@ export type {
   CopilotPanelContextListProps,
   CopilotSuggestionProps,
   CopilotPanelSuggestionsProps,
+  CopilotPanelInputProps,
+  CopilotPanelChatHistoryProps,
 } from "./components/CopilotPanel";
 
 export { StatusPage, overallStatusVariants } from "./components/StatusPage";

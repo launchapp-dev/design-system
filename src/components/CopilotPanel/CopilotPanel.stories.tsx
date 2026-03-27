@@ -19,6 +19,8 @@ import {
   CopilotPanelSuggestions,
   CopilotPanelSuggestion,
   CopilotPanelDivider,
+  CopilotPanelInput,
+  CopilotPanelChatHistory,
 } from "./index";
 
 const FileIcon = () => (
@@ -392,6 +394,23 @@ export const ContextDisplay: Story = {
 export const FullExample: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
+    const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
+      {
+        role: "assistant",
+        content: "I can help you build better components. What would you like assistance with?",
+      },
+    ]);
+
+    const handleSend = (value: string) => {
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", content: value },
+        {
+          role: "assistant",
+          content: "I understand. Let me help you with that. What specific aspect would you like to focus on?",
+        },
+      ]);
+    };
 
     return (
       <div className="relative h-[700px] w-full overflow-hidden rounded-lg border bg-background">
@@ -430,54 +449,62 @@ export const FullExample: Story = {
             <CopilotPanelDivider />
 
             <CopilotPanelSuggestions title="Suggested actions">
-              <CopilotPanelSuggestion variant="primary" icon={<WandIcon />}>
+              <CopilotPanelSuggestion
+                variant="primary"
+                icon={<WandIcon />}
+                onClick={() => handleSend("Complete component")}
+              >
                 Complete component
               </CopilotPanelSuggestion>
-              <CopilotPanelSuggestion icon={<LightbulbIcon />}>
+              <CopilotPanelSuggestion
+                icon={<LightbulbIcon />}
+                onClick={() => handleSend("Add JSDoc comments")}
+              >
                 Add JSDoc comments
               </CopilotPanelSuggestion>
-              <CopilotPanelSuggestion icon={<RefreshIcon />}>
+              <CopilotPanelSuggestion
+                icon={<RefreshIcon />}
+                onClick={() => handleSend("Generate tests")}
+              >
                 Generate tests
               </CopilotPanelSuggestion>
-              <CopilotPanelSuggestion variant="secondary">
+              <CopilotPanelSuggestion variant="secondary" onClick={() => handleSend("Create story")}>
                 Create story
               </CopilotPanelSuggestion>
             </CopilotPanelSuggestions>
 
             <CopilotPanelDivider />
 
-            <ChatBubbleGroup>
-              <ChatBubble
-                variant="user"
-                avatarFallback="You"
-                timestamp="2 min ago"
-              >
-                Help me add keyboard navigation to this component
-              </ChatBubble>
-              <ChatBubble variant="assistant" avatarFallback="AI">
-                I can help you add keyboard navigation. Here&apos;s what I suggest:
-                {"\n\n"}
-                **1. Add focus management**
-                {"\n"}
-                Use `React.useRef` and `focus()` to manage focus.
-                {"\n\n"}
-                **2. Add keyboard event handlers**
-                {"\n"}
-                Handle Arrow keys for navigation, Enter/Space for selection.
-                {"\n\n"}
-                Would you like me to implement this?
-              </ChatBubble>
-            </ChatBubbleGroup>
+            <CopilotPanelChatHistory>
+              <ChatBubbleGroup>
+                {messages.map((msg, idx) => (
+                  <ChatBubble
+                    key={idx}
+                    variant={msg.role === "user" ? "user" : "assistant"}
+                    avatarFallback={msg.role === "user" ? "You" : "AI"}
+                  >
+                    {msg.content}
+                  </ChatBubble>
+                ))}
+              </ChatBubbleGroup>
+            </CopilotPanelChatHistory>
           </CopilotPanelContent>
 
           <CopilotPanelFooter>
-            <div className="flex gap-2">
-              <Input placeholder="Ask a question..." className="flex-1" />
-              <Button size="sm">Send</Button>
-            </div>
+            <CopilotPanelInput onSend={handleSend} />
             <CopilotPanelSuggestions title="Follow-up">
-              <CopilotPanelSuggestion size="sm">Yes, implement it</CopilotPanelSuggestion>
-              <CopilotPanelSuggestion size="sm">Show code example</CopilotPanelSuggestion>
+              <CopilotPanelSuggestion
+                onClick={() => handleSend("Tell me more")}
+                className="text-xs px-2 py-1"
+              >
+                Tell me more
+              </CopilotPanelSuggestion>
+              <CopilotPanelSuggestion
+                onClick={() => handleSend("Show code example")}
+                className="text-xs px-2 py-1"
+              >
+                Code example
+              </CopilotPanelSuggestion>
             </CopilotPanelSuggestions>
           </CopilotPanelFooter>
         </CopilotPanel>
@@ -499,6 +526,108 @@ export const DarkMode: Story = {
         </div>
         <CopilotPanel {...args} open={open} onOpenChange={setOpen}>
           <DefaultPanelContent />
+        </CopilotPanel>
+      </div>
+    );
+  },
+};
+
+export const WithKeyboardNavigation: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
+      {
+        role: "assistant",
+        content:
+          "Welcome! This panel supports full keyboard navigation. Try tabbing through elements, using arrow keys on suggestions, and pressing Enter to send messages. Press Escape to close.",
+      },
+    ]);
+    const inputRef = React.useRef<HTMLTextAreaElement>(null);
+
+    const handleSend = (value: string) => {
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", content: value },
+        { role: "assistant", content: `You said: "${value}". Great input!` },
+      ]);
+      setTimeout(() => inputRef.current?.focus(), 0);
+    };
+
+    const handleSuggestionClick = (suggestion: string) => {
+      handleSend(suggestion);
+    };
+
+    return (
+      <div className="relative h-[600px] w-full overflow-hidden rounded-lg border bg-background">
+        <div className="flex h-full items-center justify-center gap-4">
+          <div className="text-center">
+            <p className="mb-2 text-sm text-muted-foreground">
+              Keyboard Navigation Demo
+            </p>
+            <Button onClick={() => setOpen(true)}>Open Panel</Button>
+            <p className="mt-4 text-xs text-muted-foreground max-w-xs">
+              Try: Tab through elements, Space/Enter on suggestions, Ctrl+Enter for new line, Escape to close
+            </p>
+          </div>
+        </div>
+
+        <CopilotPanel {...args} open={open} onOpenChange={setOpen}>
+          <CopilotPanelHeader>
+            <CopilotPanelTitle>
+              <SparkleIcon />
+              Keyboard Navigation Demo
+            </CopilotPanelTitle>
+            <CopilotPanelDescription>
+              Try keyboard navigation (Tab, Arrow keys, Enter, Escape)
+            </CopilotPanelDescription>
+          </CopilotPanelHeader>
+
+          <CopilotPanelContent>
+            <CopilotPanelSuggestions title="Interactive suggestions (focusable via Tab)">
+              <CopilotPanelSuggestion
+                variant="primary"
+                icon={<WandIcon />}
+                onClick={() => handleSuggestionClick("Implement keyboard navigation")}
+              >
+                Implement keyboard nav
+              </CopilotPanelSuggestion>
+              <CopilotPanelSuggestion
+                icon={<LightbulbIcon />}
+                onClick={() => handleSuggestionClick("Add focus management")}
+              >
+                Add focus management
+              </CopilotPanelSuggestion>
+              <CopilotPanelSuggestion
+                onClick={() => handleSuggestionClick("Test accessibility")}
+              >
+                Test a11y
+              </CopilotPanelSuggestion>
+            </CopilotPanelSuggestions>
+
+            <CopilotPanelDivider />
+
+            <CopilotPanelChatHistory>
+              <ChatBubbleGroup>
+                {messages.map((msg, idx) => (
+                  <ChatBubble
+                    key={idx}
+                    variant={msg.role === "user" ? "user" : "assistant"}
+                    avatarFallback={msg.role === "user" ? "You" : "AI"}
+                  >
+                    {msg.content}
+                  </ChatBubble>
+                ))}
+              </ChatBubbleGroup>
+            </CopilotPanelChatHistory>
+          </CopilotPanelContent>
+
+          <CopilotPanelFooter>
+            <CopilotPanelInput
+              ref={inputRef}
+              onSend={handleSend}
+              placeholder="Type message (Enter to send, Shift+Enter for new line)..."
+            />
+          </CopilotPanelFooter>
         </CopilotPanel>
       </div>
     );
