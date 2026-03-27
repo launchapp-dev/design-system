@@ -1,0 +1,58 @@
+{
+  "id": "solarized",
+  "name": "Solarized",
+  "description": "Precision colors for machines and people. A carefully balanced color palette for light and dark modes.",
+  "author": {
+    "name": "Ethan Schoonover",
+    "url": "https://ethanschoonover.com/solarized/"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "previewColor": "196 69% 42%",
+  "keywords": ["light", "dark", "balanced", "accessible", "precision"],
+  "repository": "https://github.com/altercation/solarized",
+  "tokens": {
+    "light": {
+      "--la-background": "44 11% 93%",
+      "--la-foreground": "192 100% 12%",
+      "--la-card": "44 10% 99%",
+      "--la-card-foreground": "192 100% 12%",
+      "--la-popover": "44 10% 99%",
+      "--la-popover-foreground": "192 100% 12%",
+      "--la-primary": "196 13% 45%",
+      "--la-primary-foreground": "44 11% 93%",
+      "--la-secondary": "192 100% 18%",
+      "--la-secondary-foreground": "44 11% 93%",
+      "--la-muted": "44 100% 46%",
+      "--la-muted-foreground": "192 100% 12%",
+      "--la-accent": "45 100% 51%",
+      "--la-accent-foreground": "192 100% 12%",
+      "--la-destructive": "1 79% 45%",
+      "--la-destructive-foreground": "44 11% 93%",
+      "--la-border": "44 11% 88%",
+      "--la-input": "44 11% 88%",
+      "--la-ring": "196 13% 45%"
+    },
+    "dark": {
+      "--la-background": "192 100% 12%",
+      "--la-foreground": "44 11% 93%",
+      "--la-card": "192 100% 18%",
+      "--la-card-foreground": "44 11% 93%",
+      "--la-popover": "192 100% 18%",
+      "--la-popover-foreground": "44 11% 93%",
+      "--la-primary": "196 13% 45%",
+      "--la-primary-foreground": "192 100% 12%",
+      "--la-secondary": "44 11% 88%",
+      "--la-secondary-foreground": "192 100% 12%",
+      "--la-muted": "192 100% 35%",
+      "--la-muted-foreground": "44 11% 93%",
+      "--la-accent": "45 100% 51%",
+      "--la-accent-foreground": "192 100% 12%",
+      "--la-destructive": "1 79% 45%",
+      "--la-destructive-foreground": "44 11% 93%",
+      "--la-border": "192 100% 25%",
+      "--la-input": "192 100% 25%",
+      "--la-ring": "45 100% 51%"
+    }
+  }
+}

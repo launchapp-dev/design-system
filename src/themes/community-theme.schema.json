@@ -87,6 +87,28 @@
       "description": "Repository URL (GitHub, GitLab, etc.)",
       "format": "uri"
     },
+    "screenshots": {
+      "type": "array",
+      "description": "Preview screenshot URLs showing the theme in action",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the screenshot image"
+          },
+          "caption": {
+            "type": "string",
+            "description": "Optional caption describing the screenshot",
+            "maxLength": 200
+          }
+        }
+      },
+      "maxItems": 5
+    },
     "tokens": {
       "type": "object",
       "description": "Color tokens for light and dark modes",

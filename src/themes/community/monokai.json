@@ -1,0 +1,58 @@
+{
+  "id": "monokai",
+  "name": "Monokai",
+  "description": "A vibrant dark theme with bright accent colors. Inspired by the popular Monokai color scheme.",
+  "author": {
+    "name": "Wimer Hazenberg",
+    "url": "https://monokai.pro/"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "previewColor": "141 100% 50%",
+  "keywords": ["dark", "vibrant", "monokai", "bright", "modern"],
+  "repository": "https://github.com/monokai/monokai",
+  "tokens": {
+    "light": {
+      "--la-background": "0 0% 100%",
+      "--la-foreground": "0 0% 20%",
+      "--la-card": "0 0% 100%",
+      "--la-card-foreground": "0 0% 20%",
+      "--la-popover": "0 0% 100%",
+      "--la-popover-foreground": "0 0% 20%",
+      "--la-primary": "280 100% 55%",
+      "--la-primary-foreground": "0 0% 100%",
+      "--la-secondary": "0 0% 95%",
+      "--la-secondary-foreground": "0 0% 30%",
+      "--la-muted": "0 0% 90%",
+      "--la-muted-foreground": "0 0% 45%",
+      "--la-accent": "141 100% 50%",
+      "--la-accent-foreground": "0 0% 100%",
+      "--la-destructive": "0 100% 50%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "0 0% 88%",
+      "--la-input": "0 0% 88%",
+      "--la-ring": "280 100% 55%"
+    },
+    "dark": {
+      "--la-background": "0 0% 10%",
+      "--la-foreground": "0 0% 98%",
+      "--la-card": "0 0% 15%",
+      "--la-card-foreground": "0 0% 98%",
+      "--la-popover": "0 0% 15%",
+      "--la-popover-foreground": "0 0% 98%",
+      "--la-primary": "280 100% 55%",
+      "--la-primary-foreground": "0 0% 10%",
+      "--la-secondary": "0 0% 30%",
+      "--la-secondary-foreground": "0 0% 98%",
+      "--la-muted": "0 0% 35%",
+      "--la-muted-foreground": "0 0% 70%",
+      "--la-accent": "141 100% 50%",
+      "--la-accent-foreground": "0 0% 10%",
+      "--la-destructive": "0 100% 50%",
+      "--la-destructive-foreground": "0 0% 100%",
+      "--la-border": "0 0% 25%",
+      "--la-input": "0 0% 25%",
+      "--la-ring": "141 100% 50%"
+    }
+  }
+}

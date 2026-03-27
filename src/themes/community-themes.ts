@@ -26,6 +26,11 @@ export type CommunityThemeTokens = {
   "--la-ring": string;
 };
 
+export type CommunityThemeScreenshot = {
+  url: string;
+  caption?: string;
+};
+
 export type CommunityTheme = {
   id: string;
   name: string;
@@ -36,6 +41,7 @@ export type CommunityTheme = {
   previewColor?: string;
   keywords?: string[];
   repository?: string;
+  screenshots?: CommunityThemeScreenshot[];
   tokens: {
     light: CommunityThemeTokens;
     dark: CommunityThemeTokens;
