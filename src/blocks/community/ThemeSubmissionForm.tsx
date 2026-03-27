@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -68,8 +68,7 @@ const themeSubmissionSchema = z.object({
     .or(z.literal("")),
   keywords: z
     .string()
-    .optional()
-    .transform((val) => (val ? val.split(",").map((k) => k.trim()).filter(Boolean) : [])),
+    .optional(),
   previewColor: z
     .string()
     .regex(/^\d{1,3}\s+\d{1,3}%\s+\d{1,3}%$/, "Must be valid HSL value")
@@ -92,7 +91,7 @@ export interface ThemeSubmissionFormProps {
 function ThemeSubmissionForm(
   { onSubmit, onCancel, isLoading, error, className }: ThemeSubmissionFormProps,
   ref: React.Ref<HTMLDivElement>
-): JSX.Element {
+): React.ReactElement {
   const [previewColors, setPreviewColors] = React.useState<Record<string, string> | null>(null);
 
   const form = useForm<ThemeSubmissionValues>({
@@ -150,7 +149,7 @@ function ThemeSubmissionForm(
       version: values.version,
       license: values.license,
       repository: values.repository || undefined,
-      keywords: values.keywords as string[],
+      keywords: values.keywords ? values.keywords.split(",").map((k) => k.trim()).filter(Boolean) : [],
       previewColor: values.previewColor,
       tokens: {
         light: lightTokens,
