@@ -65,7 +65,7 @@ export const Generator: Story = {
     );
   },
   args: {
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY || "",
+    apiKey: process.env.REACT_APP_ANTHROPIC_API_KEY || "",
   },
 };
 
