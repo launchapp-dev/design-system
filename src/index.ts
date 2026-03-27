@@ -529,6 +529,9 @@ export {
   GlowPulseButton,
   MorphButton,
   morphVariants,
+  MagicCard,
+  HoverCard,
+  AnimatedCard,
 } from "./components/MagicCard";
 export type {
   TiltCardProps,
@@ -542,6 +545,9 @@ export type {
   RippleButtonProps,
   GlowPulseButtonProps,
   MorphButtonProps,
+  MagicCardProps,
+  HoverCardProps,
+  AnimatedCardProps,
 } from "./components/MagicCard";
 
 export { MultiStepWizard as AdvancedMultiStepWizard } from "./components/MultiStepWizard";
