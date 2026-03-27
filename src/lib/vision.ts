@@ -20,34 +20,40 @@ export interface VisionThemeResult {
   theme: ThemeResult;
 }
 
-interface OpenAIImageUrl {
-  url: string;
+interface AnthropicImageSource {
+  type: "base64" | "url";
+  media_type?: "image/jpeg" | "image/png" | "image/gif" | "image/webp";
+  data?: string;
+  url?: string;
 }
 
-interface OpenAIContentPart {
-  type: "text" | "image_url";
-  text?: string;
-  image_url?: OpenAIImageUrl;
+interface AnthropicImageContent {
+  type: "image";
+  source: AnthropicImageSource;
 }
 
-interface OpenAIMessage {
-  role: "system" | "user" | "assistant";
-  content: string | OpenAIContentPart[];
+interface AnthropicTextContent {
+  type: "text";
+  text: string;
 }
 
-interface OpenAIRequest {
+type AnthropicContent = AnthropicImageContent | AnthropicTextContent;
+
+interface AnthropicMessage {
+  role: "user" | "assistant";
+  content: AnthropicContent[] | string;
+}
+
+interface AnthropicRequest {
   model: string;
-  messages: OpenAIMessage[];
   max_tokens: number;
-  response_format: { type: "json_object" };
+  system: string;
+  messages: AnthropicMessage[];
 }
 
-interface OpenAIChoice {
-  message: { role: string; content: string };
-}
-
-interface OpenAIResponse {
-  choices: OpenAIChoice[];
+interface AnthropicResponse {
+  content: Array<{ type: string; text: string }>;
+  usage?: { input_tokens: number; output_tokens: number };
 }
 
 const HEX_RE = /^#[0-9a-fA-F]{6}$/;
@@ -87,32 +93,77 @@ function parseColorMap(raw: unknown): VisionColorMap {
   };
 }
 
+async function convertUrlToBase64(url: string): Promise<string> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch image from URL: ${response.statusText}`);
+  }
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      const base64 = result.split(",")[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+function getMediaType(url: string): "image/jpeg" | "image/png" | "image/gif" | "image/webp" {
+  const urlObj = new URL(url);
+  const path = urlObj.pathname.toLowerCase();
+  if (path.includes(".png")) return "image/png";
+  if (path.includes(".gif")) return "image/gif";
+  if (path.includes(".webp")) return "image/webp";
+  return "image/jpeg";
+}
+
 export async function analyzeImageColors(
   image: string,
   options: VisionThemeOptions
 ): Promise<VisionThemeResult> {
   const {
     apiKey,
-    model = "gpt-4o",
-    baseUrl = "https://api.openai.com/v1",
+    model = "claude-3-5-sonnet-20241022",
+    baseUrl = "https://api.anthropic.com",
   } = options;
 
-  const imageUrl: OpenAIImageUrl = { url: image };
+  let imageSource: AnthropicImageSource;
 
-  const body: OpenAIRequest = {
+  if (image.startsWith("data:")) {
+    const matches = image.match(/^data:([^;]+);base64,(.+)$/);
+    if (!matches) {
+      throw new Error("Invalid data URL format");
+    }
+    const mediaType = matches[1] as "image/jpeg" | "image/png" | "image/gif" | "image/webp";
+    const data = matches[2];
+    imageSource = { type: "base64", media_type: mediaType, data };
+  } else if (image.startsWith("http://") || image.startsWith("https://")) {
+    const mediaType = getMediaType(image);
+    try {
+      const base64 = await convertUrlToBase64(image);
+      imageSource = { type: "base64", media_type: mediaType, data: base64 };
+    } catch {
+      imageSource = { type: "url", url: image };
+    }
+  } else {
+    throw new Error("Image must be a valid URL or data URL");
+  }
+
+  const body: AnthropicRequest = {
     model,
+    max_tokens: 256,
+    system:
+      "You are a color analysis assistant. Analyze the image and return ONLY a JSON object with exactly these five hex color keys: primary, secondary, muted, accent, destructive. Each value must be a 6-digit hex color string (e.g. \"#3b82f6\"). primary should be the most prominent brand color. secondary should be a supporting color. muted should be a low-saturation background or neutral tone. accent should be a highlight color. destructive should be a red or error-like color extracted from the image, or a sensible default like \"#ef4444\" if none is present. Return only the JSON object, no prose.",
     messages: [
-      {
-        role: "system",
-        content:
-          "You are a color analysis assistant. Analyze the image and return ONLY a JSON object with exactly these five hex color keys: primary, secondary, muted, accent, destructive. Each value must be a 6-digit hex color string (e.g. \"#3b82f6\"). primary should be the most prominent brand color. secondary should be a supporting color. muted should be a low-saturation background or neutral tone. accent should be a highlight color. destructive should be a red or error-like color extracted from the image, or a sensible default like \"#ef4444\" if none is present. Return only the JSON object, no prose.",
-      },
       {
         role: "user",
         content: [
           {
-            type: "image_url",
-            image_url: imageUrl,
+            type: "image",
+            source: imageSource,
           },
           {
             type: "text",
@@ -121,15 +172,14 @@ export async function analyzeImageColors(
         ],
       },
     ],
-    max_tokens: 256,
-    response_format: { type: "json_object" },
   };
 
-  const response = await fetch(`${baseUrl}/chat/completions`, {
+  const response = await fetch(`${baseUrl}/v1/messages`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
     },
     body: JSON.stringify(body),
   });
@@ -139,14 +189,14 @@ export async function analyzeImageColors(
     throw new Error(`Vision API request failed (${response.status}): ${text}`);
   }
 
-  const json = (await response.json()) as OpenAIResponse;
-  const content = json.choices?.[0]?.message?.content;
+  const json = (await response.json()) as AnthropicResponse;
+  const textContent = json.content?.find((item) => item.type === "text");
 
-  if (typeof content !== "string") {
+  if (!textContent || typeof textContent.text !== "string") {
     throw new Error("Vision API returned unexpected response shape");
   }
 
-  const colors = parseColorMap(JSON.parse(content));
+  const colors = parseColorMap(JSON.parse(textContent.text));
   const theme = createTheme(colors.primary);
 
   return { colors, theme };
