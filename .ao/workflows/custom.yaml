@@ -478,6 +478,54 @@ agents:
     tool: claude
     mcp_servers: ["ao"]
 
+  qa-tester:
+    system_prompt: |
+      You are the QA Tester for the LaunchApp design system. You perform product
+      quality checks using Playwright browser automation and CLI tools.
+
+      STEP 1 — BUILD HEALTH (mandatory, always first):
+        a) Run: pnpm install
+        b) Run: pnpm build — if it fails, create a CRITICAL bugfix task and STOP.
+        c) Run: pnpm build:storybook — if it fails, create a HIGH bugfix task.
+        d) Run: pnpm typecheck — if it fails, create a HIGH bugfix task.
+        e) Run: pnpm lint — note any violations.
+        f) Run: pnpm test --run — note any test failures.
+
+      STEP 2 — REGISTRY CHECK:
+        a) Run: pnpm generate-registry
+        b) Read registry.json — verify all src/components/ are listed.
+        c) For each component in src/components/ that is NOT in registry.json,
+           create a task to add it to the registry.
+
+      STEP 3 — STORYBOOK COVERAGE:
+        a) List all components in src/components/.
+        b) For each component, check if a .stories.tsx file exists.
+        c) Components without stories = coverage gap. Create tasks for missing stories.
+        d) Check ao.task.list first — no duplicates.
+
+      STEP 4 — DOCS SITE CHECK (if Storybook built successfully):
+        a) Start Storybook: pnpm dev &
+        b) Wait 15 seconds.
+        c) Use Playwright MCP to navigate to http://localhost:6006
+        d) Take a screenshot. Verify it loads.
+        e) Navigate to a few component stories — verify they render.
+        f) Kill the dev server.
+        g) If anything fails, create a bugfix task.
+
+      STEP 5 — EXPORT SURFACE CHECK:
+        a) Read src/index.ts — verify all components are exported.
+        b) For each component dir in src/components/ not exported from src/index.ts,
+           create a task to add the export.
+
+      REPORTING:
+      Create bug tasks for failures (check ao.task.list first — no duplicates).
+      Log a summary: build=PASS/FAIL, storybook=PASS/FAIL, typecheck=PASS/FAIL,
+      lint=N violations, tests=N pass/N fail, registry=N/M components,
+      stories=N/M coverage, exports=N/M coverage.
+    model: claude-sonnet-4-6
+    tool: claude
+    mcp_servers: ["ao", "playwright"]
+
   reconciler:
     system_prompt: |
       You maintain task and queue consistency for the design system project.
@@ -1304,6 +1352,16 @@ phases:
       3. Update each task's priority via ao.task.set-priority.
       4. Log the RICE scores in a structured summary.
 
+  e2e-test:
+    mode: agent
+    agent: qa-tester
+    directive: |
+      Run the full product quality check: build health, registry coverage,
+      Storybook coverage, docs site rendering, and export surface completeness.
+      Create tasks for any gaps found.
+    capabilities:
+      mutates_state: true
+
   reconciliation:
     mode: agent
     agent: reconciler
@@ -1532,39 +1590,61 @@ phases:
 workflows:
   - id: component
     name: "New Component Workflow"
-    description: "Implement -> Push -> PR -> Review"
+    description: "Implement -> Install -> Build -> Lint -> Push -> PR -> Review"
     phases:
       - implementation
+      - install-deps
+      - build
+      - lint-check
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: standard
     name: "Standard Task Workflow"
-    description: "Implement -> Push -> PR -> Review"
+    description: "Implement -> Install -> Build -> Lint -> Push -> PR -> Review"
     phases:
       - implementation
+      - install-deps
+      - build
+      - lint-check
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: scaffold
     name: "Scaffold Workflow"
-    description: "Implement -> Push -> PR -> Review"
+    description: "Implement -> Install -> Build -> Push -> PR -> Review"
     phases:
       - implementation
+      - install-deps
+      - build
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: quick-fix
     name: "Quick Fix"
-    description: "Implement -> Push -> PR -> Review"
+    description: "Implement -> Install -> Build -> Push -> PR -> Review"
     phases:
       - implementation
+      - install-deps
+      - build
       - push-branch
       - create-pr
-      - pr-review
+      - pr-review:
+          on_verdict:
+            rework:
+              target: implementation
 
   - id: rework
     name: "Rework"
@@ -1634,6 +1714,12 @@ workflows:
     description: "Quarterly RICE prioritization, OKR health review, and roadmap sequencing"
     phases:
       - strategic-planning
+
+  - id: e2e-test
+    name: "Product Quality Check"
+    description: "Build health, registry, Storybook, exports, and docs coverage"
+    phases:
+      - e2e-test
 
   - id: sync-main
     name: "Sync Main"
@@ -1720,48 +1806,53 @@ workflows:
 
 schedules:
   - id: work-planner
-    cron: "*/5 * * * *"
+    cron: "*/10 * * * *"
     workflow_ref: work-planner
     enabled: true
 
   - id: task-reconciler
-    cron: "2-59/10 * * * *"
+    cron: "2-59/20 * * * *"
     workflow_ref: task-reconciler
     enabled: true
 
   - id: pr-reviewer
-    cron: "*/3 * * * *"
+    cron: "*/6 * * * *"
     workflow_ref: pr-reviewer
     enabled: true
 
   - id: sync-main
-    cron: "*/5 * * * *"
+    cron: "*/10 * * * *"
     workflow_ref: sync-main
     enabled: true
 
   - id: product-review
-    cron: "3-59/10 * * * *"
+    cron: "3-59/20 * * * *"
     workflow_ref: product-review
     enabled: true
 
   - id: dependency-update
-    cron: "15 */6 * * *"
+    cron: "15 */12 * * *"
     workflow_ref: dependency-update
     enabled: true
 
   - id: a11y-audit
-    cron: "30 */4 * * *"
+    cron: "30 */8 * * *"
     workflow_ref: a11y-audit
     enabled: true
 
   - id: type-audit
-    cron: "45 */8 * * *"
+    cron: "45 */16 * * *"
     workflow_ref: type-audit
     enabled: true
 
   - id: docs-audit
-    cron: "0 */12 * * *"
+    cron: "0 */24 * * *"
     workflow_ref: docs-audit
+    enabled: true
+
+  - id: e2e-test
+    cron: "7-59/30 * * * *"
+    workflow_ref: e2e-test
     enabled: true
 
   - id: rice-prioritizer
