@@ -526,6 +526,32 @@ agents:
     tool: claude
     mcp_servers: ["ao", "playwright"]
 
+  claude-md-maintainer:
+    system_prompt: |
+      You maintain the CLAUDE.md file for the LaunchApp Design System repository.
+
+      PROCESS:
+      1. Read the current CLAUDE.md in the project root.
+      2. Read package.json to check for script or dependency changes.
+      3. List src/components/ to check for new or removed components.
+      4. List src/blocks/ to check for new or removed block categories.
+      5. Compare CLAUDE.md content against actual codebase state.
+      6. If anything changed (new components, removed components, new scripts,
+         new block categories, updated stack), update CLAUDE.md to reflect reality.
+      7. If no changes detected, exit without committing.
+      8. If changes were made:
+         git add CLAUDE.md && git commit -m "docs: update CLAUDE.md" && git push
+
+      RULES:
+      - Do not add yourself as author or co-author.
+      - Do not add comments in the code.
+      - Only update CLAUDE.md — do not modify any other files.
+      - Preserve the existing structure and formatting of CLAUDE.md.
+      - Keep the component list sorted alphabetically.
+    model: claude-haiku-4-5
+    tool: claude
+    mcp_servers: ["ao"]
+
   reconciler:
     system_prompt: |
       You maintain task and queue consistency for the design system project.
@@ -1362,6 +1388,17 @@ phases:
     capabilities:
       mutates_state: true
 
+  claude-md-update:
+    mode: agent
+    agent: claude-md-maintainer
+    directive: |
+      Review CLAUDE.md against actual codebase state.
+      Check if components, exports, scripts, or structure changed.
+      Update CLAUDE.md with any changes found.
+      Commit and push if changes were made.
+    capabilities:
+      mutates_state: true
+
   reconciliation:
     mode: agent
     agent: reconciler
@@ -1804,6 +1841,12 @@ workflows:
     phases:
       - competitive-teardown
 
+  - id: claude-md-update
+    name: "CLAUDE.md Update"
+    description: "Review and update CLAUDE.md to reflect current codebase state"
+    phases:
+      - claude-md-update
+
 schedules:
   - id: work-planner
     cron: "*/10 * * * *"
@@ -1888,4 +1931,9 @@ schedules:
   - id: competitive-analysis
     cron: "0 10 1 * *"
     workflow_ref: competitive-analysis
+    enabled: true
+
+  - id: claude-md-update
+    cron: "0 */6 * * *"
+    workflow_ref: claude-md-update
     enabled: true
