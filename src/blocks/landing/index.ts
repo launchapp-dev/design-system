@@ -3,3 +3,4 @@ export * from "./Portfolio";
 export * from "./Agency";
 export * from "./Startup";
 export * from "./HeroSection";
+export * from "./PricingSectionBlock";

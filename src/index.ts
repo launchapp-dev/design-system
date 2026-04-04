@@ -438,6 +438,8 @@ export { Startup } from "./blocks/landing/Startup";
 export type { StartupProps, SocialProofMetric, StartupTestimonial } from "./blocks/landing/Startup";
 export { HeroSectionBlock, heroSectionBlockVariants } from "./blocks/landing/HeroSection";
 export type { HeroSectionBlockProps, SocialProofMetric as HeroSectionSocialProofMetric } from "./blocks/landing/HeroSection";
+export { PricingSectionBlock } from "./blocks/landing/PricingSectionBlock";
+export type { PricingSectionBlockProps, PricingSectionTier, PricingSectionFeatureRow, PricingSectionFAQItem } from "./blocks/landing/PricingSectionBlock";
 
 export { PostList } from "./blocks/blog/PostList";
 export type { PostListProps, BlogPost } from "./blocks/blog/PostList";
