@@ -629,6 +629,9 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
 
+export { CookieConsentBanner } from "./components/CookieConsentBanner";
+export type { CookieConsentBannerProps, CookiePreferences, CookieConsentValue } from "./components/CookieConsentBanner";
+
 export { TreeMap, treeMapVariants } from "./components/TreeMap";
 export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";
 
