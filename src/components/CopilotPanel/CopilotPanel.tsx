@@ -300,7 +300,7 @@ const CopilotPanelChatHistory = React.forwardRef<
     aria-live="polite"
     {...props}
   >
-    {children ? children : <ChatBubbleGroup />}
+    {children ? children : <ChatBubbleGroup>{null}</ChatBubbleGroup>}
   </div>
 ));
 CopilotPanelChatHistory.displayName = "CopilotPanelChatHistory";

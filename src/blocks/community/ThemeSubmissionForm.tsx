@@ -19,7 +19,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { TabsRoot, TabsContent, TabsList, TabsTrigger } from "../../components/Tabs";
 import { Label } from "../../components/Label";
 import { ThemePreview } from "../../components/ThemePreview";
-import { validateCommunityTheme, validateHslValue, type CommunityTheme } from "../../themes/community-themes";
+import { validateCommunityTheme, validateHslValue, type CommunityTheme, type CommunityThemeTokens } from "../../themes/community-themes";
+import type { VisionColorMap } from "../../lib/vision";
 
 const tokenSchema = z.record(
   z.string().regex(/^--la-/, "Token name must start with --la-"),
@@ -92,7 +93,7 @@ function ThemeSubmissionForm(
   { onSubmit, onCancel, isLoading, error, className }: ThemeSubmissionFormProps,
   ref: React.Ref<HTMLDivElement>
 ): React.ReactElement {
-  const [previewColors, setPreviewColors] = React.useState<Record<string, string> | null>(null);
+  const [previewColors, setPreviewColors] = React.useState<VisionColorMap | null>(null);
 
   const form = useForm<ThemeSubmissionValues>({
     resolver: zodResolver(themeSubmissionSchema),
@@ -533,7 +534,7 @@ function generateTokens(
   primaryHex: string,
   secondaryHex: string,
   mode: "light" | "dark"
-): Record<string, string> {
+): CommunityThemeTokens {
   const primaryHsl = hexToHsl(primaryHex);
   const secondaryHsl = hexToHsl(secondaryHex);
   const lightness = mode === "light" ? 50 : 30;

@@ -6,6 +6,7 @@ import {
   Palette,
   RGBColor,
   TokenSet,
+  HSLString,
   FigmaVariable,
   ValidationResult,
   SyncError,
@@ -22,7 +23,7 @@ import {
 export function parseFigmaVariableName(variableName: string): {
   palette: string;
   variant: 'light' | 'dark';
-  tokenName: string;
+  tokenName: SemanticTokenName;
 } | null {
   const parts = variableName.split('/');
   if (parts.length !== 4 || parts[0] !== 'launchapp') {
@@ -45,7 +46,7 @@ export function parseFigmaVariableName(variableName: string): {
 /**
  * Extract HSL from Figma RGB color value
  */
-export function convertFigmaRGBToHSL(rgb: RGBColor): string {
+export function convertFigmaRGBToHSL(rgb: RGBColor): HSLString {
   return rgbToHSL(rgb);
 }
 
@@ -198,8 +199,8 @@ export function importFigmaVariablesToPalettes(
         name: parsed.palette,
         label: parsed.palette.charAt(0).toUpperCase() + parsed.palette.slice(1),
         tokens: {
-          light: {},
-          dark: {},
+          light: {} as unknown as TokenSet,
+          dark: {} as unknown as TokenSet,
         },
       });
     }
@@ -222,10 +223,10 @@ export function importFigmaVariablesToPalettes(
 
     const hsl = convertFigmaRGBToHSL(colorValue as RGBColor);
     if (!palette.tokens) {
-      palette.tokens = { light: {}, dark: {} };
+      palette.tokens = { light: {} as unknown as TokenSet, dark: {} as unknown as TokenSet };
     }
 
-    const variantTokens = palette.tokens[parsed.variant];
+    const variantTokens = palette.tokens![parsed.variant];
     if (variantTokens) {
       variantTokens[parsed.tokenName] = hsl;
     }

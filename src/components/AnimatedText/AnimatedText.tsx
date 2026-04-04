@@ -118,4 +118,3 @@ function AnimatedText({
 AnimatedText.displayName = "AnimatedText";
 
 export { AnimatedText };
-export type { AnimatedTextProps };

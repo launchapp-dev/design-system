@@ -4,6 +4,7 @@ import {
   type APIRequest,
   type APIResponse,
 } from "./ai-component-generator-api";
+import type { ComponentGenerationRequest } from "./ai-component-generator";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -44,7 +45,7 @@ describe("handleComponentGenerationRequest", () => {
         type: "structured",
         payload: {
           description: "A test component",
-        } as unknown,
+        } as ComponentGenerationRequest,
       };
 
       const response = await handleComponentGenerationRequest(request);
@@ -59,7 +60,7 @@ describe("handleComponentGenerationRequest", () => {
         type: "structured",
         payload: {
           name: "TestButton",
-        } as unknown,
+        } as ComponentGenerationRequest,
       };
 
       const response = await handleComponentGenerationRequest(request);
