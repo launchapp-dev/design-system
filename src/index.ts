@@ -436,6 +436,8 @@ export { Agency } from "./blocks/landing/Agency";
 export type { AgencyProps, AgencyService, AgencyTeamMember, AgencyCaseStudy } from "./blocks/landing/Agency";
 export { Startup } from "./blocks/landing/Startup";
 export type { StartupProps, SocialProofMetric, StartupTestimonial } from "./blocks/landing/Startup";
+export { HeroSectionBlock, heroSectionBlockVariants } from "./blocks/landing/HeroSection";
+export type { HeroSectionBlockProps, SocialProofMetric as HeroSectionSocialProofMetric } from "./blocks/landing/HeroSection";
 
 export { PostList } from "./blocks/blog/PostList";
 export type { PostListProps, BlogPost } from "./blocks/blog/PostList";

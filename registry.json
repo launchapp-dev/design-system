@@ -2170,12 +2170,17 @@
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/marketing/HeroSection/HeroSection.tsx",
+          "path": "src/blocks/landing/HeroSection/HeroSection.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/landing/HeroSection/index.ts",
           "type": "registry:block"
         }
       ],
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "@launchapp/design-system"
       ],
       "devDependencies": []
     },
