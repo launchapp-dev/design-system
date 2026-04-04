@@ -118,6 +118,24 @@
       "devDependencies": []
     },
     {
+      "name": "animated-text",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/AnimatedText/AnimatedText.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/AnimatedText/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "files": [
@@ -1348,6 +1366,21 @@
       "devDependencies": []
     },
     {
+      "name": "smart-theming-generator",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/SmartThemingGenerator/SmartThemingGenerator.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/SmartThemingGenerator/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "sonner",
       "type": "registry:ui",
       "files": [
@@ -1600,6 +1633,51 @@
       ],
       "dependencies": [
         "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "theme-card",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ThemeCard/ThemeCard.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ThemeCard/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "theme-generator",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ThemeGenerator/ThemeGenerator.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ThemeGenerator/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "theme-preview",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ThemePreview/ThemePreview.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ThemePreview/index.ts",
+          "type": "registry:ui"
+        }
       ],
       "devDependencies": []
     },
@@ -1894,6 +1972,32 @@
           "path": "src/blocks/blog/PostList/PostList.tsx",
           "type": "registry:block"
         }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-community-themes-gallery",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/community/CommunityThemesGallery.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-theme-submission-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/community/ThemeSubmissionForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "react-hook-form",
+        "zod"
       ],
       "devDependencies": []
     },
