@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { ColumnDef } from "@tanstack/react-table";
-import { SearchableDataTable, SearchableDataTableFilterOption } from "./SearchableDataTable";
+import type { ColumnDef } from "@tanstack/react-table";
+import { SearchableDataTable, type SearchableDataTableFilterOption } from "./SearchableDataTable";
 import { Badge } from "@/components/Badge";
 
 type Employee = {

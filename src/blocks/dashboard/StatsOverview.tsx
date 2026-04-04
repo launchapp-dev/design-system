@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { StatDisplay } from "@/components/StatDisplay";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/Card";
 import { ChartContainer, AreaChart, Area, XAxis, CartesianGrid, ChartTooltip } from "@/components/Chart";

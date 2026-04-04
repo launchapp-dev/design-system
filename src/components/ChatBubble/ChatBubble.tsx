@@ -75,7 +75,7 @@ function renderMarkdown(
   const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
 
   let lastIndex = 0;
-  let result;
+  let result: RegExpExecArray | null;
 
   const processText = (str: string): React.ReactNode[] => {
     const elements: React.ReactNode[] = [];

@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { Card, CardContent } from "@/components/Card";
 import { ChartContainer, AreaChart, Area } from "@/components/Chart";
 import { cn } from "@/lib/utils";

@@ -210,7 +210,7 @@ export function CheckoutForm({ orderItems = [], onSubmit, isLoading }) {
           </Card>
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Processing…" : \`Pay \$\${subtotal.toFixed(2)}\`}
+            {isLoading ? "Processing…" : \`Pay $\${subtotal.toFixed(2)}\`}
           </Button>
         </form>
       </Form>

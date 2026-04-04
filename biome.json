@@ -1,0 +1,66 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.10/schema.json",
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "noUnusedTemplateLiteral": "off"
+      },
+      "correctness": {
+        "useHookAtTopLevel": "warn",
+        "useExhaustiveDependencies": "warn"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "warn",
+        "noAssignInExpressions": "warn",
+        "useIterableCallbackReturn": "warn",
+        "noShadowRestrictedNames": "warn"
+      },
+      "a11y": {
+        "useFocusableInteractive": "warn",
+        "useKeyWithClickEvents": "warn",
+        "noLabelWithoutControl": "warn",
+        "useSemanticElements": "warn",
+        "useAriaPropsForRole": "warn",
+        "useAriaPropsSupportedByRole": "warn",
+        "noSvgWithoutTitle": "warn",
+        "noRedundantRoles": "warn",
+        "useValidAnchor": "warn",
+        "useButtonType": "warn",
+        "noStaticElementInteractions": "warn",
+        "noInteractiveElementToNoninteractiveRole": "warn",
+        "noNoninteractiveTabindex": "warn",
+        "noNoninteractiveElementToInteractiveRole": "warn"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "lineWidth": 80
+  },
+  "css": {
+    "parser": {
+      "cssModules": false,
+      "tailwindDirectives": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.turbo",
+      "!**/build",
+      "!**/coverage",
+      "!**/*.log"
+    ]
+  }
+}

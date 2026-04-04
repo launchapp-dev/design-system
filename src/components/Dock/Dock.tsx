@@ -242,7 +242,7 @@ function DockItem({
         const normalizedDistance = distance / magnificationDistance;
         const calculatedScale =
           1 +
-          (magnification - 1) * Math.pow(Math.cos((normalizedDistance * Math.PI) / 2), 2);
+          (magnification - 1) * Math.cos((normalizedDistance * Math.PI) / 2) ** 2;
         setScale(calculatedScale);
       } else {
         setScale(1);

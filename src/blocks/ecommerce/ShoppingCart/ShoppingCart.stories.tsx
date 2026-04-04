@@ -233,7 +233,7 @@ export function ShoppingCart({ items = [], freeShippingThreshold, onUpdateQuanti
           <div className="flex justify-between"><span>Subtotal</span><span>\${subtotal.toFixed(2)}</span></div>
           <div className="flex justify-between items-center">
             <span>Shipping</span>
-            {shippingFree ? <Badge variant="secondary">Free</Badge> : <span>\$9.99</span>}
+            {shippingFree ? <Badge variant="secondary">Free</Badge> : <span>$9.99</span>}
           </div>
           <div className="flex justify-between font-semibold text-base pt-1"><span>Total</span><span>\${total.toFixed(2)}</span></div>
         </div>

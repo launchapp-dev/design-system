@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";

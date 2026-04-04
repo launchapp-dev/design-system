@@ -6,16 +6,18 @@
 
 import { describe, it, expect, afterEach, beforeEach, vitest } from 'vitest';
 import { getPluginManager, resetPluginManager } from '../../src/lib/plugins';
-import { brandPlugin, getBrandPluginStats, brandVariants } from './index';
+import { brandPlugin, getBrandPluginStats, resetBrandPluginStats, brandVariants } from './index';
 
 describe('Brand Plugin', () => {
   beforeEach(async () => {
     resetPluginManager();
+    resetBrandPluginStats();
     await getPluginManager().register(brandPlugin);
   });
 
   afterEach(() => {
     resetPluginManager();
+    resetBrandPluginStats();
   });
 
   describe('Plugin Registration', () => {

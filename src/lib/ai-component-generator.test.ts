@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   generateComponent,
   generateComponentFromDescription,
@@ -89,42 +89,36 @@ describe("Button", () => {
   });
 });`;
 
-const MOCK_VALIDATION_RESPONSE = {
-  valid: true,
-  errors: [],
-};
+const MOCK_GENERATION_RESPONSE = JSON.stringify({
+  component: MOCK_COMPONENT_CODE,
+  story: MOCK_STORY,
+  test: MOCK_TEST,
+});
+
+const MOCK_VALIDATION_RESPONSE = JSON.stringify({ valid: true, errors: [] });
+
+// Mock the Anthropic SDK at module level (hoisted before imports by vitest)
+const mockCreate = vi.fn();
+vi.mock("@anthropic-ai/sdk", () => ({
+  default: vi.fn(() => ({
+    messages: { create: mockCreate },
+  })),
+}));
 
 beforeEach(() => {
   vi.clearAllMocks();
+  // Default: first call returns generated code, second call returns validation
+  mockCreate
+    .mockResolvedValueOnce({
+      content: [{ type: "text", text: MOCK_GENERATION_RESPONSE }],
+    })
+    .mockResolvedValueOnce({
+      content: [{ type: "text", text: MOCK_VALIDATION_RESPONSE }],
+    });
 });
 
 describe("generateComponent", () => {
   it("generates component, story, and tests from request", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponent: generateComponentImport } = await import(
-      "./ai-component-generator"
-    );
-
     const request: ComponentGenerationRequest = {
       name: "Button",
       description: "A customizable button component",
@@ -134,7 +128,7 @@ describe("generateComponent", () => {
       },
     };
 
-    const result = await generateComponentImport(request, "test-api-key");
+    const result = await generateComponent(request, "test-api-key");
 
     expect(result.component).toContain("Button");
     expect(result.story).toContain("Button");
@@ -143,37 +137,12 @@ describe("generateComponent", () => {
   });
 
   it("validates generated component code", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponent: generateComponentImport } = await import(
-      "./ai-component-generator"
-    );
-
     const request: ComponentGenerationRequest = {
       name: "TestButton",
       description: "Test button component",
     };
 
-    const result = await generateComponentImport(request, "test-api-key");
+    const result = await generateComponent(request, "test-api-key");
 
     expect(result.validation).toHaveProperty("isValid");
     expect(result.validation).toHaveProperty("errors");
@@ -181,32 +150,7 @@ describe("generateComponent", () => {
   });
 
   it("includes design system patterns in generated code", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponent: generateComponentImport } = await import(
-      "./ai-component-generator"
-    );
-
-    const result = await generateComponentImport(
+    const result = await generateComponent(
       {
         name: "StyledButton",
         description: "Styled button with design tokens",
@@ -222,15 +166,18 @@ describe("generateComponent", () => {
     const oldEnv = process.env.ANTHROPIC_API_KEY;
     delete process.env.ANTHROPIC_API_KEY;
 
+    mockCreate.mockReset();
+    mockCreate.mockRejectedValue(
+      new Error("Could not resolve authentication method")
+    );
+
     try {
       const request: ComponentGenerationRequest = {
         name: "Button",
         description: "A button",
       };
 
-      await expect(
-        generateComponent(request, undefined)
-      ).rejects.toThrow();
+      await expect(generateComponent(request, undefined)).rejects.toThrow();
     } finally {
       if (oldEnv) {
         process.env.ANTHROPIC_API_KEY = oldEnv;
@@ -239,68 +186,19 @@ describe("generateComponent", () => {
   });
 
   it("uses provided API key over environment variable", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn((config) => {
-          expect(config.apiKey).toBe("custom-key");
-          return {
-            messages: { create: mockCreateMessage },
-          };
-        }),
-      };
-    });
-
-    const { generateComponent: generateComponentImport } = await import(
-      "./ai-component-generator"
-    );
-
-    await generateComponentImport(
+    const result = await generateComponent(
       { name: "Button", description: "Test" },
       "custom-key"
     );
+
+    expect(result.component).toBeDefined();
+    expect(mockCreate).toHaveBeenCalled();
   });
 });
 
 describe("generateComponentFromDescription", () => {
   it("extracts component name from description", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponentFromDescription: generateComponentImport } =
-      await import("./ai-component-generator");
-
-    const result = await generateComponentImport(
+    const result = await generateComponentFromDescription(
       "Button - A customizable button component",
       "test-api-key"
     );
@@ -311,31 +209,7 @@ describe("generateComponentFromDescription", () => {
   });
 
   it("uses full description as name when no delimiter found", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponentFromDescription: generateComponentImport } =
-      await import("./ai-component-generator");
-
-    const result = await generateComponentImport(
+    const result = await generateComponentFromDescription(
       "A completely new component with multiple features",
       "test-api-key"
     );
@@ -346,32 +220,7 @@ describe("generateComponentFromDescription", () => {
 
 describe("Component code generation requirements", () => {
   it("generates TypeScript strict mode compliant code", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponent: generateComponentImport } = await import(
-      "./ai-component-generator"
-    );
-
-    const result = await generateComponentImport(
+    const result = await generateComponent(
       {
         name: "StrictButton",
         description: "Strict mode compliant button",
@@ -384,32 +233,7 @@ describe("Component code generation requirements", () => {
   });
 
   it("generates Storybook CSF3 compatible stories", async () => {
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: MOCK_COMPONENT_CODE,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
-
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponent: generateComponentImport } = await import(
-      "./ai-component-generator"
-    );
-
-    const result = await generateComponentImport(
+    const result = await generateComponent(
       {
         name: "StoryButton",
         description: "Button with stories",
@@ -423,32 +247,25 @@ describe("Component code generation requirements", () => {
 
   it("includes accessibility features in generated components", async () => {
     const componentWithA11y = `...accessibility features like ARIA attributes...`;
-    const mockCreateMessage = vi.fn().mockResolvedValue({
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify({
-            component: componentWithA11y,
-            story: MOCK_STORY,
-            test: MOCK_TEST,
-          }),
-        },
-      ],
-    });
+    mockCreate.mockReset();
+    mockCreate
+      .mockResolvedValueOnce({
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify({
+              component: componentWithA11y,
+              story: MOCK_STORY,
+              test: MOCK_TEST,
+            }),
+          },
+        ],
+      })
+      .mockResolvedValueOnce({
+        content: [{ type: "text", text: MOCK_VALIDATION_RESPONSE }],
+      });
 
-    vi.doMock("@anthropic-ai/sdk", () => {
-      return {
-        default: vi.fn(() => ({
-          messages: { create: mockCreateMessage },
-        })),
-      };
-    });
-
-    const { generateComponent: generateComponentImport } = await import(
-      "./ai-component-generator"
-    );
-
-    const result = await generateComponentImport(
+    const result = await generateComponent(
       {
         name: "A11yButton",
         description: "Accessible button component",

@@ -102,7 +102,7 @@ const cardVariants = [
  * Example hook: Track variant usage for analytics
  */
 function createAnalyticsHook() {
-  const variantUsage: Record<string, number> = {};
+  let variantUsage: Record<string, number> = {};
 
   return {
     'variant:resolve': (context: HookContext) => {
@@ -112,6 +112,9 @@ function createAnalyticsHook() {
       }
     },
     getStats: () => variantUsage,
+    reset: () => {
+      variantUsage = {};
+    },
   };
 }
 
@@ -149,6 +152,10 @@ export default brandPlugin;
  */
 export function getBrandPluginStats() {
   return analyticsHook.getStats();
+}
+
+export function resetBrandPluginStats() {
+  analyticsHook.reset();
 }
 
 /**

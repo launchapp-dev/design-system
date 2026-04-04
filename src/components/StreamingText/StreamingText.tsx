@@ -34,7 +34,7 @@ function parseMarkdownToTokens(text: string): Array<{ type: "text" | "code" | "b
   const tokens: Array<{ type: "text" | "code" | "bold" | "italic" | "codeBlock"; content: string }> = [];
   const regex = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|```[\s\S]*?```)/g;
   let lastIndex = 0;
-  let match;
+  let match: RegExpExecArray | null;
 
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) {

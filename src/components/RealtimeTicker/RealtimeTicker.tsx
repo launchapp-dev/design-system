@@ -177,7 +177,7 @@ function AnimatedValue({
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         
-        const eased = 1 - Math.pow(1 - progress, 3);
+        const eased = 1 - (1 - progress) ** 3;
         const current = startValue + (endValue - startValue) * eased;
         
         setDisplayValue(current);

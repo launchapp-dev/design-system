@@ -3,15 +3,15 @@
  */
 
 import {
-  Palette,
-  RGBColor,
-  TokenSet,
-  FigmaVariable,
-  ValidationResult,
-  SyncError,
+  type Palette,
+  type RGBColor,
+  type TokenSet,
+  type FigmaVariable,
+  type ValidationResult,
+  type SyncError,
   rgbToHSL,
   isSemanticTokenName,
-  SemanticTokenName,
+  type SemanticTokenName,
   SEMANTIC_TOKEN_NAMES,
 } from './types';
 

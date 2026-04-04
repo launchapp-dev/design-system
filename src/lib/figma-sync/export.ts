@@ -3,15 +3,15 @@
  */
 
 import {
-  Palette,
-  TokenSyncExport,
-  SyncMetadata,
-  HSLString,
-  ValidationResult,
+  type Palette,
+  type TokenSyncExport,
+  type SyncMetadata,
+  type HSLString,
+  type ValidationResult,
   isValidHSL,
   hslToRGB,
-  RGBColor,
-  SyncError,
+  type RGBColor,
+  type SyncError,
 } from './types';
 
 /**

@@ -37,7 +37,7 @@
     "fix-a11y": "node scripts/fix-a11y.mjs",
     "fix-a11y:approve": "node scripts/fix-a11y.mjs --interactive",
     "fix-a11y:auto": "node scripts/fix-a11y.mjs --fix",
-    "lint": "eslint src/",
+    "lint": "biome lint ./src",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist",
@@ -124,6 +124,7 @@
     "storybook": "^10.3.3",
     "tailwindcss": "^4.2.2",
     "tsup": "^8.5.1",
+    "@biomejs/biome": "^2.4.10",
     "typescript": "^5.9.3",
     "vitest": "^3.0.0"
   }
