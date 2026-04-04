@@ -89,4 +89,3 @@ function TextTransition({
 TextTransition.displayName = "TextTransition";
 
 export { TextTransition };
-export type { TextTransitionProps };

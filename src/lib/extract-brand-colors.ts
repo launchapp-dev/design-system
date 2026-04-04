@@ -7,11 +7,11 @@ export type ExtractedColor = {
 export async function extractBrandColorsFromUrl(
   url: string
 ): Promise<ExtractedColor[]> {
-  // @ts-expect-error - SDK is optional peer dependency
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
   const client = new Anthropic();
 
-  const message = await client.messages.create({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const message = await (client.messages as any).create({
     model: "claude-3-5-sonnet-20241022",
     max_tokens: 1024,
     messages: [
@@ -58,11 +58,11 @@ Only return valid JSON, no additional text.`,
 export async function extractBrandColorsFromImage(
   imageBase64: string
 ): Promise<ExtractedColor[]> {
-  // @ts-expect-error - SDK is optional peer dependency
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
   const client = new Anthropic();
 
-  const message = await client.messages.create({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const message = await (client.messages as any).create({
     model: "claude-3-5-sonnet-20241022",
     max_tokens: 1024,
     messages: [

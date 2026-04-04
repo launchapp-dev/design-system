@@ -102,7 +102,7 @@ const cardVariants = [
  * Example hook: Track variant usage for analytics
  */
 function createAnalyticsHook() {
-  const variantUsage: Record<string, number> = {};
+  let variantUsage: Record<string, number> = {};
 
   return {
     'variant:resolve': (context: HookContext) => {
@@ -112,6 +112,7 @@ function createAnalyticsHook() {
       }
     },
     getStats: () => variantUsage,
+    reset: () => { variantUsage = {}; },
   };
 }
 
@@ -135,6 +136,7 @@ export const brandPlugin: PluginConfig = {
     'variant:resolve': analyticsHook['variant:resolve'],
   },
   initialize: async (context) => {
+    analyticsHook.reset();
     if (process.env.NODE_ENV === 'development') {
       console.log('[BrandPlugin] Initializing brand plugin...');
       console.log(`[BrandPlugin] Registered ${context.getLoadedPlugins().length} plugins total`);

@@ -107,7 +107,7 @@ export const tooltipPlugin: ComponentPlugin = {
   author: "Design System Team",
 
   afterRender: (element) => {
-    const tooltipText = element.props.tooltip;
+    const tooltipText = (element.props as Record<string, unknown>).tooltip;
 
     if (!tooltipText) {
       return element;

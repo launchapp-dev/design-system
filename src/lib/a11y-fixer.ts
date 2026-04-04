@@ -25,7 +25,7 @@ export interface A11yAnalysisResult {
 }
 
 export interface A11yFixerOptions {
-  client: typeof Anthropic.default;
+  client: new (options?: { apiKey?: string }) => Anthropic;
   apiKey?: string;
   model?: string;
 }

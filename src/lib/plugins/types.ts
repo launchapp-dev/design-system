@@ -1,5 +1,3 @@
-import type { CVAVariants } from "class-variance-authority";
-
 /**
  * Hook lifecycle events that plugins can subscribe to
  */
