@@ -7,6 +7,7 @@
     "packages/*"
   ],
   "description": "Radix UI based design system for LaunchApp",
+  "packageManager": "pnpm@10.33.0",
   "license": "MIT",
   "repository": {
     "type": "git",
