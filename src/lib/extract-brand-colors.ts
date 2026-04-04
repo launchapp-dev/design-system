@@ -9,7 +9,7 @@ export async function extractBrandColorsFromUrl(
 ): Promise<ExtractedColor[]> {
   // @ts-expect-error - SDK is optional peer dependency
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
-  const client = new Anthropic();
+  const client = new Anthropic({ dangerouslyAllowBrowser: true });
 
   const message = await client.messages.create({
     model: "claude-3-5-sonnet-20241022",
@@ -60,7 +60,7 @@ export async function extractBrandColorsFromImage(
 ): Promise<ExtractedColor[]> {
   // @ts-expect-error - SDK is optional peer dependency
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
-  const client = new Anthropic();
+  const client = new Anthropic({ dangerouslyAllowBrowser: true });
 
   const message = await client.messages.create({
     model: "claude-3-5-sonnet-20241022",

@@ -246,6 +246,10 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
         "--la-border": "230 25% 38%",
         "--la-input": "230 25% 38%",
         "--la-ring": "136 74% 72%",
+      },
+    },
+  };
+
   const solarized: CommunityTheme = {
     id: "solarized",
     name: "Solarized",
@@ -360,6 +364,10 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
         "--la-border": "219 14% 32%",
         "--la-input": "219 14% 32%",
         "--la-ring": "219 85% 65%",
+      },
+    },
+  };
+
   const monokai: CommunityTheme = {
     id: "monokai",
     name: "Monokai",

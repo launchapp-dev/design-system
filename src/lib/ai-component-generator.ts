@@ -72,6 +72,7 @@ export async function generateComponent(
 ): Promise<ComponentGenerationResponse> {
   const client = new Anthropic({
     apiKey: apiKey || process.env.ANTHROPIC_API_KEY,
+    dangerouslyAllowBrowser: true,
   });
 
   const userPrompt = formatComponentRequest(request);
@@ -160,6 +161,7 @@ async function validateGeneratedComponent(
 ): Promise<{ isValid: boolean; errors: string[] }> {
   const client = new Anthropic({
     apiKey: apiKey || process.env.ANTHROPIC_API_KEY,
+    dangerouslyAllowBrowser: true,
   });
 
   const message = await client.messages.create({
