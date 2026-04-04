@@ -1,8 +1,10 @@
+export type {
+  BadgeVariants,
+  NotificationBellVariants,
+} from "./NotificationBell";
 export {
   NotificationBell,
-  notificationBellVariants,
   type NotificationBellProps,
   type NotificationItem,
+  notificationBellVariants,
 } from "./NotificationBell";
-export type { NotificationBellVariants } from "./NotificationBell";
-export type { BadgeVariants } from "./NotificationBell";

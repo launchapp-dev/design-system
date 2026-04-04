@@ -1,27 +1,18 @@
-import * as React from "react";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  PaginationState,
-  VisibilityState,
-  RowSelectionState,
+  type ColumnDef,
+  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type PaginationState,
+  type RowSelectionState,
+  type SortingState,
   useReactTable,
+  type VisibilityState,
 } from "@tanstack/react-table";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/Table";
-import { Input } from "@/components/Input";
+import * as React from "react";
 import { Button } from "@/components/Button";
 import { Checkbox } from "@/components/Checkbox";
 import {
@@ -32,15 +23,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/DropdownMenu";
+import { Input } from "@/components/Input";
+import { Label } from "@/components/Label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover";
 import {
+  SelectContent,
+  SelectItem,
   SelectRoot,
   SelectTrigger,
   SelectValue,
-  SelectContent,
-  SelectItem,
 } from "@/components/Select";
-import { Label } from "@/components/Label";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/Table";
 import { cn } from "@/lib/utils";
 
 export interface FilterOption {
@@ -72,22 +72,29 @@ function FullDataTableInner<TData>(
     onBulkDelete,
     className,
   }: FullDataTableProps<TData>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize,
   });
-  const [activeFilterValues, setActiveFilterValues] = React.useState<string[]>([]);
+  const [activeFilterValues, setActiveFilterValues] = React.useState<string[]>(
+    [],
+  );
 
   const effectiveData = React.useMemo(() => {
     if (!filterColumn || activeFilterValues.length === 0) return data;
     return data.filter((row) => {
-      const value = String((row as Record<string, unknown>)[filterColumn] ?? "");
+      const value = String(
+        (row as Record<string, unknown>)[filterColumn] ?? "",
+      );
       return activeFilterValues.includes(value);
     });
   }, [data, filterColumn, activeFilterValues]);
@@ -102,10 +109,12 @@ function FullDataTableInner<TData>(
               table.getIsAllPageRowsSelected()
                 ? true
                 : table.getIsSomePageRowsSelected()
-                ? "indeterminate"
-                : false
+                  ? "indeterminate"
+                  : false
             }
-            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+            onCheckedChange={(value) =>
+              table.toggleAllPageRowsSelected(!!value)
+            }
             aria-label="Select all"
           />
         ),
@@ -121,13 +130,19 @@ function FullDataTableInner<TData>(
       },
       ...columns,
     ],
-    [columns]
+    [columns],
   );
 
   const table = useReactTable({
     data: effectiveData,
     columns: columnsWithSelect,
-    state: { sorting, columnFilters, columnVisibility, rowSelection, pagination },
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+      pagination,
+    },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
@@ -148,7 +163,7 @@ function FullDataTableInner<TData>(
 
   const toggleFilterValue = (value: string) => {
     setActiveFilterValues((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
     );
     setPagination((prev) => ({ ...prev, pageIndex: 0 }));
   };
@@ -166,10 +181,14 @@ function FullDataTableInner<TData>(
             <Input
               placeholder={searchPlaceholder}
               value={
-                (table.getColumn(String(searchCol))?.getFilterValue() as string) ?? ""
+                (table
+                  .getColumn(String(searchCol))
+                  ?.getFilterValue() as string) ?? ""
               }
               onChange={(e) => {
-                table.getColumn(String(searchCol))?.setFilterValue(e.target.value);
+                table
+                  .getColumn(String(searchCol))
+                  ?.setFilterValue(e.target.value);
                 setPagination((prev) => ({ ...prev, pageIndex: 0 }));
               }}
               className="max-w-xs"
@@ -282,7 +301,8 @@ function FullDataTableInner<TData>(
       {hasSelection && (
         <div className="flex items-center gap-3 rounded-md border border-border bg-muted/50 px-4 py-2">
           <span className="text-sm text-muted-foreground">
-            {selectedRows.length} row{selectedRows.length !== 1 ? "s" : ""} selected
+            {selectedRows.length} row{selectedRows.length !== 1 ? "s" : ""}{" "}
+            selected
           </span>
           <div className="flex-1" />
           {onBulkDelete && (
@@ -297,7 +317,11 @@ function FullDataTableInner<TData>(
               Delete selected
             </Button>
           )}
-          <Button variant="ghost" size="sm" onClick={() => table.resetRowSelection()}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => table.resetRowSelection()}
+          >
             Clear
           </Button>
         </div>
@@ -316,18 +340,25 @@ function FullDataTableInner<TData>(
                         ? header.column.getToggleSortingHandler()
                         : undefined
                     }
-                    className={header.column.getCanSort() ? "cursor-pointer select-none" : ""}
+                    className={
+                      header.column.getCanSort()
+                        ? "cursor-pointer select-none"
+                        : ""
+                    }
                   >
                     {header.isPlaceholder ? null : (
                       <span className="inline-flex items-center gap-1">
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                         {header.column.getCanSort() && (
                           <span className="text-xs text-muted-foreground">
                             {header.column.getIsSorted() === "asc"
                               ? "↑"
                               : header.column.getIsSorted() === "desc"
-                              ? "↓"
-                              : "↕"}
+                                ? "↓"
+                                : "↕"}
                           </span>
                         )}
                       </span>
@@ -346,7 +377,10 @@ function FullDataTableInner<TData>(
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -390,7 +424,8 @@ function FullDataTableInner<TData>(
             </SelectRoot>
           </div>
           <span className="text-sm text-muted-foreground">
-            Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+            Page {table.getState().pagination.pageIndex + 1} of{" "}
+            {table.getPageCount()}
           </span>
           <Button
             variant="outline"
@@ -415,7 +450,9 @@ function FullDataTableInner<TData>(
 }
 
 export const FullDataTable = React.forwardRef(FullDataTableInner) as <TData>(
-  props: FullDataTableProps<TData> & { ref?: React.ForwardedRef<HTMLDivElement> }
+  props: FullDataTableProps<TData> & {
+    ref?: React.ForwardedRef<HTMLDivElement>;
+  },
 ) => React.ReactElement;
 
 (

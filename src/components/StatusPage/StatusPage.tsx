@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
 export type ServiceStatus =
@@ -59,8 +59,7 @@ const STATUS_CONFIG: Record<
     label: "Major Outage",
     dotClass: "bg-red-500",
     barClass: "bg-red-500",
-    badgeClass:
-      "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+    badgeClass: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
   },
   maintenance: {
     label: "Under Maintenance",
@@ -71,23 +70,25 @@ const STATUS_CONFIG: Record<
   },
 };
 
-const overallStatusVariants = cva(
-  "rounded-lg px-4 py-3 text-sm font-medium",
-  {
-    variants: {
-      status: {
-        operational: "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300",
-        degraded: "bg-yellow-50 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300",
-        partial_outage: "bg-orange-50 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300",
-        major_outage: "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300",
-        maintenance: "bg-blue-50 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300",
-      },
+const overallStatusVariants = cva("rounded-lg px-4 py-3 text-sm font-medium", {
+  variants: {
+    status: {
+      operational:
+        "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300",
+      degraded:
+        "bg-yellow-50 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300",
+      partial_outage:
+        "bg-orange-50 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300",
+      major_outage:
+        "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300",
+      maintenance:
+        "bg-blue-50 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300",
     },
-    defaultVariants: {
-      status: "operational",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    status: "operational",
+  },
+});
 
 function getOverallStatus(services: StatusService[]): ServiceStatus {
   const priority: ServiceStatus[] = [
@@ -136,7 +137,10 @@ function StatusPage({
       <div className={cn(overallStatusVariants({ status: overall }))}>
         <div className="flex items-center gap-2">
           <span
-            className={cn("h-2.5 w-2.5 rounded-full flex-shrink-0", config.dotClass)}
+            className={cn(
+              "h-2.5 w-2.5 rounded-full flex-shrink-0",
+              config.dotClass,
+            )}
           />
           <span>{config.label} — All Systems</span>
         </div>
@@ -149,8 +153,7 @@ function StatusPage({
         {services.map((service) => {
           const sConfig = STATUS_CONFIG[service.status];
           const history = service.uptimeHistory ?? [];
-          const uptime =
-            service.uptimePercentage ?? computeUptime(history);
+          const uptime = service.uptimePercentage ?? computeUptime(history);
 
           return (
             <div key={service.id} className="px-4 py-4 sm:px-6">
@@ -160,7 +163,7 @@ function StatusPage({
                     <span
                       className={cn(
                         "h-2 w-2 rounded-full flex-shrink-0",
-                        sConfig.dotClass
+                        sConfig.dotClass,
                       )}
                     />
                     <span className="font-medium text-sm text-[hsl(var(--la-card-foreground))]">
@@ -176,7 +179,7 @@ function StatusPage({
                 <span
                   className={cn(
                     "flex-shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold",
-                    sConfig.badgeClass
+                    sConfig.badgeClass,
                   )}
                 >
                   {sConfig.label}
@@ -191,7 +194,7 @@ function StatusPage({
                         key={i}
                         className={cn(
                           "h-7 w-1.5 rounded-sm flex-shrink-0",
-                          STATUS_CONFIG[entry.status].barClass
+                          STATUS_CONFIG[entry.status].barClass,
                         )}
                         title={`${entry.date}: ${STATUS_CONFIG[entry.status].label}`}
                       />
@@ -215,5 +218,5 @@ function StatusPage({
 StatusPage.displayName = "StatusPage";
 export type OverallStatusVariants = VariantProps<typeof overallStatusVariants>;
 
-export { StatusPage, overallStatusVariants };
 export type { VariantProps };
+export { overallStatusVariants, StatusPage };

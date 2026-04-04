@@ -1,6 +1,6 @@
-import * as React from "react";
-import { KPICard, type KPICardProps } from "../KPICard";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
+import { KPICard, type KPICardProps } from "../KPICard";
 
 export interface StatDisplayProps extends React.HTMLAttributes<HTMLDivElement> {
   items: KPICardProps[];
@@ -13,7 +13,13 @@ const colsVariants: Record<2 | 3 | 4, string> = {
   4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
 };
 
-function StatDisplay({ items, cols = 4, className, ref, ...props }: StatDisplayProps & { ref?: React.Ref<HTMLDivElement> }) {
+function StatDisplay({
+  items,
+  cols = 4,
+  className,
+  ref,
+  ...props
+}: StatDisplayProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}

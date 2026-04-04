@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { PageTransition, TransitionGroup, RouteTransition, MorphTransition } from "./index";
+import { MorphTransition, PageTransition, RouteTransition } from "./index";
 
 const meta: Meta = {
   title: "Components/PageTransition",
@@ -73,7 +73,16 @@ export const SlideTransition: StoryObj = {
         </div>
         {(["up", "down", "left", "right"] as const).map((dir) => (
           <div key={dir} style={{ marginBottom: 16 }}>
-            <p style={{ fontSize: 12, fontWeight: 500, marginBottom: 8, textTransform: "capitalize" }}>Direction: {dir}</p>
+            <p
+              style={{
+                fontSize: 12,
+                fontWeight: 500,
+                marginBottom: 8,
+                textTransform: "capitalize",
+              }}
+            >
+              Direction: {dir}
+            </p>
             <PageTransition
               variant="slide"
               direction={dir}
@@ -86,7 +95,9 @@ export const SlideTransition: StoryObj = {
               }}
             >
               <p style={{ fontWeight: 600 }}>Slide {dir}</p>
-              <p style={{ fontSize: 14, opacity: 0.6 }}>Content slides from {dir}</p>
+              <p style={{ fontSize: 14, opacity: 0.6 }}>
+                Content slides from {dir}
+              </p>
             </PageTransition>
           </div>
         ))}
@@ -159,15 +170,21 @@ export const MorphTransitionStory: StoryObj = {
           isActive={isActive}
           style={{
             padding: 32,
-            background: isActive ? "hsl(var(--la-primary))" : "hsl(var(--la-card))",
-            color: isActive ? "hsl(var(--la-primary-foreground))" : "hsl(var(--la-card-foreground))",
+            background: isActive
+              ? "hsl(var(--la-primary))"
+              : "hsl(var(--la-card))",
+            color: isActive
+              ? "hsl(var(--la-primary-foreground))"
+              : "hsl(var(--la-card-foreground))",
             border: "1px solid hsl(var(--la-border))",
             borderRadius: "var(--la-radius)",
           }}
         >
           <p style={{ fontWeight: 600 }}>{isActive ? "Card 2" : "Card 1"}</p>
           <p style={{ fontSize: 14, opacity: 0.8, marginTop: 4 }}>
-            {isActive ? "Morphing to second content" : "Click to morph to other content"}
+            {isActive
+              ? "Morphing to second content"
+              : "Click to morph to other content"}
           </p>
         </MorphTransition>
       </div>
@@ -184,27 +201,54 @@ export const RouteTransitionStory: StoryObj = {
       {
         path: "home",
         element: (
-          <div style={{ padding: 24, background: "hsl(var(--la-card))", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+          <div
+            style={{
+              padding: 24,
+              background: "hsl(var(--la-card))",
+              border: "1px solid hsl(var(--la-border))",
+              borderRadius: "var(--la-radius)",
+            }}
+          >
             <p style={{ fontSize: 24, fontWeight: 700 }}>Home Page</p>
-            <p style={{ fontSize: 14, opacity: 0.6, marginTop: 8 }}>Welcome to the app</p>
+            <p style={{ fontSize: 14, opacity: 0.6, marginTop: 8 }}>
+              Welcome to the app
+            </p>
           </div>
         ),
       },
       {
         path: "about",
         element: (
-          <div style={{ padding: 24, background: "hsl(var(--la-card))", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+          <div
+            style={{
+              padding: 24,
+              background: "hsl(var(--la-card))",
+              border: "1px solid hsl(var(--la-border))",
+              borderRadius: "var(--la-radius)",
+            }}
+          >
             <p style={{ fontSize: 24, fontWeight: 700 }}>About Page</p>
-            <p style={{ fontSize: 14, opacity: 0.6, marginTop: 8 }}>Learn more about us</p>
+            <p style={{ fontSize: 14, opacity: 0.6, marginTop: 8 }}>
+              Learn more about us
+            </p>
           </div>
         ),
       },
       {
         path: "contact",
         element: (
-          <div style={{ padding: 24, background: "hsl(var(--la-card))", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+          <div
+            style={{
+              padding: 24,
+              background: "hsl(var(--la-card))",
+              border: "1px solid hsl(var(--la-border))",
+              borderRadius: "var(--la-radius)",
+            }}
+          >
             <p style={{ fontSize: 24, fontWeight: 700 }}>Contact Page</p>
-            <p style={{ fontSize: 14, opacity: 0.6, marginTop: 8 }}>Get in touch</p>
+            <p style={{ fontSize: 14, opacity: 0.6, marginTop: 8 }}>
+              Get in touch
+            </p>
           </div>
         ),
       },
@@ -219,7 +263,10 @@ export const RouteTransitionStory: StoryObj = {
               onClick={() => setRoute(r.path)}
               style={{
                 padding: "6px 12px",
-                background: route === r.path ? "hsl(var(--la-primary))" : "hsl(var(--la-secondary))",
+                background:
+                  route === r.path
+                    ? "hsl(var(--la-primary))"
+                    : "hsl(var(--la-secondary))",
                 color: route === r.path ? "white" : "inherit",
                 border: "1px solid hsl(var(--la-border))",
                 borderRadius: "var(--la-radius)",
@@ -247,9 +294,39 @@ export const AllTransitions: StoryObj = {
   render: () => {
     const [activeTab, setActiveTab] = React.useState(0);
     const tabs = [
-      { label: "Fade", component: <PageTransition variant="fade" show><div style={cardStyle}><p style={{ fontWeight: 600 }}>Fade</p><p style={{ fontSize: 12, opacity: 0.6 }}>Opacity transition</p></div></PageTransition> },
-      { label: "Slide", component: <PageTransition variant="slide" direction="up" show><div style={cardStyle}><p style={{ fontWeight: 600 }}>Slide</p><p style={{ fontSize: 12, opacity: 0.6 }}>Movement transition</p></div></PageTransition> },
-      { label: "Scale", component: <PageTransition variant="scale" show><div style={cardStyle}><p style={{ fontWeight: 600 }}>Scale</p><p style={{ fontSize: 12, opacity: 0.6 }}>Size transition</p></div></PageTransition> },
+      {
+        label: "Fade",
+        component: (
+          <PageTransition variant="fade" show>
+            <div style={cardStyle}>
+              <p style={{ fontWeight: 600 }}>Fade</p>
+              <p style={{ fontSize: 12, opacity: 0.6 }}>Opacity transition</p>
+            </div>
+          </PageTransition>
+        ),
+      },
+      {
+        label: "Slide",
+        component: (
+          <PageTransition variant="slide" direction="up" show>
+            <div style={cardStyle}>
+              <p style={{ fontWeight: 600 }}>Slide</p>
+              <p style={{ fontSize: 12, opacity: 0.6 }}>Movement transition</p>
+            </div>
+          </PageTransition>
+        ),
+      },
+      {
+        label: "Scale",
+        component: (
+          <PageTransition variant="scale" show>
+            <div style={cardStyle}>
+              <p style={{ fontWeight: 600 }}>Scale</p>
+              <p style={{ fontSize: 12, opacity: 0.6 }}>Size transition</p>
+            </div>
+          </PageTransition>
+        ),
+      },
     ];
 
     return (
@@ -261,7 +338,10 @@ export const AllTransitions: StoryObj = {
               onClick={() => setActiveTab(i)}
               style={{
                 padding: "6px 12px",
-                background: activeTab === i ? "hsl(var(--la-primary))" : "hsl(var(--la-secondary))",
+                background:
+                  activeTab === i
+                    ? "hsl(var(--la-primary))"
+                    : "hsl(var(--la-secondary))",
                 color: activeTab === i ? "white" : "inherit",
                 border: "1px solid hsl(var(--la-border))",
                 borderRadius: "var(--la-radius)",
@@ -292,7 +372,8 @@ export const ReducedMotion: StoryObj = {
     return (
       <div style={{ padding: 24 }}>
         <p style={{ marginBottom: 16, fontSize: 14, opacity: 0.6 }}>
-          Enable &quot;prefers-reduced-motion&quot; in your OS settings to see instant transitions.
+          Enable &quot;prefers-reduced-motion&quot; in your OS settings to see
+          instant transitions.
         </p>
         <button
           onClick={() => setShow((s) => !s)}
@@ -309,13 +390,25 @@ export const ReducedMotion: StoryObj = {
           {show ? "Hide" : "Show"}
         </button>
         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-          <PageTransition variant="fade" show={show} style={{ ...cardStyle, flex: "1 1 200px" }}>
+          <PageTransition
+            variant="fade"
+            show={show}
+            style={{ ...cardStyle, flex: "1 1 200px" }}
+          >
             <p style={{ fontWeight: 600 }}>Fade (instant)</p>
           </PageTransition>
-          <PageTransition variant="slide" show={show} style={{ ...cardStyle, flex: "1 1 200px" }}>
+          <PageTransition
+            variant="slide"
+            show={show}
+            style={{ ...cardStyle, flex: "1 1 200px" }}
+          >
             <p style={{ fontWeight: 600 }}>Slide (instant)</p>
           </PageTransition>
-          <PageTransition variant="scale" show={show} style={{ ...cardStyle, flex: "1 1 200px" }}>
+          <PageTransition
+            variant="scale"
+            show={show}
+            style={{ ...cardStyle, flex: "1 1 200px" }}
+          >
             <p style={{ fontWeight: 600 }}>Scale (instant)</p>
           </PageTransition>
         </div>

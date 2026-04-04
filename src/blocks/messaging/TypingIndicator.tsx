@@ -1,7 +1,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-export interface TypingIndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TypingIndicatorProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   label?: string;
 }
 
@@ -35,7 +36,7 @@ const TypingIndicator = React.forwardRef<HTMLDivElement, TypingIndicatorProps>(
         }
       `}</style>
     </div>
-  )
+  ),
 );
 TypingIndicator.displayName = "TypingIndicator";
 

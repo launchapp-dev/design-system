@@ -57,7 +57,9 @@ export default function Page() {
 export default meta;
 type Story = StoryObj<typeof ChatInterface>;
 
-const InteractiveTemplate = (args: React.ComponentProps<typeof ChatInterface>) => {
+const InteractiveTemplate = (
+  args: React.ComponentProps<typeof ChatInterface>,
+) => {
   const [messages, setMessages] = React.useState(args.messages);
   const [isTyping, setIsTyping] = React.useState(false);
 
@@ -88,7 +90,12 @@ const InteractiveTemplate = (args: React.ComponentProps<typeof ChatInterface>) =
 
   return (
     <div style={{ maxWidth: 480 }}>
-      <ChatInterface {...args} messages={messages} isTyping={isTyping} onSend={handleSend} />
+      <ChatInterface
+        {...args}
+        messages={messages}
+        isTyping={isTyping}
+        onSend={handleSend}
+      />
     </div>
   );
 };
@@ -118,7 +125,10 @@ export const WithTyping: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}
+    >
       <div style={{ maxWidth: 480 }}>
         <ChatInterface {...args} />
       </div>

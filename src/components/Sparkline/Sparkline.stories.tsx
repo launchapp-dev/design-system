@@ -1,12 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { Sparkline } from "./index";
 
-const generateData = (length: number, min: number, max: number, trend: "up" | "down" | "flat" | "volatile" = "up"): number[] => {
+const generateData = (
+  length: number,
+  min: number,
+  max: number,
+  trend: "up" | "down" | "flat" | "volatile" = "up",
+): number[] => {
   const data: number[] = [];
   let current = (max + min) / 2;
   const step = (max - min) / length;
-  
+
   for (let i = 0; i < length; i++) {
     if (trend === "up") {
       current += step * (0.5 + Math.random());
@@ -18,7 +22,7 @@ const generateData = (length: number, min: number, max: number, trend: "up" | "d
     current = Math.max(min, Math.min(max, current));
     data.push(parseFloat(current.toFixed(2)));
   }
-  
+
   return data;
 };
 
@@ -32,7 +36,20 @@ const meta: Meta<typeof Sparkline> = {
     },
     colorScheme: {
       control: "select",
-      options: ["primary", "secondary", "destructive", "muted", "accent", "success", "warning", "chart1", "chart2", "chart3", "chart4", "chart5"],
+      options: [
+        "primary",
+        "secondary",
+        "destructive",
+        "muted",
+        "accent",
+        "success",
+        "warning",
+        "chart1",
+        "chart2",
+        "chart3",
+        "chart4",
+        "chart5",
+      ],
     },
     curveType: {
       control: "select",
@@ -172,31 +189,52 @@ export const ColorSchemes: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Primary:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="primary" />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="primary"
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Secondary:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="secondary" />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="secondary"
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Destructive:</span>
-        <Sparkline data={generateData(12, 10, 100, "down")} colorScheme="destructive" />
+        <Sparkline
+          data={generateData(12, 10, 100, "down")}
+          colorScheme="destructive"
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Muted:</span>
-        <Sparkline data={generateData(12, 10, 100, "flat")} colorScheme="muted" />
+        <Sparkline
+          data={generateData(12, 10, 100, "flat")}
+          colorScheme="muted"
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Accent:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="accent" />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="accent"
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Success:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="success" />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="success"
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Warning:</span>
-        <Sparkline data={generateData(12, 10, 100, "volatile")} colorScheme="warning" />
+        <Sparkline
+          data={generateData(12, 10, 100, "volatile")}
+          colorScheme="warning"
+        />
       </div>
     </div>
   ),
@@ -207,23 +245,43 @@ export const ChartColors: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Chart 1:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="chart1" showArea />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="chart1"
+          showArea
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Chart 2:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="chart2" showArea />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="chart2"
+          showArea
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Chart 3:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="chart3" showArea />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="chart3"
+          showArea
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Chart 4:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="chart4" showArea />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="chart4"
+          showArea
+        />
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "80px", fontSize: "12px" }}>Chart 5:</span>
-        <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="chart5" showArea />
+        <Sparkline
+          data={generateData(12, 10, 100, "up")}
+          colorScheme="chart5"
+          showArea
+        />
       </div>
     </div>
   ),
@@ -233,10 +291,21 @@ export const InlineWithText: Story = {
   render: () => (
     <div style={{ fontSize: "14px", lineHeight: "24px" }}>
       <p>
-        Revenue is up 23% this quarter <Sparkline data={[20, 35, 28, 45, 52, 48, 65, 72, 68, 85, 92, 98]} size="sm" /> compared to last quarter.
+        Revenue is up 23% this quarter{" "}
+        <Sparkline
+          data={[20, 35, 28, 45, 52, 48, 65, 72, 68, 85, 92, 98]}
+          size="sm"
+        />{" "}
+        compared to last quarter.
       </p>
       <p style={{ marginTop: "8px" }}>
-        User engagement dropped <Sparkline data={[80, 75, 72, 68, 65, 60, 58, 52, 48, 45, 42, 38]} size="sm" colorScheme="destructive" /> over the past month.
+        User engagement dropped{" "}
+        <Sparkline
+          data={[80, 75, 72, 68, 65, 60, 58, 52, 48, 45, 42, 38]}
+          size="sm"
+          colorScheme="destructive"
+        />{" "}
+        over the past month.
       </p>
     </div>
   ),
@@ -316,19 +385,61 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>Primary:</span>
-          <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="primary" showArea />
+          <span
+            style={{
+              width: "80px",
+              fontSize: "12px",
+              color: "hsl(var(--foreground))",
+            }}
+          >
+            Primary:
+          </span>
+          <Sparkline
+            data={generateData(12, 10, 100, "up")}
+            colorScheme="primary"
+            showArea
+          />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>Destructive:</span>
-          <Sparkline data={generateData(12, 10, 100, "down")} colorScheme="destructive" showArea />
+          <span
+            style={{
+              width: "80px",
+              fontSize: "12px",
+              color: "hsl(var(--foreground))",
+            }}
+          >
+            Destructive:
+          </span>
+          <Sparkline
+            data={generateData(12, 10, 100, "down")}
+            colorScheme="destructive"
+            showArea
+          />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>Chart 1:</span>
-          <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="chart1" showArea />
+          <span
+            style={{
+              width: "80px",
+              fontSize: "12px",
+              color: "hsl(var(--foreground))",
+            }}
+          >
+            Chart 1:
+          </span>
+          <Sparkline
+            data={generateData(12, 10, 100, "up")}
+            colorScheme="chart1"
+            showArea
+          />
         </div>
       </div>
     </div>

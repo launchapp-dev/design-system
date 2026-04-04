@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { PricingTable } from "./index";
 import type { PricingTier } from "./index";
+import { PricingTable } from "./index";
 
 const tiers: PricingTier[] = [
   {
@@ -110,10 +109,7 @@ export const WithoutHeader: Story = {
 
 export const TwoTiers: Story = {
   render: () => (
-    <PricingTable
-      headline="Choose your plan"
-      tiers={tiers.slice(0, 2)}
-    />
+    <PricingTable headline="Choose your plan" tiers={tiers.slice(0, 2)} />
   ),
 };
 
@@ -122,7 +118,7 @@ export const CustomBadge: Story = {
     <PricingTable
       headline="Pricing"
       tiers={tiers.map((t) =>
-        t.popular ? { ...t, badge: "⭐ Best Value" } : t
+        t.popular ? { ...t, badge: "⭐ Best Value" } : t,
       )}
     />
   ),

@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { Heatmap } from "./index";
 import type { HeatmapCell } from "./Heatmap";
+import { Heatmap } from "./index";
 
 const generateMatrixData = (
   rows: number,
   cols: number,
   min: number,
-  max: number
+  max: number,
 ): HeatmapCell[][] => {
   return Array.from({ length: rows }, (_, rowIndex) =>
     Array.from({ length: cols }, (_, colIndex) => ({
@@ -15,7 +15,7 @@ const generateMatrixData = (
       label: `R${rowIndex + 1}C${colIndex + 1}`,
       rowLabel: `Row ${rowIndex + 1}`,
       colLabel: `Col ${colIndex + 1}`,
-    }))
+    })),
   );
 };
 
@@ -93,46 +93,181 @@ const monthlyData: HeatmapCell[][] = [
 
 const stockData: HeatmapCell[][] = [
   [
-    { value: -2.5, label: "Stock A, Mon", rowLabel: "Stock A", colLabel: "Monday" },
-    { value: 1.8, label: "Stock A, Tue", rowLabel: "Stock A", colLabel: "Tuesday" },
-    { value: 3.2, label: "Stock A, Wed", rowLabel: "Stock A", colLabel: "Wednesday" },
-    { value: -0.5, label: "Stock A, Thu", rowLabel: "Stock A", colLabel: "Thursday" },
-    { value: 2.1, label: "Stock A, Fri", rowLabel: "Stock A", colLabel: "Friday" },
+    {
+      value: -2.5,
+      label: "Stock A, Mon",
+      rowLabel: "Stock A",
+      colLabel: "Monday",
+    },
+    {
+      value: 1.8,
+      label: "Stock A, Tue",
+      rowLabel: "Stock A",
+      colLabel: "Tuesday",
+    },
+    {
+      value: 3.2,
+      label: "Stock A, Wed",
+      rowLabel: "Stock A",
+      colLabel: "Wednesday",
+    },
+    {
+      value: -0.5,
+      label: "Stock A, Thu",
+      rowLabel: "Stock A",
+      colLabel: "Thursday",
+    },
+    {
+      value: 2.1,
+      label: "Stock A, Fri",
+      rowLabel: "Stock A",
+      colLabel: "Friday",
+    },
   ],
   [
-    { value: 1.2, label: "Stock B, Mon", rowLabel: "Stock B", colLabel: "Monday" },
-    { value: -1.5, label: "Stock B, Tue", rowLabel: "Stock B", colLabel: "Tuesday" },
-    { value: 0.8, label: "Stock B, Wed", rowLabel: "Stock B", colLabel: "Wednesday" },
-    { value: 2.5, label: "Stock B, Thu", rowLabel: "Stock B", colLabel: "Thursday" },
-    { value: -0.3, label: "Stock B, Fri", rowLabel: "Stock B", colLabel: "Friday" },
+    {
+      value: 1.2,
+      label: "Stock B, Mon",
+      rowLabel: "Stock B",
+      colLabel: "Monday",
+    },
+    {
+      value: -1.5,
+      label: "Stock B, Tue",
+      rowLabel: "Stock B",
+      colLabel: "Tuesday",
+    },
+    {
+      value: 0.8,
+      label: "Stock B, Wed",
+      rowLabel: "Stock B",
+      colLabel: "Wednesday",
+    },
+    {
+      value: 2.5,
+      label: "Stock B, Thu",
+      rowLabel: "Stock B",
+      colLabel: "Thursday",
+    },
+    {
+      value: -0.3,
+      label: "Stock B, Fri",
+      rowLabel: "Stock B",
+      colLabel: "Friday",
+    },
   ],
   [
-    { value: -3.1, label: "Stock C, Mon", rowLabel: "Stock C", colLabel: "Monday" },
-    { value: -2.2, label: "Stock C, Tue", rowLabel: "Stock C", colLabel: "Tuesday" },
-    { value: 1.5, label: "Stock C, Wed", rowLabel: "Stock C", colLabel: "Wednesday" },
-    { value: 0.2, label: "Stock C, Thu", rowLabel: "Stock C", colLabel: "Thursday" },
-    { value: -1.8, label: "Stock C, Fri", rowLabel: "Stock C", colLabel: "Friday" },
+    {
+      value: -3.1,
+      label: "Stock C, Mon",
+      rowLabel: "Stock C",
+      colLabel: "Monday",
+    },
+    {
+      value: -2.2,
+      label: "Stock C, Tue",
+      rowLabel: "Stock C",
+      colLabel: "Tuesday",
+    },
+    {
+      value: 1.5,
+      label: "Stock C, Wed",
+      rowLabel: "Stock C",
+      colLabel: "Wednesday",
+    },
+    {
+      value: 0.2,
+      label: "Stock C, Thu",
+      rowLabel: "Stock C",
+      colLabel: "Thursday",
+    },
+    {
+      value: -1.8,
+      label: "Stock C, Fri",
+      rowLabel: "Stock C",
+      colLabel: "Friday",
+    },
   ],
 ];
 
 const salesData: HeatmapCell[][] = [
   [
-    { value: 15000, label: "Product A, North", rowLabel: "Product A", colLabel: "North" },
-    { value: 22000, label: "Product A, South", rowLabel: "Product A", colLabel: "South" },
-    { value: 18000, label: "Product A, East", rowLabel: "Product A", colLabel: "East" },
-    { value: 25000, label: "Product A, West", rowLabel: "Product A", colLabel: "West" },
+    {
+      value: 15000,
+      label: "Product A, North",
+      rowLabel: "Product A",
+      colLabel: "North",
+    },
+    {
+      value: 22000,
+      label: "Product A, South",
+      rowLabel: "Product A",
+      colLabel: "South",
+    },
+    {
+      value: 18000,
+      label: "Product A, East",
+      rowLabel: "Product A",
+      colLabel: "East",
+    },
+    {
+      value: 25000,
+      label: "Product A, West",
+      rowLabel: "Product A",
+      colLabel: "West",
+    },
   ],
   [
-    { value: 32000, label: "Product B, North", rowLabel: "Product B", colLabel: "North" },
-    { value: 28000, label: "Product B, South", rowLabel: "Product B", colLabel: "South" },
-    { value: 35000, label: "Product B, East", rowLabel: "Product B", colLabel: "East" },
-    { value: 30000, label: "Product B, West", rowLabel: "Product B", colLabel: "West" },
+    {
+      value: 32000,
+      label: "Product B, North",
+      rowLabel: "Product B",
+      colLabel: "North",
+    },
+    {
+      value: 28000,
+      label: "Product B, South",
+      rowLabel: "Product B",
+      colLabel: "South",
+    },
+    {
+      value: 35000,
+      label: "Product B, East",
+      rowLabel: "Product B",
+      colLabel: "East",
+    },
+    {
+      value: 30000,
+      label: "Product B, West",
+      rowLabel: "Product B",
+      colLabel: "West",
+    },
   ],
   [
-    { value: 12000, label: "Product C, North", rowLabel: "Product C", colLabel: "North" },
-    { value: 15000, label: "Product C, South", rowLabel: "Product C", colLabel: "South" },
-    { value: 18000, label: "Product C, East", rowLabel: "Product C", colLabel: "East" },
-    { value: 22000, label: "Product C, West", rowLabel: "Product C", colLabel: "West" },
+    {
+      value: 12000,
+      label: "Product C, North",
+      rowLabel: "Product C",
+      colLabel: "North",
+    },
+    {
+      value: 15000,
+      label: "Product C, South",
+      rowLabel: "Product C",
+      colLabel: "South",
+    },
+    {
+      value: 18000,
+      label: "Product C, East",
+      rowLabel: "Product C",
+      colLabel: "East",
+    },
+    {
+      value: 22000,
+      label: "Product C, West",
+      rowLabel: "Product C",
+      colLabel: "West",
+    },
   ],
 ];
 
@@ -394,7 +529,9 @@ export const HoverCallback: Story = {
         />
         <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm min-h-[2.5rem]">
           {hovered ? (
-            <>Hovering: <strong>{hovered}</strong></>
+            <>
+              Hovering: <strong>{hovered}</strong>
+            </>
           ) : (
             <span className="text-muted-foreground">Hover over a cell</span>
           )}
@@ -412,7 +549,7 @@ export const HoverCallback: Story = {
 export const CustomTooltip: Story = {
   name: "Custom Tooltip Content",
   render: (args) => {
-    const customTooltip = (cell: typeof args.data[0][0]) => (
+    const customTooltip = (cell: (typeof args.data)[0][0]) => (
       <div className="text-xs p-1">
         <div className="font-bold text-primary mb-1">{cell.label}</div>
         <div className="flex items-center gap-2">
@@ -427,12 +564,7 @@ export const CustomTooltip: Story = {
       </div>
     );
 
-    return (
-      <Heatmap
-        {...args}
-        tooltipContent={customTooltip}
-      />
-    );
+    return <Heatmap {...args} tooltipContent={customTooltip} />;
   },
   args: {
     data: salesData,
@@ -502,7 +634,7 @@ export const ColorScaleComparison: Story = {
               aria-label={`Heatmap with ${scale} color scale`}
             />
           </div>
-        )
+        ),
       )}
     </div>
   ),

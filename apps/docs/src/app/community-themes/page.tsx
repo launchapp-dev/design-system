@@ -1,13 +1,13 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
 import {
   type CommunityTheme,
   getCommunityThemeRegistry,
   getCommunityThemesCssString,
   getFeaturedCommunityThemeIds,
 } from "@launchapp/design-system";
+import Link from "next/link";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const SWATCH_TOKENS = [
@@ -43,7 +43,9 @@ function CommunityThemeCard({
       onClick={onClick}
       className={cn(
         "group relative rounded-xl border bg-card text-left transition-all hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        isActive ? "border-primary ring-2 ring-primary ring-offset-2" : "border-border"
+        isActive
+          ? "border-primary ring-2 ring-primary ring-offset-2"
+          : "border-border",
       )}
       aria-pressed={isActive}
       aria-label={`Apply ${theme.name} theme`}
@@ -78,34 +80,46 @@ function CommunityThemeCard({
           <div>
             <span className="font-medium text-sm">{theme.name}</span>
             {theme.author && (
-              <p className="text-xs text-muted-foreground">by {theme.author.name}</p>
+              <p className="text-xs text-muted-foreground">
+                by {theme.author.name}
+              </p>
             )}
           </div>
         </div>
 
-        <p className="text-xs text-muted-foreground mb-3">{theme.description}</p>
+        <p className="text-xs text-muted-foreground mb-3">
+          {theme.description}
+        </p>
 
         <div className="space-y-2">
-          <div className="text-xs font-medium text-muted-foreground mb-1.5">Light</div>
+          <div className="text-xs font-medium text-muted-foreground mb-1.5">
+            Light
+          </div>
           <div className="flex gap-1">
             {SWATCH_TOKENS.map(({ key, label }) => (
               <div
                 key={key}
                 className="h-6 flex-1 rounded-sm border border-black/5"
-                style={{ backgroundColor: `hsl(${theme.tokens.light[key as keyof typeof theme.tokens.light]})` }}
+                style={{
+                  backgroundColor: `hsl(${theme.tokens.light[key as keyof typeof theme.tokens.light]})`,
+                }}
                 title={`${label}: hsl(${theme.tokens.light[key as keyof typeof theme.tokens.light]})`}
                 aria-label={`${label} light`}
               />
             ))}
           </div>
 
-          <div className="text-xs font-medium text-muted-foreground mb-1.5 mt-2">Dark</div>
+          <div className="text-xs font-medium text-muted-foreground mb-1.5 mt-2">
+            Dark
+          </div>
           <div className="flex gap-1">
             {SWATCH_TOKENS.map(({ key, label }) => (
               <div
                 key={key}
                 className="h-6 flex-1 rounded-sm border border-white/10"
-                style={{ backgroundColor: `hsl(${theme.tokens.dark[key as keyof typeof theme.tokens.dark]})` }}
+                style={{
+                  backgroundColor: `hsl(${theme.tokens.dark[key as keyof typeof theme.tokens.dark]})`,
+                }}
                 title={`${label}: hsl(${theme.tokens.dark[key as keyof typeof theme.tokens.dark]})`}
                 aria-label={`${label} dark`}
               />
@@ -116,7 +130,10 @@ function CommunityThemeCard({
         {theme.keywords && theme.keywords.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-1">
             {theme.keywords.map((keyword) => (
-              <span key={keyword} className="text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+              <span
+                key={keyword}
+                className="text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground"
+              >
                 {keyword}
               </span>
             ))}
@@ -147,7 +164,12 @@ function ThemeDetailsPanel({ theme }: { theme: CommunityTheme }) {
           <div className="text-sm">
             <p>{theme.author.name}</p>
             {theme.author.url && (
-              <a href={theme.author.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              <a
+                href={theme.author.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
                 {theme.author.url}
               </a>
             )}
@@ -223,10 +245,13 @@ export default function CommunityThemesPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-3">Community Themes</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-3">
+          Community Themes
+        </h1>
         <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-          Explore and install color themes contributed by the LaunchApp community. Click any theme to preview it
-          and see installation instructions.
+          Explore and install color themes contributed by the LaunchApp
+          community. Click any theme to preview it and see installation
+          instructions.
         </p>
         <Link
           href="/community-themes/contribute"
@@ -242,7 +267,9 @@ export default function CommunityThemesPage() {
             <div>
               <div className="mb-4">
                 <h2 className="text-xl font-semibold">Featured Themes</h2>
-                <p className="text-sm text-muted-foreground">Handpicked community contributions</p>
+                <p className="text-sm text-muted-foreground">
+                  Handpicked community contributions
+                </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {featuredThemes.map((theme) => (
@@ -264,7 +291,9 @@ export default function CommunityThemesPage() {
               )}
               <div className="mb-4">
                 <h2 className="text-xl font-semibold">All Themes</h2>
-                <p className="text-sm text-muted-foreground">{otherThemes.length} more available</p>
+                <p className="text-sm text-muted-foreground">
+                  {otherThemes.length} more available
+                </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {otherThemes.map((theme) => (

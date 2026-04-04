@@ -1,2 +1,6 @@
+export type {
+  SocialProofMetric,
+  StartupProps,
+  StartupTestimonial,
+} from "./Startup";
 export { Startup } from "./Startup";
-export type { StartupProps, SocialProofMetric, StartupTestimonial } from "./Startup";

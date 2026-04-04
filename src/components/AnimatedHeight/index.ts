@@ -1,2 +1,2 @@
-export { AnimatedHeight } from "./AnimatedHeight";
 export type { AnimatedHeightProps } from "./AnimatedHeight";
+export { AnimatedHeight } from "./AnimatedHeight";

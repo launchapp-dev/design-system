@@ -1,8 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
-  generateComponent,
-  generateComponentFromDescription,
   type ComponentGenerationRequest,
+  generateComponent,
 } from "./ai-component-generator";
 
 const MOCK_COMPONENT_CODE = `import * as React from "react";
@@ -89,7 +88,7 @@ describe("Button", () => {
   });
 });`;
 
-const MOCK_VALIDATION_RESPONSE = {
+const _MOCK_VALIDATION_RESPONSE = {
   valid: true,
   errors: [],
 };
@@ -211,7 +210,7 @@ describe("generateComponent", () => {
         name: "StyledButton",
         description: "Styled button with design tokens",
       },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toContain("cva");
@@ -228,9 +227,7 @@ describe("generateComponent", () => {
         description: "A button",
       };
 
-      await expect(
-        generateComponent(request, undefined)
-      ).rejects.toThrow();
+      await expect(generateComponent(request, undefined)).rejects.toThrow();
     } finally {
       if (oldEnv) {
         process.env.ANTHROPIC_API_KEY = oldEnv;
@@ -269,7 +266,7 @@ describe("generateComponent", () => {
 
     await generateComponentImport(
       { name: "Button", description: "Test" },
-      "custom-key"
+      "custom-key",
     );
   });
 });
@@ -302,7 +299,7 @@ describe("generateComponentFromDescription", () => {
 
     const result = await generateComponentImport(
       "Button - A customizable button component",
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toBeDefined();
@@ -337,7 +334,7 @@ describe("generateComponentFromDescription", () => {
 
     const result = await generateComponentImport(
       "A completely new component with multiple features",
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toBeDefined();
@@ -376,7 +373,7 @@ describe("Component code generation requirements", () => {
         name: "StrictButton",
         description: "Strict mode compliant button",
       },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toContain("interface");
@@ -414,7 +411,7 @@ describe("Component code generation requirements", () => {
         name: "StoryButton",
         description: "Button with stories",
       },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.story).toContain("Meta");
@@ -454,7 +451,7 @@ describe("Component code generation requirements", () => {
         description: "Accessible button component",
         requirements: ["ARIA labels", "Keyboard navigation"],
       },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toBeDefined();

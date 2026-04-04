@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getComponent, components } from "@/lib/registry";
-import { ComponentPreview } from "@/components/ComponentPreview";
+import { notFound } from "next/navigation";
 import { CodeBlock } from "@/components/CodeBlock";
+import { ComponentPreview } from "@/components/ComponentPreview";
 import { PropsTable } from "@/components/PropsTable";
+import { components, getComponent } from "@/lib/registry";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -31,21 +31,29 @@ export default async function ComponentPage({ params }: PageProps) {
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
       <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-        <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+        <Link href="/" className="hover:text-foreground transition-colors">
+          Home
+        </Link>
         <span>/</span>
-        <Link href="/" className="hover:text-foreground transition-colors">Components</Link>
+        <Link href="/" className="hover:text-foreground transition-colors">
+          Components
+        </Link>
         <span>/</span>
         <span className="text-foreground">{component.name}</span>
       </nav>
 
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <h1 className="text-3xl font-bold tracking-tight">{component.name}</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {component.name}
+          </h1>
           <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium text-muted-foreground capitalize">
             {component.category}
           </span>
         </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">{component.description}</p>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          {component.description}
+        </p>
       </div>
 
       <div className="mb-10">
@@ -54,10 +62,7 @@ export default async function ComponentPage({ params }: PageProps) {
 
       <section className="mb-10">
         <h2 className="text-xl font-semibold mb-4">Installation</h2>
-        <CodeBlock
-          lang="bash"
-          code={`npm install @launchapp/design-system`}
-        />
+        <CodeBlock lang="bash" code={`npm install @launchapp/design-system`} />
         <div className="mt-4">
           <CodeBlock
             lang="tsx"
@@ -75,7 +80,9 @@ export default async function ComponentPage({ params }: PageProps) {
               <div key={example.title}>
                 <h3 className="text-base font-medium mb-2">{example.title}</h3>
                 {example.description && (
-                  <p className="text-sm text-muted-foreground mb-3">{example.description}</p>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {example.description}
+                  </p>
                 )}
                 <CodeBlock lang="tsx" code={example.code} />
               </div>

@@ -3,7 +3,8 @@ import { CodeBlock } from "@/components/CodeBlock";
 
 export const metadata = {
   title: "Submit a Template — LaunchApp Design System",
-  description: "Guidelines and process for submitting your own application template to the LaunchApp Design System gallery.",
+  description:
+    "Guidelines and process for submitting your own application template to the LaunchApp Design System gallery.",
 };
 
 export default function ContributeTemplatePage() {
@@ -14,7 +15,10 @@ export default function ContributeTemplatePage() {
           Home
         </Link>
         <span>/</span>
-        <Link href="/templates" className="hover:text-foreground transition-colors">
+        <Link
+          href="/templates"
+          className="hover:text-foreground transition-colors"
+        >
           Templates
         </Link>
         <span>/</span>
@@ -22,16 +26,21 @@ export default function ContributeTemplatePage() {
       </nav>
 
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Submit Your Template</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-4">
+          Submit Your Template
+        </h1>
         <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-          Share your application templates built with the LaunchApp Design System. Submitted templates
-          that meet our quality standards will be featured in the official template gallery.
+          Share your application templates built with the LaunchApp Design
+          System. Submitted templates that meet our quality standards will be
+          featured in the official template gallery.
         </p>
       </div>
 
       <div className="space-y-12">
         <section>
-          <h2 className="text-2xl font-bold tracking-tight mb-6">Requirements</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-6">
+            Requirements
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="rounded-lg border p-6 bg-card">
               <h3 className="font-semibold mb-3 flex items-center gap-2">
@@ -39,7 +48,9 @@ export default function ContributeTemplatePage() {
                 Component Usage
               </h3>
               <p className="text-sm text-muted-foreground">
-                Templates must use exclusively LaunchApp design system components. No custom-built components or third-party UI libraries.
+                Templates must use exclusively LaunchApp design system
+                components. No custom-built components or third-party UI
+                libraries.
               </p>
             </div>
 
@@ -49,7 +60,8 @@ export default function ContributeTemplatePage() {
                 Accessibility
               </h3>
               <p className="text-sm text-muted-foreground">
-                Full WCAG 2.1 AA compliance, keyboard navigation, proper ARIA attributes, and screen reader support.
+                Full WCAG 2.1 AA compliance, keyboard navigation, proper ARIA
+                attributes, and screen reader support.
               </p>
             </div>
 
@@ -59,7 +71,8 @@ export default function ContributeTemplatePage() {
                 Responsive Design
               </h3>
               <p className="text-sm text-muted-foreground">
-                Mobile-first approach with proper breakpoint handling and touch-friendly interaction targets.
+                Mobile-first approach with proper breakpoint handling and
+                touch-friendly interaction targets.
               </p>
             </div>
 
@@ -69,7 +82,8 @@ export default function ContributeTemplatePage() {
                 Theme Support
               </h3>
               <p className="text-sm text-muted-foreground">
-                Full light and dark mode support using CSS custom properties and the design system token system.
+                Full light and dark mode support using CSS custom properties and
+                the design system token system.
               </p>
             </div>
 
@@ -79,7 +93,8 @@ export default function ContributeTemplatePage() {
                 Code Quality
               </h3>
               <p className="text-sm text-muted-foreground">
-                Clean TypeScript code, proper component composition, no console errors, and production-ready implementation.
+                Clean TypeScript code, proper component composition, no console
+                errors, and production-ready implementation.
               </p>
             </div>
 
@@ -89,14 +104,17 @@ export default function ContributeTemplatePage() {
                 Documentation
               </h3>
               <p className="text-sm text-muted-foreground">
-                Comprehensive README with setup, features, customization guide, and code examples.
+                Comprehensive README with setup, features, customization guide,
+                and code examples.
               </p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold tracking-tight mb-6">Submission Process</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-6">
+            Submission Process
+          </h2>
           <div className="space-y-6">
             <div className="flex gap-6">
               <div className="flex flex-col items-center">
@@ -106,10 +124,13 @@ export default function ContributeTemplatePage() {
                 <div className="mt-4 w-0.5 h-12 bg-border" />
               </div>
               <div className="pb-8">
-                <h3 className="text-lg font-semibold mb-2">Create Your Template</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  Create Your Template
+                </h3>
                 <p className="text-muted-foreground mb-4">
-                  Build your application template using the LaunchApp Design System components. Follow the component
-                  guidelines and design system patterns.
+                  Build your application template using the LaunchApp Design
+                  System components. Follow the component guidelines and design
+                  system patterns.
                 </p>
               </div>
             </div>
@@ -122,7 +143,9 @@ export default function ContributeTemplatePage() {
                 <div className="mt-4 w-0.5 h-12 bg-border" />
               </div>
               <div className="pb-8">
-                <h3 className="text-lg font-semibold mb-2">Prepare Documentation</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  Prepare Documentation
+                </h3>
                 <p className="text-muted-foreground mb-4">
                   Write a comprehensive README that includes:
                 </p>
@@ -147,7 +170,8 @@ export default function ContributeTemplatePage() {
               <div className="pb-8">
                 <h3 className="text-lg font-semibold mb-2">Push to GitHub</h3>
                 <p className="text-muted-foreground mb-4">
-                  Create a public repository with your template code, clear commit history, and comprehensive documentation.
+                  Create a public repository with your template code, clear
+                  commit history, and comprehensive documentation.
                 </p>
               </div>
             </div>
@@ -159,7 +183,9 @@ export default function ContributeTemplatePage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Submit for Review</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  Submit for Review
+                </h3>
                 <p className="text-muted-foreground mb-4">
                   Open an issue on the{" "}
                   <a
@@ -169,8 +195,8 @@ export default function ContributeTemplatePage() {
                     className="text-primary hover:underline"
                   >
                     design system repository
-                  </a>
-                  {" "}with the label "template-submission" and include:
+                  </a>{" "}
+                  with the label "template-submission" and include:
                 </p>
                 <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
                   <li>Link to your template repository</li>
@@ -186,14 +212,17 @@ export default function ContributeTemplatePage() {
           <div className="mt-8 rounded-lg border bg-primary/5 p-6 border-l-4 border-primary">
             <h3 className="font-semibold mb-2">Review Timeline</h3>
             <p className="text-sm text-muted-foreground">
-              Our team will review your submission within 1-2 weeks. You may receive feedback for improvements.
-              Featured templates will be credited with author information and links to your profile.
+              Our team will review your submission within 1-2 weeks. You may
+              receive feedback for improvements. Featured templates will be
+              credited with author information and links to your profile.
             </p>
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold tracking-tight mb-6">Template Structure Example</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-6">
+            Template Structure Example
+          </h2>
           <p className="text-muted-foreground mb-4">
             Here's a suggested directory structure for your template:
           </p>
@@ -222,73 +251,84 @@ export default function ContributeTemplatePage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold tracking-tight mb-6">Best Practices</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-6">
+            Best Practices
+          </h2>
           <div className="space-y-4">
             <div className="rounded-lg border p-6 bg-card">
               <h3 className="font-semibold mb-2">Use Design Tokens</h3>
               <p className="text-sm text-muted-foreground">
-                Leverage CSS custom properties (--la-*) for all colors, spacing, and typography. This ensures
-                your template respects user theme choices and customizations.
+                Leverage CSS custom properties (--la-*) for all colors, spacing,
+                and typography. This ensures your template respects user theme
+                choices and customizations.
               </p>
             </div>
 
             <div className="rounded-lg border p-6 bg-card">
               <h3 className="font-semibold mb-2">Semantic HTML</h3>
               <p className="text-sm text-muted-foreground">
-                Use semantic HTML elements and proper heading hierarchy. Never skip heading levels or use divs
-                when semantic elements are appropriate.
+                Use semantic HTML elements and proper heading hierarchy. Never
+                skip heading levels or use divs when semantic elements are
+                appropriate.
               </p>
             </div>
 
             <div className="rounded-lg border p-6 bg-card">
               <h3 className="font-semibold mb-2">Component Composition</h3>
               <p className="text-sm text-muted-foreground">
-                Build templates by composing design system components and blocks. Avoid prop drilling by using
-                React Context for cross-cutting concerns.
+                Build templates by composing design system components and
+                blocks. Avoid prop drilling by using React Context for
+                cross-cutting concerns.
               </p>
             </div>
 
             <div className="rounded-lg border p-6 bg-card">
               <h3 className="font-semibold mb-2">Error Handling</h3>
               <p className="text-sm text-muted-foreground">
-                Implement graceful error boundaries, proper form validation, and user-friendly error messages.
-                Show loading states for async operations.
+                Implement graceful error boundaries, proper form validation, and
+                user-friendly error messages. Show loading states for async
+                operations.
               </p>
             </div>
 
             <div className="rounded-lg border p-6 bg-card">
               <h3 className="font-semibold mb-2">Performance</h3>
               <p className="text-sm text-muted-foreground">
-                Optimize bundle size, implement code splitting where appropriate, and use Next.js features like
-                Image optimization and lazy loading.
+                Optimize bundle size, implement code splitting where
+                appropriate, and use Next.js features like Image optimization
+                and lazy loading.
               </p>
             </div>
 
             <div className="rounded-lg border p-6 bg-card">
               <h3 className="font-semibold mb-2">Testing</h3>
               <p className="text-sm text-muted-foreground">
-                Include unit tests for complex logic and integration tests for critical user flows. Aim for at
-                least 70% code coverage.
+                Include unit tests for complex logic and integration tests for
+                critical user flows. Aim for at least 70% code coverage.
               </p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold tracking-tight mb-6">Example Submission Issue</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-6">
+            Example Submission Issue
+          </h2>
           <p className="text-muted-foreground mb-4">
             Here's a template for your submission issue on GitHub:
           </p>
           <div className="rounded-lg border bg-muted/50 p-6">
             <div className="space-y-4 text-sm font-mono text-muted-foreground">
               <div>
-                <p className="font-semibold text-foreground mb-2">Title: Template Submission: [Template Name]</p>
+                <p className="font-semibold text-foreground mb-2">
+                  Title: Template Submission: [Template Name]
+                </p>
               </div>
 
               <div className="space-y-2">
                 <p className="font-semibold text-foreground">Description:</p>
                 <pre className="bg-background p-3 rounded text-xs overflow-x-auto">
-{`## Template Details
+                  {`## Template Details
 - **Name:** My Awesome Template
 - **Category:** SaaS / E-commerce / Marketing
 - **Repository:** https://github.com/username/template-repo
@@ -348,12 +388,16 @@ export default function ContributeTemplatePage() {
             </li>
             <li>
               <strong>Documentation:</strong>{" "}
-              <Link href="/components/button" className="text-primary hover:underline">
+              <Link
+                href="/components/button"
+                className="text-primary hover:underline"
+              >
                 Browse component documentation
               </Link>
             </li>
             <li>
-              <strong>Community:</strong> Join our community discussions and connect with other contributors
+              <strong>Community:</strong> Join our community discussions and
+              connect with other contributors
             </li>
           </ul>
         </section>

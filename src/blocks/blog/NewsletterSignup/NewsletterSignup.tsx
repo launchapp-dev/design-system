@@ -1,9 +1,9 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../../lib/utils";
+import * as React from "react";
 import { Button } from "../../../components/Button";
-import { Input } from "../../../components/Input";
 import { Card, CardContent } from "../../../components/Card";
+import { Input } from "../../../components/Input";
+import { cn } from "../../../lib/utils";
 
 const newsletterSignupVariants = cva("w-full", {
   variants: {
@@ -30,7 +30,10 @@ export interface NewsletterSignupProps
   onSubmit?: (email: string) => Promise<void> | void;
 }
 
-const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>(
+const NewsletterSignup = React.forwardRef<
+  HTMLDivElement,
+  NewsletterSignupProps
+>(
   (
     {
       className,
@@ -44,7 +47,7 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
       onSubmit,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [email, setEmail] = React.useState("");
     const [loading, setLoading] = React.useState(false);
@@ -69,8 +72,19 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
           <div className="text-center space-y-2">
             <div className="flex justify-center mb-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               </div>
             </div>
@@ -80,9 +94,13 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
         ) : (
           <>
             {(title || subtitle) && (
-              <div className={cn("mb-6", variant !== "inline" && "text-center")}>
+              <div
+                className={cn("mb-6", variant !== "inline" && "text-center")}
+              >
                 {title && (
-                  <h2 className="text-2xl font-bold tracking-tight text-foreground">{title}</h2>
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground">
+                    {title}
+                  </h2>
                 )}
                 {subtitle && (
                   <p className="mt-2 text-muted-foreground">{subtitle}</p>
@@ -93,7 +111,7 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
               onSubmit={handleSubmit}
               className={cn(
                 "flex gap-2",
-                variant === "inline" ? "flex-row" : "flex-col sm:flex-row"
+                variant === "inline" ? "flex-row" : "flex-col sm:flex-row",
               )}
             >
               <Input
@@ -116,7 +134,11 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
 
     if (variant === "card") {
       return (
-        <div ref={ref} className={cn(newsletterSignupVariants({ variant }), className)} {...props}>
+        <div
+          ref={ref}
+          className={cn(newsletterSignupVariants({ variant }), className)}
+          {...props}
+        >
           <div className="max-w-lg mx-auto">
             <Card>
               <CardContent className="pt-6">{inner}</CardContent>
@@ -132,14 +154,14 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
         className={cn(
           newsletterSignupVariants({ variant }),
           variant === "default" && "bg-muted/30",
-          className
+          className,
         )}
         {...props}
       >
         <div className="max-w-lg mx-auto">{inner}</div>
       </div>
     );
-  }
+  },
 );
 
 NewsletterSignup.displayName = "NewsletterSignup";

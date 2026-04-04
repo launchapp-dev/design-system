@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { GradientMesh, Aurora, GridPattern, DotPattern } from "./index";
+import { Aurora, DotPattern, GradientMesh, GridPattern } from "./index";
 
 const meta: Meta = {
   title: "Components/Background",
@@ -45,7 +44,14 @@ export const GradientMeshStory: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ width: "100%", height: 300, borderRadius: 8, overflow: "hidden" }}>
+    <div
+      style={{
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+      }}
+    >
       <GradientMesh />
     </div>
   ),
@@ -61,8 +67,18 @@ export const GradientMeshCustomColors: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ width: "100%", height: 300, borderRadius: 8, overflow: "hidden" }}>
-      <GradientMesh colors={["#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"]} speed={5} />
+    <div
+      style={{
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+      }}
+    >
+      <GradientMesh
+        colors={["#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"]}
+        speed={5}
+      />
     </div>
   ),
 };
@@ -141,7 +157,16 @@ export const GridPatternStory: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <GridPattern />
     </div>
   ),
@@ -157,7 +182,16 @@ export const GridPatternDashed: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <GridPattern strokeDasharray="4 2" width={32} height={32} />
     </div>
   ),
@@ -173,10 +207,24 @@ export const GridPatternHighlighted: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <GridPattern
         squares={[
-          [1, 1], [2, 3], [4, 2], [3, 5], [6, 1], [5, 4],
+          [1, 1],
+          [2, 3],
+          [4, 2],
+          [3, 5],
+          [6, 1],
+          [5, 4],
         ]}
         x={0}
         y={0}
@@ -195,7 +243,16 @@ export const DotPatternStory: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <DotPattern />
     </div>
   ),
@@ -211,7 +268,16 @@ export const DotPatternDense: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <DotPattern width={8} height={8} cx={1} cy={1} cr={1} />
     </div>
   ),
@@ -229,7 +295,9 @@ export const AllBackgrounds: StoryObj = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>GradientMesh</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          GradientMesh
+        </p>
         <div style={{ height: 120, borderRadius: 8, overflow: "hidden" }}>
           <GradientMesh />
         </div>
@@ -239,14 +307,36 @@ export const AllBackgrounds: StoryObj = {
         <Aurora style={{ height: 120, borderRadius: 8 }} />
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>GridPattern</p>
-        <div style={{ position: "relative", height: 120, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))", border: "1px solid hsl(var(--la-border))" }}>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          GridPattern
+        </p>
+        <div
+          style={{
+            position: "relative",
+            height: 120,
+            borderRadius: 8,
+            overflow: "hidden",
+            background: "hsl(var(--la-background))",
+            border: "1px solid hsl(var(--la-border))",
+          }}
+        >
           <GridPattern />
         </div>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>DotPattern</p>
-        <div style={{ position: "relative", height: 120, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))", border: "1px solid hsl(var(--la-border))" }}>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          DotPattern
+        </p>
+        <div
+          style={{
+            position: "relative",
+            height: 120,
+            borderRadius: 8,
+            overflow: "hidden",
+            background: "hsl(var(--la-background))",
+            border: "1px solid hsl(var(--la-border))",
+          }}
+        >
           <DotPattern />
         </div>
       </div>

@@ -1,28 +1,27 @@
+export type {
+  CarouselAutoplayProps,
+  CarouselButtonVariants,
+  CarouselContentProps,
+  CarouselDotsProps,
+  CarouselDotVariants,
+  CarouselItemProps,
+  CarouselItemVariants,
+  CarouselNextProps,
+  CarouselPrevProps,
+  CarouselProps,
+  CarouselVariants,
+} from "./Carousel";
 export {
   Carousel,
-  CarouselItem,
-  CarouselContent,
-  CarouselPrev,
-  CarouselNext,
-  CarouselDots,
   CarouselAutoplay,
-  carouselVariants,
-  carouselItemVariants,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrev,
   carouselButtonVariants,
   carouselDotVariants,
+  carouselItemVariants,
+  carouselVariants,
   useCarousel,
 } from "./Carousel";
-
-export type {
-  CarouselProps,
-  CarouselItemProps,
-  CarouselContentProps,
-  CarouselPrevProps,
-  CarouselNextProps,
-  CarouselDotsProps,
-  CarouselAutoplayProps,
-} from "./Carousel";
-export type { CarouselVariants } from "./Carousel";
-export type { CarouselItemVariants } from "./Carousel";
-export type { CarouselButtonVariants } from "./Carousel";
-export type { CarouselDotVariants } from "./Carousel";

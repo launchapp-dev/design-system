@@ -1,11 +1,12 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const animatedTextVariants = cva("inline-block", {
   variants: {
     animation: {
-      fadeUp: "animate-fade-up motion-reduce:animate-none motion-reduce:opacity-100",
+      fadeUp:
+        "animate-fade-up motion-reduce:animate-none motion-reduce:opacity-100",
       blurIn: "animate-blur-in motion-reduce:animate-none",
       letterReveal: "",
       wordReveal: "",
@@ -48,7 +49,7 @@ function AnimatedText({
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 
   if (animation === "letterReveal" || byCharacter) {
@@ -65,7 +66,9 @@ function AnimatedText({
             aria-hidden="true"
             className="inline-block opacity-0 animate-letter-reveal motion-reduce:animate-none motion-reduce:opacity-100"
             style={{
-              animationDelay: prefersReducedMotion ? "0ms" : `${delay + i * staggerDelay}ms`,
+              animationDelay: prefersReducedMotion
+                ? "0ms"
+                : `${delay + i * staggerDelay}ms`,
             }}
           >
             {char === " " ? "\u00a0" : char}
@@ -90,7 +93,9 @@ function AnimatedText({
               aria-hidden="true"
               className="inline-block opacity-0 animate-fade-up motion-reduce:animate-none motion-reduce:opacity-100"
               style={{
-                animationDelay: prefersReducedMotion ? "0ms" : `${delay + i * staggerDelay}ms`,
+                animationDelay: prefersReducedMotion
+                  ? "0ms"
+                  : `${delay + i * staggerDelay}ms`,
               }}
             >
               {word}
@@ -117,5 +122,5 @@ function AnimatedText({
 }
 AnimatedText.displayName = "AnimatedText";
 
-export { AnimatedText };
 export type { AnimatedTextProps };
+export { AnimatedText };

@@ -1,22 +1,19 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
-const inlineEditableVariants = cva(
-  "w-full rounded transition-colors",
-  {
-    variants: {
-      size: {
-        sm: "text-sm",
-        md: "text-base",
-        lg: "text-lg",
-      },
+const inlineEditableVariants = cva("w-full rounded transition-colors", {
+  variants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
     },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 export interface InlineEditableProps
   extends VariantProps<typeof inlineEditableVariants> {
@@ -98,7 +95,7 @@ function InlineEditable({
     inlineEditableVariants({ size }),
     "bg-background border border-ring px-2 py-1 outline-none",
     "focus:ring-2 focus:ring-ring focus:ring-offset-1",
-    inputClassName
+    inputClassName,
   );
 
   if (editing) {
@@ -111,7 +108,11 @@ function InlineEditable({
           onBlur={handleCommit}
           onKeyDown={handleKeyDown}
           aria-label={ariaLabel ?? `Edit: ${draft || placeholder}`}
-          className={cn(sharedInputClass, "resize-none min-h-[80px]", className)}
+          className={cn(
+            sharedInputClass,
+            "resize-none min-h-[80px]",
+            className,
+          )}
           rows={3}
         />
       );
@@ -143,7 +144,7 @@ function InlineEditable({
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         "disabled:pointer-events-none disabled:opacity-50",
         isPlaceholder && "text-muted-foreground italic",
-        className
+        className,
       )}
     >
       {displayValue}
@@ -153,6 +154,8 @@ function InlineEditable({
 
 InlineEditable.displayName = "InlineEditable";
 
-export type InlineEditableVariants = VariantProps<typeof inlineEditableVariants>;
+export type InlineEditableVariants = VariantProps<
+  typeof inlineEditableVariants
+>;
 
 export { InlineEditable };

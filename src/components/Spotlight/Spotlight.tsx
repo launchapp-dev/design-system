@@ -22,7 +22,7 @@ function Spotlight({
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 
   const handleMouseMove = React.useCallback(
@@ -33,7 +33,7 @@ function Spotlight({
       const y = ((e.clientY - rect.top) / rect.height) * 100;
       setPosition({ x, y });
     },
-    [followsMouse]
+    [followsMouse],
   );
 
   const handleMouseEnter = React.useCallback(() => {
@@ -47,7 +47,8 @@ function Spotlight({
     }
   }, [spring]);
 
-  const springTransition = spring && !reduced ? "transition-all duration-700 ease-out" : "";
+  const springTransition =
+    spring && !reduced ? "transition-all duration-700 ease-out" : "";
   const hoverTransition = !reduced ? "transition-[opacity] duration-300" : "";
 
   return (
@@ -62,10 +63,7 @@ function Spotlight({
     >
       <div
         aria-hidden
-        className={cn(
-          "pointer-events-none absolute inset-0",
-          hoverTransition
-        )}
+        className={cn("pointer-events-none absolute inset-0", hoverTransition)}
         style={{
           opacity: isHovered ? 1 : 0,
           background: `radial-gradient(circle ${size}px at ${position.x}% ${position.y}%, 

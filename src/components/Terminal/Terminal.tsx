@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 export interface TerminalLine {
@@ -26,7 +26,7 @@ const terminalVariants = cva(
       theme: "dark",
       size: "md",
     },
-  }
+  },
 );
 
 export interface TerminalProps
@@ -53,21 +53,21 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const prefersReducedMotion = React.useMemo(
       () =>
         typeof window !== "undefined" &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-      []
+      [],
     );
 
     React.useEffect(() => {
       if (containerRef.current) {
         containerRef.current.scrollTop = containerRef.current.scrollHeight;
       }
-    }, [lines]);
+    }, []);
 
     return (
       <div
@@ -105,7 +105,7 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 Terminal.displayName = "Terminal";
 
@@ -127,7 +127,7 @@ function TerminalLineComponent({
   prefersReducedMotion,
 }: TerminalLineComponentProps) {
   const [displayedContent, setDisplayedContent] = React.useState(
-    prefersReducedMotion ? line.content : ""
+    prefersReducedMotion ? line.content : "",
   );
   const [isTyping, setIsTyping] = React.useState(!prefersReducedMotion);
 
@@ -163,8 +163,7 @@ function TerminalLineComponent({
         ? "text-primary"
         : "text-muted-foreground/50";
 
-  const contentClass =
-    line.type === "error" ? "text-destructive" : "";
+  const contentClass = line.type === "error" ? "text-destructive" : "";
 
   return (
     <div className="flex items-start gap-2 group">
@@ -223,16 +222,20 @@ function TerminalHeader({
   title,
   ...props
 }: TerminalHeaderProps) {
-  const content = variant === "dots" ? (
-    <div className="flex items-center gap-1.5">
-      <div className="w-3 h-3 rounded-full bg-red-500/80" />
-      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-      <div className="w-3 h-3 rounded-full bg-green-500/80" />
-    </div>
-  ) : null;
+  const content =
+    variant === "dots" ? (
+      <div className="flex items-center gap-1.5">
+        <div className="w-3 h-3 rounded-full bg-red-500/80" />
+        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+        <div className="w-3 h-3 rounded-full bg-green-500/80" />
+      </div>
+    ) : null;
 
   return (
-    <div className={cn(terminalHeaderVariants({ variant }), className)} {...props}>
+    <div
+      className={cn(terminalHeaderVariants({ variant }), className)}
+      {...props}
+    >
       {content}
       {title && <span className="text-xs text-muted-foreground">{title}</span>}
     </div>
@@ -241,6 +244,8 @@ function TerminalHeader({
 TerminalHeader.displayName = "TerminalHeader";
 
 export type TerminalVariants = VariantProps<typeof terminalVariants>;
-export type TerminalHeaderVariants = VariantProps<typeof terminalHeaderVariants>;
+export type TerminalHeaderVariants = VariantProps<
+  typeof terminalHeaderVariants
+>;
 
-export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants };
+export { Terminal, TerminalHeader, terminalHeaderVariants, terminalVariants };

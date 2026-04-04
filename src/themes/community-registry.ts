@@ -76,7 +76,8 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
   const nord: CommunityTheme = {
     id: "nord",
     name: "Nord",
-    description: "An arctic, north-bluish color palette for a fresh, cold aesthetic",
+    description:
+      "An arctic, north-bluish color palette for a fresh, cold aesthetic",
     author: {
       name: "Nord Theme",
       url: "https://www.nordtheme.com",
@@ -194,7 +195,8 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
   const catppuccin: CommunityTheme = {
     id: "catppuccin-mocha",
     name: "Catppuccin Mocha",
-    description: "Soothing pastel theme with a soft, warm aesthetic inspired by Catppuccin",
+    description:
+      "Soothing pastel theme with a soft, warm aesthetic inspired by Catppuccin",
     author: {
       name: "Catppuccin Community",
       url: "https://catppuccin.com",
@@ -246,10 +248,15 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
         "--la-border": "230 25% 38%",
         "--la-input": "230 25% 38%",
         "--la-ring": "136 74% 72%",
+      },
+    },
+  };
+
   const solarized: CommunityTheme = {
     id: "solarized",
     name: "Solarized",
-    description: "Precision colors for machines and people. A carefully balanced color palette for light and dark modes.",
+    description:
+      "Precision colors for machines and people. A carefully balanced color palette for light and dark modes.",
     author: {
       name: "Ethan Schoonover",
       url: "https://ethanschoonover.com/solarized/",
@@ -308,7 +315,8 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
   const oneDark: CommunityTheme = {
     id: "one-dark-pro",
     name: "One Dark Pro",
-    description: "A refined dark theme with blue-tinted colors, inspired by Atom's One Dark",
+    description:
+      "A refined dark theme with blue-tinted colors, inspired by Atom's One Dark",
     author: {
       name: "One Dark Theme Community",
       url: "https://onedark.app",
@@ -360,10 +368,15 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
         "--la-border": "219 14% 32%",
         "--la-input": "219 14% 32%",
         "--la-ring": "219 85% 65%",
+      },
+    },
+  };
+
   const monokai: CommunityTheme = {
     id: "monokai",
     name: "Monokai",
-    description: "A vibrant dark theme with bright accent colors. Inspired by the popular Monokai color scheme.",
+    description:
+      "A vibrant dark theme with bright accent colors. Inspired by the popular Monokai color scheme.",
     author: {
       name: "Wimer Hazenberg",
       url: "https://monokai.pro/",

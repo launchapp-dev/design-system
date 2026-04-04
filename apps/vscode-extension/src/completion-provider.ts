@@ -25,8 +25,8 @@ export class DesignSystemCompletionProvider
   provideCompletionItems(
     document: vscode.TextDocument,
     position: vscode.Position,
-    token: vscode.CancellationToken,
-    context: vscode.CompletionContext
+    _token: vscode.CancellationToken,
+    _context: vscode.CompletionContext,
   ): vscode.CompletionItem[] {
     const line = document.lineAt(position.line).text;
     const linePrefix = line.substring(0, position.character);
@@ -35,7 +35,7 @@ export class DesignSystemCompletionProvider
     const componentContext = this.extractComponentContext(
       document,
       position,
-      linePrefix
+      linePrefix,
     );
 
     if (!componentContext) {
@@ -56,9 +56,9 @@ export class DesignSystemCompletionProvider
   }
 
   private extractComponentContext(
-    document: vscode.TextDocument,
-    position: vscode.Position,
-    linePrefix: string
+    _document: vscode.TextDocument,
+    _position: vscode.Position,
+    linePrefix: string,
   ): ComponentContext | null {
     // Look for opening JSX tags
     const tagMatch = linePrefix.match(/<(\w+)\s*$/);
@@ -88,18 +88,11 @@ export class DesignSystemCompletionProvider
     const items: vscode.CompletionItem[] = [];
 
     // Add standard HTML attributes first
-    const htmlAttrs = [
-      "className",
-      "style",
-      "id",
-      "key",
-      "ref",
-      "children",
-    ];
+    const htmlAttrs = ["className", "style", "id", "key", "ref", "children"];
     htmlAttrs.forEach((attr) => {
       const item = new vscode.CompletionItem(
         attr,
-        vscode.CompletionItemKind.Property
+        vscode.CompletionItemKind.Property,
       );
       item.detail = "HTML attribute";
       item.sortText = `0_${attr}`;
@@ -110,12 +103,12 @@ export class DesignSystemCompletionProvider
     componentInfo.props.forEach((prop) => {
       const item = new vscode.CompletionItem(
         prop.name,
-        vscode.CompletionItemKind.Property
+        vscode.CompletionItemKind.Property,
       );
 
       item.detail = prop.type;
       item.documentation = new vscode.MarkdownString(
-        this.formatPropDocumentation(prop)
+        this.formatPropDocumentation(prop),
       );
       item.sortText = `1_${prop.name}`;
       item.insertText = `${prop.name}=`;
@@ -135,7 +128,7 @@ export class DesignSystemCompletionProvider
           if (!componentInfo.props.find((p) => p.name === variantName)) {
             const item = new vscode.CompletionItem(
               variantName,
-              vscode.CompletionItemKind.EnumMember
+              vscode.CompletionItemKind.EnumMember,
             );
 
             item.detail = `"${variantData.options.join('" | "')}"`;
@@ -143,7 +136,7 @@ export class DesignSystemCompletionProvider
               ? ` (default: "${variantData.default}")`
               : "";
             item.documentation = new vscode.MarkdownString(
-              `**Variant:** ${variantData.options.join(", ")}${defaultStr}`
+              `**Variant:** ${variantData.options.join(", ")}${defaultStr}`,
             );
             item.sortText = `1_${variantName}`;
             item.insertText = `${variantName}=`;
@@ -154,7 +147,7 @@ export class DesignSystemCompletionProvider
 
             items.push(item);
           }
-        }
+        },
       );
     }
 
@@ -163,7 +156,7 @@ export class DesignSystemCompletionProvider
 
   private completePropValues(
     componentName: string,
-    linePrefix: string
+    linePrefix: string,
   ): vscode.CompletionItem[] {
     // Extract the prop name being completed
     const propMatch = linePrefix.match(/(\w+)="[^"]*$/);
@@ -173,7 +166,7 @@ export class DesignSystemCompletionProvider
 
     const propName = propMatch[1];
     const componentInfo = this.propExtractor.getComponent(componentName);
-    if (!componentInfo || !componentInfo.variantInfo) {
+    if (!componentInfo?.variantInfo) {
       return [];
     }
 
@@ -188,7 +181,7 @@ export class DesignSystemCompletionProvider
     variantData.options.forEach((option) => {
       const item = new vscode.CompletionItem(
         option,
-        vscode.CompletionItemKind.EnumMember
+        vscode.CompletionItemKind.EnumMember,
       );
 
       item.detail = option === variantData.default ? "default" : "variant";
@@ -221,7 +214,7 @@ export class DesignSystemCompletionProvider
 
   resolveCompletionItem(
     item: vscode.CompletionItem,
-    token: vscode.CancellationToken
+    _token: vscode.CancellationToken,
   ): vscode.ProviderResult<vscode.CompletionItem> {
     return item;
   }

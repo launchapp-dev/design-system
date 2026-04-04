@@ -1,2 +1,2 @@
-export { ServerError } from "./ServerError";
 export type { ServerErrorProps } from "./ServerError";
+export { ServerError } from "./ServerError";

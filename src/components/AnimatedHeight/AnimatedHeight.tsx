@@ -1,16 +1,27 @@
 import * as React from "react";
+import { easing, useReducedMotion } from "../../lib/animation";
 import { cn } from "../../lib/utils";
-import { useReducedMotion, easing } from "../../lib/animation";
 
-export interface AnimatedHeightProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatedHeightProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
   duration?: number;
 }
 
-function AnimatedHeight({ children, isOpen = true, duration = 250, className, style, ref, ...props }: AnimatedHeightProps & { ref?: React.Ref<HTMLDivElement> }) {
+function AnimatedHeight({
+  children,
+  isOpen = true,
+  duration = 250,
+  className,
+  style,
+  ref,
+  ...props
+}: AnimatedHeightProps & { ref?: React.Ref<HTMLDivElement> }) {
   const prefersReducedMotion = useReducedMotion();
   const innerRef = React.useRef<HTMLDivElement>(null);
-  const [height, setHeight] = React.useState<number | "auto">(isOpen ? "auto" : 0);
+  const [height, setHeight] = React.useState<number | "auto">(
+    isOpen ? "auto" : 0,
+  );
   const [isHidden, setIsHidden] = React.useState(!isOpen);
   const isFirstRender = React.useRef(true);
 
@@ -57,7 +68,9 @@ function AnimatedHeight({ children, isOpen = true, duration = 250, className, st
       }}
       {...props}
     >
-      <div ref={innerRef} inert={isHidden ? true : undefined}>{children}</div>
+      <div ref={innerRef} inert={isHidden ? true : undefined}>
+        {children}
+      </div>
     </div>
   );
 }

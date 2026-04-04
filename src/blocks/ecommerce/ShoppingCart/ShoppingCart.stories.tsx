@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { ShoppingCart } from "./index";
 import type { CartItem } from "./index";
+import { ShoppingCart } from "./index";
 
 const sampleItems: CartItem[] = [
   {
@@ -10,22 +10,25 @@ const sampleItems: CartItem[] = [
     price: 79.99,
     quantity: 1,
     variant: "Midnight Black",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop",
   },
   {
     id: "2",
     name: "Minimalist Leather Watch",
-    price: 149.00,
+    price: 149.0,
     quantity: 1,
     variant: "Brown / 42mm",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop",
   },
   {
     id: "3",
     name: "Portable Bluetooth Speaker",
     price: 49.99,
     quantity: 2,
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop",
   },
 ];
 
@@ -118,7 +121,7 @@ export const WithCallbacks: Story = {
 
     function handleQuantityChange(id: string, quantity: number) {
       setItems((prev) =>
-        prev.map((item) => (item.id === id ? { ...item, quantity } : item))
+        prev.map((item) => (item.id === id ? { ...item, quantity } : item)),
       );
     }
 
@@ -233,7 +236,7 @@ export function ShoppingCart({ items = [], freeShippingThreshold, onUpdateQuanti
           <div className="flex justify-between"><span>Subtotal</span><span>\${subtotal.toFixed(2)}</span></div>
           <div className="flex justify-between items-center">
             <span>Shipping</span>
-            {shippingFree ? <Badge variant="secondary">Free</Badge> : <span>\$9.99</span>}
+            {shippingFree ? <Badge variant="secondary">Free</Badge> : <span>$9.99</span>}
           </div>
           <div className="flex justify-between font-semibold text-base pt-1"><span>Total</span><span>\${total.toFixed(2)}</span></div>
         </div>

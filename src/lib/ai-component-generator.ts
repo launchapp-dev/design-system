@@ -68,7 +68,7 @@ If invalid, respond with JSON: {"valid": false, "errors": ["error1", "error2"]}`
 
 export async function generateComponent(
   request: ComponentGenerationRequest,
-  apiKey?: string
+  apiKey?: string,
 ): Promise<ComponentGenerationResponse> {
   const client = new Anthropic({
     apiKey: apiKey || process.env.ANTHROPIC_API_KEY,
@@ -104,7 +104,7 @@ export async function generateComponent(
 
   const validation = await validateGeneratedComponent(
     generatedCode.component,
-    apiKey
+    apiKey,
   );
 
   return {
@@ -156,7 +156,7 @@ Return the code as a JSON object with keys: component, story, test`;
 
 async function validateGeneratedComponent(
   componentCode: string,
-  apiKey?: string
+  apiKey?: string,
 ): Promise<{ isValid: boolean; errors: string[] }> {
   const client = new Anthropic({
     apiKey: apiKey || process.env.ANTHROPIC_API_KEY,
@@ -203,7 +203,7 @@ async function validateGeneratedComponent(
 
 export async function generateComponentFromDescription(
   componentDescription: string,
-  apiKey?: string
+  apiKey?: string,
 ): Promise<ComponentGenerationResponse> {
   const nameMatch = componentDescription.match(/^(\w+)\s*[-:]\s*(.+)/);
   const name = nameMatch ? nameMatch[1] : "GeneratedComponent";
@@ -214,6 +214,6 @@ export async function generateComponentFromDescription(
       name,
       description,
     },
-    apiKey
+    apiKey,
   );
 }

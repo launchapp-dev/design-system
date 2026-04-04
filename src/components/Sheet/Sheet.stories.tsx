@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
+import { Button } from "../Button";
 import {
   Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
-  SheetDescription,
   SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "./index";
-import { Button } from "../Button";
 
 const meta: Meta = {
   title: "Components/Sheet",
@@ -34,7 +34,8 @@ export const Default: Story = {
         </SheetHeader>
         <div style={{ flex: 1, padding: "16px 0" }}>
           <p style={{ fontSize: 14, color: "hsl(var(--muted-foreground))" }}>
-            Sheet body content goes here. You can add forms, lists, or any other content.
+            Sheet body content goes here. You can add forms, lists, or any other
+            content.
           </p>
         </div>
         <SheetFooter>
@@ -60,7 +61,9 @@ export const AllSides: Story = {
           </SheetTrigger>
           <SheetContent side={side}>
             <SheetHeader>
-              <SheetTitle style={{ textTransform: "capitalize" }}>{side} Sheet</SheetTitle>
+              <SheetTitle style={{ textTransform: "capitalize" }}>
+                {side} Sheet
+              </SheetTitle>
               <SheetDescription>
                 This sheet slides in from the {side}.
               </SheetDescription>
@@ -94,9 +97,22 @@ export const WithForm: Story = {
               Make changes to your profile here. Click save when you are done.
             </SheetDescription>
           </SheetHeader>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16, padding: "16px 0", flex: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+              padding: "16px 0",
+              flex: 1,
+            }}
+          >
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              <label style={{ fontSize: 14, fontWeight: 500 }} htmlFor="sheet-name">Name</label>
+              <label
+                style={{ fontSize: 14, fontWeight: 500 }}
+                htmlFor="sheet-name"
+              >
+                Name
+              </label>
               <input
                 id="sheet-name"
                 value={name}
@@ -114,7 +130,12 @@ export const WithForm: Story = {
               />
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              <label style={{ fontSize: 14, fontWeight: 500 }} htmlFor="sheet-email">Email</label>
+              <label
+                style={{ fontSize: 14, fontWeight: 500 }}
+                htmlFor="sheet-email"
+              >
+                Email
+              </label>
               <input
                 id="sheet-email"
                 type="email"
@@ -162,8 +183,17 @@ export const LongContent: Story = {
         </SheetHeader>
         <div style={{ flex: 1, overflowY: "auto", padding: "16px 0" }}>
           {Array.from({ length: 20 }, (_, i) => (
-            <p key={i} style={{ fontSize: 14, color: "hsl(var(--muted-foreground))", marginBottom: 12 }}>
-              Section {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p
+              key={i}
+              style={{
+                fontSize: 14,
+                color: "hsl(var(--muted-foreground))",
+                marginBottom: 12,
+              }}
+            >
+              Section {i + 1}: Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
             </p>
           ))}
         </div>

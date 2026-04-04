@@ -1,24 +1,24 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import {
+  closestCenter,
   DndContext,
-  DragEndEvent,
-  DragStartEvent,
+  type DragEndEvent,
   DragOverlay,
+  type DragStartEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
-  closestCenter,
 } from "@dnd-kit/core";
 import {
   arrayMove,
+  rectSortingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
   useSortable,
-  rectSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const dashboardGridVariants = cva("grid gap-4", {
@@ -84,7 +84,7 @@ function SortableWidget({ widget, editable }: SortableWidgetProps) {
         "group relative rounded-[--la-radius] border border-border bg-card p-4 transition-shadow",
         widgetSizeClasses[widget.size || "md"],
         isDragging && "opacity-50 shadow-lg z-50",
-        editable && "hover:shadow-md"
+        editable && "hover:shadow-md",
       )}
       {...attributes}
       {...(editable ? listeners : {})}
@@ -93,7 +93,7 @@ function SortableWidget({ widget, editable }: SortableWidgetProps) {
         <div
           className={cn(
             "absolute left-2 top-2 cursor-grab text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity",
-            isDragging && "cursor-grabbing"
+            isDragging && "cursor-grabbing",
           )}
           aria-label="Drag handle"
         >
@@ -119,7 +119,9 @@ function SortableWidget({ widget, editable }: SortableWidgetProps) {
         </div>
       )}
       <div className="mb-2">
-        <h3 className="text-sm font-semibold text-card-foreground">{widget.title}</h3>
+        <h3 className="text-sm font-semibold text-card-foreground">
+          {widget.title}
+        </h3>
       </div>
       <div className="text-sm text-muted-foreground">{widget.children}</div>
     </div>
@@ -131,11 +133,13 @@ function WidgetOverlay({ widget }: { widget: DashboardWidget }) {
     <div
       className={cn(
         "rounded-[--la-radius] border border-primary/50 bg-card/95 p-4 shadow-xl",
-        widgetSizeClasses[widget.size || "md"]
+        widgetSizeClasses[widget.size || "md"],
       )}
     >
       <div className="mb-2">
-        <h3 className="text-sm font-semibold text-card-foreground">{widget.title}</h3>
+        <h3 className="text-sm font-semibold text-card-foreground">
+          {widget.title}
+        </h3>
       </div>
       <div className="text-sm text-muted-foreground">{widget.children}</div>
     </div>
@@ -151,8 +155,10 @@ function DashboardGrid({
   ref,
   ...props
 }: DashboardGridProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const [widgets, setWidgets] = React.useState<DashboardWidget[]>(initialWidgets);
-  const [activeWidget, setActiveWidget] = React.useState<DashboardWidget | null>(null);
+  const [widgets, setWidgets] =
+    React.useState<DashboardWidget[]>(initialWidgets);
+  const [activeWidget, setActiveWidget] =
+    React.useState<DashboardWidget | null>(null);
 
   React.useEffect(() => {
     setWidgets(initialWidgets);
@@ -166,7 +172,7 @@ function DashboardGrid({
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleDragStart = (event: DragStartEvent) => {

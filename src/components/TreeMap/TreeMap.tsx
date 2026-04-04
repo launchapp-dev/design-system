@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const treeMapVariants = cva("relative", {
@@ -57,7 +57,7 @@ function squarify(
   y: number,
   width: number,
   height: number,
-  depth: number = 0
+  depth: number = 0,
 ): LayoutNode[] {
   if (nodes.length === 0) return [];
 
@@ -73,11 +73,11 @@ function squarify(
     y: number,
     width: number,
     height: number,
-    horizontal: boolean
+    horizontal: boolean,
   ): LayoutNode[] {
     const rowValue = row.reduce((sum, n) => sum + n.value, 0);
     const ratio = (horizontal ? height : width) / rowValue;
-    
+
     return row.map((node) => {
       const nodeWidth = horizontal ? width : node.value * ratio;
       const nodeHeight = horizontal ? node.value * ratio : height;
@@ -103,16 +103,16 @@ function squarify(
     const rowValue = row.reduce((sum, n) => sum + n.value, 0);
     const rowArea = rowValue / totalValue;
     const rowWidth = rowArea / sideLength;
-    
+
     const minRatio = Math.min(...row.map((n) => n.value / rowValue)) / rowWidth;
     const maxRatio = Math.max(...row.map((n) => n.value / rowValue)) / rowWidth;
-    
+
     return Math.max(minRatio * minRatio, maxRatio * maxRatio);
   }
 
   const horizontal = width >= height;
   const sideLength = horizontal ? height : width;
-  
+
   let currentX = x;
   let currentY = y;
   let remainingNodes = [...sortedNodes];
@@ -121,13 +121,16 @@ function squarify(
   while (remainingNodes.length > 0) {
     const row: TreeMapNode[] = [];
     let rowValue = 0;
-    
+
     for (const node of remainingNodes) {
       const testRow = [...row, node];
       const testRowValue = rowValue + node.value;
       const currentWorst = worst(row, sideLength * (rowValue / remainingValue));
-      const testWorst = worst(testRow, sideLength * (testRowValue / remainingValue));
-      
+      const testWorst = worst(
+        testRow,
+        sideLength * (testRowValue / remainingValue),
+      );
+
       if (row.length === 0 || testWorst <= currentWorst) {
         row.push(node);
         rowValue = testRowValue;
@@ -139,8 +142,12 @@ function squarify(
     if (row.length === 0) break;
 
     const rowArea = rowValue / totalValue;
-    const rowWidth = horizontal ? width : rowArea * (horizontal ? totalValue / height : totalValue / width);
-    const rowHeight = horizontal ? rowArea * (horizontal ? totalValue / width : totalValue / height) : height;
+    const rowWidth = horizontal
+      ? width
+      : rowArea * (horizontal ? totalValue / height : totalValue / width);
+    const rowHeight = horizontal
+      ? rowArea * (horizontal ? totalValue / width : totalValue / height)
+      : height;
 
     const rowNodes = layoutRow(
       row,
@@ -148,7 +155,7 @@ function squarify(
       currentY,
       horizontal ? width : rowWidth,
       horizontal ? rowHeight : height,
-      horizontal
+      horizontal,
     );
     layoutNodes.push(...rowNodes);
 
@@ -173,16 +180,21 @@ function flattenNodes(
   y: number,
   width: number,
   height: number,
-  depth: number = 0
+  depth: number = 0,
 ): LayoutNode[] {
   const layoutNodes: LayoutNode[] = [];
-  
+
   const layout = squarify(nodes, x, y, width, height, depth);
-  
+
   for (const node of layout) {
     layoutNodes.push(node);
-    
-    if (node.children && node.children.length > 0 && node.width > 40 && node.height > 40) {
+
+    if (
+      node.children &&
+      node.children.length > 0 &&
+      node.width > 40 &&
+      node.height > 40
+    ) {
       const padding = 4;
       const childNodes = flattenNodes(
         node.children,
@@ -190,12 +202,12 @@ function flattenNodes(
         node.y + padding,
         node.width - padding * 2,
         node.height - padding * 2,
-        depth + 1
+        depth + 1,
       );
       layoutNodes.push(...childNodes);
     }
   }
-  
+
   return layoutNodes;
 }
 
@@ -236,18 +248,26 @@ function TreeMap({
   const layoutNodes = React.useMemo(() => {
     if (!data || data.length === 0) return [];
     const padding = 0;
-    return flattenNodes(data, padding, padding, svgWidth - padding * 2, svgHeight - padding * 2);
+    return flattenNodes(
+      data,
+      padding,
+      padding,
+      svgWidth - padding * 2,
+      svgHeight - padding * 2,
+    );
   }, [data, svgWidth, svgHeight]);
 
   const getNodeColor = (node: LayoutNode, index: number): string => {
     if (node.color) return node.color;
 
     if (colorScheme === "primary") {
-      const opacity = 0.4 + (node.value / Math.max(...data.map((d) => d.value))) * 0.5;
+      const opacity =
+        0.4 + (node.value / Math.max(...data.map((d) => d.value))) * 0.5;
       return `hsl(var(--la-primary) / ${opacity.toFixed(2)})`;
     }
     if (colorScheme === "secondary") {
-      const opacity = 0.4 + (node.value / Math.max(...data.map((d) => d.value))) * 0.5;
+      const opacity =
+        0.4 + (node.value / Math.max(...data.map((d) => d.value))) * 0.5;
       return `hsl(var(--la-secondary) / ${opacity.toFixed(2)})`;
     }
     if (colorScheme === "diverging") {
@@ -257,7 +277,7 @@ function TreeMap({
       if (ratio > 0.1) return "hsl(var(--la-chart-2))";
       return "hsl(var(--la-chart-5))";
     }
-    
+
     return CHART_COLORS[index % CHART_COLORS.length];
   };
 
@@ -282,7 +302,11 @@ function TreeMap({
     return (
       <div
         ref={ref}
-        className={cn(treeMapVariants({ size }), "flex items-center justify-center bg-muted/30 rounded-[--la-radius]", className)}
+        className={cn(
+          treeMapVariants({ size }),
+          "flex items-center justify-center bg-muted/30 rounded-[--la-radius]",
+          className,
+        )}
         role="img"
         aria-label="Empty tree map"
         {...props}
@@ -313,8 +337,9 @@ function TreeMap({
         {layoutNodes.map((node, index) => {
           const percentage = ((node.value / totalValue) * 100).toFixed(1);
           const showLabel = showLabels && node.width > 50 && node.height > 30;
-          const showValueLabel = showValues && node.width > 40 && node.height > 20;
-          
+          const showValueLabel =
+            showValues && node.width > 40 && node.height > 20;
+
           return (
             <g key={`${node.id}-${index}`}>
               <rect
@@ -328,10 +353,9 @@ function TreeMap({
                 rx={4}
                 className={cn(
                   "transition-opacity duration-200",
-                  onNodeClick && "cursor-pointer hover:opacity-80"
+                  onNodeClick && "cursor-pointer hover:opacity-80",
                 )}
                 onClick={() => onNodeClick?.(node)}
-                role="img"
                 aria-label={`${node.name}: ${node.value} (${percentage}%)`}
               />
               {showLabel && (
@@ -342,9 +366,14 @@ function TreeMap({
                   dominantBaseline="middle"
                   fill="hsl(var(--la-card-foreground))"
                   className="text-xs font-medium select-none pointer-events-none"
-                  style={{ fontSize: Math.min(12, Math.min(node.width / 5, node.height / 3)) }}
+                  style={{
+                    fontSize: Math.min(
+                      12,
+                      Math.min(node.width / 5, node.height / 3),
+                    ),
+                  }}
                 >
-                  {node.name.length > Math.floor(node.width / 8) 
+                  {node.name.length > Math.floor(node.width / 8)
                     ? `${node.name.slice(0, Math.floor(node.width / 8) - 2)}...`
                     : node.name}
                 </text>

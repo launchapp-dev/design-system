@@ -1,8 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
-  handleComponentGenerationRequest,
   type APIRequest,
-  type APIResponse,
+  handleComponentGenerationRequest,
 } from "./ai-component-generator-api";
 
 beforeEach(() => {
@@ -13,7 +12,7 @@ describe("handleComponentGenerationRequest", () => {
   describe("Input validation", () => {
     it("rejects non-object requests", async () => {
       const response = await handleComponentGenerationRequest(
-        null as unknown as APIRequest
+        null as unknown as APIRequest,
       );
 
       expect(response.success).toBe(false);
@@ -202,7 +201,7 @@ describe("handleComponentGenerationRequest", () => {
           name: "Button",
           description: "Test",
         }),
-        "custom-api-key"
+        "custom-api-key",
       );
 
       mockGenerateComponent.mockRestore();
@@ -214,7 +213,7 @@ describe("handleComponentGenerationRequest", () => {
       const mockGenerateFromDescription = vi
         .spyOn(
           await import("./ai-component-generator"),
-          "generateComponentFromDescription"
+          "generateComponentFromDescription",
         )
         .mockResolvedValue({
           component: "mock component",

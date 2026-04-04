@@ -1,6 +1,6 @@
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const bannerVariants = cva(
@@ -9,9 +9,12 @@ const bannerVariants = cva(
     variants: {
       variant: {
         info: "bg-blue-500/15 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400",
-        warning: "bg-amber-500/15 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300 [&>svg]:text-amber-600 dark:[&>svg]:text-amber-400",
-        error: "bg-red-500/15 text-red-700 dark:bg-red-500/20 dark:text-red-300 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
-        success: "bg-green-500/15 text-green-700 dark:bg-green-500/20 dark:text-green-300 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
+        warning:
+          "bg-amber-500/15 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300 [&>svg]:text-amber-600 dark:[&>svg]:text-amber-400",
+        error:
+          "bg-red-500/15 text-red-700 dark:bg-red-500/20 dark:text-red-300 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
+        success:
+          "bg-green-500/15 text-green-700 dark:bg-green-500/20 dark:text-green-300 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
       },
       position: {
         inline: "rounded-lg",
@@ -23,7 +26,7 @@ const bannerVariants = cva(
       variant: "info",
       position: "inline",
     },
-  }
+  },
 );
 
 export interface BannerProps
@@ -45,10 +48,11 @@ function Banner({
   ...props
 }: BannerProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
-  
-  const isOpen = controlledOpen !== undefined ? controlledOpen : uncontrolledOpen;
-  
-  const handleDismiss = React.useCallback(() => {
+
+  const isOpen =
+    controlledOpen !== undefined ? controlledOpen : uncontrolledOpen;
+
+  const _handleDismiss = React.useCallback(() => {
     if (onOpenChange) {
       onOpenChange(false);
     } else {
@@ -60,7 +64,8 @@ function Banner({
     return null;
   }
 
-  const role = variant === "error" || variant === "warning" ? "alert" : "status";
+  const role =
+    variant === "error" || variant === "warning" ? "alert" : "status";
 
   return (
     <div
@@ -69,7 +74,7 @@ function Banner({
       className={cn(
         bannerVariants({ variant, position }),
         "animate-slide-in-from-top",
-        className
+        className,
       )}
       {...props}
     />
@@ -77,7 +82,11 @@ function Banner({
 }
 Banner.displayName = "Banner";
 
-function BannerContent({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
+function BannerContent({
+  className,
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}
@@ -88,33 +97,41 @@ function BannerContent({ className, ref, ...props }: React.HTMLAttributes<HTMLDi
 }
 BannerContent.displayName = "BannerContent";
 
-function BannerTitle({ className, ref, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.Ref<HTMLParagraphElement> }) {
-  return (
-    <p
-      ref={ref}
-      className={cn("font-medium", className)}
-      {...props}
-    />
-  );
+function BannerTitle({
+  className,
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement> & {
+  ref?: React.Ref<HTMLParagraphElement>;
+}) {
+  return <p ref={ref} className={cn("font-medium", className)} {...props} />;
 }
 BannerTitle.displayName = "BannerTitle";
 
-function BannerDescription({ className, ref, ...props }: React.HTMLAttributes<HTMLParagraphElement> & { ref?: React.Ref<HTMLParagraphElement> }) {
+function BannerDescription({
+  className,
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement> & {
+  ref?: React.Ref<HTMLParagraphElement>;
+}) {
   return (
-    <p
-      ref={ref}
-      className={cn("text-sm opacity-90", className)}
-      {...props}
-    />
+    <p ref={ref} className={cn("text-sm opacity-90", className)} {...props} />
   );
 }
 BannerDescription.displayName = "BannerDescription";
 
-export interface BannerActionProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BannerActionProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
 }
 
-function BannerAction({ className, asChild = false, ref, ...props }: BannerActionProps & { ref?: React.Ref<HTMLButtonElement> }) {
+function BannerAction({
+  className,
+  asChild = false,
+  ref,
+  ...props
+}: BannerActionProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const Comp = asChild ? Slot : "button";
   return (
     <Comp
@@ -124,7 +141,7 @@ function BannerAction({ className, asChild = false, ref, ...props }: BannerActio
         "bg-transparent hover:bg-black/10 dark:hover:bg-white/10",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2",
         "disabled:pointer-events-none disabled:opacity-50",
-        className
+        className,
       )}
       {...props}
     />
@@ -132,7 +149,11 @@ function BannerAction({ className, asChild = false, ref, ...props }: BannerActio
 }
 BannerAction.displayName = "BannerAction";
 
-function BannerActions({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
+function BannerActions({
+  className,
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}
@@ -143,7 +164,12 @@ function BannerActions({ className, ref, ...props }: React.HTMLAttributes<HTMLDi
 }
 BannerActions.displayName = "BannerActions";
 
-function BannerDismiss({ className, onOpenChange, ref, ...props }: Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> & { 
+function BannerDismiss({
+  className,
+  onOpenChange,
+  ref,
+  ...props
+}: Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick"> & {
   ref?: React.Ref<HTMLButtonElement>;
   onOpenChange?: (open: boolean) => void;
 }) {
@@ -160,7 +186,7 @@ function BannerDismiss({ className, onOpenChange, ref, ...props }: Omit<React.Bu
       className={cn(
         "inline-flex shrink-0 items-center justify-center rounded-md p-1 opacity-70 transition-opacity hover:opacity-100",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2",
-        className
+        className,
       )}
       onClick={handleClick}
       aria-label="Dismiss banner"
@@ -188,13 +214,13 @@ BannerDismiss.displayName = "BannerDismiss";
 
 export type BannerVariants = VariantProps<typeof bannerVariants>;
 
-export { 
-  Banner, 
-  BannerContent,
-  BannerTitle, 
-  BannerDescription, 
+export {
+  Banner,
   BannerAction,
   BannerActions,
+  BannerContent,
+  BannerDescription,
   BannerDismiss,
-  bannerVariants 
+  BannerTitle,
+  bannerVariants,
 };

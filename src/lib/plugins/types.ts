@@ -1,5 +1,3 @@
-import type { CVAVariants } from "class-variance-authority";
-
 /**
  * Hook lifecycle events that plugins can subscribe to
  */
@@ -67,7 +65,10 @@ export interface PluginContext {
 export interface VariantRegistry {
   variants: Map<string, CustomVariant>;
   addVariant: (variant: CustomVariant) => void;
-  getVariant: (componentName: string, variantName: string) => CustomVariant | undefined;
+  getVariant: (
+    componentName: string,
+    variantName: string,
+  ) => CustomVariant | undefined;
   getAllVariants: (componentName?: string) => CustomVariant[];
   hasVariant: (componentName: string, variantName: string) => boolean;
 }

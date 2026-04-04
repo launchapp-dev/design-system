@@ -1,11 +1,11 @@
+export type { SheetContentVariants } from "./Sheet";
 export {
   Sheet,
-  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
   SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "./Sheet";
-export type { SheetContentVariants } from "./Sheet";

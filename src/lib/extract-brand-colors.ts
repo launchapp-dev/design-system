@@ -5,7 +5,7 @@ export type ExtractedColor = {
 };
 
 export async function extractBrandColorsFromUrl(
-  url: string
+  url: string,
 ): Promise<ExtractedColor[]> {
   // @ts-expect-error - SDK is optional peer dependency
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
@@ -50,13 +50,15 @@ Only return valid JSON, no additional text.`,
   try {
     const colors = JSON.parse(content.text) as ExtractedColor[];
     return colors;
-  } catch (error) {
-    throw new Error(`Failed to parse color extraction response: ${content.text}`);
+  } catch (_error) {
+    throw new Error(
+      `Failed to parse color extraction response: ${content.text}`,
+    );
   }
 }
 
 export async function extractBrandColorsFromImage(
-  imageBase64: string
+  imageBase64: string,
 ): Promise<ExtractedColor[]> {
   // @ts-expect-error - SDK is optional peer dependency
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
@@ -102,7 +104,9 @@ Only return valid JSON, no additional text.`,
   try {
     const colors = JSON.parse(content.text) as ExtractedColor[];
     return colors;
-  } catch (error) {
-    throw new Error(`Failed to parse color extraction response: ${content.text}`);
+  } catch (_error) {
+    throw new Error(
+      `Failed to parse color extraction response: ${content.text}`,
+    );
   }
 }

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
+import { cn } from "../../lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,7 +10,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "./index";
-import { cn } from "../../lib/utils";
 
 const meta: Meta<typeof NavigationMenu> = {
   title: "Components/NavigationMenu",
@@ -57,22 +57,26 @@ const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
     href: "#",
-    description: "A modal dialog that interrupts the user with important content.",
+    description:
+      "A modal dialog that interrupts the user with important content.",
   },
   {
     title: "Hover Card",
     href: "#",
-    description: "For sighted users to preview content available behind a link.",
+    description:
+      "For sighted users to preview content available behind a link.",
   },
   {
     title: "Progress",
     href: "#",
-    description: "Displays an indicator showing the completion progress of a task.",
+    description:
+      "Displays an indicator showing the completion progress of a task.",
   },
   {
     title: "Tooltip",
     href: "#",
-    description: "A popup that displays information related to an element on hover.",
+    description:
+      "A popup that displays information related to an element on hover.",
   },
 ];
 
@@ -90,7 +94,7 @@ function ListItem({
           href={href}
           className={cn(
             "block select-none space-y-1 rounded-[--la-radius] p-3 leading-none no-underline outline-none transition-colors hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus:bg-[hsl(var(--la-accent))] focus:text-[hsl(var(--la-accent-foreground))]",
-            className
+            className,
           )}
           {...props}
         >
@@ -123,7 +127,8 @@ export const Default: Story = {
                         LaunchApp DS
                       </div>
                       <p className="text-sm leading-tight text-[hsl(var(--la-muted-foreground))]">
-                        Beautifully designed components built with Radix UI and Tailwind CSS.
+                        Beautifully designed components built with Radix UI and
+                        Tailwind CSS.
                       </p>
                     </a>
                   </NavigationMenuLink>
@@ -225,7 +230,8 @@ export const DarkMode: Story = {
                         LaunchApp DS
                       </div>
                       <p className="text-sm leading-tight text-[hsl(var(--la-muted-foreground))]">
-                        Beautifully designed components built with Radix UI and Tailwind CSS.
+                        Beautifully designed components built with Radix UI and
+                        Tailwind CSS.
                       </p>
                     </a>
                   </NavigationMenuLink>
@@ -243,7 +249,10 @@ export const DarkMode: Story = {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink
+              href="#"
+              className={navigationMenuTriggerStyle()}
+            >
               Documentation
             </NavigationMenuLink>
           </NavigationMenuItem>

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { ProfileSettings } from "./ProfileSettings";
 
 const meta: Meta<typeof ProfileSettings> = {
@@ -36,7 +35,11 @@ export const Default: Story = {
   render: () => (
     <div style={{ maxWidth: 640 }}>
       <ProfileSettings
-        defaultValues={{ name: "Jane Doe", username: "janedoe", bio: "Designer & coffee lover." }}
+        defaultValues={{
+          name: "Jane Doe",
+          username: "janedoe",
+          bio: "Designer & coffee lover.",
+        }}
         avatarFallback="JD"
         onSave={(values) => console.log("Saved:", values)}
       />
@@ -55,7 +58,10 @@ export const Empty: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
@@ -63,7 +69,11 @@ export const DarkMode: Story = {
   render: () => (
     <div style={{ maxWidth: 640 }}>
       <ProfileSettings
-        defaultValues={{ name: "Jane Doe", username: "janedoe", bio: "Designer & coffee lover." }}
+        defaultValues={{
+          name: "Jane Doe",
+          username: "janedoe",
+          bio: "Designer & coffee lover.",
+        }}
         avatarFallback="JD"
       />
     </div>
@@ -76,7 +86,11 @@ export const Mobile: Story = {
   },
   render: () => (
     <ProfileSettings
-      defaultValues={{ name: "Jane Doe", username: "janedoe", bio: "Designer & coffee lover." }}
+      defaultValues={{
+        name: "Jane Doe",
+        username: "janedoe",
+        bio: "Designer & coffee lover.",
+      }}
       avatarFallback="JD"
       onSave={(values) => console.log("Saved:", values)}
     />
@@ -90,7 +104,11 @@ export const Tablet: Story = {
   render: () => (
     <div style={{ maxWidth: 640, margin: "0 auto" }}>
       <ProfileSettings
-        defaultValues={{ name: "Jane Doe", username: "janedoe", bio: "Designer & coffee lover." }}
+        defaultValues={{
+          name: "Jane Doe",
+          username: "janedoe",
+          bio: "Designer & coffee lover.",
+        }}
         avatarFallback="JD"
         onSave={(values) => console.log("Saved:", values)}
       />
@@ -103,7 +121,11 @@ export const CompositionExample: Story = {
   render: () => (
     <div style={{ maxWidth: 640 }}>
       <ProfileSettings
-        defaultValues={{ name: "Jane Doe", username: "janedoe", bio: "Designer & coffee lover." }}
+        defaultValues={{
+          name: "Jane Doe",
+          username: "janedoe",
+          bio: "Designer & coffee lover.",
+        }}
         avatarFallback="JD"
         onSave={(values) => console.log("Saved:", values)}
       />

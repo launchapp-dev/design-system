@@ -1,9 +1,12 @@
+export type {
+  MarqueeContentVariants,
+  MarqueeItemProps,
+  MarqueeProps,
+  MarqueeVariants,
+} from "./Marquee";
 export {
   Marquee,
   MarqueeItem,
-  marqueeVariants,
   marqueeContentVariants,
+  marqueeVariants,
 } from "./Marquee";
-export type { MarqueeProps, MarqueeItemProps } from "./Marquee";
-export type { MarqueeVariants } from "./Marquee";
-export type { MarqueeContentVariants } from "./Marquee";

@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 interface PropInfo {
   name: string;
@@ -61,7 +61,7 @@ export class PropExtractor {
 
   private extractComponent(
     filePath: string,
-    componentName: string
+    componentName: string,
   ): ComponentInfo | null {
     try {
       const content = fs.readFileSync(filePath, "utf-8");
@@ -89,7 +89,7 @@ export class PropExtractor {
     // Find interface definition for [ComponentName]Props
     const interfaceRegex = new RegExp(
       `export interface ${componentName}Props[\\s\\S]*?\\{([\\s\\S]*?)\\}`,
-      "m"
+      "m",
     );
     const interfaceMatch = content.match(interfaceRegex);
 
@@ -112,10 +112,7 @@ export class PropExtractor {
     }
 
     // Also extract props from extends
-    const extendsRegex = new RegExp(
-      `extends ([^{]+)\\{`,
-      "m"
-    );
+    const extendsRegex = /extends ([^{]+)\{/m;
     const extendsMatch = content.match(extendsRegex);
     if (extendsMatch) {
       const extendsStr = extendsMatch[1];
@@ -139,7 +136,7 @@ export class PropExtractor {
             type: "React.Ref",
             required: false,
             description: "Forward ref",
-          }
+          },
         );
       }
     }
@@ -177,13 +174,14 @@ export class PropExtractor {
 
   private extractVariants(
     content: string,
-    componentName: string
+    _componentName: string,
   ): Record<string, { options: string[]; default?: string }> | undefined {
     const variantInfo: Record<string, { options: string[]; default?: string }> =
       {};
 
     // Look for CVA variants definition
-    const cvaRegex = /const (\w+)Variants = cva\(\s*[^{]*\{[^}]*variants:\s*\{([^}]+)\}[^}]*defaultVariants:\s*\{([^}]+)\}/ms;
+    const cvaRegex =
+      /const (\w+)Variants = cva\(\s*[^{]*\{[^}]*variants:\s*\{([^}]+)\}[^}]*defaultVariants:\s*\{([^}]+)\}/ms;
     const cvaMatch = content.match(cvaRegex);
 
     if (cvaMatch) {
@@ -228,12 +226,12 @@ export class PropExtractor {
 
   private extractDocumentation(
     content: string,
-    componentName: string
+    componentName: string,
   ): string | undefined {
     // Look for JSDoc comments before component declaration
     const docRegex = new RegExp(
       `/\\*\\*([^*]*(?:\\*(?!\\/)[^*]*)*)\\*\\/\\s*(?:export\\s+)?(?:const|function)\\s+${componentName}`,
-      "m"
+      "m",
     );
     const docMatch = content.match(docRegex);
 

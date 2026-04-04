@@ -30,7 +30,11 @@ const colorTokens = [
     group: "Popover",
     tokens: [
       { name: "--la-popover", light: "0 0% 100%", dark: "240 10% 3.9%" },
-      { name: "--la-popover-foreground", light: "240 10% 3.9%", dark: "0 0% 98%" },
+      {
+        name: "--la-popover-foreground",
+        light: "240 10% 3.9%",
+        dark: "0 0% 98%",
+      },
     ],
   },
   {
@@ -43,29 +47,53 @@ const colorTokens = [
   {
     group: "Secondary",
     tokens: [
-      { name: "--la-secondary", light: "240 4.8% 95.9%", dark: "240 3.7% 15.9%" },
-      { name: "--la-secondary-foreground", light: "240 5.9% 10%", dark: "0 0% 98%" },
+      {
+        name: "--la-secondary",
+        light: "240 4.8% 95.9%",
+        dark: "240 3.7% 15.9%",
+      },
+      {
+        name: "--la-secondary-foreground",
+        light: "240 5.9% 10%",
+        dark: "0 0% 98%",
+      },
     ],
   },
   {
     group: "Muted",
     tokens: [
       { name: "--la-muted", light: "240 4.8% 95.9%", dark: "240 3.7% 15.9%" },
-      { name: "--la-muted-foreground", light: "240 3.8% 46.1%", dark: "240 5% 64.9%" },
+      {
+        name: "--la-muted-foreground",
+        light: "240 3.8% 46.1%",
+        dark: "240 5% 64.9%",
+      },
     ],
   },
   {
     group: "Accent",
     tokens: [
       { name: "--la-accent", light: "240 4.8% 95.9%", dark: "240 3.7% 15.9%" },
-      { name: "--la-accent-foreground", light: "240 5.9% 10%", dark: "0 0% 98%" },
+      {
+        name: "--la-accent-foreground",
+        light: "240 5.9% 10%",
+        dark: "0 0% 98%",
+      },
     ],
   },
   {
     group: "Destructive",
     tokens: [
-      { name: "--la-destructive", light: "0 84.2% 60.2%", dark: "0 62.8% 30.6%" },
-      { name: "--la-destructive-foreground", light: "0 0% 98%", dark: "0 0% 98%" },
+      {
+        name: "--la-destructive",
+        light: "0 84.2% 60.2%",
+        dark: "0 62.8% 30.6%",
+      },
+      {
+        name: "--la-destructive-foreground",
+        light: "0 0% 98%",
+        dark: "0 0% 98%",
+      },
     ],
   },
   {
@@ -88,7 +116,14 @@ const chartTokens = [
 
 function ColorSwatch({ hsl, label }: { hsl: string; label: string }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 4,
+      }}
+    >
       <div
         style={{
           width: 48,
@@ -99,25 +134,63 @@ function ColorSwatch({ hsl, label }: { hsl: string; label: string }) {
           flexShrink: 0,
         }}
       />
-      <span style={{ fontSize: 10, color: "var(--la-muted-foreground, #888)", textAlign: "center" }}>{label}</span>
+      <span
+        style={{
+          fontSize: 10,
+          color: "var(--la-muted-foreground, #888)",
+          textAlign: "center",
+        }}
+      >
+        {label}
+      </span>
     </div>
   );
 }
 
-function TokenRow({ name, light, dark }: { name: string; light: string; dark: string }) {
+function TokenRow({
+  name,
+  light,
+  dark,
+}: {
+  name: string;
+  light: string;
+  dark: string;
+}) {
   return (
-    <tr style={{ borderBottom: "1px solid hsl(var(--la-border, 240 5.9% 90%))" }}>
-      <td style={{ padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }}>{name}</td>
+    <tr
+      style={{ borderBottom: "1px solid hsl(var(--la-border, 240 5.9% 90%))" }}
+    >
+      <td
+        style={{ padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }}
+      >
+        {name}
+      </td>
       <td style={{ padding: "10px 12px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <ColorSwatch hsl={light} label="Light" />
-          <span style={{ fontSize: 12, fontFamily: "monospace", color: "hsl(240 3.8% 46.1%)" }}>{light}</span>
+          <span
+            style={{
+              fontSize: 12,
+              fontFamily: "monospace",
+              color: "hsl(240 3.8% 46.1%)",
+            }}
+          >
+            {light}
+          </span>
         </div>
       </td>
       <td style={{ padding: "10px 12px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <ColorSwatch hsl={dark} label="Dark" />
-          <span style={{ fontSize: 12, fontFamily: "monospace", color: "hsl(240 3.8% 46.1%)" }}>{dark}</span>
+          <span
+            style={{
+              fontSize: 12,
+              fontFamily: "monospace",
+              color: "hsl(240 3.8% 46.1%)",
+            }}
+          >
+            {dark}
+          </span>
         </div>
       </td>
     </tr>
@@ -164,12 +237,41 @@ function GroupHeading({ children }: { children: React.ReactNode }) {
 
 function TokenTable() {
   return (
-    <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "auto" }}>
+    <table
+      style={{ width: "100%", borderCollapse: "collapse", tableLayout: "auto" }}
+    >
       <thead>
         <tr style={{ background: "hsl(var(--la-muted, 240 4.8% 95.9%))" }}>
-          <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Token</th>
-          <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Light</th>
-          <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Dark</th>
+          <th
+            style={{
+              padding: "10px 12px",
+              textAlign: "left",
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+          >
+            Token
+          </th>
+          <th
+            style={{
+              padding: "10px 12px",
+              textAlign: "left",
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+          >
+            Light
+          </th>
+          <th
+            style={{
+              padding: "10px 12px",
+              textAlign: "left",
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+          >
+            Dark
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -189,13 +291,35 @@ function TokenTable() {
 export const ColorTokens: Story = {
   name: "Color Tokens",
   render: () => (
-    <div style={{ maxWidth: 900, fontFamily: "var(--la-font-sans, Inter, sans-serif)" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 4, color: "hsl(var(--la-foreground, 240 10% 3.9%))" }}>
+    <div
+      style={{
+        maxWidth: 900,
+        fontFamily: "var(--la-font-sans, Inter, sans-serif)",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: 28,
+          fontWeight: 700,
+          marginBottom: 4,
+          color: "hsl(var(--la-foreground, 240 10% 3.9%))",
+        }}
+      >
         Design Tokens
       </h1>
-      <p style={{ fontSize: 14, color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))", marginBottom: 24 }}>
-        All CSS custom properties used in the design system. Values are HSL components consumed as{" "}
-        <code style={{ fontFamily: "monospace", fontSize: 13 }}>hsl(var(--la-token))</code>.
+      <p
+        style={{
+          fontSize: 14,
+          color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))",
+          marginBottom: 24,
+        }}
+      >
+        All CSS custom properties used in the design system. Values are HSL
+        components consumed as{" "}
+        <code style={{ fontFamily: "monospace", fontSize: 13 }}>
+          hsl(var(--la-token))
+        </code>
+        .
       </p>
       <SectionHeading>Color Tokens</SectionHeading>
       <TokenTable />
@@ -206,17 +330,55 @@ export const ColorTokens: Story = {
 export const ChartTokens: Story = {
   name: "Chart Tokens",
   render: () => (
-    <div style={{ maxWidth: 900, fontFamily: "var(--la-font-sans, Inter, sans-serif)" }}>
+    <div
+      style={{
+        maxWidth: 900,
+        fontFamily: "var(--la-font-sans, Inter, sans-serif)",
+      }}
+    >
       <SectionHeading>Chart Color Tokens</SectionHeading>
-      <p style={{ fontSize: 14, color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))", marginBottom: 16 }}>
+      <p
+        style={{
+          fontSize: 14,
+          color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))",
+          marginBottom: 16,
+        }}
+      >
         Semantic palette for data visualizations.
       </p>
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr style={{ background: "hsl(var(--la-muted, 240 4.8% 95.9%))" }}>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Token</th>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Light</th>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Dark</th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Token
+            </th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Light
+            </th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Dark
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -232,26 +394,103 @@ export const ChartTokens: Story = {
 export const RadiusAndTypography: Story = {
   name: "Radius & Typography Tokens",
   render: () => (
-    <div style={{ maxWidth: 900, fontFamily: "var(--la-font-sans, Inter, sans-serif)" }}>
+    <div
+      style={{
+        maxWidth: 900,
+        fontFamily: "var(--la-font-sans, Inter, sans-serif)",
+      }}
+    >
       <SectionHeading>Radius Token</SectionHeading>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 32 }}>
+      <table
+        style={{ width: "100%", borderCollapse: "collapse", marginBottom: 32 }}
+      >
         <thead>
           <tr style={{ background: "hsl(var(--la-muted, 240 4.8% 95.9%))" }}>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Token</th>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Value</th>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Preview</th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Token
+            </th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Value
+            </th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Preview
+            </th>
           </tr>
         </thead>
         <tbody>
-          <tr style={{ borderBottom: "1px solid hsl(var(--la-border, 240 5.9% 90%))" }}>
-            <td style={{ padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }}>--la-radius</td>
-            <td style={{ padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }}>0.5rem</td>
+          <tr
+            style={{
+              borderBottom: "1px solid hsl(var(--la-border, 240 5.9% 90%))",
+            }}
+          >
+            <td
+              style={{
+                padding: "10px 12px",
+                fontFamily: "monospace",
+                fontSize: 13,
+              }}
+            >
+              --la-radius
+            </td>
+            <td
+              style={{
+                padding: "10px 12px",
+                fontFamily: "monospace",
+                fontSize: 13,
+              }}
+            >
+              0.5rem
+            </td>
             <td style={{ padding: "10px 12px" }}>
               <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                <div style={{ width: 48, height: 32, background: "hsl(var(--la-primary, 262 83% 58%))", borderRadius: "calc(var(--la-radius, 0.5rem) - 2px)" }} />
-                <div style={{ width: 48, height: 32, background: "hsl(var(--la-primary, 262 83% 58%))", borderRadius: "var(--la-radius, 0.5rem)" }} />
-                <div style={{ width: 48, height: 32, background: "hsl(var(--la-primary, 262 83% 58%))", borderRadius: "calc(var(--la-radius, 0.5rem) + 2px)" }} />
-                <span style={{ fontSize: 11, color: "hsl(240 3.8% 46.1%)" }}>sm / md / lg</span>
+                <div
+                  style={{
+                    width: 48,
+                    height: 32,
+                    background: "hsl(var(--la-primary, 262 83% 58%))",
+                    borderRadius: "calc(var(--la-radius, 0.5rem) - 2px)",
+                  }}
+                />
+                <div
+                  style={{
+                    width: 48,
+                    height: 32,
+                    background: "hsl(var(--la-primary, 262 83% 58%))",
+                    borderRadius: "var(--la-radius, 0.5rem)",
+                  }}
+                />
+                <div
+                  style={{
+                    width: 48,
+                    height: 32,
+                    background: "hsl(var(--la-primary, 262 83% 58%))",
+                    borderRadius: "calc(var(--la-radius, 0.5rem) + 2px)",
+                  }}
+                />
+                <span style={{ fontSize: 11, color: "hsl(240 3.8% 46.1%)" }}>
+                  sm / md / lg
+                </span>
               </div>
             </td>
           </tr>
@@ -262,9 +501,36 @@ export const RadiusAndTypography: Story = {
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr style={{ background: "hsl(var(--la-muted, 240 4.8% 95.9%))" }}>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Token</th>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Value</th>
-            <th style={{ padding: "10px 12px", textAlign: "left", fontSize: 13, fontWeight: 600 }}>Preview</th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Token
+            </th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Value
+            </th>
+            <th
+              style={{
+                padding: "10px 12px",
+                textAlign: "left",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              Preview
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -272,10 +538,37 @@ export const RadiusAndTypography: Story = {
             { name: "--la-font-sans", value: '"Inter"' },
             { name: "--la-font-mono", value: '"JetBrains Mono"' },
           ].map(({ name, value }) => (
-            <tr key={name} style={{ borderBottom: "1px solid hsl(var(--la-border, 240 5.9% 90%))" }}>
-              <td style={{ padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }}>{name}</td>
-              <td style={{ padding: "10px 12px", fontFamily: "monospace", fontSize: 13 }}>{value}</td>
-              <td style={{ padding: "10px 12px", fontFamily: value, fontSize: 14 }}>
+            <tr
+              key={name}
+              style={{
+                borderBottom: "1px solid hsl(var(--la-border, 240 5.9% 90%))",
+              }}
+            >
+              <td
+                style={{
+                  padding: "10px 12px",
+                  fontFamily: "monospace",
+                  fontSize: 13,
+                }}
+              >
+                {name}
+              </td>
+              <td
+                style={{
+                  padding: "10px 12px",
+                  fontFamily: "monospace",
+                  fontSize: 13,
+                }}
+              >
+                {value}
+              </td>
+              <td
+                style={{
+                  padding: "10px 12px",
+                  fontFamily: value,
+                  fontSize: 14,
+                }}
+              >
                 The quick brown fox jumps over the lazy dog
               </td>
             </tr>
@@ -289,10 +582,22 @@ export const RadiusAndTypography: Story = {
 export const CustomThemingExample: Story = {
   name: "Custom Theming Example",
   render: () => (
-    <div style={{ maxWidth: 900, fontFamily: "var(--la-font-sans, Inter, sans-serif)" }}>
+    <div
+      style={{
+        maxWidth: 900,
+        fontFamily: "var(--la-font-sans, Inter, sans-serif)",
+      }}
+    >
       <SectionHeading>Custom Theming</SectionHeading>
-      <p style={{ fontSize: 14, color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))", marginBottom: 16 }}>
-        Override tokens in your application&apos;s CSS to brand the design system without modifying any component code.
+      <p
+        style={{
+          fontSize: 14,
+          color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))",
+          marginBottom: 16,
+        }}
+      >
+        Override tokens in your application&apos;s CSS to brand the design
+        system without modifying any component code.
       </p>
 
       <pre
@@ -327,7 +632,13 @@ export const CustomThemingExample: Story = {
 }`}
       </pre>
 
-      <p style={{ fontSize: 13, color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))", marginBottom: 8 }}>
+      <p
+        style={{
+          fontSize: 13,
+          color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))",
+          marginBottom: 8,
+        }}
+      >
         Live preview with blue brand tokens applied:
       </p>
 
@@ -378,18 +689,20 @@ export const CustomThemingExample: Story = {
           Accent Button
         </button>
         <div style={{ display: "flex", gap: 8 }}>
-          {["217 91% 60%", "217 91% 70%", "217 91% 80%", "217 91% 90%"].map((hsl) => (
-            <div
-              key={hsl}
-              style={{
-                width: 32,
-                height: 32,
-                borderRadius: "var(--la-radius, 0.5rem)",
-                background: `hsl(${hsl})`,
-                border: "1px solid rgba(0,0,0,0.1)",
-              }}
-            />
-          ))}
+          {["217 91% 60%", "217 91% 70%", "217 91% 80%", "217 91% 90%"].map(
+            (hsl) => (
+              <div
+                key={hsl}
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: "var(--la-radius, 0.5rem)",
+                  background: `hsl(${hsl})`,
+                  border: "1px solid rgba(0,0,0,0.1)",
+                }}
+              />
+            ),
+          )}
         </div>
       </div>
     </div>
@@ -399,24 +712,53 @@ export const CustomThemingExample: Story = {
 export const AllSwatches: Story = {
   name: "All Swatches",
   render: () => (
-    <div style={{ maxWidth: 900, fontFamily: "var(--la-font-sans, Inter, sans-serif)" }}>
+    <div
+      style={{
+        maxWidth: 900,
+        fontFamily: "var(--la-font-sans, Inter, sans-serif)",
+      }}
+    >
       <SectionHeading>All Color Swatches</SectionHeading>
-      <p style={{ fontSize: 14, color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))", marginBottom: 24 }}>
+      <p
+        style={{
+          fontSize: 14,
+          color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))",
+          marginBottom: 24,
+        }}
+      >
         Visual overview of all tokens in both light and dark mode values.
       </p>
       {colorTokens.map((group) => (
         <div key={group.group} style={{ marginBottom: 24 }}>
-          <h3 style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))", marginBottom: 10 }}>
+          <h3
+            style={{
+              fontSize: 13,
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))",
+              marginBottom: 10,
+            }}
+          >
             {group.group}
           </h3>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             {group.tokens.map((token) => (
-              <div key={token.name} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div
+                key={token.name}
+                style={{ display: "flex", flexDirection: "column", gap: 8 }}
+              >
                 <div style={{ display: "flex", gap: 8 }}>
                   <ColorSwatch hsl={token.light} label="Light" />
                   <ColorSwatch hsl={token.dark} label="Dark" />
                 </div>
-                <span style={{ fontSize: 11, fontFamily: "monospace", color: "hsl(var(--la-foreground, 240 10% 3.9%))" }}>
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontFamily: "monospace",
+                    color: "hsl(var(--la-foreground, 240 10% 3.9%))",
+                  }}
+                >
                   {token.name}
                 </span>
               </div>
@@ -425,17 +767,35 @@ export const AllSwatches: Story = {
         </div>
       ))}
       <div style={{ marginBottom: 24 }}>
-        <h3 style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))", marginBottom: 10 }}>
+        <h3
+          style={{
+            fontSize: 13,
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            color: "hsl(var(--la-muted-foreground, 240 3.8% 46.1%))",
+            marginBottom: 10,
+          }}
+        >
           Chart Colors
         </h3>
         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
           {chartTokens.map((token) => (
-            <div key={token.name} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div
+              key={token.name}
+              style={{ display: "flex", flexDirection: "column", gap: 8 }}
+            >
               <div style={{ display: "flex", gap: 8 }}>
                 <ColorSwatch hsl={token.light} label="Light" />
                 <ColorSwatch hsl={token.dark} label="Dark" />
               </div>
-              <span style={{ fontSize: 11, fontFamily: "monospace", color: "hsl(var(--la-foreground, 240 10% 3.9%))" }}>
+              <span
+                style={{
+                  fontSize: 11,
+                  fontFamily: "monospace",
+                  color: "hsl(var(--la-foreground, 240 10% 3.9%))",
+                }}
+              >
                 {token.name}
               </span>
             </div>

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { FadeInOnScroll, CountUp, Parallax } from "./index";
+import { CountUp, FadeInOnScroll, Parallax } from "./index";
 
 const meta: Meta = {
   title: "Components/ScrollAnimate",
@@ -118,7 +117,9 @@ export const ParallaxStory: StoryObj = {
       }}
     >
       <div style={{ height: "200px" }} />
-      <div style={{ position: "relative", padding: "40px", textAlign: "center" }}>
+      <div
+        style={{ position: "relative", padding: "40px", textAlign: "center" }}
+      >
         <Parallax speed={0.2}>
           <div
             style={{
@@ -165,9 +166,18 @@ export const ParallaxStory: StoryObj = {
 export const AllScrollAnimations: StoryObj = {
   name: "All Scroll Animations",
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "48px", padding: "24px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "48px",
+        padding: "24px",
+      }}
+    >
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "16px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "16px" }}
+        >
           FadeInOnScroll
         </h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -180,12 +190,19 @@ export const AllScrollAnimations: StoryObj = {
         </div>
       </section>
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "16px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "16px" }}
+        >
           CountUp
         </h3>
         <div style={{ display: "flex", gap: "32px" }}>
           <CountUp to={500} suffix="+" className="text-3xl font-bold" />
-          <CountUp to={98.5} decimals={1} suffix="%" className="text-3xl font-bold" />
+          <CountUp
+            to={98.5}
+            decimals={1}
+            suffix="%"
+            className="text-3xl font-bold"
+          />
           <CountUp to={10000} prefix="$" className="text-3xl font-bold" />
         </div>
       </section>

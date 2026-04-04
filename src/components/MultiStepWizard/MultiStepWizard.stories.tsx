@@ -25,20 +25,48 @@ export const Default: Story = {
         title: "Personal Info",
         description: "Tell us a bit about yourself.",
         content: (
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            <label style={{ display: "flex", flexDirection: "column", gap: "4px", fontSize: "14px" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+          >
+            <label
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+                fontSize: "14px",
+              }}
+            >
               Full Name
               <input
                 placeholder="Jane Smith"
-                style={{ border: "1px solid hsl(var(--border))", borderRadius: "6px", padding: "8px 12px", fontSize: "14px", background: "transparent" }}
+                style={{
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "6px",
+                  padding: "8px 12px",
+                  fontSize: "14px",
+                  background: "transparent",
+                }}
               />
             </label>
-            <label style={{ display: "flex", flexDirection: "column", gap: "4px", fontSize: "14px" }}>
+            <label
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+                fontSize: "14px",
+              }}
+            >
               Email
               <input
                 type="email"
                 placeholder="jane@example.com"
-                style={{ border: "1px solid hsl(var(--border))", borderRadius: "6px", padding: "8px 12px", fontSize: "14px", background: "transparent" }}
+                style={{
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "6px",
+                  padding: "8px 12px",
+                  fontSize: "14px",
+                  background: "transparent",
+                }}
               />
             </label>
           </div>
@@ -49,20 +77,48 @@ export const Default: Story = {
         title: "Account Setup",
         description: "Choose your credentials.",
         content: (
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            <label style={{ display: "flex", flexDirection: "column", gap: "4px", fontSize: "14px" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+          >
+            <label
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+                fontSize: "14px",
+              }}
+            >
               Username
               <input
                 placeholder="janesmith"
-                style={{ border: "1px solid hsl(var(--border))", borderRadius: "6px", padding: "8px 12px", fontSize: "14px", background: "transparent" }}
+                style={{
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "6px",
+                  padding: "8px 12px",
+                  fontSize: "14px",
+                  background: "transparent",
+                }}
               />
             </label>
-            <label style={{ display: "flex", flexDirection: "column", gap: "4px", fontSize: "14px" }}>
+            <label
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+                fontSize: "14px",
+              }}
+            >
               Password
               <input
                 type="password"
                 placeholder="••••••••"
-                style={{ border: "1px solid hsl(var(--border))", borderRadius: "6px", padding: "8px 12px", fontSize: "14px", background: "transparent" }}
+                style={{
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "6px",
+                  padding: "8px 12px",
+                  fontSize: "14px",
+                  background: "transparent",
+                }}
               />
             </label>
           </div>
@@ -73,8 +129,17 @@ export const Default: Story = {
         title: "Confirm",
         description: "Review and confirm your details.",
         content: (
-          <div style={{ padding: "12px", borderRadius: "8px", background: "hsl(var(--muted))", fontSize: "14px" }}>
-            <p style={{ margin: 0 }}>Everything looks good! Click <strong>Complete</strong> to finish.</p>
+          <div
+            style={{
+              padding: "12px",
+              borderRadius: "8px",
+              background: "hsl(var(--muted))",
+              fontSize: "14px",
+            }}
+          >
+            <p style={{ margin: 0 }}>
+              Everything looks good! Click <strong>Complete</strong> to finish.
+            </p>
           </div>
         ),
       },
@@ -83,9 +148,16 @@ export const Default: Story = {
     if (completed) {
       return (
         <div style={{ padding: "40px", textAlign: "center" }}>
-          <p style={{ fontSize: "16px", fontWeight: 600 }}>✓ Wizard completed!</p>
+          <p style={{ fontSize: "16px", fontWeight: 600 }}>
+            ✓ Wizard completed!
+          </p>
           <button
-            style={{ marginTop: "12px", padding: "8px 16px", borderRadius: "6px", cursor: "pointer" }}
+            style={{
+              marginTop: "12px",
+              padding: "8px 16px",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
             onClick={() => setCompleted(false)}
           >
             Reset
@@ -97,7 +169,13 @@ export const Default: Story = {
     return (
       <div style={{ padding: "40px", maxWidth: "480px" }}>
         {draft !== null && (
-          <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "16px" }}>
+          <p
+            style={{
+              fontSize: "12px",
+              color: "hsl(var(--muted-foreground))",
+              marginBottom: "16px",
+            }}
+          >
             Draft saved at step {draft + 1}
           </p>
         )}
@@ -114,7 +192,11 @@ export const Default: Story = {
 
 export const WithValidation: Story = {
   render: () => {
-    const { register, trigger, formState: { errors } } = useForm<{ name: string; email: string }>({
+    const {
+      register,
+      trigger,
+      formState: { errors },
+    } = useForm<{ name: string; email: string }>({
       mode: "onChange",
     });
     const [completed, setCompleted] = React.useState(false);
@@ -124,8 +206,17 @@ export const WithValidation: Story = {
         id: "info",
         title: "Your Info",
         content: (
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            <label style={{ display: "flex", flexDirection: "column", gap: "4px", fontSize: "14px" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+          >
+            <label
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+                fontSize: "14px",
+              }}
+            >
               Name *
               <input
                 {...register("name", { required: "Name is required" })}
@@ -139,12 +230,21 @@ export const WithValidation: Story = {
                 }}
               />
               {errors.name && (
-                <span style={{ fontSize: "12px", color: "hsl(var(--destructive))" }}>
+                <span
+                  style={{ fontSize: "12px", color: "hsl(var(--destructive))" }}
+                >
                   {errors.name.message}
                 </span>
               )}
             </label>
-            <label style={{ display: "flex", flexDirection: "column", gap: "4px", fontSize: "14px" }}>
+            <label
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+                fontSize: "14px",
+              }}
+            >
               Email *
               <input
                 {...register("email", {
@@ -162,7 +262,9 @@ export const WithValidation: Story = {
                 }}
               />
               {errors.email && (
-                <span style={{ fontSize: "12px", color: "hsl(var(--destructive))" }}>
+                <span
+                  style={{ fontSize: "12px", color: "hsl(var(--destructive))" }}
+                >
                   {errors.email.message}
                 </span>
               )}
@@ -203,9 +305,21 @@ export const WithValidation: Story = {
 export const DefaultVariant: Story = {
   render: () => {
     const steps = [
-      { id: "s1", title: "Step One", content: <p style={{ fontSize: "14px" }}>Step 1 content</p> },
-      { id: "s2", title: "Step Two", content: <p style={{ fontSize: "14px" }}>Step 2 content</p> },
-      { id: "s3", title: "Step Three", content: <p style={{ fontSize: "14px" }}>Step 3 content</p> },
+      {
+        id: "s1",
+        title: "Step One",
+        content: <p style={{ fontSize: "14px" }}>Step 1 content</p>,
+      },
+      {
+        id: "s2",
+        title: "Step Two",
+        content: <p style={{ fontSize: "14px" }}>Step 2 content</p>,
+      },
+      {
+        id: "s3",
+        title: "Step Three",
+        content: <p style={{ fontSize: "14px" }}>Step 3 content</p>,
+      },
     ];
     return (
       <div style={{ padding: "40px", maxWidth: "480px" }}>

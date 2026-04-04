@@ -1,5 +1,3 @@
-import type { VariantProps } from "class-variance-authority";
-
 /**
  * Represents a single variant value's style configuration
  */
@@ -28,14 +26,14 @@ export interface PluginDefaultVariants {
  * Lifecycle hook for modifying component props before render
  */
 export type BeforeRenderHook = (
-  props: Record<string, any>
+  props: Record<string, any>,
 ) => Record<string, any>;
 
 /**
  * Lifecycle hook for modifying component element after render
  */
 export type AfterRenderHook = (
-  element: React.ReactElement
+  element: React.ReactElement,
 ) => React.ReactElement;
 
 /**

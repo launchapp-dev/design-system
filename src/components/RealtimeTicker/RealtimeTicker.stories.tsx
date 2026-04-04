@@ -4,15 +4,39 @@ import { RealtimeTicker } from "./index";
 import type { TickerItem } from "./RealtimeTicker";
 
 const stockItems: TickerItem[] = [
-  { id: "aapl", label: "AAPL", value: 178.52, format: "currency", precision: 2 },
-  { id: "googl", label: "GOOGL", value: 141.80, format: "currency", precision: 2 },
-  { id: "msft", label: "MSFT", value: 378.91, format: "currency", precision: 2 },
-  { id: "amzn", label: "AMZN", value: 178.25, format: "currency", precision: 2 },
+  {
+    id: "aapl",
+    label: "AAPL",
+    value: 178.52,
+    format: "currency",
+    precision: 2,
+  },
+  {
+    id: "googl",
+    label: "GOOGL",
+    value: 141.8,
+    format: "currency",
+    precision: 2,
+  },
+  {
+    id: "msft",
+    label: "MSFT",
+    value: 378.91,
+    format: "currency",
+    precision: 2,
+  },
+  {
+    id: "amzn",
+    label: "AMZN",
+    value: 178.25,
+    format: "currency",
+    precision: 2,
+  },
 ];
 
 const cryptoItems: TickerItem[] = [
-  { id: "btc", label: "BTC", value: 43250.00, format: "currency", precision: 0 },
-  { id: "eth", label: "ETH", value: 2285.50, format: "currency", precision: 2 },
+  { id: "btc", label: "BTC", value: 43250.0, format: "currency", precision: 0 },
+  { id: "eth", label: "ETH", value: 2285.5, format: "currency", precision: 2 },
   { id: "sol", label: "SOL", value: 98.75, format: "currency", precision: 2 },
 ];
 
@@ -24,14 +48,32 @@ const serverMetrics: TickerItem[] = [
 ];
 
 const bandwidthItems: TickerItem[] = [
-  { id: "download", label: "Download", value: 125.8, unit: "Mbps", precision: 1 },
+  {
+    id: "download",
+    label: "Download",
+    value: 125.8,
+    unit: "Mbps",
+    precision: 1,
+  },
   { id: "upload", label: "Upload", value: 24.3, unit: "Mbps", precision: 1 },
   { id: "ping", label: "Ping", value: 12, unit: "ms", precision: 0 },
 ];
 
 const conversionItems: TickerItem[] = [
-  { id: "rate", label: "Conversion", value: 3.42, format: "percent", precision: 2 },
-  { id: "bounce", label: "Bounce", value: 32.5, format: "percent", precision: 1 },
+  {
+    id: "rate",
+    label: "Conversion",
+    value: 3.42,
+    format: "percent",
+    precision: 2,
+  },
+  {
+    id: "bounce",
+    label: "Bounce",
+    value: 32.5,
+    format: "percent",
+    precision: 1,
+  },
   { id: "sessions", label: "Sessions", value: 45280, precision: 0 },
 ];
 
@@ -157,20 +199,15 @@ export const WithOnUpdate: Story = {
   render: (args) => {
     const [items, setItems] = React.useState<TickerItem[]>(args.items);
     const [updateCount, setUpdateCount] = React.useState(0);
-    
+
     const handleUpdate = (newItems: TickerItem[]) => {
       setItems(newItems);
       setUpdateCount((c) => c + 1);
     };
-    
+
     return (
       <div>
-        <RealtimeTicker
-          {...args}
-          items={items}
-          live
-          onUpdate={handleUpdate}
-        />
+        <RealtimeTicker {...args} items={items} live onUpdate={handleUpdate} />
         <div className="mt-4 text-sm text-muted-foreground">
           Updates received: {updateCount}
         </div>
@@ -201,7 +238,15 @@ export const SlowUpdates: Story = {
 
 export const SingleItem: Story = {
   args: {
-    items: [{ id: "btc", label: "BTC/USD", value: 43250.00, format: "currency", precision: 2 }],
+    items: [
+      {
+        id: "btc",
+        label: "BTC/USD",
+        value: 43250.0,
+        format: "currency",
+        precision: 2,
+      },
+    ],
     live: true,
     variant: "expanded",
     size: "lg",

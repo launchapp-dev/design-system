@@ -1,7 +1,7 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "../Popover";
+import { Badge } from "../Badge";
 import {
   Command,
   CommandEmpty,
@@ -10,7 +10,7 @@ import {
   CommandItem,
   CommandList,
 } from "../Command";
-import { Badge } from "../Badge";
+import { Popover, PopoverContent, PopoverTrigger } from "../Popover";
 
 const multiSelectTriggerVariants = cva(
   "flex w-full items-center justify-between gap-2 rounded-md border border-input bg-background text-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
@@ -25,7 +25,7 @@ const multiSelectTriggerVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface MultiSelectOption {
@@ -35,7 +35,10 @@ export interface MultiSelectOption {
 }
 
 export interface MultiSelectProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "value" | "onChange">,
+  extends Omit<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      "value" | "onChange"
+    >,
     VariantProps<typeof multiSelectTriggerVariants> {
   options: MultiSelectOption[];
   value?: string[];
@@ -62,10 +65,12 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [open, setOpen] = React.useState(false);
-    const [focusedTagIndex, setFocusedTagIndex] = React.useState<number | null>(null);
+    const [focusedTagIndex, setFocusedTagIndex] = React.useState<number | null>(
+      null,
+    );
     const listboxId = React.useId();
     const triggerId = id || React.useId();
     const tagRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
@@ -79,12 +84,17 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
       onValueChange?.(newValue);
     };
 
-    const handleRemove = (optionValue: string, e?: React.MouseEvent | React.KeyboardEvent) => {
+    const handleRemove = (
+      optionValue: string,
+      e?: React.MouseEvent | React.KeyboardEvent,
+    ) => {
       e?.stopPropagation();
       onValueChange?.(value.filter((v) => v !== optionValue));
     };
 
-    const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    const handleTriggerKeyDown = (
+      e: React.KeyboardEvent<HTMLButtonElement>,
+    ) => {
       if (disabled) return;
 
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
@@ -173,7 +183,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                         variant="secondary"
                         className={cn(
                           "flex items-center gap-1 rounded pr-0.5",
-                          focusedTagIndex === index && "ring-2 ring-ring"
+                          focusedTagIndex === index && "ring-2 ring-ring",
                         )}
                         ref={(el) => {
                           tagRefs.current[index] = el;
@@ -215,7 +225,10 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                     );
                   })}
                   {hiddenCount > 0 && (
-                    <Badge variant="secondary" aria-label={`${hiddenCount} more items selected`}>
+                    <Badge
+                      variant="secondary"
+                      aria-label={`${hiddenCount} more items selected`}
+                    >
                       +{hiddenCount} more
                     </Badge>
                   )}
@@ -240,10 +253,17 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
             </svg>
           </button>
         </PopoverTrigger>
-        <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+        <PopoverContent
+          className="w-[--radix-popover-trigger-width] p-0"
+          align="start"
+        >
           <Command>
             <CommandInput placeholder={searchPlaceholder} />
-            <CommandList id={listboxId} role="listbox" aria-multiselectable="true">
+            <CommandList
+              id={listboxId}
+              role="listbox"
+              aria-multiselectable="true"
+            >
               <CommandEmpty>{emptyText}</CommandEmpty>
               <CommandGroup>
                 {options.map((option) => {
@@ -263,7 +283,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                           "mr-2 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-primary",
                           isSelected
                             ? "bg-primary text-primary-foreground"
-                            : "opacity-50"
+                            : "opacity-50",
                         )}
                         aria-hidden="true"
                       >
@@ -294,11 +314,13 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
         </PopoverContent>
       </Popover>
     );
-  }
+  },
 );
 
 MultiSelect.displayName = "MultiSelect";
 
-export type MultiSelectTriggerVariants = VariantProps<typeof multiSelectTriggerVariants>;
+export type MultiSelectTriggerVariants = VariantProps<
+  typeof multiSelectTriggerVariants
+>;
 
 export { MultiSelect, multiSelectTriggerVariants };

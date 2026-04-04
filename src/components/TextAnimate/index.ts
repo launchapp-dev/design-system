@@ -1,12 +1,20 @@
-export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText, gradientTextVariants } from "./TextAnimate";
 export type {
-  TypewriterProps,
   BlurInProps,
+  BlurInVariants,
   FadeUpProps,
-  LetterRevealProps,
-  WordRevealProps,
+  FadeUpVariants,
   GradientTextProps,
+  GradientTextVariants,
+  LetterRevealProps,
+  TypewriterProps,
+  WordRevealProps,
 } from "./TextAnimate";
-export type { BlurInVariants } from "./TextAnimate";
-export type { FadeUpVariants } from "./TextAnimate";
-export type { GradientTextVariants } from "./TextAnimate";
+export {
+  BlurIn,
+  FadeUp,
+  GradientText,
+  gradientTextVariants,
+  LetterReveal,
+  Typewriter,
+  WordReveal,
+} from "./TextAnimate";

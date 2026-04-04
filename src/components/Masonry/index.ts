@@ -1,9 +1,12 @@
+export type {
+  MasonryColumnVariants,
+  MasonryProps,
+  MasonryVariantsProps,
+} from "./Masonry";
 export {
   Masonry,
   MasonryCard,
   MasonryItem,
-  masonryVariants,
   masonryColumnVariants,
+  masonryVariants,
 } from "./Masonry";
-export type { MasonryProps, MasonryVariantsProps } from "./Masonry";
-export type { MasonryColumnVariants } from "./Masonry";

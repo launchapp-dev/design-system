@@ -9,7 +9,8 @@ export interface WizardStep {
   content: React.ReactNode;
 }
 
-export interface MultiStepWizardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MultiStepWizardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   steps: WizardStep[];
   defaultStep?: number;
   onStepChange?: (step: number) => void;
@@ -32,7 +33,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [currentStep, setCurrentStep] = React.useState(defaultStep);
 
@@ -58,9 +59,13 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
     const activeStep = steps[currentStep];
 
     return (
-      <div ref={ref} className={cn("flex flex-col gap-8", className)} {...props}>
+      <div
+        ref={ref}
+        className={cn("flex flex-col gap-8", className)}
+        {...props}
+      >
         <nav aria-label="Progress">
-          <ol role="list" className="flex items-center gap-2 sm:gap-4">
+          <ol className="flex items-center gap-2 sm:gap-4">
             {steps.map((step, index) => {
               const isCompleted = index < currentStep;
               const isCurrent = index === currentStep;
@@ -80,7 +85,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
                           "border-primary bg-background text-primary cursor-default",
                         !isCompleted &&
                           !isCurrent &&
-                          "border-muted bg-background text-muted-foreground cursor-not-allowed"
+                          "border-muted bg-background text-muted-foreground cursor-not-allowed",
                       )}
                     >
                       {isCompleted ? (
@@ -105,7 +110,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
                     <span
                       className={cn(
                         "hidden text-sm font-medium sm:block",
-                        isCurrent ? "text-foreground" : "text-muted-foreground"
+                        isCurrent ? "text-foreground" : "text-muted-foreground",
                       )}
                     >
                       {step.title}
@@ -116,7 +121,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
                       aria-hidden="true"
                       className={cn(
                         "h-0.5 flex-1 rounded-full transition-colors",
-                        index < currentStep ? "bg-primary" : "bg-muted"
+                        index < currentStep ? "bg-primary" : "bg-muted",
                       )}
                     />
                   )}
@@ -132,7 +137,9 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
               <div className="mb-6">
                 <h2 className="text-xl font-semibold">{activeStep.title}</h2>
                 {activeStep.description && (
-                  <p className="mt-1 text-sm text-muted-foreground">{activeStep.description}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {activeStep.description}
+                  </p>
                 )}
               </div>
               <div>{activeStep.content}</div>
@@ -157,7 +164,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 MultiStepWizard.displayName = "MultiStepWizard";
 

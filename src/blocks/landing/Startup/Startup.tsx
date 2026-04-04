@@ -1,6 +1,10 @@
 import * as React from "react";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../components/Avatar";
 import { cn } from "../../../lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "../../../components/Avatar";
 
 export interface SocialProofMetric {
   metric: string;
@@ -48,7 +52,7 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
       ctaAction,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
@@ -58,7 +62,9 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
             {headline}
           </h1>
           {subheadline && (
-            <p className="mt-6 text-xl text-muted-foreground max-w-2xl animate-fade-up">{subheadline}</p>
+            <p className="mt-6 text-xl text-muted-foreground max-w-2xl animate-fade-up">
+              {subheadline}
+            </p>
           )}
           {(primaryAction || secondaryAction) && (
             <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -73,8 +79,12 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
             <div className="max-w-4xl mx-auto grid grid-cols-2 gap-8 sm:grid-cols-4">
               {socialProof.map((item, i) => (
                 <div key={i} className="flex flex-col items-center text-center">
-                  <span className="text-4xl font-bold text-foreground">{item.metric}</span>
-                  <span className="text-sm text-muted-foreground mt-1">{item.label}</span>
+                  <span className="text-4xl font-bold text-foreground">
+                    {item.metric}
+                  </span>
+                  <span className="text-sm text-muted-foreground mt-1">
+                    {item.label}
+                  </span>
                 </div>
               ))}
             </div>
@@ -85,11 +95,16 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
           <section className="px-4 py-12">
             <div className="max-w-5xl mx-auto">
               {logoBarLabel && (
-                <p className="text-center text-sm text-muted-foreground mb-8">{logoBarLabel}</p>
+                <p className="text-center text-sm text-muted-foreground mb-8">
+                  {logoBarLabel}
+                </p>
               )}
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
                 {logoBar.map((logo, i) => (
-                  <div key={i} className="opacity-60 hover:opacity-100 transition-opacity">
+                  <div
+                    key={i}
+                    className="opacity-60 hover:opacity-100 transition-opacity"
+                  >
                     {logo}
                   </div>
                 ))}
@@ -106,22 +121,38 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
               </h2>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {testimonials.map((testimonial, i) => (
-                  <div key={i} className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-card">
-                    <p className="text-muted-foreground leading-relaxed">"{testimonial.quote}"</p>
+                  <div
+                    key={i}
+                    className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-card"
+                  >
+                    <p className="text-muted-foreground leading-relaxed">
+                      "{testimonial.quote}"
+                    </p>
                     <div className="flex items-center gap-3 mt-auto">
                       <Avatar className="h-9 w-9">
                         {testimonial.avatarSrc && (
-                          <AvatarImage src={testimonial.avatarSrc} alt={testimonial.author} />
+                          <AvatarImage
+                            src={testimonial.avatarSrc}
+                            alt={testimonial.author}
+                          />
                         )}
                         <AvatarFallback>
                           {testimonial.avatarFallback ??
-                            testimonial.author.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                            testimonial.author
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .slice(0, 2)}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="text-sm font-semibold text-foreground">{testimonial.author}</p>
+                        <p className="text-sm font-semibold text-foreground">
+                          {testimonial.author}
+                        </p>
                         {testimonial.role && (
-                          <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {testimonial.role}
+                          </p>
                         )}
                       </div>
                     </div>
@@ -136,10 +167,14 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
           <section className="px-4 py-16 md:py-24">
             <div className="max-w-3xl mx-auto text-center">
               {ctaTitle && (
-                <h2 className="text-4xl font-bold tracking-tight text-foreground">{ctaTitle}</h2>
+                <h2 className="text-4xl font-bold tracking-tight text-foreground">
+                  {ctaTitle}
+                </h2>
               )}
               {ctaSubtitle && (
-                <p className="mt-4 text-lg text-muted-foreground">{ctaSubtitle}</p>
+                <p className="mt-4 text-lg text-muted-foreground">
+                  {ctaSubtitle}
+                </p>
               )}
               {ctaAction && <div className="mt-8">{ctaAction}</div>}
             </div>
@@ -147,7 +182,7 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Startup.displayName = "Startup";

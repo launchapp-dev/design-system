@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 function usePrefersReducedMotion() {
@@ -19,7 +19,15 @@ export interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
   scale?: number;
 }
 
-function TiltCard({ className, children, maxTilt = 12, scale = 1.02, style, ref, ...props }: TiltCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+function TiltCard({
+  className,
+  children,
+  maxTilt = 12,
+  scale = 1.02,
+  style,
+  ref,
+  ...props
+}: TiltCardProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
   const internalRef = React.useRef<HTMLDivElement>(null);
   const [transform, setTransform] = React.useState("");
@@ -33,10 +41,10 @@ function TiltCard({ className, children, maxTilt = 12, scale = 1.02, style, ref,
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       setTransform(
-        `perspective(1000px) rotateY(${x * maxTilt}deg) rotateX(${-y * maxTilt}deg) scale(${scale})`
+        `perspective(1000px) rotateY(${x * maxTilt}deg) rotateX(${-y * maxTilt}deg) scale(${scale})`,
       );
     },
-    [reduced, maxTilt, scale]
+    [reduced, maxTilt, scale],
   );
 
   const handleMouseLeave = React.useCallback(() => {
@@ -46,13 +54,15 @@ function TiltCard({ className, children, maxTilt = 12, scale = 1.02, style, ref,
   return (
     <div
       ref={(node) => {
-        (internalRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        (internalRef as React.MutableRefObject<HTMLDivElement | null>).current =
+          node;
         if (typeof ref === "function") ref(node);
-        else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        else if (ref)
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
       }}
       className={cn(
         "rounded-lg border border-border bg-card text-card-foreground shadow-sm",
-        className
+        className,
       )}
       style={{
         transition: reduced ? "none" : "transform 0.15s ease-out",
@@ -71,7 +81,8 @@ function TiltCard({ className, children, maxTilt = 12, scale = 1.02, style, ref,
 }
 TiltCard.displayName = "TiltCard";
 
-export interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SpotlightCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   spotlightColor?: string;
   spotlightSize?: number;
 }
@@ -84,12 +95,23 @@ function SpotlightCard({
   ref,
   ...props
 }: SpotlightCardProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const [spotlight, setSpotlight] = React.useState({ x: 0, y: 0, visible: false });
+  const [spotlight, setSpotlight] = React.useState({
+    x: 0,
+    y: 0,
+    visible: false,
+  });
 
-  const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setSpotlight({ x: e.clientX - rect.left, y: e.clientY - rect.top, visible: true });
-  }, []);
+  const handleMouseMove = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setSpotlight({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        visible: true,
+      });
+    },
+    [],
+  );
 
   const handleMouseLeave = React.useCallback(() => {
     setSpotlight((s) => ({ ...s, visible: false }));
@@ -100,7 +122,7 @@ function SpotlightCard({
       ref={ref}
       className={cn(
         "relative overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm",
-        className
+        className,
       )}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -131,14 +153,20 @@ const blurMap = {
   xl: "backdrop-blur-xl",
 };
 
-function GlassCard({ className, blur = "md", children, ref, ...props }: GlassCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+function GlassCard({
+  className,
+  blur = "md",
+  children,
+  ref,
+  ...props
+}: GlassCardProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}
       className={cn(
         "rounded-lg border border-white/20 bg-white/10 text-card-foreground shadow-xl",
         blurMap[blur],
-        className
+        className,
       )}
       {...props}
     >
@@ -148,11 +176,19 @@ function GlassCard({ className, blur = "md", children, ref, ...props }: GlassCar
 }
 GlassCard.displayName = "GlassCard";
 
-export interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface MagneticButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   strength?: number;
 }
 
-function MagneticButton({ className, children, strength = 0.3, style, ref, ...props }: MagneticButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+function MagneticButton({
+  className,
+  children,
+  strength = 0.3,
+  style,
+  ref,
+  ...props
+}: MagneticButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const reduced = usePrefersReducedMotion();
   const internalRef = React.useRef<HTMLButtonElement>(null);
   const [offset, setOffset] = React.useState({ x: 0, y: 0 });
@@ -167,7 +203,7 @@ function MagneticButton({ className, children, strength = 0.3, style, ref, ...pr
       const y = (e.clientY - rect.top - rect.height / 2) * strength;
       setOffset({ x, y });
     },
-    [reduced, strength]
+    [reduced, strength],
   );
 
   const handleMouseLeave = React.useCallback(() => {
@@ -177,13 +213,17 @@ function MagneticButton({ className, children, strength = 0.3, style, ref, ...pr
   return (
     <button
       ref={(node) => {
-        (internalRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+        (
+          internalRef as React.MutableRefObject<HTMLButtonElement | null>
+        ).current = node;
         if (typeof ref === "function") ref(node);
-        else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+        else if (ref)
+          (ref as React.MutableRefObject<HTMLButtonElement | null>).current =
+            node;
       }}
       className={cn(
         "inline-flex items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] px-4 py-2 text-sm font-medium ring-offset-[hsl(var(--la-background))] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-        className
+        className,
       )}
       style={{
         transform: `translate(${offset.x}px, ${offset.y}px)`,
@@ -201,17 +241,24 @@ function MagneticButton({ className, children, strength = 0.3, style, ref, ...pr
 }
 MagneticButton.displayName = "MagneticButton";
 
-export interface ShimmerButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ShimmerButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   shimmerColor?: string;
 }
 
-function ShimmerButton({ className, children, shimmerColor = "rgba(255,255,255,0.35)", ref, ...props }: ShimmerButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+function ShimmerButton({
+  className,
+  children,
+  shimmerColor = "rgba(255,255,255,0.35)",
+  ref,
+  ...props
+}: ShimmerButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   return (
     <button
       ref={ref}
       className={cn(
         "relative inline-flex items-center justify-center overflow-hidden rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-        className
+        className,
       )}
       {...props}
     >
@@ -228,12 +275,20 @@ function ShimmerButton({ className, children, shimmerColor = "rgba(255,255,255,0
 }
 ShimmerButton.displayName = "ShimmerButton";
 
-export interface AnimatedBorderCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatedBorderCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   borderColor?: string;
   duration?: number;
 }
 
-function AnimatedBorderCard({ className, children, borderColor = "hsl(var(--la-primary))", duration = 3, ref, ...props }: AnimatedBorderCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+function AnimatedBorderCard({
+  className,
+  children,
+  borderColor = "hsl(var(--la-primary))",
+  duration = 3,
+  ref,
+  ...props
+}: AnimatedBorderCardProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
   return (
     <div
@@ -257,40 +312,46 @@ function AnimatedBorderCard({ className, children, borderColor = "hsl(var(--la-p
 }
 AnimatedBorderCard.displayName = "AnimatedBorderCard";
 
-export interface HolographicCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface HolographicCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   intensity?: number;
 }
 
-function HolographicCard({ 
-  className, 
-  children, 
-  intensity = 1, 
-  ref, 
-  ...props 
+function HolographicCard({
+  className,
+  children,
+  intensity = 1,
+  ref,
+  ...props
 }: HolographicCardProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
   const [mousePos, setMousePos] = React.useState({ x: 0.5, y: 0.5 });
 
-  const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: (e.clientX - rect.left) / rect.width,
-      y: (e.clientY - rect.top) / rect.height,
-    });
-  }, []);
+  const handleMouseMove = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePos({
+        x: (e.clientX - rect.left) / rect.width,
+        y: (e.clientY - rect.top) / rect.height,
+      });
+    },
+    [],
+  );
 
   const handleMouseLeave = React.useCallback(() => {
     setMousePos({ x: 0.5, y: 0.5 });
   }, []);
 
-  const hue = reduced ? 260 : Math.round(mousePos.x * 360 + mousePos.y * 180) % 360;
+  const hue = reduced
+    ? 260
+    : Math.round(mousePos.x * 360 + mousePos.y * 180) % 360;
 
   return (
     <div
       ref={ref}
       className={cn(
         "relative overflow-hidden rounded-lg border border-white/20 bg-gradient-to-br from-gray-900/90 to-gray-800/90 text-card-foreground shadow-xl",
-        className
+        className,
       )}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -329,7 +390,8 @@ function HolographicCard({
 }
 HolographicCard.displayName = "HolographicCard";
 
-export interface NeonGlowCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface NeonGlowCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   glowColor?: string;
   glowIntensity?: "sm" | "md" | "lg";
   animate?: boolean;
@@ -341,14 +403,14 @@ const glowIntensityMap = {
   lg: { blur: 24, spread: 6 },
 };
 
-function NeonGlowCard({ 
-  className, 
-  children, 
+function NeonGlowCard({
+  className,
+  children,
   glowColor = "hsl(var(--la-primary))",
   glowIntensity = "md",
   animate = true,
-  ref, 
-  ...props 
+  ref,
+  ...props
 }: NeonGlowCardProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
   const [isHovered, setIsHovered] = React.useState(false);
@@ -366,15 +428,17 @@ function NeonGlowCard({
         aria-hidden
         className="absolute inset-0 rounded-lg transition-opacity duration-300"
         style={{
-          boxShadow: isHovered || !animate
-            ? `0 0 ${intensity.blur}px ${intensity.spread}px ${glowColor}, 
+          boxShadow:
+            isHovered || !animate
+              ? `0 0 ${intensity.blur}px ${intensity.spread}px ${glowColor}, 
                0 0 ${intensity.blur * 2}px ${intensity.spread}px ${glowColor},
                inset 0 0 ${intensity.blur / 2}px ${glowColor}`
-            : `0 0 ${intensity.blur / 2}px ${glowColor}`,
+              : `0 0 ${intensity.blur / 2}px ${glowColor}`,
           opacity: isHovered || !animate ? 1 : 0.5,
-          animation: !reduced && animate && isHovered 
-            ? "neon-pulse 1.5s ease-in-out infinite" 
-            : "none",
+          animation:
+            !reduced && animate && isHovered
+              ? "neon-pulse 1.5s ease-in-out infinite"
+              : "none",
         }}
       />
       <div className="relative rounded-lg border border-current/30 bg-card text-card-foreground backdrop-blur-sm">
@@ -385,7 +449,8 @@ function NeonGlowCard({
 }
 NeonGlowCard.displayName = "NeonGlowCard";
 
-export interface RippleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface RippleButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   rippleColor?: string;
 }
 
@@ -396,52 +461,59 @@ interface Ripple {
   size: number;
 }
 
-function RippleButton({ 
-  className, 
-  children, 
+function RippleButton({
+  className,
+  children,
   rippleColor = "rgba(255, 255, 255, 0.35)",
   ref,
-  ...props 
+  ...props
 }: RippleButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const reduced = usePrefersReducedMotion();
   const [ripples, setRipples] = React.useState<Ripple[]>([]);
   const internalRef = React.useRef<HTMLButtonElement>(null);
 
-  const createRipple = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    if (reduced) return;
-    
-    const button = internalRef.current;
-    if (!button) return;
+  const createRipple = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (reduced) return;
 
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height) * 2;
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
+      const button = internalRef.current;
+      if (!button) return;
 
-    const newRipple: Ripple = {
-      id: Date.now(),
-      x,
-      y,
-      size,
-    };
+      const rect = button.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
 
-    setRipples((prev) => [...prev, newRipple]);
+      const newRipple: Ripple = {
+        id: Date.now(),
+        x,
+        y,
+        size,
+      };
 
-    setTimeout(() => {
-      setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
-    }, 600);
-  }, [reduced]);
+      setRipples((prev) => [...prev, newRipple]);
+
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
+      }, 600);
+    },
+    [reduced],
+  );
 
   return (
     <button
       ref={(node) => {
-        (internalRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+        (
+          internalRef as React.MutableRefObject<HTMLButtonElement | null>
+        ).current = node;
         if (typeof ref === "function") ref(node);
-        else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+        else if (ref)
+          (ref as React.MutableRefObject<HTMLButtonElement | null>).current =
+            node;
       }}
       className={cn(
         "relative inline-flex items-center justify-center overflow-hidden rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-        className
+        className,
       )}
       onClick={createRipple}
       {...props}
@@ -466,7 +538,8 @@ function RippleButton({
 }
 RippleButton.displayName = "RippleButton";
 
-export interface GlowPulseButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface GlowPulseButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   glowColor?: string;
   pulseIntensity?: "sm" | "md" | "lg";
 }
@@ -477,13 +550,13 @@ const pulseIntensityMap = {
   lg: { scale: 1.06, blur: 24 },
 };
 
-function GlowPulseButton({ 
-  className, 
-  children, 
+function GlowPulseButton({
+  className,
+  children,
   glowColor = "hsl(var(--la-primary))",
   pulseIntensity = "md",
   ref,
-  ...props 
+  ...props
 }: GlowPulseButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const reduced = usePrefersReducedMotion();
   const intensity = pulseIntensityMap[pulseIntensity];
@@ -494,13 +567,15 @@ function GlowPulseButton({
       className={cn(
         "relative inline-flex items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         reduced ? "" : "hover:scale-[var(--pulse-scale)]",
-        className
+        className,
       )}
-      style={{
-        "--pulse-scale": intensity.scale,
-        "--pulse-blur": `${intensity.blur}px`,
-        "--pulse-color": glowColor,
-      } as React.CSSProperties}
+      style={
+        {
+          "--pulse-scale": intensity.scale,
+          "--pulse-blur": `${intensity.blur}px`,
+          "--pulse-color": glowColor,
+        } as React.CSSProperties
+      }
       {...props}
     >
       <span
@@ -517,7 +592,8 @@ function GlowPulseButton({
 }
 GlowPulseButton.displayName = "GlowPulseButton";
 
-export interface MorphButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface MorphButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   morphStyle?: "blob" | "pill" | "rounded";
 }
 
@@ -528,24 +604,26 @@ const morphVariants = cva(
       morphStyle: {
         blob: "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-2xl",
         pill: "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-full",
-        rounded: "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-[--la-radius]",
+        rounded:
+          "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-[--la-radius]",
       },
     },
     defaultVariants: {
       morphStyle: "blob",
     },
-  }
+  },
 );
 
 type MorphButtonVariantProps = VariantProps<typeof morphVariants>;
 
-function MorphButton({ 
-  className, 
-  children, 
+function MorphButton({
+  className,
+  children,
   morphStyle = "blob",
   ref,
-  ...props 
-}: MorphButtonProps & MorphButtonVariantProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  ...props
+}: MorphButtonProps &
+  MorphButtonVariantProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const reduced = usePrefersReducedMotion();
   const [morphState, setMorphState] = React.useState(0);
 
@@ -555,9 +633,24 @@ function MorphButton({
   }, [reduced]);
 
   const borderRadiusMap = {
-    blob: ["16px 32px 24px 16px", "24px 16px 32px 24px", "16px 24px 16px 32px", "32px 16px 24px 16px"],
-    pill: ["9999px", "24px 9999px 9999px 24px", "9999px 24px 24px 9999px", "16px 9999px 9999px 16px"],
-    rounded: ["calc(var(--la-radius))", "calc(var(--la-radius) * 1.5)", "calc(var(--la-radius) * 0.75)", "calc(var(--la-radius) * 1.25)"],
+    blob: [
+      "16px 32px 24px 16px",
+      "24px 16px 32px 24px",
+      "16px 24px 16px 32px",
+      "32px 16px 24px 16px",
+    ],
+    pill: [
+      "9999px",
+      "24px 9999px 9999px 24px",
+      "9999px 24px 24px 9999px",
+      "16px 9999px 9999px 16px",
+    ],
+    rounded: [
+      "calc(var(--la-radius))",
+      "calc(var(--la-radius) * 1.5)",
+      "calc(var(--la-radius) * 0.75)",
+      "calc(var(--la-radius) * 1.25)",
+    ],
   };
 
   return (
@@ -593,39 +686,47 @@ function MagicCard({
   ...props
 }: MagicCardProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
-  const [state, setState] = React.useState({ x: 0, y: 0, visible: false, transform: "" });
+  const [state, setState] = React.useState({
+    x: 0,
+    y: 0,
+    visible: false,
+    transform: "",
+  });
 
-  const handleMouseMove = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (reduced) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  const handleMouseMove = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (reduced) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    if (effect === "tilt") {
-      const xPercent = (x / rect.width - 0.5) * 2;
-      const yPercent = (y / rect.height - 0.5) * 2;
-      setState({
-        x,
-        y,
-        visible: true,
-        transform: `perspective(1000px) rotateY(${xPercent * 12 * intensity}deg) rotateX(${-yPercent * 12 * intensity}deg) scale(1.02)`,
-      });
-    } else if (effect === "spotlight") {
-      setState({
-        x,
-        y,
-        visible: true,
-        transform: "",
-      });
-    } else if (effect === "glow") {
-      setState({
-        x,
-        y,
-        visible: true,
-        transform: "scale(1.01)",
-      });
-    }
-  }, [effect, intensity, reduced]);
+      if (effect === "tilt") {
+        const xPercent = (x / rect.width - 0.5) * 2;
+        const yPercent = (y / rect.height - 0.5) * 2;
+        setState({
+          x,
+          y,
+          visible: true,
+          transform: `perspective(1000px) rotateY(${xPercent * 12 * intensity}deg) rotateX(${-yPercent * 12 * intensity}deg) scale(1.02)`,
+        });
+      } else if (effect === "spotlight") {
+        setState({
+          x,
+          y,
+          visible: true,
+          transform: "",
+        });
+      } else if (effect === "glow") {
+        setState({
+          x,
+          y,
+          visible: true,
+          transform: "scale(1.01)",
+        });
+      }
+    },
+    [effect, intensity, reduced],
+  );
 
   const handleMouseLeave = React.useCallback(() => {
     setState({ x: 0, y: 0, visible: false, transform: "" });
@@ -636,7 +737,7 @@ function MagicCard({
       ref={ref}
       className={cn(
         "relative overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm",
-        className
+        className,
       )}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -705,7 +806,7 @@ function HoverCard({
         showBorder && "border border-border",
         !reduced && "transition-all duration-300",
         isHovered && !reduced && shadowMap[hoverShadow],
-        className
+        className,
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -721,7 +822,8 @@ function HoverCard({
 }
 HoverCard.displayName = "HoverCard";
 
-export interface AnimatedCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatedCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   animationDelay?: number;
   animationType?: "fade-slide" | "scale-fade" | "slide-up";
 }
@@ -749,7 +851,7 @@ function AnimatedCard({
       className={cn(
         "rounded-lg border border-border bg-card text-card-foreground shadow-sm",
         !reduced && animationMap[animationType],
-        className
+        className,
       )}
       style={{
         animation: reduced ? "none" : undefined,
@@ -806,19 +908,19 @@ function AnimatedCard({
 AnimatedCard.displayName = "AnimatedCard";
 
 export {
-  TiltCard,
-  SpotlightCard,
-  GlassCard,
-  MagneticButton,
-  ShimmerButton,
   AnimatedBorderCard,
-  HolographicCard,
-  NeonGlowCard,
-  RippleButton,
+  AnimatedCard,
+  GlassCard,
   GlowPulseButton,
+  HolographicCard,
+  HoverCard,
+  MagicCard,
+  MagneticButton,
   MorphButton,
   morphVariants,
-  MagicCard,
-  HoverCard,
-  AnimatedCard,
+  NeonGlowCard,
+  RippleButton,
+  ShimmerButton,
+  SpotlightCard,
+  TiltCard,
 };

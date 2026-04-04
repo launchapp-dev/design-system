@@ -1,23 +1,20 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
-const imageComparisonVariants = cva(
-  "relative overflow-hidden select-none",
-  {
-    variants: {
-      size: {
-        sm: "h-48 md:h-40",
-        md: "h-64 md:h-56",
-        lg: "h-80 md:h-72",
-        full: "h-full",
-      },
+const imageComparisonVariants = cva("relative overflow-hidden select-none", {
+  variants: {
+    size: {
+      sm: "h-48 md:h-40",
+      md: "h-64 md:h-56",
+      lg: "h-80 md:h-72",
+      full: "h-full",
     },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 const imageComparisonSliderVariants = cva(
   "absolute top-0 bottom-0 w-1 bg-white/90 cursor-ew-resize z-10 touch-none",
@@ -32,7 +29,7 @@ const imageComparisonSliderVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 const imageComparisonHandleVariants = cva(
@@ -48,7 +45,7 @@ const imageComparisonHandleVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface ImageComparisonProps
@@ -86,13 +83,15 @@ function ImageComparison({
   ref,
   ...props
 }: ImageComparisonProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const [internalPosition, setInternalPosition] = React.useState(initialPosition);
+  const [internalPosition, setInternalPosition] =
+    React.useState(initialPosition);
   const [isDragging, setIsDragging] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const keyboardStep = 1;
   const keyboardStepLarge = 10;
 
-  const position = controlledPosition !== undefined ? controlledPosition : internalPosition;
+  const position =
+    controlledPosition !== undefined ? controlledPosition : internalPosition;
 
   const clampedPosition = Math.max(0, Math.min(100, position));
 
@@ -110,7 +109,7 @@ function ImageComparison({
       }
       onPositionChange?.(newPosition);
     },
-    [controlledPosition, onPositionChange]
+    [controlledPosition, onPositionChange],
   );
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -124,7 +123,7 @@ function ImageComparison({
       if (!isDragging) return;
       updatePosition(e.clientX);
     },
-    [isDragging, updatePosition]
+    [isDragging, updatePosition],
   );
 
   const handleMouseUp = React.useCallback(() => {
@@ -142,7 +141,7 @@ function ImageComparison({
       e.preventDefault();
       updatePosition(e.touches[0].clientX);
     },
-    [isDragging, updatePosition]
+    [isDragging, updatePosition],
   );
 
   const handleTouchEnd = React.useCallback(() => {
@@ -176,7 +175,7 @@ function ImageComparison({
     }
 
     const newPosition = Math.max(0, Math.min(100, position + delta));
-    
+
     if (controlledPosition === undefined) {
       setInternalPosition(newPosition);
     }
@@ -197,12 +196,20 @@ function ImageComparison({
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
+  }, [
+    isDragging,
+    handleMouseMove,
+    handleMouseUp,
+    handleTouchMove,
+    handleTouchEnd,
+  ]);
 
   return (
     <div
       ref={(node) => {
-        (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        (
+          containerRef as React.MutableRefObject<HTMLDivElement | null>
+        ).current = node;
         if (typeof ref === "function") {
           ref(node);
         } else if (ref) {
@@ -212,11 +219,7 @@ function ImageComparison({
       className={cn(imageComparisonVariants({ size }), className)}
       {...props}
     >
-      <div
-        className="absolute inset-0"
-        role="img"
-        aria-label={afterAlt}
-      >
+      <div className="absolute inset-0" role="img" aria-label={afterAlt}>
         <img
           src={afterSrc}
           alt=""
@@ -261,7 +264,7 @@ function ImageComparison({
         className={cn(
           imageComparisonSliderVariants({ variant: sliderVariant }),
           "transition-[left] duration-75",
-          isDragging && "transition-none"
+          isDragging && "transition-none",
         )}
         style={{ left: `${clampedPosition}%` }}
         role="slider"
@@ -279,7 +282,7 @@ function ImageComparison({
           type="button"
           className={cn(
             imageComparisonHandleVariants({ size: handleSize }),
-            "left-0"
+            "left-0",
           )}
           tabIndex={-1}
           aria-hidden="true"
@@ -311,13 +314,19 @@ function ImageComparison({
 
 ImageComparison.displayName = "ImageComparison";
 
-export type ImageComparisonVariants = VariantProps<typeof imageComparisonVariants>;
-export type ImageComparisonSliderVariants = VariantProps<typeof imageComparisonSliderVariants>;
-export type ImageComparisonHandleVariants = VariantProps<typeof imageComparisonHandleVariants>;
+export type ImageComparisonVariants = VariantProps<
+  typeof imageComparisonVariants
+>;
+export type ImageComparisonSliderVariants = VariantProps<
+  typeof imageComparisonSliderVariants
+>;
+export type ImageComparisonHandleVariants = VariantProps<
+  typeof imageComparisonHandleVariants
+>;
 
 export {
   ImageComparison,
-  imageComparisonVariants,
-  imageComparisonSliderVariants,
   imageComparisonHandleVariants,
+  imageComparisonSliderVariants,
+  imageComparisonVariants,
 };

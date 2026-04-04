@@ -1,7 +1,7 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
-import { Popover, PopoverContent, PopoverAnchor } from "../Popover";
+import { Popover, PopoverAnchor, PopoverContent } from "../Popover";
 
 const tagInputVariants = cva(
   "flex flex-wrap items-center gap-1.5 w-full rounded-[--la-radius] border bg-[hsl(var(--la-background))] text-sm ring-offset-[hsl(var(--la-background))] transition-colors focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2",
@@ -14,7 +14,8 @@ const tagInputVariants = cva(
       },
       error: {
         true: "border-[hsl(var(--la-destructive))] focus-within:ring-[hsl(var(--la-destructive))]",
-        false: "border-[hsl(var(--la-input))] focus-within:ring-[hsl(var(--la-ring))]",
+        false:
+          "border-[hsl(var(--la-input))] focus-within:ring-[hsl(var(--la-ring))]",
       },
     },
     compoundVariants: [
@@ -28,7 +29,7 @@ const tagInputVariants = cva(
       size: "md",
       error: false,
     },
-  }
+  },
 );
 
 const tagVariants = cva(
@@ -36,9 +37,12 @@ const tagVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--la-primary)/0.1)] text-[hsl(var(--la-primary))] hover:bg-[hsl(var(--la-primary)/0.2)]",
-        secondary: "bg-[hsl(var(--la-secondary))] text-[hsl(var(--la-secondary-foreground))] hover:bg-[hsl(var(--la-secondary)/0.8)]",
-        outline: "border border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))] hover:bg-[hsl(var(--la-accent))]",
+        default:
+          "bg-[hsl(var(--la-primary)/0.1)] text-[hsl(var(--la-primary))] hover:bg-[hsl(var(--la-primary)/0.2)]",
+        secondary:
+          "bg-[hsl(var(--la-secondary))] text-[hsl(var(--la-secondary-foreground))] hover:bg-[hsl(var(--la-secondary)/0.8)]",
+        outline:
+          "border border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))] hover:bg-[hsl(var(--la-accent))]",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",
@@ -50,7 +54,7 @@ const tagVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 export interface TagInputProps
@@ -84,12 +88,14 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [inputValue, setInputValue] = React.useState("");
     const [open, setOpen] = React.useState(false);
     const [highlightedIndex, setHighlightedIndex] = React.useState<number>(-1);
-    const [focusedTagIndex, setFocusedTagIndex] = React.useState<number | null>(null);
+    const [focusedTagIndex, setFocusedTagIndex] = React.useState<number | null>(
+      null,
+    );
     const inputRef = React.useRef<HTMLInputElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
     const tagRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
@@ -103,7 +109,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       const q = inputValue.trim().toLowerCase();
       if (!q) return [];
       return suggestions.filter(
-        (s) => s.toLowerCase().includes(q) && !value.includes(s)
+        (s) => s.toLowerCase().includes(q) && !value.includes(s),
       );
     }, [inputValue, suggestions, value]);
 
@@ -173,7 +179,10 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
           const tagToRemove = value[focusedTagIndex];
           if (tagToRemove) {
             removeTag(tagToRemove);
-            const newIndex = focusedTagIndex >= value.length - 1 ? value.length - 2 : focusedTagIndex;
+            const newIndex =
+              focusedTagIndex >= value.length - 1
+                ? value.length - 2
+                : focusedTagIndex;
             setFocusedTagIndex(newIndex >= 0 ? newIndex : null);
           }
         }
@@ -229,7 +238,10 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       if (!disabled) inputRef.current?.focus();
     };
 
-    React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+    React.useImperativeHandle(
+      ref,
+      () => containerRef.current as HTMLDivElement,
+    );
 
     React.useEffect(() => {
       if (focusedTagIndex !== null && tagRefs.current[focusedTagIndex]) {
@@ -237,7 +249,10 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       }
     }, [focusedTagIndex]);
 
-    const handleTagKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>, index: number) => {
+    const handleTagKeyDown = (
+      e: React.KeyboardEvent<HTMLSpanElement>,
+      index: number,
+    ) => {
       if (e.key === "Backspace" || e.key === "Delete") {
         e.preventDefault();
         const tagToRemove = value[index];
@@ -282,7 +297,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                 tagInputVariants({ size, error }),
                 "cursor-text",
                 disabled && "pointer-events-none opacity-50",
-                className
+                className,
               )}
             >
               {value.map((tag, index) => (
@@ -297,7 +312,8 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   onBlur={() => setFocusedTagIndex(null)}
                   className={cn(
                     tagVariants({ variant: tagVariant, size }),
-                    focusedTagIndex === index && "ring-2 ring-[hsl(var(--la-ring))] ring-offset-1"
+                    focusedTagIndex === index &&
+                      "ring-2 ring-[hsl(var(--la-ring))] ring-offset-1",
                   )}
                   aria-label={`${tag}, press Backspace or Delete to remove`}
                 >
@@ -340,14 +356,17 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   onBlur={() => setTimeout(() => setOpen(false), 150)}
                   onFocus={() => {
                     setFocusedTagIndex(null);
-                    if (inputValue.trim() && listItems.length > 0) setOpen(true);
+                    if (inputValue.trim() && listItems.length > 0)
+                      setOpen(true);
                   }}
                   placeholder={value.length === 0 ? placeholder : ""}
                   disabled={disabled}
                   aria-autocomplete="list"
                   aria-controls={listboxId}
                   aria-activedescendant={
-                    highlightedIndex >= 0 ? `${listboxId}-${highlightedIndex}` : undefined
+                    highlightedIndex >= 0
+                      ? `${listboxId}-${highlightedIndex}`
+                      : undefined
                   }
                   id={inputId}
                   className="flex-1 min-w-[120px] bg-transparent outline-none placeholder:text-[hsl(var(--la-muted-foreground))]"
@@ -361,14 +380,13 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
             sideOffset={4}
             onOpenAutoFocus={(e) => e.preventDefault()}
           >
-            <ul role="listbox" id={listboxId} className="max-h-48 overflow-y-auto">
+            <ul id={listboxId} className="max-h-48 overflow-y-auto">
               {listItems.map((item, i) => {
                 const isCreate = item.startsWith('Create "');
                 return (
                   <li
                     key={item}
                     id={`${listboxId}-${i}`}
-                    role="option"
                     aria-selected={i === highlightedIndex}
                   >
                     <button
@@ -384,7 +402,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                         "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
                         i === highlightedIndex &&
                           "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
-                        isCreate && "text-[hsl(var(--la-primary))] font-medium"
+                        isCreate && "text-[hsl(var(--la-primary))] font-medium",
                       )}
                     >
                       {item}
@@ -406,7 +424,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 TagInput.displayName = "TagInput";

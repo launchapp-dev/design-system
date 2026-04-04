@@ -6,15 +6,13 @@ interface FeatureTag {
   color: string;
 }
 
-function TemplateCard({
-  template,
-}: {
-  template: (typeof templates)[0];
-}) {
+function TemplateCard({ template }: { template: (typeof templates)[0] }) {
   const categoryColors: Record<string, string> = {
-    "SaaS": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100",
-    "Retail": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100",
-    "Marketing": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100",
+    SaaS: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100",
+    Retail:
+      "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100",
+    Marketing:
+      "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100",
   };
 
   return (
@@ -30,7 +28,9 @@ function TemplateCard({
                 {template.description}
               </p>
             </div>
-            <span className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${categoryColors[template.category] || "bg-gray-100 text-gray-800"}`}>
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${categoryColors[template.category] || "bg-gray-100 text-gray-800"}`}
+            >
               {template.category}
             </span>
           </div>
@@ -42,7 +42,10 @@ function TemplateCard({
               </h4>
               <ul className="space-y-1">
                 {template.features.slice(0, 3).map((feature, i) => (
-                  <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                  <li
+                    key={i}
+                    className="text-sm text-muted-foreground flex items-start gap-2"
+                  >
                     <span className="text-primary mt-1">✓</span>
                     <span>{feature}</span>
                   </li>
@@ -75,7 +78,9 @@ function TemplateCard({
           <div className="pt-2">
             <div className="inline-flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all gap-1">
               View Template
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <span className="group-hover:translate-x-1 transition-transform">
+                →
+              </span>
             </div>
           </div>
         </div>
@@ -86,7 +91,8 @@ function TemplateCard({
 
 export const metadata = {
   title: "Templates — LaunchApp Design System",
-  description: "Full application templates showcasing the design system in real-world scenarios.",
+  description:
+    "Full application templates showcasing the design system in real-world scenarios.",
 };
 
 export default function TemplatesPage() {
@@ -105,9 +111,9 @@ export default function TemplatesPage() {
           Application Templates
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          Explore complete, production-ready application templates built with the LaunchApp
-          Design System. Each template demonstrates best practices and can be used as a
-          starting point for your projects.
+          Explore complete, production-ready application templates built with
+          the LaunchApp Design System. Each template demonstrates best practices
+          and can be used as a starting point for your projects.
         </p>
         <div className="flex flex-wrap gap-3 mt-6">
           <Link
@@ -128,24 +134,39 @@ export default function TemplatesPage() {
       <div className="rounded-xl border bg-muted/50 p-8 mb-12">
         <h2 className="text-xl font-semibold mb-4">Getting Started</h2>
         <p className="text-muted-foreground mb-6">
-          Each template includes all source code and can be scaffolded via CLI or cloned from
-          the repository. Visit any template page to view the full implementation and code examples.
+          Each template includes all source code and can be scaffolded via CLI
+          or cloned from the repository. Visit any template page to view the
+          full implementation and code examples.
         </p>
         <div className="space-y-2 text-sm text-muted-foreground">
-          <p>📦 <strong>All templates are production-ready</strong> and fully accessible</p>
-          <p>🎨 <strong>Built with design tokens</strong> for easy customization</p>
-          <p>📱 <strong>Responsive design</strong> for all screen sizes</p>
-          <p>🌙 <strong>Dark mode support</strong> included</p>
+          <p>
+            📦 <strong>All templates are production-ready</strong> and fully
+            accessible
+          </p>
+          <p>
+            🎨 <strong>Built with design tokens</strong> for easy customization
+          </p>
+          <p>
+            📱 <strong>Responsive design</strong> for all screen sizes
+          </p>
+          <p>
+            🌙 <strong>Dark mode support</strong> included
+          </p>
         </div>
       </div>
 
       <section className="mt-16">
-        <h2 className="text-3xl font-bold tracking-tight mb-6">Submit Your Template</h2>
+        <h2 className="text-3xl font-bold tracking-tight mb-6">
+          Submit Your Template
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="rounded-lg border p-8 bg-card">
-            <h3 className="text-lg font-semibold mb-3">Contribute a Template</h3>
+            <h3 className="text-lg font-semibold mb-3">
+              Contribute a Template
+            </h3>
             <p className="text-muted-foreground mb-6">
-              Have a great application template built with the design system? We'd love to feature it in our gallery!
+              Have a great application template built with the design system?
+              We'd love to feature it in our gallery!
             </p>
             <div className="space-y-4 text-sm">
               <div>
@@ -166,19 +187,29 @@ export default function TemplatesPage() {
             <ol className="space-y-4 text-sm">
               <li className="flex gap-3">
                 <span className="font-semibold text-primary min-w-6">1</span>
-                <span className="text-muted-foreground">Create your template following the design system guidelines</span>
+                <span className="text-muted-foreground">
+                  Create your template following the design system guidelines
+                </span>
               </li>
               <li className="flex gap-3">
                 <span className="font-semibold text-primary min-w-6">2</span>
-                <span className="text-muted-foreground">Push your code to a public GitHub repository with clear documentation</span>
+                <span className="text-muted-foreground">
+                  Push your code to a public GitHub repository with clear
+                  documentation
+                </span>
               </li>
               <li className="flex gap-3">
                 <span className="font-semibold text-primary min-w-6">3</span>
-                <span className="text-muted-foreground">Open an issue on the design system repo with your template details</span>
+                <span className="text-muted-foreground">
+                  Open an issue on the design system repo with your template
+                  details
+                </span>
               </li>
               <li className="flex gap-3">
                 <span className="font-semibold text-primary min-w-6">4</span>
-                <span className="text-muted-foreground">Our team will review and potentially feature your template</span>
+                <span className="text-muted-foreground">
+                  Our team will review and potentially feature your template
+                </span>
               </li>
             </ol>
           </div>
@@ -192,15 +223,23 @@ export default function TemplatesPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <h4 className="text-sm font-medium mb-2">Source Code</h4>
-              <p className="text-xs text-muted-foreground">Well-organized React/TypeScript components using design system primitives</p>
+              <p className="text-xs text-muted-foreground">
+                Well-organized React/TypeScript components using design system
+                primitives
+              </p>
             </div>
             <div>
               <h4 className="text-sm font-medium mb-2">Documentation</h4>
-              <p className="text-xs text-muted-foreground">README with setup instructions, feature overview, and customization guide</p>
+              <p className="text-xs text-muted-foreground">
+                README with setup instructions, feature overview, and
+                customization guide
+              </p>
             </div>
             <div>
               <h4 className="text-sm font-medium mb-2">Examples</h4>
-              <p className="text-xs text-muted-foreground">Live demos or screenshots showing the template in action</p>
+              <p className="text-xs text-muted-foreground">
+                Live demos or screenshots showing the template in action
+              </p>
             </div>
           </div>
         </div>
@@ -211,11 +250,26 @@ export default function TemplatesPage() {
             Submitted templates are evaluated based on:
           </p>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li><strong>Accessibility:</strong> WCAG compliance and keyboard navigation</li>
-            <li><strong>Design Quality:</strong> Consistent visual hierarchy and spacing</li>
-            <li><strong>Code Quality:</strong> Clean, maintainable, and well-typed code</li>
-            <li><strong>Documentation:</strong> Clear instructions and usage examples</li>
-            <li><strong>Originality:</strong> Unique use cases or variations of application types</li>
+            <li>
+              <strong>Accessibility:</strong> WCAG compliance and keyboard
+              navigation
+            </li>
+            <li>
+              <strong>Design Quality:</strong> Consistent visual hierarchy and
+              spacing
+            </li>
+            <li>
+              <strong>Code Quality:</strong> Clean, maintainable, and well-typed
+              code
+            </li>
+            <li>
+              <strong>Documentation:</strong> Clear instructions and usage
+              examples
+            </li>
+            <li>
+              <strong>Originality:</strong> Unique use cases or variations of
+              application types
+            </li>
           </ul>
         </div>
       </section>

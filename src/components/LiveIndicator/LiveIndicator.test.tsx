@@ -1,6 +1,5 @@
-import { describe, it, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
+import { afterEach, describe, expect, it } from "vitest";
 import { LiveIndicator } from "./LiveIndicator";
 
 describe("LiveIndicator", () => {
@@ -32,13 +31,14 @@ describe("LiveIndicator", () => {
   });
 
   describe("status variants", () => {
-    it.each([["online"], ["offline"], ["degraded"]] as const)(
-      "renders without error for status %s",
-      (status) => {
-        render(<LiveIndicator status={status} data-testid="indicator" />);
-        expect(screen.getByTestId("indicator")).toBeInTheDocument();
-      }
-    );
+    it.each([
+      ["online"],
+      ["offline"],
+      ["degraded"],
+    ] as const)("renders without error for status %s", (status) => {
+      render(<LiveIndicator status={status} data-testid="indicator" />);
+      expect(screen.getByTestId("indicator")).toBeInTheDocument();
+    });
 
     it("shows animate-ping when online and pulse is true", () => {
       const { container } = render(<LiveIndicator status="online" pulse />);
@@ -56,7 +56,9 @@ describe("LiveIndicator", () => {
     });
 
     it("hides animate-ping when pulse is false", () => {
-      const { container } = render(<LiveIndicator status="online" pulse={false} />);
+      const { container } = render(
+        <LiveIndicator status="online" pulse={false} />,
+      );
       expect(container.querySelector(".animate-ping")).toBeNull();
     });
   });
@@ -77,7 +79,10 @@ describe("LiveIndicator", () => {
 
     it("forwards aria attributes to root span", () => {
       render(<LiveIndicator data-testid="live" aria-label="Live status" />);
-      expect(screen.getByTestId("live")).toHaveAttribute("aria-label", "Live status");
+      expect(screen.getByTestId("live")).toHaveAttribute(
+        "aria-label",
+        "Live status",
+      );
     });
   });
 

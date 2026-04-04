@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MessageBubbles } from "./MessageBubbles";
 import type { BubbleMessage } from "./MessageBubbles";
+import { MessageBubbles } from "./MessageBubbles";
 
 const mockMessages: BubbleMessage[] = [
   {
@@ -27,7 +27,8 @@ const mockMessages: BubbleMessage[] = [
   },
   {
     id: "4",
-    content: "Sure! Deploying to Storybook now. Should be live in a few minutes.",
+    content:
+      "Sure! Deploying to Storybook now. Should be live in a few minutes.",
     sender: "sent",
     timestamp: "9:43 AM",
   },
@@ -63,7 +64,14 @@ type Story = StoryObj<typeof MessageBubbles>;
 
 export const Default: Story = {
   render: (args) => (
-    <div style={{ maxWidth: 480, border: "1px solid hsl(var(--la-border))", borderRadius: "0.75rem", overflow: "hidden" }}>
+    <div
+      style={{
+        maxWidth: 480,
+        border: "1px solid hsl(var(--la-border))",
+        borderRadius: "0.75rem",
+        overflow: "hidden",
+      }}
+    >
       <MessageBubbles {...args} />
     </div>
   ),
@@ -74,8 +82,18 @@ export const Default: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}>
-      <div style={{ maxWidth: 480, border: "1px solid hsl(var(--la-border))", borderRadius: "0.75rem", overflow: "hidden" }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}
+    >
+      <div
+        style={{
+          maxWidth: 480,
+          border: "1px solid hsl(var(--la-border))",
+          borderRadius: "0.75rem",
+          overflow: "hidden",
+        }}
+      >
         <MessageBubbles {...args} />
       </div>
     </div>

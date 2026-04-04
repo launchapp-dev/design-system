@@ -18,22 +18,35 @@ export function PropsTable({ props }: PropsTableProps) {
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b bg-muted/50">
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground w-1/5">Prop</th>
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground w-1/3">Type</th>
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground w-1/6">Default</th>
-            <th className="text-left px-4 py-3 font-medium text-muted-foreground">Description</th>
+            <th className="text-left px-4 py-3 font-medium text-muted-foreground w-1/5">
+              Prop
+            </th>
+            <th className="text-left px-4 py-3 font-medium text-muted-foreground w-1/3">
+              Type
+            </th>
+            <th className="text-left px-4 py-3 font-medium text-muted-foreground w-1/6">
+              Default
+            </th>
+            <th className="text-left px-4 py-3 font-medium text-muted-foreground">
+              Description
+            </th>
           </tr>
         </thead>
         <tbody>
           {props.map((prop, i) => (
-            <tr key={prop.name} className={i < props.length - 1 ? "border-b" : ""}>
+            <tr
+              key={prop.name}
+              className={i < props.length - 1 ? "border-b" : ""}
+            >
               <td className="px-4 py-3 align-top">
                 <div className="flex items-center gap-1.5">
                   <code className="text-xs font-mono font-medium text-foreground bg-muted px-1.5 py-0.5 rounded">
                     {prop.name}
                   </code>
                   {prop.required && (
-                    <span className="text-destructive text-xs font-medium">*</span>
+                    <span className="text-destructive text-xs font-medium">
+                      *
+                    </span>
                   )}
                 </div>
               </td>

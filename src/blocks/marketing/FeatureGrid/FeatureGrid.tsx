@@ -1,6 +1,6 @@
-import * as React from "react";
-import { cn } from "../../../lib/utils";
+import type * as React from "react";
 import { Card, CardContent } from "../../../components/Card";
+import { cn } from "../../../lib/utils";
 
 export interface Feature {
   icon?: React.ReactNode;
@@ -14,9 +14,20 @@ export interface FeatureGridProps extends React.HTMLAttributes<HTMLElement> {
   subheadline?: React.ReactNode;
 }
 
-function FeatureGrid({ className, features, headline, subheadline, ref, ...props }: FeatureGridProps & { ref?: React.Ref<HTMLElement> }) {
+function FeatureGrid({
+  className,
+  features,
+  headline,
+  subheadline,
+  ref,
+  ...props
+}: FeatureGridProps & { ref?: React.Ref<HTMLElement> }) {
   return (
-    <section ref={ref} className={cn("w-full px-4 py-16 md:py-24", className)} {...props}>
+    <section
+      ref={ref}
+      className={cn("w-full px-4 py-16 md:py-24", className)}
+      {...props}
+    >
       {(headline || subheadline) && (
         <div className="mb-12 text-center space-y-3">
           {headline && (
@@ -39,7 +50,9 @@ function FeatureGrid({ className, features, headline, subheadline, ref, ...props
               <h3 className="mb-2 text-base font-semibold text-foreground">
                 {feature.title}
               </h3>
-              <p className="text-sm text-muted-foreground">{feature.description}</p>
+              <p className="text-sm text-muted-foreground">
+                {feature.description}
+              </p>
             </CardContent>
           </Card>
         ))}

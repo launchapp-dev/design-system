@@ -1,8 +1,12 @@
 import * as React from "react";
-import { cn } from "../../../lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "../../../components/Avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../components/Avatar";
 import { Badge } from "../../../components/Badge";
 import { Separator } from "../../../components/Separator";
+import { cn } from "../../../lib/utils";
 
 export interface TocItem {
   id: string;
@@ -10,7 +14,8 @@ export interface TocItem {
   level: number;
 }
 
-export interface PostDetailProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {
+export interface PostDetailProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {
   title: string;
   content: React.ReactNode;
   author?: string;
@@ -41,7 +46,7 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
       tableOfContents = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     const [readingProgress, setReadingProgress] = React.useState(0);
 
@@ -50,7 +55,9 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
         const doc = document.documentElement;
         const scrollTop = window.scrollY || doc.scrollTop;
         const scrollHeight = doc.scrollHeight - doc.clientHeight;
-        setReadingProgress(scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0);
+        setReadingProgress(
+          scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0,
+        );
       };
       window.addEventListener("scroll", handleScroll, { passive: true });
       return () => window.removeEventListener("scroll", handleScroll);
@@ -116,16 +123,24 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
                   <Separator className="my-10" />
                   <div className="flex items-start gap-4">
                     <Avatar className="h-12 w-12 shrink-0">
-                      {authorAvatarSrc && <AvatarImage src={authorAvatarSrc} alt={author} />}
+                      {authorAvatarSrc && (
+                        <AvatarImage src={authorAvatarSrc} alt={author} />
+                      )}
                       <AvatarFallback>
                         {authorAvatarFallback ??
-                          author.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                          author
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")
+                            .slice(0, 2)}
                       </AvatarFallback>
                     </Avatar>
                     <div>
                       <p className="font-semibold text-foreground">{author}</p>
                       {authorBio && (
-                        <p className="mt-1 text-sm text-muted-foreground">{authorBio}</p>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {authorBio}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -139,7 +154,9 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
                   className="sticky top-8 rounded-lg border border-border p-4"
                   aria-label="Table of contents"
                 >
-                  <p className="text-sm font-semibold text-foreground mb-3">On this page</p>
+                  <p className="text-sm font-semibold text-foreground mb-3">
+                    On this page
+                  </p>
                   <ul className="space-y-2">
                     {tableOfContents.map((item) => (
                       <li key={item.id}>
@@ -149,7 +166,7 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
                             "block text-sm text-muted-foreground hover:text-foreground transition-colors",
                             item.level === 2 && "pl-0",
                             item.level === 3 && "pl-3",
-                            item.level === 4 && "pl-6"
+                            item.level === 4 && "pl-6",
                           )}
                         >
                           {item.title}
@@ -164,7 +181,7 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 PostDetail.displayName = "PostDetail";

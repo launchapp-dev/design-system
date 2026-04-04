@@ -1,12 +1,15 @@
+export type {
+  LightboxContentVariants,
+  LightboxImage,
+  LightboxImageVariants,
+  LightboxProps,
+  LightboxThumbnailVariants,
+  LightboxVariants,
+} from "./Lightbox";
 export {
   Lightbox,
-  lightboxVariants,
   lightboxContentVariants,
   lightboxImageVariants,
   lightboxThumbnailVariants,
+  lightboxVariants,
 } from "./Lightbox";
-export type { LightboxProps, LightboxImage } from "./Lightbox";
-export type { LightboxVariants } from "./Lightbox";
-export type { LightboxContentVariants } from "./Lightbox";
-export type { LightboxImageVariants } from "./Lightbox";
-export type { LightboxThumbnailVariants } from "./Lightbox";

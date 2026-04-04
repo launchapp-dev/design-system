@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "./index";
+import type * as React from "react";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./index";
 
 const meta: Meta = {
   title: "Components/Resizable",
@@ -43,7 +43,10 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const panelStyle = (label: string, bg = "hsl(var(--muted))"): React.CSSProperties => ({
+const panelStyle = (
+  _label: string,
+  bg = "hsl(var(--muted))",
+): React.CSSProperties => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -57,7 +60,14 @@ const panelStyle = (label: string, bg = "hsl(var(--muted))"): React.CSSPropertie
 
 export const Default: Story = {
   render: () => (
-    <div style={{ height: 200, border: "1px solid hsl(var(--border))", borderRadius: 8, overflow: "hidden" }}>
+    <div
+      style={{
+        height: 200,
+        border: "1px solid hsl(var(--border))",
+        borderRadius: 8,
+        overflow: "hidden",
+      }}
+    >
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={50}>
           <div style={panelStyle("Left")}>Left Panel</div>
@@ -73,7 +83,14 @@ export const Default: Story = {
 
 export const ThreePanelLayout: Story = {
   render: () => (
-    <div style={{ height: 300, border: "1px solid hsl(var(--border))", borderRadius: 8, overflow: "hidden" }}>
+    <div
+      style={{
+        height: 300,
+        border: "1px solid hsl(var(--border))",
+        borderRadius: 8,
+        overflow: "hidden",
+      }}
+    >
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={20} minSize={10}>
           <div style={panelStyle("Sidebar")}>
@@ -87,7 +104,9 @@ export const ThreePanelLayout: Story = {
         <ResizablePanel defaultSize={60} minSize={30}>
           <div style={panelStyle("Main", "hsl(var(--background))")}>
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontWeight: 600, marginBottom: 4 }}>Main Content</div>
+              <div style={{ fontWeight: 600, marginBottom: 4 }}>
+                Main Content
+              </div>
               <div style={{ fontSize: 11, opacity: 0.7 }}>min: 30%</div>
             </div>
           </div>
@@ -108,14 +127,23 @@ export const ThreePanelLayout: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <div style={{ height: 300, border: "1px solid hsl(var(--border))", borderRadius: 8, overflow: "hidden" }}>
+    <div
+      style={{
+        height: 300,
+        border: "1px solid hsl(var(--border))",
+        borderRadius: 8,
+        overflow: "hidden",
+      }}
+    >
       <ResizablePanelGroup direction="vertical">
         <ResizablePanel defaultSize={30}>
           <div style={panelStyle("Top")}>Top Panel</div>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={40}>
-          <div style={panelStyle("Middle", "hsl(var(--background))")}>Middle Panel</div>
+          <div style={panelStyle("Middle", "hsl(var(--background))")}>
+            Middle Panel
+          </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={30}>
@@ -128,7 +156,14 @@ export const Vertical: Story = {
 
 export const NestedPanels: Story = {
   render: () => (
-    <div style={{ height: 300, border: "1px solid hsl(var(--border))", borderRadius: 8, overflow: "hidden" }}>
+    <div
+      style={{
+        height: 300,
+        border: "1px solid hsl(var(--border))",
+        borderRadius: 8,
+        overflow: "hidden",
+      }}
+    >
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={25} minSize={15}>
           <div style={panelStyle("Sidebar")}>Sidebar</div>
@@ -137,7 +172,9 @@ export const NestedPanels: Story = {
         <ResizablePanel defaultSize={75}>
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel defaultSize={60}>
-              <div style={panelStyle("Editor", "hsl(var(--background))")}>Editor</div>
+              <div style={panelStyle("Editor", "hsl(var(--background))")}>
+                Editor
+              </div>
             </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={40}>
@@ -152,7 +189,14 @@ export const NestedPanels: Story = {
 
 export const WithoutHandle: Story = {
   render: () => (
-    <div style={{ height: 200, border: "1px solid hsl(var(--border))", borderRadius: 8, overflow: "hidden" }}>
+    <div
+      style={{
+        height: 200,
+        border: "1px solid hsl(var(--border))",
+        borderRadius: 8,
+        overflow: "hidden",
+      }}
+    >
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={50}>
           <div style={panelStyle("Left")}>Left (no grip)</div>

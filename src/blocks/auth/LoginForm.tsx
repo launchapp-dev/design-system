@@ -1,28 +1,28 @@
-import * as React from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type * as React from "react";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { cn } from "../../lib/utils";
+import { Button } from "../../components/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../components/Card";
+import { Checkbox } from "../../components/Checkbox";
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormMessage,
 } from "../../components/Form";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import { Checkbox } from "../../components/Checkbox";
 import { Label } from "../../components/Label";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "../../components/Card";
+import { cn } from "../../lib/utils";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -40,131 +40,134 @@ export interface LoginFormProps {
   className?: string;
 }
 
-function LoginForm({ onSubmit, onSignUpClick, isLoading, error, className, ref}: LoginFormProps & { ref?: React.Ref<HTMLDivElement> }) {
-    const form = useForm<LoginValues>({
-      resolver: zodResolver(loginSchema),
-      defaultValues: {
-        email: "",
-        password: "",
-        rememberMe: false,
-      },
-    });
+function LoginForm({
+  onSubmit,
+  onSignUpClick,
+  isLoading,
+  error,
+  className,
+  ref,
+}: LoginFormProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const form = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false,
+    },
+  });
 
-    async function handleSubmit(values: LoginValues) {
-      await onSubmit?.(values);
-    }
-
-    return (
-      <div ref={ref} className={cn("w-full max-w-sm", className)}>
-        <Card>
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Sign in</CardTitle>
-            <CardDescription>
-              Enter your credentials to access your account.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4"
-              >
-                {error && (
-                  <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-                    {error}
-                  </div>
-                )}
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="you@example.com"
-                          autoComplete="email"
-                          disabled={isLoading}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="••••••••"
-                          autoComplete="current-password"
-                          disabled={isLoading}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="rememberMe"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="login-remember-me"
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                          disabled={isLoading}
-                        />
-                        <Label
-                          htmlFor="login-remember-me"
-                          className="text-sm font-normal cursor-pointer"
-                        >
-                          Remember me
-                        </Label>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Signing in…" : "Sign in"}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-          {onSignUpClick && (
-            <CardFooter className="justify-center">
-              <p className="text-sm text-muted-foreground">
-                Don&apos;t have an account?{" "}
-                <Button
-                  variant="link"
-                  className="px-0 h-auto"
-                  type="button"
-                  onClick={onSignUpClick}
-                >
-                  Sign up
-                </Button>
-              </p>
-            </CardFooter>
-          )}
-        </Card>
-      </div>
-    );
+  async function handleSubmit(values: LoginValues) {
+    await onSubmit?.(values);
   }
+
+  return (
+    <div ref={ref} className={cn("w-full max-w-sm", className)}>
+      <Card>
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl">Sign in</CardTitle>
+          <CardDescription>
+            Enter your credentials to access your account.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="space-y-4"
+            >
+              {error && (
+                <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+                  {error}
+                </div>
+              )}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="you@example.com"
+                        autoComplete="email"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="••••••••"
+                        autoComplete="current-password"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="rememberMe"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="login-remember-me"
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        disabled={isLoading}
+                      />
+                      <Label
+                        htmlFor="login-remember-me"
+                        className="text-sm font-normal cursor-pointer"
+                      >
+                        Remember me
+                      </Label>
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Signing in…" : "Sign in"}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        {onSignUpClick && (
+          <CardFooter className="justify-center">
+            <p className="text-sm text-muted-foreground">
+              Don&apos;t have an account?{" "}
+              <Button
+                variant="link"
+                className="px-0 h-auto"
+                type="button"
+                onClick={onSignUpClick}
+              >
+                Sign up
+              </Button>
+            </p>
+          </CardFooter>
+        )}
+      </Card>
+    </div>
+  );
+}
 
 LoginForm.displayName = "LoginForm";
 
-export { LoginForm };
 export type { LoginValues };
+export { LoginForm };

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { RadioGroup, RadioGroupItem } from "./index";
 import { Label } from "../Label";
+import { RadioGroup, RadioGroupItem } from "./index";
 
 const meta: Meta<typeof RadioGroup> = {
   title: "Components/RadioGroup",
@@ -76,7 +75,11 @@ export const Default: Story = {
 
 export const Horizontal: Story = {
   render: () => (
-    <RadioGroup defaultValue="a" orientation="horizontal" style={{ gap: "16px" }}>
+    <RadioGroup
+      defaultValue="a"
+      orientation="horizontal"
+      style={{ gap: "16px" }}
+    >
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <RadioGroupItem value="a" id="ha" />
         <Label htmlFor="ha">Alpha</Label>
@@ -117,7 +120,9 @@ export const SingleItemDisabled: Story = {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <RadioGroupItem value="option-2" id="s2" disabled />
-        <Label htmlFor="s2" style={{ opacity: 0.5 }}>Disabled item</Label>
+        <Label htmlFor="s2" style={{ opacity: 0.5 }}>
+          Disabled item
+        </Label>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <RadioGroupItem value="option-3" id="s3" />
@@ -132,7 +137,13 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <RadioGroup defaultValue="option-1">
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <RadioGroupItem value="option-1" id="dk1" />

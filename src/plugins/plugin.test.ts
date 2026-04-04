@@ -1,12 +1,7 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { createRegistry } from "./registry";
 import type { ComponentPlugin } from "./types";
-import {
-  mergeVariants,
-  mergeDefaultVariants,
-  collectPluginVariants,
-  collectPluginDefaultVariants,
-} from "./utils";
+import { mergeDefaultVariants, mergeVariants } from "./utils";
 
 describe("Plugin Registry", () => {
   let registry = createRegistry();
@@ -129,7 +124,7 @@ describe("Plugin Registry", () => {
     expect(stats.enabledPlugins).toBe(1);
     expect(stats.disabledPlugins).toBe(1);
     expect(stats.totalComponents).toBe(1);
-    expect(stats.pluginsByComponent["Button"]).toBe(2);
+    expect(stats.pluginsByComponent.Button).toBe(2);
   });
 });
 
@@ -230,7 +225,7 @@ describe("Plugin Hooks (with simulated registry)", () => {
     for (const plugin of activePlugins) {
       if (plugin.variants) {
         for (const [variantName, variantGroup] of Object.entries(
-          plugin.variants
+          plugin.variants,
         )) {
           if (!collected[variantName]) {
             collected[variantName] = {};

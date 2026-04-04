@@ -76,7 +76,9 @@ const tags = [
   { value: "deps", label: "Dependencies" },
 ];
 
-const ControlledMultiSelect = (props: React.ComponentProps<typeof MultiSelect>) => {
+const ControlledMultiSelect = (
+  props: React.ComponentProps<typeof MultiSelect>,
+) => {
   const [value, setValue] = React.useState<string[]>([]);
   return <MultiSelect {...props} value={value} onValueChange={setValue} />;
 };
@@ -84,14 +86,21 @@ const ControlledMultiSelect = (props: React.ComponentProps<typeof MultiSelect>) 
 export const Default: Story = {
   render: () => (
     <div className="w-full max-w-sm">
-      <ControlledMultiSelect options={frameworks} placeholder="Select frameworks..." />
+      <ControlledMultiSelect
+        options={frameworks}
+        placeholder="Select frameworks..."
+      />
     </div>
   ),
 };
 
 export const WithPreselected: Story = {
   render: () => {
-    const [value, setValue] = React.useState<string[]>(["react", "vue", "svelte"]);
+    const [value, setValue] = React.useState<string[]>([
+      "react",
+      "vue",
+      "svelte",
+    ]);
     return (
       <div className="w-full max-w-sm">
         <MultiSelect
@@ -107,17 +116,62 @@ export const WithPreselected: Story = {
 
 export const WithMaxCount: Story = {
   render: () => {
-    const [value2, setValue2] = React.useState<string[]>(["react", "vue", "angular", "svelte", "solid"]);
-    const [value5, setValue5] = React.useState<string[]>(["react", "vue", "angular", "svelte", "solid"]);
+    const [value2, setValue2] = React.useState<string[]>([
+      "react",
+      "vue",
+      "angular",
+      "svelte",
+      "solid",
+    ]);
+    const [value5, setValue5] = React.useState<string[]>([
+      "react",
+      "vue",
+      "angular",
+      "svelte",
+      "solid",
+    ]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "320px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          maxWidth: "320px",
+        }}
+      >
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>maxCount=2 (shows "+3 more")</p>
-          <MultiSelect options={frameworks} value={value2} onValueChange={setValue2} maxCount={2} />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            maxCount=2 (shows "+3 more")
+          </p>
+          <MultiSelect
+            options={frameworks}
+            value={value2}
+            onValueChange={setValue2}
+            maxCount={2}
+          />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>maxCount=5 (no overflow)</p>
-          <MultiSelect options={frameworks} value={value5} onValueChange={setValue5} maxCount={5} />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            maxCount=5 (no overflow)
+          </p>
+          <MultiSelect
+            options={frameworks}
+            value={value5}
+            onValueChange={setValue5}
+            maxCount={5}
+          />
         </div>
       </div>
     );
@@ -130,18 +184,67 @@ export const AllSizes: Story = {
     const [md, setMd] = React.useState<string[]>(["react", "vue"]);
     const [lg, setLg] = React.useState<string[]>(["react", "vue"]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "320px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          maxWidth: "320px",
+        }}
+      >
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Small</p>
-          <MultiSelect size="sm" options={frameworks} value={sm} onValueChange={setSm} placeholder="Select..." />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            Small
+          </p>
+          <MultiSelect
+            size="sm"
+            options={frameworks}
+            value={sm}
+            onValueChange={setSm}
+            placeholder="Select..."
+          />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Medium (default)</p>
-          <MultiSelect size="md" options={frameworks} value={md} onValueChange={setMd} placeholder="Select..." />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            Medium (default)
+          </p>
+          <MultiSelect
+            size="md"
+            options={frameworks}
+            value={md}
+            onValueChange={setMd}
+            placeholder="Select..."
+          />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Large</p>
-          <MultiSelect size="lg" options={frameworks} value={lg} onValueChange={setLg} placeholder="Select..." />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            Large
+          </p>
+          <MultiSelect
+            size="lg"
+            options={frameworks}
+            value={lg}
+            onValueChange={setLg}
+            placeholder="Select..."
+          />
         </div>
       </div>
     );
@@ -164,7 +267,11 @@ export const Interactive: Story = {
         {value.length > 0 && (
           <p className="text-sm text-muted-foreground">
             {value.length} tag{value.length !== 1 ? "s" : ""} selected:{" "}
-            <strong>{value.map((v) => tags.find((t) => t.value === v)?.label).join(", ")}</strong>
+            <strong>
+              {value
+                .map((v) => tags.find((t) => t.value === v)?.label)
+                .join(", ")}
+            </strong>
           </p>
         )}
         {value.length > 0 && (
@@ -205,7 +312,12 @@ export const WithDisabledOptions: Story = {
     const [value, setValue] = React.useState<string[]>([]);
     return (
       <div className="w-full max-w-sm">
-        <MultiSelect options={options} value={value} onValueChange={setValue} placeholder="Select frameworks..." />
+        <MultiSelect
+          options={options}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Select frameworks..."
+        />
       </div>
     );
   },
@@ -214,7 +326,10 @@ export const WithDisabledOptions: Story = {
 export const EmptyState: Story = {
   render: () => (
     <div className="w-full max-w-sm">
-      <ControlledMultiSelect options={[]} emptyText="No frameworks available." />
+      <ControlledMultiSelect
+        options={[]}
+        emptyText="No frameworks available."
+      />
     </div>
   ),
 };
@@ -222,7 +337,10 @@ export const EmptyState: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),

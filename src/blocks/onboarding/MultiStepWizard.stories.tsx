@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { MultiStepWizard } from "./MultiStepWizard";
 import { Input } from "@/components/Input";
 import { Label } from "@/components/Label";
+import { MultiStepWizard } from "./MultiStepWizard";
 
 const steps = [
   {
@@ -41,7 +40,9 @@ const steps = [
         <div className="space-y-2">
           <Label htmlFor="workspace-url">Workspace URL</Label>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">app.example.com/</span>
+            <span className="text-sm text-muted-foreground">
+              app.example.com/
+            </span>
             <Input id="workspace-url" placeholder="acme-eng" />
           </div>
         </div>
@@ -56,11 +57,19 @@ const steps = [
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="invite-email-1">Email address</Label>
-          <Input id="invite-email-1" type="email" placeholder="colleague@company.com" />
+          <Input
+            id="invite-email-1"
+            type="email"
+            placeholder="colleague@company.com"
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="invite-email-2">Email address (optional)</Label>
-          <Input id="invite-email-2" type="email" placeholder="another@company.com" />
+          <Input
+            id="invite-email-2"
+            type="email"
+            placeholder="another@company.com"
+          />
         </div>
       </div>
     ),
@@ -72,13 +81,25 @@ const steps = [
     content: (
       <div className="flex flex-col items-center gap-4 py-6 text-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-          <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          <svg
+            className="h-8 w-8 text-primary"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
           </svg>
         </div>
         <div>
           <h3 className="text-lg font-semibold">Everything is set up!</h3>
-          <p className="text-sm text-muted-foreground">Your workspace is ready. Click Complete to get started.</p>
+          <p className="text-sm text-muted-foreground">
+            Your workspace is ready. Click Complete to get started.
+          </p>
         </div>
       </div>
     ),
@@ -140,7 +161,14 @@ export const TwoSteps: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 600 }}>
+    <div
+      className="dark"
+      style={{
+        background: "hsl(240 10% 3.9%)",
+        padding: "24px",
+        maxWidth: 600,
+      }}
+    >
       <MultiStepWizard {...args} />
     </div>
   ),

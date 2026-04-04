@@ -1,7 +1,6 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as React from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { CookieConsent } from "./CookieConsent";
 
 describe("CookieConsent", () => {
@@ -22,7 +21,13 @@ describe("CookieConsent", () => {
     });
 
     it("renders custom title", () => {
-      render(<CookieConsent open onOpenChange={() => undefined} title="Privacy Settings" />);
+      render(
+        <CookieConsent
+          open
+          onOpenChange={() => undefined}
+          title="Privacy Settings"
+        />,
+      );
       expect(screen.getByText("Privacy Settings")).toBeInTheDocument();
     });
 
@@ -32,7 +37,7 @@ describe("CookieConsent", () => {
           open
           onOpenChange={() => undefined}
           description="Control your data."
-        />
+        />,
       );
       expect(screen.getByText("Control your data.")).toBeInTheDocument();
     });
@@ -68,7 +73,7 @@ describe("CookieConsent", () => {
               enabled: false,
             },
           ]}
-        />
+        />,
       );
       expect(screen.getByText("Essential")).toBeInTheDocument();
       expect(screen.getByText("Advertising")).toBeInTheDocument();
@@ -79,27 +84,27 @@ describe("CookieConsent", () => {
     it("renders switches with aria-labels", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
       expect(
-        screen.getByRole("switch", { name: /Necessary cookies/i })
+        screen.getByRole("switch", { name: /Necessary cookies/i }),
       ).toBeInTheDocument();
       expect(
-        screen.getByRole("switch", { name: /Analytics cookies/i })
+        screen.getByRole("switch", { name: /Analytics cookies/i }),
       ).toBeInTheDocument();
       expect(
-        screen.getByRole("switch", { name: /Marketing cookies/i })
+        screen.getByRole("switch", { name: /Marketing cookies/i }),
       ).toBeInTheDocument();
     });
 
     it("disables switch for required category", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
       expect(
-        screen.getByRole("switch", { name: /Necessary cookies/i })
+        screen.getByRole("switch", { name: /Necessary cookies/i }),
       ).toBeDisabled();
     });
 
     it("enables switch for non-required categories", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
       expect(
-        screen.getByRole("switch", { name: /Analytics cookies/i })
+        screen.getByRole("switch", { name: /Analytics cookies/i }),
       ).not.toBeDisabled();
     });
   });
@@ -110,7 +115,11 @@ describe("CookieConsent", () => {
       const onAcceptAll = vi.fn();
       const onOpenChange = vi.fn();
       render(
-        <CookieConsent open onOpenChange={onOpenChange} onAcceptAll={onAcceptAll} />
+        <CookieConsent
+          open
+          onOpenChange={onOpenChange}
+          onAcceptAll={onAcceptAll}
+        />,
       );
       await user.click(screen.getByRole("button", { name: "Accept All" }));
       expect(onAcceptAll).toHaveBeenCalledOnce();
@@ -122,7 +131,11 @@ describe("CookieConsent", () => {
       const onRejectAll = vi.fn();
       const onOpenChange = vi.fn();
       render(
-        <CookieConsent open onOpenChange={onOpenChange} onRejectAll={onRejectAll} />
+        <CookieConsent
+          open
+          onOpenChange={onOpenChange}
+          onRejectAll={onRejectAll}
+        />,
       );
       await user.click(screen.getByRole("button", { name: "Reject All" }));
       expect(onRejectAll).toHaveBeenCalledOnce();
@@ -138,12 +151,17 @@ describe("CookieConsent", () => {
           open
           onOpenChange={onOpenChange}
           onSavePreferences={onSavePreferences}
-        />
+        />,
       );
-      await user.click(screen.getByRole("button", { name: "Save Preferences" }));
+      await user.click(
+        screen.getByRole("button", { name: "Save Preferences" }),
+      );
       expect(onSavePreferences).toHaveBeenCalledOnce();
       expect(onOpenChange).toHaveBeenCalledWith(false);
-      const prefs = onSavePreferences.mock.calls[0][0] as Record<string, boolean>;
+      const prefs = onSavePreferences.mock.calls[0][0] as Record<
+        string,
+        boolean
+      >;
       expect(prefs.necessary).toBe(true);
     });
   });
@@ -179,13 +197,18 @@ describe("CookieConsent", () => {
           open
           onOpenChange={() => undefined}
           onSavePreferences={onSavePreferences}
-        />
+        />,
       );
       await user.click(
-        screen.getByRole("switch", { name: /Analytics cookies/i })
+        screen.getByRole("switch", { name: /Analytics cookies/i }),
       );
-      await user.click(screen.getByRole("button", { name: "Save Preferences" }));
-      const prefs = onSavePreferences.mock.calls[0][0] as Record<string, boolean>;
+      await user.click(
+        screen.getByRole("button", { name: "Save Preferences" }),
+      );
+      const prefs = onSavePreferences.mock.calls[0][0] as Record<
+        string,
+        boolean
+      >;
       expect(prefs.analytics).toBe(true);
     });
 
@@ -201,7 +224,9 @@ describe("CookieConsent", () => {
   describe("close button", () => {
     it("renders close button", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
-      expect(screen.getByRole("button", { name: /close/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /close/i }),
+      ).toBeInTheDocument();
     });
 
     it("calls onOpenChange(false) when close button is clicked", async () => {

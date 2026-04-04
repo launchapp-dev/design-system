@@ -6,27 +6,32 @@ const sampleImages = [
   {
     src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
     alt: "Mountain landscape at sunset with golden light",
-    thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=100&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=100&fit=crop",
   },
   {
     src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop",
     alt: "Forest path with sunlight filtering through trees",
-    thumbnail: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=100&h=100&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=100&h=100&fit=crop",
   },
   {
     src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop",
     alt: "Ocean waves crashing on rocky shore",
-    thumbnail: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=100&h=100&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=100&h=100&fit=crop",
   },
   {
     src: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1200&h=800&fit=crop",
     alt: "Waterfall in lush green forest",
-    thumbnail: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=100&h=100&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=100&h=100&fit=crop",
   },
   {
     src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=800&fit=crop",
     alt: "Rolling hills covered in mist at dawn",
-    thumbnail: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=100&h=100&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=100&h=100&fit=crop",
   },
 ];
 

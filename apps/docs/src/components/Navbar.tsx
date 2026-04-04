@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { MobileNav } from "./MobileNav";
@@ -15,7 +14,10 @@ const navLinks = [
 
 function LaunchAppLogo() {
   return (
-    <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
+    <Link
+      href="/"
+      className="flex items-center gap-2 font-semibold text-foreground"
+    >
       <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground text-xs font-bold">
         LA
       </div>
@@ -30,7 +32,10 @@ export function Navbar() {
       <div className="mx-auto flex h-14 max-w-screen-xl items-center gap-4 px-4 sm:px-6 lg:px-8">
         <LaunchAppLogo />
 
-        <nav className="hidden md:flex items-center gap-1 ml-4" aria-label="Main navigation">
+        <nav
+          className="hidden md:flex items-center gap-1 ml-4"
+          aria-label="Main navigation"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}

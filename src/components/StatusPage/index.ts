@@ -1,3 +1,8 @@
-export { StatusPage, overallStatusVariants } from "./StatusPage";
-export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./StatusPage";
-export type { OverallStatusVariants } from "./StatusPage";
+export type {
+  OverallStatusVariants,
+  ServiceStatus,
+  StatusPageProps,
+  StatusService,
+  UptimeEntry,
+} from "./StatusPage";
+export { overallStatusVariants, StatusPage } from "./StatusPage";

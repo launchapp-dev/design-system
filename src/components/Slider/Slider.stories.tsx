@@ -81,7 +81,13 @@ export const RangeSlider: Story = {
           value={values}
           onValueChange={setValues}
         />
-        <div style={{ marginTop: "8px", fontSize: "12px", color: "var(--muted-foreground)" }}>
+        <div
+          style={{
+            marginTop: "8px",
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+          }}
+        >
           Range: {values[0]} – {values[1]}
         </div>
       </div>
@@ -99,7 +105,14 @@ export const Disabled: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <div style={{ height: "200px", padding: "0 16px", display: "flex", gap: "32px" }}>
+    <div
+      style={{
+        height: "200px",
+        padding: "0 16px",
+        display: "flex",
+        gap: "32px",
+      }}
+    >
       <Slider orientation="vertical" defaultValue={[30]} />
       <Slider orientation="vertical" defaultValue={[20, 70]} />
       <Slider orientation="vertical" defaultValue={[50]} disabled />
@@ -119,7 +132,13 @@ export const WithSteps: Story = {
           value={value}
           onValueChange={setValue}
         />
-        <div style={{ marginTop: "8px", fontSize: "12px", color: "var(--muted-foreground)" }}>
+        <div
+          style={{
+            marginTop: "8px",
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+          }}
+        >
           Value: {value[0]}
         </div>
       </div>
@@ -132,7 +151,14 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ width: "300px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        width: "300px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <Slider defaultValue={[60]} />
     </div>
   ),

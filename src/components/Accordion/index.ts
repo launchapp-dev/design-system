@@ -1,2 +1,12 @@
-export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "./Accordion";
-export type { AccordionRootProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from "./Accordion";
+export type {
+  AccordionContentProps,
+  AccordionItemProps,
+  AccordionRootProps,
+  AccordionTriggerProps,
+} from "./Accordion";
+export {
+  AccordionContent,
+  AccordionItem,
+  AccordionRoot,
+  AccordionTrigger,
+} from "./Accordion";

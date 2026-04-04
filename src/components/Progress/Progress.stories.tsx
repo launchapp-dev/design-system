@@ -33,29 +33,48 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "320px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        width: "320px",
+      }}
+    >
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>0%</span>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          0%
+        </span>
         <Progress value={0} />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>25%</span>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          25%
+        </span>
         <Progress value={25} />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>50%</span>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          50%
+        </span>
         <Progress value={50} />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>75%</span>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          75%
+        </span>
         <Progress value={75} />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>100%</span>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          100%
+        </span>
         <Progress value={100} />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>indeterminate</span>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          indeterminate
+        </span>
         <Progress value={undefined} />
       </div>
     </div>
@@ -64,10 +83,28 @@ export const AllVariants: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "320px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        width: "320px",
+      }}
+    >
       {(["sm", "md", "lg"] as const).map((size) => (
-        <div key={size} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>{size}</span>
+        <div
+          key={size}
+          style={{ display: "flex", alignItems: "center", gap: "12px" }}
+        >
+          <span
+            style={{
+              width: 24,
+              fontSize: "12px",
+              color: "var(--muted-foreground)",
+            }}
+          >
+            {size}
+          </span>
           <Progress size={size} value={65} style={{ flex: 1 }} />
         </div>
       ))}
@@ -79,7 +116,14 @@ export const Interactive: Story = {
   render: (args) => {
     const [value, setValue] = React.useState(30);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "320px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          width: "320px",
+        }}
+      >
         <Progress {...args} value={value} />
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <input
@@ -90,7 +134,9 @@ export const Interactive: Story = {
             onChange={(e) => setValue(Number(e.target.value))}
             style={{ flex: 1 }}
           />
-          <span style={{ fontSize: "14px", width: "40px", textAlign: "right" }}>{value}%</span>
+          <span style={{ fontSize: "14px", width: "40px", textAlign: "right" }}>
+            {value}%
+          </span>
         </div>
       </div>
     );
@@ -102,7 +148,17 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px", width: "320px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+        width: "320px",
+      }}
+    >
       <Progress size="sm" value={40} />
       <Progress size="md" value={65} />
       <Progress size="lg" value={80} />

@@ -1,11 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { extractBrandColorsFromUrl, extractBrandColorsFromImage } from "@/lib/extract-brand-colors";
-import { generatePaletteFromColors } from "@/themes/generatePaletteFromColors";
 import type { ExtractedColor } from "@/lib/extract-brand-colors";
-import type { Palette } from "@/themes";
+import {
+  extractBrandColorsFromImage,
+  extractBrandColorsFromUrl,
+} from "@/lib/extract-brand-colors";
 import { cn } from "@/lib/utils";
+import type { Palette } from "@/themes";
+import { generatePaletteFromColors } from "@/themes/generatePaletteFromColors";
 
 const THEME_PREVIEW_TOKENS = [
   { key: "primary", label: "Primary" },
@@ -15,7 +18,7 @@ const THEME_PREVIEW_TOKENS = [
   { key: "muted", label: "Muted" },
 ];
 
-function hexToRgb(hex: string): string {
+function _hexToRgb(hex: string): string {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return hex;
   const r = parseInt(result[1], 16);
@@ -36,82 +39,100 @@ export const ThemeGenerator = React.forwardRef<
   const [input, setInput] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [extractedColors, setExtractedColors] = React.useState<ExtractedColor[]>([]);
-  const [generatedPalette, setGeneratedPalette] = React.useState<Palette | null>(null);
+  const [extractedColors, setExtractedColors] = React.useState<
+    ExtractedColor[]
+  >([]);
+  const [generatedPalette, setGeneratedPalette] =
+    React.useState<Palette | null>(null);
   const [inputMode, setInputMode] = React.useState<"url" | "upload">("url");
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleUrlSubmit = React.useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) {
-      setError("Please enter a valid URL");
-      return;
-    }
+  const handleUrlSubmit = React.useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!input.trim()) {
+        setError("Please enter a valid URL");
+        return;
+      }
 
-    setIsLoading(true);
-    setError(null);
-    setExtractedColors([]);
-    setGeneratedPalette(null);
+      setIsLoading(true);
+      setError(null);
+      setExtractedColors([]);
+      setGeneratedPalette(null);
 
-    try {
-      const colors = await extractBrandColorsFromUrl(input);
-      setExtractedColors(colors);
+      try {
+        const colors = await extractBrandColorsFromUrl(input);
+        setExtractedColors(colors);
 
-      const palette = generatePaletteFromColors(
-        colors,
-        `Generated Theme - ${new URL(input).hostname}`
-      );
-      setGeneratedPalette(palette);
-      onThemeGenerated?.(palette);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to extract colors");
-    } finally {
-      setIsLoading(false);
-    }
-  }, [input, onThemeGenerated]);
+        const palette = generatePaletteFromColors(
+          colors,
+          `Generated Theme - ${new URL(input).hostname}`,
+        );
+        setGeneratedPalette(palette);
+        onThemeGenerated?.(palette);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "Failed to extract colors",
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [input, onThemeGenerated],
+  );
 
-  const handleFileUpload = React.useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const handleFileUpload = React.useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
 
-    if (!file.type.startsWith("image/")) {
-      setError("Please select a valid image file");
-      return;
-    }
+      if (!file.type.startsWith("image/")) {
+        setError("Please select a valid image file");
+        return;
+      }
 
-    setIsLoading(true);
-    setError(null);
-    setExtractedColors([]);
-    setGeneratedPalette(null);
+      setIsLoading(true);
+      setError(null);
+      setExtractedColors([]);
+      setGeneratedPalette(null);
 
-    try {
-      const reader = new FileReader();
-      reader.onload = async (event) => {
-        const base64 = (event.target?.result as string)?.split(",")[1];
-        if (!base64) {
-          setError("Failed to read file");
-          return;
-        }
+      try {
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const base64 = (event.target?.result as string)?.split(",")[1];
+          if (!base64) {
+            setError("Failed to read file");
+            return;
+          }
 
-        try {
-          const colors = await extractBrandColorsFromImage(base64);
-          setExtractedColors(colors);
+          try {
+            const colors = await extractBrandColorsFromImage(base64);
+            setExtractedColors(colors);
 
-          const palette = generatePaletteFromColors(colors, `Generated Theme - ${file.name}`);
-          setGeneratedPalette(palette);
-          onThemeGenerated?.(palette);
-        } catch (err) {
-          setError(err instanceof Error ? err.message : "Failed to extract colors");
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      reader.readAsDataURL(file);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to process image");
-      setIsLoading(false);
-    }
-  }, [onThemeGenerated]);
+            const palette = generatePaletteFromColors(
+              colors,
+              `Generated Theme - ${file.name}`,
+            );
+            setGeneratedPalette(palette);
+            onThemeGenerated?.(palette);
+          } catch (err) {
+            setError(
+              err instanceof Error ? err.message : "Failed to extract colors",
+            );
+          } finally {
+            setIsLoading(false);
+          }
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "Failed to process image",
+        );
+        setIsLoading(false);
+      }
+    },
+    [onThemeGenerated],
+  );
 
   return (
     <div ref={ref} className={cn("space-y-6", className)}>
@@ -132,7 +153,7 @@ export const ThemeGenerator = React.forwardRef<
               "px-3 py-1 rounded-md text-sm font-medium transition-colors",
               inputMode === "url"
                 ? "bg-primary text-primary-foreground"
-                : "border border-border hover:bg-muted"
+                : "border border-border hover:bg-muted",
             )}
           >
             URL
@@ -150,7 +171,7 @@ export const ThemeGenerator = React.forwardRef<
               "px-3 py-1 rounded-md text-sm font-medium transition-colors",
               inputMode === "upload"
                 ? "bg-primary text-primary-foreground"
-                : "border border-border hover:bg-muted"
+                : "border border-border hover:bg-muted",
             )}
           >
             Upload Image
@@ -197,8 +218,12 @@ export const ThemeGenerator = React.forwardRef<
                 <path d="M12 5v14M5 12h14" />
               </svg>
               <div className="text-center">
-                <p className="text-sm font-medium">Click to upload or drag and drop</p>
-                <p className="text-xs text-muted-foreground">PNG, JPG, GIF up to 10MB</p>
+                <p className="text-sm font-medium">
+                  Click to upload or drag and drop
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  PNG, JPG, GIF up to 10MB
+                </p>
               </div>
               <input
                 ref={fileInputRef}
@@ -230,9 +255,15 @@ export const ThemeGenerator = React.forwardRef<
                   style={{ backgroundColor: color.hex }}
                   title={color.hex}
                 />
-                <p className="text-sm font-medium text-foreground">{color.label}</p>
-                <p className="text-xs text-muted-foreground mt-1">{color.hex}</p>
-                <p className="text-xs text-muted-foreground mt-1">{color.description}</p>
+                <p className="text-sm font-medium text-foreground">
+                  {color.label}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {color.hex}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {color.description}
+                </p>
               </div>
             ))}
           </div>
@@ -242,7 +273,9 @@ export const ThemeGenerator = React.forwardRef<
       {generatedPalette && (
         <div className="rounded-lg border bg-card p-6">
           <h3 className="text-lg font-semibold mb-4">Generated Theme</h3>
-          <p className="text-sm text-muted-foreground mb-4">{generatedPalette.name}</p>
+          <p className="text-sm text-muted-foreground mb-4">
+            {generatedPalette.name}
+          </p>
 
           <div className="space-y-6">
             <div>
@@ -258,7 +291,9 @@ export const ThemeGenerator = React.forwardRef<
                         style={{ backgroundColor: `hsl(${value})` }}
                         title={`hsl(${value})`}
                       />
-                      <p className="text-xs font-medium text-foreground">{label}</p>
+                      <p className="text-xs font-medium text-foreground">
+                        {label}
+                      </p>
                     </div>
                   );
                 })}
@@ -278,7 +313,9 @@ export const ThemeGenerator = React.forwardRef<
                         style={{ backgroundColor: `hsl(${value})` }}
                         title={`hsl(${value})`}
                       />
-                      <p className="text-xs font-medium text-foreground">{label}</p>
+                      <p className="text-xs font-medium text-foreground">
+                        {label}
+                      </p>
                     </div>
                   );
                 })}

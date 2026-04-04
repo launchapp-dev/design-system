@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
 const liveIndicatorVariants = cva("inline-flex items-center font-medium", {
@@ -58,7 +58,7 @@ function LiveIndicator({
           <span
             className={cn(
               "absolute inline-flex animate-ping rounded-full opacity-75",
-              liveDotVariants({ size, status })
+              liveDotVariants({ size, status }),
             )}
           />
         )}
@@ -73,4 +73,4 @@ LiveIndicator.displayName = "LiveIndicator";
 export type LiveIndicatorVariants = VariantProps<typeof liveIndicatorVariants>;
 export type LiveDotVariants = VariantProps<typeof liveDotVariants>;
 
-export { LiveIndicator, liveIndicatorVariants, liveDotVariants };
+export { LiveIndicator, liveDotVariants, liveIndicatorVariants };

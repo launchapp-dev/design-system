@@ -15,7 +15,9 @@ export function ComponentPreview({ slug }: ComponentPreviewProps) {
   return (
     <div className="rounded-lg border overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b bg-muted/50">
-        <span className="text-xs font-medium text-muted-foreground">Preview</span>
+        <span className="text-xs font-medium text-muted-foreground">
+          Preview
+        </span>
         <button
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           className="inline-flex items-center gap-1.5 rounded px-2 py-1 text-xs font-medium transition-colors hover:bg-accent text-muted-foreground hover:text-foreground"
@@ -63,7 +65,7 @@ export function ComponentPreview({ slug }: ComponentPreviewProps) {
       <div
         className={cn(
           "flex min-h-[200px] items-center justify-center p-8",
-          theme === "dark" ? "dark bg-[hsl(240,10%,3.9%)]" : "bg-background"
+          theme === "dark" ? "dark bg-[hsl(240,10%,3.9%)]" : "bg-background",
         )}
       >
         {PreviewFn ? (

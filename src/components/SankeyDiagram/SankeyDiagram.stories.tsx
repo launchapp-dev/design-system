@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { SankeyDiagram } from "./index";
-import type { SankeyNode, SankeyLink } from "./SankeyDiagram";
+import type { SankeyLink, SankeyNode } from "./SankeyDiagram";
 
 const simpleNodes: SankeyNode[] = [
   { id: "a", name: "Source A" },
@@ -20,7 +20,11 @@ const simpleLinks: SankeyLink[] = [
 const revenueNodes: SankeyNode[] = [
   { id: "products", name: "Products", color: "hsl(var(--la-chart-1))" },
   { id: "services", name: "Services", color: "hsl(var(--la-chart-2))" },
-  { id: "subscriptions", name: "Subscriptions", color: "hsl(var(--la-chart-3))" },
+  {
+    id: "subscriptions",
+    name: "Subscriptions",
+    color: "hsl(var(--la-chart-3))",
+  },
   { id: "marketing", name: "Marketing", color: "hsl(var(--la-chart-4))" },
   { id: "sales", name: "Sales", color: "hsl(var(--la-chart-5))" },
   { id: "revenue", name: "Revenue", color: "hsl(var(--la-primary))" },
@@ -213,13 +217,10 @@ export const WithoutValues: Story = {
 export const InteractiveNodes: Story = {
   render: (args) => {
     const [selected, setSelected] = React.useState<SankeyNode | null>(null);
-    
+
     return (
       <div>
-        <SankeyDiagram
-          {...args}
-          onNodeClick={(node) => setSelected(node)}
-        />
+        <SankeyDiagram {...args} onNodeClick={(node) => setSelected(node)} />
         {selected && (
           <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm">
             Selected node: <strong>{selected.name}</strong>
@@ -237,16 +238,15 @@ export const InteractiveNodes: Story = {
 export const InteractiveLinks: Story = {
   render: (args) => {
     const [selected, setSelected] = React.useState<SankeyLink | null>(null);
-    
+
     return (
       <div>
-        <SankeyDiagram
-          {...args}
-          onLinkClick={(link) => setSelected(link)}
-        />
+        <SankeyDiagram {...args} onLinkClick={(link) => setSelected(link)} />
         {selected && (
           <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm">
-            Selected link: <strong>{selected.source}</strong> to <strong>{selected.target}</strong> - Value: {selected.value.toLocaleString()}
+            Selected link: <strong>{selected.source}</strong> to{" "}
+            <strong>{selected.target}</strong> - Value:{" "}
+            {selected.value.toLocaleString()}
           </div>
         )}
       </div>

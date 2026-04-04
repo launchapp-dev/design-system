@@ -1,2 +1,7 @@
-export { GradientMesh, Aurora, GridPattern, DotPattern } from "./Background";
-export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./Background";
+export type {
+  AuroraProps,
+  DotPatternProps,
+  GradientMeshProps,
+  GridPatternProps,
+} from "./Background";
+export { Aurora, DotPattern, GradientMesh, GridPattern } from "./Background";

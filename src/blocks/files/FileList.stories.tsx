@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { FileList } from "./FileList";
 import type { UploadFile } from "./FileList";
+import { FileList } from "./FileList";
 
 const mockFiles: UploadFile[] = [
   {
@@ -86,15 +86,34 @@ export const AllUploading: Story = {
   ),
   args: {
     files: [
-      { id: "1", name: "presentation.pptx", size: 5_200_000, progress: 23, status: "uploading" },
-      { id: "2", name: "spreadsheet.xlsx", size: 1_100_000, progress: 78, status: "uploading" },
+      {
+        id: "1",
+        name: "presentation.pptx",
+        size: 5_200_000,
+        progress: 23,
+        status: "uploading",
+      },
+      {
+        id: "2",
+        name: "spreadsheet.xlsx",
+        size: 1_100_000,
+        progress: 78,
+        status: "uploading",
+      },
     ],
   },
 };
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 520 }}>
+    <div
+      className="dark"
+      style={{
+        background: "hsl(240 10% 3.9%)",
+        padding: "24px",
+        maxWidth: 520,
+      }}
+    >
       <FileList {...args} />
     </div>
   ),

@@ -39,23 +39,41 @@ const basicLines = [
   { type: "output" as const, content: "added 156 packages in 4.2s" },
   { type: "input" as const, content: "npm run dev" },
   { type: "output" as const, content: "Starting development server..." },
-  { type: "output" as const, content: "Server running at http://localhost:3000" },
+  {
+    type: "output" as const,
+    content: "Server running at http://localhost:3000",
+  },
 ];
 
 const errorLines = [
   { type: "output" as const, content: "$ npm run build" },
   { type: "output" as const, content: "Building for production..." },
-  { type: "error" as const, content: "Error: Cannot find module './src/components'" },
-  { type: "output" as const, content: "Hint: Run npm install to install dependencies" },
+  {
+    type: "error" as const,
+    content: "Error: Cannot find module './src/components'",
+  },
+  {
+    type: "output" as const,
+    content: "Hint: Run npm install to install dependencies",
+  },
 ];
 
 const gitLines = [
   { type: "input" as const, content: "git status" },
   { type: "output" as const, content: "On branch main" },
   { type: "output" as const, content: "Changes not staged for commit:" },
-  { type: "output" as const, content: "  modified:   src/components/Terminal.tsx" },
-  { type: "input" as const, content: "git commit -m 'feat: add Terminal component'" },
-  { type: "output" as const, content: "[main a1b2c3d] feat: add Terminal component" },
+  {
+    type: "output" as const,
+    content: "  modified:   src/components/Terminal.tsx",
+  },
+  {
+    type: "input" as const,
+    content: "git commit -m 'feat: add Terminal component'",
+  },
+  {
+    type: "output" as const,
+    content: "[main a1b2c3d] feat: add Terminal component",
+  },
   { type: "output" as const, content: " 1 file changed, 200 insertions(+)" },
 ];
 
@@ -161,9 +179,7 @@ export const WithHeader: Story = {
   render: (args) => (
     <Terminal
       {...args}
-      header={
-        <TerminalHeader variant="dots" title="bash - 80×24" />
-      }
+      header={<TerminalHeader variant="dots" title="bash - 80×24" />}
     />
   ),
 };
@@ -182,7 +198,9 @@ export const WithCustomHeader: Story = {
       header={
         <TerminalHeader title="npm ~ development">
           <div className="ml-auto flex gap-2">
-            <button className="px-2 py-0.5 text-xs bg-green-600 text-white rounded">Run</button>
+            <button className="px-2 py-0.5 text-xs bg-green-600 text-white rounded">
+              Run
+            </button>
           </div>
         </TerminalHeader>
       }
@@ -193,7 +211,10 @@ export const WithCustomHeader: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark p-4" style={{ background: "#09090b", borderRadius: "8px" }}>
+      <div
+        className="dark p-4"
+        style={{ background: "#09090b", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
@@ -265,7 +286,9 @@ export const StaticContent: Story = {
     children: (
       <div className="text-muted-foreground">
         <p>Static terminal output without typing animation.</p>
-        <p className="mt-2">This is useful for displaying pre-rendered content.</p>
+        <p className="mt-2">
+          This is useful for displaying pre-rendered content.
+        </p>
       </div>
     ),
   },

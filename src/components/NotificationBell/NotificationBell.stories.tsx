@@ -6,14 +6,16 @@ const sampleNotifications: NotificationItem[] = [
   {
     id: "1",
     title: "New comment on your post",
-    description: "Sarah commented: 'Great article! I especially liked the section about accessibility.'",
+    description:
+      "Sarah commented: 'Great article! I especially liked the section about accessibility.'",
     timestamp: "2024-01-15T10:30:00Z",
     read: false,
   },
   {
     id: "2",
     title: "System update available",
-    description: "A new version of the application is available. Update now to get the latest features.",
+    description:
+      "A new version of the application is available. Update now to get the latest features.",
     timestamp: "2024-01-15T09:15:00Z",
     read: false,
   },
@@ -71,11 +73,13 @@ type Story = StoryObj<typeof NotificationBell>;
 
 export const Default: Story = {
   render: (args) => {
-    const [notifications, setNotifications] = React.useState(args.notifications);
+    const [notifications, setNotifications] = React.useState(
+      args.notifications,
+    );
 
     const handleRead = (id: string) => {
       setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+        prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
       );
     };
 
@@ -96,11 +100,12 @@ export const Default: Story = {
 
 export const AllSizes: Story = {
   render: () => {
-    const [notifications, setNotifications] = React.useState(sampleNotifications);
+    const [notifications, setNotifications] =
+      React.useState(sampleNotifications);
 
     const handleRead = (id: string) => {
       setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+        prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
       );
     };
 
@@ -111,7 +116,15 @@ export const AllSizes: Story = {
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
         {(["sm", "md", "lg"] as const).map((size) => (
-          <div key={size} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+          <div
+            key={size}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
             <span style={{ fontSize: "12px" }}>{size}</span>
             <NotificationBell
               notifications={notifications}
@@ -128,11 +141,12 @@ export const AllSizes: Story = {
 
 export const AllVariants: Story = {
   render: () => {
-    const [notifications, setNotifications] = React.useState(sampleNotifications);
+    const [notifications, setNotifications] =
+      React.useState(sampleNotifications);
 
     const handleRead = (id: string) => {
       setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+        prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
       );
     };
 
@@ -143,8 +157,13 @@ export const AllVariants: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         {(["default", "outline", "ghost"] as const).map((variant) => (
-          <div key={variant} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <span style={{ fontSize: "12px", textTransform: "capitalize" }}>{variant}</span>
+          <div
+            key={variant}
+            style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+          >
+            <span style={{ fontSize: "12px", textTransform: "capitalize" }}>
+              {variant}
+            </span>
             <NotificationBell
               notifications={notifications}
               onRead={handleRead}
@@ -164,19 +183,22 @@ export const Empty: Story = {
 
 export const ManyNotifications: Story = {
   render: () => {
-    const manyNotifications: NotificationItem[] = Array.from({ length: 25 }, (_, i) => ({
-      id: `${i + 1}`,
-      title: `Notification ${i + 1}`,
-      description: `This is the description for notification number ${i + 1}. It may be quite long and should be truncated.`,
-      timestamp: `2024-01-${String(15 - Math.floor(i / 5)).padStart(2, "0")}T${String(10 - (i % 10)).padStart(2, "0")}:30:00Z`,
-      read: i >= 3,
-    }));
+    const manyNotifications: NotificationItem[] = Array.from(
+      { length: 25 },
+      (_, i) => ({
+        id: `${i + 1}`,
+        title: `Notification ${i + 1}`,
+        description: `This is the description for notification number ${i + 1}. It may be quite long and should be truncated.`,
+        timestamp: `2024-01-${String(15 - Math.floor(i / 5)).padStart(2, "0")}T${String(10 - (i % 10)).padStart(2, "0")}:30:00Z`,
+        read: i >= 3,
+      }),
+    );
 
     const [notifications, setNotifications] = React.useState(manyNotifications);
 
     const handleRead = (id: string) => {
       setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+        prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
       );
     };
 
@@ -197,25 +219,26 @@ export const ManyNotifications: Story = {
 
 export const HighCount: Story = {
   render: () => {
-    const manyUnread: NotificationItem[] = Array.from({ length: 150 }, (_, i) => ({
-      id: `${i + 1}`,
-      title: `Notification ${i + 1}`,
-      timestamp: `2024-01-15T10:30:00Z`,
-      read: false,
-    }));
-
-    return (
-      <NotificationBell
-        notifications={manyUnread}
-        maxVisible={5}
-      />
+    const manyUnread: NotificationItem[] = Array.from(
+      { length: 150 },
+      (_, i) => ({
+        id: `${i + 1}`,
+        title: `Notification ${i + 1}`,
+        timestamp: `2024-01-15T10:30:00Z`,
+        read: false,
+      }),
     );
+
+    return <NotificationBell notifications={manyUnread} maxVisible={5} />;
   },
 };
 
 export const AllRead: Story = {
   render: () => {
-    const readNotifications = sampleNotifications.map((n) => ({ ...n, read: true }));
+    const readNotifications = sampleNotifications.map((n) => ({
+      ...n,
+      read: true,
+    }));
 
     return <NotificationBell notifications={readNotifications} />;
   },
@@ -224,11 +247,12 @@ export const AllRead: Story = {
 export const ControlledOpen: Story = {
   render: () => {
     const [open, setOpen] = React.useState(false);
-    const [notifications, setNotifications] = React.useState(sampleNotifications);
+    const [notifications, setNotifications] =
+      React.useState(sampleNotifications);
 
     const handleRead = (id: string) => {
       setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+        prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
       );
     };
 
@@ -237,17 +261,34 @@ export const ControlledOpen: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "16px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "16px",
+        }}
+      >
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             onClick={() => setOpen(true)}
-            style={{ padding: "8px 16px", border: "1px solid #ccc", borderRadius: "4px", cursor: "pointer" }}
+            style={{
+              padding: "8px 16px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
           >
             Open Notifications
           </button>
           <button
             onClick={() => setOpen(false)}
-            style={{ padding: "8px 16px", border: "1px solid #ccc", borderRadius: "4px", cursor: "pointer" }}
+            style={{
+              padding: "8px 16px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
           >
             Close Notifications
           </button>

@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-import { readdir, readFile, writeFile } from "fs/promises";
-import { join, dirname, basename, extname } from "path";
-import { fileURLToPath } from "url";
+import { existsSync } from "node:fs";
+import { readdir, readFile, writeFile } from "node:fs/promises";
+import { basename, dirname, join } from "node:path";
+import { createInterface } from "node:readline";
+import { fileURLToPath } from "node:url";
 import Anthropic from "@anthropic-ai/sdk";
-import { existsSync } from "fs";
-import { createInterface } from "readline";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const COMPONENTS_DIR = join(ROOT, "src", "components");
 
-const WCAG_RULES = {
+const _WCAG_RULES = {
   MISSING_ARIA_LABEL: {
     pattern: /\b(aria-label|aria-labelledby)\b/,
     message: "WCAG 4.1.2 - Missing accessible name",
@@ -60,7 +60,11 @@ async function getComponentFiles() {
 
   for (const entry of entries) {
     if (entry.isDirectory()) {
-      const componentFile = join(COMPONENTS_DIR, entry.name, `${entry.name}.tsx`);
+      const componentFile = join(
+        COMPONENTS_DIR,
+        entry.name,
+        `${entry.name}.tsx`,
+      );
       if (existsSync(componentFile)) {
         files.push(componentFile);
       }
@@ -130,7 +134,7 @@ async function generateFix(component, violations, client) {
   const violationsList = violations
     .map(
       (v) =>
-        `- Line ${v.line}: [${v.code}] ${v.message} (${v.type}, ${v.severity})`
+        `- Line ${v.line}: [${v.code}] ${v.message} (${v.type}, ${v.severity})`,
     )
     .join("\n");
 
@@ -164,7 +168,9 @@ Return the corrected component code with all violations fixed. Maintain the orig
 
     const responseText =
       message.content[0].type === "text" ? message.content[0].text : "";
-    const codeMatch = responseText.match(/```(?:tsx?|jsx?)?\n?([\s\S]*?)\n?```/);
+    const codeMatch = responseText.match(
+      /```(?:tsx?|jsx?)?\n?([\s\S]*?)\n?```/,
+    );
 
     if (codeMatch) {
       return codeMatch[1];
@@ -179,9 +185,7 @@ Return the corrected component code with all violations fixed. Maintain the orig
 async function main() {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error(
-      "Error: ANTHROPIC_API_KEY environment variable is not set"
-    );
+    console.error("Error: ANTHROPIC_API_KEY environment variable is not set");
     process.exit(1);
   }
 
@@ -191,7 +195,7 @@ async function main() {
   const autoFix = args.includes("--fix") || args.includes("-f");
   const interactive = args.includes("--interactive") || args.includes("-i");
   const reportOnly = args.includes("--report") || args.includes("-r");
-  const useAxeVerify = args.includes("--verify") || args.includes("-v");
+  const _useAxeVerify = args.includes("--verify") || args.includes("-v");
 
   const rl = interactive ? createReadlineInterface() : null;
 
@@ -199,7 +203,7 @@ async function main() {
 
   const componentFiles = await getComponentFiles();
   const components = await Promise.all(
-    componentFiles.map((f) => readComponent(f))
+    componentFiles.map((f) => readComponent(f)),
   );
 
   const results = [];
@@ -216,7 +220,9 @@ async function main() {
       console.log(`   Violations: ${analysis.violations.length}`);
 
       const errors = analysis.violations.filter((v) => v.severity === "error");
-      const warnings = analysis.violations.filter((v) => v.severity === "warning");
+      const warnings = analysis.violations.filter(
+        (v) => v.severity === "warning",
+      );
 
       if (errors.length > 0) {
         console.log(`   🔴 Errors: ${errors.length}`);
@@ -238,7 +244,11 @@ async function main() {
 
       if (autoFix || interactive) {
         console.log(`   🔧 Generating fix...`);
-        const fixedCode = await generateFix(component, analysis.violations, client);
+        const fixedCode = await generateFix(
+          component,
+          analysis.violations,
+          client,
+        );
 
         if (fixedCode) {
           if (interactive && rl) {
@@ -249,7 +259,9 @@ async function main() {
               console.log(`   ${line}`);
             });
             if (fixedCode.split("\n").length > 10) {
-              console.log(`   ... (${fixedCode.split("\n").length - 10} more lines)`);
+              console.log(
+                `   ... (${fixedCode.split("\n").length - 10} more lines)`,
+              );
             }
             console.log(`   ${"─".repeat(56)}`);
 
@@ -311,7 +323,7 @@ async function main() {
     }
   }
 
-  console.log("\n" + "=".repeat(60));
+  console.log(`\n${"=".repeat(60)}`);
   console.log("📊 Summary");
   console.log("=".repeat(60));
   console.log(`Components analyzed: ${components.length}`);
@@ -321,18 +333,18 @@ async function main() {
 
   if (interactive) {
     console.log(
-      "\n✨ Interactive review complete! Please test the changes thoroughly."
+      "\n✨ Interactive review complete! Please test the changes thoroughly.",
     );
     rl.close();
   } else if (autoFix) {
     console.log(
-      "\n✨ Auto-fix complete! Please review the changes and test thoroughly."
+      "\n✨ Auto-fix complete! Please review the changes and test thoroughly.",
     );
   }
 
   if (totalViolations > 0 && !autoFix && !interactive && !reportOnly) {
     console.log(
-      '\n💡 Run with --fix to automatically fix violations, --interactive to review fixes, or --report to generate a detailed report.'
+      "\n💡 Run with --fix to automatically fix violations, --interactive to review fixes, or --report to generate a detailed report.",
     );
   }
 }

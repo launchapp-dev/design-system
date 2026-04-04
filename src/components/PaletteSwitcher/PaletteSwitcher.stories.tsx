@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { PaletteSwitcher } from "./index";
 import { builtinPalettes } from "../../themes/palettes";
+import { Badge } from "../Badge";
 import { Button } from "../Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../Card";
-import { Badge } from "../Badge";
 import { Input } from "../Input";
+import { PaletteSwitcher } from "./index";
 
 const meta: Meta<typeof PaletteSwitcher> = {
   title: "Components/PaletteSwitcher",
@@ -86,10 +86,18 @@ export const WithUIPreview: Story = {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-2 flex-wrap">
-              <Button variant="default" size="sm">Primary</Button>
-              <Button variant="secondary" size="sm">Secondary</Button>
-              <Button variant="outline" size="sm">Outline</Button>
-              <Button variant="ghost" size="sm">Ghost</Button>
+              <Button variant="default" size="sm">
+                Primary
+              </Button>
+              <Button variant="secondary" size="sm">
+                Secondary
+              </Button>
+              <Button variant="outline" size="sm">
+                Outline
+              </Button>
+              <Button variant="ghost" size="sm">
+                Ghost
+              </Button>
             </div>
             <div className="flex gap-2 flex-wrap">
               <Badge>Default</Badge>

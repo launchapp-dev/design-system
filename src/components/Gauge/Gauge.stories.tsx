@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { Gauge } from "./index";
 import type { GaugeColorZone } from "./Gauge";
+import { Gauge } from "./index";
 
 const meta: Meta<typeof Gauge> = {
   title: "Components/Gauge",
@@ -219,12 +219,7 @@ export const HalfValue: Story = {
 
 export const CustomFormat: Story = {
   name: "Custom Format Value",
-  render: (args) => (
-    <Gauge
-      {...args}
-      formatValue={(v) => v.toFixed(1)}
-    />
-  ),
+  render: (args) => <Gauge {...args} formatValue={(v) => v.toFixed(1)} />,
   args: {
     value: 75.6,
     min: 0,
@@ -240,27 +235,9 @@ export const MultipleGauges: Story = {
   name: "Multiple Gauges",
   render: () => (
     <div className="flex flex-wrap gap-8">
-      <Gauge
-        value={25}
-        label="Network"
-        unit="Mbps"
-        showValue
-        showMinMax
-      />
-      <Gauge
-        value={68}
-        label="CPU"
-        unit="%"
-        showValue
-        showMinMax
-      />
-      <Gauge
-        value={82}
-        label="Memory"
-        unit="GB"
-        showValue
-        showMinMax
-      />
+      <Gauge value={25} label="Network" unit="Mbps" showValue showMinMax />
+      <Gauge value={68} label="CPU" unit="%" showValue showMinMax />
+      <Gauge value={82} label="Memory" unit="GB" showValue showMinMax />
     </div>
   ),
 };
@@ -272,12 +249,7 @@ export const Interactive: Story = {
 
     return (
       <div className="flex flex-col items-center gap-4">
-        <Gauge
-          {...args}
-          value={value}
-          showValue
-          showMinMax
-        />
+        <Gauge {...args} value={value} showValue showMinMax />
         <div className="flex gap-2">
           {[25, 50, 75, 100].map((v) => (
             <button
@@ -289,7 +261,9 @@ export const Interactive: Story = {
             </button>
           ))}
         </div>
-        <p className="text-sm text-muted-foreground">Click a button to change the gauge value</p>
+        <p className="text-sm text-muted-foreground">
+          Click a button to change the gauge value
+        </p>
       </div>
     );
   },
@@ -326,27 +300,9 @@ export const DarkMode: Story = {
   render: () => (
     <div className="p-8 rounded-lg bg-zinc-900">
       <div className="flex flex-wrap gap-8">
-        <Gauge
-          value={35}
-          label="Low"
-          unit="%"
-          showValue
-          showMinMax
-        />
-        <Gauge
-          value={65}
-          label="Medium"
-          unit="%"
-          showValue
-          showMinMax
-        />
-        <Gauge
-          value={85}
-          label="High"
-          unit="%"
-          showValue
-          showMinMax
-        />
+        <Gauge value={35} label="Low" unit="%" showValue showMinMax />
+        <Gauge value={65} label="Medium" unit="%" showValue showMinMax />
+        <Gauge value={85} label="High" unit="%" showValue showMinMax />
       </div>
     </div>
   ),
@@ -357,7 +313,9 @@ export const DashboardLayout: Story = {
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
       <div className="p-6 rounded-lg border border-border bg-card">
-        <h3 className="text-sm font-medium text-muted-foreground mb-4">CPU Usage</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">
+          CPU Usage
+        </h3>
         <div className="flex justify-center">
           <Gauge
             value={72}
@@ -370,7 +328,9 @@ export const DashboardLayout: Story = {
         </div>
       </div>
       <div className="p-6 rounded-lg border border-border bg-card">
-        <h3 className="text-sm font-medium text-muted-foreground mb-4">Memory Usage</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">
+          Memory Usage
+        </h3>
         <div className="flex justify-center">
           <Gauge
             value={58}
@@ -383,7 +343,9 @@ export const DashboardLayout: Story = {
         </div>
       </div>
       <div className="p-6 rounded-lg border border-border bg-card">
-        <h3 className="text-sm font-medium text-muted-foreground mb-4">Disk Usage</h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">
+          Disk Usage
+        </h3>
         <div className="flex justify-center">
           <Gauge
             value={85}

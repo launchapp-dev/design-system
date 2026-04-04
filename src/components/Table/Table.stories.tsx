@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import {
   Table,
-  TableHeader,
   TableBody,
-  TableFooter,
-  TableRow,
-  TableHead,
-  TableCell,
   TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "./index";
 
 const meta: Meta<typeof Table> = {
@@ -21,11 +21,41 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const users = [
-  { id: 1, name: "Alice Johnson", email: "alice@example.com", role: "Admin", status: "Active" },
-  { id: 2, name: "Bob Smith", email: "bob@example.com", role: "Editor", status: "Active" },
-  { id: 3, name: "Carol White", email: "carol@example.com", role: "Viewer", status: "Inactive" },
-  { id: 4, name: "David Brown", email: "david@example.com", role: "Editor", status: "Active" },
-  { id: 5, name: "Eva Martinez", email: "eva@example.com", role: "Admin", status: "Active" },
+  {
+    id: 1,
+    name: "Alice Johnson",
+    email: "alice@example.com",
+    role: "Admin",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Bob Smith",
+    email: "bob@example.com",
+    role: "Editor",
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Carol White",
+    email: "carol@example.com",
+    role: "Viewer",
+    status: "Inactive",
+  },
+  {
+    id: 4,
+    name: "David Brown",
+    email: "david@example.com",
+    role: "Editor",
+    status: "Active",
+  },
+  {
+    id: 5,
+    name: "Eva Martinez",
+    email: "eva@example.com",
+    role: "Admin",
+    status: "Active",
+  },
 ];
 
 export const Default: Story = {
@@ -98,7 +128,9 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>With Caption and Footer</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          With Caption and Footer
+        </p>
         <Table>
           <TableCaption>Users with full table structure.</TableCaption>
           <TableHeader>
@@ -126,7 +158,9 @@ export const AllVariants: Story = {
         </Table>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Header and Body Only</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Header and Body Only
+        </p>
         <Table>
           <TableHeader>
             <TableRow>
@@ -147,7 +181,9 @@ export const AllVariants: Story = {
         </Table>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Selected Row State</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Selected Row State
+        </p>
         <Table>
           <TableHeader>
             <TableRow>
@@ -157,7 +193,10 @@ export const AllVariants: Story = {
           </TableHeader>
           <TableBody>
             {users.slice(0, 3).map((user, i) => (
-              <TableRow key={user.id} data-state={i === 1 ? "selected" : undefined}>
+              <TableRow
+                key={user.id}
+                data-state={i === 1 ? "selected" : undefined}
+              >
                 <TableCell className="font-medium">{user.name}</TableCell>
                 <TableCell>{user.role}</TableCell>
               </TableRow>
@@ -173,7 +212,9 @@ export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Default Density</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Default Density
+        </p>
         <Table>
           <TableHeader>
             <TableRow>
@@ -194,7 +235,9 @@ export const AllSizes: Story = {
         </Table>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Compact (reduced padding)</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Compact (reduced padding)
+        </p>
         <Table>
           <TableHeader>
             <TableRow>
@@ -206,7 +249,9 @@ export const AllSizes: Story = {
           <TableBody>
             {users.slice(0, 3).map((user) => (
               <TableRow key={user.id}>
-                <TableCell className="py-1 px-2 font-medium">{user.name}</TableCell>
+                <TableCell className="py-1 px-2 font-medium">
+                  {user.name}
+                </TableCell>
                 <TableCell className="py-1 px-2">{user.email}</TableCell>
                 <TableCell className="py-1 px-2">{user.role}</TableCell>
               </TableRow>
@@ -242,7 +287,9 @@ export const Interactive: Story = {
               <TableRow
                 key={user.id}
                 data-state={selected === user.id ? "selected" : undefined}
-                onClick={() => setSelected(selected === user.id ? null : user.id)}
+                onClick={() =>
+                  setSelected(selected === user.id ? null : user.id)
+                }
                 style={{ cursor: "pointer" }}
               >
                 <TableCell>{user.id}</TableCell>
@@ -262,7 +309,10 @@ export const Interactive: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
@@ -306,7 +356,9 @@ export const EdgeCases: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Long Text Content</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Long Text Content
+        </p>
         <div style={{ width: 500 }}>
           <Table>
             <TableHeader>
@@ -317,10 +369,13 @@ export const EdgeCases: Story = {
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell className="font-medium">A Very Long Name That Could Wrap</TableCell>
+                <TableCell className="font-medium">
+                  A Very Long Name That Could Wrap
+                </TableCell>
                 <TableCell>
-                  This is a particularly long description that tests how the table handles
-                  overflowing text content in a cell with no explicit width constraint applied.
+                  This is a particularly long description that tests how the
+                  table handles overflowing text content in a cell with no
+                  explicit width constraint applied.
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -332,7 +387,9 @@ export const EdgeCases: Story = {
         </div>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Empty Table</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Empty Table
+        </p>
         <div style={{ width: 400 }}>
           <Table>
             <TableCaption>No results found.</TableCaption>
@@ -345,7 +402,10 @@ export const EdgeCases: Story = {
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell colSpan={3} className="text-center text-muted-foreground">
+                <TableCell
+                  colSpan={3}
+                  className="text-center text-muted-foreground"
+                >
                   No data available.
                 </TableCell>
               </TableRow>

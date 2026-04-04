@@ -1,7 +1,11 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getTemplateById, ALL_TEMPLATE_IDS, type TemplateId } from "@/lib/templates-registry";
+import { notFound } from "next/navigation";
 import { CodeBlock } from "@/components/CodeBlock";
+import {
+  ALL_TEMPLATE_IDS,
+  getTemplateById,
+  type TemplateId,
+} from "@/lib/templates-registry";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -28,7 +32,10 @@ export default async function TemplateDetailPage({ params }: PageProps) {
 
   const currentIdx = ALL_TEMPLATE_IDS.indexOf(id as TemplateId);
   const prevId = currentIdx > 0 ? ALL_TEMPLATE_IDS[currentIdx - 1] : null;
-  const nextId = currentIdx < ALL_TEMPLATE_IDS.length - 1 ? ALL_TEMPLATE_IDS[currentIdx + 1] : null;
+  const nextId =
+    currentIdx < ALL_TEMPLATE_IDS.length - 1
+      ? ALL_TEMPLATE_IDS[currentIdx + 1]
+      : null;
 
   const prevTemplate = prevId ? getTemplateById(prevId) : null;
   const nextTemplate = nextId ? getTemplateById(nextId) : null;
@@ -40,7 +47,10 @@ export default async function TemplateDetailPage({ params }: PageProps) {
           Home
         </Link>
         <span>/</span>
-        <Link href="/templates" className="hover:text-foreground transition-colors">
+        <Link
+          href="/templates"
+          className="hover:text-foreground transition-colors"
+        >
           Templates
         </Link>
         <span>/</span>
@@ -54,7 +64,9 @@ export default async function TemplateDetailPage({ params }: PageProps) {
             {template.category}
           </span>
         </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">{template.description}</p>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          {template.description}
+        </p>
       </div>
 
       <div className="grid grid-cols-2 gap-8 mb-12">
@@ -78,7 +90,10 @@ export default async function TemplateDetailPage({ params }: PageProps) {
           </h2>
           <div className="space-y-2">
             {template.blocks.map((block, i) => (
-              <div key={i} className="inline-flex items-center rounded-md border bg-muted px-3 py-1 text-sm text-muted-foreground mr-2 mb-2">
+              <div
+                key={i}
+                className="inline-flex items-center rounded-md border bg-muted px-3 py-1 text-sm text-muted-foreground mr-2 mb-2"
+              >
                 {block}
               </div>
             ))}
@@ -104,7 +119,7 @@ export default async function TemplateDetailPage({ params }: PageProps) {
         <h2 className="text-xl font-semibold mb-4">Usage Example</h2>
         <CodeBlock
           lang="tsx"
-          title={`${template.name.replace(/\s+/g, '')}.tsx`}
+          title={`${template.name.replace(/\s+/g, "")}.tsx`}
           code={template.previewCode}
         />
       </section>
@@ -114,15 +129,21 @@ export default async function TemplateDetailPage({ params }: PageProps) {
         <div className="rounded-lg border p-6 bg-muted/30">
           <div className="space-y-4">
             <div>
-              <h3 className="text-sm font-semibold text-muted-foreground mb-1">Template ID</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-1">
+                Template ID
+              </h3>
               <p className="font-mono text-sm">{template.id}</p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-muted-foreground mb-1">Source File</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-1">
+                Source File
+              </h3>
               <p className="font-mono text-sm">{template.sourceFile}</p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-muted-foreground mb-1">Category</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-1">
+                Category
+              </h3>
               <p className="text-sm">{template.category}</p>
             </div>
           </div>

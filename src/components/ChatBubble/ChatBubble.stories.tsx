@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  ChatBubble,
-  ChatBubbleGroup,
-  ChatBubbleLinkPreview,
-} from "./index";
+import { ChatBubble, ChatBubbleGroup, ChatBubbleLinkPreview } from "./index";
 
 const meta = {
   title: "Components/ChatBubble",
@@ -24,9 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <ChatBubble {...args}>
-      Hello! How can I help you today?
-    </ChatBubble>
+    <ChatBubble {...args}>Hello! How can I help you today?</ChatBubble>
   ),
   args: {
     variant: "assistant",
@@ -37,9 +31,7 @@ export const Default: Story = {
 
 export const UserMessage: Story = {
   render: (args) => (
-    <ChatBubble {...args}>
-      Can you help me write a React component?
-    </ChatBubble>
+    <ChatBubble {...args}>Can you help me write a React component?</ChatBubble>
   ),
   args: {
     variant: "user",
@@ -52,7 +44,8 @@ export const UserMessage: Story = {
 export const AssistantMessage: Story = {
   render: (args) => (
     <ChatBubble {...args}>
-      Of course! I'd be happy to help you write a React component. What kind of component are you looking to create?
+      Of course! I'd be happy to help you write a React component. What kind of
+      component are you looking to create?
     </ChatBubble>
   ),
   args: {
@@ -137,7 +130,8 @@ export const Conversation: Story = {
         Hello! I'm happy to help. What kind of project are you working on?
       </ChatBubble>
       <ChatBubble variant="user" avatarFallback="JD" timestamp="2:32 PM">
-        I'm building a **dashboard** with *charts* and need to know how to use `recharts`.
+        I'm building a **dashboard** with *charts* and need to know how to use
+        `recharts`.
       </ChatBubble>
       <ChatBubble variant="assistant" avatarFallback="AI" timestamp="2:33 PM">
         {`Great choice! Recharts is excellent for dashboards. Here's a simple example:\n\n\`\`\`tsx\nimport { LineChart, Line, XAxis, YAxis } from 'recharts';\n\nconst data = [\n  { name: 'Jan', value: 400 },\n  { name: 'Feb', value: 300 },\n];\n\`\`\`\n\nLearn more at [recharts.org](https://recharts.org).`}
@@ -165,7 +159,8 @@ export const AllVariants: Story = {
 export const WithAvatarImage: Story = {
   render: (args) => (
     <ChatBubble {...args}>
-      Thanks for reaching out! I'm here to help with any questions you might have.
+      Thanks for reaching out! I'm here to help with any questions you might
+      have.
     </ChatBubble>
   ),
   args: {
@@ -228,9 +223,7 @@ export const DarkMode: Story = {
 
 export const WithoutAvatar: Story = {
   render: (args) => (
-    <ChatBubble {...args}>
-      This message has no avatar displayed.
-    </ChatBubble>
+    <ChatBubble {...args}>This message has no avatar displayed.</ChatBubble>
   ),
   args: {
     variant: "assistant",

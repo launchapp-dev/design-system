@@ -181,14 +181,14 @@ export class TokenHoverProvider implements vscode.HoverProvider {
   provideHover(
     document: vscode.TextDocument,
     position: vscode.Position,
-    token: vscode.CancellationToken
+    _token: vscode.CancellationToken,
   ): vscode.ProviderResult<vscode.Hover> {
     const range = document.getWordRangeAtPosition(position);
     if (!range) {
       return null;
     }
 
-    const word = document.getText(range);
+    const _word = document.getText(range);
     const line = document.lineAt(position.line).text;
 
     // Check if we're looking at a design token reference
@@ -241,8 +241,8 @@ export class TokenCompletionProvider implements vscode.CompletionItemProvider {
   provideCompletionItems(
     document: vscode.TextDocument,
     position: vscode.Position,
-    token: vscode.CancellationToken,
-    context: vscode.CompletionContext
+    _token: vscode.CancellationToken,
+    _context: vscode.CompletionContext,
   ): vscode.CompletionItem[] {
     // Only provide token completions after --la- prefix
     const line = document.lineAt(position.line).text;
@@ -253,8 +253,7 @@ export class TokenCompletionProvider implements vscode.CompletionItemProvider {
       document.languageId === "css" ||
       document.languageId === "scss" ||
       document.languageId === "postcss";
-    const isInJSString =
-      linePrefix.includes('"') || linePrefix.includes("'");
+    const isInJSString = linePrefix.includes('"') || linePrefix.includes("'");
     const isInTemplate = linePrefix.includes("`");
 
     if (!isInCSS && !isInJSString && !isInTemplate) {
@@ -272,12 +271,12 @@ export class TokenCompletionProvider implements vscode.CompletionItemProvider {
     Object.entries(DESIGN_TOKENS).forEach(([tokenName, tokenInfo]) => {
       const item = new vscode.CompletionItem(
         tokenName,
-        vscode.CompletionItemKind.Variable
+        vscode.CompletionItemKind.Variable,
       );
 
       item.detail = `${tokenInfo.category} - ${tokenInfo.name}`;
       item.documentation = new vscode.MarkdownString(
-        `${tokenInfo.description}\n\n**Examples:** ${tokenInfo.examples.join(", ")}`
+        `${tokenInfo.description}\n\n**Examples:** ${tokenInfo.examples.join(", ")}`,
       );
       item.insertText = tokenName;
 

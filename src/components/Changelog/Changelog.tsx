@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
 export type ChangelogTag =
@@ -46,7 +46,7 @@ const changelogTagVariants = cva(
           "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))]",
       },
     },
-  }
+  },
 );
 
 const TAG_LABELS: Record<ChangelogTag, string> = {
@@ -96,7 +96,12 @@ function ChangelogEntryCard({ entry }: { entry: ChangelogEntry }) {
           {entry.changes.map((change, i) => (
             <li key={i} className="flex items-start gap-2 text-sm">
               {change.tag && (
-                <span className={cn(changelogTagVariants({ tag: change.tag }), "mt-0.5 flex-shrink-0")}>
+                <span
+                  className={cn(
+                    changelogTagVariants({ tag: change.tag }),
+                    "mt-0.5 flex-shrink-0",
+                  )}
+                >
                   {TAG_LABELS[change.tag]}
                 </span>
               )}

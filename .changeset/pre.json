@@ -6,7 +6,5 @@
     "@launchapp/docs": "0.1.0",
     "@launchapp/create-design-system": "0.1.0"
   },
-  "changesets": [
-    "many-pandas-rush"
-  ]
+  "changesets": ["many-pandas-rush"]
 }

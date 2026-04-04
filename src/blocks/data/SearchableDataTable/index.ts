@@ -1,2 +1,5 @@
+export type {
+  SearchableDataTableFilterOption,
+  SearchableDataTableProps,
+} from "./SearchableDataTable";
 export { SearchableDataTable } from "./SearchableDataTable";
-export type { SearchableDataTableProps, SearchableDataTableFilterOption } from "./SearchableDataTable";

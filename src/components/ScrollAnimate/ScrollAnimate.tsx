@@ -6,31 +6,40 @@ function usePrefersReducedMotion() {
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 }
 
-export interface FadeInOnScrollProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface FadeInOnScrollProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   threshold?: number;
   duration?: number;
   delay?: number;
 }
 
-function FadeInOnScroll(
-  { children, threshold = 0.1, duration = 600, delay = 0, className, style, ref, ...props }: FadeInOnScrollProps & { ref?: React.Ref<HTMLDivElement> }
-) {
+function FadeInOnScroll({
+  children,
+  threshold = 0.1,
+  duration = 600,
+  delay = 0,
+  className,
+  style,
+  ref,
+  ...props
+}: FadeInOnScrollProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [isVisible, setIsVisible] = React.useState(false);
   const localRef = React.useRef<HTMLDivElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const setRefs = React.useCallback(
     (node: HTMLDivElement | null) => {
-      (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      (localRef as React.MutableRefObject<HTMLDivElement | null>).current =
+        node;
       if (typeof ref === "function") ref(node);
       else if (ref)
         (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
     },
-    [ref]
+    [ref],
   );
 
   React.useEffect(() => {
@@ -45,7 +54,7 @@ function FadeInOnScroll(
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold },
     );
     if (localRef.current) observer.observe(localRef.current);
     return () => observer.disconnect();
@@ -81,32 +90,31 @@ export interface CountUpProps extends React.HTMLAttributes<HTMLSpanElement> {
   threshold?: number;
 }
 
-function CountUp(
-  {
-    to,
-    from = 0,
-    duration = 1500,
-    decimals = 0,
-    prefix = "",
-    suffix = "",
-    threshold = 0.1,
-    className,
-    ref,
-    ...props
-  }: CountUpProps & { ref?: React.Ref<HTMLSpanElement> }
-) {
+function CountUp({
+  to,
+  from = 0,
+  duration = 1500,
+  decimals = 0,
+  prefix = "",
+  suffix = "",
+  threshold = 0.1,
+  className,
+  ref,
+  ...props
+}: CountUpProps & { ref?: React.Ref<HTMLSpanElement> }) {
   const [value, setValue] = React.useState(from);
   const localRef = React.useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const setRefs = React.useCallback(
     (node: HTMLSpanElement | null) => {
-      (localRef as React.MutableRefObject<HTMLSpanElement | null>).current = node;
+      (localRef as React.MutableRefObject<HTMLSpanElement | null>).current =
+        node;
       if (typeof ref === "function") ref(node);
       else if (ref)
         (ref as React.MutableRefObject<HTMLSpanElement | null>).current = node;
     },
-    [ref]
+    [ref],
   );
 
   React.useEffect(() => {
@@ -125,14 +133,14 @@ function CountUp(
         const tick = (now: number) => {
           const elapsed = now - start;
           const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
+          const eased = 1 - (1 - progress) ** 3;
           setValue(from + range * eased);
           if (progress < 1) requestAnimationFrame(tick);
         };
 
         requestAnimationFrame(tick);
       },
-      { threshold }
+      { threshold },
     );
     if (localRef.current) observer.observe(localRef.current);
     return () => observer.disconnect();
@@ -161,19 +169,27 @@ export interface ParallaxProps extends React.HTMLAttributes<HTMLDivElement> {
   speed?: number;
 }
 
-function Parallax({ speed = 0.3, children, className, style, ref, ...props }: ParallaxProps & { ref?: React.Ref<HTMLDivElement> }) {
+function Parallax({
+  speed = 0.3,
+  children,
+  className,
+  style,
+  ref,
+  ...props
+}: ParallaxProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [offset, setOffset] = React.useState(0);
   const localRef = React.useRef<HTMLDivElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const setRefs = React.useCallback(
     (node: HTMLDivElement | null) => {
-      (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      (localRef as React.MutableRefObject<HTMLDivElement | null>).current =
+        node;
       if (typeof ref === "function") ref(node);
       else if (ref)
         (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
     },
-    [ref]
+    [ref],
   );
 
   React.useEffect(() => {
@@ -208,4 +224,4 @@ function Parallax({ speed = 0.3, children, className, style, ref, ...props }: Pa
 }
 Parallax.displayName = "Parallax";
 
-export { FadeInOnScroll, CountUp, Parallax };
+export { CountUp, FadeInOnScroll, Parallax };

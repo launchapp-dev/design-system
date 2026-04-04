@@ -1,8 +1,9 @@
 import * as React from "react";
+import { easing, useReducedMotion } from "../../lib/animation";
 import { cn } from "../../lib/utils";
-import { useReducedMotion, easing } from "../../lib/animation";
 
-export interface StaggeredListProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface StaggeredListProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   staggerDelay?: number;
   duration?: number;
   initialDelay?: number;
@@ -52,17 +53,15 @@ function StaggeredItem({
   );
 }
 
-function StaggeredList(
-  {
-    children,
-    staggerDelay = 80,
-    duration = 400,
-    initialDelay = 0,
-    className,
-    ref,
-    ...props
-  }: StaggeredListProps & { ref?: React.Ref<HTMLDivElement> }
-) {
+function StaggeredList({
+  children,
+  staggerDelay = 80,
+  duration = 400,
+  initialDelay = 0,
+  className,
+  ref,
+  ...props
+}: StaggeredListProps & { ref?: React.Ref<HTMLDivElement> }) {
   const prefersReducedMotion = useReducedMotion();
 
   return (

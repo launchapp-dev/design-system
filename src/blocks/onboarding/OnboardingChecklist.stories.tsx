@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { OnboardingChecklist } from "./OnboardingChecklist";
 import type { ChecklistItem } from "./OnboardingChecklist";
+import { OnboardingChecklist } from "./OnboardingChecklist";
 
 const baseItems: ChecklistItem[] = [
   {
@@ -71,7 +71,9 @@ export default function Page() {
 export default meta;
 type Story = StoryObj<typeof OnboardingChecklist>;
 
-const InteractiveTemplate = (args: React.ComponentProps<typeof OnboardingChecklist>) => {
+const InteractiveTemplate = (
+  args: React.ComponentProps<typeof OnboardingChecklist>,
+) => {
   const [items, setItems] = React.useState(args.items);
   return (
     <div style={{ maxWidth: 520 }}>
@@ -79,7 +81,11 @@ const InteractiveTemplate = (args: React.ComponentProps<typeof OnboardingCheckli
         {...args}
         items={items}
         onItemToggle={(id, completed) =>
-          setItems((prev) => prev.map((item) => (item.id === id ? { ...item, completed } : item)))
+          setItems((prev) =>
+            prev.map((item) =>
+              item.id === id ? { ...item, completed } : item,
+            ),
+          )
         }
       />
     </div>
@@ -109,7 +115,14 @@ export const AllComplete: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 520 }}>
+    <div
+      className="dark"
+      style={{
+        background: "hsl(240 10% 3.9%)",
+        padding: "24px",
+        maxWidth: 520,
+      }}
+    >
       <OnboardingChecklist {...args} />
     </div>
   ),

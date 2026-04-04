@@ -1,32 +1,72 @@
-import * as React from "react";
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@launchapp/design-system";
 import Link from "next/link";
-import { Button } from "@launchapp/design-system";
-import { Badge } from "@launchapp/design-system";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@launchapp/design-system";
 
 const features = [
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
     ),
     title: "Accessible by Default",
-    description: "Built on Radix UI primitives — keyboard navigation, ARIA attributes, and focus management are included out of the box.",
+    description:
+      "Built on Radix UI primitives — keyboard navigation, ARIA attributes, and focus management are included out of the box.",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         <circle cx="12" cy="12" r="4" />
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
       </svg>
     ),
     title: "Dark Mode Ready",
-    description: "Full dark mode support via CSS custom properties. Toggle instantly without flicker using the class strategy.",
+    description:
+      "Full dark mode support via CSS custom properties. Toggle instantly without flicker using the class strategy.",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         <rect width="8" height="8" x="2" y="2" rx="2" />
         <path d="M14 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2" />
         <path d="M20 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2" />
@@ -36,38 +76,75 @@ const features = [
       </svg>
     ),
     title: "Composable Components",
-    description: "54+ components built with compound patterns. Use them individually or compose them into complex UI patterns.",
+    description:
+      "54+ components built with compound patterns. Use them individually or compose them into complex UI patterns.",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
       </svg>
     ),
     title: "Consistent Design Language",
-    description: "Unified variant system with size (sm/md/lg) and variant (default/outline/ghost/destructive) across all interactive components.",
+    description:
+      "Unified variant system with size (sm/md/lg) and variant (default/outline/ghost/destructive) across all interactive components.",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
         <path d="M12 12v9" />
         <path d="m16 16-4-4-4 4" />
       </svg>
     ),
     title: "Full Type Safety",
-    description: "Written entirely in TypeScript with full type inference, CVA variant types, and exported component prop types.",
+    description:
+      "Written entirely in TypeScript with full type inference, CVA variant types, and exported component prop types.",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         <path d="M12 22V12" />
         <path d="m17 7-5-5-5 5" />
         <path d="M5 22h14" />
       </svg>
     ),
     title: "Tree-Shakeable",
-    description: "Import only what you need. ESM and CJS bundles with full tree-shaking support keeps your bundle lean.",
+    description:
+      "Import only what you need. ESM and CJS bundles with full tree-shaking support keeps your bundle lean.",
   },
 ];
 
@@ -85,8 +162,14 @@ export function HeroSection() {
         />
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="outline" className="mb-6 inline-flex gap-1.5 py-1 px-3 text-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+            <Badge
+              variant="outline"
+              className="mb-6 inline-flex gap-1.5 py-1 px-3 text-xs"
+            >
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-primary"
+                aria-hidden="true"
+              />
               v0.1.0 — Now available
             </Badge>
 
@@ -96,8 +179,9 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-xl">
-              A production-ready React component library built on Radix UI primitives. 54+ accessible,
-              composable components with full dark mode, TypeScript support, and consistent design tokens.
+              A production-ready React component library built on Radix UI
+              primitives. 54+ accessible, composable components with full dark
+              mode, TypeScript support, and consistent design tokens.
             </p>
 
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -111,19 +195,71 @@ export function HeroSection() {
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
                 54+ components
               </span>
               <span className="flex items-center gap-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
                 WCAG AA accessible
               </span>
               <span className="flex items-center gap-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
                 TypeScript first
               </span>
               <span className="flex items-center gap-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
                 Dark mode built-in
               </span>
             </div>
@@ -138,7 +274,8 @@ export function HeroSection() {
               Everything you need
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Built for teams who want accessible, beautiful UI without the overhead.
+              Built for teams who want accessible, beautiful UI without the
+              overhead.
             </p>
           </div>
 

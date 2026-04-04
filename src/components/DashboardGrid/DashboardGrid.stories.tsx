@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { DashboardGrid } from "./index";
-import type { DashboardWidget } from "./DashboardGrid";
-import { Sparkline } from "../Sparkline";
 import { Badge } from "../Badge";
+import { Sparkline } from "../Sparkline";
+import type { DashboardWidget } from "./DashboardGrid";
+import { DashboardGrid } from "./index";
 
 const sampleWidgets: DashboardWidget[] = [
   {
@@ -14,7 +14,9 @@ const sampleWidgets: DashboardWidget[] = [
       <div>
         <div className="text-2xl font-bold text-card-foreground">$124,500</div>
         <div className="flex items-center gap-1 mt-1">
-          <Badge variant="secondary" className="text-xs">+12.5%</Badge>
+          <Badge variant="secondary" className="text-xs">
+            +12.5%
+          </Badge>
           <span className="text-xs text-muted-foreground">vs last month</span>
         </div>
         <div className="mt-2">
@@ -36,7 +38,9 @@ const sampleWidgets: DashboardWidget[] = [
       <div>
         <div className="text-2xl font-bold text-card-foreground">8,234</div>
         <div className="flex items-center gap-1 mt-1">
-          <Badge variant="secondary" className="text-xs">+8.3%</Badge>
+          <Badge variant="secondary" className="text-xs">
+            +8.3%
+          </Badge>
           <span className="text-xs text-muted-foreground">vs last week</span>
         </div>
         <div className="mt-2">
@@ -57,7 +61,9 @@ const sampleWidgets: DashboardWidget[] = [
     children: (
       <div>
         <div className="text-2xl font-bold text-card-foreground">3.24%</div>
-        <div className="text-xs text-muted-foreground mt-1">From 15,200 visitors</div>
+        <div className="text-xs text-muted-foreground mt-1">
+          From 15,200 visitors
+        </div>
       </div>
     ),
   },
@@ -152,7 +158,7 @@ export const Default: Story = {
 export const Editable: Story = {
   render: (args) => {
     const [widgets, setWidgets] = React.useState(args.widgets);
-    
+
     return (
       <div>
         <p className="text-sm text-muted-foreground mb-4">
@@ -191,12 +197,12 @@ export const WithOnReorder: Story = {
   render: (args) => {
     const [widgets, setWidgets] = React.useState(args.widgets);
     const [lastChange, setLastChange] = React.useState<string | null>(null);
-    
+
     const handleReorder = (newWidgets: DashboardWidget[]) => {
       setWidgets(newWidgets);
       setLastChange(`Reordered: ${newWidgets.map((w) => w.title).join(" → ")}`);
     };
-    
+
     return (
       <div>
         <DashboardGrid
@@ -258,7 +264,9 @@ export const MixedSizes: Story = {
         id: "lg-1",
         title: "Large Widget",
         size: "lg",
-        children: <div>Large widget spanning two columns with extensive content</div>,
+        children: (
+          <div>Large widget spanning two columns with extensive content</div>
+        ),
       },
       {
         id: "sm-3",

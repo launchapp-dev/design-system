@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
+import { Button } from "../Button";
 import {
-  AlertDialogRoot,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  AlertDialogTitle,
-  AlertDialogDescription,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogRoot,
+  AlertDialogTitle,
+  AlertDialogTrigger,
 } from "./index";
-import { Button } from "../Button";
 
 const meta: Meta = {
   title: "Components/AlertDialog",
@@ -30,8 +30,8 @@ export const Default: Story = {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your account and remove your
-            data from our servers.
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -48,7 +48,14 @@ export const DestructiveConfirm: Story = {
     const [confirmed, setConfirmed] = React.useState(false);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+          alignItems: "flex-start",
+        }}
+      >
         <AlertDialogRoot>
           <AlertDialogTrigger asChild>
             <Button variant="destructive">Delete Account</Button>
@@ -57,13 +64,17 @@ export const DestructiveConfirm: Story = {
             <AlertDialogHeader>
               <AlertDialogTitle>Delete Account</AlertDialogTitle>
               <AlertDialogDescription>
-                This will permanently delete your account. All your data will be removed and you
-                will not be able to recover it.
+                This will permanently delete your account. All your data will be
+                removed and you will not be able to recover it.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={() => setConfirmed(false)}>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={() => setConfirmed(true)}>Delete</AlertDialogAction>
+              <AlertDialogCancel onClick={() => setConfirmed(false)}>
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={() => setConfirmed(true)}>
+                Delete
+              </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogRoot>

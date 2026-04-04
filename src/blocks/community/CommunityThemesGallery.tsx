@@ -1,39 +1,62 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../../components/Card";
-import { ThemeCard } from "../../components/ThemeCard";
 import { Badge } from "../../components/Badge";
+import { Button } from "../../components/Button";
 import {
-  DialogRoot,
-  DialogContent,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../../components/Card";
+import {
   DialogClose,
-  DialogHeader,
-  DialogTitle,
+  DialogContent,
   DialogDescription,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
 } from "../../components/Dialog";
+import { Input } from "../../components/Input";
 import { ScrollArea } from "../../components/ScrollArea";
 import { Separator } from "../../components/Separator";
+import { ThemeCard } from "../../components/ThemeCard";
+import { cn } from "../../lib/utils";
 import { listCommunityThemes } from "../../themes/community-registry";
 import type { CommunityTheme } from "../../themes/community-themes";
 
-export interface CommunityThemesGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CommunityThemesGalleryProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   themes?: CommunityTheme[];
   featuredThemeIds?: string[];
   onUseTheme?: (themeId: string) => void;
   columns?: 2 | 3 | 4;
 }
 
-const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesGalleryProps>(
-  ({ themes, featuredThemeIds = [], onUseTheme, columns = 3, className, ...props }, ref) => {
+const CommunityThemesGallery = React.forwardRef<
+  HTMLDivElement,
+  CommunityThemesGalleryProps
+>(
+  (
+    {
+      themes,
+      featuredThemeIds = [],
+      onUseTheme,
+      columns = 3,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
     const [searchTerm, setSearchTerm] = React.useState("");
-    const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(null);
-    const [detailsTheme, setDetailsTheme] = React.useState<CommunityTheme | null>(null);
+    const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(
+      null,
+    );
+    const [detailsTheme, setDetailsTheme] =
+      React.useState<CommunityTheme | null>(null);
 
     const allThemes = themes || listCommunityThemes();
     const allKeywords = Array.from(
-      new Set(allThemes.flatMap((t) => t.keywords || []))
+      new Set(allThemes.flatMap((t) => t.keywords || [])),
     ).sort();
 
     const filteredThemes = allThemes.filter((theme) => {
@@ -42,13 +65,18 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
         theme.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         theme.author.name.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const matchesKeyword = !selectedKeyword || (theme.keywords || []).includes(selectedKeyword);
+      const matchesKeyword =
+        !selectedKeyword || (theme.keywords || []).includes(selectedKeyword);
 
       return matchesSearch && matchesKeyword;
     });
 
-    const featuredThemes = filteredThemes.filter((t) => featuredThemeIds.includes(t.id));
-    const otherThemes = filteredThemes.filter((t) => !featuredThemeIds.includes(t.id));
+    const featuredThemes = filteredThemes.filter((t) =>
+      featuredThemeIds.includes(t.id),
+    );
+    const otherThemes = filteredThemes.filter(
+      (t) => !featuredThemeIds.includes(t.id),
+    );
 
     const colClasses: Record<number, string> = {
       2: "grid-cols-1 sm:grid-cols-2",
@@ -89,15 +117,21 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
 
               {allKeywords.length > 0 && (
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-muted-foreground">Filter by category</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Filter by category
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {allKeywords.map((keyword) => (
                       <Badge
                         key={keyword}
-                        variant={selectedKeyword === keyword ? "default" : "outline"}
+                        variant={
+                          selectedKeyword === keyword ? "default" : "outline"
+                        }
                         className="cursor-pointer"
                         onClick={() =>
-                          setSelectedKeyword(selectedKeyword === keyword ? null : keyword)
+                          setSelectedKeyword(
+                            selectedKeyword === keyword ? null : keyword,
+                          )
                         }
                       >
                         {keyword}
@@ -113,7 +147,9 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
             <div className="space-y-4">
               <div>
                 <h2 className="text-lg font-semibold">Featured Themes</h2>
-                <p className="text-sm text-muted-foreground">Handpicked themes from our community</p>
+                <p className="text-sm text-muted-foreground">
+                  Handpicked themes from our community
+                </p>
               </div>
               <div className={cn("grid gap-4", colClasses[columns])}>
                 {featuredThemes.map((theme) => (
@@ -131,13 +167,12 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
 
           {otherThemes.length > 0 && (
             <div className="space-y-4">
-              {featuredThemes.length > 0 && (
-                <Separator />
-              )}
+              {featuredThemes.length > 0 && <Separator />}
               <div>
                 <h2 className="text-lg font-semibold">All Themes</h2>
                 <p className="text-sm text-muted-foreground">
-                  {filteredThemes.length} theme{filteredThemes.length !== 1 ? "s" : ""} available
+                  {filteredThemes.length} theme
+                  {filteredThemes.length !== 1 ? "s" : ""} available
                 </p>
               </div>
               <div className={cn("grid gap-4", colClasses[columns])}>
@@ -157,7 +192,9 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
             <Card>
               <CardContent className="pt-6">
                 <div className="text-center space-y-2">
-                  <p className="text-muted-foreground">No themes found matching your criteria</p>
+                  <p className="text-muted-foreground">
+                    No themes found matching your criteria
+                  </p>
                   <Button
                     variant="outline"
                     size="sm"
@@ -174,7 +211,10 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
           )}
         </div>
 
-        <DialogRoot open={!!detailsTheme} onOpenChange={(open) => !open && setDetailsTheme(null)}>
+        <DialogRoot
+          open={!!detailsTheme}
+          onOpenChange={(open) => !open && setDetailsTheme(null)}
+        >
           <DialogContent className="max-w-2xl max-h-[80vh]">
             {detailsTheme && (
               <>
@@ -188,18 +228,30 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
                 <ScrollArea className="pr-4 space-y-4">
                   <div className="space-y-4">
                     <div>
-                      <h3 className="font-semibold text-sm mb-2">Description</h3>
-                      <p className="text-sm text-muted-foreground">{detailsTheme.description}</p>
+                      <h3 className="font-semibold text-sm mb-2">
+                        Description
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {detailsTheme.description}
+                      </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">Version</p>
-                        <p className="text-sm font-mono">{detailsTheme.version}</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">
+                          Version
+                        </p>
+                        <p className="text-sm font-mono">
+                          {detailsTheme.version}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">License</p>
-                        <p className="text-sm font-mono">{detailsTheme.license}</p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">
+                          License
+                        </p>
+                        <p className="text-sm font-mono">
+                          {detailsTheme.license}
+                        </p>
                       </div>
                     </div>
 
@@ -235,40 +287,54 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
                       </div>
                     )}
 
-                    {detailsTheme.keywords && detailsTheme.keywords.length > 0 && (
-                      <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-2">
-                          Keywords
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {detailsTheme.keywords.map((keyword) => (
-                            <Badge key={keyword} variant="secondary" className="text-xs">
-                              {keyword}
-                            </Badge>
-                          ))}
+                    {detailsTheme.keywords &&
+                      detailsTheme.keywords.length > 0 && (
+                        <div>
+                          <p className="text-xs font-medium text-muted-foreground mb-2">
+                            Keywords
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {detailsTheme.keywords.map((keyword) => (
+                              <Badge
+                                key={keyword}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {keyword}
+                              </Badge>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     <Separator />
 
                     <div>
-                      <h3 className="font-semibold text-sm mb-3">Color Tokens</h3>
+                      <h3 className="font-semibold text-sm mb-3">
+                        Color Tokens
+                      </h3>
                       <div className="space-y-3">
                         <div>
                           <p className="text-xs font-medium text-muted-foreground mb-2">
                             Light Mode
                           </p>
                           <div className="grid grid-cols-2 gap-2 text-xs">
-                            {Object.entries(detailsTheme.tokens.light).map(([key, value]) => (
-                              <div key={key} className="flex items-center gap-2">
+                            {Object.entries(detailsTheme.tokens.light).map(
+                              ([key, value]) => (
                                 <div
-                                  className="h-6 w-6 rounded border border-border"
-                                  style={{ backgroundColor: `hsl(${value})` }}
-                                />
-                                <span className="font-mono text-muted-foreground">{key}</span>
-                              </div>
-                            ))}
+                                  key={key}
+                                  className="flex items-center gap-2"
+                                >
+                                  <div
+                                    className="h-6 w-6 rounded border border-border"
+                                    style={{ backgroundColor: `hsl(${value})` }}
+                                  />
+                                  <span className="font-mono text-muted-foreground">
+                                    {key}
+                                  </span>
+                                </div>
+                              ),
+                            )}
                           </div>
                         </div>
 
@@ -277,15 +343,22 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
                             Dark Mode
                           </p>
                           <div className="grid grid-cols-2 gap-2 text-xs">
-                            {Object.entries(detailsTheme.tokens.dark).map(([key, value]) => (
-                              <div key={key} className="flex items-center gap-2">
+                            {Object.entries(detailsTheme.tokens.dark).map(
+                              ([key, value]) => (
                                 <div
-                                  className="h-6 w-6 rounded border border-border"
-                                  style={{ backgroundColor: `hsl(${value})` }}
-                                />
-                                <span className="font-mono text-muted-foreground">{key}</span>
-                              </div>
-                            ))}
+                                  key={key}
+                                  className="flex items-center gap-2"
+                                >
+                                  <div
+                                    className="h-6 w-6 rounded border border-border"
+                                    style={{ backgroundColor: `hsl(${value})` }}
+                                  />
+                                  <span className="font-mono text-muted-foreground">
+                                    {key}
+                                  </span>
+                                </div>
+                              ),
+                            )}
                           </div>
                         </div>
                       </div>
@@ -314,7 +387,7 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
         </DialogRoot>
       </>
     );
-  }
+  },
 );
 
 CommunityThemesGallery.displayName = "CommunityThemesGallery";

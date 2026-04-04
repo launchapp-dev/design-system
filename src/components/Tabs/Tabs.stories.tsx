@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "./index";
+import { TabsContent, TabsList, TabsRoot, TabsTrigger } from "./index";
 
 const meta: Meta = {
   title: "Components/Tabs",
@@ -22,20 +22,30 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <TabsRoot defaultValue={args.defaultValue as string} orientation={args.orientation as "horizontal" | "vertical"} style={{ width: 400 }}>
+    <TabsRoot
+      defaultValue={args.defaultValue as string}
+      orientation={args.orientation as "horizontal" | "vertical"}
+      style={{ width: 400 }}
+    >
       <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
         <TabsTrigger value="settings">Settings</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Manage your account details and preferences.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Manage your account details and preferences.
+        </p>
       </TabsContent>
       <TabsContent value="password">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Change your password and security settings.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Change your password and security settings.
+        </p>
       </TabsContent>
       <TabsContent value="settings">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Configure application settings and notifications.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Configure application settings and notifications.
+        </p>
       </TabsContent>
     </TabsRoot>
   ),
@@ -48,16 +58,24 @@ export const MultipleTabs: Story = {
         <TabsTrigger value="tab1">Overview</TabsTrigger>
         <TabsTrigger value="tab2">Analytics</TabsTrigger>
         <TabsTrigger value="tab3">Reports</TabsTrigger>
-        <TabsTrigger value="tab4" disabled>Billing</TabsTrigger>
+        <TabsTrigger value="tab4" disabled>
+          Billing
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="tab1">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Overview content goes here.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Overview content goes here.
+        </p>
       </TabsContent>
       <TabsContent value="tab2">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Analytics dashboard content.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Analytics dashboard content.
+        </p>
       </TabsContent>
       <TabsContent value="tab3">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Reports and export options.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Reports and export options.
+        </p>
       </TabsContent>
       <TabsContent value="tab4">
         <p style={{ padding: "16px 0", fontSize: 14 }}>Billing information.</p>
@@ -71,7 +89,9 @@ export const Controlled: Story = {
     const [value, setValue] = React.useState("tab1");
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <p style={{ fontSize: "14px" }}>Active tab: <strong>{value}</strong></p>
+        <p style={{ fontSize: "14px" }}>
+          Active tab: <strong>{value}</strong>
+        </p>
         <TabsRoot value={value} onValueChange={setValue} style={{ width: 400 }}>
           <TabsList>
             <TabsTrigger value="tab1">Tab One</TabsTrigger>
@@ -79,13 +99,19 @@ export const Controlled: Story = {
             <TabsTrigger value="tab3">Tab Three</TabsTrigger>
           </TabsList>
           <TabsContent value="tab1">
-            <p style={{ padding: "16px 0", fontSize: 14 }}>Content for Tab One.</p>
+            <p style={{ padding: "16px 0", fontSize: 14 }}>
+              Content for Tab One.
+            </p>
           </TabsContent>
           <TabsContent value="tab2">
-            <p style={{ padding: "16px 0", fontSize: 14 }}>Content for Tab Two.</p>
+            <p style={{ padding: "16px 0", fontSize: 14 }}>
+              Content for Tab Two.
+            </p>
           </TabsContent>
           <TabsContent value="tab3">
-            <p style={{ padding: "16px 0", fontSize: 14 }}>Content for Tab Three.</p>
+            <p style={{ padding: "16px 0", fontSize: 14 }}>
+              Content for Tab Three.
+            </p>
           </TabsContent>
         </TabsRoot>
       </div>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ThemeCard } from "./ThemeCard";
 import { getCommunityThemeById } from "../../themes/community-registry";
+import { ThemeCard } from "./ThemeCard";
 
 const dracula = getCommunityThemeById("dracula")!;
 const nord = getCommunityThemeById("nord")!;

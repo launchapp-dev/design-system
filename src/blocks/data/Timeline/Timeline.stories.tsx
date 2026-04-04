@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { CheckCircle, Circle, Clock, Star, Zap } from "lucide-react";
 import { Timeline, type TimelineItem } from "./Timeline";
 
@@ -8,7 +7,8 @@ const defaultItems: TimelineItem[] = [
     id: "1",
     date: "Jan 15, 2024",
     title: "Project kickoff",
-    description: "Initial planning meeting with all stakeholders to align on goals and timeline.",
+    description:
+      "Initial planning meeting with all stakeholders to align on goals and timeline.",
     badge: "Milestone",
     badgeVariant: "default",
   },
@@ -16,7 +16,8 @@ const defaultItems: TimelineItem[] = [
     id: "2",
     date: "Feb 3, 2024",
     title: "Design phase complete",
-    description: "All wireframes and high-fidelity mockups approved by the product team.",
+    description:
+      "All wireframes and high-fidelity mockups approved by the product team.",
     badge: "Done",
     badgeVariant: "secondary",
   },
@@ -32,7 +33,8 @@ const defaultItems: TimelineItem[] = [
     id: "4",
     date: "Apr 1, 2024",
     title: "Critical bug found in auth flow",
-    description: "Authentication bypass vulnerability discovered and patched within 24 hours.",
+    description:
+      "Authentication bypass vulnerability discovered and patched within 24 hours.",
     badge: "Urgent",
     badgeVariant: "destructive",
   },
@@ -40,7 +42,8 @@ const defaultItems: TimelineItem[] = [
     id: "5",
     date: "May 20, 2024",
     title: "Public launch",
-    description: "Full public release with marketing campaign. 10,000 sign-ups in the first week.",
+    description:
+      "Full public release with marketing campaign. 10,000 sign-ups in the first week.",
   },
 ];
 
@@ -65,7 +68,8 @@ const iconItems: TimelineItem[] = [
     id: "3",
     date: "Mar 5, 2024",
     title: "Performance optimization",
-    description: "Page load times reduced by 60% after profiling and caching improvements.",
+    description:
+      "Page load times reduced by 60% after profiling and caching improvements.",
     icon: <Zap className="h-4 w-4" />,
   },
   {
@@ -91,7 +95,8 @@ const avatarItems: TimelineItem[] = [
     id: "1",
     date: "Jan 10, 2024",
     title: "Alex Chen opened pull request #42",
-    description: "Refactor authentication middleware to support OAuth2 providers.",
+    description:
+      "Refactor authentication middleware to support OAuth2 providers.",
     avatarFallback: "AC",
     badge: "PR",
     badgeVariant: "outline",
@@ -100,7 +105,8 @@ const avatarItems: TimelineItem[] = [
     id: "2",
     date: "Jan 11, 2024",
     title: "Brianna Scott left a review",
-    description: "Looks good overall. Left a few inline suggestions on error handling.",
+    description:
+      "Looks good overall. Left a few inline suggestions on error handling.",
     avatarFallback: "BS",
   },
   {
@@ -125,17 +131,36 @@ const avatarItems: TimelineItem[] = [
     id: "5",
     date: "Jan 12, 2024",
     title: "Diana Wu deployed to staging",
-    description: "Automated deployment triggered after merge. All checks passed.",
+    description:
+      "Automated deployment triggered after merge. All checks passed.",
     avatarFallback: "DW",
   },
 ];
 
 const compactItems: TimelineItem[] = [
   { id: "1", date: "09:00 AM", title: "Sprint planning" },
-  { id: "2", date: "10:30 AM", title: "Design review", badge: "Done", badgeVariant: "secondary" },
+  {
+    id: "2",
+    date: "10:30 AM",
+    title: "Design review",
+    badge: "Done",
+    badgeVariant: "secondary",
+  },
   { id: "3", date: "12:00 PM", title: "Lunch break" },
-  { id: "4", date: "01:00 PM", title: "Engineering sync", badge: "In Progress", badgeVariant: "outline" },
-  { id: "5", date: "03:00 PM", title: "Client demo", badge: "Upcoming", badgeVariant: "default" },
+  {
+    id: "4",
+    date: "01:00 PM",
+    title: "Engineering sync",
+    badge: "In Progress",
+    badgeVariant: "outline",
+  },
+  {
+    id: "5",
+    date: "03:00 PM",
+    title: "Client demo",
+    badge: "Upcoming",
+    badgeVariant: "default",
+  },
   { id: "6", date: "04:30 PM", title: "Retrospective" },
 ];
 

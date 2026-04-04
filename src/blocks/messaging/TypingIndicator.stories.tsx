@@ -35,7 +35,10 @@ export const NoLabel: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}
+    >
       <TypingIndicator {...args} />
     </div>
   ),

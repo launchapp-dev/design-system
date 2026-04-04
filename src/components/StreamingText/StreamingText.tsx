@@ -1,23 +1,20 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../lib/utils";
+import * as React from "react";
 import { useReducedMotion } from "../../lib/animation";
+import { cn } from "../../lib/utils";
 
-const streamingTextVariants = cva(
-  "inline-block",
-  {
-    variants: {
-      size: {
-        sm: "text-sm",
-        md: "text-base",
-        lg: "text-lg",
-      },
+const streamingTextVariants = cva("inline-block", {
+  variants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
     },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 export interface StreamingTextProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "children">,
@@ -30,15 +27,24 @@ export interface StreamingTextProps
   onComplete?: () => void;
 }
 
-function parseMarkdownToTokens(text: string): Array<{ type: "text" | "code" | "bold" | "italic" | "codeBlock"; content: string }> {
-  const tokens: Array<{ type: "text" | "code" | "bold" | "italic" | "codeBlock"; content: string }> = [];
+function parseMarkdownToTokens(text: string): Array<{
+  type: "text" | "code" | "bold" | "italic" | "codeBlock";
+  content: string;
+}> {
+  const tokens: Array<{
+    type: "text" | "code" | "bold" | "italic" | "codeBlock";
+    content: string;
+  }> = [];
   const regex = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|```[\s\S]*?```)/g;
   let lastIndex = 0;
   let match;
 
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) {
-      tokens.push({ type: "text", content: text.slice(lastIndex, match.index) });
+      tokens.push({
+        type: "text",
+        content: text.slice(lastIndex, match.index),
+      });
     }
 
     const matched = match[0];
@@ -68,20 +74,36 @@ function renderMarkdown(text: string): React.ReactNode {
     switch (token.type) {
       case "code":
         return (
-          <code key={index} className="px-1.5 py-0.5 rounded bg-muted text-sm font-mono text-primary">
+          <code
+            key={index}
+            className="px-1.5 py-0.5 rounded bg-muted text-sm font-mono text-primary"
+          >
             {token.content}
           </code>
         );
       case "codeBlock":
         return (
-          <pre key={index} className="p-3 my-2 rounded-lg bg-muted overflow-x-auto">
-            <code className="text-sm font-mono text-primary">{token.content}</code>
+          <pre
+            key={index}
+            className="p-3 my-2 rounded-lg bg-muted overflow-x-auto"
+          >
+            <code className="text-sm font-mono text-primary">
+              {token.content}
+            </code>
           </pre>
         );
       case "bold":
-        return <strong key={index} className="font-semibold">{token.content}</strong>;
+        return (
+          <strong key={index} className="font-semibold">
+            {token.content}
+          </strong>
+        );
       case "italic":
-        return <em key={index} className="italic">{token.content}</em>;
+        return (
+          <em key={index} className="italic">
+            {token.content}
+          </em>
+        );
       default:
         return <span key={index}>{token.content}</span>;
     }
@@ -101,7 +123,7 @@ const StreamingText = React.forwardRef<HTMLDivElement, StreamingTextProps>(
       onComplete,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [displayedText, setDisplayedText] = React.useState("");
     const [isComplete, setIsComplete] = React.useState(false);
@@ -183,7 +205,7 @@ const StreamingText = React.forwardRef<HTMLDivElement, StreamingTextProps>(
               className={cn(
                 "inline-block ml-0.5 border-r-2 border-current",
                 isStreaming && !reducedMotion && "animate-cursor-blink",
-                isComplete && !reducedMotion && "animate-cursor-blink-slow"
+                isComplete && !reducedMotion && "animate-cursor-blink-slow",
               )}
               aria-hidden="true"
             />
@@ -215,7 +237,7 @@ const StreamingText = React.forwardRef<HTMLDivElement, StreamingTextProps>(
         `}</style>
       </div>
     );
-  }
+  },
 );
 
 StreamingText.displayName = "StreamingText";

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { Toaster, ToastAction } from "./index";
-import { useToast, toast } from "./useToast";
 import { Button } from "../Button";
+import { ToastAction, Toaster } from "./index";
+import { toast, useToast } from "./useToast";
 
 const meta: Meta = {
   title: "Components/Toast",
@@ -25,7 +24,12 @@ export const Default: Story = {
     return (
       <Button
         variant="outline"
-        onClick={() => showToast({ title: "Notification", description: "Your action was successful." })}
+        onClick={() =>
+          showToast({
+            title: "Notification",
+            description: "Your action was successful.",
+          })
+        }
       >
         Show Toast
       </Button>
@@ -37,7 +41,13 @@ export const Success: Story = {
   render: () => (
     <Button
       variant="outline"
-      onClick={() => toast({ variant: "success", title: "Success!", description: "Your changes have been saved." })}
+      onClick={() =>
+        toast({
+          variant: "success",
+          title: "Success!",
+          description: "Your changes have been saved.",
+        })
+      }
     >
       Show Success Toast
     </Button>
@@ -49,7 +59,11 @@ export const Destructive: Story = {
     <Button
       variant="destructive"
       onClick={() =>
-        toast({ variant: "destructive", title: "Error", description: "Something went wrong. Please try again." })
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+        })
       }
     >
       Show Error Toast
@@ -83,19 +97,36 @@ export const AllVariants: Story = {
     <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
       <Button
         variant="outline"
-        onClick={() => toast({ title: "Default", description: "Default toast notification." })}
+        onClick={() =>
+          toast({
+            title: "Default",
+            description: "Default toast notification.",
+          })
+        }
       >
         Default
       </Button>
       <Button
         variant="outline"
-        onClick={() => toast({ variant: "success", title: "Success", description: "Operation completed." })}
+        onClick={() =>
+          toast({
+            variant: "success",
+            title: "Success",
+            description: "Operation completed.",
+          })
+        }
       >
         Success
       </Button>
       <Button
         variant="outline"
-        onClick={() => toast({ variant: "destructive", title: "Error", description: "Something failed." })}
+        onClick={() =>
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: "Something failed.",
+          })
+        }
       >
         Destructive
       </Button>

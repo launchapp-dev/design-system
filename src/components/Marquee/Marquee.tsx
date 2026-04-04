@@ -1,52 +1,46 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../lib/utils";
+import * as React from "react";
 import { useReducedMotion } from "../../lib/animation";
+import { cn } from "../../lib/utils";
 
-const marqueeVariants = cva(
-  "relative flex overflow-hidden",
-  {
-    variants: {
-      direction: {
-        left: "flex-row",
-        right: "flex-row",
-        up: "flex-col",
-        down: "flex-col",
-      },
-      speed: {
-        slow: "[--marquee-duration:60s]",
-        normal: "[--marquee-duration:30s]",
-        fast: "[--marquee-duration:15s]",
-      },
+const marqueeVariants = cva("relative flex overflow-hidden", {
+  variants: {
+    direction: {
+      left: "flex-row",
+      right: "flex-row",
+      up: "flex-col",
+      down: "flex-col",
     },
-    defaultVariants: {
-      direction: "left",
-      speed: "normal",
+    speed: {
+      slow: "[--marquee-duration:60s]",
+      normal: "[--marquee-duration:30s]",
+      fast: "[--marquee-duration:15s]",
     },
-  }
-);
+  },
+  defaultVariants: {
+    direction: "left",
+    speed: "normal",
+  },
+});
 
-const marqueeContentVariants = cva(
-  "flex shrink-0",
-  {
-    variants: {
-      direction: {
-        left: "flex-row animate-marquee-left",
-        right: "flex-row animate-marquee-right",
-        up: "flex-col animate-marquee-up",
-        down: "flex-col animate-marquee-down",
-      },
-      pauseOnHover: {
-        true: "hover:[animation-play-state:paused]",
-        false: "",
-      },
+const marqueeContentVariants = cva("flex shrink-0", {
+  variants: {
+    direction: {
+      left: "flex-row animate-marquee-left",
+      right: "flex-row animate-marquee-right",
+      up: "flex-col animate-marquee-up",
+      down: "flex-col animate-marquee-down",
     },
-    defaultVariants: {
-      direction: "left",
-      pauseOnHover: false,
+    pauseOnHover: {
+      true: "hover:[animation-play-state:paused]",
+      false: "",
     },
-  }
-);
+  },
+  defaultVariants: {
+    direction: "left",
+    pauseOnHover: false,
+  },
+});
 
 export interface MarqueeProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -70,7 +64,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
       gradientWidth = 64,
       ...props
     },
-    ref
+    ref,
   ) => {
     const prefersReducedMotion = useReducedMotion();
 
@@ -78,10 +72,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
       return (
         <div
           ref={ref}
-          className={cn(
-            "relative overflow-hidden",
-            className
-          )}
+          className={cn("relative overflow-hidden", className)}
           {...props}
         >
           {children}
@@ -90,8 +81,11 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
     }
 
     const isVertical = direction === "up" || direction === "down";
-    const gradientStyle = gradientColor ? { "--gradient-color": gradientColor } as React.CSSProperties : {};
-    const gradientWidthStyle = typeof gradientWidth === "number" ? `${gradientWidth}px` : gradientWidth;
+    const gradientStyle = gradientColor
+      ? ({ "--gradient-color": gradientColor } as React.CSSProperties)
+      : {};
+    const gradientWidthStyle =
+      typeof gradientWidth === "number" ? `${gradientWidth}px` : gradientWidth;
 
     return (
       <div
@@ -130,7 +124,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         <div
           className={cn(
             marqueeContentVariants({ direction, pauseOnHover }),
-            "[animation-duration:var(--marquee-duration)]"
+            "[animation-duration:var(--marquee-duration)]",
           )}
           style={{ animationDuration: "var(--marquee-duration)" }}
         >
@@ -139,7 +133,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         <div
           className={cn(
             marqueeContentVariants({ direction, pauseOnHover }),
-            "[animation-duration:var(--marquee-duration)]"
+            "[animation-duration:var(--marquee-duration)]",
           )}
           style={{ animationDuration: "var(--marquee-duration)" }}
           aria-hidden="true"
@@ -148,28 +142,25 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 Marquee.displayName = "Marquee";
 
-export interface MarqueeItemProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface MarqueeItemProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
 
 const MarqueeItem = React.forwardRef<HTMLDivElement, MarqueeItemProps>(
   ({ className, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn("shrink-0", className)}
-        {...props}
-      />
-    );
-  }
+    return <div ref={ref} className={cn("shrink-0", className)} {...props} />;
+  },
 );
 
 MarqueeItem.displayName = "MarqueeItem";
 
 export type MarqueeVariants = VariantProps<typeof marqueeVariants>;
-export type MarqueeContentVariants = VariantProps<typeof marqueeContentVariants>;
+export type MarqueeContentVariants = VariantProps<
+  typeof marqueeContentVariants
+>;
 
-export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants };
+export { Marquee, MarqueeItem, marqueeContentVariants, marqueeVariants };

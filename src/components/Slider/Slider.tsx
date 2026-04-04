@@ -1,5 +1,5 @@
-import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
 export interface SliderProps
@@ -7,7 +7,17 @@ export interface SliderProps
   thumbLabels?: string[];
 }
 
-function Slider({ className, orientation, value, defaultValue, thumbLabels, ref, ...props }: SliderProps & { ref?: React.Ref<React.ComponentRef<typeof SliderPrimitive.Root>> }) {
+function Slider({
+  className,
+  orientation,
+  value,
+  defaultValue,
+  thumbLabels,
+  ref,
+  ...props
+}: SliderProps & {
+  ref?: React.Ref<React.ComponentRef<typeof SliderPrimitive.Root>>;
+}) {
   const values = value ?? defaultValue ?? [0];
   const thumbCount = Array.isArray(values) ? values.length : 1;
 
@@ -31,20 +41,20 @@ function Slider({ className, orientation, value, defaultValue, thumbLabels, ref,
       className={cn(
         "relative flex touch-none select-none items-center",
         isVertical ? "h-full min-h-[100px] w-4 flex-col" : "w-full",
-        className
+        className,
       )}
       {...props}
     >
       <SliderPrimitive.Track
         className={cn(
           "relative grow overflow-hidden rounded-full bg-secondary",
-          isVertical ? "w-1.5 flex-1" : "h-1.5 w-full"
+          isVertical ? "w-1.5 flex-1" : "h-1.5 w-full",
         )}
       >
         <SliderPrimitive.Range
           className={cn(
             "absolute bg-primary",
-            isVertical ? "w-full" : "h-full"
+            isVertical ? "w-full" : "h-full",
           )}
         />
       </SliderPrimitive.Track>

@@ -1,9 +1,19 @@
 import * as React from "react";
+import {
+  analyzeImageColors,
+  type VisionColorMap,
+  type VisionThemeOptions,
+} from "@/lib/vision";
 import { Button } from "../Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../Card";
 import { Input } from "../Input";
 import { Label } from "../Label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../Card";
-import { analyzeImageColors, type VisionColorMap, type VisionThemeOptions } from "@/lib/vision";
 
 export interface SmartThemingGeneratorProps {
   apiKey: string;
@@ -68,7 +78,8 @@ export const SmartThemingGenerator = React.forwardRef<
           } catch (err) {
             setState((prev) => ({
               ...prev,
-              error: err instanceof Error ? err.message : "Failed to analyze image",
+              error:
+                err instanceof Error ? err.message : "Failed to analyze image",
               loading: false,
             }));
           }
@@ -82,7 +93,7 @@ export const SmartThemingGenerator = React.forwardRef<
         }));
       }
     },
-    [apiKey, onThemeGenerated]
+    [apiKey, onThemeGenerated],
   );
 
   const handleUrlSubmit = React.useCallback(
@@ -107,12 +118,15 @@ export const SmartThemingGenerator = React.forwardRef<
       } catch (err) {
         setState((prev) => ({
           ...prev,
-          error: err instanceof Error ? err.message : "Failed to analyze image from URL",
+          error:
+            err instanceof Error
+              ? err.message
+              : "Failed to analyze image from URL",
           loading: false,
         }));
       }
     },
-    [apiKey, onThemeGenerated]
+    [apiKey, onThemeGenerated],
   );
 
   const handleColorChange = React.useCallback(
@@ -125,7 +139,7 @@ export const SmartThemingGenerator = React.forwardRef<
         onThemeGenerated?.({ ...state.colors, [key]: value });
       }
     },
-    [state.colors, onThemeGenerated]
+    [state.colors, onThemeGenerated],
   );
 
   const colors = state.colors || defaultColors;
@@ -145,7 +159,9 @@ export const SmartThemingGenerator = React.forwardRef<
               <Button
                 variant={state.inputMode === "upload" ? "default" : "ghost"}
                 size="sm"
-                onClick={() => setState((prev) => ({ ...prev, inputMode: "upload" }))}
+                onClick={() =>
+                  setState((prev) => ({ ...prev, inputMode: "upload" }))
+                }
                 disabled={disabled || state.loading}
                 className="rounded-b-none"
               >
@@ -154,7 +170,9 @@ export const SmartThemingGenerator = React.forwardRef<
               <Button
                 variant={state.inputMode === "url" ? "default" : "ghost"}
                 size="sm"
-                onClick={() => setState((prev) => ({ ...prev, inputMode: "url" }))}
+                onClick={() =>
+                  setState((prev) => ({ ...prev, inputMode: "url" }))
+                }
                 disabled={disabled || state.loading}
                 className="rounded-b-none"
               >
@@ -192,12 +210,19 @@ export const SmartThemingGenerator = React.forwardRef<
                     type="text"
                     placeholder="https://example.com/image.jpg"
                     value={state.imageUrl}
-                    onChange={(e) => setState((prev) => ({ ...prev, imageUrl: e.target.value }))}
+                    onChange={(e) =>
+                      setState((prev) => ({
+                        ...prev,
+                        imageUrl: e.target.value,
+                      }))
+                    }
                     disabled={disabled || state.loading}
                   />
                   <Button
                     onClick={() => handleUrlSubmit(state.imageUrl)}
-                    disabled={disabled || state.loading || !state.imageUrl.trim()}
+                    disabled={
+                      disabled || state.loading || !state.imageUrl.trim()
+                    }
                   >
                     {state.loading ? "Analyzing..." : "Analyze"}
                   </Button>
@@ -234,32 +259,38 @@ export const SmartThemingGenerator = React.forwardRef<
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {(["primary", "secondary", "muted", "accent", "destructive"] as const).map(
-              (key) => (
-                <div key={key} className="space-y-2">
-                  <Label htmlFor={`color-${key}`} className="capitalize">
-                    {key}
-                  </Label>
-                  <div className="flex gap-2">
-                    <input
-                      id={`color-${key}`}
-                      type="color"
-                      value={colors[key]}
-                      onChange={(e) => handleColorChange(key, e.target.value)}
-                      disabled={disabled}
-                      className="h-10 w-14 cursor-pointer rounded border border-input"
-                    />
-                    <Input
-                      type="text"
-                      value={colors[key]}
-                      onChange={(e) => handleColorChange(key, e.target.value)}
-                      disabled={disabled}
-                      className="flex-1 font-mono text-sm"
-                    />
-                  </div>
+            {(
+              [
+                "primary",
+                "secondary",
+                "muted",
+                "accent",
+                "destructive",
+              ] as const
+            ).map((key) => (
+              <div key={key} className="space-y-2">
+                <Label htmlFor={`color-${key}`} className="capitalize">
+                  {key}
+                </Label>
+                <div className="flex gap-2">
+                  <input
+                    id={`color-${key}`}
+                    type="color"
+                    value={colors[key]}
+                    onChange={(e) => handleColorChange(key, e.target.value)}
+                    disabled={disabled}
+                    className="h-10 w-14 cursor-pointer rounded border border-input"
+                  />
+                  <Input
+                    type="text"
+                    value={colors[key]}
+                    onChange={(e) => handleColorChange(key, e.target.value)}
+                    disabled={disabled}
+                    className="flex-1 font-mono text-sm"
+                  />
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>

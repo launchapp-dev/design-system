@@ -1,8 +1,8 @@
 import type {
   ComponentPlugin,
   PluginMetadata,
-  RegisterPluginOptions,
   PluginQueryResult,
+  RegisterPluginOptions,
 } from "./types";
 
 class PluginRegistry {
@@ -12,21 +12,14 @@ class PluginRegistry {
   /**
    * Register a plugin for a component
    */
-  register(
-    plugin: ComponentPlugin,
-    options: RegisterPluginOptions = {}
-  ): void {
-    const {
-      enabled = true,
-      override = false,
-      mergeConflicts = true,
-    } = options;
+  register(plugin: ComponentPlugin, options: RegisterPluginOptions = {}): void {
+    const { enabled = true, override = false, mergeConflicts = true } = options;
 
     const pluginId = `${plugin.targetComponent}:${plugin.name}`;
 
     if (this.pluginIndex.has(pluginId) && !override) {
       throw new Error(
-        `Plugin "${pluginId}" is already registered. Use { override: true } to replace it.`
+        `Plugin "${pluginId}" is already registered. Use { override: true } to replace it.`,
       );
     }
 
@@ -99,7 +92,10 @@ class PluginRegistry {
   /**
    * Get a specific plugin
    */
-  getPlugin(targetComponent: string, pluginName: string): PluginMetadata | undefined {
+  getPlugin(
+    targetComponent: string,
+    pluginName: string,
+  ): PluginMetadata | undefined {
     const pluginId = `${targetComponent}:${pluginName}`;
     return this.pluginIndex.get(pluginId);
   }
@@ -110,7 +106,7 @@ class PluginRegistry {
   setEnabled(
     targetComponent: string,
     pluginName: string,
-    enabled: boolean
+    enabled: boolean,
   ): boolean {
     const plugin = this.getPlugin(targetComponent, pluginName);
     if (!plugin) {

@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
 const textareaVariants = cva(
@@ -21,7 +21,7 @@ const textareaVariants = cva(
       resize: "vertical",
       error: false,
     },
-  }
+  },
 );
 
 export interface TextareaProps
@@ -30,27 +30,38 @@ export interface TextareaProps
   error?: boolean;
 }
 
-function Textarea({ className, resize, error, rows = 3, ref, ...props }: TextareaProps & { ref?: React.Ref<HTMLTextAreaElement> }) {
-    if (
-      process.env.NODE_ENV !== "production" &&
-      !props.id &&
-      !props["aria-label"] &&
-      !props["aria-labelledby"]
-    ) {
-      console.warn(
-        "Textarea: missing label association. Provide `id` paired with a <Label htmlFor>, or pass `aria-label`/`aria-labelledby`."
-      );
-    }
-    return (
-      <textarea
-        ref={ref}
-        rows={rows}
-        className={cn(textareaVariants({ resize, error }), "px-4 py-4 md:px-3 md:py-2 text-base md:text-sm", className)}
-        aria-invalid={error || undefined}
-        {...props}
-      />
+function Textarea({
+  className,
+  resize,
+  error,
+  rows = 3,
+  ref,
+  ...props
+}: TextareaProps & { ref?: React.Ref<HTMLTextAreaElement> }) {
+  if (
+    process.env.NODE_ENV !== "production" &&
+    !props.id &&
+    !props["aria-label"] &&
+    !props["aria-labelledby"]
+  ) {
+    console.warn(
+      "Textarea: missing label association. Provide `id` paired with a <Label htmlFor>, or pass `aria-label`/`aria-labelledby`.",
     );
   }
+  return (
+    <textarea
+      ref={ref}
+      rows={rows}
+      className={cn(
+        textareaVariants({ resize, error }),
+        "px-4 py-4 md:px-3 md:py-2 text-base md:text-sm",
+        className,
+      )}
+      aria-invalid={error || undefined}
+      {...props}
+    />
+  );
+}
 
 Textarea.displayName = "Textarea";
 

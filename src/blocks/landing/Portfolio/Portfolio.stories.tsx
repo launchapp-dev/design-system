@@ -1,42 +1,55 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { Portfolio } from "./index";
 import { Avatar, AvatarFallback } from "../../../components/Avatar";
+import { Portfolio } from "./index";
 
 const sampleProjects = [
   {
     title: "E-commerce Redesign",
-    description: "Complete redesign of a fashion brand's online store, increasing conversion rate by 32%.",
+    description:
+      "Complete redesign of a fashion brand's online store, increasing conversion rate by 32%.",
     tags: ["React", "TypeScript", "Tailwind CSS"],
-    image: <div className="h-full w-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-muted-foreground text-sm">Project preview</div>,
+    image: (
+      <div className="h-full w-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-muted-foreground text-sm">
+        Project preview
+      </div>
+    ),
     link: "#",
   },
   {
     title: "SaaS Dashboard",
-    description: "Analytics dashboard for a B2B SaaS product with real-time data visualization.",
+    description:
+      "Analytics dashboard for a B2B SaaS product with real-time data visualization.",
     tags: ["Next.js", "Recharts", "PostgreSQL"],
-    image: <div className="h-full w-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 flex items-center justify-center text-muted-foreground text-sm">Dashboard preview</div>,
+    image: (
+      <div className="h-full w-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 flex items-center justify-center text-muted-foreground text-sm">
+        Dashboard preview
+      </div>
+    ),
   },
   {
     title: "Mobile App",
-    description: "Cross-platform mobile app for task management with offline sync.",
+    description:
+      "Cross-platform mobile app for task management with offline sync.",
     tags: ["React Native", "Expo", "SQLite"],
     link: "#",
   },
   {
     title: "Design System",
-    description: "Custom design system for a fintech startup, documenting 80+ components.",
+    description:
+      "Custom design system for a fintech startup, documenting 80+ components.",
     tags: ["Storybook", "Figma", "TypeScript"],
   },
   {
     title: "Marketing Site",
-    description: "High-performance marketing site with animations and CMS integration.",
+    description:
+      "High-performance marketing site with animations and CMS integration.",
     tags: ["Next.js", "Framer Motion", "Contentful"],
     link: "#",
   },
   {
     title: "Data Pipeline",
-    description: "ETL pipeline processing 10M+ events per day for analytics reporting.",
+    description:
+      "ETL pipeline processing 10M+ events per day for analytics reporting.",
     tags: ["Python", "Apache Kafka", "dbt"],
   },
 ];

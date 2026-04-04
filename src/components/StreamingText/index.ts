@@ -1,3 +1,5 @@
+export type {
+  StreamingTextProps,
+  StreamingTextVariants,
+} from "./StreamingText";
 export { StreamingText, streamingTextVariants } from "./StreamingText";
-export type { StreamingTextProps } from "./StreamingText";
-export type { StreamingTextVariants } from "./StreamingText";

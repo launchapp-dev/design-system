@@ -8,7 +8,8 @@ export interface WelcomeFeature {
   description: string;
 }
 
-export interface WelcomeScreenProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface WelcomeScreenProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   description?: string;
   features?: WelcomeFeature[];
@@ -35,20 +36,25 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => (
     <div
       ref={ref}
-      className={cn("flex flex-col items-center gap-10 px-4 py-12 text-center sm:px-8", className)}
+      className={cn(
+        "flex flex-col items-center gap-10 px-4 py-12 text-center sm:px-8",
+        className,
+      )}
       {...props}
     >
       <div className="flex flex-col items-center gap-4">
-        {logoSrc && (
-          <img src={logoSrc} alt={logoAlt} className="h-14 w-auto" />
-        )}
+        {logoSrc && <img src={logoSrc} alt={logoAlt} className="h-14 w-auto" />}
         <div className="space-y-3">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
-          <p className="mx-auto max-w-md text-base text-muted-foreground">{description}</p>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            {title}
+          </h1>
+          <p className="mx-auto max-w-md text-base text-muted-foreground">
+            {description}
+          </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button size="lg" onClick={onCta}>
@@ -65,11 +71,10 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
       {features.length > 0 && (
         <div className="w-full max-w-3xl">
           <ul
-            role="list"
             className={cn(
               "grid gap-6",
               features.length === 2 && "sm:grid-cols-2",
-              features.length >= 3 && "sm:grid-cols-2 lg:grid-cols-3"
+              features.length >= 3 && "sm:grid-cols-2 lg:grid-cols-3",
             )}
           >
             {features.map((feature, index) => (
@@ -82,7 +87,9 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-sm font-semibold">{feature.title}</h3>
-                  <p className="text-xs text-muted-foreground">{feature.description}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {feature.description}
+                  </p>
                 </div>
               </li>
             ))}
@@ -90,7 +97,7 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
         </div>
       )}
     </div>
-  )
+  ),
 );
 WelcomeScreen.displayName = "WelcomeScreen";
 

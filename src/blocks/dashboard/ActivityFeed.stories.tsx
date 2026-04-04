@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { ActivityFeed } from "./ActivityFeed";
 import type { ActivityItem } from "./ActivityFeed";
+import { ActivityFeed } from "./ActivityFeed";
 
 const mockItems: ActivityItem[] = [
   {
@@ -15,7 +14,8 @@ const mockItems: ActivityItem[] = [
   {
     id: "2",
     user: { name: "Bob Martinez", initials: "BM" },
-    description: "Opened pull request #142: Add dark mode support to dashboard.",
+    description:
+      "Opened pull request #142: Add dark mode support to dashboard.",
     timestamp: "18 minutes ago",
     actionType: "PR opened",
     actionVariant: "secondary",
@@ -55,7 +55,8 @@ const mockItems: ActivityItem[] = [
   {
     id: "7",
     user: { name: "Grace Park", initials: "GP" },
-    description: "Archived stale feature flags from the feature management panel.",
+    description:
+      "Archived stale feature flags from the feature management panel.",
     timestamp: "Yesterday at 11:00 AM",
     actionType: "archive",
     actionVariant: "outline",
@@ -129,7 +130,14 @@ export const ShortList: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 560 }}>
+    <div
+      className="dark"
+      style={{
+        background: "hsl(240 10% 3.9%)",
+        padding: "24px",
+        maxWidth: 560,
+      }}
+    >
       <ActivityFeed {...args} />
     </div>
   ),

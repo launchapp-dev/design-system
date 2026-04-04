@@ -27,7 +27,14 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "12px",
+        alignItems: "center",
+      }}
+    >
       <Badge variant="default">Default</Badge>
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="outline">Outline</Badge>
@@ -38,10 +45,24 @@ export const AllVariants: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "12px",
+        alignItems: "center",
+      }}
+    >
       <Badge variant="default">Badge</Badge>
-      <Badge variant="default" style={{ fontSize: "0.625rem" }}>Small text</Badge>
-      <Badge variant="default" style={{ fontSize: "0.875rem", padding: "4px 12px" }}>Large padding</Badge>
+      <Badge variant="default" style={{ fontSize: "0.625rem" }}>
+        Small text
+      </Badge>
+      <Badge
+        variant="default"
+        style={{ fontSize: "0.875rem", padding: "4px 12px" }}
+      >
+        Large padding
+      </Badge>
     </div>
   ),
 };
@@ -56,13 +77,23 @@ export const Interactive: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
   ],
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "12px",
+        alignItems: "center",
+      }}
+    >
       <Badge variant="default">Default</Badge>
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="outline">Outline</Badge>
@@ -74,13 +105,37 @@ export const DarkMode: Story = {
 export const EdgeCases: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
-        <Badge variant="default">A badge with a very long label that tests overflow behavior in constrained layouts</Badge>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "8px",
+          alignItems: "center",
+        }}
+      >
+        <Badge variant="default">
+          A badge with a very long label that tests overflow behavior in
+          constrained layouts
+        </Badge>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "8px",
+          alignItems: "center",
+        }}
+      >
         <Badge variant="default">{""}</Badge>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "8px",
+          alignItems: "center",
+        }}
+      >
         <Badge variant="outline">Inline</Badge>
         <span>badge used</span>
         <Badge variant="secondary">inside</Badge>

@@ -2,25 +2,24 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { useState } from "react";
 import { Button } from "../Button";
-import { ThinkingIndicator } from "../ThinkingIndicator";
 import { ChatBubble, ChatBubbleGroup } from "../ChatBubble";
 import { Input } from "../Input";
+import { ThinkingIndicator } from "../ThinkingIndicator";
 import {
   CopilotPanel,
-  CopilotPanelTrigger,
+  CopilotPanelChatHistory,
   CopilotPanelClose,
-  CopilotPanelHeader,
-  CopilotPanelTitle,
-  CopilotPanelDescription,
   CopilotPanelContent,
-  CopilotPanelFooter,
   CopilotPanelContext,
   CopilotPanelContextList,
-  CopilotPanelSuggestions,
-  CopilotPanelSuggestion,
+  CopilotPanelDescription,
   CopilotPanelDivider,
+  CopilotPanelFooter,
+  CopilotPanelHeader,
   CopilotPanelInput,
-  CopilotPanelChatHistory,
+  CopilotPanelSuggestion,
+  CopilotPanelSuggestions,
+  CopilotPanelTitle,
 } from "./index";
 
 const FileIcon = () => (
@@ -320,42 +319,70 @@ export const SuggestionVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-6 p-6">
       <div>
-        <h4 className="mb-2 text-sm font-medium text-muted-foreground">Default</h4>
+        <h4 className="mb-2 text-sm font-medium text-muted-foreground">
+          Default
+        </h4>
         <div className="flex flex-wrap gap-2">
-          <CopilotPanelSuggestion icon={<WandIcon />}>Generate code</CopilotPanelSuggestion>
-          <CopilotPanelSuggestion icon={<LightbulbIcon />}>Explain</CopilotPanelSuggestion>
-          <CopilotPanelSuggestion icon={<RefreshIcon />}>Refactor</CopilotPanelSuggestion>
+          <CopilotPanelSuggestion icon={<WandIcon />}>
+            Generate code
+          </CopilotPanelSuggestion>
+          <CopilotPanelSuggestion icon={<LightbulbIcon />}>
+            Explain
+          </CopilotPanelSuggestion>
+          <CopilotPanelSuggestion icon={<RefreshIcon />}>
+            Refactor
+          </CopilotPanelSuggestion>
         </div>
       </div>
 
       <div>
-        <h4 className="mb-2 text-sm font-medium text-muted-foreground">Primary</h4>
+        <h4 className="mb-2 text-sm font-medium text-muted-foreground">
+          Primary
+        </h4>
         <div className="flex flex-wrap gap-2">
           <CopilotPanelSuggestion variant="primary" icon={<SparkleIcon />}>
             AI Suggest
           </CopilotPanelSuggestion>
-          <CopilotPanelSuggestion variant="primary">Quick Fix</CopilotPanelSuggestion>
+          <CopilotPanelSuggestion variant="primary">
+            Quick Fix
+          </CopilotPanelSuggestion>
         </div>
       </div>
 
       <div>
-        <h4 className="mb-2 text-sm font-medium text-muted-foreground">Secondary</h4>
+        <h4 className="mb-2 text-sm font-medium text-muted-foreground">
+          Secondary
+        </h4>
         <div className="flex flex-wrap gap-2">
-          <CopilotPanelSuggestion variant="secondary">Add docs</CopilotPanelSuggestion>
-          <CopilotPanelSuggestion variant="secondary">Format code</CopilotPanelSuggestion>
+          <CopilotPanelSuggestion variant="secondary">
+            Add docs
+          </CopilotPanelSuggestion>
+          <CopilotPanelSuggestion variant="secondary">
+            Format code
+          </CopilotPanelSuggestion>
         </div>
       </div>
 
       <div>
-        <h4 className="mb-2 text-sm font-medium text-muted-foreground">Mixed</h4>
+        <h4 className="mb-2 text-sm font-medium text-muted-foreground">
+          Mixed
+        </h4>
         <CopilotPanelSuggestions title="Quick actions">
-          <CopilotPanelSuggestion icon={<WandIcon />}>Generate tests</CopilotPanelSuggestion>
+          <CopilotPanelSuggestion icon={<WandIcon />}>
+            Generate tests
+          </CopilotPanelSuggestion>
           <CopilotPanelSuggestion variant="primary" icon={<SparkleIcon />}>
             AI Fix
           </CopilotPanelSuggestion>
-          <CopilotPanelSuggestion variant="secondary">Add types</CopilotPanelSuggestion>
-          <CopilotPanelSuggestion icon={<LightbulbIcon />}>Explain code</CopilotPanelSuggestion>
-          <CopilotPanelSuggestion variant="primary">Optimize</CopilotPanelSuggestion>
+          <CopilotPanelSuggestion variant="secondary">
+            Add types
+          </CopilotPanelSuggestion>
+          <CopilotPanelSuggestion icon={<LightbulbIcon />}>
+            Explain code
+          </CopilotPanelSuggestion>
+          <CopilotPanelSuggestion variant="primary">
+            Optimize
+          </CopilotPanelSuggestion>
         </CopilotPanelSuggestions>
       </div>
     </div>
@@ -376,10 +403,7 @@ export const ContextDisplay: Story = {
           label="Author"
           value="John Doe"
         />
-        <CopilotPanelContext
-          icon={<FileIcon />}
-          label="Related files"
-        >
+        <CopilotPanelContext icon={<FileIcon />} label="Related files">
           <ul className="mt-1 space-y-0.5 text-xs text-muted-foreground">
             <li>Button.test.tsx</li>
             <li>Button.stories.tsx</li>
@@ -394,10 +418,13 @@ export const ContextDisplay: Story = {
 export const FullExample: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-    const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
+    const [messages, setMessages] = useState<
+      Array<{ role: "user" | "assistant"; content: string }>
+    >([
       {
         role: "assistant",
-        content: "I can help you build better components. What would you like assistance with?",
+        content:
+          "I can help you build better components. What would you like assistance with?",
       },
     ]);
 
@@ -407,7 +434,8 @@ export const FullExample: Story = {
         { role: "user", content: value },
         {
           role: "assistant",
-          content: "I understand. Let me help you with that. What specific aspect would you like to focus on?",
+          content:
+            "I understand. Let me help you with that. What specific aspect would you like to focus on?",
         },
       ]);
     };
@@ -468,7 +496,10 @@ export const FullExample: Story = {
               >
                 Generate tests
               </CopilotPanelSuggestion>
-              <CopilotPanelSuggestion variant="secondary" onClick={() => handleSend("Create story")}>
+              <CopilotPanelSuggestion
+                variant="secondary"
+                onClick={() => handleSend("Create story")}
+              >
                 Create story
               </CopilotPanelSuggestion>
             </CopilotPanelSuggestions>
@@ -535,7 +566,9 @@ export const DarkMode: Story = {
 export const WithKeyboardNavigation: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-    const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
+    const [messages, setMessages] = useState<
+      Array<{ role: "user" | "assistant"; content: string }>
+    >([
       {
         role: "assistant",
         content:
@@ -566,7 +599,8 @@ export const WithKeyboardNavigation: Story = {
             </p>
             <Button onClick={() => setOpen(true)}>Open Panel</Button>
             <p className="mt-4 text-xs text-muted-foreground max-w-xs">
-              Try: Tab through elements, Space/Enter on suggestions, Ctrl+Enter for new line, Escape to close
+              Try: Tab through elements, Space/Enter on suggestions, Ctrl+Enter
+              for new line, Escape to close
             </p>
           </div>
         </div>
@@ -587,7 +621,9 @@ export const WithKeyboardNavigation: Story = {
               <CopilotPanelSuggestion
                 variant="primary"
                 icon={<WandIcon />}
-                onClick={() => handleSuggestionClick("Implement keyboard navigation")}
+                onClick={() =>
+                  handleSuggestionClick("Implement keyboard navigation")
+                }
               >
                 Implement keyboard nav
               </CopilotPanelSuggestion>

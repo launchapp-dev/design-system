@@ -9,16 +9,16 @@
  * - Integrating with components
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
-  getPluginManager,
-  useVariant,
-  getComponentVariants,
-  hasCustomVariant,
-  getCustomVariant,
   type CustomVariant,
-} from '../../src/lib/plugins';
-import { brandPlugin, getBrandPluginStats } from './index';
+  getComponentVariants,
+  getCustomVariant,
+  getPluginManager,
+  hasCustomVariant,
+  useVariant,
+} from "../../src/lib/plugins";
+import { brandPlugin, getBrandPluginStats } from "./index";
 
 /**
  * Initialize plugins in your app
@@ -29,7 +29,7 @@ async function initializePlugins() {
   // Register the brand plugin
   await manager.register(brandPlugin);
 
-  console.log('✓ Brand plugin registered');
+  console.log("✓ Brand plugin registered");
   console.log(`✓ Total plugins: ${manager.getPlugins().length}`);
 
   // List all registered variants
@@ -44,10 +44,26 @@ async function initializePlugins() {
  * Demonstrates using custom button variants
  */
 function BrandButtonShowcase() {
-  const primaryClasses = useVariant('Button', 'brand-primary', 'px-4 py-2 rounded');
-  const secondaryClasses = useVariant('Button', 'brand-secondary', 'px-4 py-2 rounded');
-  const dangerClasses = useVariant('Button', 'brand-danger', 'px-4 py-2 rounded');
-  const subtleClasses = useVariant('Button', 'brand-subtle', 'px-4 py-2 rounded');
+  const primaryClasses = useVariant(
+    "Button",
+    "brand-primary",
+    "px-4 py-2 rounded",
+  );
+  const secondaryClasses = useVariant(
+    "Button",
+    "brand-secondary",
+    "px-4 py-2 rounded",
+  );
+  const dangerClasses = useVariant(
+    "Button",
+    "brand-danger",
+    "px-4 py-2 rounded",
+  );
+  const subtleClasses = useVariant(
+    "Button",
+    "brand-subtle",
+    "px-4 py-2 rounded",
+  );
 
   return (
     <div className="space-y-4 p-6">
@@ -82,13 +98,24 @@ function VariantRegistryBrowser() {
 
       <div className="grid gap-4">
         {variants.map((variant) => (
-          <div key={`${variant.componentName}:${variant.name}`} className="border rounded p-4">
+          <div
+            key={`${variant.componentName}:${variant.name}`}
+            className="border rounded p-4"
+          >
             <h3 className="font-semibold">
               {variant.componentName} → {variant.name}
             </h3>
-            {variant.description && <p className="text-sm text-gray-600">{variant.description}</p>}
-            <code className="block bg-gray-100 p-2 rounded mt-2 text-xs">{variant.classes}</code>
-            {variant.responsive && <span className="text-xs text-green-600 mt-2 block">✓ Responsive</span>}
+            {variant.description && (
+              <p className="text-sm text-gray-600">{variant.description}</p>
+            )}
+            <code className="block bg-gray-100 p-2 rounded mt-2 text-xs">
+              {variant.classes}
+            </code>
+            {variant.responsive && (
+              <span className="text-xs text-green-600 mt-2 block">
+                ✓ Responsive
+              </span>
+            )}
           </div>
         ))}
       </div>
@@ -108,21 +135,21 @@ function VariantQueryExamples() {
     const results: string[] = [];
 
     // Check if a variant exists
-    if (hasCustomVariant('Button', 'brand-primary')) {
+    if (hasCustomVariant("Button", "brand-primary")) {
       results.push('✓ Button variant "brand-primary" exists');
     }
 
     // Get a specific variant
-    const variant = getCustomVariant('Button', 'brand-primary');
+    const variant = getCustomVariant("Button", "brand-primary");
     if (variant) {
       results.push(`✓ Button variant classes: ${variant.classes}`);
     }
 
     // Get all variants for a component
-    const buttonVariants = getComponentVariants('Button');
+    const buttonVariants = getComponentVariants("Button");
     results.push(`✓ Total Button variants: ${buttonVariants.length}`);
 
-    const badgeVariants = getComponentVariants('Badge');
+    const badgeVariants = getComponentVariants("Badge");
     results.push(`✓ Total Badge variants: ${badgeVariants.length}`);
 
     setQueryResults(results);
@@ -158,9 +185,9 @@ function AnalyticsDashboard() {
 
     // Update stats when variants are used
     const manager = getPluginManager();
-    manager.emit('variant:resolve', {
-      componentName: 'Button',
-      variantName: 'brand-primary',
+    manager.emit("variant:resolve", {
+      componentName: "Button",
+      variantName: "brand-primary",
     });
   }, []);
 
@@ -171,7 +198,10 @@ function AnalyticsDashboard() {
       {Object.keys(stats).length > 0 ? (
         <div className="space-y-2">
           {Object.entries(stats).map(([key, count]) => (
-            <div key={key} className="flex justify-between items-center border-b pb-2">
+            <div
+              key={key}
+              className="flex justify-between items-center border-b pb-2"
+            >
               <span className="font-mono">{key}</span>
               <span className="font-bold">{count} uses</span>
             </div>

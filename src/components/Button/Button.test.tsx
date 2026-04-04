@@ -1,13 +1,15 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
+import { describe, expect, it, vi } from "vitest";
 import { Button } from "./Button";
 
 describe("Button", () => {
   it("renders with default variant and size", () => {
     render(<Button>Click me</Button>);
-    expect(screen.getByRole("button", { name: "Click me" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Click me" }),
+    ).toBeInTheDocument();
   });
 
   it("forwards ref to the button element", () => {
@@ -18,16 +20,20 @@ describe("Button", () => {
 
   it("merges custom className", () => {
     render(<Button className="custom-class">Styled</Button>);
-    expect(screen.getByRole("button", { name: "Styled" })).toHaveClass("custom-class");
+    expect(screen.getByRole("button", { name: "Styled" })).toHaveClass(
+      "custom-class",
+    );
   });
 
   it("renders as child when asChild is true", () => {
     render(
       <Button asChild>
         <a href="/test">Link button</a>
-      </Button>
+      </Button>,
     );
-    expect(screen.getByRole("link", { name: "Link button" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Link button" }),
+    ).toBeInTheDocument();
   });
 
   it("is disabled when disabled prop is passed", async () => {
@@ -54,11 +60,13 @@ describe("Button", () => {
     expect(screen.getByRole("button", { name: variant })).toBeInTheDocument();
   });
 
-  it.each([["sm" as const], ["md" as const], ["lg" as const], ["icon" as const]])(
-    "renders size %s",
-    (size) => {
-      render(<Button size={size}>size</Button>);
-      expect(screen.getByRole("button", { name: "size" })).toBeInTheDocument();
-    }
-  );
+  it.each([
+    ["sm" as const],
+    ["md" as const],
+    ["lg" as const],
+    ["icon" as const],
+  ])("renders size %s", (size) => {
+    render(<Button size={size}>size</Button>);
+    expect(screen.getByRole("button", { name: "size" })).toBeInTheDocument();
+  });
 });

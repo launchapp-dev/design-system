@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { MetricCards } from "./MetricCards";
 import type { MetricCardItem } from "./MetricCards";
+import { MetricCards } from "./MetricCards";
 
 const mockItems: MetricCardItem[] = [
   {
@@ -10,7 +9,10 @@ const mockItems: MetricCardItem[] = [
     value: "12,480",
     trend: "up",
     trendValue: "+8.2%",
-    sparklineData: [9200, 9800, 10100, 10400, 10900, 11200, 11600, 11900, 12100, 12200, 12350, 12480],
+    sparklineData: [
+      9200, 9800, 10100, 10400, 10900, 11200, 11600, 11900, 12100, 12200, 12350,
+      12480,
+    ],
     sparklineColor: "hsl(var(--la-chart-1))",
   },
   {
@@ -19,7 +21,10 @@ const mockItems: MetricCardItem[] = [
     value: "$148,200",
     trend: "up",
     trendValue: "+5.4%",
-    sparklineData: [128000, 130000, 132000, 134000, 136000, 138000, 140000, 142000, 143500, 145000, 146800, 148200],
+    sparklineData: [
+      128000, 130000, 132000, 134000, 136000, 138000, 140000, 142000, 143500,
+      145000, 146800, 148200,
+    ],
     sparklineColor: "hsl(var(--la-chart-2))",
   },
   {
@@ -28,7 +33,9 @@ const mockItems: MetricCardItem[] = [
     value: "1.8%",
     trend: "down",
     trendValue: "-0.3%",
-    sparklineData: [2.4, 2.5, 2.3, 2.6, 2.4, 2.2, 2.1, 2.0, 2.1, 1.9, 1.85, 1.8],
+    sparklineData: [
+      2.4, 2.5, 2.3, 2.6, 2.4, 2.2, 2.1, 2.0, 2.1, 1.9, 1.85, 1.8,
+    ],
     sparklineColor: "hsl(var(--la-destructive))",
   },
   {
@@ -95,13 +102,18 @@ export const TwoItems: Story = {
 
 export const NoSparklines: Story = {
   args: {
-    items: mockItems.map(({ sparklineData: _, sparklineColor: __, ...rest }) => rest),
+    items: mockItems.map(
+      ({ sparklineData: _, sparklineColor: __, ...rest }) => rest,
+    ),
   },
 };
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}
+    >
       <MetricCards {...args} />
     </div>
   ),

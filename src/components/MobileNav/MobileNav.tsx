@@ -1,7 +1,13 @@
 import * as React from "react";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "../Sheet";
-import { Button } from "../Button";
 import { cn } from "../../lib/utils";
+import { Button } from "../Button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "../Sheet";
 
 export interface MobileNavItem {
   label: string;
@@ -17,7 +23,12 @@ export interface MobileNavProps {
   contentClassName?: string;
 }
 
-function MobileNav({ items, className, triggerClassName, contentClassName }: MobileNavProps) {
+function MobileNav({
+  items,
+  className,
+  triggerClassName,
+  contentClassName,
+}: MobileNavProps) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -47,7 +58,10 @@ function MobileNav({ items, className, triggerClassName, contentClassName }: Mob
           </svg>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className={cn("w-[280px] md:hidden", contentClassName)}>
+      <SheetContent
+        side="left"
+        className={cn("w-[280px] md:hidden", contentClassName)}
+      >
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <SheetDescription className="sr-only">
           Navigate through the application
@@ -72,7 +86,11 @@ interface MobileNavItemComponentProps {
   depth?: number;
 }
 
-function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemComponentProps) {
+function MobileNavItemComponent({
+  item,
+  onNavigate,
+  depth = 0,
+}: MobileNavItemComponentProps) {
   const [expanded, setExpanded] = React.useState(false);
   const hasChildren = item.children && item.children.length > 0;
   const contentId = React.useId();
@@ -100,7 +118,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
           "hover:bg-accent hover:text-accent-foreground",
           "focus:bg-accent focus:text-accent-foreground focus:outline-none",
           "min-h-[44px]",
-          depth > 0 && "pl-8"
+          depth > 0 && "pl-8",
         )}
       >
         {item.label}
@@ -117,7 +135,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
           "hover:bg-accent hover:text-accent-foreground",
           "focus:bg-accent focus:text-accent-foreground focus:outline-none",
           "min-h-[44px]",
-          depth > 0 && "pl-8"
+          depth > 0 && "pl-8",
         )}
         aria-expanded={hasChildren ? expanded : undefined}
         aria-controls={hasChildren ? contentId : undefined}
@@ -136,7 +154,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
             strokeLinejoin="round"
             className={cn(
               "transition-transform duration-200",
-              expanded && "rotate-180"
+              expanded && "rotate-180",
             )}
             aria-hidden="true"
           >

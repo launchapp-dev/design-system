@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const realtimeTickerVariants = cva(
@@ -21,7 +21,7 @@ const realtimeTickerVariants = cva(
       size: "md",
       variant: "default",
     },
-  }
+  },
 );
 
 const tickerValueVariants = cva("font-semibold tabular-nums", {
@@ -37,18 +37,21 @@ const tickerValueVariants = cva("font-semibold tabular-nums", {
   },
 });
 
-const tickerChangeVariants = cva("flex items-center gap-0.5 font-medium tabular-nums", {
-  variants: {
-    trend: {
-      up: "text-[hsl(var(--la-chart-3))]",
-      down: "text-destructive",
-      neutral: "text-muted-foreground",
+const tickerChangeVariants = cva(
+  "flex items-center gap-0.5 font-medium tabular-nums",
+  {
+    variants: {
+      trend: {
+        up: "text-[hsl(var(--la-chart-3))]",
+        down: "text-destructive",
+        neutral: "text-muted-foreground",
+      },
+    },
+    defaultVariants: {
+      trend: "neutral",
     },
   },
-  defaultVariants: {
-    trend: "neutral",
-  },
-});
+);
 
 export interface TickerItem {
   id: string;
@@ -71,7 +74,11 @@ export interface RealtimeTickerProps
   onUpdate?: (items: TickerItem[]) => void;
 }
 
-function formatValue(value: number, format: TickerItem["format"], precision: number): string {
+function formatValue(
+  value: number,
+  format: TickerItem["format"],
+  precision: number,
+): string {
   switch (format) {
     case "currency":
       if (Math.abs(value) >= 1000000) {
@@ -105,7 +112,10 @@ function formatValue(value: number, format: TickerItem["format"], precision: num
   }
 }
 
-function getTrend(current: number, previous?: number): "up" | "down" | "neutral" {
+function getTrend(
+  current: number,
+  previous?: number,
+): "up" | "down" | "neutral" {
   if (previous === undefined) return "neutral";
   if (current > previous) return "up";
   if (current < previous) return "down";
@@ -114,7 +124,7 @@ function getTrend(current: number, previous?: number): "up" | "down" | "neutral"
 
 function TrendIcon({ trend }: { trend: "up" | "down" | "neutral" }) {
   if (trend === "neutral") return null;
-  
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -136,20 +146,22 @@ function TrendIcon({ trend }: { trend: "up" | "down" | "neutral" }) {
 
 function LiveIndicator({ live }: { live: boolean }) {
   if (!live) return null;
-  
+
   return (
     <span className="flex items-center gap-1">
       <span className="relative flex h-2 w-2">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-chart-3 opacity-75" />
         <span className="relative inline-flex rounded-full h-2 w-2 bg-chart-3" />
       </span>
-      <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Live</span>
+      <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+        Live
+      </span>
     </span>
   );
 }
 
-function AnimatedValue({ 
-  value, 
+function AnimatedValue({
+  value,
   previousValue,
   format,
   precision = 2,
@@ -165,38 +177,45 @@ function AnimatedValue({
 }) {
   const [displayValue, setDisplayValue] = React.useState(value);
   const trend = getTrend(value, previousValue);
-  
+
   React.useEffect(() => {
     if (previousValue !== undefined && value !== previousValue) {
       const startValue = displayValue;
       const endValue = value;
       const duration = 300;
       const startTime = performance.now();
-      
+
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        const eased = 1 - Math.pow(1 - progress, 3);
+
+        const eased = 1 - (1 - progress) ** 3;
         const current = startValue + (endValue - startValue) * eased;
-        
+
         setDisplayValue(current);
-        
+
         if (progress < 1) {
           requestAnimationFrame(animate);
         }
       };
-      
+
       requestAnimationFrame(animate);
     } else {
       setDisplayValue(value);
     }
   }, [value, previousValue, displayValue]);
-  
-  const textSize = size === "sm" ? "text-sm" : size === "lg" ? "text-xl" : "text-base";
-  
+
+  const textSize =
+    size === "sm" ? "text-sm" : size === "lg" ? "text-xl" : "text-base";
+
   return (
-    <span className={cn(tickerValueVariants({ trend }), textSize, showTrend && "transition-colors duration-300")}>
+    <span
+      className={cn(
+        tickerValueVariants({ trend }),
+        textSize,
+        showTrend && "transition-colors duration-300",
+      )}
+    >
       {formatValue(displayValue, format, precision)}
     </span>
   );
@@ -217,35 +236,35 @@ function RealtimeTicker({
 }: RealtimeTickerProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [currentItems, setCurrentItems] = React.useState<TickerItem[]>(items);
   const [previousItems, setPreviousItems] = React.useState<TickerItem[]>([]);
-  
+
   React.useEffect(() => {
     setCurrentItems(items);
   }, [items]);
-  
+
   React.useEffect(() => {
     if (!live || updateInterval <= 0) return;
-    
+
     const interval = setInterval(() => {
       setPreviousItems(currentItems);
-      
+
       const newItems = currentItems.map((item) => {
         const fluctuation = (Math.random() - 0.5) * 0.1;
         const newValue = item.value * (1 + fluctuation);
-        
+
         return {
           ...item,
           previousValue: item.value,
           value: newValue,
         };
       });
-      
+
       setCurrentItems(newItems);
       onUpdate?.(newItems);
     }, updateInterval);
-    
+
     return () => clearInterval(interval);
   }, [live, updateInterval, currentItems, onUpdate]);
-  
+
   return (
     <div
       ref={ref}
@@ -256,15 +275,22 @@ function RealtimeTicker({
       {...props}
     >
       {live && <LiveIndicator live={live} />}
-      
-      <div className={cn("flex flex-wrap gap-4", variant === "expanded" && "gap-6")}>
-        {currentItems.map((item, index) => {
+
+      <div
+        className={cn(
+          "flex flex-wrap gap-4",
+          variant === "expanded" && "gap-6",
+        )}
+      >
+        {currentItems.map((item, _index) => {
           const previousItem = previousItems.find((p) => p.id === item.id);
           const previousValue = item.previousValue ?? previousItem?.value;
           const trend = getTrend(item.value, previousValue);
           const change = previousValue ? item.value - previousValue : 0;
-          const changePercent = previousValue ? ((item.value - previousValue) / previousValue) * 100 : 0;
-          
+          const changePercent = previousValue
+            ? ((item.value - previousValue) / previousValue) * 100
+            : 0;
+
           return (
             <div key={item.id} className="flex flex-col">
               <span className="text-xs text-muted-foreground uppercase tracking-wide">
@@ -283,7 +309,9 @@ function RealtimeTicker({
                   <span className="text-muted-foreground">{item.unit}</span>
                 )}
                 {showChange && previousValue !== undefined && (
-                  <span className={cn(tickerChangeVariants({ trend }), "text-xs")}>
+                  <span
+                    className={cn(tickerChangeVariants({ trend }), "text-xs")}
+                  >
                     <TrendIcon trend={trend} />
                     <span>
                       {change >= 0 ? "+" : ""}
@@ -302,8 +330,15 @@ function RealtimeTicker({
 
 RealtimeTicker.displayName = "RealtimeTicker";
 
-export type RealtimeTickerVariants = VariantProps<typeof realtimeTickerVariants>;
+export type RealtimeTickerVariants = VariantProps<
+  typeof realtimeTickerVariants
+>;
 export type TickerValueVariants = VariantProps<typeof tickerValueVariants>;
 export type TickerChangeVariants = VariantProps<typeof tickerChangeVariants>;
 
-export { RealtimeTicker, realtimeTickerVariants, tickerValueVariants, tickerChangeVariants };
+export {
+  RealtimeTicker,
+  realtimeTickerVariants,
+  tickerChangeVariants,
+  tickerValueVariants,
+};

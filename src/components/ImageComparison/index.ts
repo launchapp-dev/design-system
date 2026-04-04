@@ -1,10 +1,12 @@
+export type {
+  ImageComparisonHandleVariants,
+  ImageComparisonProps,
+  ImageComparisonSliderVariants,
+  ImageComparisonVariants,
+} from "./ImageComparison";
 export {
   ImageComparison,
-  imageComparisonVariants,
-  imageComparisonSliderVariants,
   imageComparisonHandleVariants,
+  imageComparisonSliderVariants,
+  imageComparisonVariants,
 } from "./ImageComparison";
-export type { ImageComparisonProps } from "./ImageComparison";
-export type { ImageComparisonVariants } from "./ImageComparison";
-export type { ImageComparisonSliderVariants } from "./ImageComparison";
-export type { ImageComparisonHandleVariants } from "./ImageComparison";

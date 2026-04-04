@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { ProductCard, ProductCardGrid } from "./index";
 import type { ProductCardItem } from "./index";
+import { ProductCard, ProductCardGrid } from "./index";
 
 const sampleProducts: ProductCardItem[] = [
   {
@@ -12,18 +11,22 @@ const sampleProducts: ProductCardItem[] = [
     rating: 4.5,
     reviewCount: 238,
     badge: "Sale",
-    description: "Premium sound quality with 30-hour battery life and active noise cancellation.",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop",
+    description:
+      "Premium sound quality with 30-hour battery life and active noise cancellation.",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop",
   },
   {
     id: "2",
     name: "Minimalist Leather Watch",
-    price: 149.00,
+    price: 149.0,
     rating: 4.8,
     reviewCount: 92,
     badge: "New",
-    description: "Handcrafted genuine leather band with sapphire crystal glass.",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop",
+    description:
+      "Handcrafted genuine leather band with sapphire crystal glass.",
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop",
   },
   {
     id: "3",
@@ -33,17 +36,19 @@ const sampleProducts: ProductCardItem[] = [
     rating: 4.2,
     reviewCount: 417,
     description: "Waterproof and dustproof with 12-hour playtime.",
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop",
   },
   {
     id: "4",
     name: "Mechanical Keyboard",
-    price: 119.00,
+    price: 119.0,
     rating: 4.7,
     reviewCount: 156,
     badge: "Popular",
     description: "Tactile switches with RGB backlighting and aluminum frame.",
-    image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop",
   },
 ];
 
@@ -133,30 +138,49 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div>
-        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Compact</p>
+        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+          Compact
+        </p>
         <div className="flex flex-wrap gap-4">
           {sampleProducts.slice(0, 2).map((p) => (
             <div key={p.id} className="w-56">
-              <ProductCard variant="compact" product={p} onAddToCart={() => {}} />
+              <ProductCard
+                variant="compact"
+                product={p}
+                onAddToCart={() => {}}
+              />
             </div>
           ))}
         </div>
       </div>
       <div>
-        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Detailed</p>
+        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+          Detailed
+        </p>
         <div className="flex flex-wrap gap-4">
           {sampleProducts.slice(0, 2).map((p) => (
             <div key={p.id} className="w-72">
-              <ProductCard variant="detailed" product={p} onAddToCart={() => {}} />
+              <ProductCard
+                variant="detailed"
+                product={p}
+                onAddToCart={() => {}}
+              />
             </div>
           ))}
         </div>
       </div>
       <div>
-        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Horizontal</p>
+        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+          Horizontal
+        </p>
         <div className="flex flex-col gap-3 max-w-xl">
           {sampleProducts.slice(0, 2).map((p) => (
-            <ProductCard key={p.id} variant="horizontal" product={p} onAddToCart={() => {}} />
+            <ProductCard
+              key={p.id}
+              variant="horizontal"
+              product={p}
+              onAddToCart={() => {}}
+            />
           ))}
         </div>
       </div>

@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import {
   Carousel,
-  CarouselItem,
-  CarouselContent,
-  CarouselPrev,
-  CarouselNext,
-  CarouselDots,
   CarouselAutoplay,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrev,
 } from "./index";
 
 const meta: Meta = {
@@ -85,11 +85,17 @@ export const Default: Story = {
           <CarouselItem key={slide.id}>
             <div
               className={`flex items-center justify-center p-12 rounded-lg ${slide.bgColor}`}
-              style={{ minHeight: args.orientation === "vertical" ? "200px" : "280px" }}
+              style={{
+                minHeight: args.orientation === "vertical" ? "200px" : "280px",
+              }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
+                <p className="text-[hsl(var(--la-muted-foreground))]">
+                  {slide.description}
+                </p>
               </div>
             </div>
           </CarouselItem>
@@ -113,8 +119,12 @@ export const WithLoop: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
+                <p className="text-[hsl(var(--la-muted-foreground))]">
+                  {slide.description}
+                </p>
               </div>
             </div>
           </CarouselItem>
@@ -129,7 +139,12 @@ export const WithLoop: Story = {
 
 export const WithAutoplay: Story = {
   render: () => (
-    <Carousel autoPlay autoPlayInterval={3000} loop className="w-full max-w-xl mx-auto">
+    <Carousel
+      autoPlay
+      autoPlayInterval={3000}
+      loop
+      className="w-full max-w-xl mx-auto"
+    >
       <CarouselContent>
         {slides.map((slide) => (
           <CarouselItem key={slide.id}>
@@ -138,8 +153,12 @@ export const WithAutoplay: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
+                <p className="text-[hsl(var(--la-muted-foreground))]">
+                  {slide.description}
+                </p>
               </div>
             </div>
           </CarouselItem>
@@ -164,8 +183,12 @@ export const Vertical: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
+                <p className="text-[hsl(var(--la-muted-foreground))]">
+                  {slide.description}
+                </p>
               </div>
             </div>
           </CarouselItem>
@@ -180,7 +203,12 @@ export const Vertical: Story = {
 
 export const WithoutButtons: Story = {
   render: () => (
-    <Carousel autoPlay autoPlayInterval={4000} loop className="w-full max-w-xl mx-auto">
+    <Carousel
+      autoPlay
+      autoPlayInterval={4000}
+      loop
+      className="w-full max-w-xl mx-auto"
+    >
       <CarouselContent>
         {slides.map((slide) => (
           <CarouselItem key={slide.id}>
@@ -189,8 +217,12 @@ export const WithoutButtons: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
+                <p className="text-[hsl(var(--la-muted-foreground))]">
+                  {slide.description}
+                </p>
               </div>
             </div>
           </CarouselItem>
@@ -223,8 +255,12 @@ export const Controlled: Story = {
                   style={{ minHeight: "280px" }}
                 >
                   <div className="text-center">
-                    <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                    <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                      {slide.title}
+                    </h3>
+                    <p className="text-[hsl(var(--la-muted-foreground))]">
+                      {slide.description}
+                    </p>
                   </div>
                 </div>
               </CarouselItem>
@@ -261,10 +297,10 @@ export const ImageGallery: Story = {
         {[1, 2, 3, 4].map((num) => (
           <CarouselItem key={num}>
             <div className="flex items-center justify-center p-4">
-              <div
-                className="w-full h-64 rounded-lg bg-gradient-to-br from-[hsl(var(--la-primary)/0.3)] to-[hsl(var(--la-accent)/0.3)] flex items-center justify-center"
-              >
-                <span className="text-4xl font-bold text-[hsl(var(--la-foreground))]">Image {num}</span>
+              <div className="w-full h-64 rounded-lg bg-gradient-to-br from-[hsl(var(--la-primary)/0.3)] to-[hsl(var(--la-accent)/0.3)] flex items-center justify-center">
+                <span className="text-4xl font-bold text-[hsl(var(--la-foreground))]">
+                  Image {num}
+                </span>
               </div>
             </div>
           </CarouselItem>
@@ -280,7 +316,12 @@ export const ImageGallery: Story = {
 export const DarkMode: Story = {
   render: () => (
     <div className="dark bg-[hsl(var(--la-background))] p-8 rounded-lg">
-      <Carousel autoPlay autoPlayInterval={4000} loop className="w-full max-w-xl mx-auto">
+      <Carousel
+        autoPlay
+        autoPlayInterval={4000}
+        loop
+        className="w-full max-w-xl mx-auto"
+      >
         <CarouselContent>
           {slides.map((slide) => (
             <CarouselItem key={slide.id}>
@@ -289,8 +330,12 @@ export const DarkMode: Story = {
                 style={{ minHeight: "280px" }}
               >
                 <div className="text-center">
-                  <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                  <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                    {slide.title}
+                  </h3>
+                  <p className="text-[hsl(var(--la-muted-foreground))]">
+                    {slide.description}
+                  </p>
                 </div>
               </div>
             </CarouselItem>
@@ -315,8 +360,12 @@ export const CustomNavigation: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
-                <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
+                <p className="text-[hsl(var(--la-muted-foreground))]">
+                  {slide.description}
+                </p>
               </div>
             </div>
           </CarouselItem>

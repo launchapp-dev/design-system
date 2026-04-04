@@ -10,7 +10,9 @@ interface ThemeContextValue {
   resolvedTheme: "light" | "dark";
 }
 
-const ThemeContext = React.createContext<ThemeContextValue | undefined>(undefined);
+const ThemeContext = React.createContext<ThemeContextValue | undefined>(
+  undefined,
+);
 
 export function useTheme(): ThemeContextValue {
   const ctx = React.useContext(ThemeContext);
@@ -20,16 +22,23 @@ export function useTheme(): ThemeContextValue {
 
 function getSystemTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = React.useState<Theme>("system");
-  const [resolvedTheme, setResolvedTheme] = React.useState<"light" | "dark">("light");
+  const [resolvedTheme, setResolvedTheme] = React.useState<"light" | "dark">(
+    "light",
+  );
 
   React.useEffect(() => {
     const stored = localStorage.getItem("ag-theme") as Theme | null;
-    if (stored && (stored === "light" || stored === "dark" || stored === "system")) {
+    if (
+      stored &&
+      (stored === "light" || stored === "dark" || stored === "system")
+    ) {
       setThemeState(stored);
     }
   }, []);

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import {
   Area,
   Bar,
@@ -15,10 +14,10 @@ import {
 import {
   AreaChart,
   BarChart,
+  CHART_COLORS,
   ChartContainer,
   LineChart,
   PieChart,
-  CHART_COLORS,
 } from "./index";
 
 const monthlyData = [
@@ -131,13 +130,40 @@ export const LineChartStory: Story = {
       className="max-w-2xl"
     >
       <LineChart data={monthlyData}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--la-border))" vertical={false} />
-        <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
-        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <CartesianGrid
+          strokeDasharray="3 3"
+          stroke="hsl(var(--la-border))"
+          vertical={false}
+        />
+        <XAxis
+          dataKey="month"
+          tick={{ fontSize: 12 }}
+          stroke="hsl(var(--la-muted-foreground))"
+          tickLine={false}
+          axisLine={false}
+        />
+        <YAxis
+          tick={{ fontSize: 12 }}
+          stroke="hsl(var(--la-muted-foreground))"
+          tickLine={false}
+          axisLine={false}
+        />
         <Tooltip contentStyle={tooltipStyle} />
         <Legend />
-        <Line type="monotone" dataKey="revenue" stroke="var(--color-revenue)" strokeWidth={2} dot={false} />
-        <Line type="monotone" dataKey="expenses" stroke="var(--color-expenses)" strokeWidth={2} dot={false} />
+        <Line
+          type="monotone"
+          dataKey="revenue"
+          stroke="var(--color-revenue)"
+          strokeWidth={2}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="expenses"
+          stroke="var(--color-expenses)"
+          strokeWidth={2}
+          dot={false}
+        />
       </LineChart>
     </ChartContainer>
   ),
@@ -164,9 +190,24 @@ export const BarChartStory: Story = {
       className="max-w-2xl"
     >
       <BarChart data={categoryData}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--la-border))" vertical={false} />
-        <XAxis dataKey="category" tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
-        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <CartesianGrid
+          strokeDasharray="3 3"
+          stroke="hsl(var(--la-border))"
+          vertical={false}
+        />
+        <XAxis
+          dataKey="category"
+          tick={{ fontSize: 12 }}
+          stroke="hsl(var(--la-muted-foreground))"
+          tickLine={false}
+          axisLine={false}
+        />
+        <YAxis
+          tick={{ fontSize: 12 }}
+          stroke="hsl(var(--la-muted-foreground))"
+          tickLine={false}
+          axisLine={false}
+        />
         <Tooltip contentStyle={tooltipStyle} />
         <Legend />
         <Bar dataKey="q1" fill="var(--color-q1)" radius={[2, 2, 0, 0]} />
@@ -199,21 +240,56 @@ export const AreaChartStory: Story = {
       <AreaChart data={userGrowthData}>
         <defs>
           <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="var(--color-users)" stopOpacity={0.2} />
+            <stop
+              offset="5%"
+              stopColor="var(--color-users)"
+              stopOpacity={0.2}
+            />
             <stop offset="95%" stopColor="var(--color-users)" stopOpacity={0} />
           </linearGradient>
           <linearGradient id="colorChurn" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="var(--color-churn)" stopOpacity={0.2} />
+            <stop
+              offset="5%"
+              stopColor="var(--color-churn)"
+              stopOpacity={0.2}
+            />
             <stop offset="95%" stopColor="var(--color-churn)" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--la-border))" vertical={false} />
-        <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
-        <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--la-muted-foreground))" tickLine={false} axisLine={false} />
+        <CartesianGrid
+          strokeDasharray="3 3"
+          stroke="hsl(var(--la-border))"
+          vertical={false}
+        />
+        <XAxis
+          dataKey="month"
+          tick={{ fontSize: 12 }}
+          stroke="hsl(var(--la-muted-foreground))"
+          tickLine={false}
+          axisLine={false}
+        />
+        <YAxis
+          tick={{ fontSize: 12 }}
+          stroke="hsl(var(--la-muted-foreground))"
+          tickLine={false}
+          axisLine={false}
+        />
         <Tooltip contentStyle={tooltipStyle} />
         <Legend />
-        <Area type="monotone" dataKey="users" stroke="var(--color-users)" strokeWidth={2} fill="url(#colorUsers)" />
-        <Area type="monotone" dataKey="churn" stroke="var(--color-churn)" strokeWidth={2} fill="url(#colorChurn)" />
+        <Area
+          type="monotone"
+          dataKey="users"
+          stroke="var(--color-users)"
+          strokeWidth={2}
+          fill="url(#colorUsers)"
+        />
+        <Area
+          type="monotone"
+          dataKey="churn"
+          stroke="var(--color-churn)"
+          strokeWidth={2}
+          fill="url(#colorChurn)"
+        />
       </AreaChart>
     </ChartContainer>
   ),
@@ -237,14 +313,22 @@ export const PieChartStory: Story = {
           cy="50%"
           outerRadius={110}
           dataKey="value"
-          label={({ name, value }: { name: string; value: number }) => `${name}: ${value}%`}
+          label={({ name, value }: { name: string; value: number }) =>
+            `${name}: ${value}%`
+          }
           labelLine={false}
         >
           {marketShareData.map((_, index) => (
-            <Cell key={index} fill={CHART_COLORS[index % CHART_COLORS.length]} />
+            <Cell
+              key={index}
+              fill={CHART_COLORS[index % CHART_COLORS.length]}
+            />
           ))}
         </Pie>
-        <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => [`${value}%`]} />
+        <Tooltip
+          contentStyle={tooltipStyle}
+          formatter={(value: number) => [`${value}%`]}
+        />
         <Legend />
       </PieChart>
     </ChartContainer>

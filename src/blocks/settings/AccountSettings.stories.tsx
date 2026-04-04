@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { AccountSettings } from "./AccountSettings";
 
 const meta: Meta<typeof AccountSettings> = {
@@ -44,7 +43,10 @@ export const Default: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),

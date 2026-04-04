@@ -70,7 +70,9 @@ export function validateCommunityTheme(theme: unknown): {
   const t = theme as Record<string, unknown>;
 
   if (typeof t.id !== "string" || !/^[a-z0-9-]+$/.test(t.id)) {
-    errors.push("id must be a string with lowercase alphanumeric characters and hyphens");
+    errors.push(
+      "id must be a string with lowercase alphanumeric characters and hyphens",
+    );
   }
 
   if (typeof t.name !== "string" || t.name.length === 0) {
@@ -106,13 +108,21 @@ export function validateCommunityTheme(theme: unknown): {
     if (!tokens.light || typeof tokens.light !== "object") {
       errors.push("tokens.light must be an object");
     } else {
-      validateTokenSet(tokens.light as Record<string, unknown>, "tokens.light", errors);
+      validateTokenSet(
+        tokens.light as Record<string, unknown>,
+        "tokens.light",
+        errors,
+      );
     }
 
     if (!tokens.dark || typeof tokens.dark !== "object") {
       errors.push("tokens.dark must be an object");
     } else {
-      validateTokenSet(tokens.dark as Record<string, unknown>, "tokens.dark", errors);
+      validateTokenSet(
+        tokens.dark as Record<string, unknown>,
+        "tokens.dark",
+        errors,
+      );
     }
   }
 
@@ -125,7 +135,7 @@ export function validateCommunityTheme(theme: unknown): {
 function validateTokenSet(
   tokenSet: Record<string, unknown>,
   path: string,
-  errors: string[]
+  errors: string[],
 ): void {
   const requiredTokens = [
     "--la-background",
@@ -156,7 +166,7 @@ function validateTokenSet(
       errors.push(`${path}.${token} must be a string`);
     } else if (!validateHslValue(tokenSet[token] as string)) {
       errors.push(
-        `${path}.${token} must be a valid HSL value (e.g., "262 83% 58%"), got "${tokenSet[token]}"`
+        `${path}.${token} must be a valid HSL value (e.g., "262 83% 58%"), got "${tokenSet[token]}"`,
       );
     }
   }
@@ -172,6 +182,6 @@ export function getCommunityThemesCssString(theme: CommunityTheme): string {
 
   return `@layer base {\n${renderTokens(
     theme.tokens.light,
-    ":root"
+    ":root",
   )}\n\n${renderTokens(theme.tokens.dark, ".dark")}\n}`;
 }

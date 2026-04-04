@@ -1,28 +1,35 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetHeader,
-  SheetTitle,
-} from "../../components/Sheet";
+import { Avatar, AvatarFallback, AvatarImage } from "../../components/Avatar";
 import { Button } from "../../components/Button";
-import { Separator } from "../../components/Separator";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../components/Collapsible";
+import { Separator } from "../../components/Separator";
 import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from "../../components/Avatar";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../../components/Sheet";
+import { cn } from "../../lib/utils";
 import type { NavItem, NavSection } from "./AppSidebar";
 
 const MenuIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <line x1="4" x2="20" y1="6" y2="6" />
     <line x1="4" x2="20" y1="12" y2="12" />
     <line x1="4" x2="20" y1="18" y2="18" />
@@ -30,7 +37,18 @@ const MenuIcon = () => (
 );
 
 const ChevronDownIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <path d="m6 9 6 6 6-6" />
   </svg>
 );
@@ -43,7 +61,8 @@ const DrawerNavItem = ({ item }: { item: NavItem }) => {
     "text-[hsl(var(--la-foreground))]",
     "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
-    item.isActive && "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]"
+    item.isActive &&
+      "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
   );
 
   if (item.children && item.children.length > 0) {
@@ -53,7 +72,12 @@ const DrawerNavItem = ({ item }: { item: NavItem }) => {
           <button className={itemClass}>
             {item.icon && <span className="shrink-0">{item.icon}</span>}
             <span className="flex-1 truncate text-left">{item.label}</span>
-            <span className={cn("ml-auto shrink-0 transition-transform duration-200", open && "rotate-180")}>
+            <span
+              className={cn(
+                "ml-auto shrink-0 transition-transform duration-200",
+                open && "rotate-180",
+              )}
+            >
               <ChevronDownIcon />
             </span>
           </button>
@@ -117,7 +141,10 @@ const MobileNavDrawer = ({
           <MenuIcon />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="flex w-[280px] flex-col gap-0 p-0 sm:max-w-[280px]">
+      <SheetContent
+        side="left"
+        className="flex w-[280px] flex-col gap-0 p-0 sm:max-w-[280px]"
+      >
         <SheetHeader className="border-b border-[hsl(var(--la-border))] p-4">
           <SheetTitle asChild>
             <div className="flex items-center gap-2">
@@ -134,7 +161,10 @@ const MobileNavDrawer = ({
           </SheetTitle>
         </SheetHeader>
 
-        <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-3" aria-label="Main navigation">
+        <nav
+          className="flex flex-1 flex-col gap-1 overflow-y-auto p-3"
+          aria-label="Main navigation"
+        >
           {sections.map((section, idx) => (
             <div key={idx} className="flex flex-col gap-1">
               {section.title && (
@@ -180,5 +210,5 @@ const MobileNavDrawer = ({
 
 MobileNavDrawer.displayName = "MobileNavDrawer";
 
-export { MobileNavDrawer };
 export type { NavItem, NavSection };
+export { MobileNavDrawer };

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { TestimonialCarousel } from "./index";
 import type { Testimonial } from "./index";
+import { TestimonialCarousel } from "./index";
 
 const testimonials: Testimonial[] = [
   {
@@ -89,9 +88,7 @@ export const Default: Story = {
 };
 
 export const WithoutHeader: Story = {
-  render: () => (
-    <TestimonialCarousel testimonials={testimonials} />
-  ),
+  render: () => <TestimonialCarousel testimonials={testimonials} />,
 };
 
 export const SingleTestimonial: Story = {

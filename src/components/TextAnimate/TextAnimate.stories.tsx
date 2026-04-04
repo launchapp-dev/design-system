@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText } from "./index";
+import {
+  BlurIn,
+  FadeUp,
+  GradientText,
+  LetterReveal,
+  Typewriter,
+  WordReveal,
+} from "./index";
 
 const meta: Meta = {
   title: "Components/TextAnimate",
@@ -26,10 +32,7 @@ export const TypewriterStory: StoryObj = {
       </div>
       <div>
         <p style={{ fontSize: "12px", marginBottom: "8px" }}>Large text</p>
-        <Typewriter
-          text="Big animated text"
-          className="text-3xl font-bold"
-        />
+        <Typewriter text="Big animated text" className="text-3xl font-bold" />
       </div>
     </div>
   ),
@@ -178,39 +181,63 @@ export const GradientTextStory: StoryObj = {
 export const AllTextAnimations: StoryObj = {
   name: "All Text Animations",
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "40px", padding: "24px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "40px",
+        padding: "24px",
+      }}
+    >
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}
+        >
           Typewriter
         </h3>
-        <Typewriter text="Building a design system one component at a time." className="text-xl" />
+        <Typewriter
+          text="Building a design system one component at a time."
+          className="text-xl"
+        />
       </section>
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}
+        >
           Blur In
         </h3>
-        <BlurIn className="text-xl">Emerging from the blur into clarity.</BlurIn>
+        <BlurIn className="text-xl">
+          Emerging from the blur into clarity.
+        </BlurIn>
       </section>
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}
+        >
           Fade Up
         </h3>
         <FadeUp className="text-xl">Rising up with purpose and style.</FadeUp>
       </section>
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}
+        >
           Letter Reveal
         </h3>
         <LetterReveal text="Every letter has its moment." className="text-xl" />
       </section>
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}
+        >
           Word Reveal
         </h3>
         <WordReveal text="Every word has its moment." className="text-xl" />
       </section>
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
+        <h3
+          style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}
+        >
           Gradient Text
         </h3>
         <GradientText variant="primary" className="text-xl">

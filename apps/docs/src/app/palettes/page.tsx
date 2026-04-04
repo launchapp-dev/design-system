@@ -1,7 +1,11 @@
 "use client";
 
+import {
+  builtinPalettes,
+  createTheme,
+  type Palette,
+} from "@launchapp/design-system";
 import * as React from "react";
-import { builtinPalettes, createTheme, type Palette } from "@launchapp/design-system";
 import { cn } from "@/lib/utils";
 
 const SWATCH_TOKENS = [
@@ -37,14 +41,26 @@ function PaletteCard({
       onClick={onClick}
       className={cn(
         "group relative rounded-xl border bg-card text-left transition-all hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        isActive ? "border-primary ring-2 ring-primary ring-offset-2" : "border-border"
+        isActive
+          ? "border-primary ring-2 ring-primary ring-offset-2"
+          : "border-border",
       )}
       aria-pressed={isActive}
       aria-label={`Apply ${palette.label} palette`}
     >
       {isActive && (
         <span className="absolute -top-2 -right-2 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground shadow">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </span>
@@ -57,11 +73,15 @@ function PaletteCard({
             style={{ backgroundColor: palette.previewColor }}
             aria-hidden="true"
           />
-          <span className="font-medium text-sm capitalize">{palette.label}</span>
+          <span className="font-medium text-sm capitalize">
+            {palette.label}
+          </span>
         </div>
 
         <div className="space-y-2">
-          <div className="text-xs font-medium text-muted-foreground mb-1.5">Light</div>
+          <div className="text-xs font-medium text-muted-foreground mb-1.5">
+            Light
+          </div>
           <div className="flex gap-1">
             {SWATCH_TOKENS.map(({ key, label }) => (
               <div
@@ -74,7 +94,9 @@ function PaletteCard({
             ))}
           </div>
 
-          <div className="text-xs font-medium text-muted-foreground mb-1.5 mt-2">Dark</div>
+          <div className="text-xs font-medium text-muted-foreground mb-1.5 mt-2">
+            Dark
+          </div>
           <div className="flex gap-1">
             {SWATCH_TOKENS.map(({ key, label }) => (
               <div
@@ -90,9 +112,19 @@ function PaletteCard({
 
         <div className="mt-3 flex gap-1 flex-wrap">
           {SWATCH_TOKENS.map(({ label }) => (
-            <span key={label} className="text-[10px] text-muted-foreground">{label}</span>
+            <span key={label} className="text-[10px] text-muted-foreground">
+              {label}
+            </span>
           )).reduce<React.ReactNode[]>((acc, el, i) => {
-            if (i > 0) acc.push(<span key={`sep-${i}`} className="text-[10px] text-muted-foreground/40">·</span>);
+            if (i > 0)
+              acc.push(
+                <span
+                  key={`sep-${i}`}
+                  className="text-[10px] text-muted-foreground/40"
+                >
+                  ·
+                </span>,
+              );
             acc.push(el);
             return acc;
           }, [])}
@@ -118,7 +150,10 @@ function CustomThemeDemo() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-4">
-        <label htmlFor="brand-color" className="text-sm font-medium whitespace-nowrap">
+        <label
+          htmlFor="brand-color"
+          className="text-sm font-medium whitespace-nowrap"
+        >
           Brand color
         </label>
         <div className="flex items-center gap-2">
@@ -160,8 +195,9 @@ export default function PalettesPage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight mb-3">Palettes</h1>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Ten built-in color palettes for the LaunchApp design system. Click any palette to apply it
-          live to this documentation site. Each card shows both light and dark mode swatches.
+          Ten built-in color palettes for the LaunchApp design system. Click any
+          palette to apply it live to this documentation site. Each card shows
+          both light and dark mode swatches.
         </p>
       </div>
 
@@ -178,13 +214,15 @@ export default function PalettesPage() {
 
       <div className="space-y-10">
         <section>
-          <h2 className="text-xl font-semibold mb-4">Import a palette CSS file</h2>
+          <h2 className="text-xl font-semibold mb-4">
+            Import a palette CSS file
+          </h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Each palette ships as a standalone CSS file. Import it in your app entry point to apply
-            the palette globally.
+            Each palette ships as a standalone CSS file. Import it in your app
+            entry point to apply the palette globally.
           </p>
           <pre className="rounded-lg border bg-muted/50 p-4 text-sm font-mono text-muted-foreground overflow-x-auto">
-{`import '@launchapp/design-system/themes/ocean.css';
+            {`import '@launchapp/design-system/themes/ocean.css';
 
 /* Or any other palette: */
 import '@launchapp/design-system/themes/forest.css';
@@ -199,16 +237,21 @@ import '@launchapp/design-system/themes/emerald.css';`}
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold mb-4">Generate a custom palette</h2>
+          <h2 className="text-xl font-semibold mb-4">
+            Generate a custom palette
+          </h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Use <code className="text-xs font-mono bg-muted px-1.5 py-0.5 rounded">createTheme(brandColor)</code> to
-            generate a full token set from a single brand color. Pass a hex value, HSL string, or
-            space-separated HSL values.
+            Use{" "}
+            <code className="text-xs font-mono bg-muted px-1.5 py-0.5 rounded">
+              createTheme(brandColor)
+            </code>{" "}
+            to generate a full token set from a single brand color. Pass a hex
+            value, HSL string, or space-separated HSL values.
           </p>
 
           <div className="mb-4 rounded-lg border bg-muted/50 p-4">
             <pre className="text-sm font-mono text-muted-foreground overflow-x-auto">
-{`import { createTheme } from '@launchapp/design-system/themes/createTheme';
+              {`import { createTheme } from '@launchapp/design-system/themes/createTheme';
 
 const { light, dark, cssString } = createTheme('#6d28d9');
 

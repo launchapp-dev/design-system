@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 export interface TypewriterProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -8,13 +8,20 @@ export interface TypewriterProps extends React.HTMLAttributes<HTMLSpanElement> {
   showCursor?: boolean;
 }
 
-function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...props }: TypewriterProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function Typewriter({
+  text,
+  speed = 50,
+  showCursor = true,
+  className,
+  ref,
+  ...props
+}: TypewriterProps & { ref?: React.Ref<HTMLSpanElement> }) {
   const [displayed, setDisplayed] = React.useState("");
   const prefersReducedMotion = React.useMemo(
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 
   React.useEffect(() => {
@@ -43,11 +50,7 @@ function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...pr
           />
         )}
       </span>
-      <span
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-      >
+      <span aria-live="polite" aria-atomic="true" className="sr-only">
         {text}
       </span>
     </span>
@@ -66,14 +69,20 @@ const blurInVariants = cva(
       },
     },
     defaultVariants: { size: "md" },
-  }
+  },
 );
 
 export interface BlurInProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof blurInVariants> {}
 
-function BlurIn({ className, size, children, ref, ...props }: BlurInProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function BlurIn({
+  className,
+  size,
+  children,
+  ref,
+  ...props
+}: BlurInProps & { ref?: React.Ref<HTMLSpanElement> }) {
   return (
     <span
       ref={ref}
@@ -97,14 +106,20 @@ const fadeUpVariants = cva(
       },
     },
     defaultVariants: { size: "md" },
-  }
+  },
 );
 
 export interface FadeUpProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof fadeUpVariants> {}
 
-function FadeUp({ className, size, children, ref, ...props }: FadeUpProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function FadeUp({
+  className,
+  size,
+  children,
+  ref,
+  ...props
+}: FadeUpProps & { ref?: React.Ref<HTMLSpanElement> }) {
   return (
     <span
       ref={ref}
@@ -117,12 +132,19 @@ function FadeUp({ className, size, children, ref, ...props }: FadeUpProps & { re
 }
 FadeUp.displayName = "FadeUp";
 
-export interface LetterRevealProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface LetterRevealProps
+  extends React.HTMLAttributes<HTMLSpanElement> {
   text: string;
   staggerDelay?: number;
 }
 
-function LetterReveal({ text, staggerDelay = 30, className, ref, ...props }: LetterRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function LetterReveal({
+  text,
+  staggerDelay = 30,
+  className,
+  ref,
+  ...props
+}: LetterRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
   return (
     <span
       ref={ref}
@@ -185,10 +207,14 @@ WordReveal.displayName = "WordReveal";
 const gradientTextVariants = cva("inline-block", {
   variants: {
     variant: {
-      default: "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
-      primary: "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-primary)/0.7)] bg-clip-text text-transparent",
-      rainbow: "bg-gradient-to-r from-[hsl(var(--la-destructive))] via-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
-      sunset: "bg-gradient-to-r from-[#f97316] via-[#ec4899] to-[#8b5cf6] bg-clip-text text-transparent",
+      default:
+        "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+      primary:
+        "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-primary)/0.7)] bg-clip-text text-transparent",
+      rainbow:
+        "bg-gradient-to-r from-[hsl(var(--la-destructive))] via-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+      sunset:
+        "bg-gradient-to-r from-[#f97316] via-[#ec4899] to-[#8b5cf6] bg-clip-text text-transparent",
     },
   },
   defaultVariants: {
@@ -223,4 +249,12 @@ export type BlurInVariants = VariantProps<typeof blurInVariants>;
 export type FadeUpVariants = VariantProps<typeof fadeUpVariants>;
 export type GradientTextVariants = VariantProps<typeof gradientTextVariants>;
 
-export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText, gradientTextVariants };
+export {
+  BlurIn,
+  FadeUp,
+  GradientText,
+  gradientTextVariants,
+  LetterReveal,
+  Typewriter,
+  WordReveal,
+};

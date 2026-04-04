@@ -1,12 +1,18 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "../Button";
-import { Badge } from "../Badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../Card";
-import { Switch } from "../Switch";
-import { Label } from "../Label";
-import { createTheme, type ThemeTokens } from "@/themes/createTheme";
 import type { VisionColorMap } from "@/lib/vision";
+import { createTheme } from "@/themes/createTheme";
+import { Badge } from "../Badge";
+import { Button } from "../Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../Card";
+import { Label } from "../Label";
+import { Switch } from "../Switch";
 
 export interface ThemePreviewProps {
   colors: VisionColorMap | null;
@@ -19,7 +25,7 @@ interface ColorSwatchProps {
   hexValue?: string;
 }
 
-function hexToHsl(hex: string): string {
+function _hexToHsl(hex: string): string {
   const clean = hex.replace("#", "");
   const r = parseInt(clean.substring(0, 2), 16) / 255;
   const g = parseInt(clean.substring(2, 4), 16) / 255;
@@ -56,12 +62,17 @@ function ColorSwatch({ label, hslValue, hexValue }: ColorSwatchProps) {
         style={{ backgroundColor: hslValue }}
         title={`${hslValue}${hexValue ? ` (${hexValue})` : ""}`}
       />
-      <p className="text-xs font-mono text-muted-foreground">{hexValue || hslValue}</p>
+      <p className="text-xs font-mono text-muted-foreground">
+        {hexValue || hslValue}
+      </p>
     </div>
   );
 }
 
-const exportThemeAsJson = (colors: VisionColorMap | null, theme: ReturnType<typeof createTheme> | null) => {
+const exportThemeAsJson = (
+  colors: VisionColorMap | null,
+  theme: ReturnType<typeof createTheme> | null,
+) => {
   if (!colors || !theme) return;
 
   const themeExport = {
@@ -95,7 +106,9 @@ const exportThemeAsJson = (colors: VisionColorMap | null, theme: ReturnType<type
 export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
   ({ colors, className }, ref) => {
     const [isDark, setIsDark] = React.useState(false);
-    const [theme, setTheme] = React.useState<ReturnType<typeof createTheme> | null>(null);
+    const [theme, setTheme] = React.useState<ReturnType<
+      typeof createTheme
+    > | null>(null);
 
     React.useEffect(() => {
       if (!colors) return;
@@ -113,7 +126,7 @@ export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
           ref={ref}
           className={cn(
             "rounded-lg border border-border bg-card p-6 text-card-foreground",
-            className
+            className,
           )}
         >
           <p className="text-sm text-muted-foreground">
@@ -131,11 +144,16 @@ export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
             <div>
               <CardTitle>Theme Preview</CardTitle>
-              <CardDescription>Live preview of your generated theme</CardDescription>
+              <CardDescription>
+                Live preview of your generated theme
+              </CardDescription>
             </div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <Label htmlFor="dark-mode-toggle" className="text-sm font-medium">
+                <Label
+                  htmlFor="dark-mode-toggle"
+                  className="text-sm font-medium"
+                >
                   Dark Mode
                 </Label>
                 <Switch
@@ -195,7 +213,9 @@ export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
         <Card>
           <CardHeader>
             <CardTitle>Component Examples</CardTitle>
-            <CardDescription>See how your theme looks with real components</CardDescription>
+            <CardDescription>
+              See how your theme looks with real components
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -223,7 +243,9 @@ export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
               <Card className="border-2">
                 <CardHeader>
                   <CardTitle>Sample Card</CardTitle>
-                  <CardDescription>This card uses your generated theme</CardDescription>
+                  <CardDescription>
+                    This card uses your generated theme
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
@@ -265,7 +287,9 @@ export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
         <Card>
           <CardHeader>
             <CardTitle>Full CSS Output</CardTitle>
-            <CardDescription>Complete CSS for both light and dark modes</CardDescription>
+            <CardDescription>
+              Complete CSS for both light and dark modes
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <pre className="overflow-auto rounded-md bg-muted p-3 text-xs">
@@ -275,7 +299,7 @@ export const ThemePreview = React.forwardRef<HTMLDivElement, ThemePreviewProps>(
         </Card>
       </div>
     );
-  }
+  },
 );
 
 ThemePreview.displayName = "ThemePreview";

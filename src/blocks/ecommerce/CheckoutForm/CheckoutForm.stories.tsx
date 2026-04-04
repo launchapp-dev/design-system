@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CheckoutForm } from "./index";
 import type { OrderSummaryItem } from "./index";
+import { CheckoutForm } from "./index";
 
 const orderItems: OrderSummaryItem[] = [
   {
@@ -9,22 +9,25 @@ const orderItems: OrderSummaryItem[] = [
     price: 79.99,
     quantity: 1,
     variant: "Midnight Black",
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop",
   },
   {
     id: "2",
     name: "Minimalist Leather Watch",
-    price: 149.00,
+    price: 149.0,
     quantity: 1,
     variant: "Brown / 42mm",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop",
   },
   {
     id: "3",
     name: "Portable Bluetooth Speaker",
     price: 49.99,
     quantity: 2,
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop",
   },
 ];
 
@@ -210,7 +213,7 @@ export function CheckoutForm({ orderItems = [], onSubmit, isLoading }) {
           </Card>
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Processing…" : \`Pay \$\${subtotal.toFixed(2)}\`}
+            {isLoading ? "Processing…" : \`Pay $\${subtotal.toFixed(2)}\`}
           </Button>
         </form>
       </Form>

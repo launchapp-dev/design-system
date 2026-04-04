@@ -1,6 +1,6 @@
-export { FadeInOnScroll, CountUp, Parallax } from "./ScrollAnimate";
 export type {
-  FadeInOnScrollProps,
   CountUpProps,
+  FadeInOnScrollProps,
   ParallaxProps,
 } from "./ScrollAnimate";
+export { CountUp, FadeInOnScroll, Parallax } from "./ScrollAnimate";

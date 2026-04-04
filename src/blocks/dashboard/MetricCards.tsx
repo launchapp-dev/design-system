@@ -1,6 +1,6 @@
-import * as React from "react";
+import type * as React from "react";
 import { Card, CardContent } from "@/components/Card";
-import { ChartContainer, AreaChart, Area } from "@/components/Chart";
+import { Area, AreaChart, ChartContainer } from "@/components/Chart";
 import { cn } from "@/lib/utils";
 
 export interface MetricCardItem {
@@ -29,13 +29,18 @@ const trendClass = (trend: MetricCardItem["trend"]) => {
   return "text-muted-foreground";
 };
 
-function MetricCards({ items, className, ref, ...props }: MetricCardsProps & { ref?: React.Ref<HTMLDivElement> }) {
+function MetricCards({
+  items,
+  className,
+  ref,
+  ...props
+}: MetricCardsProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}
       className={cn(
         "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4",
-        className
+        className,
       )}
       {...props}
     >
@@ -52,10 +57,17 @@ function MetricCards({ items, className, ref, ...props }: MetricCardsProps & { r
               </p>
               <div className="flex items-end justify-between gap-2">
                 <div className="space-y-1">
-                  <p className="text-2xl font-bold tracking-tight">{item.value}</p>
+                  <p className="text-2xl font-bold tracking-tight">
+                    {item.value}
+                  </p>
                   {item.trend !== undefined && (
                     <div className="flex items-center gap-1">
-                      <span className={cn("text-xs font-medium", trendClass(item.trend))}>
+                      <span
+                        className={cn(
+                          "text-xs font-medium",
+                          trendClass(item.trend),
+                        )}
+                      >
                         {trendIcon(item.trend)}
                       </span>
                       {item.trendValue && (
@@ -74,9 +86,23 @@ function MetricCards({ items, className, ref, ...props }: MetricCardsProps & { r
                         margin={{ top: 2, right: 0, left: 0, bottom: 2 }}
                       >
                         <defs>
-                          <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor={color} stopOpacity={0.2} />
-                            <stop offset="95%" stopColor={color} stopOpacity={0} />
+                          <linearGradient
+                            id={gradientId}
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor={color}
+                              stopOpacity={0.2}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor={color}
+                              stopOpacity={0}
+                            />
                           </linearGradient>
                         </defs>
                         <Area

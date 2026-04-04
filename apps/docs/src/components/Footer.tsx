@@ -1,4 +1,3 @@
-import * as React from "react";
 import Link from "next/link";
 
 const footerLinks = [
@@ -33,20 +32,26 @@ export function Footer() {
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
+            <Link
+              href="/"
+              className="flex items-center gap-2 font-semibold text-foreground"
+            >
               <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground text-xs font-bold">
                 LA
               </div>
               <span>LaunchApp UI</span>
             </Link>
             <p className="mt-3 text-sm text-muted-foreground max-w-xs">
-              A production-ready React component library with full accessibility and dark mode support.
+              A production-ready React component library with full accessibility
+              and dark mode support.
             </p>
           </div>
 
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h3 className="text-sm font-semibold text-foreground">{group.title}</h3>
+              <h3 className="text-sm font-semibold text-foreground">
+                {group.title}
+              </h3>
               <ul className="mt-3 space-y-2">
                 {group.links.map((link) => (
                   <li key={link.href}>

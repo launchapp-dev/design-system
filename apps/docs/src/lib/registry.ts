@@ -54,12 +54,40 @@ export const components: ComponentEntry[] = [
     category: "display",
     importStatement: `import { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "@launchapp/design-system";`,
     props: [
-      { name: "type", type: '"single" | "multiple"', defaultValue: '"single"', description: "Determines whether one or multiple items can be open at the same time." },
-      { name: "defaultValue", type: "string | string[]", description: "The default open item(s) when uncontrolled." },
-      { name: "value", type: "string | string[]", description: "The controlled open item(s)." },
-      { name: "onValueChange", type: "(value: string | string[]) => void", description: "Callback fired when the open state changes." },
-      { name: "collapsible", type: "boolean", defaultValue: "false", description: "When type is 'single', allows closing all items." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Prevents user interaction with the accordion." },
+      {
+        name: "type",
+        type: '"single" | "multiple"',
+        defaultValue: '"single"',
+        description:
+          "Determines whether one or multiple items can be open at the same time.",
+      },
+      {
+        name: "defaultValue",
+        type: "string | string[]",
+        description: "The default open item(s) when uncontrolled.",
+      },
+      {
+        name: "value",
+        type: "string | string[]",
+        description: "The controlled open item(s).",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string | string[]) => void",
+        description: "Callback fired when the open state changes.",
+      },
+      {
+        name: "collapsible",
+        type: "boolean",
+        defaultValue: "false",
+        description: "When type is 'single', allows closing all items.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Prevents user interaction with the accordion.",
+      },
     ],
     examples: [
       {
@@ -84,12 +112,22 @@ export const components: ComponentEntry[] = [
   {
     slug: "alert",
     name: "Alert",
-    description: "Displays a callout for user attention with support for different severity levels.",
+    description:
+      "Displays a callout for user attention with support for different severity levels.",
     category: "feedback",
     importStatement: `import { Alert, AlertTitle, AlertDescription } from "@launchapp/design-system";`,
     props: [
-      { name: "variant", type: '"default" | "destructive"', defaultValue: '"default"', description: "The visual style of the alert." },
-      { name: "className", type: "string", description: "Additional CSS classes to apply." },
+      {
+        name: "variant",
+        type: '"default" | "destructive"',
+        defaultValue: '"default"',
+        description: "The visual style of the alert.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes to apply.",
+      },
     ],
     examples: [
       {
@@ -125,8 +163,17 @@ export const components: ComponentEntry[] = [
 } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
-      { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
-      { name: "defaultOpen", type: "boolean", defaultValue: "false", description: "Initial open state when uncontrolled." },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Callback when open state changes.",
+      },
+      {
+        name: "defaultOpen",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Initial open state when uncontrolled.",
+      },
     ],
     examples: [
       {
@@ -154,11 +201,17 @@ export const components: ComponentEntry[] = [
   {
     slug: "aspect-ratio",
     name: "AspectRatio",
-    description: "Displays content within a desired ratio, preventing layout shifts.",
+    description:
+      "Displays content within a desired ratio, preventing layout shifts.",
     category: "layout",
     importStatement: `import { AspectRatio } from "@launchapp/design-system";`,
     props: [
-      { name: "ratio", type: "number", defaultValue: "1", description: "The desired ratio (width/height). E.g. 16/9." },
+      {
+        name: "ratio",
+        type: "number",
+        defaultValue: "1",
+        description: "The desired ratio (width/height). E.g. 16/9.",
+      },
     ],
     examples: [
       {
@@ -178,13 +231,26 @@ export const components: ComponentEntry[] = [
   {
     slug: "avatar",
     name: "Avatar",
-    description: "An image element with a fallback for representing users or entities.",
+    description:
+      "An image element with a fallback for representing users or entities.",
     category: "display",
     importStatement: `import { Avatar, AvatarImage, AvatarFallback } from "@launchapp/design-system";`,
     props: [
-      { name: "className", type: "string", description: "Additional CSS classes." },
-      { name: "src", type: "string", description: "Source URL for the avatar image (on AvatarImage)." },
-      { name: "alt", type: "string", description: "Alt text for the image (on AvatarImage)." },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
+      {
+        name: "src",
+        type: "string",
+        description: "Source URL for the avatar image (on AvatarImage).",
+      },
+      {
+        name: "alt",
+        type: "string",
+        description: "Alt text for the image (on AvatarImage).",
+      },
     ],
     examples: [
       {
@@ -209,8 +275,17 @@ export const components: ComponentEntry[] = [
     category: "display",
     importStatement: `import { Badge } from "@launchapp/design-system";`,
     props: [
-      { name: "variant", type: '"default" | "secondary" | "destructive" | "outline"', defaultValue: '"default"', description: "The visual style of the badge." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "variant",
+        type: '"default" | "secondary" | "destructive" | "outline"',
+        defaultValue: '"default"',
+        description: "The visual style of the badge.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -227,14 +302,19 @@ export const components: ComponentEntry[] = [
   {
     slug: "breadcrumb",
     name: "Breadcrumb",
-    description: "Displays the path to the current resource using a hierarchy of links.",
+    description:
+      "Displays the path to the current resource using a hierarchy of links.",
     category: "navigation",
     importStatement: `import {
   Breadcrumb, BreadcrumbList, BreadcrumbItem,
   BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator
 } from "@launchapp/design-system";`,
     props: [
-      { name: "separator", type: "React.ReactNode", description: "Custom separator element (on BreadcrumbSeparator)." },
+      {
+        name: "separator",
+        type: "React.ReactNode",
+        description: "Custom separator element (on BreadcrumbSeparator).",
+      },
     ],
     examples: [
       {
@@ -265,11 +345,35 @@ export const components: ComponentEntry[] = [
     category: "inputs",
     importStatement: `import { Button } from "@launchapp/design-system";`,
     props: [
-      { name: "variant", type: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"', defaultValue: '"default"', description: "The visual style of the button." },
-      { name: "size", type: '"sm" | "md" | "lg" | "icon"', defaultValue: '"md"', description: "The size of the button." },
-      { name: "asChild", type: "boolean", defaultValue: "false", description: "Render as a child component via Radix Slot." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Prevents user interaction." },
-      { name: "onClick", type: "React.MouseEventHandler<HTMLButtonElement>", description: "Click event handler." },
+      {
+        name: "variant",
+        type: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"',
+        defaultValue: '"default"',
+        description: "The visual style of the button.",
+      },
+      {
+        name: "size",
+        type: '"sm" | "md" | "lg" | "icon"',
+        defaultValue: '"md"',
+        description: "The size of the button.",
+      },
+      {
+        name: "asChild",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Render as a child component via Radix Slot.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Prevents user interaction.",
+      },
+      {
+        name: "onClick",
+        type: "React.MouseEventHandler<HTMLButtonElement>",
+        description: "Click event handler.",
+      },
     ],
     examples: [
       {
@@ -300,15 +404,37 @@ export const components: ComponentEntry[] = [
   {
     slug: "calendar",
     name: "Calendar",
-    description: "A date field component that allows users to enter and edit date.",
+    description:
+      "A date field component that allows users to enter and edit date.",
     category: "inputs",
     importStatement: `import { Calendar } from "@launchapp/design-system";`,
     props: [
-      { name: "mode", type: '"single" | "multiple" | "range"', defaultValue: '"single"', description: "Selection mode for the calendar." },
-      { name: "selected", type: "Date | Date[] | DateRange", description: "The selected date(s)." },
-      { name: "onSelect", type: "(date: Date | undefined) => void", description: "Callback when a date is selected." },
-      { name: "disabled", type: "Matcher | Matcher[]", description: "Dates to disable." },
-      { name: "initialFocus", type: "boolean", description: "Whether to focus the calendar on mount." },
+      {
+        name: "mode",
+        type: '"single" | "multiple" | "range"',
+        defaultValue: '"single"',
+        description: "Selection mode for the calendar.",
+      },
+      {
+        name: "selected",
+        type: "Date | Date[] | DateRange",
+        description: "The selected date(s).",
+      },
+      {
+        name: "onSelect",
+        type: "(date: Date | undefined) => void",
+        description: "Callback when a date is selected.",
+      },
+      {
+        name: "disabled",
+        type: "Matcher | Matcher[]",
+        description: "Dates to disable.",
+      },
+      {
+        name: "initialFocus",
+        type: "boolean",
+        description: "Whether to focus the calendar on mount.",
+      },
     ],
     examples: [
       {
@@ -331,7 +457,11 @@ export const components: ComponentEntry[] = [
     category: "display",
     importStatement: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@launchapp/design-system";`,
     props: [
-      { name: "className", type: "string", description: "Additional CSS classes for the card container." },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes for the card container.",
+      },
     ],
     examples: [
       {
@@ -354,13 +484,29 @@ export const components: ComponentEntry[] = [
   {
     slug: "chart",
     name: "Chart",
-    description: "A collection of chart components built on top of Recharts for data visualization.",
+    description:
+      "A collection of chart components built on top of Recharts for data visualization.",
     category: "data",
     importStatement: `import { ChartContainer, LineChart, BarChart, AreaChart, PieChart } from "@launchapp/design-system";`,
     props: [
-      { name: "config", type: "ChartConfig", required: true, description: "Chart configuration mapping data keys to labels and colors." },
-      { name: "className", type: "string", description: "Additional CSS classes for the chart container." },
-      { name: "data", type: "Record<string, unknown>[]", required: true, description: "The data array to render (on chart sub-components)." },
+      {
+        name: "config",
+        type: "ChartConfig",
+        required: true,
+        description:
+          "Chart configuration mapping data keys to labels and colors.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes for the chart container.",
+      },
+      {
+        name: "data",
+        type: "Record<string, unknown>[]",
+        required: true,
+        description: "The data array to render (on chart sub-components).",
+      },
     ],
     examples: [
       {
@@ -393,11 +539,33 @@ const config = {
     category: "inputs",
     importStatement: `import { Checkbox } from "@launchapp/design-system";`,
     props: [
-      { name: "checked", type: "boolean | 'indeterminate'", description: "The controlled checked state." },
-      { name: "defaultChecked", type: "boolean", defaultValue: "false", description: "Initial checked state when uncontrolled." },
-      { name: "onCheckedChange", type: "(checked: boolean | 'indeterminate') => void", description: "Callback when checked state changes." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Prevents user interaction." },
-      { name: "required", type: "boolean", description: "Makes the checkbox required in forms." },
+      {
+        name: "checked",
+        type: "boolean | 'indeterminate'",
+        description: "The controlled checked state.",
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Initial checked state when uncontrolled.",
+      },
+      {
+        name: "onCheckedChange",
+        type: "(checked: boolean | 'indeterminate') => void",
+        description: "Callback when checked state changes.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Prevents user interaction.",
+      },
+      {
+        name: "required",
+        type: "boolean",
+        description: "Makes the checkbox required in forms.",
+      },
       { name: "name", type: "string", description: "Form field name." },
     ],
     examples: [
@@ -420,9 +588,23 @@ const config = {
     importStatement: `import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
-      { name: "defaultOpen", type: "boolean", defaultValue: "false", description: "Initial open state when uncontrolled." },
-      { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Prevents user interaction." },
+      {
+        name: "defaultOpen",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Initial open state when uncontrolled.",
+      },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Callback when open state changes.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Prevents user interaction.",
+      },
     ],
     examples: [
       {
@@ -448,14 +630,52 @@ const config = {
     category: "inputs",
     importStatement: `import { Combobox } from "@launchapp/design-system";`,
     props: [
-      { name: "options", type: "ComboboxOption[]", required: true, description: "Array of options with value and label." },
-      { name: "value", type: "string", description: "Controlled selected value." },
-      { name: "onValueChange", type: "(value: string) => void", description: "Callback when value changes." },
-      { name: "placeholder", type: "string", defaultValue: '"Select..."', description: "Placeholder text when no value is selected." },
-      { name: "searchPlaceholder", type: "string", defaultValue: '"Search..."', description: "Placeholder for the search input." },
-      { name: "emptyMessage", type: "string", defaultValue: '"No results found."', description: "Message shown when no options match the search." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the combobox." },
-      { name: "size", type: '"sm" | "md" | "lg"', defaultValue: '"md"', description: "Size of the trigger button." },
+      {
+        name: "options",
+        type: "ComboboxOption[]",
+        required: true,
+        description: "Array of options with value and label.",
+      },
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled selected value.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        description: "Callback when value changes.",
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        defaultValue: '"Select..."',
+        description: "Placeholder text when no value is selected.",
+      },
+      {
+        name: "searchPlaceholder",
+        type: "string",
+        defaultValue: '"Search..."',
+        description: "Placeholder for the search input.",
+      },
+      {
+        name: "emptyMessage",
+        type: "string",
+        defaultValue: '"No results found."',
+        description: "Message shown when no options match the search.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the combobox.",
+      },
+      {
+        name: "size",
+        type: '"sm" | "md" | "lg"',
+        defaultValue: '"md"',
+        description: "Size of the trigger button.",
+      },
     ],
     examples: [
       {
@@ -484,10 +704,27 @@ const config = {
   CommandGroup, CommandItem, CommandSeparator, CommandShortcut
 } from "@launchapp/design-system";`,
     props: [
-      { name: "value", type: "string", description: "Controlled selected value." },
-      { name: "onValueChange", type: "(value: string) => void", description: "Callback when selection changes." },
-      { name: "filter", type: "(value: string, search: string) => number", description: "Custom filter function." },
-      { name: "shouldFilter", type: "boolean", defaultValue: "true", description: "Whether to filter items based on search." },
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled selected value.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        description: "Callback when selection changes.",
+      },
+      {
+        name: "filter",
+        type: "(value: string, search: string) => number",
+        description: "Custom filter function.",
+      },
+      {
+        name: "shouldFilter",
+        type: "boolean",
+        defaultValue: "true",
+        description: "Whether to filter items based on search.",
+      },
     ],
     examples: [
       {
@@ -515,14 +752,19 @@ const config = {
   {
     slug: "context-menu",
     name: "ContextMenu",
-    description: "Displays a menu located at the pointer, triggered by a right-click or long-press.",
+    description:
+      "Displays a menu located at the pointer, triggered by a right-click or long-press.",
     category: "overlays",
     importStatement: `import {
   ContextMenu, ContextMenuTrigger, ContextMenuContent,
   ContextMenuItem, ContextMenuSeparator, ContextMenuLabel
 } from "@launchapp/design-system";`,
     props: [
-      { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Callback when open state changes.",
+      },
     ],
     examples: [
       {
@@ -550,10 +792,29 @@ const config = {
     category: "data",
     importStatement: `import { DataTable } from "@launchapp/design-system";`,
     props: [
-      { name: "columns", type: "ColumnDef<TData, TValue>[]", required: true, description: "Column definitions from TanStack Table." },
-      { name: "data", type: "TData[]", required: true, description: "The data array to display." },
-      { name: "filterColumn", type: "string", description: "Column key to use for the filter input." },
-      { name: "filterPlaceholder", type: "string", defaultValue: '"Filter..."', description: "Placeholder for the filter input." },
+      {
+        name: "columns",
+        type: "ColumnDef<TData, TValue>[]",
+        required: true,
+        description: "Column definitions from TanStack Table.",
+      },
+      {
+        name: "data",
+        type: "TData[]",
+        required: true,
+        description: "The data array to display.",
+      },
+      {
+        name: "filterColumn",
+        type: "string",
+        description: "Column key to use for the filter input.",
+      },
+      {
+        name: "filterPlaceholder",
+        type: "string",
+        defaultValue: '"Filter..."',
+        description: "Placeholder for the filter input.",
+      },
     ],
     examples: [
       {
@@ -576,16 +837,44 @@ const data = [
   {
     slug: "date-picker",
     name: "DatePicker",
-    description: "A date picker input that combines a button trigger with a calendar popover.",
+    description:
+      "A date picker input that combines a button trigger with a calendar popover.",
     category: "inputs",
     importStatement: `import { DatePicker } from "@launchapp/design-system";`,
     props: [
-      { name: "selected", type: "Date | undefined", description: "Controlled selected date." },
-      { name: "onSelect", type: "(date: Date | undefined) => void", description: "Callback when date is selected." },
-      { name: "placeholder", type: "string", defaultValue: '"Pick a date"', description: "Placeholder text when no date is selected." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the picker." },
-      { name: "dateFormat", type: "string", defaultValue: '"PPP"', description: "date-fns format string for the displayed date." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "selected",
+        type: "Date | undefined",
+        description: "Controlled selected date.",
+      },
+      {
+        name: "onSelect",
+        type: "(date: Date | undefined) => void",
+        description: "Callback when date is selected.",
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        defaultValue: '"Pick a date"',
+        description: "Placeholder text when no date is selected.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the picker.",
+      },
+      {
+        name: "dateFormat",
+        type: "string",
+        defaultValue: '"PPP"',
+        description: "date-fns format string for the displayed date.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -603,7 +892,8 @@ const data = [
   {
     slug: "dialog",
     name: "Dialog",
-    description: "A window overlaid on either the primary window, rendering the content underneath inert.",
+    description:
+      "A window overlaid on either the primary window, rendering the content underneath inert.",
     category: "overlays",
     importStatement: `import {
   DialogRoot, DialogTrigger, DialogContent,
@@ -611,8 +901,17 @@ const data = [
 } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
-      { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
-      { name: "defaultOpen", type: "boolean", defaultValue: "false", description: "Initial open state." },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Callback when open state changes.",
+      },
+      {
+        name: "defaultOpen",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Initial open state.",
+      },
     ],
     examples: [
       {
@@ -642,7 +941,8 @@ const data = [
   {
     slug: "dropdown-menu",
     name: "DropdownMenu",
-    description: "Displays a menu to the user — such as a set of actions — triggered by a button.",
+    description:
+      "Displays a menu to the user — such as a set of actions — triggered by a button.",
     category: "overlays",
     importStatement: `import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
@@ -650,8 +950,17 @@ const data = [
 } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
-      { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
-      { name: "modal", type: "boolean", defaultValue: "true", description: "Whether to render in a modal context." },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Callback when open state changes.",
+      },
+      {
+        name: "modal",
+        type: "boolean",
+        defaultValue: "true",
+        description: "Whether to render in a modal context.",
+      },
     ],
     examples: [
       {
@@ -676,15 +985,39 @@ const data = [
   {
     slug: "focus-scope",
     name: "FocusScope",
-    description: "A utility that traps focus within a container, useful for accessible modals and overlays.",
+    description:
+      "A utility that traps focus within a container, useful for accessible modals and overlays.",
     category: "utilities",
     importStatement: `import { FocusScope } from "@launchapp/design-system";`,
     props: [
-      { name: "trapped", type: "boolean", defaultValue: "false", description: "Whether focus is trapped within the scope." },
-      { name: "loop", type: "boolean", defaultValue: "false", description: "Whether tab navigation loops within the scope." },
-      { name: "onMountAutoFocus", type: "(event: Event) => void", description: "Handler for auto-focus on mount." },
-      { name: "onUnmountAutoFocus", type: "(event: Event) => void", description: "Handler for auto-focus on unmount." },
-      { name: "asChild", type: "boolean", defaultValue: "false", description: "Render as child element via Radix Slot." },
+      {
+        name: "trapped",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Whether focus is trapped within the scope.",
+      },
+      {
+        name: "loop",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Whether tab navigation loops within the scope.",
+      },
+      {
+        name: "onMountAutoFocus",
+        type: "(event: Event) => void",
+        description: "Handler for auto-focus on mount.",
+      },
+      {
+        name: "onUnmountAutoFocus",
+        type: "(event: Event) => void",
+        description: "Handler for auto-focus on unmount.",
+      },
+      {
+        name: "asChild",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Render as child element via Radix Slot.",
+      },
     ],
     examples: [
       {
@@ -702,11 +1035,17 @@ const data = [
   {
     slug: "form",
     name: "Form",
-    description: "Building forms with React Hook Form and Zod validation, with accessible error messages.",
+    description:
+      "Building forms with React Hook Form and Zod validation, with accessible error messages.",
     category: "forms",
     importStatement: `import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@launchapp/design-system";`,
     props: [
-      { name: "...form", type: "UseFormReturn", required: true, description: "The react-hook-form form instance spread as props." },
+      {
+        name: "...form",
+        type: "UseFormReturn",
+        required: true,
+        description: "The react-hook-form form instance spread as props.",
+      },
     ],
     examples: [
       {
@@ -740,16 +1079,35 @@ const data = [
   {
     slug: "input",
     name: "Input",
-    description: "Displays a form input field or a component that looks like an input field.",
+    description:
+      "Displays a form input field or a component that looks like an input field.",
     category: "inputs",
     importStatement: `import { Input } from "@launchapp/design-system";`,
     props: [
-      { name: "type", type: "string", defaultValue: '"text"', description: "HTML input type." },
+      {
+        name: "type",
+        type: "string",
+        defaultValue: '"text"',
+        description: "HTML input type.",
+      },
       { name: "placeholder", type: "string", description: "Placeholder text." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the input." },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the input.",
+      },
       { name: "value", type: "string", description: "Controlled value." },
-      { name: "onChange", type: "React.ChangeEventHandler<HTMLInputElement>", description: "Change event handler." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "onChange",
+        type: "React.ChangeEventHandler<HTMLInputElement>",
+        description: "Change event handler.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -772,16 +1130,44 @@ const data = [
   {
     slug: "kpi-card",
     name: "KPICard",
-    description: "A card component for displaying key performance indicators with trend information.",
+    description:
+      "A card component for displaying key performance indicators with trend information.",
     category: "data",
     importStatement: `import { KPICard } from "@launchapp/design-system";`,
     props: [
-      { name: "label", type: "string", required: true, description: "The KPI title/label." },
-      { name: "value", type: "string | number", required: true, description: "The main KPI value to display." },
-      { name: "trend", type: '"up" | "down" | "neutral"', description: "Trend direction for color coding." },
-      { name: "trendLabel", type: "string", description: "Label describing the trend (e.g. '+20% from last month')." },
-      { name: "sparklineData", type: "number[]", description: "Array of numbers to render a sparkline chart." },
-      { name: "sparklineColor", type: "string", description: "Color for the sparkline chart." },
+      {
+        name: "label",
+        type: "string",
+        required: true,
+        description: "The KPI title/label.",
+      },
+      {
+        name: "value",
+        type: "string | number",
+        required: true,
+        description: "The main KPI value to display.",
+      },
+      {
+        name: "trend",
+        type: '"up" | "down" | "neutral"',
+        description: "Trend direction for color coding.",
+      },
+      {
+        name: "trendLabel",
+        type: "string",
+        description:
+          "Label describing the trend (e.g. '+20% from last month').",
+      },
+      {
+        name: "sparklineData",
+        type: "number[]",
+        description: "Array of numbers to render a sparkline chart.",
+      },
+      {
+        name: "sparklineColor",
+        type: "string",
+        description: "Color for the sparkline chart.",
+      },
     ],
     examples: [
       {
@@ -802,8 +1188,16 @@ const data = [
     category: "forms",
     importStatement: `import { Label } from "@launchapp/design-system";`,
     props: [
-      { name: "htmlFor", type: "string", description: "The ID of the form element this label is for." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "htmlFor",
+        type: "string",
+        description: "The ID of the form element this label is for.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -818,15 +1212,24 @@ const data = [
   {
     slug: "menubar",
     name: "Menubar",
-    description: "A visually persistent menu common in desktop applications providing quick access to commands.",
+    description:
+      "A visually persistent menu common in desktop applications providing quick access to commands.",
     category: "navigation",
     importStatement: `import {
   MenubarRoot, MenubarMenu, MenubarTrigger, MenubarContent,
   MenubarItem, MenubarSeparator, MenubarShortcut
 } from "@launchapp/design-system";`,
     props: [
-      { name: "value", type: "string", description: "Controlled value of the open menu." },
-      { name: "onValueChange", type: "(value: string) => void", description: "Callback when the open menu changes." },
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled value of the open menu.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        description: "Callback when the open menu changes.",
+      },
     ],
     examples: [
       {
@@ -855,16 +1258,44 @@ const data = [
   {
     slug: "multi-select",
     name: "MultiSelect",
-    description: "An input component for selecting multiple options from a dropdown list.",
+    description:
+      "An input component for selecting multiple options from a dropdown list.",
     category: "inputs",
     importStatement: `import { MultiSelect } from "@launchapp/design-system";`,
     props: [
-      { name: "options", type: "MultiSelectOption[]", required: true, description: "Array of options with value and label." },
-      { name: "value", type: "string[]", description: "Controlled selected values." },
-      { name: "onValueChange", type: "(values: string[]) => void", description: "Callback when selection changes." },
-      { name: "placeholder", type: "string", defaultValue: '"Select options..."', description: "Placeholder text." },
-      { name: "maxCount", type: "number", description: "Maximum number of badge chips to show before collapsing." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the multi-select." },
+      {
+        name: "options",
+        type: "MultiSelectOption[]",
+        required: true,
+        description: "Array of options with value and label.",
+      },
+      {
+        name: "value",
+        type: "string[]",
+        description: "Controlled selected values.",
+      },
+      {
+        name: "onValueChange",
+        type: "(values: string[]) => void",
+        description: "Callback when selection changes.",
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        defaultValue: '"Select options..."',
+        description: "Placeholder text.",
+      },
+      {
+        name: "maxCount",
+        type: "number",
+        description: "Maximum number of badge chips to show before collapsing.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the multi-select.",
+      },
     ],
     examples: [
       {
@@ -887,7 +1318,8 @@ const data = [
   {
     slug: "navigation-menu",
     name: "NavigationMenu",
-    description: "A collection of links for navigating websites with full keyboard support.",
+    description:
+      "A collection of links for navigating websites with full keyboard support.",
     category: "navigation",
     importStatement: `import {
   NavigationMenu, NavigationMenuList, NavigationMenuItem,
@@ -895,8 +1327,18 @@ const data = [
 } from "@launchapp/design-system";`,
     props: [
       { name: "value", type: "string", description: "Controlled open value." },
-      { name: "onValueChange", type: "(value: string) => void", description: "Callback when open value changes." },
-      { name: "delayDuration", type: "number", defaultValue: "200", description: "Duration from when the mouse enters a trigger to when the content opens." },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        description: "Callback when open value changes.",
+      },
+      {
+        name: "delayDuration",
+        type: "number",
+        defaultValue: "200",
+        description:
+          "Duration from when the mouse enters a trigger to when the content opens.",
+      },
     ],
     examples: [
       {
@@ -965,10 +1407,29 @@ const data = [
     importStatement: `import { Popover, PopoverTrigger, PopoverContent } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
-      { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
-      { name: "defaultOpen", type: "boolean", defaultValue: "false", description: "Initial open state." },
-      { name: "side", type: '"top" | "right" | "bottom" | "left"', defaultValue: '"bottom"', description: "Preferred side of the trigger (on PopoverContent)." },
-      { name: "align", type: '"start" | "center" | "end"', defaultValue: '"center"', description: "Preferred alignment (on PopoverContent)." },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Callback when open state changes.",
+      },
+      {
+        name: "defaultOpen",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Initial open state.",
+      },
+      {
+        name: "side",
+        type: '"top" | "right" | "bottom" | "left"',
+        defaultValue: '"bottom"',
+        description: "Preferred side of the trigger (on PopoverContent).",
+      },
+      {
+        name: "align",
+        type: '"start" | "center" | "end"',
+        defaultValue: '"center"',
+        description: "Preferred alignment (on PopoverContent).",
+      },
     ],
     examples: [
       {
@@ -994,12 +1455,22 @@ const data = [
   {
     slug: "portal",
     name: "Portal",
-    description: "A utility component that renders its children into a different DOM node.",
+    description:
+      "A utility component that renders its children into a different DOM node.",
     category: "utilities",
     importStatement: `import { Portal } from "@launchapp/design-system";`,
     props: [
-      { name: "container", type: "HTMLElement | null", description: "Target DOM container. Defaults to document.body." },
-      { name: "asChild", type: "boolean", defaultValue: "false", description: "Render as child element." },
+      {
+        name: "container",
+        type: "HTMLElement | null",
+        description: "Target DOM container. Defaults to document.body.",
+      },
+      {
+        name: "asChild",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Render as child element.",
+      },
     ],
     examples: [
       {
@@ -1013,13 +1484,28 @@ const data = [
   {
     slug: "progress",
     name: "Progress",
-    description: "Displays an indicator showing the completion progress of a task.",
+    description:
+      "Displays an indicator showing the completion progress of a task.",
     category: "feedback",
     importStatement: `import { Progress } from "@launchapp/design-system";`,
     props: [
-      { name: "value", type: "number | null", description: "The current progress value (0-100). null shows indeterminate." },
-      { name: "max", type: "number", defaultValue: "100", description: "The maximum value." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "value",
+        type: "number | null",
+        description:
+          "The current progress value (0-100). null shows indeterminate.",
+      },
+      {
+        name: "max",
+        type: "number",
+        defaultValue: "100",
+        description: "The maximum value.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -1042,15 +1528,38 @@ React.useEffect(() => {
   {
     slug: "radio-group",
     name: "RadioGroup",
-    description: "A set of checkable buttons—known as radio buttons—where no more than one can be checked at a time.",
+    description:
+      "A set of checkable buttons—known as radio buttons—where no more than one can be checked at a time.",
     category: "inputs",
     importStatement: `import { RadioGroup, RadioGroupItem } from "@launchapp/design-system";`,
     props: [
-      { name: "value", type: "string", description: "Controlled selected value." },
-      { name: "defaultValue", type: "string", description: "Initial value when uncontrolled." },
-      { name: "onValueChange", type: "(value: string) => void", description: "Callback when value changes." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables all radio buttons." },
-      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"vertical"', description: "Orientation of the group." },
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled selected value.",
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        description: "Initial value when uncontrolled.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        description: "Callback when value changes.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables all radio buttons.",
+      },
+      {
+        name: "orientation",
+        type: '"horizontal" | "vertical"',
+        defaultValue: '"vertical"',
+        description: "Orientation of the group.",
+      },
     ],
     examples: [
       {
@@ -1071,15 +1580,38 @@ React.useEffect(() => {
   {
     slug: "resizable",
     name: "Resizable",
-    description: "Accessible resizable panel groups and layouts with keyboard support.",
+    description:
+      "Accessible resizable panel groups and layouts with keyboard support.",
     category: "layout",
     importStatement: `import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@launchapp/design-system";`,
     props: [
-      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The resize orientation for the panel group." },
-      { name: "onLayoutChange", type: "(layout: number[]) => void", description: "Callback when panel sizes change." },
-      { name: "defaultSize", type: "number", description: "Default panel size as a percentage (on ResizablePanel)." },
-      { name: "minSize", type: "number", description: "Minimum size of the panel (on ResizablePanel)." },
-      { name: "withHandle", type: "boolean", defaultValue: "false", description: "Show a drag handle (on ResizableHandle)." },
+      {
+        name: "orientation",
+        type: '"horizontal" | "vertical"',
+        defaultValue: '"horizontal"',
+        description: "The resize orientation for the panel group.",
+      },
+      {
+        name: "onLayoutChange",
+        type: "(layout: number[]) => void",
+        description: "Callback when panel sizes change.",
+      },
+      {
+        name: "defaultSize",
+        type: "number",
+        description: "Default panel size as a percentage (on ResizablePanel).",
+      },
+      {
+        name: "minSize",
+        type: "number",
+        description: "Minimum size of the panel (on ResizablePanel).",
+      },
+      {
+        name: "withHandle",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Show a drag handle (on ResizableHandle).",
+      },
     ],
     examples: [
       {
@@ -1103,13 +1635,28 @@ React.useEffect(() => {
   {
     slug: "scroll-area",
     name: "ScrollArea",
-    description: "Augments native scroll functionality for custom, cross-browser styling.",
+    description:
+      "Augments native scroll functionality for custom, cross-browser styling.",
     category: "layout",
     importStatement: `import { ScrollArea, ScrollBar } from "@launchapp/design-system";`,
     props: [
-      { name: "type", type: '"auto" | "always" | "scroll" | "hover"', defaultValue: '"hover"', description: "Scroll visibility strategy." },
-      { name: "scrollHideDelay", type: "number", defaultValue: "600", description: "Delay before scrollbar hides (ms)." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "type",
+        type: '"auto" | "always" | "scroll" | "hover"',
+        defaultValue: '"hover"',
+        description: "Scroll visibility strategy.",
+      },
+      {
+        name: "scrollHideDelay",
+        type: "number",
+        defaultValue: "600",
+        description: "Delay before scrollbar hides (ms).",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -1125,18 +1672,40 @@ React.useEffect(() => {
   {
     slug: "select",
     name: "Select",
-    description: "Displays a list of options for the user to pick from—triggered by a button.",
+    description:
+      "Displays a list of options for the user to pick from—triggered by a button.",
     category: "inputs",
     importStatement: `import {
   SelectRoot, SelectTrigger, SelectValue, SelectContent,
   SelectItem, SelectGroup, SelectLabel, SelectSeparator
 } from "@launchapp/design-system";`,
     props: [
-      { name: "value", type: "string", description: "Controlled selected value." },
-      { name: "defaultValue", type: "string", description: "Initial value when uncontrolled." },
-      { name: "onValueChange", type: "(value: string) => void", description: "Callback when value changes." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the select." },
-      { name: "placeholder", type: "string", description: "Placeholder (on SelectValue)." },
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled selected value.",
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        description: "Initial value when uncontrolled.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        description: "Callback when value changes.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the select.",
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        description: "Placeholder (on SelectValue).",
+      },
     ],
     examples: [
       {
@@ -1164,9 +1733,23 @@ React.useEffect(() => {
     category: "display",
     importStatement: `import { Separator } from "@launchapp/design-system";`,
     props: [
-      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The axis the separator should align with." },
-      { name: "decorative", type: "boolean", defaultValue: "false", description: "Whether the separator is purely visual (no ARIA role)." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "orientation",
+        type: '"horizontal" | "vertical"',
+        defaultValue: '"horizontal"',
+        description: "The axis the separator should align with.",
+      },
+      {
+        name: "decorative",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Whether the separator is purely visual (no ARIA role).",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -1189,15 +1772,25 @@ React.useEffect(() => {
   {
     slug: "sheet",
     name: "Sheet",
-    description: "Extends the Dialog component to display content that complements the main content of the screen from a side edge.",
+    description:
+      "Extends the Dialog component to display content that complements the main content of the screen from a side edge.",
     category: "overlays",
     importStatement: `import {
   Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription
 } from "@launchapp/design-system";`,
     props: [
       { name: "open", type: "boolean", description: "Controlled open state." },
-      { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when open state changes." },
-      { name: "side", type: '"top" | "right" | "bottom" | "left"', defaultValue: '"right"', description: "Side from which the sheet slides (on SheetContent)." },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Callback when open state changes.",
+      },
+      {
+        name: "side",
+        type: '"top" | "right" | "bottom" | "left"',
+        defaultValue: '"right"',
+        description: "Side from which the sheet slides (on SheetContent).",
+      },
     ],
     examples: [
       {
@@ -1228,7 +1821,11 @@ React.useEffect(() => {
     category: "feedback",
     importStatement: `import { Skeleton } from "@launchapp/design-system";`,
     props: [
-      { name: "className", type: "string", description: "Additional CSS classes to control size and shape." },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes to control size and shape.",
+      },
     ],
     examples: [
       {
@@ -1246,18 +1843,56 @@ React.useEffect(() => {
   {
     slug: "slider",
     name: "Slider",
-    description: "An input where the user selects a value from within a given range.",
+    description:
+      "An input where the user selects a value from within a given range.",
     category: "inputs",
     importStatement: `import { Slider } from "@launchapp/design-system";`,
     props: [
-      { name: "value", type: "number[]", description: "Controlled value(s). Array for range sliders." },
-      { name: "defaultValue", type: "number[]", description: "Initial value when uncontrolled." },
-      { name: "onValueChange", type: "(value: number[]) => void", description: "Callback when value changes." },
-      { name: "min", type: "number", defaultValue: "0", description: "Minimum value." },
-      { name: "max", type: "number", defaultValue: "100", description: "Maximum value." },
-      { name: "step", type: "number", defaultValue: "1", description: "Step increment." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the slider." },
-      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The orientation of the slider." },
+      {
+        name: "value",
+        type: "number[]",
+        description: "Controlled value(s). Array for range sliders.",
+      },
+      {
+        name: "defaultValue",
+        type: "number[]",
+        description: "Initial value when uncontrolled.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: number[]) => void",
+        description: "Callback when value changes.",
+      },
+      {
+        name: "min",
+        type: "number",
+        defaultValue: "0",
+        description: "Minimum value.",
+      },
+      {
+        name: "max",
+        type: "number",
+        defaultValue: "100",
+        description: "Maximum value.",
+      },
+      {
+        name: "step",
+        type: "number",
+        defaultValue: "1",
+        description: "Step increment.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the slider.",
+      },
+      {
+        name: "orientation",
+        type: '"horizontal" | "vertical"',
+        defaultValue: '"horizontal"',
+        description: "The orientation of the slider.",
+      },
     ],
     examples: [
       {
@@ -1273,10 +1908,30 @@ React.useEffect(() => {
     category: "feedback",
     importStatement: `import { SonnerToaster, sonnerToast } from "@launchapp/design-system";`,
     props: [
-      { name: "position", type: '"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"', defaultValue: '"bottom-right"', description: "Position of the toast container." },
-      { name: "expand", type: "boolean", defaultValue: "false", description: "Whether toasts expand to full width." },
-      { name: "richColors", type: "boolean", defaultValue: "false", description: "Whether to use rich colors for success/error/etc." },
-      { name: "theme", type: '"light" | "dark" | "system"', defaultValue: '"system"', description: "Color theme." },
+      {
+        name: "position",
+        type: '"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"',
+        defaultValue: '"bottom-right"',
+        description: "Position of the toast container.",
+      },
+      {
+        name: "expand",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Whether toasts expand to full width.",
+      },
+      {
+        name: "richColors",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Whether to use rich colors for success/error/etc.",
+      },
+      {
+        name: "theme",
+        type: '"light" | "dark" | "system"',
+        defaultValue: '"system"',
+        description: "Color theme.",
+      },
     ],
     examples: [
       {
@@ -1295,12 +1950,23 @@ React.useEffect(() => {
   {
     slug: "stat-display",
     name: "StatDisplay",
-    description: "A compact component for displaying a statistic with optional label and trend indicator.",
+    description:
+      "A compact component for displaying a statistic with optional label and trend indicator.",
     category: "data",
     importStatement: `import { StatDisplay } from "@launchapp/design-system";`,
     props: [
-      { name: "items", type: "KPICardProps[]", required: true, description: "Array of KPI card data objects to display." },
-      { name: "cols", type: "2 | 3 | 4", defaultValue: "4", description: "Number of columns in the grid layout." },
+      {
+        name: "items",
+        type: "KPICardProps[]",
+        required: true,
+        description: "Array of KPI card data objects to display.",
+      },
+      {
+        name: "cols",
+        type: "2 | 3 | 4",
+        defaultValue: "4",
+        description: "Number of columns in the grid layout.",
+      },
     ],
     examples: [
       {
@@ -1319,15 +1985,38 @@ React.useEffect(() => {
   {
     slug: "switch",
     name: "Switch",
-    description: "A control that allows the user to toggle between checked and not checked.",
+    description:
+      "A control that allows the user to toggle between checked and not checked.",
     category: "inputs",
     importStatement: `import { Switch } from "@launchapp/design-system";`,
     props: [
-      { name: "checked", type: "boolean", description: "Controlled checked state." },
-      { name: "defaultChecked", type: "boolean", defaultValue: "false", description: "Initial checked state." },
-      { name: "onCheckedChange", type: "(checked: boolean) => void", description: "Callback when checked state changes." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the switch." },
-      { name: "required", type: "boolean", description: "Makes the switch required in forms." },
+      {
+        name: "checked",
+        type: "boolean",
+        description: "Controlled checked state.",
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Initial checked state.",
+      },
+      {
+        name: "onCheckedChange",
+        type: "(checked: boolean) => void",
+        description: "Callback when checked state changes.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the switch.",
+      },
+      {
+        name: "required",
+        type: "boolean",
+        description: "Makes the switch required in forms.",
+      },
     ],
     examples: [
       {
@@ -1342,14 +2031,19 @@ React.useEffect(() => {
   {
     slug: "table",
     name: "Table",
-    description: "A responsive table component with thead, tbody, and pagination support.",
+    description:
+      "A responsive table component with thead, tbody, and pagination support.",
     category: "data",
     importStatement: `import {
   Table, TableHeader, TableBody, TableRow,
   TableHead, TableCell, TableCaption
 } from "@launchapp/design-system";`,
     props: [
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -1385,14 +2079,32 @@ React.useEffect(() => {
   {
     slug: "tabs",
     name: "Tabs",
-    description: "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+    description:
+      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
     category: "navigation",
     importStatement: `import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "@launchapp/design-system";`,
     props: [
-      { name: "value", type: "string", description: "Controlled active tab value." },
-      { name: "defaultValue", type: "string", description: "Initial active tab when uncontrolled." },
-      { name: "onValueChange", type: "(value: string) => void", description: "Callback when active tab changes." },
-      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "Orientation of the tab list." },
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled active tab value.",
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        description: "Initial active tab when uncontrolled.",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string) => void",
+        description: "Callback when active tab changes.",
+      },
+      {
+        name: "orientation",
+        type: '"horizontal" | "vertical"',
+        defaultValue: '"horizontal"',
+        description: "Orientation of the tab list.",
+      },
     ],
     examples: [
       {
@@ -1415,16 +2127,34 @@ React.useEffect(() => {
   {
     slug: "textarea",
     name: "Textarea",
-    description: "Displays a form textarea or a component that looks like a textarea.",
+    description:
+      "Displays a form textarea or a component that looks like a textarea.",
     category: "inputs",
     importStatement: `import { Textarea } from "@launchapp/design-system";`,
     props: [
       { name: "placeholder", type: "string", description: "Placeholder text." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the textarea." },
-      { name: "rows", type: "number", description: "Number of visible text rows." },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the textarea.",
+      },
+      {
+        name: "rows",
+        type: "number",
+        description: "Number of visible text rows.",
+      },
       { name: "value", type: "string", description: "Controlled value." },
-      { name: "onChange", type: "React.ChangeEventHandler<HTMLTextAreaElement>", description: "Change event handler." },
-      { name: "className", type: "string", description: "Additional CSS classes." },
+      {
+        name: "onChange",
+        type: "React.ChangeEventHandler<HTMLTextAreaElement>",
+        description: "Change event handler.",
+      },
+      {
+        name: "className",
+        type: "string",
+        description: "Additional CSS classes.",
+      },
     ],
     examples: [
       {
@@ -1443,15 +2173,34 @@ React.useEffect(() => {
   {
     slug: "toast",
     name: "Toast",
-    description: "A succinct message that is displayed temporarily, with support for actions.",
+    description:
+      "A succinct message that is displayed temporarily, with support for actions.",
     category: "feedback",
     importStatement: `import { Toaster, useToast } from "@launchapp/design-system";`,
     props: [
-      { name: "variant", type: '"default" | "destructive"', defaultValue: '"default"', description: "The visual style of the toast." },
+      {
+        name: "variant",
+        type: '"default" | "destructive"',
+        defaultValue: '"default"',
+        description: "The visual style of the toast.",
+      },
       { name: "title", type: "string", description: "Toast title." },
-      { name: "description", type: "string", description: "Toast description." },
-      { name: "duration", type: "number", defaultValue: "5000", description: "Auto-dismiss duration in ms." },
-      { name: "action", type: "ToastActionElement", description: "Optional action button element." },
+      {
+        name: "description",
+        type: "string",
+        description: "Toast description.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        defaultValue: "5000",
+        description: "Auto-dismiss duration in ms.",
+      },
+      {
+        name: "action",
+        type: "ToastActionElement",
+        description: "Optional action button element.",
+      },
     ],
     examples: [
       {
@@ -1480,12 +2229,40 @@ React.useEffect(() => {
     category: "inputs",
     importStatement: `import { Toggle } from "@launchapp/design-system";`,
     props: [
-      { name: "pressed", type: "boolean", description: "Controlled pressed state." },
-      { name: "defaultPressed", type: "boolean", defaultValue: "false", description: "Initial pressed state when uncontrolled." },
-      { name: "onPressedChange", type: "(pressed: boolean) => void", description: "Callback when pressed state changes." },
-      { name: "variant", type: '"default" | "outline"', defaultValue: '"default"', description: "Visual variant." },
-      { name: "size", type: '"sm" | "md" | "lg"', defaultValue: '"md"', description: "Size of the toggle." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the toggle." },
+      {
+        name: "pressed",
+        type: "boolean",
+        description: "Controlled pressed state.",
+      },
+      {
+        name: "defaultPressed",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Initial pressed state when uncontrolled.",
+      },
+      {
+        name: "onPressedChange",
+        type: "(pressed: boolean) => void",
+        description: "Callback when pressed state changes.",
+      },
+      {
+        name: "variant",
+        type: '"default" | "outline"',
+        defaultValue: '"default"',
+        description: "Visual variant.",
+      },
+      {
+        name: "size",
+        type: '"sm" | "md" | "lg"',
+        defaultValue: '"md"',
+        description: "Size of the toggle.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables the toggle.",
+      },
     ],
     examples: [
       {
@@ -1504,12 +2281,40 @@ React.useEffect(() => {
     category: "inputs",
     importStatement: `import { ToggleGroup, ToggleGroupItem } from "@launchapp/design-system";`,
     props: [
-      { name: "type", type: '"single" | "multiple"', required: true, description: "Whether a single or multiple items can be selected." },
-      { name: "value", type: "string | string[]", description: "Controlled selected value(s)." },
-      { name: "onValueChange", type: "(value: string | string[]) => void", description: "Callback when value changes." },
-      { name: "variant", type: '"default" | "outline"', defaultValue: '"default"', description: "Visual variant." },
-      { name: "size", type: '"sm" | "md" | "lg"', defaultValue: '"md"', description: "Size." },
-      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables all items." },
+      {
+        name: "type",
+        type: '"single" | "multiple"',
+        required: true,
+        description: "Whether a single or multiple items can be selected.",
+      },
+      {
+        name: "value",
+        type: "string | string[]",
+        description: "Controlled selected value(s).",
+      },
+      {
+        name: "onValueChange",
+        type: "(value: string | string[]) => void",
+        description: "Callback when value changes.",
+      },
+      {
+        name: "variant",
+        type: '"default" | "outline"',
+        defaultValue: '"default"',
+        description: "Visual variant.",
+      },
+      {
+        name: "size",
+        type: '"sm" | "md" | "lg"',
+        defaultValue: '"md"',
+        description: "Size.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Disables all items.",
+      },
     ],
     examples: [
       {
@@ -1525,15 +2330,26 @@ React.useEffect(() => {
   {
     slug: "toolbar",
     name: "Toolbar",
-    description: "A container for grouping a set of controls, such as buttons, toggle groups or dropdown menus.",
+    description:
+      "A container for grouping a set of controls, such as buttons, toggle groups or dropdown menus.",
     category: "navigation",
     importStatement: `import {
   ToolbarRoot, ToolbarButton, ToolbarLink,
   ToolbarSeparator, ToolbarToggleGroup, ToolbarToggleItem
 } from "@launchapp/design-system";`,
     props: [
-      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "The orientation of the toolbar." },
-      { name: "loop", type: "boolean", defaultValue: "true", description: "Whether keyboard navigation loops." },
+      {
+        name: "orientation",
+        type: '"horizontal" | "vertical"',
+        defaultValue: '"horizontal"',
+        description: "The orientation of the toolbar.",
+      },
+      {
+        name: "loop",
+        type: "boolean",
+        defaultValue: "true",
+        description: "Whether keyboard navigation loops.",
+      },
     ],
     examples: [
       {
@@ -1553,13 +2369,29 @@ React.useEffect(() => {
   {
     slug: "tooltip",
     name: "Tooltip",
-    description: "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    description:
+      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     category: "overlays",
     importStatement: `import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "@launchapp/design-system";`,
     props: [
-      { name: "delayDuration", type: "number", defaultValue: "400", description: "Time in ms from hover to open (on TooltipRoot)." },
-      { name: "side", type: '"top" | "right" | "bottom" | "left"', defaultValue: '"top"', description: "Preferred side of the trigger (on TooltipContent)." },
-      { name: "sideOffset", type: "number", defaultValue: "4", description: "Distance from trigger in px (on TooltipContent)." },
+      {
+        name: "delayDuration",
+        type: "number",
+        defaultValue: "400",
+        description: "Time in ms from hover to open (on TooltipRoot).",
+      },
+      {
+        name: "side",
+        type: '"top" | "right" | "bottom" | "left"',
+        defaultValue: '"top"',
+        description: "Preferred side of the trigger (on TooltipContent).",
+      },
+      {
+        name: "sideOffset",
+        type: "number",
+        defaultValue: "4",
+        description: "Distance from trigger in px (on TooltipContent).",
+      },
     ],
     examples: [
       {
@@ -1580,11 +2412,17 @@ React.useEffect(() => {
   {
     slug: "visually-hidden",
     name: "VisuallyHidden",
-    description: "Hides content visually while keeping it accessible to screen readers.",
+    description:
+      "Hides content visually while keeping it accessible to screen readers.",
     category: "utilities",
     importStatement: `import { VisuallyHidden } from "@launchapp/design-system";`,
     props: [
-      { name: "asChild", type: "boolean", defaultValue: "false", description: "Render as child element via Radix Slot." },
+      {
+        name: "asChild",
+        type: "boolean",
+        defaultValue: "false",
+        description: "Render as child element via Radix Slot.",
+      },
     ],
     examples: [
       {
@@ -1602,14 +2440,17 @@ export function getComponent(slug: string): ComponentEntry | undefined {
   return components.find((c) => c.slug === slug);
 }
 
-export function getComponentsByCategory(): Record<ComponentCategory, ComponentEntry[]> {
+export function getComponentsByCategory(): Record<
+  ComponentCategory,
+  ComponentEntry[]
+> {
   return components.reduce(
     (acc, component) => {
       if (!acc[component.category]) acc[component.category] = [];
       acc[component.category].push(component);
       return acc;
     },
-    {} as Record<ComponentCategory, ComponentEntry[]>
+    {} as Record<ComponentCategory, ComponentEntry[]>,
   );
 }
 

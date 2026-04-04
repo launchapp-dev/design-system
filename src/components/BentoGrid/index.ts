@@ -1,19 +1,19 @@
+export type {
+  BentoCardProps,
+  BentoCardVariants,
+  BentoCardVariantsProps,
+  BentoGridProps,
+  BentoGridVariants,
+  BentoGridVariantsProps,
+} from "./BentoGrid";
 export {
-  BentoGrid,
   BentoCard,
+  BentoCardBody,
+  BentoCardDescription,
+  BentoCardFooter,
   BentoCardHeader,
   BentoCardTitle,
-  BentoCardDescription,
-  BentoCardBody,
-  BentoCardFooter,
-  bentoGridVariants,
+  BentoGrid,
   bentoCardVariants,
+  bentoGridVariants,
 } from "./BentoGrid";
-export type {
-  BentoGridProps,
-  BentoCardProps,
-  BentoGridVariantsProps,
-  BentoCardVariantsProps,
-} from "./BentoGrid";
-export type { BentoGridVariants } from "./BentoGrid";
-export type { BentoCardVariants } from "./BentoGrid";

@@ -170,7 +170,7 @@ async function generateStorybook(
   componentCode: string,
   componentName: string,
   description: string,
-  client: Anthropic
+  client: Anthropic,
 ): Promise<string> {
   const storyPrompt = `Given the following React component code, generate a Storybook story (CSF 3 format) for it.
 
@@ -213,7 +213,7 @@ Return ONLY the story code - no markdown, no explanations. Start directly with t
 }
 
 export async function generateComponent(
-  options: ComponentGeneratorOptions
+  options: ComponentGeneratorOptions,
 ): Promise<GeneratedComponent> {
   const client = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY,
@@ -268,7 +268,7 @@ Return ONLY the component code - no markdown formatting, no code blocks, no expl
     generatedCode,
     componentName,
     options.description,
-    client
+    client,
   );
 
   // Validate component structure

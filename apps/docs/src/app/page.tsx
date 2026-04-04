@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { components, ALL_CATEGORIES, CATEGORY_LABELS, type ComponentCategory } from "@/lib/registry";
+import {
+  ALL_CATEGORIES,
+  CATEGORY_LABELS,
+  type ComponentCategory,
+  components,
+} from "@/lib/registry";
 
 function CategorySection({
   category,
@@ -38,7 +43,7 @@ export default function HomePage() {
       if (items.length > 0) acc[cat] = items;
       return acc;
     },
-    {} as Partial<Record<ComponentCategory, typeof components>>
+    {} as Partial<Record<ComponentCategory, typeof components>>,
   );
 
   return (
@@ -52,9 +57,11 @@ export default function HomePage() {
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
           A comprehensive component library built on{" "}
-          <span className="text-foreground font-medium">Radix UI Primitives</span> and{" "}
-          <span className="text-foreground font-medium">Tailwind CSS</span>. Accessible,
-          customizable, and production-ready.
+          <span className="text-foreground font-medium">
+            Radix UI Primitives
+          </span>{" "}
+          and <span className="text-foreground font-medium">Tailwind CSS</span>.
+          Accessible, customizable, and production-ready.
         </p>
         <div className="flex flex-wrap gap-3 mt-6">
           <Link
@@ -74,11 +81,15 @@ export default function HomePage() {
 
       <div className="grid grid-cols-3 gap-4 mb-10 p-4 rounded-xl border bg-muted/30">
         <div className="text-center p-3">
-          <div className="text-3xl font-bold text-primary">{components.length}</div>
+          <div className="text-3xl font-bold text-primary">
+            {components.length}
+          </div>
           <div className="text-sm text-muted-foreground mt-1">Components</div>
         </div>
         <div className="text-center p-3 border-x">
-          <div className="text-3xl font-bold text-primary">{ALL_CATEGORIES.length}</div>
+          <div className="text-3xl font-bold text-primary">
+            {ALL_CATEGORIES.length}
+          </div>
           <div className="text-sm text-muted-foreground mt-1">Categories</div>
         </div>
         <div className="text-center p-3">

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { HeroSection } from "./index";
-import { Button } from "../../../components/Button";
 import { Badge } from "../../../components/Badge";
+import { Button } from "../../../components/Button";
+import { HeroSection } from "./index";
 
 const meta: Meta<typeof HeroSection> = {
   title: "Blocks/Marketing/HeroSection",
@@ -50,7 +49,11 @@ export const Centered: Story = {
       headline="Build faster with our design system"
       subheadline="A comprehensive library of accessible, composable components built for modern web applications."
       primaryAction={<Button size="lg">Get started</Button>}
-      secondaryAction={<Button size="lg" variant="outline">Learn more</Button>}
+      secondaryAction={
+        <Button size="lg" variant="outline">
+          Learn more
+        </Button>
+      }
     />
   ),
 };
@@ -148,7 +151,11 @@ export const Mobile: Story = {
       headline="Build faster with our design system"
       subheadline="A comprehensive library of accessible, composable components."
       primaryAction={<Button size="lg">Get started</Button>}
-      secondaryAction={<Button size="lg" variant="outline">Learn more</Button>}
+      secondaryAction={
+        <Button size="lg" variant="outline">
+          Learn more
+        </Button>
+      }
     />
   ),
 };

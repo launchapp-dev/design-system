@@ -95,9 +95,7 @@ export const WithAttachments: Story = {
 };
 
 export const WithCharacterCount: Story = {
-  render: (args) => (
-    <ChatInput {...args} showCharacterCount maxLength={500} />
-  ),
+  render: (args) => <ChatInput {...args} showCharacterCount maxLength={500} />,
 };
 
 export const Disabled: Story = {
@@ -114,7 +112,9 @@ export const SizeVariants: Story = {
         <ChatInput size="sm" placeholder="Small input" />
       </div>
       <div>
-        <span className="text-xs text-muted-foreground mb-2 block">Medium (default)</span>
+        <span className="text-xs text-muted-foreground mb-2 block">
+          Medium (default)
+        </span>
         <ChatInput size="md" placeholder="Medium input" />
       </div>
       <div>
@@ -129,7 +129,9 @@ export const StyleVariants: Story = {
   render: () => (
     <div className="space-y-4">
       <div>
-        <span className="text-xs text-muted-foreground mb-2 block">Default</span>
+        <span className="text-xs text-muted-foreground mb-2 block">
+          Default
+        </span>
         <ChatInput variant="default" placeholder="Default style" />
       </div>
       <div>
@@ -137,7 +139,9 @@ export const StyleVariants: Story = {
         <ChatInput variant="filled" placeholder="Filled style" />
       </div>
       <div>
-        <span className="text-xs text-muted-foreground mb-2 block">Outline</span>
+        <span className="text-xs text-muted-foreground mb-2 block">
+          Outline
+        </span>
         <ChatInput variant="outline" placeholder="Outline style" />
       </div>
     </div>
@@ -152,7 +156,11 @@ export const DarkMode: Story = {
     <div className="space-y-4 p-4 bg-background rounded-lg">
       <ChatInput placeholder="Type a message..." />
       <ChatInput variant="filled" placeholder="Filled variant..." />
-      <ChatInput showCharacterCount maxLength={200} placeholder="With character count..." />
+      <ChatInput
+        showCharacterCount
+        maxLength={200}
+        placeholder="With character count..."
+      />
       <ChatInput disabled value="Disabled input" />
     </div>
   ),
@@ -161,9 +169,9 @@ export const DarkMode: Story = {
 export const InteractiveDemo: Story = {
   render: () => {
     const [message, setMessage] = React.useState("");
-    const [chatHistory, setChatHistory] = React.useState<Array<{ text: string; sender: "user" | "assistant" }>>([
-      { text: "Hello! How can I help you today?", sender: "assistant" },
-    ]);
+    const [chatHistory, setChatHistory] = React.useState<
+      Array<{ text: string; sender: "user" | "assistant" }>
+    >([{ text: "Hello! How can I help you today?", sender: "assistant" }]);
 
     const handleSend = (value: string) => {
       if (value.trim()) {

@@ -1,8 +1,7 @@
-import { describe, it, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { Changelog } from "./Changelog";
+import { afterEach, describe, expect, it } from "vitest";
 import type { ChangelogEntry } from "./Changelog";
+import { Changelog } from "./Changelog";
 
 const ENTRIES: ChangelogEntry[] = [
   {
@@ -31,12 +30,16 @@ const ENTRIES: ChangelogEntry[] = [
 describe("Changelog", () => {
   it("renders default title", () => {
     render(<Changelog entries={ENTRIES} />);
-    expect(screen.getByRole("heading", { name: "Changelog" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Changelog" }),
+    ).toBeInTheDocument();
   });
 
   it("renders custom title", () => {
     render(<Changelog entries={ENTRIES} title="Release Notes" />);
-    expect(screen.getByRole("heading", { name: "Release Notes" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Release Notes" }),
+    ).toBeInTheDocument();
   });
 
   it("renders version strings", () => {
@@ -100,8 +103,18 @@ describe("Changelog", () => {
 
     it("groups multiple entries under the same date into one section header", () => {
       const sameDate: ChangelogEntry[] = [
-        { version: "v2.0.1", date: "March 21, 2026", title: "Patch A", changes: [] },
-        { version: "v2.0.2", date: "March 21, 2026", title: "Patch B", changes: [] },
+        {
+          version: "v2.0.1",
+          date: "March 21, 2026",
+          title: "Patch A",
+          changes: [],
+        },
+        {
+          version: "v2.0.2",
+          date: "March 21, 2026",
+          title: "Patch B",
+          changes: [],
+        },
       ];
       render(<Changelog entries={sameDate} />);
       expect(screen.getAllByText("March 21, 2026")).toHaveLength(1);
@@ -113,7 +126,7 @@ describe("Changelog", () => {
   describe("className merging", () => {
     it("merges custom className with base classes", () => {
       const { container } = render(
-        <Changelog entries={ENTRIES} className="custom-class" />
+        <Changelog entries={ENTRIES} className="custom-class" />,
       );
       expect(container.firstChild).toHaveClass("custom-class");
       expect(container.firstChild).toHaveClass("space-y-8");

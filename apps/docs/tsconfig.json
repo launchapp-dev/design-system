@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,37 +19,16 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*",
-        "../../src/*"
-      ],
-      "@launchapp/design-system": [
-        "../../src/index.ts"
-      ],
-      "@ds/blocks": [
-        "../../src/blocks/index.ts"
-      ],
-      "@ds/blocks/auth": [
-        "../../src/blocks/auth/index.ts"
-      ],
-      "@ds/blocks/dashboard": [
-        "../../src/blocks/dashboard/index.ts"
-      ],
-      "@ds/blocks/settings": [
-        "../../src/blocks/settings/index.ts"
-      ],
-      "@ds/blocks/navigation": [
-        "../../src/blocks/navigation/index.ts"
-      ],
-      "@ds/blocks/data": [
-        "../../src/blocks/data/index.ts"
-      ],
-      "@ds/blocks/ecommerce": [
-        "../../src/blocks/ecommerce/index.ts"
-      ],
-      "@ds/blocks/marketing": [
-        "../../src/blocks/marketing/index.ts"
-      ]
+      "@/*": ["./src/*", "../../src/*"],
+      "@launchapp/design-system": ["../../src/index.ts"],
+      "@ds/blocks": ["../../src/blocks/index.ts"],
+      "@ds/blocks/auth": ["../../src/blocks/auth/index.ts"],
+      "@ds/blocks/dashboard": ["../../src/blocks/dashboard/index.ts"],
+      "@ds/blocks/settings": ["../../src/blocks/settings/index.ts"],
+      "@ds/blocks/navigation": ["../../src/blocks/navigation/index.ts"],
+      "@ds/blocks/data": ["../../src/blocks/data/index.ts"],
+      "@ds/blocks/ecommerce": ["../../src/blocks/ecommerce/index.ts"],
+      "@ds/blocks/marketing": ["../../src/blocks/marketing/index.ts"]
     }
   },
   "include": [
@@ -63,7 +38,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

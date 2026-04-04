@@ -211,16 +211,14 @@ export const WithoutValues: Story = {
 export const Interactive: Story = {
   render: (args) => {
     const [selected, setSelected] = React.useState<TreeMapNode | null>(null);
-    
+
     return (
       <div>
-        <TreeMap
-          {...args}
-          onNodeClick={(node) => setSelected(node)}
-        />
+        <TreeMap {...args} onNodeClick={(node) => setSelected(node)} />
         {selected && (
           <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm">
-            Selected: <strong>{selected.name}</strong> - Value: {selected.value.toLocaleString()}
+            Selected: <strong>{selected.name}</strong> - Value:{" "}
+            {selected.value.toLocaleString()}
           </div>
         )}
       </div>

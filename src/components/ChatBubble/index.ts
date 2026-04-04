@@ -1,11 +1,15 @@
+export type {
+  ChatBubbleContentVariants,
+  ChatBubbleGroupProps,
+  ChatBubbleProps,
+  ChatBubbleVariants,
+  CodeBlockVariants,
+  LinkPreviewProps,
+} from "./ChatBubble";
 export {
   ChatBubble,
   ChatBubbleGroup,
   ChatBubbleLinkPreview,
-  chatBubbleVariants,
   chatBubbleContentVariants,
+  chatBubbleVariants,
 } from "./ChatBubble";
-export type { ChatBubbleProps, ChatBubbleGroupProps, LinkPreviewProps } from "./ChatBubble";
-export type { ChatBubbleVariants } from "./ChatBubble";
-export type { ChatBubbleContentVariants } from "./ChatBubble";
-export type { CodeBlockVariants } from "./ChatBubble";

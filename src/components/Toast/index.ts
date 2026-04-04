@@ -1,14 +1,14 @@
+export type { ToastVariants } from "./Toast";
 export {
-  ToastProvider,
-  ToastViewport,
-  ToastRoot,
-  ToastTitle,
-  ToastDescription,
   ToastAction,
   ToastClose,
+  ToastDescription,
   Toaster,
+  ToastProvider,
+  ToastRoot,
+  ToastTitle,
+  ToastViewport,
   toastVariants,
 } from "./Toast";
-export { useToast, toast, dismiss } from "./useToast";
 export type { ToastData, ToastInput, ToastVariant } from "./useToast";
-export type { ToastVariants } from "./Toast";
+export { dismiss, toast, useToast } from "./useToast";

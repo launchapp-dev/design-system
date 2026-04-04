@@ -44,8 +44,14 @@ export function BlockPreview({ blockId }: BlockPreviewProps) {
   return (
     <div className="rounded-lg border overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b bg-muted/50">
-        <span className="text-xs font-medium text-muted-foreground">Preview</span>
-        <div className="flex items-center gap-1" role="group" aria-label="Viewport size">
+        <span className="text-xs font-medium text-muted-foreground">
+          Preview
+        </span>
+        <div
+          className="flex items-center gap-1"
+          role="group"
+          aria-label="Viewport size"
+        >
           <ViewportButton
             label="Mobile"
             icon={<MobileIcon />}
@@ -70,7 +76,8 @@ export function BlockPreview({ blockId }: BlockPreviewProps) {
         <div
           className={cn(
             "bg-background mx-auto transition-all duration-300 overflow-auto",
-            viewport !== "desktop" && "border border-border rounded-lg shadow-sm"
+            viewport !== "desktop" &&
+              "border border-border rounded-lg shadow-sm",
           )}
           style={{ width: VIEWPORT_WIDTHS[viewport], maxWidth: "100%" }}
         >
@@ -79,7 +86,9 @@ export function BlockPreview({ blockId }: BlockPreviewProps) {
               <div className="flex min-h-[200px] items-center justify-center p-8">
                 <div className="text-center text-sm text-muted-foreground">
                   <p className="mb-1 font-medium">Preview unavailable</p>
-                  <p className="text-xs">See the code snippet below for usage.</p>
+                  <p className="text-xs">
+                    See the code snippet below for usage.
+                  </p>
                 </div>
               </div>
             }
@@ -92,7 +101,9 @@ export function BlockPreview({ blockId }: BlockPreviewProps) {
               <div className="flex min-h-[200px] items-center justify-center p-8">
                 <div className="text-center text-sm text-muted-foreground">
                   <p className="mb-1 font-medium">No preview available</p>
-                  <p className="text-xs">See the code snippet below for usage.</p>
+                  <p className="text-xs">
+                    See the code snippet below for usage.
+                  </p>
                 </div>
               </div>
             )}
@@ -120,7 +131,7 @@ function ViewportButton({ label, icon, active, onClick }: ViewportButtonProps) {
         "inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium transition-colors",
         active
           ? "bg-background text-foreground shadow-sm"
-          : "text-muted-foreground hover:bg-accent hover:text-foreground"
+          : "text-muted-foreground hover:bg-accent hover:text-foreground",
       )}
     >
       {icon}
@@ -131,7 +142,15 @@ function ViewportButton({ label, icon, active, onClick }: ViewportButtonProps) {
 
 function MobileIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      aria-hidden
+    >
       <rect x="7" y="2" width="10" height="20" rx="2" ry="2" />
       <line x1="12" y1="18" x2="12.01" y2="18" />
     </svg>
@@ -140,7 +159,15 @@ function MobileIcon() {
 
 function TabletIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      aria-hidden
+    >
       <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
       <line x1="12" y1="18" x2="12.01" y2="18" />
     </svg>
@@ -149,7 +176,15 @@ function TabletIcon() {
 
 function DesktopIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      aria-hidden
+    >
       <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
       <line x1="8" y1="21" x2="16" y2="21" />
       <line x1="12" y1="17" x2="12" y2="21" />

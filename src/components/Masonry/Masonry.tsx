@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const masonryVariants = cva("flex", {
@@ -66,7 +66,7 @@ MasonryItem.displayName = "MasonryItem";
 function distributeItems<T>(
   items: T[],
   columnCount: number,
-  sequential: boolean
+  sequential: boolean,
 ): T[][] {
   const columns: T[][] = Array.from({ length: columnCount }, () => []);
 
@@ -76,7 +76,7 @@ function distributeItems<T>(
     });
   } else {
     const columnHeights = new Array(columnCount).fill(0);
-    items.forEach((item, index) => {
+    items.forEach((item, _index) => {
       const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
       columns[shortestColumn].push(item);
       columnHeights[shortestColumn] += 1;
@@ -88,8 +88,15 @@ function distributeItems<T>(
 
 const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
   (
-    { className, columns = 3, gap = "md", children, sequential = false, ...props },
-    ref
+    {
+      className,
+      columns = 3,
+      gap = "md",
+      children,
+      sequential = false,
+      ...props
+    },
+    ref,
   ) => {
     const items = React.useMemo(() => {
       const childArray = React.Children.toArray(children);
@@ -102,7 +109,7 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
     const columnCount = typeof columns === "number" ? columns : 3;
     const distributedItems = React.useMemo(
       () => distributeItems(items, columnCount, sequential),
-      [items, columnCount, sequential]
+      [items, columnCount, sequential],
     );
 
     return (
@@ -118,7 +125,7 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
             key={columnIndex}
             className={cn(
               masonryColumnVariants({ gap }),
-              columnCount > 1 ? "" : "w-full"
+              columnCount > 1 ? "" : "w-full",
             )}
             role="row"
           >
@@ -131,7 +138,7 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 Masonry.displayName = "Masonry";
 
@@ -150,7 +157,7 @@ const MasonryCard = React.forwardRef<
         elevated: "shadow-md",
         outlined: "border-2 border-border bg-transparent",
       }[variant],
-      className
+      className,
     )}
     {...props}
   />
@@ -166,6 +173,6 @@ export {
   Masonry,
   MasonryCard,
   MasonryItem,
-  masonryVariants,
   masonryColumnVariants,
+  masonryVariants,
 };

@@ -1,12 +1,12 @@
+export type { NavigationMenuTriggerStyleVariants } from "./NavigationMenu";
 export {
   NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
   NavigationMenuContent,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
-  NavigationMenuViewport,
   NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "./NavigationMenu";
-export type { NavigationMenuTriggerStyleVariants } from "./NavigationMenu";

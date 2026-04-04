@@ -1,8 +1,11 @@
-export { LoginForm } from "./LoginForm";
-export type { LoginFormProps, LoginValues } from "./LoginForm";
-export { SignUpForm } from "./SignUpForm";
-export type { SignUpFormProps, SignUpValues } from "./SignUpForm";
+export type {
+  ForgotPasswordFormProps,
+  ForgotPasswordValues,
+} from "./ForgotPasswordForm";
 export { ForgotPasswordForm } from "./ForgotPasswordForm";
-export type { ForgotPasswordFormProps, ForgotPasswordValues } from "./ForgotPasswordForm";
-export { OTPVerification } from "./OTPVerification";
+export type { LoginFormProps, LoginValues } from "./LoginForm";
+export { LoginForm } from "./LoginForm";
 export type { OTPVerificationProps } from "./OTPVerification";
+export { OTPVerification } from "./OTPVerification";
+export type { SignUpFormProps, SignUpValues } from "./SignUpForm";
+export { SignUpForm } from "./SignUpForm";

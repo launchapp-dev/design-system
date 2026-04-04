@@ -1,7 +1,17 @@
 import * as React from "react";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../components/Avatar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../../../components/Card";
 import { cn } from "../../../lib/utils";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../../components/Card";
-import { Avatar, AvatarFallback, AvatarImage } from "../../../components/Avatar";
 
 export interface AgencyService {
   icon?: React.ReactNode;
@@ -61,7 +71,7 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
       caseStudies = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
@@ -71,7 +81,9 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
             {headline}
           </h1>
           {subheadline && (
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl">{subheadline}</p>
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
+              {subheadline}
+            </p>
           )}
           {(primaryAction || secondaryAction) && (
             <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -85,21 +97,32 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
           <section className="px-4 py-16 md:py-24 bg-muted/30">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight text-foreground">{servicesTitle}</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                  {servicesTitle}
+                </h2>
                 {servicesSubtitle && (
-                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">{servicesSubtitle}</p>
+                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                    {servicesSubtitle}
+                  </p>
                 )}
               </div>
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {services.map((service, i) => (
-                  <div key={i} className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-card">
+                  <div
+                    key={i}
+                    className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-card"
+                  >
                     {service.icon && (
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                         {service.icon}
                       </div>
                     )}
-                    <h3 className="font-semibold text-lg text-foreground">{service.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                    <h3 className="font-semibold text-lg text-foreground">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -111,9 +134,13 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
           <section className="px-4 py-16 md:py-24">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight text-foreground">{caseStudiesTitle}</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                  {caseStudiesTitle}
+                </h2>
                 {caseStudiesSubtitle && (
-                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">{caseStudiesSubtitle}</p>
+                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                    {caseStudiesSubtitle}
+                  </p>
                 )}
               </div>
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -131,12 +158,17 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
                     {(study.result || study.tags) && (
                       <CardContent>
                         {study.result && (
-                          <p className="text-sm font-medium text-primary">{study.result}</p>
+                          <p className="text-sm font-medium text-primary">
+                            {study.result}
+                          </p>
                         )}
                         {study.tags && study.tags.length > 0 && (
                           <div className="mt-3 flex flex-wrap gap-1">
                             {study.tags.map((tag, j) => (
-                              <span key={j} className="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+                              <span
+                                key={j}
+                                className="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+                              >
                                 {tag}
                               </span>
                             ))}
@@ -155,23 +187,41 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
           <section className="px-4 py-16 md:py-24 bg-muted/30">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight text-foreground">{teamTitle}</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                  {teamTitle}
+                </h2>
                 {teamSubtitle && (
-                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">{teamSubtitle}</p>
+                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                    {teamSubtitle}
+                  </p>
                 )}
               </div>
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
                 {team.map((member, i) => (
-                  <div key={i} className="flex flex-col items-center text-center gap-3">
+                  <div
+                    key={i}
+                    className="flex flex-col items-center text-center gap-3"
+                  >
                     <Avatar className="h-20 w-20">
-                      {member.avatarSrc && <AvatarImage src={member.avatarSrc} alt={member.name} />}
+                      {member.avatarSrc && (
+                        <AvatarImage src={member.avatarSrc} alt={member.name} />
+                      )}
                       <AvatarFallback>
-                        {member.avatarFallback ?? member.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                        {member.avatarFallback ??
+                          member.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")
+                            .slice(0, 2)}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="font-semibold text-foreground">{member.name}</p>
-                      <p className="text-sm text-muted-foreground">{member.role}</p>
+                      <p className="font-semibold text-foreground">
+                        {member.name}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {member.role}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -181,7 +231,7 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Agency.displayName = "Agency";

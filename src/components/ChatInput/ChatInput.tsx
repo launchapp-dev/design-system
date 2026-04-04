@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const chatInputVariants = cva(
@@ -21,7 +21,7 @@ const chatInputVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 const chatInputTextareaVariants = cva(
@@ -37,7 +37,7 @@ const chatInputTextareaVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 const chatInputButtonVariants = cva(
@@ -51,7 +51,8 @@ const chatInputButtonVariants = cva(
       },
       variant: {
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
       },
     },
@@ -59,7 +60,7 @@ const chatInputButtonVariants = cva(
       variant: "ghost",
       size: "md",
     },
-  }
+  },
 );
 
 export interface ChatInputProps
@@ -93,14 +94,17 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
       placeholder,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
+    const [internalValue, setInternalValue] = React.useState(
+      defaultValue ?? "",
+    );
     const [textareaHeight, setTextareaHeight] = React.useState("auto");
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
     const controlledValue = value !== undefined ? value : internalValue;
-    const characterCount = typeof controlledValue === "string" ? controlledValue.length : 0;
+    const characterCount =
+      typeof controlledValue === "string" ? controlledValue.length : 0;
     const isOverLimit = maxLength !== undefined && characterCount > maxLength;
     const canSend = !disabled && characterCount > 0 && !isOverLimit;
 
@@ -117,7 +121,7 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
 
     React.useEffect(() => {
       adjustHeight();
-    }, [controlledValue, adjustHeight]);
+    }, [adjustHeight]);
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const newValue = e.target.value;
@@ -177,16 +181,21 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
             ref={textareaRef}
             className={cn(
               chatInputTextareaVariants({ size }),
-              "scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-thumb-rounded"
+              "scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-thumb-rounded",
             )}
             style={{ height: textareaHeight }}
             value={controlledValue}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            placeholder={placeholder ?? "Type a message... (Enter to send, Shift+Enter for new line)"}
+            placeholder={
+              placeholder ??
+              "Type a message... (Enter to send, Shift+Enter for new line)"
+            }
             disabled={disabled}
             aria-label="Chat message"
-            aria-describedby={showCharacterCount ? "chat-input-character-count" : undefined}
+            aria-describedby={
+              showCharacterCount ? "chat-input-character-count" : undefined
+            }
             rows={1}
             {...props}
           />
@@ -197,7 +206,9 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
             {onAttachment && (
               <button
                 type="button"
-                className={cn(chatInputButtonVariants({ variant: "ghost", size }))}
+                className={cn(
+                  chatInputButtonVariants({ variant: "ghost", size }),
+                )}
                 onClick={handleAttachment}
                 disabled={disabled}
                 aria-label="Attach file"
@@ -221,7 +232,9 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
             {onVoice && (
               <button
                 type="button"
-                className={cn(chatInputButtonVariants({ variant: "ghost", size }))}
+                className={cn(
+                  chatInputButtonVariants({ variant: "ghost", size }),
+                )}
                 onClick={handleVoice}
                 disabled={disabled}
                 aria-label="Voice input"
@@ -251,7 +264,7 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
                 id="chat-input-character-count"
                 className={cn(
                   "text-xs tabular-nums",
-                  isOverLimit ? "text-destructive" : "text-muted-foreground"
+                  isOverLimit ? "text-destructive" : "text-muted-foreground",
                 )}
                 aria-live="polite"
               >
@@ -263,10 +276,13 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
               type="button"
               className={cn(
                 chatInputButtonVariants({
-                  variant: sendButtonVariant === "default" ? "default" : sendButtonVariant,
+                  variant:
+                    sendButtonVariant === "default"
+                      ? "default"
+                      : sendButtonVariant,
                   size,
                 }),
-                !canSend && "opacity-50 cursor-not-allowed"
+                !canSend && "opacity-50 cursor-not-allowed",
               )}
               onClick={handleSend}
               disabled={!canSend}
@@ -291,17 +307,17 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 ChatInput.displayName = "ChatInput";
 
 export type ChatInputVariants = VariantProps<typeof chatInputVariants>;
-export type ChatInputTextareaVariants = VariantProps<typeof chatInputTextareaVariants>;
-export type ChatInputButtonVariants = VariantProps<typeof chatInputButtonVariants>;
+export type ChatInputTextareaVariants = VariantProps<
+  typeof chatInputTextareaVariants
+>;
+export type ChatInputButtonVariants = VariantProps<
+  typeof chatInputButtonVariants
+>;
 
-export {
-  ChatInput,
-  chatInputVariants,
-  chatInputButtonVariants,
-};
+export { ChatInput, chatInputButtonVariants, chatInputVariants };

@@ -2,19 +2,19 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuGroup,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
+  DropdownMenuTrigger,
 } from "./index";
 
 const meta: Meta<typeof DropdownMenu> = {
@@ -34,7 +34,15 @@ export const Default: Story = {
     <div style={{ display: "flex", justifyContent: "center", padding: "80px" }}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+          <button
+            style={{
+              padding: "8px 16px",
+              border: "1px solid hsl(var(--border))",
+              borderRadius: "6px",
+              background: "hsl(var(--background))",
+              cursor: "pointer",
+            }}
+          >
             Open Menu
           </button>
         </DropdownMenuTrigger>
@@ -63,12 +71,37 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "32px", justifyContent: "center", padding: "16px" }}>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Basic Items</span>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "32px",
+        justifyContent: "center",
+        padding: "16px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Basic Items
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Basic
             </button>
           </DropdownMenuTrigger>
@@ -79,26 +112,63 @@ export const AllVariants: Story = {
             <DropdownMenuItem>Item Two</DropdownMenuItem>
             <DropdownMenuItem disabled>Disabled Item</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Item with Shortcut <DropdownMenuShortcut>⌘K</DropdownMenuShortcut></DropdownMenuItem>
+            <DropdownMenuItem>
+              Item with Shortcut <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Checkbox Items</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Checkbox Items
+        </span>
         <CheckboxMenuExample />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Radio Items</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Radio Items
+        </span>
         <RadioMenuExample />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Sub Menu</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Sub Menu
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Sub Menu
             </button>
           </DropdownMenuTrigger>
@@ -125,17 +195,31 @@ function CheckboxMenuExample() {
   return (
     <DropdownMenu defaultOpen>
       <DropdownMenuTrigger asChild>
-        <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+        <button
+          style={{
+            padding: "8px 16px",
+            border: "1px solid hsl(var(--border))",
+            borderRadius: "6px",
+            background: "hsl(var(--background))",
+            cursor: "pointer",
+          }}
+        >
           Checkboxes
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>View Options</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem checked={showStatus} onCheckedChange={setShowStatus}>
+        <DropdownMenuCheckboxItem
+          checked={showStatus}
+          onCheckedChange={setShowStatus}
+        >
           Show Status Bar
         </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
+        <DropdownMenuCheckboxItem
+          checked={showPanel}
+          onCheckedChange={setShowPanel}
+        >
           Show Panel
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
@@ -148,7 +232,15 @@ function RadioMenuExample() {
   return (
     <DropdownMenu defaultOpen>
       <DropdownMenuTrigger asChild>
-        <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+        <button
+          style={{
+            padding: "8px 16px",
+            border: "1px solid hsl(var(--border))",
+            borderRadius: "6px",
+            background: "hsl(var(--background))",
+            cursor: "pointer",
+          }}
+        >
           Radio
         </button>
       </DropdownMenuTrigger>
@@ -167,12 +259,37 @@ function RadioMenuExample() {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "32px", justifyContent: "center", padding: "16px" }}>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Compact (w-32)</span>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "32px",
+        justifyContent: "center",
+        padding: "16px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Compact (w-32)
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Compact
             </button>
           </DropdownMenuTrigger>
@@ -184,11 +301,28 @@ export const AllSizes: Story = {
         </DropdownMenu>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Default (w-56)</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Default (w-56)
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Default
             </button>
           </DropdownMenuTrigger>
@@ -202,11 +336,28 @@ export const AllSizes: Story = {
         </DropdownMenu>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Wide (w-72)</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Wide (w-72)
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Wide
             </button>
           </DropdownMenuTrigger>
@@ -237,10 +388,26 @@ export const Interactive: Story = {
     const [lastAction, setLastAction] = React.useState<string | null>(null);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", padding: "80px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "16px",
+          padding: "80px",
+        }}
+      >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Open Interactive Menu
             </button>
           </DropdownMenuTrigger>
@@ -248,24 +415,38 @@ export const Interactive: Story = {
             <DropdownMenuLabel>Preferences</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuCheckboxItem checked={checked} onCheckedChange={setChecked}>
+              <DropdownMenuCheckboxItem
+                checked={checked}
+                onCheckedChange={setChecked}
+              >
                 Enable notifications
               </DropdownMenuCheckboxItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Theme</DropdownMenuLabel>
-            <DropdownMenuRadioGroup value={radioValue} onValueChange={setRadioValue}>
+            <DropdownMenuRadioGroup
+              value={radioValue}
+              onValueChange={setRadioValue}
+            >
               <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="system">
+                System
+              </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onSelect={() => setLastAction("profile")}>View Profile</DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => setLastAction("logout")}>Log out</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setLastAction("profile")}>
+              View Profile
+            </DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setLastAction("logout")}>
+              Log out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         {lastAction && (
-          <p style={{ fontSize: "13px", color: "var(--muted-foreground)" }}>Last action: {lastAction}</p>
+          <p style={{ fontSize: "13px", color: "var(--muted-foreground)" }}>
+            Last action: {lastAction}
+          </p>
         )}
         <p style={{ fontSize: "13px", color: "var(--muted-foreground)" }}>
           Notifications: {checked ? "on" : "off"} · Theme: {radioValue}
@@ -280,10 +461,26 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", justifyContent: "center", padding: "80px", background: "hsl(var(--background))" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "80px",
+        background: "hsl(var(--background))",
+      }}
+    >
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", color: "hsl(var(--foreground))", cursor: "pointer" }}>
+          <button
+            style={{
+              padding: "8px 16px",
+              border: "1px solid hsl(var(--border))",
+              borderRadius: "6px",
+              background: "hsl(var(--background))",
+              color: "hsl(var(--foreground))",
+              cursor: "pointer",
+            }}
+          >
             Open Menu
           </button>
         </DropdownMenuTrigger>
@@ -309,27 +506,71 @@ export const DarkMode: Story = {
 
 export const EdgeCases: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "32px", justifyContent: "center", padding: "16px" }}>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Long Labels</span>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "32px",
+        justifyContent: "center",
+        padding: "16px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Long Labels
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Long Text
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem>A very long menu item label that tests overflow</DropdownMenuItem>
+            <DropdownMenuItem>
+              A very long menu item label that tests overflow
+            </DropdownMenuItem>
             <DropdownMenuItem>Short item</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>All Disabled</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          All Disabled
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Disabled
             </button>
           </DropdownMenuTrigger>
@@ -342,11 +583,28 @@ export const EdgeCases: Story = {
         </DropdownMenu>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>Grouped</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          Grouped
+        </span>
         <DropdownMenu defaultOpen>
           <DropdownMenuTrigger asChild>
-            <button style={{ padding: "8px 16px", border: "1px solid hsl(var(--border))", borderRadius: "6px", background: "hsl(var(--background))", cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "6px",
+                background: "hsl(var(--background))",
+                cursor: "pointer",
+              }}
+            >
               Groups
             </button>
           </DropdownMenuTrigger>

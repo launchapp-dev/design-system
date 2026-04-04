@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { DropZone } from "./DropZone";
 
 const meta: Meta<typeof DropZone> = {
@@ -80,7 +79,14 @@ export const Disabled: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 520 }}>
+    <div
+      className="dark"
+      style={{
+        background: "hsl(240 10% 3.9%)",
+        padding: "24px",
+        maxWidth: 520,
+      }}
+    >
       <DropZone {...args} />
     </div>
   ),

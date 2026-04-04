@@ -1,6 +1,6 @@
 import * as React from "react";
-import { cn } from "../../../lib/utils";
 import { Badge } from "../../../components/Badge";
+import { cn } from "../../../lib/utils";
 
 export interface MaintenanceProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -9,7 +9,10 @@ export interface MaintenanceProps extends React.HTMLAttributes<HTMLDivElement> {
   estimatedTime?: string;
   contactEmail?: string;
   illustration?: React.ReactNode;
-  updates?: Array<{ label: string; status: "done" | "in-progress" | "pending" }>;
+  updates?: Array<{
+    label: string;
+    status: "done" | "in-progress" | "pending";
+  }>;
 }
 
 const defaultIllustration = (
@@ -54,14 +57,14 @@ const Maintenance = React.forwardRef<HTMLDivElement, MaintenanceProps>(
       updates = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
         className={cn(
           "flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center",
-          className
+          className,
         )}
         {...props}
       >
@@ -73,30 +76,40 @@ const Maintenance = React.forwardRef<HTMLDivElement, MaintenanceProps>(
           </div>
         )}
 
-        <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{title}</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          {title}
+        </h1>
         <p className="mt-4 max-w-md text-muted-foreground">{description}</p>
 
         {estimatedTime && (
           <p className="mt-3 text-sm font-medium text-foreground">
-            Estimated completion: <span className="text-primary">{estimatedTime}</span>
+            Estimated completion:{" "}
+            <span className="text-primary">{estimatedTime}</span>
           </p>
         )}
 
         {updates.length > 0 && (
           <div className="mt-8 w-full max-w-sm rounded-lg border border-border bg-card p-4 text-left">
-            <p className="text-xs font-semibold text-foreground mb-3">Status updates</p>
+            <p className="text-xs font-semibold text-foreground mb-3">
+              Status updates
+            </p>
             <ul className="space-y-2">
               {updates.map((update, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm">
                   <span
-                    className={cn("h-2 w-2 shrink-0 rounded-full", statusColors[update.status])}
+                    className={cn(
+                      "h-2 w-2 shrink-0 rounded-full",
+                      statusColors[update.status],
+                    )}
                     aria-hidden="true"
                   />
                   <span
                     className={cn(
-                      update.status === "done" && "text-muted-foreground line-through",
-                      update.status === "in-progress" && "text-foreground font-medium",
-                      update.status === "pending" && "text-muted-foreground"
+                      update.status === "done" &&
+                        "text-muted-foreground line-through",
+                      update.status === "in-progress" &&
+                        "text-foreground font-medium",
+                      update.status === "pending" && "text-muted-foreground",
                     )}
                   >
                     {update.label}
@@ -110,14 +123,17 @@ const Maintenance = React.forwardRef<HTMLDivElement, MaintenanceProps>(
         {contactEmail && (
           <p className="mt-8 text-sm text-muted-foreground">
             Need help?{" "}
-            <a href={`mailto:${contactEmail}`} className="text-primary hover:underline">
+            <a
+              href={`mailto:${contactEmail}`}
+              className="text-primary hover:underline"
+            >
               {contactEmail}
             </a>
           </p>
         )}
       </div>
     );
-  }
+  },
 );
 
 Maintenance.displayName = "Maintenance";

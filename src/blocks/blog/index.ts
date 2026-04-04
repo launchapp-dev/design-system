@@ -1,3 +1,3 @@
-export * from "./PostList";
-export * from "./PostDetail";
 export * from "./NewsletterSignup";
+export * from "./PostDetail";
+export * from "./PostList";

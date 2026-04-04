@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { Spotlight } from "./index";
 
 const meta: Meta = {
@@ -33,7 +32,14 @@ export const Default: StoryObj = {
         }}
       >
         <h2 style={{ fontSize: 24, fontWeight: 600 }}>Spotlight Effect</h2>
-        <p style={{ fontSize: 14, color: "hsl(var(--la-muted-foreground))", textAlign: "center", maxWidth: 300 }}>
+        <p
+          style={{
+            fontSize: 14,
+            color: "hsl(var(--la-muted-foreground))",
+            textAlign: "center",
+            maxWidth: 300,
+          }}
+        >
           Move your mouse around to see the spotlight follow your cursor.
         </p>
       </div>
@@ -64,7 +70,9 @@ export const LargeSpotlight: StoryObj = {
           height: "100%",
         }}
       >
-        <h2 style={{ fontSize: 24, fontWeight: 600 }}>Large Spotlight (800px)</h2>
+        <h2 style={{ fontSize: 24, fontWeight: 600 }}>
+          Large Spotlight (800px)
+        </h2>
       </div>
     </div>
   ),
@@ -93,7 +101,9 @@ export const SmallSpotlight: StoryObj = {
           height: "100%",
         }}
       >
-        <h2 style={{ fontSize: 24, fontWeight: 600 }}>Small Spotlight (200px)</h2>
+        <h2 style={{ fontSize: 24, fontWeight: 600 }}>
+          Small Spotlight (200px)
+        </h2>
       </div>
     </div>
   ),
@@ -125,7 +135,14 @@ export const SpringSpotlight: StoryObj = {
         }}
       >
         <h2 style={{ fontSize: 24, fontWeight: 600 }}>Spring Spotlight</h2>
-        <p style={{ fontSize: 14, color: "hsl(var(--la-muted-foreground))", textAlign: "center", maxWidth: 300 }}>
+        <p
+          style={{
+            fontSize: 14,
+            color: "hsl(var(--la-muted-foreground))",
+            textAlign: "center",
+            maxWidth: 300,
+          }}
+        >
           The spotlight follows with a spring-like easing animation.
         </p>
       </div>
@@ -167,7 +184,9 @@ export const AllSpotlights: StoryObj = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>Default (600px)</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          Default (600px)
+        </p>
         <div
           style={{
             height: 200,
@@ -181,7 +200,9 @@ export const AllSpotlights: StoryObj = {
         </div>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>Large (800px)</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          Large (800px)
+        </p>
         <div
           style={{
             height: 200,
@@ -195,7 +216,9 @@ export const AllSpotlights: StoryObj = {
         </div>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>Small (200px)</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          Small (200px)
+        </p>
         <div
           style={{
             height: 200,
@@ -209,7 +232,9 @@ export const AllSpotlights: StoryObj = {
         </div>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>Spring Animation</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          Spring Animation
+        </p>
         <div
           style={{
             height: 200,

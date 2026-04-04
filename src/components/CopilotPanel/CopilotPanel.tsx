@@ -1,51 +1,49 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
+import { cn } from "../../lib/utils";
+import { ChatBubbleGroup } from "../ChatBubble";
+import { ChatInput } from "../ChatInput";
+import { ScrollArea } from "../ScrollArea";
 import {
   Sheet,
-  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
   SheetDescription,
+  SheetTitle,
+  SheetTrigger,
 } from "../Sheet";
-import { ScrollArea } from "../ScrollArea";
-import { ChatInput } from "../ChatInput";
-import { ChatBubbleGroup } from "../ChatBubble";
-import { cn } from "../../lib/utils";
 
-const copilotPanelVariants = cva(
-  "flex flex-col",
-  {
-    variants: {
-      size: {
-        sm: "w-[320px]",
-        md: "w-[400px]",
-        lg: "w-[500px]",
-        full: "w-full max-w-md",
-      },
+const copilotPanelVariants = cva("flex flex-col", {
+  variants: {
+    size: {
+      sm: "w-[320px]",
+      md: "w-[400px]",
+      lg: "w-[500px]",
+      full: "w-full max-w-md",
     },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 const copilotSuggestionVariants = cva(
   "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "border-border bg-background hover:bg-accent hover:text-accent-foreground",
-        primary: "border-primary/30 bg-primary/10 text-primary hover:bg-primary/20",
-        secondary: "border-secondary bg-secondary/50 text-secondary-foreground hover:bg-secondary",
+        default:
+          "border-border bg-background hover:bg-accent hover:text-accent-foreground",
+        primary:
+          "border-primary/30 bg-primary/10 text-primary hover:bg-primary/20",
+        secondary:
+          "border-secondary bg-secondary/50 text-secondary-foreground hover:bg-secondary",
       },
     },
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 export interface CopilotPanelProps
@@ -82,10 +80,7 @@ const CopilotPanelHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "flex flex-col gap-1.5 border-b px-6 py-4",
-      className
-    )}
+    className={cn("flex flex-col gap-1.5 border-b px-6 py-4", className)}
     {...props}
   />
 ));
@@ -99,7 +94,7 @@ const CopilotPanelTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "flex items-center gap-2 text-lg font-semibold text-foreground",
-      className
+      className,
     )}
     {...props}
   />
@@ -140,10 +135,7 @@ const CopilotPanelFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "flex flex-col gap-3 border-t px-6 py-4",
-      className
-    )}
+    className={cn("flex flex-col gap-3 border-t px-6 py-4", className)}
     {...props}
   />
 ));
@@ -164,7 +156,7 @@ const CopilotPanelContext = React.forwardRef<
     ref={ref}
     className={cn(
       "flex items-start gap-3 rounded-lg border bg-muted/30 p-3",
-      className
+      className,
     )}
     {...props}
   >
@@ -234,11 +226,7 @@ const CopilotPanelSuggestions = React.forwardRef<
   HTMLDivElement,
   CopilotPanelSuggestionsProps
 >(({ className, title = "Suggestions", children, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex flex-col gap-2", className)}
-    {...props}
-  >
+  <div ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
     <span className="text-xs font-medium text-muted-foreground">{title}</span>
     <div
       className="flex flex-wrap gap-2"
@@ -306,24 +294,26 @@ const CopilotPanelChatHistory = React.forwardRef<
 CopilotPanelChatHistory.displayName = "CopilotPanelChatHistory";
 
 export type CopilotPanelVariants = VariantProps<typeof copilotPanelVariants>;
-export type CopilotSuggestionVariants = VariantProps<typeof copilotSuggestionVariants>;
+export type CopilotSuggestionVariants = VariantProps<
+  typeof copilotSuggestionVariants
+>;
 
 export {
   CopilotPanel,
-  CopilotPanelTrigger,
+  CopilotPanelChatHistory,
   CopilotPanelClose,
-  CopilotPanelHeader,
-  CopilotPanelTitle,
-  CopilotPanelDescription,
   CopilotPanelContent,
-  CopilotPanelFooter,
   CopilotPanelContext,
   CopilotPanelContextList,
-  CopilotPanelSuggestions,
-  CopilotPanelSuggestion,
+  CopilotPanelDescription,
   CopilotPanelDivider,
+  CopilotPanelFooter,
+  CopilotPanelHeader,
   CopilotPanelInput,
-  CopilotPanelChatHistory,
+  CopilotPanelSuggestion,
+  CopilotPanelSuggestions,
+  CopilotPanelTitle,
+  CopilotPanelTrigger,
   copilotPanelVariants,
   copilotSuggestionVariants,
 };

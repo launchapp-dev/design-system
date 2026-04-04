@@ -1,19 +1,19 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { Button } from "../Button";
+import { Input } from "../Input";
 import {
   Form,
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormDescription,
   FormMessage,
 } from "./index";
-import { Input } from "../Input";
-import { Button } from "../Button";
 
 const signInSchema = z.object({
   email: z.string().email("Please enter a valid email address"),

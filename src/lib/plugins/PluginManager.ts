@@ -1,12 +1,12 @@
 import type {
+  CustomVariant,
+  HookCallback,
+  HookContext,
+  HookName,
   PluginConfig,
   PluginContext,
   PluginManager,
-  HookName,
-  HookContext,
   VariantRegistry,
-  CustomVariant,
-  HookCallback,
 } from "./types";
 
 class VariantRegistryImpl implements VariantRegistry {
@@ -17,7 +17,10 @@ class VariantRegistryImpl implements VariantRegistry {
     this.variants.set(key, variant);
   }
 
-  getVariant(componentName: string, variantName: string): CustomVariant | undefined {
+  getVariant(
+    componentName: string,
+    variantName: string,
+  ): CustomVariant | undefined {
     const key = `${componentName}:${variantName}`;
     return this.variants.get(key);
   }
@@ -43,7 +46,9 @@ class PluginManagerImpl implements PluginManager {
 
   async register(plugin: PluginConfig): Promise<void> {
     if (this.plugins.has(plugin.name)) {
-      console.warn(`Plugin "${plugin.name}" is already registered. Skipping duplicate registration.`);
+      console.warn(
+        `Plugin "${plugin.name}" is already registered. Skipping duplicate registration.`,
+      );
       return;
     }
 
@@ -75,7 +80,9 @@ class PluginManagerImpl implements PluginManager {
 
     if (plugin.hooks) {
       for (const [hookName, callbacks] of Object.entries(plugin.hooks)) {
-        const hookCallbacks = Array.isArray(callbacks) ? callbacks : [callbacks];
+        const hookCallbacks = Array.isArray(callbacks)
+          ? callbacks
+          : [callbacks];
         if (!this.hooks.has(hookName as HookName)) {
           this.hooks.set(hookName as HookName, []);
         }

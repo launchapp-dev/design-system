@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ThemePreview } from "./ThemePreview";
 import type { VisionColorMap } from "@/lib/vision";
+import { ThemePreview } from "./ThemePreview";
 
 const meta: Meta<typeof ThemePreview> = {
   title: "Components/ThemePreview",
@@ -85,7 +85,8 @@ export const ComponentExamples: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Shows buttons, badges, and cards rendered with the generated theme",
+        story:
+          "Shows buttons, badges, and cards rendered with the generated theme",
       },
     },
   },
@@ -98,7 +99,8 @@ export const DarkModeToggle: Story = {
   parameters: {
     docs: {
       description: {
-        story: "The theme preview includes a dark mode toggle to see how tokens adapt",
+        story:
+          "The theme preview includes a dark mode toggle to see how tokens adapt",
       },
     },
   },
@@ -111,7 +113,8 @@ export const CSSTokenDisplay: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Displays CSS custom properties that can be copied into your project",
+        story:
+          "Displays CSS custom properties that can be copied into your project",
       },
     },
   },

@@ -1,6 +1,6 @@
+export type { ThinkingIndicatorVariants } from "./ThinkingIndicator";
 export {
   ThinkingIndicator,
-  thinkingIndicatorVariants,
   type ThinkingIndicatorProps,
+  thinkingIndicatorVariants,
 } from "./ThinkingIndicator";
-export type { ThinkingIndicatorVariants } from "./ThinkingIndicator";

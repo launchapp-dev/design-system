@@ -30,7 +30,7 @@ export interface A11yFixerOptions {
   model?: string;
 }
 
-const COMMON_A11Y_PATTERNS = {
+const _COMMON_A11Y_PATTERNS = {
   missingAriaLabel: {
     pattern: /\b(Button|IconButton|Tooltip|Popover|Select|Combobox|Menu)\b/,
     violation: "WCAG 4.1.2 - Missing accessible name",
@@ -61,7 +61,7 @@ const COMMON_A11Y_PATTERNS = {
 export async function analyzeComponentA11y(
   component: string,
   code: string,
-  options: A11yFixerOptions
+  options: A11yFixerOptions,
 ): Promise<A11yAnalysisResult> {
   const { apiKey, model = "claude-3-5-sonnet-20241022" } = options;
 
@@ -130,7 +130,11 @@ Return a JSON object with this exact structure:
 
   let analysisData: {
     violations: Array<Omit<A11yViolation, "component">>;
-    fixes: Array<{ violationCode: string; suggestedFix: string; explanation: string }>;
+    fixes: Array<{
+      violationCode: string;
+      suggestedFix: string;
+      explanation: string;
+    }>;
     wcagLevel: "A" | "AA" | "AAA";
     improvementScore: number;
   };
@@ -169,10 +173,10 @@ Return a JSON object with this exact structure:
 }
 
 export async function generateComponentFix(
-  component: string,
+  _component: string,
   code: string,
   violations: A11yViolation[],
-  options: A11yFixerOptions
+  options: A11yFixerOptions,
 ): Promise<string> {
   const { apiKey, model = "claude-3-5-sonnet-20241022" } = options;
 
@@ -181,7 +185,7 @@ export async function generateComponentFix(
   const violationsList = violations
     .map(
       (v) =>
-        `- Line ${v.line}: [${v.code}] ${v.message} (${v.type}, ${v.severity})`
+        `- Line ${v.line}: [${v.code}] ${v.message} (${v.type}, ${v.severity})`,
     )
     .join("\n");
 
@@ -225,7 +229,7 @@ Return the corrected component code with all violations fixed. Maintain the orig
 
 export async function batchAnalyzeComponents(
   components: Record<string, string>,
-  options: A11yFixerOptions
+  options: A11yFixerOptions,
 ): Promise<A11yAnalysisResult[]> {
   const results: A11yAnalysisResult[] = [];
 
@@ -238,14 +242,18 @@ export async function batchAnalyzeComponents(
 }
 
 export function generateA11yReport(results: A11yAnalysisResult[]): string {
-  const totalViolations = results.reduce((sum, r) => sum + r.violations.length, 0);
+  const totalViolations = results.reduce(
+    (sum, r) => sum + r.violations.length,
+    0,
+  );
   const errors = results.reduce(
     (sum, r) => sum + r.violations.filter((v) => v.severity === "error").length,
-    0
+    0,
   );
   const warnings = results.reduce(
-    (sum, r) => sum + r.violations.filter((v) => v.severity === "warning").length,
-    0
+    (sum, r) =>
+      sum + r.violations.filter((v) => v.severity === "warning").length,
+    0,
   );
 
   const report = `
@@ -274,9 +282,13 @@ ${r.violations.map((v) => `- **[${v.code}]** ${v.message} (${v.type})${v.source 
     : "No violations found ✓"
 }
 
-${r.fixes.length > 0 ? `#### Suggested Fixes:
-${r.fixes.map((f) => `- ${f.explanation}\n  \`${f.suggestedFix}\``).join("\n")}` : ""}
-`
+${
+  r.fixes.length > 0
+    ? `#### Suggested Fixes:
+${r.fixes.map((f) => `- ${f.explanation}\n  \`${f.suggestedFix}\``).join("\n")}`
+    : ""
+}
+`,
   )
   .join("\n")}
 `;
@@ -284,7 +296,9 @@ ${r.fixes.map((f) => `- ${f.explanation}\n  \`${f.suggestedFix}\``).join("\n")}`
   return report;
 }
 
-export async function verifyWithAxeCore(htmlContent: string): Promise<A11yViolation[]> {
+export async function verifyWithAxeCore(
+  htmlContent: string,
+): Promise<A11yViolation[]> {
   try {
     // Dynamically import axe-core and jsdom for verification
     const { JSDOM } = await import("jsdom");
@@ -299,7 +313,7 @@ export async function verifyWithAxeCore(htmlContent: string): Promise<A11yViolat
 
     // Process axe violations
     results.violations.forEach((violation: any) => {
-      violation.nodes.forEach((node: any, index: number) => {
+      violation.nodes.forEach((_node: any, index: number) => {
         violations.push({
           line: index + 1,
           component: "Component",

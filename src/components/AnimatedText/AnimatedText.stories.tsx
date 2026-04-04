@@ -1,5 +1,5 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { AnimatedText, TextTransition } from "./index";
 
 const meta: Meta<typeof AnimatedText> = {
@@ -122,7 +122,7 @@ export const TextTransitionStory: Story = {
         setCount((prev) => (prev + 1) % texts.length);
       }, 2000);
       return () => clearInterval(timer);
-    }, []);
+    }, [texts.length]);
 
     return (
       <div className="space-y-4">
@@ -156,7 +156,9 @@ export const TextTransitionDirections: Story = {
     return (
       <div className="space-y-6">
         <div>
-          <p className="text-sm text-muted-foreground mb-2">Slide from Bottom</p>
+          <p className="text-sm text-muted-foreground mb-2">
+            Slide from Bottom
+          </p>
           <TextTransition text={texts[upCount]} direction="up" />
         </div>
         <div>

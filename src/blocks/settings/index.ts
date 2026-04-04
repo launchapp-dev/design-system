@@ -1,8 +1,18 @@
-export { ProfileSettings } from "./ProfileSettings";
-export type { ProfileSettingsProps } from "./ProfileSettings";
-export { AccountSettings } from "./AccountSettings";
 export type { AccountSettingsProps } from "./AccountSettings";
-export { NotificationPreferences } from "./NotificationPreferences";
-export type { NotificationPreferencesProps, NotificationGroup, NotificationPreferenceItem } from "./NotificationPreferences";
+export { AccountSettings } from "./AccountSettings";
+export type {
+  BillingPageProps,
+  BillingPlan,
+  Invoice,
+  PaymentMethod,
+  UsageMeter,
+} from "./BillingPage";
 export { BillingPage } from "./BillingPage";
-export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./BillingPage";
+export type {
+  NotificationGroup,
+  NotificationPreferenceItem,
+  NotificationPreferencesProps,
+} from "./NotificationPreferences";
+export { NotificationPreferences } from "./NotificationPreferences";
+export type { ProfileSettingsProps } from "./ProfileSettings";
+export { ProfileSettings } from "./ProfileSettings";

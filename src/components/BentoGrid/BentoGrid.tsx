@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const bentoGridVariants = cva("grid", {
@@ -42,7 +42,7 @@ const BentoGrid = React.forwardRef<HTMLDivElement, BentoGridProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 BentoGrid.displayName = "BentoGrid";
 
@@ -67,7 +67,7 @@ const bentoCardVariants = cva(
       variant: "default",
       hover: "lift",
     },
-  }
+  },
 );
 
 export interface BentoCardProps
@@ -108,7 +108,7 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
@@ -118,7 +118,7 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
           colSpanClasses[colSpan],
           rowSpanClasses[rowSpan],
           "flex flex-col",
-          className
+          className,
         )}
         role="gridcell"
         {...props}
@@ -128,14 +128,8 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
             {icon}
           </div>
         )}
-        {header && (
-          <div className="bento-card-header mb-2">
-            {header}
-          </div>
-        )}
-        <div className="bento-card-body flex-1">
-          {children}
-        </div>
+        {header && <div className="bento-card-header mb-2">{header}</div>}
+        <div className="bento-card-body flex-1">{children}</div>
         {footer && (
           <div className="bento-card-footer mt-auto pt-4 border-t border-border/50">
             {footer}
@@ -143,7 +137,7 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
         )}
       </div>
     );
-  }
+  },
 );
 BentoCard.displayName = "BentoCard";
 
@@ -165,7 +159,10 @@ const BentoCardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn("text-lg font-semibold leading-tight tracking-tight", className)}
+    className={cn(
+      "text-lg font-semibold leading-tight tracking-tight",
+      className,
+    )}
     {...props}
   />
 ));
@@ -201,7 +198,10 @@ const BentoCardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("bento-card-footer mt-auto pt-3 px-4 pb-4 border-t border-border/50", className)}
+    className={cn(
+      "bento-card-footer mt-auto pt-3 px-4 pb-4 border-t border-border/50",
+      className,
+    )}
     {...props}
   />
 ));
@@ -214,13 +214,13 @@ export type BentoGridVariants = VariantProps<typeof bentoGridVariants>;
 export type BentoCardVariants = VariantProps<typeof bentoCardVariants>;
 
 export {
-  BentoGrid,
   BentoCard,
+  BentoCardBody,
+  BentoCardDescription,
+  BentoCardFooter,
   BentoCardHeader,
   BentoCardTitle,
-  BentoCardDescription,
-  BentoCardBody,
-  BentoCardFooter,
-  bentoGridVariants,
+  BentoGrid,
   bentoCardVariants,
+  bentoGridVariants,
 };

@@ -1,17 +1,17 @@
-import fs from "fs";
-import path from "path";
-import { notFound } from "next/navigation";
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
-import {
-  ALL_BLOCK_CATEGORIES,
-  BLOCK_CATEGORY_LABELS,
-  BLOCK_CATEGORY_DESCRIPTIONS,
-  getBlocksByCategory,
-  type BlockCategory,
-} from "@/lib/blocks-registry";
+import { notFound } from "next/navigation";
+import { BlockCodeSection } from "@/components/BlockCodeSection";
 import { BlockPreview } from "@/components/BlockPreview";
 import { CodeBlock } from "@/components/CodeBlock";
-import { BlockCodeSection } from "@/components/BlockCodeSection";
+import {
+  ALL_BLOCK_CATEGORIES,
+  BLOCK_CATEGORY_DESCRIPTIONS,
+  BLOCK_CATEGORY_LABELS,
+  type BlockCategory,
+  getBlocksByCategory,
+} from "@/lib/blocks-registry";
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -52,9 +52,12 @@ export default async function BlockCategoryPage({ params }: PageProps) {
   const description = BLOCK_CATEGORY_DESCRIPTIONS[category];
 
   const currentIdx = ALL_BLOCK_CATEGORIES.indexOf(category);
-  const prevCategory = currentIdx > 0 ? ALL_BLOCK_CATEGORIES[currentIdx - 1] : null;
+  const prevCategory =
+    currentIdx > 0 ? ALL_BLOCK_CATEGORIES[currentIdx - 1] : null;
   const nextCategory =
-    currentIdx < ALL_BLOCK_CATEGORIES.length - 1 ? ALL_BLOCK_CATEGORIES[currentIdx + 1] : null;
+    currentIdx < ALL_BLOCK_CATEGORIES.length - 1
+      ? ALL_BLOCK_CATEGORIES[currentIdx + 1]
+      : null;
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
@@ -63,7 +66,10 @@ export default async function BlockCategoryPage({ params }: PageProps) {
           Home
         </Link>
         <span>/</span>
-        <Link href="/blocks/auth" className="hover:text-foreground transition-colors">
+        <Link
+          href="/blocks/auth"
+          className="hover:text-foreground transition-colors"
+        >
           Blocks
         </Link>
         <span>/</span>
@@ -72,40 +78,50 @@ export default async function BlockCategoryPage({ params }: PageProps) {
 
       <div className="mb-10">
         <h1 className="text-3xl font-bold tracking-tight mb-2">{label}</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">{description}</p>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          {description}
+        </p>
       </div>
 
       <div className="space-y-16">
-        {await Promise.all(
-          categoryBlocks.map(async (block) => {
-            const sourceCode = readBlockSource(block.sourcePath);
-            return (
-              <section key={block.id} id={block.id}>
-                <div className="mb-4">
-                  <h2 className="text-xl font-semibold">{block.name}</h2>
-                  <p className="text-sm text-muted-foreground mt-1">{block.description}</p>
-                </div>
-                <div className="mb-4">
-                  <BlockPreview blockId={block.id} />
-                </div>
-                <BlockCodeSection
-                  usageCode={
-                    <CodeBlock lang="tsx" title={`${block.name}.tsx`} code={block.code} />
-                  }
-                  sourceCode={
-                    sourceCode ? (
+        {
+          await Promise.all(
+            categoryBlocks.map(async (block) => {
+              const sourceCode = readBlockSource(block.sourcePath);
+              return (
+                <section key={block.id} id={block.id}>
+                  <div className="mb-4">
+                    <h2 className="text-xl font-semibold">{block.name}</h2>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {block.description}
+                    </p>
+                  </div>
+                  <div className="mb-4">
+                    <BlockPreview blockId={block.id} />
+                  </div>
+                  <BlockCodeSection
+                    usageCode={
                       <CodeBlock
                         lang="tsx"
-                        title={block.sourcePath.split("/").pop()}
-                        code={sourceCode}
+                        title={`${block.name}.tsx`}
+                        code={block.code}
                       />
-                    ) : null
-                  }
-                />
-              </section>
-            );
-          })
-        )}
+                    }
+                    sourceCode={
+                      sourceCode ? (
+                        <CodeBlock
+                          lang="tsx"
+                          title={block.sourcePath.split("/").pop()}
+                          code={sourceCode}
+                        />
+                      ) : null
+                    }
+                  />
+                </section>
+              );
+            }),
+          )
+        }
       </div>
 
       <div className="mt-12 flex items-center justify-between pt-6 border-t">

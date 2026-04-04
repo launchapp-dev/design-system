@@ -1,6 +1,9 @@
-export { MultiStepWizard } from "./MultiStepWizard";
 export type { MultiStepWizardProps, WizardStep } from "./MultiStepWizard";
+export { MultiStepWizard } from "./MultiStepWizard";
+export type {
+  ChecklistItem,
+  OnboardingChecklistProps,
+} from "./OnboardingChecklist";
 export { OnboardingChecklist } from "./OnboardingChecklist";
-export type { OnboardingChecklistProps, ChecklistItem } from "./OnboardingChecklist";
+export type { WelcomeFeature, WelcomeScreenProps } from "./WelcomeScreen";
 export { WelcomeScreen } from "./WelcomeScreen";
-export type { WelcomeScreenProps, WelcomeFeature } from "./WelcomeScreen";

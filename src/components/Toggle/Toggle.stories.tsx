@@ -35,13 +35,30 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       {(["default", "outline"] as const).map((variant) => (
-        <div key={variant} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <span style={{ fontSize: "12px", color: "var(--muted-foreground)", textTransform: "capitalize" }}>{variant}</span>
+        <div
+          key={variant}
+          style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+        >
+          <span
+            style={{
+              fontSize: "12px",
+              color: "var(--muted-foreground)",
+              textTransform: "capitalize",
+            }}
+          >
+            {variant}
+          </span>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <Toggle variant={variant}>Idle</Toggle>
-            <Toggle variant={variant} defaultPressed>Pressed</Toggle>
-            <Toggle variant={variant} disabled>Disabled</Toggle>
-            <Toggle variant={variant} defaultPressed disabled>Dis+Pressed</Toggle>
+            <Toggle variant={variant} defaultPressed>
+              Pressed
+            </Toggle>
+            <Toggle variant={variant} disabled>
+              Disabled
+            </Toggle>
+            <Toggle variant={variant} defaultPressed disabled>
+              Dis+Pressed
+            </Toggle>
           </div>
         </div>
       ))}
@@ -53,12 +70,29 @@ export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       {(["sm", "md", "lg"] as const).map((size) => (
-        <div key={size} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>{size}</span>
+        <div
+          key={size}
+          style={{ display: "flex", alignItems: "center", gap: "12px" }}
+        >
+          <span
+            style={{
+              width: 24,
+              fontSize: "12px",
+              color: "var(--muted-foreground)",
+            }}
+          >
+            {size}
+          </span>
           <Toggle size={size}>Idle</Toggle>
-          <Toggle size={size} defaultPressed>Pressed</Toggle>
-          <Toggle size={size} variant="outline">Outline</Toggle>
-          <Toggle size={size} variant="outline" defaultPressed>Out+Press</Toggle>
+          <Toggle size={size} defaultPressed>
+            Pressed
+          </Toggle>
+          <Toggle size={size} variant="outline">
+            Outline
+          </Toggle>
+          <Toggle size={size} variant="outline" defaultPressed>
+            Out+Press
+          </Toggle>
         </div>
       ))}
     </div>
@@ -86,11 +120,21 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", gap: "8px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "8px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <Toggle>Idle</Toggle>
       <Toggle defaultPressed>Pressed</Toggle>
       <Toggle variant="outline">Outline</Toggle>
-      <Toggle variant="outline" defaultPressed>Out+Press</Toggle>
+      <Toggle variant="outline" defaultPressed>
+        Out+Press
+      </Toggle>
       <Toggle disabled>Disabled</Toggle>
     </div>
   ),
@@ -98,7 +142,14 @@ export const DarkMode: Story = {
 
 export const LongContent: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: "300px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+        maxWidth: "300px",
+      }}
+    >
       <Toggle>Short</Toggle>
       <Toggle>A toggle with a much longer label text</Toggle>
       <Toggle variant="outline">Another long label that may wrap</Toggle>

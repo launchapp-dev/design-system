@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { BillingPage } from "./BillingPage";
 
 const meta: Meta<typeof BillingPage> = {
@@ -56,8 +55,18 @@ export const PastDue: Story = {
           { label: "API calls", used: 9900, total: 10000, unit: "req/mo" },
         ]}
         invoices={[
-          { id: "INV-004", date: "Mar 1, 2026", amount: "$29.00", status: "open" },
-          { id: "INV-003", date: "Feb 1, 2026", amount: "$29.00", status: "paid" },
+          {
+            id: "INV-004",
+            date: "Mar 1, 2026",
+            amount: "$29.00",
+            status: "open",
+          },
+          {
+            id: "INV-003",
+            date: "Feb 1, 2026",
+            amount: "$29.00",
+            status: "paid",
+          },
         ]}
       />
     </div>
@@ -67,7 +76,10 @@ export const PastDue: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),

@@ -1,20 +1,27 @@
-import { describe, it, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
-import { StatusPage } from "./StatusPage";
+import { afterEach, describe, expect, it } from "vitest";
 import type { StatusService } from "./StatusPage";
+import { StatusPage } from "./StatusPage";
 
-const OPERATIONAL: StatusService = { id: "api", name: "API", status: "operational" };
+const OPERATIONAL: StatusService = {
+  id: "api",
+  name: "API",
+  status: "operational",
+};
 
 describe("StatusPage", () => {
   it("renders default title", () => {
     render(<StatusPage services={[OPERATIONAL]} />);
-    expect(screen.getByRole("heading", { name: "System Status" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "System Status" }),
+    ).toBeInTheDocument();
   });
 
   it("renders custom title", () => {
     render(<StatusPage services={[OPERATIONAL]} title="My Status Page" />);
-    expect(screen.getByRole("heading", { name: "My Status Page" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "My Status Page" }),
+    ).toBeInTheDocument();
   });
 
   it("renders description when provided", () => {
@@ -39,7 +46,12 @@ describe("StatusPage", () => {
 
   it("renders service description when provided", () => {
     const services: StatusService[] = [
-      { id: "api", name: "API", description: "REST API", status: "operational" },
+      {
+        id: "api",
+        name: "API",
+        description: "REST API",
+        status: "operational",
+      },
     ];
     render(<StatusPage services={services} />);
     expect(screen.getByText("REST API")).toBeInTheDocument();
@@ -53,7 +65,9 @@ describe("StatusPage", () => {
       ["major_outage", "Major Outage"],
       ["maintenance", "Under Maintenance"],
     ] as const)("renders %s badge label", (status, label) => {
-      render(<StatusPage services={[{ id: "svc", name: "Service", status }]} />);
+      render(
+        <StatusPage services={[{ id: "svc", name: "Service", status }]} />,
+      );
       expect(screen.getAllByText(label).length).toBeGreaterThan(0);
     });
   });
@@ -70,7 +84,9 @@ describe("StatusPage", () => {
         { id: "db", name: "DB", status: "major_outage" },
       ];
       render(<StatusPage services={services} />);
-      expect(screen.getByText(/Major Outage — All Systems/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Major Outage — All Systems/),
+      ).toBeInTheDocument();
     });
 
     it("major_outage takes priority over degraded", () => {
@@ -79,12 +95,20 @@ describe("StatusPage", () => {
         { id: "b", name: "B", status: "major_outage" },
       ];
       render(<StatusPage services={services} />);
-      expect(screen.getByText(/Major Outage — All Systems/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Major Outage — All Systems/),
+      ).toBeInTheDocument();
     });
 
     it("shows maintenance banner when service is under maintenance", () => {
-      render(<StatusPage services={[{ id: "svc", name: "Svc", status: "maintenance" }]} />);
-      expect(screen.getByText(/Under Maintenance — All Systems/)).toBeInTheDocument();
+      render(
+        <StatusPage
+          services={[{ id: "svc", name: "Svc", status: "maintenance" }]}
+        />,
+      );
+      expect(
+        screen.getByText(/Under Maintenance — All Systems/),
+      ).toBeInTheDocument();
     });
   });
 
@@ -102,7 +126,9 @@ describe("StatusPage", () => {
         },
       ];
       const { container } = render(<StatusPage services={services} />);
-      expect(container.querySelectorAll(".rounded-sm").length).toBeGreaterThan(0);
+      expect(container.querySelectorAll(".rounded-sm").length).toBeGreaterThan(
+        0,
+      );
     });
 
     it("shows computed uptime percentage", () => {
@@ -137,14 +163,16 @@ describe("StatusPage", () => {
   });
 
   it("shows lastUpdated text", () => {
-    render(<StatusPage services={[OPERATIONAL]} lastUpdated="March 21, 2026" />);
+    render(
+      <StatusPage services={[OPERATIONAL]} lastUpdated="March 21, 2026" />,
+    );
     expect(screen.getByText(/March 21, 2026/)).toBeInTheDocument();
   });
 
   describe("className merging", () => {
     it("merges custom className with base classes", () => {
       const { container } = render(
-        <StatusPage services={[OPERATIONAL]} className="custom-class" />
+        <StatusPage services={[OPERATIONAL]} className="custom-class" />,
       );
       expect(container.firstChild).toHaveClass("custom-class");
       expect(container.firstChild).toHaveClass("space-y-6");

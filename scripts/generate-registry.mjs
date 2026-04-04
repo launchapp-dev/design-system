@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { readdir, readFile, writeFile, stat } from "fs/promises";
-import { join, dirname, basename } from "path";
-import { fileURLToPath } from "url";
-import { existsSync } from "fs";
+import { existsSync } from "node:fs";
+import { readdir, readFile, stat, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -44,14 +44,14 @@ const PACKAGE_MAPPINGS = {
   "@radix-ui/react-tooltip": "@radix-ui/react-tooltip",
   "@radix-ui/react-visually-hidden": "@radix-ui/react-visually-hidden",
   "class-variance-authority": "class-variance-authority",
-  "cmdk": "cmdk",
+  cmdk: "cmdk",
   "react-day-picker": "react-day-picker",
   "react-hook-form": "react-hook-form",
   "@hookform/resolvers": "@hookform/resolvers",
   "react-resizable-panels": "react-resizable-panels",
-  "recharts": "recharts",
-  "sonner": "sonner",
-  "zod": "zod",
+  recharts: "recharts",
+  sonner: "sonner",
+  zod: "zod",
   "@tanstack/react-table": "@tanstack/react-table",
   "@dnd-kit/core": "@dnd-kit/core",
   "@dnd-kit/sortable": "@dnd-kit/sortable",
@@ -82,23 +82,75 @@ const BLOCK_DEPENDENCY_MAP = {
   "auth/OTPVerification": ["form", "input", "button", "card"],
   "navigation/AppSidebar": ["button", "separator", "collapsible", "avatar"],
   "navigation/TopNav": ["button", "avatar", "dropdown-menu"],
-  "navigation/MobileNavDrawer": ["sheet", "button", "separator", "collapsible", "avatar", "block-app-sidebar"],
-  "settings/ProfileSettings": ["avatar", "button", "input", "textarea", "separator", "form"],
+  "navigation/MobileNavDrawer": [
+    "sheet",
+    "button",
+    "separator",
+    "collapsible",
+    "avatar",
+    "block-app-sidebar",
+  ],
+  "settings/ProfileSettings": [
+    "avatar",
+    "button",
+    "input",
+    "textarea",
+    "separator",
+    "form",
+  ],
   "settings/AccountSettings": ["button", "input", "separator", "alert", "form"],
   "settings/NotificationPreferences": ["switch", "label", "separator", "card"],
-  "settings/BillingPage": ["card", "badge", "button", "progress", "separator", "table"],
+  "settings/BillingPage": [
+    "card",
+    "badge",
+    "button",
+    "progress",
+    "separator",
+    "table",
+  ],
   "marketing/HeroSection": [],
   "marketing/FeatureGrid": ["card"],
   "marketing/PricingTable": ["card", "badge", "button", "separator"],
   "marketing/TestimonialCarousel": ["card", "avatar", "badge"],
   "dashboard/StatsOverview": ["stat-display", "card", "chart"],
-  "dashboard/ActivityFeed": ["avatar", "badge", "scroll-area", "separator", "card"],
+  "dashboard/ActivityFeed": [
+    "avatar",
+    "badge",
+    "scroll-area",
+    "separator",
+    "card",
+  ],
   "dashboard/MetricCards": ["card", "chart"],
-  "data/FullDataTable": ["table", "input", "button", "checkbox", "dropdown-menu", "popover", "select", "label"],
-  "data/KanbanBoard": ["card", "badge", "avatar", "button", "input", "scroll-area"],
+  "data/FullDataTable": [
+    "table",
+    "input",
+    "button",
+    "checkbox",
+    "dropdown-menu",
+    "popover",
+    "select",
+    "label",
+  ],
+  "data/KanbanBoard": [
+    "card",
+    "badge",
+    "avatar",
+    "button",
+    "input",
+    "scroll-area",
+  ],
   "ecommerce/ProductCard": ["card", "button", "badge"],
   "ecommerce/ShoppingCart": ["card", "button", "separator", "badge"],
-  "ecommerce/CheckoutForm": ["form", "input", "button", "label", "radio-group", "separator", "card", "badge"],
+  "ecommerce/CheckoutForm": [
+    "form",
+    "input",
+    "button",
+    "label",
+    "radio-group",
+    "separator",
+    "card",
+    "badge",
+  ],
 };
 
 function toKebabCase(str) {
@@ -113,7 +165,10 @@ function extractDependencies(content, componentName) {
   const registryDependencies = new Set();
 
   for (const [importPattern, packageName] of Object.entries(PACKAGE_MAPPINGS)) {
-    if (content.includes(`from "${importPattern}"`) || content.includes(`from '${importPattern}'`)) {
+    if (
+      content.includes(`from "${importPattern}"`) ||
+      content.includes(`from '${importPattern}'`)
+    ) {
       dependencies.add(packageName);
     }
   }
@@ -129,7 +184,8 @@ function extractDependencies(content, componentName) {
     }
   }
 
-  const componentImportPattern = /from\s+["']\.\.\/components\/([A-Za-z]+)["']/g;
+  const componentImportPattern =
+    /from\s+["']\.\.\/components\/([A-Za-z]+)["']/g;
   let match;
   while ((match = componentImportPattern.exec(content)) !== null) {
     const importedComponent = toKebabCase(match[1]);
@@ -147,7 +203,7 @@ function extractDependencies(content, componentName) {
 async function getComponentFiles(componentDir) {
   const files = [];
   const componentPath = join(ROOT, "src/components", componentDir);
-  
+
   if (!existsSync(componentPath)) {
     return files;
   }
@@ -195,7 +251,7 @@ async function scanComponents() {
   for (const entry of entries) {
     const entryPath = join(componentsDir, entry);
     const stats = await stat(entryPath);
-    
+
     if (!stats.isDirectory()) continue;
 
     const componentFile = join(entryPath, `${entry}.tsx`);
@@ -203,7 +259,10 @@ async function scanComponents() {
 
     const content = await readFile(componentFile, "utf-8");
     const files = await getComponentFiles(entry);
-    const { dependencies, registryDependencies } = extractDependencies(content, entry);
+    const { dependencies, registryDependencies } = extractDependencies(
+      content,
+      entry,
+    );
 
     const kebabName = toKebabCase(entry);
 
@@ -213,17 +272,18 @@ async function scanComponents() {
       files,
       dependencies: dependencies.length > 0 ? dependencies : undefined,
       devDependencies: [],
-      registryDependencies: registryDependencies.length > 0 ? registryDependencies : undefined,
+      registryDependencies:
+        registryDependencies.length > 0 ? registryDependencies : undefined,
     });
   }
 
   return items;
 }
 
-function getBlockFiles(blockPath) {
+function _getBlockFiles(blockPath) {
   const files = [];
   const fullPath = join(ROOT, blockPath);
-  
+
   if (existsSync(fullPath)) {
     files.push({
       path: blockPath,
@@ -240,28 +300,38 @@ async function scanBlocks() {
 
   async function scanDir(dir, relativePath = "") {
     const entries = await readdir(dir, { withFileTypes: true });
-    
+
     for (const entry of entries) {
       const entryPath = join(dir, entry.name);
-      const entryRelativePath = relativePath ? `${relativePath}/${entry.name}` : entry.name;
-      
+      const entryRelativePath = relativePath
+        ? `${relativePath}/${entry.name}`
+        : entry.name;
+
       if (entry.isDirectory()) {
         await scanDir(entryPath, entryRelativePath);
-      } else if (entry.name.endsWith(".tsx") && !entry.name.includes(".stories.")) {
+      } else if (
+        entry.name.endsWith(".tsx") &&
+        !entry.name.includes(".stories.")
+      ) {
         const blockName = entry.name.replace(".tsx", "");
         const blockKey = `${relativePath}/${blockName}`;
         const registryName = `block-${toKebabCase(blockName)}`;
-        
+
         const content = await readFile(entryPath, "utf-8");
-        
+
         let registryDeps = [];
         if (BLOCK_DEPENDENCY_MAP[blockKey]) {
           registryDeps = BLOCK_DEPENDENCY_MAP[blockKey];
         }
 
         const deps = new Set();
-        for (const [importPattern, packageName] of Object.entries(PACKAGE_MAPPINGS)) {
-          if (content.includes(`from "${importPattern}"`) || content.includes(`from '${importPattern}'`)) {
+        for (const [importPattern, packageName] of Object.entries(
+          PACKAGE_MAPPINGS,
+        )) {
+          if (
+            content.includes(`from "${importPattern}"`) ||
+            content.includes(`from '${importPattern}'`)
+          ) {
             deps.add(packageName);
           }
         }
@@ -269,10 +339,13 @@ async function scanBlocks() {
         items.push({
           name: registryName,
           type: "registry:block",
-          files: [{ path: `src/blocks/${blockKey}.tsx`, type: "registry:block" }],
+          files: [
+            { path: `src/blocks/${blockKey}.tsx`, type: "registry:block" },
+          ],
           dependencies: deps.size > 0 ? Array.from(deps).sort() : undefined,
           devDependencies: [],
-          registryDependencies: registryDeps.length > 0 ? registryDeps : undefined,
+          registryDependencies:
+            registryDeps.length > 0 ? registryDeps : undefined,
         });
       }
     }
@@ -311,7 +384,7 @@ async function generateRegistry() {
   const items = [getUtilsItem(), ...components, ...blocks];
 
   const registry = {
-    "$schema": REGISTRY_SCHEMA,
+    $schema: REGISTRY_SCHEMA,
     name: REGISTRY_NAME,
     homepage: REGISTRY_HOMEPAGE,
     items: items.map((item) => ({
@@ -320,12 +393,14 @@ async function generateRegistry() {
       files: item.files,
       ...(item.dependencies && { dependencies: item.dependencies }),
       devDependencies: item.devDependencies || [],
-      ...(item.registryDependencies && { registryDependencies: item.registryDependencies }),
+      ...(item.registryDependencies && {
+        registryDependencies: item.registryDependencies,
+      }),
     })),
   };
 
   const outputPath = join(ROOT, "registry.json");
-  await writeFile(outputPath, JSON.stringify(registry, null, 2) + "\n");
+  await writeFile(outputPath, `${JSON.stringify(registry, null, 2)}\n`);
   console.log(`\nRegistry generated at ${outputPath}`);
   console.log(`Total items: ${items.length}`);
 }

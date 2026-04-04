@@ -1,3 +1,6 @@
+export type {
+  ComboboxOption,
+  ComboboxProps,
+  ComboboxTriggerVariants,
+} from "./Combobox";
 export { Combobox, comboboxTriggerVariants } from "./Combobox";
-export type { ComboboxProps, ComboboxOption } from "./Combobox";
-export type { ComboboxTriggerVariants } from "./Combobox";

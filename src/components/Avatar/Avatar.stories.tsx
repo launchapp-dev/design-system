@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Avatar, AvatarImage, AvatarFallback } from "./index";
+import { Avatar, AvatarFallback, AvatarImage } from "./index";
 
 const meta = {
   title: "Components/Avatar",
@@ -29,7 +29,14 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "16px",
+        alignItems: "center",
+      }}
+    >
       <Avatar>
         <AvatarImage src="https://github.com/shadcn.png" alt="with image" />
         <AvatarFallback>SC</AvatarFallback>
@@ -47,7 +54,14 @@ export const AllVariants: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "16px",
+        alignItems: "center",
+      }}
+    >
       <Avatar size="sm">
         <AvatarFallback>SM</AvatarFallback>
       </Avatar>
@@ -76,13 +90,23 @@ export const Interactive: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
   ],
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "16px",
+        alignItems: "center",
+      }}
+    >
       <Avatar size="sm">
         <AvatarFallback>SM</AvatarFallback>
       </Avatar>
@@ -98,7 +122,14 @@ export const DarkMode: Story = {
 
 export const EdgeCases: Story = {
   render: () => (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "16px",
+        alignItems: "center",
+      }}
+    >
       <Avatar>
         <AvatarFallback>AB</AvatarFallback>
       </Avatar>

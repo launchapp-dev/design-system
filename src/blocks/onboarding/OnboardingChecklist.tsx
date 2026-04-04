@@ -1,8 +1,14 @@
 import * as React from "react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/Card";
+import { Badge } from "@/components/Badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/Card";
 import { Checkbox } from "@/components/Checkbox";
 import { Progress } from "@/components/Progress";
-import { Badge } from "@/components/Badge";
 import { cn } from "@/lib/utils";
 
 export interface ChecklistItem {
@@ -13,14 +19,18 @@ export interface ChecklistItem {
   href?: string;
 }
 
-export interface OnboardingChecklistProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface OnboardingChecklistProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   items: ChecklistItem[];
   title?: string;
   description?: string;
   onItemToggle?: (id: string, completed: boolean) => void;
 }
 
-const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklistProps>(
+const OnboardingChecklist = React.forwardRef<
+  HTMLDivElement,
+  OnboardingChecklistProps
+>(
   (
     {
       items,
@@ -30,10 +40,11 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const completedCount = items.filter((item) => item.completed).length;
-    const progress = items.length > 0 ? Math.round((completedCount / items.length) * 100) : 0;
+    const progress =
+      items.length > 0 ? Math.round((completedCount / items.length) * 100) : 0;
     const allComplete = completedCount === items.length;
 
     return (
@@ -42,7 +53,11 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
               <CardTitle>{title}</CardTitle>
-              {description && <CardDescription className="mt-1">{description}</CardDescription>}
+              {description && (
+                <CardDescription className="mt-1">
+                  {description}
+                </CardDescription>
+              )}
             </div>
             {allComplete && (
               <Badge variant="default" className="shrink-0">
@@ -61,13 +76,15 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
           </div>
         </CardHeader>
         <CardContent>
-          <ul role="list" className="space-y-3">
+          <ul className="space-y-3">
             {items.map((item) => (
               <li key={item.id}>
                 <div
                   className={cn(
                     "flex items-start gap-3 rounded-md border p-3 transition-colors",
-                    item.completed ? "border-border bg-muted/40" : "border-border bg-background"
+                    item.completed
+                      ? "border-border bg-muted/40"
+                      : "border-border bg-background",
                   )}
                 >
                   <Checkbox
@@ -84,7 +101,7 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
                       htmlFor={`checklist-${item.id}`}
                       className={cn(
                         "cursor-pointer text-sm font-medium leading-none",
-                        item.completed && "text-muted-foreground line-through"
+                        item.completed && "text-muted-foreground line-through",
                       )}
                     >
                       {item.href ? (
@@ -100,7 +117,9 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
                       )}
                     </label>
                     {item.description && (
-                      <p className="mt-1 text-xs text-muted-foreground">{item.description}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {item.description}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -110,7 +129,7 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
         </CardContent>
       </Card>
     );
-  }
+  },
 );
 OnboardingChecklist.displayName = "OnboardingChecklist";
 

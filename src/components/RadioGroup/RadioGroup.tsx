@@ -1,6 +1,6 @@
-import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { cva, type VariantProps } from "class-variance-authority";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
 const radioGroupVariants = cva("grid gap-2", {
@@ -16,18 +16,28 @@ const radioGroupVariants = cva("grid gap-2", {
 });
 
 export interface RadioGroupProps
-  extends Omit<React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>, "orientation">,
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>,
+      "orientation"
+    >,
     VariantProps<typeof radioGroupVariants> {}
 
-function RadioGroup({ className, orientation, ref, ...props }: RadioGroupProps & { ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Root>> }) {
+function RadioGroup({
+  className,
+  orientation,
+  ref,
+  ...props
+}: RadioGroupProps & {
+  ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Root>>;
+}) {
   return (
-  <RadioGroupPrimitive.Root
-    ref={ref}
-    className={cn(radioGroupVariants({ orientation }), className)}
-    orientation={orientation ?? "vertical"}
-    {...props}
-  />
-);
+    <RadioGroupPrimitive.Root
+      ref={ref}
+      className={cn(radioGroupVariants({ orientation }), className)}
+      orientation={orientation ?? "vertical"}
+      {...props}
+    />
+  );
 }
 
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
@@ -45,39 +55,52 @@ const radioGroupItemVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface RadioGroupItemProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>,
     VariantProps<typeof radioGroupItemVariants> {}
 
-function RadioGroupItem({ className, size, ref, ...props }: RadioGroupItemProps & { ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Item>> }) {
+function RadioGroupItem({
+  className,
+  size,
+  ref,
+  ...props
+}: RadioGroupItemProps & {
+  ref?: React.Ref<React.ComponentRef<typeof RadioGroupPrimitive.Item>>;
+}) {
   return (
-  <RadioGroupPrimitive.Item
-    ref={ref}
-    className={cn(radioGroupItemVariants({ size }), className)}
-    {...props}
-  >
-    <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 8 8"
-        className={cn(
-          "fill-current",
-          size === "sm" ? "h-1.5 w-1.5 md:h-1.5 md:w-1.5" : size === "lg" ? "h-2.5 w-2.5" : "h-2 w-2 md:h-2 md:w-2"
-        )}
-      >
-        <circle cx="4" cy="4" r="4" />
-      </svg>
-    </RadioGroupPrimitive.Indicator>
-  </RadioGroupPrimitive.Item>
-);
+    <RadioGroupPrimitive.Item
+      ref={ref}
+      className={cn(radioGroupItemVariants({ size }), className)}
+      {...props}
+    >
+      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 8 8"
+          className={cn(
+            "fill-current",
+            size === "sm"
+              ? "h-1.5 w-1.5 md:h-1.5 md:w-1.5"
+              : size === "lg"
+                ? "h-2.5 w-2.5"
+                : "h-2 w-2 md:h-2 md:w-2",
+          )}
+        >
+          <circle cx="4" cy="4" r="4" />
+        </svg>
+      </RadioGroupPrimitive.Indicator>
+    </RadioGroupPrimitive.Item>
+  );
 }
 
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
 export type RadioGroupVariants = VariantProps<typeof radioGroupVariants>;
-export type RadioGroupItemVariants = VariantProps<typeof radioGroupItemVariants>;
+export type RadioGroupItemVariants = VariantProps<
+  typeof radioGroupItemVariants
+>;
 
 export { RadioGroup, RadioGroupItem };

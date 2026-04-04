@@ -1,9 +1,9 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import * as vscode from "vscode";
-import * as path from "path";
-import * as fs from "fs";
 import { DesignSystemCompletionProvider } from "./completion-provider";
-import { TokenHoverProvider, TokenCompletionProvider } from "./token-provider";
 import { QuickInsertProvider } from "./quick-insert";
+import { TokenCompletionProvider, TokenHoverProvider } from "./token-provider";
 
 let completionProvider: DesignSystemCompletionProvider;
 
@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   if (!designSystemPath) {
     vscode.window.showWarningMessage(
-      "LaunchApp Design System not found in workspace"
+      "LaunchApp Design System not found in workspace",
     );
     return;
   }
@@ -26,12 +26,13 @@ export function activate(context: vscode.ExtensionContext) {
     { language: "javascriptreact", scheme: "file" },
   ];
 
-  const completionRegistration = vscode.languages.registerCompletionItemProvider(
-    selector,
-    completionProvider,
-    " ", // Trigger on space
-    "=" // Trigger on equals
-  );
+  const completionRegistration =
+    vscode.languages.registerCompletionItemProvider(
+      selector,
+      completionProvider,
+      " ", // Trigger on space
+      "=", // Trigger on equals
+    );
 
   context.subscriptions.push(completionRegistration);
 
@@ -45,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
       { language: "scss", scheme: "file" },
       { language: "postcss", scheme: "file" },
     ],
-    tokenHoverProvider
+    tokenHoverProvider,
   );
 
   context.subscriptions.push(hoverRegistration);
@@ -61,7 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
         { language: "postcss", scheme: "file" },
       ],
       tokenCompletionProvider,
-      "-" // Trigger on the dash before token name
+      "-", // Trigger on the dash before token name
     );
 
   context.subscriptions.push(tokenCompletionRegistration);
@@ -75,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
     "launchapp.showComponentDocs",
     (componentName: string) => {
       showComponentDocumentation(completionProvider, componentName);
-    }
+    },
   );
 
   context.subscriptions.push(showDocCommand);
@@ -99,7 +100,7 @@ function findDesignSystemPath(): string | null {
     if (fs.existsSync(packageJsonPath)) {
       try {
         const packageJson = JSON.parse(
-          fs.readFileSync(packageJsonPath, "utf-8")
+          fs.readFileSync(packageJsonPath, "utf-8"),
         );
 
         // Check if it's the design system itself
@@ -112,7 +113,7 @@ function findDesignSystemPath(): string | null {
           workspaceRoot,
           "node_modules",
           "@launchapp",
-          "design-system"
+          "design-system",
         );
         if (fs.existsSync(designSystemPath)) {
           return designSystemPath;
@@ -130,7 +131,7 @@ function findDesignSystemPath(): string | null {
             workspaceRoot,
             "node_modules",
             "@launchapp",
-            "design-system"
+            "design-system",
           );
           if (fs.existsSync(installedPath)) {
             return installedPath;
@@ -152,14 +153,14 @@ function findDesignSystemPath(): string | null {
 }
 
 function showComponentDocumentation(
-  provider: DesignSystemCompletionProvider,
-  componentName: string
+  _provider: DesignSystemCompletionProvider,
+  componentName: string,
 ) {
   const doc = vscode.window.createWebviewPanel(
     "componentDocs",
     `${componentName} Documentation`,
     vscode.ViewColumn.Beside,
-    {}
+    {},
   );
 
   doc.webview.html = `

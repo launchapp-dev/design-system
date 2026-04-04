@@ -1,8 +1,18 @@
-export { ProductCard, productCardVariants, ProductCardGrid } from "./ProductCard";
-export type { ProductCardProps, ProductCardItem, ProductCardGridProps } from "./ProductCard";
-
-export { ShoppingCart } from "./ShoppingCart";
-export type { ShoppingCartProps, CartItem } from "./ShoppingCart";
-
+export type {
+  CheckoutFormProps,
+  CheckoutValues,
+  OrderSummaryItem,
+} from "./CheckoutForm";
 export { CheckoutForm } from "./CheckoutForm";
-export type { CheckoutFormProps, CheckoutValues, OrderSummaryItem } from "./CheckoutForm";
+export type {
+  ProductCardGridProps,
+  ProductCardItem,
+  ProductCardProps,
+} from "./ProductCard";
+export {
+  ProductCard,
+  ProductCardGrid,
+  productCardVariants,
+} from "./ProductCard";
+export type { CartItem, ShoppingCartProps } from "./ShoppingCart";
+export { ShoppingCart } from "./ShoppingCart";

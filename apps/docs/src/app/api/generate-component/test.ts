@@ -34,13 +34,9 @@ async function testComponentGeneration() {
     console.log(`✓ Export statement: ${hasExport ? "✓" : "✗"}`);
 
     const allValid =
-      hasReactImport &&
-      hasForwardRef &&
-      hasCVA &&
-      hasCN &&
-      hasExport;
+      hasReactImport && hasForwardRef && hasCVA && hasCN && hasExport;
     console.log(
-      `\n${allValid ? "✓ All checks passed!" : "✗ Some checks failed"}`
+      `\n${allValid ? "✓ All checks passed!" : "✗ Some checks failed"}`,
     );
   } catch (error) {
     console.error("Error during testing:");

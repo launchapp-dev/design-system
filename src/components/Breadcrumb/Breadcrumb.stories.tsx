@@ -187,11 +187,15 @@ export const LongText: Story = {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="#">Very Long Category Name That Might Overflow</BreadcrumbLink>
+            <BreadcrumbLink href="#">
+              Very Long Category Name That Might Overflow
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>An Extremely Long Page Title That Tests Wrapping Behavior</BreadcrumbPage>
+            <BreadcrumbPage>
+              An Extremely Long Page Title That Tests Wrapping Behavior
+            </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

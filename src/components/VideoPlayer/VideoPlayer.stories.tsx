@@ -2,8 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { VideoPlayer } from "./index";
 
-const SAMPLE_VIDEO_URL = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-const SAMPLE_POSTER_URL = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg";
+const SAMPLE_VIDEO_URL =
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+const SAMPLE_POSTER_URL =
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg";
 
 const meta: Meta<typeof VideoPlayer> = {
   title: "Components/VideoPlayer",
@@ -101,8 +103,14 @@ export const AllSizes: Story = {
     <div className="flex flex-col gap-8">
       {(["sm", "md", "lg", "full"] as const).map((size) => (
         <div key={size} className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-foreground capitalize">{size}</span>
-          <VideoPlayer size={size} src={SAMPLE_VIDEO_URL} poster={SAMPLE_POSTER_URL} />
+          <span className="text-sm font-medium text-foreground capitalize">
+            {size}
+          </span>
+          <VideoPlayer
+            size={size}
+            src={SAMPLE_VIDEO_URL}
+            poster={SAMPLE_POSTER_URL}
+          />
         </div>
       ))}
     </div>
@@ -162,7 +170,11 @@ export const DarkMode: Story = {
   },
   render: () => (
     <div className="dark p-8">
-      <VideoPlayer size="md" src={SAMPLE_VIDEO_URL} poster={SAMPLE_POSTER_URL} />
+      <VideoPlayer
+        size="md"
+        src={SAMPLE_VIDEO_URL}
+        poster={SAMPLE_POSTER_URL}
+      />
     </div>
   ),
 };
@@ -188,9 +200,11 @@ export const InteractiveControls: Story = {
           src={SAMPLE_VIDEO_URL}
           poster={SAMPLE_POSTER_URL}
         />
-        
+
         <div className="flex flex-wrap gap-4 items-center">
-          <span className="text-sm font-medium text-foreground">External Controls:</span>
+          <span className="text-sm font-medium text-foreground">
+            External Controls:
+          </span>
           <button
             onClick={() => playerRef.current?.togglePlay()}
             className="px-4 py-2 bg-primary text-primary-foreground rounded-[--la-radius] hover:opacity-90 transition-opacity"
@@ -229,10 +243,7 @@ export const InteractiveControls: Story = {
 
 export const WithMultipleSources: Story = {
   render: () => (
-    <VideoPlayer
-      size="lg"
-      poster={SAMPLE_POSTER_URL}
-    >
+    <VideoPlayer size="lg" poster={SAMPLE_POSTER_URL}>
       <track kind="captions" label="English" srcLang="en" default />
       <source src={SAMPLE_VIDEO_URL} type="video/mp4" />
       <p className="text-white">

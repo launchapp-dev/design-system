@@ -1,2 +1,2 @@
+export type { PortfolioProject, PortfolioProps } from "./Portfolio";
 export { Portfolio } from "./Portfolio";
-export type { PortfolioProps, PortfolioProject } from "./Portfolio";

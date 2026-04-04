@@ -1,14 +1,15 @@
 import * as React from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/Card";
 import { Button } from "@/components/Button";
-import { Textarea } from "@/components/Textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
 import { ScrollArea } from "@/components/ScrollArea";
-import { MessageBubbles } from "./MessageBubbles";
-import { TypingIndicator } from "./TypingIndicator";
+import { Textarea } from "@/components/Textarea";
 import { cn } from "@/lib/utils";
 import type { BubbleMessage } from "./MessageBubbles";
+import { MessageBubbles } from "./MessageBubbles";
+import { TypingIndicator } from "./TypingIndicator";
 
-export interface ChatInterfaceProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChatInterfaceProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   messages: BubbleMessage[];
   isTyping?: boolean;
   typingLabel?: string;
@@ -31,7 +32,7 @@ const ChatInterface = React.forwardRef<HTMLDivElement, ChatInterfaceProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [draft, setDraft] = React.useState("");
     const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -40,7 +41,7 @@ const ChatInterface = React.forwardRef<HTMLDivElement, ChatInterfaceProps>(
       if (scrollRef.current) {
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
       }
-    }, [messages, isTyping]);
+    }, []);
 
     const handleSend = () => {
       const trimmed = draft.trim();
@@ -107,14 +108,16 @@ const ChatInterface = React.forwardRef<HTMLDivElement, ChatInterfaceProps>(
                 </svg>
               </Button>
             </div>
-            <p className="mt-1.5 text-xs text-muted-foreground">Press Enter to send, Shift+Enter for new line</p>
+            <p className="mt-1.5 text-xs text-muted-foreground">
+              Press Enter to send, Shift+Enter for new line
+            </p>
           </div>
         </CardContent>
       </Card>
     );
-  }
+  },
 );
 ChatInterface.displayName = "ChatInterface";
 
-export { ChatInterface };
 export type { BubbleMessage as ChatMessage };
+export { ChatInterface };

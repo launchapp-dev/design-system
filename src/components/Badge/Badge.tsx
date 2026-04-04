@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
 const badgeVariants = cva(
@@ -10,13 +10,14 @@ const badgeVariants = cva(
         default: "border-transparent bg-primary text-primary-foreground",
         secondary: "border-transparent bg-secondary text-secondary-foreground",
         outline: "border-border text-foreground",
-        destructive: "border-transparent bg-destructive text-destructive-foreground",
+        destructive:
+          "border-transparent bg-destructive text-destructive-foreground",
       },
     },
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 export interface BadgeProps
@@ -28,15 +29,20 @@ export interface BadgeProps
  * Pass `role="status"` for live-updating badges (politely announced by screen readers)
  * or `role="alert"` for urgent announcements that require immediate attention.
  */
-function Badge({ className, variant, ref, ...props }: BadgeProps & { ref?: React.Ref<HTMLDivElement> }) {
-    return (
-      <div
-        ref={ref}
-        className={cn(badgeVariants({ variant }), className)}
-        {...props}
-      />
-    );
-  }
+function Badge({
+  className,
+  variant,
+  ref,
+  ...props
+}: BadgeProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div
+      ref={ref}
+      className={cn(badgeVariants({ variant }), className)}
+      {...props}
+    />
+  );
+}
 Badge.displayName = "Badge";
 
 export type BadgeVariants = VariantProps<typeof badgeVariants>;

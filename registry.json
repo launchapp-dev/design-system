@@ -12,10 +12,7 @@
           "type": "registry:lib"
         }
       ],
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "devDependencies": []
     },
     {
@@ -31,9 +28,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-accordion"
-      ],
+      "dependencies": ["@radix-ui/react-accordion"],
       "devDependencies": []
     },
     {
@@ -49,9 +44,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -67,9 +60,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-alert-dialog"
-      ],
+      "dependencies": ["@radix-ui/react-alert-dialog"],
       "devDependencies": []
     },
     {
@@ -130,9 +121,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-aspect-ratio"
-      ],
+      "dependencies": ["@radix-ui/react-aspect-ratio"],
       "devDependencies": []
     },
     {
@@ -148,10 +137,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-avatar",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-avatar", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -182,9 +168,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -200,10 +184,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -219,9 +200,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -237,9 +216,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-slot"
-      ],
+      "dependencies": ["@radix-ui/react-slot"],
       "devDependencies": []
     },
     {
@@ -255,10 +232,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -274,9 +248,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "react-day-picker"
-      ],
+      "dependencies": ["react-day-picker"],
       "devDependencies": []
     },
     {
@@ -327,9 +299,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -345,9 +315,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "recharts"
-      ],
+      "dependencies": ["recharts"],
       "devDependencies": []
     },
     {
@@ -363,9 +331,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -381,9 +347,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -399,10 +363,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-checkbox",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-checkbox", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -418,9 +379,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-collapsible"
-      ],
+      "dependencies": ["@radix-ui/react-collapsible"],
       "devDependencies": []
     },
     {
@@ -451,14 +410,9 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": [],
-      "registryDependencies": [
-        "command",
-        "popover"
-      ]
+      "registryDependencies": ["command", "popover"]
     },
     {
       "name": "command",
@@ -473,9 +427,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "cmdk"
-      ],
+      "dependencies": ["cmdk"],
       "devDependencies": []
     },
     {
@@ -491,9 +443,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-context-menu"
-      ],
+      "dependencies": ["@radix-ui/react-context-menu"],
       "devDependencies": []
     },
     {
@@ -509,10 +459,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-dialog",
-        "@radix-ui/react-switch"
-      ],
+      "dependencies": ["@radix-ui/react-dialog", "@radix-ui/react-switch"],
       "devDependencies": []
     },
     {
@@ -528,9 +475,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -567,9 +512,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@tanstack/react-table"
-      ],
+      "dependencies": ["@tanstack/react-table"],
       "devDependencies": []
     },
     {
@@ -585,9 +528,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "date-fns"
-      ],
+      "dependencies": ["date-fns"],
       "devDependencies": []
     },
     {
@@ -603,9 +544,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-dialog"
-      ],
+      "dependencies": ["@radix-ui/react-dialog"],
       "devDependencies": []
     },
     {
@@ -621,10 +560,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-tooltip",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-tooltip", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -640,9 +576,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-dropdown-menu"
-      ],
+      "dependencies": ["@radix-ui/react-dropdown-menu"],
       "devDependencies": []
     },
     {
@@ -658,9 +592,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-focus-scope"
-      ],
+      "dependencies": ["@radix-ui/react-focus-scope"],
       "devDependencies": []
     },
     {
@@ -676,14 +608,9 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-slot",
-        "react-hook-form"
-      ],
+      "dependencies": ["@radix-ui/react-slot", "react-hook-form"],
       "devDependencies": [],
-      "registryDependencies": [
-        "label"
-      ]
+      "registryDependencies": ["label"]
     },
     {
       "name": "funnel-chart",
@@ -698,10 +625,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-tooltip",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-tooltip", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -717,9 +641,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -735,10 +657,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-tooltip",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-tooltip", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -754,9 +673,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -772,9 +689,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -790,9 +705,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -808,9 +721,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "recharts"
-      ],
+      "dependencies": ["recharts"],
       "devDependencies": []
     },
     {
@@ -826,10 +737,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-label",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -845,10 +753,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-dialog",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -864,9 +769,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -882,9 +785,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -900,9 +801,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -918,9 +817,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -936,9 +833,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-menubar"
-      ],
+      "dependencies": ["@radix-ui/react-menubar"],
       "devDependencies": []
     },
     {
@@ -969,9 +864,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -987,9 +880,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1024,10 +915,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-popover",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-popover", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1059,9 +947,7 @@
         }
       ],
       "devDependencies": [],
-      "registryDependencies": [
-        "button"
-      ]
+      "registryDependencies": ["button"]
     },
     {
       "name": "palette-switcher",
@@ -1076,10 +962,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-select",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-select", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1095,9 +978,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-popover"
-      ],
+      "dependencies": ["@radix-ui/react-popover"],
       "devDependencies": []
     },
     {
@@ -1113,9 +994,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-portal"
-      ],
+      "dependencies": ["@radix-ui/react-portal"],
       "devDependencies": []
     },
     {
@@ -1131,10 +1010,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-progress",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-progress", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1169,9 +1045,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1187,9 +1061,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "react-resizable-panels"
-      ],
+      "dependencies": ["react-resizable-panels"],
       "devDependencies": []
     },
     {
@@ -1205,9 +1077,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1238,9 +1108,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-scroll-area"
-      ],
+      "dependencies": ["@radix-ui/react-scroll-area"],
       "devDependencies": []
     },
     {
@@ -1271,10 +1139,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-select",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-select", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1290,9 +1155,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-separator"
-      ],
+      "dependencies": ["@radix-ui/react-separator"],
       "devDependencies": []
     },
     {
@@ -1308,10 +1171,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-dialog",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1342,9 +1202,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-slider"
-      ],
+      "dependencies": ["@radix-ui/react-slider"],
       "devDependencies": []
     },
     {
@@ -1360,9 +1218,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "sonner"
-      ],
+      "dependencies": ["sonner"],
       "devDependencies": []
     },
     {
@@ -1378,9 +1234,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1441,9 +1295,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1459,9 +1311,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1477,10 +1327,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-switch",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-switch", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1526,9 +1373,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-tabs"
-      ],
+      "dependencies": ["@radix-ui/react-tabs"],
       "devDependencies": []
     },
     {
@@ -1544,9 +1389,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1562,9 +1405,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1580,9 +1421,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1598,9 +1437,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1616,9 +1453,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1638,10 +1473,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-toast",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-toast", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1657,10 +1489,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-toggle",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-toggle", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1695,10 +1524,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-toolbar",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-toolbar", "class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1714,9 +1540,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-tooltip"
-      ],
+      "dependencies": ["@radix-ui/react-tooltip"],
       "devDependencies": []
     },
     {
@@ -1732,9 +1556,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1750,9 +1572,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1768,9 +1588,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@radix-ui/react-visually-hidden"
-      ],
+      "dependencies": ["@radix-ui/react-visually-hidden"],
       "devDependencies": []
     },
     {
@@ -1782,17 +1600,9 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "react-hook-form",
-        "zod"
-      ],
+      "dependencies": ["react-hook-form", "zod"],
       "devDependencies": [],
-      "registryDependencies": [
-        "form",
-        "input",
-        "button",
-        "card"
-      ]
+      "registryDependencies": ["form", "input", "button", "card"]
     },
     {
       "name": "block-login-form",
@@ -1803,10 +1613,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "react-hook-form",
-        "zod"
-      ],
+      "dependencies": ["react-hook-form", "zod"],
       "devDependencies": [],
       "registryDependencies": [
         "form",
@@ -1826,17 +1633,9 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "react-hook-form",
-        "zod"
-      ],
+      "dependencies": ["react-hook-form", "zod"],
       "devDependencies": [],
-      "registryDependencies": [
-        "form",
-        "input",
-        "button",
-        "card"
-      ]
+      "registryDependencies": ["form", "input", "button", "card"]
     },
     {
       "name": "block-sign-up-form",
@@ -1847,10 +1646,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "react-hook-form",
-        "zod"
-      ],
+      "dependencies": ["react-hook-form", "zod"],
       "devDependencies": [],
       "registryDependencies": [
         "form",
@@ -1870,9 +1666,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -1925,10 +1719,7 @@
         }
       ],
       "devDependencies": [],
-      "registryDependencies": [
-        "card",
-        "chart"
-      ]
+      "registryDependencies": ["card", "chart"]
     },
     {
       "name": "block-stats-overview",
@@ -1940,11 +1731,7 @@
         }
       ],
       "devDependencies": [],
-      "registryDependencies": [
-        "stat-display",
-        "card",
-        "chart"
-      ]
+      "registryDependencies": ["stat-display", "card", "chart"]
     },
     {
       "name": "block-full-data-table",
@@ -1955,9 +1742,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "@tanstack/react-table"
-      ],
+      "dependencies": ["@tanstack/react-table"],
       "devDependencies": []
     },
     {
@@ -1985,9 +1770,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "@tanstack/react-table"
-      ],
+      "dependencies": ["@tanstack/react-table"],
       "devDependencies": []
     },
     {
@@ -1999,9 +1782,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -2013,10 +1794,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "react-hook-form",
-        "zod"
-      ],
+      "dependencies": ["react-hook-form", "zod"],
       "devDependencies": []
     },
     {
@@ -2028,9 +1806,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -2174,9 +1950,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "devDependencies": []
     },
     {
@@ -2244,12 +2018,7 @@
         }
       ],
       "devDependencies": [],
-      "registryDependencies": [
-        "button",
-        "separator",
-        "collapsible",
-        "avatar"
-      ]
+      "registryDependencies": ["button", "separator", "collapsible", "avatar"]
     },
     {
       "name": "block-mobile-nav-drawer",
@@ -2280,11 +2049,7 @@
         }
       ],
       "devDependencies": [],
-      "registryDependencies": [
-        "button",
-        "avatar",
-        "dropdown-menu"
-      ]
+      "registryDependencies": ["button", "avatar", "dropdown-menu"]
     },
     {
       "name": "block-activity-timeline",
@@ -2361,18 +2126,9 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "react-hook-form",
-        "zod"
-      ],
+      "dependencies": ["react-hook-form", "zod"],
       "devDependencies": [],
-      "registryDependencies": [
-        "button",
-        "input",
-        "separator",
-        "alert",
-        "form"
-      ]
+      "registryDependencies": ["button", "input", "separator", "alert", "form"]
     },
     {
       "name": "block-billing-page",
@@ -2403,12 +2159,7 @@
         }
       ],
       "devDependencies": [],
-      "registryDependencies": [
-        "switch",
-        "label",
-        "separator",
-        "card"
-      ]
+      "registryDependencies": ["switch", "label", "separator", "card"]
     },
     {
       "name": "block-profile-settings",
@@ -2419,10 +2170,7 @@
           "type": "registry:block"
         }
       ],
-      "dependencies": [
-        "react-hook-form",
-        "zod"
-      ],
+      "dependencies": ["react-hook-form", "zod"],
       "devDependencies": [],
       "registryDependencies": [
         "avatar",

@@ -14,12 +14,33 @@ export default meta;
 type Story = StoryObj<typeof TabContentCrossfade>;
 
 const tabs = [
-  { key: "overview", label: "Overview", content: "The overview panel shows a summary of your account activity, recent transactions, and key metrics at a glance." },
-  { key: "analytics", label: "Analytics", content: "The analytics panel provides detailed charts and graphs showing your performance trends over time." },
-  { key: "settings", label: "Settings", content: "The settings panel allows you to configure your preferences, notifications, and account details." },
+  {
+    key: "overview",
+    label: "Overview",
+    content:
+      "The overview panel shows a summary of your account activity, recent transactions, and key metrics at a glance.",
+  },
+  {
+    key: "analytics",
+    label: "Analytics",
+    content:
+      "The analytics panel provides detailed charts and graphs showing your performance trends over time.",
+  },
+  {
+    key: "settings",
+    label: "Settings",
+    content:
+      "The settings panel allows you to configure your preferences, notifications, and account details.",
+  },
 ];
 
-function TabBar({ active, onChange }: { active: string; onChange: (key: string) => void }) {
+function TabBar({
+  active,
+  onChange,
+}: {
+  active: string;
+  onChange: (key: string) => void;
+}) {
   return (
     <div
       style={{
@@ -42,9 +63,14 @@ function TabBar({ active, onChange }: { active: string; onChange: (key: string) 
             cursor: "pointer",
             fontSize: "14px",
             fontWeight: active === tab.key ? "600" : "400",
-            background: active === tab.key ? "hsl(var(--la-background))" : "transparent",
-            color: active === tab.key ? "hsl(var(--la-foreground))" : "hsl(var(--la-muted-foreground))",
-            boxShadow: active === tab.key ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
+            background:
+              active === tab.key ? "hsl(var(--la-background))" : "transparent",
+            color:
+              active === tab.key
+                ? "hsl(var(--la-foreground))"
+                : "hsl(var(--la-muted-foreground))",
+            boxShadow:
+              active === tab.key ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
             transition: "all 150ms",
           }}
           aria-selected={active === tab.key}
@@ -77,8 +103,17 @@ export const Default: Story = {
                   background: "hsl(var(--la-card))",
                 }}
               >
-                <p style={{ fontWeight: "600", marginBottom: "8px" }}>{tab.label}</p>
-                <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>{tab.content}</p>
+                <p style={{ fontWeight: "600", marginBottom: "8px" }}>
+                  {tab.label}
+                </p>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "hsl(var(--la-muted-foreground))",
+                  }}
+                >
+                  {tab.content}
+                </p>
               </div>
             </TabPanel>
           ))}
@@ -111,7 +146,14 @@ export const SlowCrossfade: Story = {
                   alignItems: "center",
                 }}
               >
-                <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>{tab.content}</p>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "hsl(var(--la-muted-foreground))",
+                  }}
+                >
+                  {tab.content}
+                </p>
               </div>
             </TabPanel>
           ))}
@@ -125,9 +167,21 @@ export const WithStaggeredContent: Story = {
   render: () => {
     const [active, setActive] = React.useState("team");
     const panels = [
-      { key: "team", label: "Team", items: ["Alice Johnson", "Bob Smith", "Carol White", "David Lee"] },
-      { key: "projects", label: "Projects", items: ["Design System", "Mobile App", "API Gateway", "Dashboard"] },
-      { key: "reports", label: "Reports", items: ["Q1 Summary", "Q2 Summary", "Annual Review", "Budget Report"] },
+      {
+        key: "team",
+        label: "Team",
+        items: ["Alice Johnson", "Bob Smith", "Carol White", "David Lee"],
+      },
+      {
+        key: "projects",
+        label: "Projects",
+        items: ["Design System", "Mobile App", "API Gateway", "Dashboard"],
+      },
+      {
+        key: "reports",
+        label: "Reports",
+        items: ["Q1 Summary", "Q2 Summary", "Annual Review", "Budget Report"],
+      },
     ];
     return (
       <div style={{ width: "360px" }}>
@@ -143,8 +197,14 @@ export const WithStaggeredContent: Story = {
                 cursor: "pointer",
                 fontSize: "13px",
                 fontWeight: active === p.key ? "600" : "400",
-                background: active === p.key ? "hsl(var(--la-primary))" : "hsl(var(--la-background))",
-                color: active === p.key ? "hsl(var(--la-primary-foreground))" : "hsl(var(--la-foreground))",
+                background:
+                  active === p.key
+                    ? "hsl(var(--la-primary))"
+                    : "hsl(var(--la-background))",
+                color:
+                  active === p.key
+                    ? "hsl(var(--la-primary-foreground))"
+                    : "hsl(var(--la-foreground))",
               }}
             >
               {p.label}
@@ -154,7 +214,9 @@ export const WithStaggeredContent: Story = {
         <TabContentCrossfade activeKey={active} duration={200}>
           {panels.map((p) => (
             <TabPanel key={p.key} tabKey={p.key}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+              >
                 {p.items.map((item) => (
                   <div
                     key={item}

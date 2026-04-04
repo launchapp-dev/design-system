@@ -1,4 +1,13 @@
-export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants } from "./Terminal";
-export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./Terminal";
-export type { TerminalVariants } from "./Terminal";
-export type { TerminalHeaderVariants } from "./Terminal";
+export type {
+  TerminalHeaderProps,
+  TerminalHeaderVariants,
+  TerminalLine,
+  TerminalProps,
+  TerminalVariants,
+} from "./Terminal";
+export {
+  Terminal,
+  TerminalHeader,
+  terminalHeaderVariants,
+  terminalVariants,
+} from "./Terminal";

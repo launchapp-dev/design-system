@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { NotFound } from "./index";
 import { Button } from "../../../components/Button";
+import { NotFound } from "./index";
 
 const meta: Meta<typeof NotFound> = {
   title: "Blocks/Errors/NotFound",
@@ -63,7 +62,11 @@ export const CustomIllustration: Story = {
   render: () => (
     <NotFound
       illustration={
-        <div className="text-8xl select-none" role="img" aria-label="Lost ghost">
+        <div
+          className="text-8xl select-none"
+          role="img"
+          aria-label="Lost ghost"
+        >
           👻
         </div>
       }

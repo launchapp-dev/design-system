@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { InlineEditable } from "./index";
 
 const meta: Meta<typeof InlineEditable> = {
@@ -21,11 +21,24 @@ export const Default: Story = {
     const [value, setValue] = React.useState("Click me to edit this text");
     return (
       <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "8px" }}>
-          Click the text below to edit it. Press Enter or click away to save, Escape to cancel.
+        <p
+          style={{
+            fontSize: "12px",
+            color: "hsl(var(--muted-foreground))",
+            marginBottom: "8px",
+          }}
+        >
+          Click the text below to edit it. Press Enter or click away to save,
+          Escape to cancel.
         </p>
         <InlineEditable value={value} onChange={setValue} />
-        <p style={{ marginTop: "12px", fontSize: "12px", color: "hsl(var(--muted-foreground))" }}>
+        <p
+          style={{
+            marginTop: "12px",
+            fontSize: "12px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
           Current value: <strong>{value}</strong>
         </p>
       </div>
@@ -35,10 +48,18 @@ export const Default: Story = {
 
 export const Multiline: Story = {
   render: () => {
-    const [value, setValue] = React.useState("This is a multiline editable field.\nPress Escape to cancel or click away to save.");
+    const [value, setValue] = React.useState(
+      "This is a multiline editable field.\nPress Escape to cancel or click away to save.",
+    );
     return (
       <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "8px" }}>
+        <p
+          style={{
+            fontSize: "12px",
+            color: "hsl(var(--muted-foreground))",
+            marginBottom: "8px",
+          }}
+        >
           Multiline mode — click to open a textarea.
         </p>
         <InlineEditable value={value} onChange={setValue} multiline />
@@ -52,7 +73,11 @@ export const WithPlaceholder: Story = {
     const [value, setValue] = React.useState("");
     return (
       <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <InlineEditable value={value} onChange={setValue} placeholder="Add a description…" />
+        <InlineEditable
+          value={value}
+          onChange={setValue}
+          placeholder="Add a description…"
+        />
       </div>
     );
   },
@@ -61,7 +86,11 @@ export const WithPlaceholder: Story = {
 export const Disabled: Story = {
   render: () => (
     <div style={{ padding: "40px", maxWidth: "400px" }}>
-      <InlineEditable value="This field is read-only" onChange={() => {}} disabled />
+      <InlineEditable
+        value="This field is read-only"
+        onChange={() => {}}
+        disabled
+      />
     </div>
   ),
 };
@@ -72,7 +101,15 @@ export const Sizes: Story = {
     const [md, setMd] = React.useState("Medium text");
     const [lg, setLg] = React.useState("Large text");
     return (
-      <div style={{ padding: "40px", maxWidth: "400px", display: "flex", flexDirection: "column", gap: "12px" }}>
+      <div
+        style={{
+          padding: "40px",
+          maxWidth: "400px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+        }}
+      >
         <InlineEditable value={sm} onChange={setSm} size="sm" />
         <InlineEditable value={md} onChange={setMd} size="md" />
         <InlineEditable value={lg} onChange={setLg} size="lg" />
@@ -83,11 +120,19 @@ export const Sizes: Story = {
 
 export const WithReactHookForm: Story = {
   render: () => {
-    const { control, watch } = useForm({ defaultValues: { title: "My Document Title" } });
+    const { control, watch } = useForm({
+      defaultValues: { title: "My Document Title" },
+    });
     const title = watch("title");
     return (
       <div style={{ padding: "40px", maxWidth: "400px" }}>
-        <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "8px" }}>
+        <p
+          style={{
+            fontSize: "12px",
+            color: "hsl(var(--muted-foreground))",
+            marginBottom: "8px",
+          }}
+        >
           Controlled via react-hook-form:
         </p>
         <Controller
@@ -102,7 +147,13 @@ export const WithReactHookForm: Story = {
             />
           )}
         />
-        <p style={{ marginTop: "12px", fontSize: "12px", color: "hsl(var(--muted-foreground))" }}>
+        <p
+          style={{
+            marginTop: "12px",
+            fontSize: "12px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
           Form value: <strong>{title}</strong>
         </p>
       </div>

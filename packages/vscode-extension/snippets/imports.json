@@ -16,12 +16,16 @@
   },
   "Dialog Imports": {
     "prefix": "laImportDialog",
-    "body": ["import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogBody } from \"@launchapp/design-system\";"],
+    "body": [
+      "import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogBody } from \"@launchapp/design-system\";"
+    ],
     "description": "Import Dialog components"
   },
   "Card Imports": {
     "prefix": "laImportCard",
-    "body": ["import { Card, CardHeader, CardTitle, CardContent } from \"@launchapp/design-system\";"],
+    "body": [
+      "import { Card, CardHeader, CardTitle, CardContent } from \"@launchapp/design-system\";"
+    ],
     "description": "Import Card components"
   }
 }

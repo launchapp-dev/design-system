@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { NotificationCenter } from "./NotificationCenter";
 import type { AppNotification } from "./NotificationCenter";
+import { NotificationCenter } from "./NotificationCenter";
 
 const mockNotifications: AppNotification[] = [
   {
     id: "1",
     title: "New comment on your post",
-    description: "Alice commented: \"Great work on the new design system!\"",
+    description: 'Alice commented: "Great work on the new design system!"',
     timestamp: "2 minutes ago",
     read: false,
     avatarInitials: "AL",
@@ -74,16 +74,22 @@ export default function AppHeader() {
 export default meta;
 type Story = StoryObj<typeof NotificationCenter>;
 
-const InteractiveTemplate = (args: React.ComponentProps<typeof NotificationCenter>) => {
+const InteractiveTemplate = (
+  args: React.ComponentProps<typeof NotificationCenter>,
+) => {
   const [notifications, setNotifications] = React.useState(args.notifications);
   return (
     <NotificationCenter
       {...args}
       notifications={notifications}
       onRead={(id) =>
-        setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)))
+        setNotifications((prev) =>
+          prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
+        )
       }
-      onReadAll={() => setNotifications((prev) => prev.map((n) => ({ ...n, read: true })))}
+      onReadAll={() =>
+        setNotifications((prev) => prev.map((n) => ({ ...n, read: true })))
+      }
     />
   );
 };
@@ -111,7 +117,10 @@ export const Empty: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}
+    >
       <InteractiveTemplate {...args} />
     </div>
   ),

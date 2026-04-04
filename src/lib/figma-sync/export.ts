@@ -3,26 +3,26 @@
  */
 
 import {
-  Palette,
-  TokenSyncExport,
-  SyncMetadata,
-  HSLString,
-  ValidationResult,
-  isValidHSL,
+  type HSLString,
   hslToRGB,
-  RGBColor,
-  SyncError,
-} from './types';
+  isValidHSL,
+  type Palette,
+  type RGBColor,
+  type SyncError,
+  type SyncMetadata,
+  type TokenSyncExport,
+  type ValidationResult,
+} from "./types";
 
 /**
  * Create metadata for the export
  */
 export function createExportMetadata(
   figmaFileKey?: string,
-  lastSyncBy?: string
+  lastSyncBy?: string,
 ): SyncMetadata {
   return {
-    version: '1.0',
+    version: "1.0",
     timestamp: new Date().toISOString(),
     figmaFileKey,
     lastSyncBy,
@@ -39,40 +39,42 @@ export function validatePaletteForExport(palette: Palette): ValidationResult {
 
   // Validate palette name
   if (!palette.name || palette.name.trim().length === 0) {
-    errors.push('Palette name is required');
+    errors.push("Palette name is required");
   }
 
-  if (!/^[a-z0-9-]+$/.test(palette.name || '')) {
-    errors.push(`Palette name must be lowercase alphanumeric with hyphens: "${palette.name}"`);
+  if (!/^[a-z0-9-]+$/.test(palette.name || "")) {
+    errors.push(
+      `Palette name must be lowercase alphanumeric with hyphens: "${palette.name}"`,
+    );
   }
 
   // Validate tokens structure
-  if (!palette.tokens || !palette.tokens.light || !palette.tokens.dark) {
-    errors.push('Palette must have both light and dark token sets');
+  if (!palette.tokens?.light || !palette.tokens.dark) {
+    errors.push("Palette must have both light and dark token sets");
     return { valid: false, errors, warnings };
   }
 
   // Validate all required token names exist
   const expectedTokens = [
-    'background',
-    'foreground',
-    'card',
-    'card-foreground',
-    'popover',
-    'popover-foreground',
-    'primary',
-    'primary-foreground',
-    'secondary',
-    'secondary-foreground',
-    'muted',
-    'muted-foreground',
-    'accent',
-    'accent-foreground',
-    'destructive',
-    'destructive-foreground',
-    'border',
-    'input',
-    'ring',
+    "background",
+    "foreground",
+    "card",
+    "card-foreground",
+    "popover",
+    "popover-foreground",
+    "primary",
+    "primary-foreground",
+    "secondary",
+    "secondary-foreground",
+    "muted",
+    "muted-foreground",
+    "accent",
+    "accent-foreground",
+    "destructive",
+    "destructive-foreground",
+    "border",
+    "input",
+    "ring",
   ];
 
   for (const tokenName of expectedTokens) {
@@ -87,19 +89,19 @@ export function validatePaletteForExport(palette: Palette): ValidationResult {
   // Validate HSL format for all tokens
   const validateTokenSet = (
     tokens: Record<string, HSLString>,
-    variant: 'light' | 'dark'
+    variant: "light" | "dark",
   ) => {
     for (const [tokenName, value] of Object.entries(tokens)) {
       if (!isValidHSL(value)) {
         errors.push(
-          `Invalid HSL format in ${variant} variant, token "${tokenName}": "${value}"`
+          `Invalid HSL format in ${variant} variant, token "${tokenName}": "${value}"`,
         );
       }
     }
   };
 
-  validateTokenSet(palette.tokens.light, 'light');
-  validateTokenSet(palette.tokens.dark, 'dark');
+  validateTokenSet(palette.tokens.light, "light");
+  validateTokenSet(palette.tokens.dark, "dark");
 
   return {
     valid: errors.length === 0,
@@ -111,14 +113,16 @@ export function validatePaletteForExport(palette: Palette): ValidationResult {
 /**
  * Validate all palettes before export
  */
-export function validatePalettesForExport(palettes: Palette[]): ValidationResult {
+export function validatePalettesForExport(
+  palettes: Palette[],
+): ValidationResult {
   const allErrors: string[] = [];
   const allWarnings: string[] = [];
 
   if (!palettes || palettes.length === 0) {
     return {
       valid: false,
-      errors: ['At least one palette is required'],
+      errors: ["At least one palette is required"],
       warnings: [],
     };
   }
@@ -153,7 +157,7 @@ export function validatePalettesForExport(palettes: Palette[]): ValidationResult
 export function exportPalettesToTokenSet(
   palettes: Palette[],
   figmaFileKey?: string,
-  lastSyncBy?: string
+  lastSyncBy?: string,
 ): TokenSyncExport {
   return {
     metadata: createExportMetadata(figmaFileKey, lastSyncBy),
@@ -165,16 +169,18 @@ export function exportPalettesToTokenSet(
  * Convert HSL tokens to Figma variable format
  */
 export interface FigmaVariableValue {
-  type: 'COLOR';
+  type: "COLOR";
   value: RGBColor;
 }
 
-export function convertToFigmaVariableValue(hsl: string): FigmaVariableValue | null {
+export function convertToFigmaVariableValue(
+  hsl: string,
+): FigmaVariableValue | null {
   const rgb = hslToRGB(hsl);
   if (!rgb) return null;
 
   return {
-    type: 'COLOR',
+    type: "COLOR",
     value: rgb,
   };
 }
@@ -185,8 +191,8 @@ export function convertToFigmaVariableValue(hsl: string): FigmaVariableValue | n
  */
 export function generateFigmaVariableName(
   palette: string,
-  variant: 'light' | 'dark',
-  token: string
+  variant: "light" | "dark",
+  token: string,
 ): string {
   return `launchapp/${palette}/${variant}/${token}`;
 }
@@ -195,7 +201,10 @@ export function generateFigmaVariableName(
  * Generate Figma token set name
  * Format: launchapp-{palette}-{variant}
  */
-export function generateFigmaTokenSetName(palette: string, variant: 'light' | 'dark'): string {
+export function generateFigmaTokenSetName(
+  palette: string,
+  variant: "light" | "dark",
+): string {
   return `launchapp-${palette}-${variant}`;
 }
 
@@ -216,7 +225,7 @@ export interface ExportWithFigmaVariables {
 export function generateFigmaExport(
   palettes: Palette[],
   figmaFileKey?: string,
-  lastSyncBy?: string
+  lastSyncBy?: string,
 ): ExportWithFigmaVariables {
   const errors: SyncError[] = [];
 
@@ -225,13 +234,13 @@ export function generateFigmaExport(
   if (!validation.valid) {
     for (const error of validation.errors) {
       errors.push({
-        code: 'VALIDATION_ERROR',
+        code: "VALIDATION_ERROR",
         message: error,
       });
     }
   }
 
-  const figmaVariables: ExportWithFigmaVariables['figmaVariables'] = [];
+  const figmaVariables: ExportWithFigmaVariables["figmaVariables"] = [];
 
   for (const palette of palettes) {
     // Process light variant
@@ -239,7 +248,7 @@ export function generateFigmaExport(
       const figmaValue = convertToFigmaVariableValue(hslValue);
       if (!figmaValue) {
         errors.push({
-          code: 'HSL_CONVERSION_ERROR',
+          code: "HSL_CONVERSION_ERROR",
           message: `Failed to convert HSL value for token`,
           context: {
             palette: palette.name,
@@ -251,8 +260,12 @@ export function generateFigmaExport(
       }
 
       figmaVariables.push({
-        tokenSetName: generateFigmaTokenSetName(palette.name, 'light'),
-        variableName: generateFigmaVariableName(palette.name, 'light', tokenName),
+        tokenSetName: generateFigmaTokenSetName(palette.name, "light"),
+        variableName: generateFigmaVariableName(
+          palette.name,
+          "light",
+          tokenName,
+        ),
         description: `[${palette.label}] Light variant - ${tokenName}`,
         value: figmaValue,
       });
@@ -263,7 +276,7 @@ export function generateFigmaExport(
       const figmaValue = convertToFigmaVariableValue(hslValue);
       if (!figmaValue) {
         errors.push({
-          code: 'HSL_CONVERSION_ERROR',
+          code: "HSL_CONVERSION_ERROR",
           message: `Failed to convert HSL value for token`,
           context: {
             palette: palette.name,
@@ -275,8 +288,12 @@ export function generateFigmaExport(
       }
 
       figmaVariables.push({
-        tokenSetName: generateFigmaTokenSetName(palette.name, 'dark'),
-        variableName: generateFigmaVariableName(palette.name, 'dark', tokenName),
+        tokenSetName: generateFigmaTokenSetName(palette.name, "dark"),
+        variableName: generateFigmaVariableName(
+          palette.name,
+          "dark",
+          tokenName,
+        ),
         description: `[${palette.label}] Dark variant - ${tokenName}`,
         value: figmaValue,
       });
@@ -295,7 +312,7 @@ export function generateFigmaExport(
  * See: https://tokens.studio/
  */
 export function generateTokensPluginFormat(
-  palettes: Palette[]
+  palettes: Palette[],
 ): Record<string, Record<string, Record<string, unknown>>> {
   const result: Record<string, Record<string, Record<string, unknown>>> = {};
 
@@ -313,7 +330,7 @@ export function generateTokensPluginFormat(
         const hex = rgbToHex(rgb);
         (result[lightKey].colors as Record<string, unknown>)[tokenName] = {
           value: hex,
-          type: 'color',
+          type: "color",
           description: tokenName,
         };
       }
@@ -331,7 +348,7 @@ export function generateTokensPluginFormat(
         const hex = rgbToHex(rgb);
         (result[darkKey].colors as Record<string, unknown>)[tokenName] = {
           value: hex,
-          type: 'color',
+          type: "color",
           description: tokenName,
         };
       }
@@ -347,7 +364,7 @@ export function generateTokensPluginFormat(
 function rgbToHex(rgb: RGBColor): string {
   const toHex = (n: number): string => {
     const hex = Math.round(n * 255).toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
+    return hex.length === 1 ? `0${hex}` : hex;
   };
 
   return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;

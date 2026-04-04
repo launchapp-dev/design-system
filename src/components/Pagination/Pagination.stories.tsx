@@ -98,7 +98,8 @@ function InteractivePaginator() {
 
   const visiblePages = getVisiblePages();
   const showStartEllipsis = visiblePages[0] > 2;
-  const showEndEllipsis = visiblePages[visiblePages.length - 1] < totalPages - 1;
+  const showEndEllipsis =
+    visiblePages[visiblePages.length - 1] < totalPages - 1;
 
   const handlePage = (e: React.MouseEvent, page: number) => {
     e.preventDefault();
@@ -117,7 +118,9 @@ function InteractivePaginator() {
               href="#"
               onClick={(e) => handlePage(e, currentPage - 1)}
               aria-disabled={currentPage === 1}
-              className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+              className={
+                currentPage === 1 ? "pointer-events-none opacity-50" : ""
+              }
             />
           </PaginationItem>
 
@@ -172,7 +175,11 @@ function InteractivePaginator() {
               href="#"
               onClick={(e) => handlePage(e, currentPage + 1)}
               aria-disabled={currentPage === totalPages}
-              className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+              className={
+                currentPage === totalPages
+                  ? "pointer-events-none opacity-50"
+                  : ""
+              }
             />
           </PaginationItem>
         </PaginationContent>
@@ -197,7 +204,9 @@ export const FirstPage: Story = {
           />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>1</PaginationLink>
+          <PaginationLink href="#" isActive>
+            1
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#">2</PaginationLink>
@@ -263,7 +272,9 @@ export const LastPage: Story = {
           <PaginationLink href="#">9</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>10</PaginationLink>
+          <PaginationLink href="#" isActive>
+            10
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationNext
@@ -307,7 +318,9 @@ export const DarkMode: Story = {
           <PaginationLink href="#">4</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>5</PaginationLink>
+          <PaginationLink href="#" isActive>
+            5
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#">6</PaginationLink>

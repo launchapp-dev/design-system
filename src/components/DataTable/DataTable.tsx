@@ -1,16 +1,19 @@
-import * as React from "react";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  PaginationState,
+  type ColumnDef,
+  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type PaginationState,
+  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import * as React from "react";
+import { cn } from "../../lib/utils";
+import { Button } from "../Button";
+import { Input } from "../Input";
 import {
   Table,
   TableBody,
@@ -19,9 +22,6 @@ import {
   TableHeader,
   TableRow,
 } from "../Table";
-import { Input } from "../Input";
-import { Button } from "../Button";
-import { cn } from "../../lib/utils";
 
 export interface DataTableProps<TData, TValue> {
   ref?: React.Ref<HTMLDivElement>;
@@ -35,21 +35,21 @@ export interface DataTableProps<TData, TValue> {
   "aria-labelledby"?: string;
 }
 
-export function DataTable<TData, TValue>(
-  {
-    ref,
-    columns,
-    data,
-    filterColumn,
-    filterPlaceholder = "Filter...",
-    pageSize = 10,
-    className,
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledby,
-  }: DataTableProps<TData, TValue>
-) {
+export function DataTable<TData, TValue>({
+  ref,
+  columns,
+  data,
+  filterColumn,
+  filterPlaceholder = "Filter...",
+  pageSize = 10,
+  className,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
+}: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize,
@@ -68,11 +68,15 @@ export function DataTable<TData, TValue>(
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const filterCol = filterColumn ?? columns[0]?.id ?? (columns[0] as ColumnDef<TData, TValue> & { accessorKey?: string })?.accessorKey;
+  const filterCol =
+    filterColumn ??
+    columns[0]?.id ??
+    (columns[0] as ColumnDef<TData, TValue> & { accessorKey?: string })
+      ?.accessorKey;
 
   if (process.env.NODE_ENV !== "production" && !ariaLabel && !ariaLabelledby) {
     console.warn(
-      "DataTable: Missing accessible name. Provide `aria-label` or `aria-labelledby` for WCAG 1.3.1 compliance."
+      "DataTable: Missing accessible name. Provide `aria-label` or `aria-labelledby` for WCAG 1.3.1 compliance.",
     );
   }
 
@@ -82,7 +86,10 @@ export function DataTable<TData, TValue>(
         <Input
           aria-label={filterPlaceholder}
           placeholder={filterPlaceholder}
-          value={(table.getColumn(String(filterCol))?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn(String(filterCol))?.getFilterValue() as string) ??
+            ""
+          }
           onChange={(e) =>
             table.getColumn(String(filterCol))?.setFilterValue(e.target.value)
           }
@@ -91,43 +98,69 @@ export function DataTable<TData, TValue>(
       )}
 
       <div className="w-full overflow-x-auto rounded-md border border-border -mx-4 px-4 md:mx-0 md:px-0 md:border-0">
-        <Table aria-label={ariaLabel} aria-labelledby={ariaLabelledby} className="min-w-full md:min-w-0">
+        <Table
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
+          className="min-w-full md:min-w-0"
+        >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="hover:bg-transparent">
                 {headerGroup.headers.map((header) => {
                   const isSortable = header.column.getCanSort();
                   const sortDir = header.column.getIsSorted();
-                  const ariaSortValue = sortDir === "asc" ? "ascending" : sortDir === "desc" ? "descending" : "none";
+                  const ariaSortValue =
+                    sortDir === "asc"
+                      ? "ascending"
+                      : sortDir === "desc"
+                        ? "descending"
+                        : "none";
                   return (
-                  <TableHead
-                    key={header.id}
-                    onClick={isSortable ? header.column.getToggleSortingHandler() : undefined}
-                    tabIndex={isSortable ? 0 : undefined}
-                    aria-sort={isSortable ? ariaSortValue : undefined}
-                    onKeyDown={isSortable ? (e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        header.column.getToggleSortingHandler()?.(e);
+                    <TableHead
+                      key={header.id}
+                      onClick={
+                        isSortable
+                          ? header.column.getToggleSortingHandler()
+                          : undefined
                       }
-                    } : undefined}
-                    className={cn(isSortable ? "cursor-pointer select-none" : "", "min-h-[44px] whitespace-nowrap")}
-                  >
-                    {header.isPlaceholder ? null : (
-                      <span className="inline-flex items-center gap-1">
-                        {flexRender(header.column.columnDef.header, header.getContext())}
-                        {header.column.getCanSort() && (
-                          <span aria-hidden="true" className="text-muted-foreground">
-                            {header.column.getIsSorted() === "asc"
-                              ? "↑"
-                              : header.column.getIsSorted() === "desc"
-                              ? "↓"
-                              : "↕"}
-                          </span>
-                        )}
-                      </span>
-                    )}
-                  </TableHead>
+                      tabIndex={isSortable ? 0 : undefined}
+                      aria-sort={isSortable ? ariaSortValue : undefined}
+                      onKeyDown={
+                        isSortable
+                          ? (e) => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                header.column.getToggleSortingHandler()?.(e);
+                              }
+                            }
+                          : undefined
+                      }
+                      className={cn(
+                        isSortable ? "cursor-pointer select-none" : "",
+                        "min-h-[44px] whitespace-nowrap",
+                      )}
+                    >
+                      {header.isPlaceholder ? null : (
+                        <span className="inline-flex items-center gap-1">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                          {header.column.getCanSort() && (
+                            <span
+                              aria-hidden="true"
+                              className="text-muted-foreground"
+                            >
+                              {header.column.getIsSorted() === "asc"
+                                ? "↑"
+                                : header.column.getIsSorted() === "desc"
+                                  ? "↓"
+                                  : "↕"}
+                            </span>
+                          )}
+                        </span>
+                      )}
+                    </TableHead>
                   );
                 })}
               </TableRow>
@@ -136,17 +169,27 @@ export function DataTable<TData, TValue>(
           <TableBody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="hover:bg-muted/50">
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                  className="hover:bg-muted/50"
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="py-3 md:py-2">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center text-muted-foreground"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -171,7 +214,7 @@ export function DataTable<TData, TValue>(
             ))}
           </select>
         </div>
-        
+
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <span className="text-sm text-muted-foreground text-center sm:text-left">
             Page {table.getState().pagination.pageIndex + 1} of{" "}
@@ -187,7 +230,19 @@ export function DataTable<TData, TValue>(
               aria-label="Previous page"
             >
               <span className="hidden sm:inline">Previous</span>
-              <svg className="h-4 w-4 sm:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg
+                className="h-4 w-4 sm:hidden"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <path d="m15 18-6-6 6-6" />
               </svg>
             </Button>
@@ -200,7 +255,19 @@ export function DataTable<TData, TValue>(
               aria-label="Next page"
             >
               <span className="hidden sm:inline">Next</span>
-              <svg className="h-4 w-4 sm:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg
+                className="h-4 w-4 sm:hidden"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <path d="m9 18 6-6-6-6" />
               </svg>
             </Button>

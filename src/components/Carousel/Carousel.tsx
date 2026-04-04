@@ -1,7 +1,7 @@
-import * as React from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import { cva, type VariantProps } from "class-variance-authority";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const carouselVariants = cva("relative overflow-hidden", {
@@ -22,26 +22,23 @@ const carouselVariants = cva("relative overflow-hidden", {
   },
 });
 
-const carouselItemVariants = cva(
-  "min-w-0 shrink-0 grow-0 basis-full",
-  {
-    variants: {
-      variant: {
-        default: "",
-        slide: "transition-transform duration-300",
-        fade: "transition-opacity duration-300",
-      },
-      orientation: {
-        horizontal: "",
-        vertical: "h-full",
-      },
+const carouselItemVariants = cva("min-w-0 shrink-0 grow-0 basis-full", {
+  variants: {
+    variant: {
+      default: "",
+      slide: "transition-transform duration-300",
+      fade: "transition-opacity duration-300",
     },
-    defaultVariants: {
-      variant: "default",
-      orientation: "horizontal",
+    orientation: {
+      horizontal: "",
+      vertical: "h-full",
     },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+    orientation: "horizontal",
+  },
+});
 
 const carouselButtonVariants = cva(
   "absolute z-10 inline-flex items-center justify-center whitespace-nowrap rounded-full border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] p-2 text-[hsl(var(--la-foreground))] shadow-md transition-all hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 min-h-[44px] min-w-[44px] dark:bg-[hsl(var(--la-background)/0.8)] dark:backdrop-blur-sm",
@@ -55,7 +52,7 @@ const carouselButtonVariants = cva(
     defaultVariants: {
       orientation: "horizontal",
     },
-  }
+  },
 );
 
 const carouselDotVariants = cva(
@@ -64,13 +61,14 @@ const carouselDotVariants = cva(
     variants: {
       active: {
         true: "w-6 bg-[hsl(var(--la-primary))]",
-        false: "bg-[hsl(var(--la-muted-foreground)/0.3)] hover:bg-[hsl(var(--la-muted-foreground)/0.5)]",
+        false:
+          "bg-[hsl(var(--la-muted-foreground)/0.3)] hover:bg-[hsl(var(--la-muted-foreground)/0.5)]",
       },
     },
     defaultVariants: {
       active: false,
     },
-  }
+  },
 );
 
 type CarouselApi = ReturnType<typeof useEmblaCarousel>[1];
@@ -130,7 +128,9 @@ function Carousel({
   const plugins = React.useMemo(() => {
     const pluginList: ReturnType<typeof Autoplay>[] = [];
     if (autoPlay) {
-      pluginList.push(Autoplay({ delay: autoPlayInterval, stopOnInteraction: false }));
+      pluginList.push(
+        Autoplay({ delay: autoPlayInterval, stopOnInteraction: false }),
+      );
     }
     return pluginList;
   }, [autoPlay, autoPlayInterval]);
@@ -141,7 +141,7 @@ function Carousel({
       axis: orientation === "vertical" ? "y" : "x",
       startIndex: index,
     },
-    plugins
+    plugins,
   );
 
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
@@ -159,7 +159,7 @@ function Carousel({
     (idx: number) => {
       api?.scrollTo(idx);
     },
-    [api]
+    [api],
   );
 
   const onSelect = React.useCallback(() => {
@@ -218,7 +218,7 @@ function Carousel({
       canScrollNext,
       autoPlay,
       autoPlayInterval,
-    ]
+    ],
   );
 
   return (
@@ -237,9 +237,15 @@ function Carousel({
 }
 Carousel.displayName = "Carousel";
 
-export interface CarouselItemProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CarouselItemProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
 
-function CarouselItem({ className, children, ref, ...props }: CarouselItemProps & { ref?: React.Ref<HTMLDivElement> }) {
+function CarouselItem({
+  className,
+  children,
+  ref,
+  ...props
+}: CarouselItemProps & { ref?: React.Ref<HTMLDivElement> }) {
   const { variant, orientation } = useCarousel();
 
   return (
@@ -256,9 +262,15 @@ function CarouselItem({ className, children, ref, ...props }: CarouselItemProps 
 }
 CarouselItem.displayName = "CarouselItem";
 
-export interface CarouselPrevProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface CarouselPrevProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-function CarouselPrev({ className, children, ref, ...props }: CarouselPrevProps & { ref?: React.Ref<HTMLButtonElement> }) {
+function CarouselPrev({
+  className,
+  children,
+  ref,
+  ...props
+}: CarouselPrevProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -271,7 +283,7 @@ function CarouselPrev({ className, children, ref, ...props }: CarouselPrevProps 
       className={cn(
         carouselButtonVariants({ orientation }),
         orientation === "horizontal" ? "left-4" : "top-4 rotate-90",
-        className
+        className,
       )}
       {...props}
     >
@@ -296,9 +308,15 @@ function CarouselPrev({ className, children, ref, ...props }: CarouselPrevProps 
 }
 CarouselPrev.displayName = "CarouselPrev";
 
-export interface CarouselNextProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface CarouselNextProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-function CarouselNext({ className, children, ref, ...props }: CarouselNextProps & { ref?: React.Ref<HTMLButtonElement> }) {
+function CarouselNext({
+  className,
+  children,
+  ref,
+  ...props
+}: CarouselNextProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
@@ -311,7 +329,7 @@ function CarouselNext({ className, children, ref, ...props }: CarouselNextProps 
       className={cn(
         carouselButtonVariants({ orientation }),
         orientation === "horizontal" ? "right-4" : "bottom-4 rotate-90",
-        className
+        className,
       )}
       {...props}
     >
@@ -336,9 +354,14 @@ function CarouselNext({ className, children, ref, ...props }: CarouselNextProps 
 }
 CarouselNext.displayName = "CarouselNext";
 
-export interface CarouselDotsProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CarouselDotsProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
 
-function CarouselDots({ className, ref, ...props }: CarouselDotsProps & { ref?: React.Ref<HTMLDivElement> }) {
+function CarouselDots({
+  className,
+  ref,
+  ...props
+}: CarouselDotsProps & { ref?: React.Ref<HTMLDivElement> }) {
   const { scrollSnaps, selectedIndex, scrollTo } = useCarousel();
 
   return (
@@ -357,7 +380,9 @@ function CarouselDots({ className, ref, ...props }: CarouselDotsProps & { ref?: 
           aria-selected={index === selectedIndex}
           aria-label={`Go to slide ${index + 1}`}
           onClick={() => scrollTo(index)}
-          className={cn(carouselDotVariants({ active: index === selectedIndex }))}
+          className={cn(
+            carouselDotVariants({ active: index === selectedIndex }),
+          )}
         />
       ))}
     </div>
@@ -365,7 +390,8 @@ function CarouselDots({ className, ref, ...props }: CarouselDotsProps & { ref?: 
 }
 CarouselDots.displayName = "CarouselDots";
 
-export interface CarouselAutoplayProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CarouselAutoplayProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   playIcon?: React.ReactNode;
   pauseIcon?: React.ReactNode;
 }
@@ -443,9 +469,15 @@ function CarouselAutoplay({
 }
 CarouselAutoplay.displayName = "CarouselAutoplay";
 
-export interface CarouselContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CarouselContentProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
 
-function CarouselContent({ className, children, ref, ...props }: CarouselContentProps & { ref?: React.Ref<HTMLDivElement> }) {
+function CarouselContent({
+  className,
+  children,
+  ref,
+  ...props
+}: CarouselContentProps & { ref?: React.Ref<HTMLDivElement> }) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -455,7 +487,7 @@ function CarouselContent({ className, children, ref, ...props }: CarouselContent
         className={cn(
           "flex",
           orientation === "vertical" ? "flex-col h-full" : "",
-          className
+          className,
         )}
         {...props}
       >
@@ -468,20 +500,22 @@ CarouselContent.displayName = "CarouselContent";
 
 export type CarouselVariants = VariantProps<typeof carouselVariants>;
 export type CarouselItemVariants = VariantProps<typeof carouselItemVariants>;
-export type CarouselButtonVariants = VariantProps<typeof carouselButtonVariants>;
+export type CarouselButtonVariants = VariantProps<
+  typeof carouselButtonVariants
+>;
 export type CarouselDotVariants = VariantProps<typeof carouselDotVariants>;
 
 export {
   Carousel,
-  CarouselItem,
-  CarouselContent,
-  CarouselPrev,
-  CarouselNext,
-  CarouselDots,
   CarouselAutoplay,
-  carouselVariants,
-  carouselItemVariants,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrev,
   carouselButtonVariants,
   carouselDotVariants,
+  carouselItemVariants,
+  carouselVariants,
   useCarousel,
 };

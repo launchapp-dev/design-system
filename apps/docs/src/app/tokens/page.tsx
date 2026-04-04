@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Design Tokens — LaunchApp Design System",
-  description: "Visual reference for all --la-* CSS custom properties used in the LaunchApp design system.",
+  description:
+    "Visual reference for all --la-* CSS custom properties used in the LaunchApp design system.",
 };
 
 interface Token {
@@ -23,68 +24,263 @@ const TOKEN_GROUPS: TokenGroup[] = [
   {
     title: "Base",
     tokens: [
-      { name: "Background", variable: "--la-background", lightValue: "hsl(0 0% 100%)", darkValue: "hsl(240 10% 3.9%)", description: "Page background color", type: "color" },
-      { name: "Foreground", variable: "--la-foreground", lightValue: "hsl(240 10% 3.9%)", darkValue: "hsl(0 0% 98%)", description: "Default text color", type: "color" },
+      {
+        name: "Background",
+        variable: "--la-background",
+        lightValue: "hsl(0 0% 100%)",
+        darkValue: "hsl(240 10% 3.9%)",
+        description: "Page background color",
+        type: "color",
+      },
+      {
+        name: "Foreground",
+        variable: "--la-foreground",
+        lightValue: "hsl(240 10% 3.9%)",
+        darkValue: "hsl(0 0% 98%)",
+        description: "Default text color",
+        type: "color",
+      },
     ],
   },
   {
     title: "Brand",
     tokens: [
-      { name: "Primary", variable: "--la-primary", lightValue: "hsl(262 83% 58%)", darkValue: "hsl(263 70% 50%)", description: "Primary brand color", type: "color" },
-      { name: "Primary Foreground", variable: "--la-primary-foreground", lightValue: "hsl(0 0% 98%)", darkValue: "hsl(0 0% 98%)", description: "Text on primary color", type: "color" },
-      { name: "Secondary", variable: "--la-secondary", lightValue: "hsl(240 4.8% 95.9%)", darkValue: "hsl(240 3.7% 15.9%)", description: "Secondary brand color", type: "color" },
-      { name: "Secondary Foreground", variable: "--la-secondary-foreground", lightValue: "hsl(240 5.9% 10%)", darkValue: "hsl(0 0% 98%)", description: "Text on secondary color", type: "color" },
+      {
+        name: "Primary",
+        variable: "--la-primary",
+        lightValue: "hsl(262 83% 58%)",
+        darkValue: "hsl(263 70% 50%)",
+        description: "Primary brand color",
+        type: "color",
+      },
+      {
+        name: "Primary Foreground",
+        variable: "--la-primary-foreground",
+        lightValue: "hsl(0 0% 98%)",
+        darkValue: "hsl(0 0% 98%)",
+        description: "Text on primary color",
+        type: "color",
+      },
+      {
+        name: "Secondary",
+        variable: "--la-secondary",
+        lightValue: "hsl(240 4.8% 95.9%)",
+        darkValue: "hsl(240 3.7% 15.9%)",
+        description: "Secondary brand color",
+        type: "color",
+      },
+      {
+        name: "Secondary Foreground",
+        variable: "--la-secondary-foreground",
+        lightValue: "hsl(240 5.9% 10%)",
+        darkValue: "hsl(0 0% 98%)",
+        description: "Text on secondary color",
+        type: "color",
+      },
     ],
   },
   {
     title: "Semantic",
     tokens: [
-      { name: "Destructive", variable: "--la-destructive", lightValue: "hsl(0 84.2% 60.2%)", darkValue: "hsl(0 62.8% 30.6%)", description: "Danger / error color", type: "color" },
-      { name: "Destructive Foreground", variable: "--la-destructive-foreground", lightValue: "hsl(0 0% 98%)", darkValue: "hsl(0 0% 98%)", description: "Text on destructive", type: "color" },
-      { name: "Muted", variable: "--la-muted", lightValue: "hsl(240 4.8% 95.9%)", darkValue: "hsl(240 3.7% 15.9%)", description: "Muted / subdued background", type: "color" },
-      { name: "Muted Foreground", variable: "--la-muted-foreground", lightValue: "hsl(240 3.8% 46.1%)", darkValue: "hsl(240 5% 64.9%)", description: "Muted text color", type: "color" },
-      { name: "Accent", variable: "--la-accent", lightValue: "hsl(240 4.8% 95.9%)", darkValue: "hsl(240 3.7% 15.9%)", description: "Accent / hover background", type: "color" },
-      { name: "Accent Foreground", variable: "--la-accent-foreground", lightValue: "hsl(240 5.9% 10%)", darkValue: "hsl(0 0% 98%)", description: "Text on accent", type: "color" },
+      {
+        name: "Destructive",
+        variable: "--la-destructive",
+        lightValue: "hsl(0 84.2% 60.2%)",
+        darkValue: "hsl(0 62.8% 30.6%)",
+        description: "Danger / error color",
+        type: "color",
+      },
+      {
+        name: "Destructive Foreground",
+        variable: "--la-destructive-foreground",
+        lightValue: "hsl(0 0% 98%)",
+        darkValue: "hsl(0 0% 98%)",
+        description: "Text on destructive",
+        type: "color",
+      },
+      {
+        name: "Muted",
+        variable: "--la-muted",
+        lightValue: "hsl(240 4.8% 95.9%)",
+        darkValue: "hsl(240 3.7% 15.9%)",
+        description: "Muted / subdued background",
+        type: "color",
+      },
+      {
+        name: "Muted Foreground",
+        variable: "--la-muted-foreground",
+        lightValue: "hsl(240 3.8% 46.1%)",
+        darkValue: "hsl(240 5% 64.9%)",
+        description: "Muted text color",
+        type: "color",
+      },
+      {
+        name: "Accent",
+        variable: "--la-accent",
+        lightValue: "hsl(240 4.8% 95.9%)",
+        darkValue: "hsl(240 3.7% 15.9%)",
+        description: "Accent / hover background",
+        type: "color",
+      },
+      {
+        name: "Accent Foreground",
+        variable: "--la-accent-foreground",
+        lightValue: "hsl(240 5.9% 10%)",
+        darkValue: "hsl(0 0% 98%)",
+        description: "Text on accent",
+        type: "color",
+      },
     ],
   },
   {
     title: "UI Chrome",
     tokens: [
-      { name: "Card", variable: "--la-card", lightValue: "hsl(0 0% 100%)", darkValue: "hsl(240 10% 3.9%)", description: "Card surface color", type: "color" },
-      { name: "Card Foreground", variable: "--la-card-foreground", lightValue: "hsl(240 10% 3.9%)", darkValue: "hsl(0 0% 98%)", description: "Text on card", type: "color" },
-      { name: "Popover", variable: "--la-popover", lightValue: "hsl(0 0% 100%)", darkValue: "hsl(240 10% 3.9%)", description: "Popover surface color", type: "color" },
-      { name: "Popover Foreground", variable: "--la-popover-foreground", lightValue: "hsl(240 10% 3.9%)", darkValue: "hsl(0 0% 98%)", description: "Text on popover", type: "color" },
-      { name: "Border", variable: "--la-border", lightValue: "hsl(240 5.9% 90%)", darkValue: "hsl(240 3.7% 15.9%)", description: "Default border color", type: "color" },
-      { name: "Input", variable: "--la-input", lightValue: "hsl(240 5.9% 90%)", darkValue: "hsl(240 3.7% 15.9%)", description: "Form input border color", type: "color" },
-      { name: "Ring", variable: "--la-ring", lightValue: "hsl(262 83% 58%)", darkValue: "hsl(263 70% 50%)", description: "Focus ring color", type: "color" },
+      {
+        name: "Card",
+        variable: "--la-card",
+        lightValue: "hsl(0 0% 100%)",
+        darkValue: "hsl(240 10% 3.9%)",
+        description: "Card surface color",
+        type: "color",
+      },
+      {
+        name: "Card Foreground",
+        variable: "--la-card-foreground",
+        lightValue: "hsl(240 10% 3.9%)",
+        darkValue: "hsl(0 0% 98%)",
+        description: "Text on card",
+        type: "color",
+      },
+      {
+        name: "Popover",
+        variable: "--la-popover",
+        lightValue: "hsl(0 0% 100%)",
+        darkValue: "hsl(240 10% 3.9%)",
+        description: "Popover surface color",
+        type: "color",
+      },
+      {
+        name: "Popover Foreground",
+        variable: "--la-popover-foreground",
+        lightValue: "hsl(240 10% 3.9%)",
+        darkValue: "hsl(0 0% 98%)",
+        description: "Text on popover",
+        type: "color",
+      },
+      {
+        name: "Border",
+        variable: "--la-border",
+        lightValue: "hsl(240 5.9% 90%)",
+        darkValue: "hsl(240 3.7% 15.9%)",
+        description: "Default border color",
+        type: "color",
+      },
+      {
+        name: "Input",
+        variable: "--la-input",
+        lightValue: "hsl(240 5.9% 90%)",
+        darkValue: "hsl(240 3.7% 15.9%)",
+        description: "Form input border color",
+        type: "color",
+      },
+      {
+        name: "Ring",
+        variable: "--la-ring",
+        lightValue: "hsl(262 83% 58%)",
+        darkValue: "hsl(263 70% 50%)",
+        description: "Focus ring color",
+        type: "color",
+      },
     ],
   },
   {
     title: "Charts",
     tokens: [
-      { name: "Chart 1", variable: "--la-chart-1", lightValue: "hsl(262 83% 58%)", darkValue: "hsl(263 70% 65%)", description: "Primary chart color", type: "color" },
-      { name: "Chart 2", variable: "--la-chart-2", lightValue: "hsl(200 80% 50%)", darkValue: "hsl(200 75% 60%)", description: "Secondary chart color", type: "color" },
-      { name: "Chart 3", variable: "--la-chart-3", lightValue: "hsl(150 60% 45%)", darkValue: "hsl(150 55% 55%)", description: "Tertiary chart color", type: "color" },
-      { name: "Chart 4", variable: "--la-chart-4", lightValue: "hsl(30 90% 55%)", darkValue: "hsl(30 85% 65%)", description: "Quaternary chart color", type: "color" },
-      { name: "Chart 5", variable: "--la-chart-5", lightValue: "hsl(350 80% 55%)", darkValue: "hsl(350 75% 65%)", description: "Quinary chart color", type: "color" },
+      {
+        name: "Chart 1",
+        variable: "--la-chart-1",
+        lightValue: "hsl(262 83% 58%)",
+        darkValue: "hsl(263 70% 65%)",
+        description: "Primary chart color",
+        type: "color",
+      },
+      {
+        name: "Chart 2",
+        variable: "--la-chart-2",
+        lightValue: "hsl(200 80% 50%)",
+        darkValue: "hsl(200 75% 60%)",
+        description: "Secondary chart color",
+        type: "color",
+      },
+      {
+        name: "Chart 3",
+        variable: "--la-chart-3",
+        lightValue: "hsl(150 60% 45%)",
+        darkValue: "hsl(150 55% 55%)",
+        description: "Tertiary chart color",
+        type: "color",
+      },
+      {
+        name: "Chart 4",
+        variable: "--la-chart-4",
+        lightValue: "hsl(30 90% 55%)",
+        darkValue: "hsl(30 85% 65%)",
+        description: "Quaternary chart color",
+        type: "color",
+      },
+      {
+        name: "Chart 5",
+        variable: "--la-chart-5",
+        lightValue: "hsl(350 80% 55%)",
+        darkValue: "hsl(350 75% 65%)",
+        description: "Quinary chart color",
+        type: "color",
+      },
     ],
   },
   {
     title: "Spacing & Shape",
     tokens: [
-      { name: "Radius", variable: "--la-radius", lightValue: "0.5rem", darkValue: "0.5rem", description: "Base border radius", type: "size" },
+      {
+        name: "Radius",
+        variable: "--la-radius",
+        lightValue: "0.5rem",
+        darkValue: "0.5rem",
+        description: "Base border radius",
+        type: "size",
+      },
     ],
   },
   {
     title: "Typography",
     tokens: [
-      { name: "Font Sans", variable: "--la-font-sans", lightValue: '"Inter"', darkValue: '"Inter"', description: "Sans-serif font family", type: "font" },
-      { name: "Font Mono", variable: "--la-font-mono", lightValue: '"JetBrains Mono"', darkValue: '"JetBrains Mono"', description: "Monospace font family", type: "font" },
+      {
+        name: "Font Sans",
+        variable: "--la-font-sans",
+        lightValue: '"Inter"',
+        darkValue: '"Inter"',
+        description: "Sans-serif font family",
+        type: "font",
+      },
+      {
+        name: "Font Mono",
+        variable: "--la-font-mono",
+        lightValue: '"JetBrains Mono"',
+        darkValue: '"JetBrains Mono"',
+        description: "Monospace font family",
+        type: "font",
+      },
     ],
   },
 ];
 
-function ColorSwatch({ lightValue, darkValue }: { lightValue: string; darkValue: string }) {
+function ColorSwatch({
+  lightValue,
+  darkValue,
+}: {
+  lightValue: string;
+  darkValue: string;
+}) {
   return (
     <div className="flex gap-1.5 items-center">
       <div
@@ -106,7 +302,10 @@ function TokenRow({ token }: { token: Token }) {
     <tr className="border-b last:border-0">
       <td className="px-4 py-3 align-middle">
         {token.type === "color" && (
-          <ColorSwatch lightValue={token.lightValue} darkValue={token.darkValue} />
+          <ColorSwatch
+            lightValue={token.lightValue}
+            darkValue={token.darkValue}
+          />
         )}
         {token.type === "size" && (
           <div
@@ -120,10 +319,14 @@ function TokenRow({ token }: { token: Token }) {
           />
         )}
         {token.type === "font" && (
-          <span style={{ fontFamily: token.lightValue }} className="text-base">Aa</span>
+          <span style={{ fontFamily: token.lightValue }} className="text-base">
+            Aa
+          </span>
         )}
       </td>
-      <td className="px-4 py-3 align-middle font-medium text-sm">{token.name}</td>
+      <td className="px-4 py-3 align-middle font-medium text-sm">
+        {token.name}
+      </td>
       <td className="px-4 py-3 align-middle">
         <code className="text-xs font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">
           {token.variable}
@@ -131,9 +334,13 @@ function TokenRow({ token }: { token: Token }) {
       </td>
       <td className="px-4 py-3 align-middle">
         <div className="flex flex-col gap-0.5">
-          <code className="text-xs font-mono text-muted-foreground">{token.lightValue}</code>
+          <code className="text-xs font-mono text-muted-foreground">
+            {token.lightValue}
+          </code>
           {token.lightValue !== token.darkValue && (
-            <code className="text-xs font-mono text-muted-foreground/70">dark: {token.darkValue}</code>
+            <code className="text-xs font-mono text-muted-foreground/70">
+              dark: {token.darkValue}
+            </code>
           )}
         </div>
       </td>
@@ -148,18 +355,23 @@ export default function TokensPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-3">Design Tokens</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-3">
+          Design Tokens
+        </h1>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          CSS custom properties (variables) that power the LaunchApp design system. All tokens
-          use the <code className="text-sm font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">--la-*</code> prefix
-          and support both light and dark modes.
+          CSS custom properties (variables) that power the LaunchApp design
+          system. All tokens use the{" "}
+          <code className="text-sm font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">
+            --la-*
+          </code>{" "}
+          prefix and support both light and dark modes.
         </p>
       </div>
 
       <div className="mb-8 rounded-lg border overflow-hidden bg-muted/30 p-4">
         <h2 className="text-sm font-semibold mb-3">Usage</h2>
         <pre className="text-sm font-mono text-muted-foreground bg-background rounded border p-3 overflow-x-auto">
-{`/* In your CSS */
+          {`/* In your CSS */
 .my-element {
   color: hsl(var(--la-foreground));
   background: hsl(var(--la-background));
@@ -236,7 +448,9 @@ export default function TokensPage() {
               />
               <div className="px-2.5 py-2 bg-background">
                 <div className="text-xs font-medium">{label}</div>
-                <div className="text-xs font-mono text-muted-foreground mt-0.5">{cssVar}</div>
+                <div className="text-xs font-mono text-muted-foreground mt-0.5">
+                  {cssVar}
+                </div>
               </div>
             </div>
           ))}

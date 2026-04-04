@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./index";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./index";
 
 const meta: Meta<typeof Collapsible> = {
   title: "Components/Collapsible",
@@ -73,9 +73,18 @@ export const AllVariants: Story = {
     const [open2, setOpen2] = React.useState(true);
     const [open3, setOpen3] = React.useState(false);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "32px", width: 420 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "32px",
+          width: 420,
+        }}
+      >
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Icon Button Trigger</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Icon Button Trigger
+          </p>
           <Collapsible open={open1} onOpenChange={setOpen1}>
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold">Dependencies</h4>
@@ -90,7 +99,10 @@ export const AllVariants: Story = {
             </div>
             <CollapsibleContent className="mt-2 space-y-1">
               {["react", "typescript", "tailwindcss"].map((dep) => (
-                <div key={dep} className="rounded-md border border-border px-3 py-2 font-mono text-sm">
+                <div
+                  key={dep}
+                  className="rounded-md border border-border px-3 py-2 font-mono text-sm"
+                >
                   {dep}
                 </div>
               ))}
@@ -99,7 +111,9 @@ export const AllVariants: Story = {
         </div>
 
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Text Link Trigger (open by default)</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Text Link Trigger (open by default)
+          </p>
           <Collapsible open={open2} onOpenChange={setOpen2}>
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold">Project Details</h4>
@@ -110,14 +124,22 @@ export const AllVariants: Story = {
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <p>This design system is built with React, TypeScript, and Tailwind CSS.</p>
-              <p>It uses Radix UI primitives to ensure accessibility compliance out of the box.</p>
+              <p>
+                This design system is built with React, TypeScript, and Tailwind
+                CSS.
+              </p>
+              <p>
+                It uses Radix UI primitives to ensure accessibility compliance
+                out of the box.
+              </p>
             </CollapsibleContent>
           </Collapsible>
         </div>
 
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Full-width Header Trigger</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Full-width Header Trigger
+          </p>
           <Collapsible open={open3} onOpenChange={setOpen3}>
             <CollapsibleTrigger asChild>
               <button className="flex w-full items-center justify-between rounded-md border border-border px-4 py-3 text-sm font-medium hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
@@ -138,13 +160,19 @@ export const AllVariants: Story = {
 
 export const AllSizes: Story = {
   render: () => {
-    const [openStates, setOpenStates] = React.useState({ sm: false, md: false, lg: false });
+    const [openStates, setOpenStates] = React.useState({
+      sm: false,
+      md: false,
+      lg: false,
+    });
     const toggle = (key: keyof typeof openStates) =>
       setOpenStates((s) => ({ ...s, [key]: !s[key] }));
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Narrow (300px)</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Narrow (300px)
+          </p>
           <Collapsible
             open={openStates.sm}
             onOpenChange={() => toggle("sm")}
@@ -165,7 +193,9 @@ export const AllSizes: Story = {
         </div>
 
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Medium (480px)</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Medium (480px)
+          </p>
           <Collapsible
             open={openStates.md}
             onOpenChange={() => toggle("md")}
@@ -186,7 +216,9 @@ export const AllSizes: Story = {
         </div>
 
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Wide (640px)</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Wide (640px)
+          </p>
           <Collapsible
             open={openStates.lg}
             onOpenChange={() => toggle("lg")}
@@ -201,7 +233,8 @@ export const AllSizes: Story = {
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent className="mt-2 text-sm text-muted-foreground">
-              Wide content area. Works well for dashboards or sidebars at larger breakpoints.
+              Wide content area. Works well for dashboards or sidebars at larger
+              breakpoints.
             </CollapsibleContent>
           </Collapsible>
         </div>
@@ -243,7 +276,10 @@ export const Interactive: Story = {
       </div>
       <CollapsibleContent className="mt-2 space-y-1 text-sm text-muted-foreground">
         <p>Toggle defaultOpen and disabled using the controls panel.</p>
-        <p>The disabled prop prevents the trigger from opening or closing content.</p>
+        <p>
+          The disabled prop prevents the trigger from opening or closing
+          content.
+        </p>
       </CollapsibleContent>
     </Collapsible>
   ),
@@ -252,7 +288,10 @@ export const Interactive: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
@@ -260,7 +299,14 @@ export const DarkMode: Story = {
   render: () => {
     const [open, setOpen] = React.useState(false);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: 400 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          width: 400,
+        }}
+      >
         <Collapsible open={open} onOpenChange={setOpen}>
           <div className="flex items-center justify-between space-x-4 px-4">
             <h4 className="text-sm font-semibold">Dark Mode Section</h4>

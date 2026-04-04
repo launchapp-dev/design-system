@@ -385,7 +385,7 @@ export default config;
 `;
 }
 
-function generateStorybookMain(projectName: string): string {
+function generateStorybookMain(_projectName: string): string {
   return `import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
@@ -481,7 +481,7 @@ function writeFile(filePath: string, content: string): void {
 function copyTemplate(
   templateDir: string,
   targetDir: string,
-  replacements: Record<string, string>
+  replacements: Record<string, string>,
 ): void {
   if (!fs.existsSync(templateDir)) {
     console.error(`Error: Template directory not found: ${templateDir}`);
@@ -517,11 +517,11 @@ function copyTemplate(
 }
 
 function generateCommunityCss(
-  theme: (typeof COMMUNITY_THEMES)[keyof typeof COMMUNITY_THEMES]
+  theme: (typeof COMMUNITY_THEMES)[keyof typeof COMMUNITY_THEMES],
 ): string {
   const renderTokens = (
     tokens: Record<string, string>,
-    selector: string
+    selector: string,
   ): string => {
     const entries = Object.entries(tokens)
       .map(([key, value]) => `    ${key}: ${value};`)
@@ -531,7 +531,7 @@ function generateCommunityCss(
 
   return `@layer base {\n${renderTokens(
     theme.tokens.light,
-    ":root"
+    ":root",
   )}\n\n${renderTokens(theme.tokens.dark, ".dark")}\n}`;
 }
 
@@ -550,9 +550,7 @@ async function installCommunityTheme(themeId: string): Promise<void> {
   const theme = COMMUNITY_THEMES[themeId as keyof typeof COMMUNITY_THEMES];
 
   if (!theme) {
-    console.error(
-      `\n  Error: Theme "${themeId}" not found.\n`
-    );
+    console.error(`\n  Error: Theme "${themeId}" not found.\n`);
     console.log("  Available themes:");
     Object.keys(COMMUNITY_THEMES).forEach((id) => {
       console.log(`    - ${id}`);
@@ -603,9 +601,23 @@ async function main(): Promise<void> {
         name: "template",
         message: "Choose an app template",
         choices: [
-          { title: "SaaS Dashboard", value: "saas-dashboard", description: "Modern SaaS dashboard with analytics and management panels" },
-          { title: "Marketing Site", value: "marketing-site", description: "Beautiful marketing website with conversion optimized layouts" },
-          { title: "Admin Panel", value: "admin-panel", description: "Powerful admin dashboard for data management" },
+          {
+            title: "SaaS Dashboard",
+            value: "saas-dashboard",
+            description:
+              "Modern SaaS dashboard with analytics and management panels",
+          },
+          {
+            title: "Marketing Site",
+            value: "marketing-site",
+            description:
+              "Beautiful marketing website with conversion optimized layouts",
+          },
+          {
+            title: "Admin Panel",
+            value: "admin-panel",
+            description: "Powerful admin dashboard for data management",
+          },
         ],
         initial: 0,
       },
@@ -615,7 +627,8 @@ async function main(): Promise<void> {
         message: "Project name",
         initial: "my-app",
         validate: (v: string) =>
-          /^[a-z0-9-_]+$/.test(v) || "Use lowercase letters, numbers, hyphens, and underscores only",
+          /^[a-z0-9-_]+$/.test(v) ||
+          "Use lowercase letters, numbers, hyphens, and underscores only",
       },
       {
         type: "text",
@@ -639,7 +652,8 @@ async function main(): Promise<void> {
         message: "Base border radius (e.g. 0.5rem, 0.375rem, 0rem)",
         initial: "0.5rem",
         validate: (v: string) =>
-          /^\d+(\.\d+)?(rem|px|em)$/.test(v) || "Enter a valid CSS length (e.g. 0.5rem)",
+          /^\d+(\.\d+)?(rem|px|em)$/.test(v) ||
+          "Enter a valid CSS length (e.g. 0.5rem)",
       },
       {
         type: "select",
@@ -679,13 +693,15 @@ async function main(): Promise<void> {
         console.log("\n  Cancelled.\n");
         process.exit(0);
       },
-    }
+    },
   );
 
   const targetDir = path.resolve(process.cwd(), answers.projectName as string);
 
   if (fs.existsSync(targetDir)) {
-    console.error(`\n  Error: directory "${answers.projectName}" already exists.\n`);
+    console.error(
+      `\n  Error: directory "${answers.projectName}" already exists.\n`,
+    );
     process.exit(1);
   }
 
@@ -714,7 +730,7 @@ async function main(): Promise<void> {
       radius: answers.borderRadius as string,
       fontSans: answers.fontSans as string,
       fontMono: answers.fontMono as string,
-    })
+    }),
   );
 
   writeFile(
@@ -722,7 +738,7 @@ async function main(): Promise<void> {
     generateTailwindConfig({
       fontSans: answers.fontSans as string,
       fontMono: answers.fontMono as string,
-    })
+    }),
   );
 
   writeFile(postcssPath, generatePostcssConfig());
@@ -730,11 +746,11 @@ async function main(): Promise<void> {
   if (answers.includeStorybook) {
     writeFile(
       path.join(targetDir, ".storybook", "main.ts"),
-      generateStorybookMain(answers.projectName as string)
+      generateStorybookMain(answers.projectName as string),
     );
     writeFile(
       path.join(targetDir, ".storybook", "preview.ts"),
-      generateStorybookPreview()
+      generateStorybookPreview(),
     );
   }
 
@@ -755,14 +771,18 @@ async function main(): Promise<void> {
   console.log("    npm install");
 
   if (answers.fontSans !== "system-ui") {
-    console.log(`    # Add "${answers.fontSans}" to your HTML via Google Fonts or your font provider`);
+    console.log(
+      `    # Add "${answers.fontSans}" to your HTML via Google Fonts or your font provider`,
+    );
   }
 
   console.log(`    npm run dev`);
 
   if (answers.includeStorybook) {
     console.log("\n  To set up Storybook:");
-    console.log("    npm install -D storybook @storybook/react-vite @storybook/addon-docs");
+    console.log(
+      "    npm install -D storybook @storybook/react-vite @storybook/addon-docs",
+    );
     console.log("    npx storybook dev");
   }
 
@@ -770,7 +790,7 @@ async function main(): Promise<void> {
   console.log("  1. Edit src/styles/globals.css to modify colors and tokens");
   console.log("  2. Edit tailwind.config.ts to adjust fonts and spacing");
   console.log("\n  To install a community theme, run:");
-  console.log('    npx @launchapp/ds add <theme-id>\n');
+  console.log("    npx @launchapp/ds add <theme-id>\n");
   console.log("  Available themes:");
   Object.entries(COMMUNITY_THEMES).forEach(([id, theme]) => {
     console.log(`    - ${id} (${theme.name})`);

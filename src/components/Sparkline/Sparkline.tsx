@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const sparklineVariants = cva("inline-block", {
@@ -10,18 +10,30 @@ const sparklineVariants = cva("inline-block", {
       lg: "h-8 w-28",
     },
     colorScheme: {
-      primary: "[&_.sparkline-line]:stroke-primary [&_.sparkline-area]:fill-primary [&_.sparkline-point]:fill-primary",
-      secondary: "[&_.sparkline-line]:stroke-secondary-foreground [&_.sparkline-area]:fill-secondary-foreground [&_.sparkline-point]:fill-secondary-foreground",
-      destructive: "[&_.sparkline-line]:stroke-destructive [&_.sparkline-area]:fill-destructive [&_.sparkline-point]:fill-destructive",
-      muted: "[&_.sparkline-line]:stroke-muted-foreground [&_.sparkline-area]:fill-muted-foreground [&_.sparkline-point]:fill-muted-foreground",
-      accent: "[&_.sparkline-line]:stroke-accent-foreground [&_.sparkline-area]:fill-accent-foreground [&_.sparkline-point]:fill-accent-foreground",
-      success: "[&_.sparkline-line]:stroke-[hsl(var(--la-chart-3))] [&_.sparkline-area]:fill-[hsl(var(--la-chart-3))] [&_.sparkline-point]:fill-[hsl(var(--la-chart-3))]",
-      warning: "[&_.sparkline-line]:stroke-[hsl(var(--la-chart-4))] [&_.sparkline-area]:fill-[hsl(var(--la-chart-4))] [&_.sparkline-point]:fill-[hsl(var(--la-chart-4))]",
-      chart1: "[&_.sparkline-line]:stroke-chart-1 [&_.sparkline-area]:fill-chart-1 [&_.sparkline-point]:fill-chart-1",
-      chart2: "[&_.sparkline-line]:stroke-chart-2 [&_.sparkline-area]:fill-chart-2 [&_.sparkline-point]:fill-chart-2",
-      chart3: "[&_.sparkline-line]:stroke-chart-3 [&_.sparkline-area]:fill-chart-3 [&_.sparkline-point]:fill-chart-3",
-      chart4: "[&_.sparkline-line]:stroke-chart-4 [&_.sparkline-area]:fill-chart-4 [&_.sparkline-point]:fill-chart-4",
-      chart5: "[&_.sparkline-line]:stroke-chart-5 [&_.sparkline-area]:fill-chart-5 [&_.sparkline-point]:fill-chart-5",
+      primary:
+        "[&_.sparkline-line]:stroke-primary [&_.sparkline-area]:fill-primary [&_.sparkline-point]:fill-primary",
+      secondary:
+        "[&_.sparkline-line]:stroke-secondary-foreground [&_.sparkline-area]:fill-secondary-foreground [&_.sparkline-point]:fill-secondary-foreground",
+      destructive:
+        "[&_.sparkline-line]:stroke-destructive [&_.sparkline-area]:fill-destructive [&_.sparkline-point]:fill-destructive",
+      muted:
+        "[&_.sparkline-line]:stroke-muted-foreground [&_.sparkline-area]:fill-muted-foreground [&_.sparkline-point]:fill-muted-foreground",
+      accent:
+        "[&_.sparkline-line]:stroke-accent-foreground [&_.sparkline-area]:fill-accent-foreground [&_.sparkline-point]:fill-accent-foreground",
+      success:
+        "[&_.sparkline-line]:stroke-[hsl(var(--la-chart-3))] [&_.sparkline-area]:fill-[hsl(var(--la-chart-3))] [&_.sparkline-point]:fill-[hsl(var(--la-chart-3))]",
+      warning:
+        "[&_.sparkline-line]:stroke-[hsl(var(--la-chart-4))] [&_.sparkline-area]:fill-[hsl(var(--la-chart-4))] [&_.sparkline-point]:fill-[hsl(var(--la-chart-4))]",
+      chart1:
+        "[&_.sparkline-line]:stroke-chart-1 [&_.sparkline-area]:fill-chart-1 [&_.sparkline-point]:fill-chart-1",
+      chart2:
+        "[&_.sparkline-line]:stroke-chart-2 [&_.sparkline-area]:fill-chart-2 [&_.sparkline-point]:fill-chart-2",
+      chart3:
+        "[&_.sparkline-line]:stroke-chart-3 [&_.sparkline-area]:fill-chart-3 [&_.sparkline-point]:fill-chart-3",
+      chart4:
+        "[&_.sparkline-line]:stroke-chart-4 [&_.sparkline-area]:fill-chart-4 [&_.sparkline-point]:fill-chart-4",
+      chart5:
+        "[&_.sparkline-line]:stroke-chart-5 [&_.sparkline-area]:fill-chart-5 [&_.sparkline-point]:fill-chart-5",
     },
   },
   defaultVariants: {
@@ -61,15 +73,15 @@ function Sparkline({
   ...props
 }: SparklineProps & { ref?: React.Ref<SVGSVGElement> }) {
   const svgRef = ref || React.useRef<SVGSVGElement>(null);
-  
+
   const defaultWidth = size === "sm" ? 48 : size === "lg" ? 112 : 80;
   const defaultHeight = size === "sm" ? 16 : size === "lg" ? 32 : 24;
-  
+
   const svgWidth = width ?? defaultWidth;
   const svgHeight = height ?? defaultHeight;
-  
+
   const padding = Math.max(strokeWidth, pointRadius) + 1;
-  
+
   const chartWidth = svgWidth - padding * 2;
   const chartHeight = svgHeight - padding * 2;
 
@@ -95,13 +107,13 @@ function Sparkline({
     if (curveType === "smooth" && coordinates.length > 2) {
       pathD = coordinates.reduce((acc, point, i) => {
         if (i === 0) return `M ${point.x} ${point.y}`;
-        
+
         const prev = coordinates[i - 1];
         const cp1x = prev.x + (point.x - prev.x) / 3;
         const cp1y = prev.y;
         const cp2x = prev.x + (point.x - prev.x) / 3;
         const cp2y = point.y;
-        
+
         return `${acc} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${point.x} ${point.y}`;
       }, "");
     } else if (curveType === "step") {
@@ -111,9 +123,9 @@ function Sparkline({
         return `${acc} L ${point.x} ${prev.y} L ${point.x} ${point.y}`;
       }, "");
     } else {
-      pathD = coordinates.map((point, i) => 
-        `${i === 0 ? "M" : "L"} ${point.x} ${point.y}`
-      ).join(" ");
+      pathD = coordinates
+        .map((point, i) => `${i === 0 ? "M" : "L"} ${point.x} ${point.y}`)
+        .join(" ");
     }
 
     if (showArea && coordinates.length > 0) {
@@ -121,16 +133,16 @@ function Sparkline({
       if (curveType === "smooth" && coordinates.length > 2) {
         const smoothPath = coordinates.reduce((acc, point, i) => {
           if (i === 0) return `M ${point.x} ${point.y}`;
-          
+
           const prev = coordinates[i - 1];
           const cp1x = prev.x + (point.x - prev.x) / 3;
           const cp1y = prev.y;
           const cp2x = prev.x + (point.x - prev.x) / 3;
           const cp2y = point.y;
-          
+
           return `${acc} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${point.x} ${point.y}`;
         }, "");
-        
+
         const lastCoord = coordinates[coordinates.length - 1];
         const firstCoord = coordinates[0];
         areaD = `${smoothPath} L ${lastCoord.x} ${baseline} L ${firstCoord.x} ${baseline} Z`;
@@ -156,13 +168,14 @@ function Sparkline({
   const autoAriaLabel = React.useMemo(() => {
     if (ariaLabel) return ariaLabel;
     if (!data || data.length === 0) return "Empty sparkline";
-    
+
     const min = Math.min(...data);
     const max = Math.max(...data);
     const first = data[0];
     const last = data[data.length - 1];
-    const trend = last > first ? "upward" : last < first ? "downward" : "stable";
-    
+    const trend =
+      last > first ? "upward" : last < first ? "downward" : "stable";
+
     return `Sparkline: ${data.length} data points, range ${min.toFixed(1)} to ${max.toFixed(1)}, ${trend} trend`;
   }, [ariaLabel, data]);
 
@@ -205,11 +218,7 @@ function Sparkline({
       {...props}
     >
       {showArea && areaPath && (
-        <path
-          className="sparkline-area"
-          d={areaPath}
-          opacity={0.15}
-        />
+        <path className="sparkline-area" d={areaPath} opacity={0.15} />
       )}
       <path
         className="sparkline-line"
@@ -219,15 +228,16 @@ function Sparkline({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {showPoints && points.map((point, index) => (
-        <circle
-          key={index}
-          className="sparkline-point"
-          cx={point.x}
-          cy={point.y}
-          r={pointRadius}
-        />
-      ))}
+      {showPoints &&
+        points.map((point, index) => (
+          <circle
+            key={index}
+            className="sparkline-point"
+            cx={point.x}
+            cy={point.y}
+            r={pointRadius}
+          />
+        ))}
     </svg>
   );
 }

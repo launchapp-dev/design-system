@@ -1,29 +1,26 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../lib/utils";
+import * as React from "react";
 import { useReducedMotion } from "../../lib/animation";
+import { cn } from "../../lib/utils";
 
-const thinkingIndicatorVariants = cva(
-  "inline-flex items-center gap-2",
-  {
-    variants: {
-      variant: {
-        dots: "",
-        brain: "",
-        chain: "",
-      },
-      size: {
-        sm: "text-xs",
-        md: "text-sm",
-        lg: "text-base",
-      },
+const thinkingIndicatorVariants = cva("inline-flex items-center gap-2", {
+  variants: {
+    variant: {
+      dots: "",
+      brain: "",
+      chain: "",
     },
-    defaultVariants: {
-      variant: "dots",
-      size: "md",
+    size: {
+      sm: "text-xs",
+      md: "text-sm",
+      lg: "text-base",
     },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "dots",
+    size: "md",
+  },
+});
 
 const dotSizeClasses = {
   sm: "h-1.5 w-1.5",
@@ -53,14 +50,17 @@ const DotsIndicator = React.forwardRef<
     reducedMotion: boolean;
   }
 >(({ size = "md", label, reducedMotion }, ref) => (
-  <div ref={ref} className="flex items-center gap-1.5 rounded-full bg-muted px-3 py-2">
+  <div
+    ref={ref}
+    className="flex items-center gap-1.5 rounded-full bg-muted px-3 py-2"
+  >
     {[0, 1, 2].map((i) => (
       <span
         key={i}
         className={cn(
           "rounded-full bg-primary",
           dotSizeClasses[size],
-          reducedMotion ? "opacity-60" : undefined
+          reducedMotion ? "opacity-60" : undefined,
         )}
         style={
           reducedMotion
@@ -73,9 +73,7 @@ const DotsIndicator = React.forwardRef<
         aria-hidden="true"
       />
     ))}
-    {label && (
-      <span className="ml-1 text-muted-foreground">{label}</span>
-    )}
+    {label && <span className="ml-1 text-muted-foreground">{label}</span>}
   </div>
 ));
 DotsIndicator.displayName = "DotsIndicator";
@@ -99,7 +97,9 @@ const BrainIndicator = React.forwardRef<
       className={cn(
         "text-primary",
         brainSizeClasses[size],
-        reducedMotion ? undefined : "animate-[brain-pulse_2s_ease-in-out_infinite]"
+        reducedMotion
+          ? undefined
+          : "animate-[brain-pulse_2s_ease-in-out_infinite]",
       )}
       aria-hidden="true"
     >
@@ -151,13 +151,15 @@ const ChainIndicator = React.forwardRef<
             "flex items-center gap-2 text-muted-foreground",
             size === "sm" && "text-xs",
             size === "md" && "text-sm",
-            size === "lg" && "text-base"
+            size === "lg" && "text-base",
           )}
         >
           <span
             className={cn(
               "flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-[10px] text-primary",
-              index === displayStep - 1 && !reducedMotion && "animate-[chain-pulse_1s_ease-in-out_infinite]"
+              index === displayStep - 1 &&
+                !reducedMotion &&
+                "animate-[chain-pulse_1s_ease-in-out_infinite]",
             )}
           >
             {index + 1}
@@ -203,7 +205,6 @@ function ThinkingIndicator({
             reducedMotion={reducedMotion}
           />
         );
-      case "dots":
       default:
         return (
           <DotsIndicator
@@ -272,6 +273,8 @@ function ThinkingIndicator({
 
 ThinkingIndicator.displayName = "ThinkingIndicator";
 
-export type ThinkingIndicatorVariants = VariantProps<typeof thinkingIndicatorVariants>;
+export type ThinkingIndicatorVariants = VariantProps<
+  typeof thinkingIndicatorVariants
+>;
 
 export { ThinkingIndicator, thinkingIndicatorVariants };

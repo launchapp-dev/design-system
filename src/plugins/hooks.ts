@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import type { PluginMetadata } from "./types";
 import {
-  getActivePlugins,
-  collectPluginVariants,
-  collectPluginDefaultVariants,
-  applyPluginHooks,
   applyAfterRenderHooks,
+  applyPluginHooks,
+  collectPluginDefaultVariants,
+  collectPluginVariants,
+  getActivePlugins,
 } from "./utils";
 
 /**
@@ -28,7 +28,7 @@ export function usePluginVariants(componentName: string) {
 export function usePluginDefaultVariants(componentName: string) {
   return useMemo(
     () => collectPluginDefaultVariants(componentName),
-    [componentName]
+    [componentName],
   );
 }
 
@@ -36,10 +36,7 @@ export function usePluginDefaultVariants(componentName: string) {
  * Hook to apply plugins to component props
  * Returns modified props and after-render hooks to apply
  */
-export function useApplyPlugins(
-  componentName: string,
-  props: any
-) {
+export function useApplyPlugins(componentName: string, props: any) {
   return useMemo(() => {
     const plugins = getActivePlugins(componentName);
     return applyPluginHooks(props, plugins);
@@ -51,7 +48,7 @@ export function useApplyPlugins(
  */
 export function useApplyAfterRenderHooks(
   componentName: string,
-  element: React.ReactElement
+  element: React.ReactElement,
 ) {
   return useMemo(() => {
     const plugins = getActivePlugins(componentName);

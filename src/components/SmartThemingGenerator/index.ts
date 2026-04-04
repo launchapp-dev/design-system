@@ -1,1 +1,4 @@
-export { SmartThemingGenerator, type SmartThemingGeneratorProps } from "./SmartThemingGenerator";
+export {
+  SmartThemingGenerator,
+  type SmartThemingGeneratorProps,
+} from "./SmartThemingGenerator";

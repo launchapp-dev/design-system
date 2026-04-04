@@ -1,4 +1,4 @@
-import { Button, Card, Badge } from "@launchapp/design-system";
+import { Badge, Button, Card } from "@launchapp/design-system";
 
 export default function AdminDashboard() {
   return (
@@ -6,7 +6,7 @@ export default function AdminDashboard() {
       {/* Sidebar */}
       <aside className="w-64 border-r bg-card p-6 space-y-6">
         <div>
-          <h1 className="text-2xl font-bold">{{projectName}}</h1>
+          <h1 className="text-2xl font-bold">{{ projectName }}</h1>
           <p className="text-sm text-muted-foreground">Admin Panel</p>
         </div>
 
@@ -19,7 +19,9 @@ export default function AdminDashboard() {
         </nav>
 
         <div className="pt-6 border-t">
-          <Button variant="outline" className="w-full">Sign Out</Button>
+          <Button variant="outline" className="w-full">
+            Sign Out
+          </Button>
         </div>
       </aside>
 
@@ -45,7 +47,9 @@ export default function AdminDashboard() {
               <Card className="p-6">
                 <p className="text-sm text-muted-foreground">Total Users</p>
                 <p className="text-3xl font-bold mt-2">1,234</p>
-                <p className="text-xs text-muted-foreground mt-2">+5% from last month</p>
+                <p className="text-xs text-muted-foreground mt-2">
+                  +5% from last month
+                </p>
               </Card>
               <Card className="p-6">
                 <p className="text-sm text-muted-foreground">Active Sessions</p>
@@ -71,7 +75,9 @@ export default function AdminDashboard() {
           <div>
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">Recent Users</h3>
-              <Button variant="default" size="sm">Add User</Button>
+              <Button variant="default" size="sm">
+                Add User
+              </Button>
             </div>
             <Card className="overflow-hidden">
               <table className="w-full">
@@ -79,15 +85,35 @@ export default function AdminDashboard() {
                   <tr>
                     <th className="text-left px-6 py-3 font-semibold">Name</th>
                     <th className="text-left px-6 py-3 font-semibold">Email</th>
-                    <th className="text-left px-6 py-3 font-semibold">Status</th>
-                    <th className="text-left px-6 py-3 font-semibold">Actions</th>
+                    <th className="text-left px-6 py-3 font-semibold">
+                      Status
+                    </th>
+                    <th className="text-left px-6 py-3 font-semibold">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <TableRow name="Sarah Johnson" email="sarah@example.com" status="Active" />
-                  <TableRow name="Mike Chen" email="mike@example.com" status="Active" />
-                  <TableRow name="Emma Wilson" email="emma@example.com" status="Pending" />
-                  <TableRow name="John Brown" email="john@example.com" status="Active" />
+                  <TableRow
+                    name="Sarah Johnson"
+                    email="sarah@example.com"
+                    status="Active"
+                  />
+                  <TableRow
+                    name="Mike Chen"
+                    email="mike@example.com"
+                    status="Active"
+                  />
+                  <TableRow
+                    name="Emma Wilson"
+                    email="emma@example.com"
+                    status="Pending"
+                  />
+                  <TableRow
+                    name="John Brown"
+                    email="john@example.com"
+                    status="Active"
+                  />
                 </tbody>
               </table>
             </Card>
@@ -98,7 +124,15 @@ export default function AdminDashboard() {
   );
 }
 
-function NavItem({ label, href, active = false }: { label: string; href: string; active?: boolean }) {
+function NavItem({
+  label,
+  href,
+  active = false,
+}: {
+  label: string;
+  href: string;
+  active?: boolean;
+}) {
   return (
     <a
       href={href}
@@ -113,7 +147,15 @@ function NavItem({ label, href, active = false }: { label: string; href: string;
   );
 }
 
-function TableRow({ name, email, status }: { name: string; email: string; status: string }) {
+function TableRow({
+  name,
+  email,
+  status,
+}: {
+  name: string;
+  email: string;
+  status: string;
+}) {
   return (
     <tr className="border-b hover:bg-muted/50 transition-colors">
       <td className="px-6 py-4 font-medium">{name}</td>
@@ -124,7 +166,9 @@ function TableRow({ name, email, status }: { name: string; email: string; status
         </Badge>
       </td>
       <td className="px-6 py-4">
-        <Button variant="ghost" size="sm">Edit</Button>
+        <Button variant="ghost" size="sm">
+          Edit
+        </Button>
       </td>
     </tr>
   );

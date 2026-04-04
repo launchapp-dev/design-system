@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
-import { SmartThemingGenerator } from "./SmartThemingGenerator";
-import { ThemePreview } from "../ThemePreview";
+import { useState } from "react";
 import type { VisionColorMap } from "@/lib/vision";
+import { ThemePreview } from "../ThemePreview";
+import { SmartThemingGenerator } from "./SmartThemingGenerator";
 
 const meta: Meta<typeof SmartThemingGenerator> = {
   title: "Design System/Smart Theming",
@@ -101,11 +101,6 @@ export const PreviewOnly: Story = {
 
 export const DisabledState: Story = {
   render: function Render() {
-    return (
-      <SmartThemingGenerator
-        apiKey=""
-        disabled={true}
-      />
-    );
+    return <SmartThemingGenerator apiKey="" disabled={true} />;
   },
 };

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { StatusPage } from "./index";
 import type { StatusService } from "./index";
+import { StatusPage } from "./index";
 
 const meta: Meta<typeof StatusPage> = {
   title: "Components/StatusPage",
@@ -11,7 +10,10 @@ const meta: Meta<typeof StatusPage> = {
 export default meta;
 type Story = StoryObj<typeof StatusPage>;
 
-const generateHistory = (days: number, degradedDays: number[] = []): StatusService["uptimeHistory"] => {
+const generateHistory = (
+  days: number,
+  degradedDays: number[] = [],
+): StatusService["uptimeHistory"] => {
   return Array.from({ length: days }, (_, i) => ({
     date: new Date(Date.now() - (days - 1 - i) * 86400000)
       .toISOString()

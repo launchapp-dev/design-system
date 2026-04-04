@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { readFile, writeFile } from "fs/promises";
-import { join, dirname, basename } from "path";
-import { fileURLToPath } from "url";
+import { readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -19,7 +19,9 @@ function extractVariantsFromCode(code) {
   const variants = {};
 
   // Match CVA variant definitions - find variants block
-  const variantsMatch = code.match(/variants:\s*{([\s\S]*?)},\s*defaultVariants/);
+  const variantsMatch = code.match(
+    /variants:\s*{([\s\S]*?)},\s*defaultVariants/,
+  );
 
   if (variantsMatch) {
     const variantsBlock = variantsMatch[1];
@@ -56,7 +58,7 @@ function extractVariantsFromCode(code) {
 
 // Generate snippet body based on component name and variants
 function generateSnippetBody(componentName, variants) {
-  const kebabName = toKebabCase(componentName);
+  const _kebabName = toKebabCase(componentName);
   const props = [];
   let tabIndex = 1;
 
@@ -72,7 +74,10 @@ function generateSnippetBody(componentName, variants) {
   props.push(`className="$${tabIndex}"`);
 
   // Generate opening tag
-  const openTag = props.length > 0 ? `<${componentName} ${props.join(" ")} />` : `<${componentName} />`;
+  const openTag =
+    props.length > 0
+      ? `<${componentName} ${props.join(" ")} />`
+      : `<${componentName} />`;
 
   return [openTag];
 }
@@ -96,7 +101,9 @@ async function generateSnippets() {
     }
 
     const componentName = item.name;
-    const mainFile = item.files.find((f) => f.path.endsWith(".tsx") && !f.path.includes("index"));
+    const mainFile = item.files.find(
+      (f) => f.path.endsWith(".tsx") && !f.path.includes("index"),
+    );
 
     if (!mainFile) {
       continue;
@@ -120,7 +127,7 @@ async function generateSnippets() {
               c.length > 0 &&
               !c.includes("Props") &&
               !c.includes("Variants") &&
-              !c.includes("Root")
+              !c.includes("Root"),
           );
       }
 
@@ -156,7 +163,7 @@ async function generateSnippets() {
               // Only add first 3 variants
               const variantKey = `${snippetKey}-${value}`;
               const variantBody = [
-                `<${component} ${variantType}="${value}" $\{1:\} />`
+                `<${component} ${variantType}="${value}" $\{1:} />`,
               ];
 
               snippets[variantKey] = {
@@ -188,7 +195,7 @@ async function generateSnippets() {
   } catch (error) {
     // Ensure directory exists
     if (error.code === "ENOENT") {
-      const fs = await import("fs");
+      const fs = await import("node:fs");
       fs.mkdirSync(snippetsDir, { recursive: true });
       await writeFile(snippetsPath, JSON.stringify(snippets, null, 2));
       console.log(`\n✅ Generated ${Object.keys(snippets).length} snippets`);

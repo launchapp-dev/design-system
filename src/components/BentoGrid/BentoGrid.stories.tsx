@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
-  BentoGrid,
   BentoCard,
+  BentoCardBody,
+  BentoCardDescription,
+  BentoCardFooter,
   BentoCardHeader,
   BentoCardTitle,
-  BentoCardDescription,
-  BentoCardBody,
-  BentoCardFooter,
+  BentoGrid,
 } from "./index";
 
 const meta = {
@@ -88,13 +88,17 @@ export const Default: Story = {
       <BentoCard icon={<SampleIcon />}>
         <BentoCardHeader>
           <BentoCardTitle>Analytics</BentoCardTitle>
-          <BentoCardDescription>Track your performance metrics</BentoCardDescription>
+          <BentoCardDescription>
+            Track your performance metrics
+          </BentoCardDescription>
         </BentoCardHeader>
       </BentoCard>
       <BentoCard icon={<ChartIcon />}>
         <BentoCardHeader>
           <BentoCardTitle>Reports</BentoCardTitle>
-          <BentoCardDescription>Generate detailed insights</BentoCardDescription>
+          <BentoCardDescription>
+            Generate detailed insights
+          </BentoCardDescription>
         </BentoCardHeader>
       </BentoCard>
       <BentoCard icon={<UsersIcon />}>
@@ -181,9 +185,16 @@ export const SpanControls: Story = {
         <BentoCardBody style={{ padding: "24px" }}>
           <BentoCardTitle>Featured Content</BentoCardTitle>
           <BentoCardDescription>
-            This card spans 2 columns and 2 rows, perfect for hero content or featured items.
+            This card spans 2 columns and 2 rows, perfect for hero content or
+            featured items.
           </BentoCardDescription>
-          <div style={{ marginTop: "16px", fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
+          <div
+            style={{
+              marginTop: "16px",
+              fontSize: "0.875rem",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
             Additional content area for the larger card layout.
           </div>
         </BentoCardBody>
@@ -203,7 +214,9 @@ export const SpanControls: Story = {
       <BentoCard colSpan={2} rowSpan={1} variant="accent">
         <BentoCardBody>
           <BentoCardTitle>Wide Card</BentoCardTitle>
-          <BentoCardDescription>This card spans 2 columns in a single row</BentoCardDescription>
+          <BentoCardDescription>
+            This card spans 2 columns in a single row
+          </BentoCardDescription>
         </BentoCardBody>
       </BentoCard>
       <BentoCard colSpan={1} rowSpan={1}>
@@ -234,7 +247,9 @@ export const CardVariants: Story = {
       <BentoCard variant="gradient">
         <BentoCardBody>
           <BentoCardTitle>Gradient</BentoCardTitle>
-          <BentoCardDescription>Gradient background effect</BentoCardDescription>
+          <BentoCardDescription>
+            Gradient background effect
+          </BentoCardDescription>
         </BentoCardBody>
       </BentoCard>
       <BentoCard variant="accent">
@@ -290,7 +305,13 @@ export const WithContentSlots: Story = {
       <BentoCard
         icon={<SampleIcon />}
         footer={
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              fontSize: "0.75rem",
+            }}
+          >
             <span>Last updated: 2h ago</span>
             <span style={{ color: "hsl(var(--primary))" }}>View details →</span>
           </div>
@@ -314,7 +335,14 @@ export const WithContentSlots: Story = {
       <BentoCard
         header={
           <div style={{ padding: "16px 16px 0" }}>
-            <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "hsl(var(--primary))" }}>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                color: "hsl(var(--primary))",
+              }}
+            >
               Featured
             </span>
           </div>
@@ -334,7 +362,9 @@ export const WithContentSlots: Story = {
 export const Responsive: Story = {
   render: () => (
     <div>
-      <p style={{ marginBottom: "16px", color: "hsl(var(--muted-foreground))" }}>
+      <p
+        style={{ marginBottom: "16px", color: "hsl(var(--muted-foreground))" }}
+      >
         Resize the viewport to see responsive column changes (1 → 2 → 3 columns)
       </p>
       <BentoGrid columns={3} gap="md">
@@ -354,7 +384,10 @@ export const Responsive: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
@@ -364,7 +397,9 @@ export const DarkMode: Story = {
       <BentoCard variant="default" icon={<SampleIcon />}>
         <BentoCardBody>
           <BentoCardTitle>Dark Mode Card</BentoCardTitle>
-          <BentoCardDescription>Card styled for dark theme</BentoCardDescription>
+          <BentoCardDescription>
+            Card styled for dark theme
+          </BentoCardDescription>
         </BentoCardBody>
       </BentoCard>
       <BentoCard variant="gradient">
@@ -376,7 +411,9 @@ export const DarkMode: Story = {
       <BentoCard variant="outlined">
         <BentoCardBody>
           <BentoCardTitle>Outlined Dark</BentoCardTitle>
-          <BentoCardDescription>Border styling in dark theme</BentoCardDescription>
+          <BentoCardDescription>
+            Border styling in dark theme
+          </BentoCardDescription>
         </BentoCardBody>
       </BentoCard>
     </BentoGrid>
@@ -386,13 +423,28 @@ export const DarkMode: Story = {
 export const DashboardExample: Story = {
   render: () => (
     <BentoGrid columns={4} gap="md">
-      <BentoCard colSpan={2} rowSpan={2} variant="gradient" icon={<ChartIcon />}>
+      <BentoCard
+        colSpan={2}
+        rowSpan={2}
+        variant="gradient"
+        icon={<ChartIcon />}
+      >
         <BentoCardBody style={{ padding: "24px" }}>
           <BentoCardTitle>Revenue Overview</BentoCardTitle>
-          <BentoCardDescription>Monthly performance metrics</BentoCardDescription>
+          <BentoCardDescription>
+            Monthly performance metrics
+          </BentoCardDescription>
           <div style={{ marginTop: "24px" }}>
-            <div style={{ fontSize: "2.5rem", fontWeight: 700, lineHeight: 1 }}>$48,352</div>
-            <div style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", marginTop: "4px" }}>
+            <div style={{ fontSize: "2.5rem", fontWeight: 700, lineHeight: 1 }}>
+              $48,352
+            </div>
+            <div
+              style={{
+                fontSize: "0.875rem",
+                color: "hsl(var(--muted-foreground))",
+                marginTop: "4px",
+              }}
+            >
               +12.5% from last month
             </div>
           </div>
@@ -405,18 +457,40 @@ export const DashboardExample: Story = {
         <BentoCardBody>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <UsersIcon />
-            <span style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>Users</span>
+            <span
+              style={{
+                fontSize: "0.875rem",
+                color: "hsl(var(--muted-foreground))",
+              }}
+            >
+              Users
+            </span>
           </div>
-          <div style={{ fontSize: "1.75rem", fontWeight: 600, marginTop: "8px" }}>2,451</div>
+          <div
+            style={{ fontSize: "1.75rem", fontWeight: 600, marginTop: "8px" }}
+          >
+            2,451
+          </div>
         </BentoCardBody>
       </BentoCard>
       <BentoCard>
         <BentoCardBody>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <SampleIcon />
-            <span style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>Projects</span>
+            <span
+              style={{
+                fontSize: "0.875rem",
+                color: "hsl(var(--muted-foreground))",
+              }}
+            >
+              Projects
+            </span>
           </div>
-          <div style={{ fontSize: "1.75rem", fontWeight: 600, marginTop: "8px" }}>128</div>
+          <div
+            style={{ fontSize: "1.75rem", fontWeight: 600, marginTop: "8px" }}
+          >
+            128
+          </div>
         </BentoCardBody>
       </BentoCard>
       <BentoCard colSpan={2} variant="accent">
@@ -424,10 +498,20 @@ export const DashboardExample: Story = {
           <BentoCardTitle>Recent Activity</BentoCardTitle>
           <BentoCardDescription>Latest team updates</BentoCardDescription>
           <div style={{ marginTop: "12px", fontSize: "0.875rem" }}>
-            <div style={{ padding: "8px 0", borderBottom: "1px solid hsl(var(--border))" }}>
+            <div
+              style={{
+                padding: "8px 0",
+                borderBottom: "1px solid hsl(var(--border))",
+              }}
+            >
               New user signup: john@example.com
             </div>
-            <div style={{ padding: "8px 0", borderBottom: "1px solid hsl(var(--border))" }}>
+            <div
+              style={{
+                padding: "8px 0",
+                borderBottom: "1px solid hsl(var(--border))",
+              }}
+            >
               Project "Dashboard" completed
             </div>
             <div style={{ padding: "8px 0" }}>Payment received: $2,400</div>

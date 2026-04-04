@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import {
-  DialogRoot,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-  DialogClose,
-} from "./index";
 import { Button } from "../Button";
+import {
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+} from "./index";
 
 const meta: Meta = {
   title: "Components/Dialog",
@@ -29,7 +29,8 @@ export const Default: Story = {
         <DialogHeader>
           <DialogTitle>Dialog Title</DialogTitle>
           <DialogDescription>
-            This is a dialog description that provides context about what this dialog does.
+            This is a dialog description that provides context about what this
+            dialog does.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -60,9 +61,23 @@ export const WithForm: Story = {
               Make changes to your profile here. Click save when you are done.
             </DialogDescription>
           </DialogHeader>
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "16px 0" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "14px", fontWeight: 500 }} htmlFor="name">Name</label>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px 0",
+            }}
+          >
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "6px" }}
+            >
+              <label
+                style={{ fontSize: "14px", fontWeight: 500 }}
+                htmlFor="name"
+              >
+                Name
+              </label>
               <input
                 id="name"
                 value={name}
@@ -79,8 +94,15 @@ export const WithForm: Story = {
                 }}
               />
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "14px", fontWeight: 500 }} htmlFor="email">Email</label>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "6px" }}
+            >
+              <label
+                style={{ fontSize: "14px", fontWeight: 500 }}
+                htmlFor="email"
+              >
+                Email
+              </label>
               <input
                 id="email"
                 type="email"

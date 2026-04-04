@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import {
-  MenubarRoot,
-  MenubarMenu,
-  MenubarTrigger,
+  MenubarCheckboxItem,
   MenubarContent,
   MenubarItem,
-  MenubarCheckboxItem,
-  MenubarRadioItem,
   MenubarLabel,
+  MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarRoot,
   MenubarSeparator,
   MenubarShortcut,
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
-  MenubarRadioGroup,
+  MenubarTrigger,
 } from "./index";
 
 const meta: Meta<typeof MenubarRoot> = {
@@ -129,7 +129,10 @@ export const AllVariants: Story = {
           <MenubarMenu>
             <MenubarTrigger>View</MenubarTrigger>
             <MenubarContent>
-              <MenubarCheckboxItem checked={bookmarks} onCheckedChange={setBookmarks}>
+              <MenubarCheckboxItem
+                checked={bookmarks}
+                onCheckedChange={setBookmarks}
+              >
                 Always Show Bookmarks
                 <MenubarShortcut>⌘⇧B</MenubarShortcut>
               </MenubarCheckboxItem>
@@ -167,7 +170,14 @@ export const Interactive: Story = {
     const [lastAction, setLastAction] = React.useState<string | null>(null);
 
     return (
-      <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div
+        style={{
+          padding: "32px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+        }}
+      >
         <MenubarRoot>
           <MenubarMenu>
             <MenubarTrigger>File</MenubarTrigger>
@@ -188,10 +198,16 @@ export const Interactive: Story = {
           <MenubarMenu>
             <MenubarTrigger>View</MenubarTrigger>
             <MenubarContent>
-              <MenubarCheckboxItem checked={bookmarks} onCheckedChange={setBookmarks}>
+              <MenubarCheckboxItem
+                checked={bookmarks}
+                onCheckedChange={setBookmarks}
+              >
                 Show Bookmarks Bar
               </MenubarCheckboxItem>
-              <MenubarCheckboxItem checked={fullUrls} onCheckedChange={setFullUrls}>
+              <MenubarCheckboxItem
+                checked={fullUrls}
+                onCheckedChange={setFullUrls}
+              >
                 Show Full URLs
               </MenubarCheckboxItem>
             </MenubarContent>
@@ -212,7 +228,8 @@ export const Interactive: Story = {
 
         <p style={{ fontSize: "13px", color: "hsl(var(--muted-foreground))" }}>
           {lastAction ? `Last action: ${lastAction} · ` : ""}
-          Bookmarks: {bookmarks ? "on" : "off"} · Full URLs: {fullUrls ? "on" : "off"} · Theme: {theme}
+          Bookmarks: {bookmarks ? "on" : "off"} · Full URLs:{" "}
+          {fullUrls ? "on" : "off"} · Theme: {theme}
         </p>
       </div>
     );
@@ -255,16 +272,33 @@ export const DarkMode: Story = {
 
 export const EdgeCases: Story = {
   render: () => (
-    <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "24px" }}>
+    <div
+      style={{
+        padding: "32px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+      }}
+    >
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Inset items</p>
+        <p
+          style={{
+            fontSize: "12px",
+            marginBottom: "8px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          Inset items
+        </p>
         <MenubarRoot>
           <MenubarMenu>
             <MenubarTrigger>Menu</MenubarTrigger>
             <MenubarContent>
               <MenubarLabel inset>Section</MenubarLabel>
               <MenubarItem inset>Inset Item</MenubarItem>
-              <MenubarItem inset disabled>Inset Disabled</MenubarItem>
+              <MenubarItem inset disabled>
+                Inset Disabled
+              </MenubarItem>
               <MenubarSeparator />
               <MenubarItem inset>Another Item</MenubarItem>
             </MenubarContent>
@@ -272,7 +306,15 @@ export const EdgeCases: Story = {
         </MenubarRoot>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Nested sub-menus</p>
+        <p
+          style={{
+            fontSize: "12px",
+            marginBottom: "8px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          Nested sub-menus
+        </p>
         <MenubarRoot>
           <MenubarMenu>
             <MenubarTrigger>Options</MenubarTrigger>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { TagInput } from "./index";
 
 const TECH_SUGGESTIONS = [
@@ -131,7 +131,11 @@ export const SizeVariants: Story = {
   render: () => {
     const [sm, setSm] = React.useState<string[]>(["React"]);
     const [md, setMd] = React.useState<string[]>(["React", "TypeScript"]);
-    const [lg, setLg] = React.useState<string[]>(["React", "TypeScript", "Node.js"]);
+    const [lg, setLg] = React.useState<string[]>([
+      "React",
+      "TypeScript",
+      "Node.js",
+    ]);
     return (
       <div
         style={{

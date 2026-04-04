@@ -22,25 +22,25 @@ export interface RGBColor {
  * Semantic token names in the design system
  */
 export type SemanticTokenName =
-  | 'background'
-  | 'foreground'
-  | 'card'
-  | 'card-foreground'
-  | 'popover'
-  | 'popover-foreground'
-  | 'primary'
-  | 'primary-foreground'
-  | 'secondary'
-  | 'secondary-foreground'
-  | 'muted'
-  | 'muted-foreground'
-  | 'accent'
-  | 'accent-foreground'
-  | 'destructive'
-  | 'destructive-foreground'
-  | 'border'
-  | 'input'
-  | 'ring';
+  | "background"
+  | "foreground"
+  | "card"
+  | "card-foreground"
+  | "popover"
+  | "popover-foreground"
+  | "primary"
+  | "primary-foreground"
+  | "secondary"
+  | "secondary-foreground"
+  | "muted"
+  | "muted-foreground"
+  | "accent"
+  | "accent-foreground"
+  | "destructive"
+  | "destructive-foreground"
+  | "border"
+  | "input"
+  | "ring";
 
 /**
  * A single token value mapping
@@ -100,7 +100,7 @@ export interface TokenSyncExport {
 export interface FigmaVariable {
   id: string;
   name: string;
-  resolvedType: 'COLOR' | 'FLOAT' | 'STRING' | 'BOOLEAN';
+  resolvedType: "COLOR" | "FLOAT" | "STRING" | "BOOLEAN";
   valuesByMode: Record<string, RGBColor | number | string | boolean>;
   description?: string;
 }
@@ -130,7 +130,7 @@ export interface FigmaImportData {
  */
 export interface SyncResult {
   success: boolean;
-  direction: 'export' | 'import';
+  direction: "export" | "import";
   palettesAffected: string[];
   changesApplied: {
     added: number;
@@ -169,32 +169,37 @@ export interface ValidationResult {
  */
 
 export const SEMANTIC_TOKEN_NAMES: SemanticTokenName[] = [
-  'background',
-  'foreground',
-  'card',
-  'card-foreground',
-  'popover',
-  'popover-foreground',
-  'primary',
-  'primary-foreground',
-  'secondary',
-  'secondary-foreground',
-  'muted',
-  'muted-foreground',
-  'accent',
-  'accent-foreground',
-  'destructive',
-  'destructive-foreground',
-  'border',
-  'input',
-  'ring',
+  "background",
+  "foreground",
+  "card",
+  "card-foreground",
+  "popover",
+  "popover-foreground",
+  "primary",
+  "primary-foreground",
+  "secondary",
+  "secondary-foreground",
+  "muted",
+  "muted-foreground",
+  "accent",
+  "accent-foreground",
+  "destructive",
+  "destructive-foreground",
+  "border",
+  "input",
+  "ring",
 ];
 
 /**
  * Check if a value is a valid SemanticTokenName
  */
-export function isSemanticTokenName(value: unknown): value is SemanticTokenName {
-  return typeof value === 'string' && SEMANTIC_TOKEN_NAMES.includes(value as SemanticTokenName);
+export function isSemanticTokenName(
+  value: unknown,
+): value is SemanticTokenName {
+  return (
+    typeof value === "string" &&
+    SEMANTIC_TOKEN_NAMES.includes(value as SemanticTokenName)
+  );
 }
 
 /**
@@ -220,14 +225,20 @@ export function isValidHSL(value: string): boolean {
 /**
  * Create a branded HSL string
  */
-export function createHSLString(hue: number, saturation: number, lightness: number): HSLString {
+export function createHSLString(
+  hue: number,
+  saturation: number,
+  lightness: number,
+): HSLString {
   return `${Math.round(hue)} ${Math.round(saturation)}% ${Math.round(lightness)}%` as HSLString;
 }
 
 /**
  * Parse HSL string to components
  */
-export function parseHSL(hsl: string): { h: number; s: number; l: number } | null {
+export function parseHSL(
+  hsl: string,
+): { h: number; s: number; l: number } | null {
   const match = hsl.match(/^(\d{1,3})\s+(\d{1,3})%\s+(\d{1,3})%$/);
   if (!match) return null;
 
@@ -264,7 +275,10 @@ export function hslToRGB(hsl: string): RGBColor | null {
       return p;
     };
 
-    const q = l_normalized < 0.5 ? l_normalized * (1 + s_normalized) : l_normalized + s_normalized - l_normalized * s_normalized;
+    const q =
+      l_normalized < 0.5
+        ? l_normalized * (1 + s_normalized)
+        : l_normalized + s_normalized - l_normalized * s_normalized;
     const p = 2 * l_normalized - q;
 
     r = hue2rgb(p, q, h_normalized + 1 / 3);

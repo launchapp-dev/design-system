@@ -1,2 +1,2 @@
+export type { BlogPost, PostListProps } from "./PostList";
 export { PostList } from "./PostList";
-export type { PostListProps, BlogPost } from "./PostList";

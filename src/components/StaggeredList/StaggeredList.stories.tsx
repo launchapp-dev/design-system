@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { StaggeredList } from "./index";
 
 const meta: Meta<typeof StaggeredList> = {
@@ -42,7 +41,13 @@ export const Default: Story = {
           }}
         >
           <p style={{ fontWeight: "600", fontSize: "14px" }}>{item.title}</p>
-          <p style={{ fontSize: "13px", color: "hsl(var(--la-muted-foreground))", marginTop: "4px" }}>
+          <p
+            style={{
+              fontSize: "13px",
+              color: "hsl(var(--la-muted-foreground))",
+              marginTop: "4px",
+            }}
+          >
             {item.description}
           </p>
         </div>
@@ -94,7 +99,13 @@ export const SlowStagger: Story = {
           }}
         >
           <p style={{ fontWeight: "600" }}>{item.title}</p>
-          <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))", marginTop: "4px" }}>
+          <p
+            style={{
+              fontSize: "14px",
+              color: "hsl(var(--la-muted-foreground))",
+              marginTop: "4px",
+            }}
+          >
             {item.description}
           </p>
         </div>

@@ -16,7 +16,8 @@ export const templates: TemplateEntry[] = [
   {
     id: "dashboard",
     name: "Admin Dashboard",
-    description: "Full-featured admin dashboard with metrics, charts, and data management.",
+    description:
+      "Full-featured admin dashboard with metrics, charts, and data management.",
     category: "SaaS",
     features: [
       "Real-time metrics and KPIs",
@@ -63,7 +64,8 @@ export default function DashboardPage() {
   {
     id: "ecommerce",
     name: "E-commerce Store",
-    description: "Complete e-commerce platform with product catalog, shopping cart, and checkout.",
+    description:
+      "Complete e-commerce platform with product catalog, shopping cart, and checkout.",
     category: "Retail",
     features: [
       "Product catalog with filtering",
@@ -117,7 +119,8 @@ export default function StorePage() {
   {
     id: "landing",
     name: "Landing Page",
-    description: "Conversion-focused landing page with hero section, features, and CTA.",
+    description:
+      "Conversion-focused landing page with hero section, features, and CTA.",
     category: "Marketing",
     features: [
       "Eye-catching hero section",

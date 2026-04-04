@@ -1,9 +1,13 @@
-import * as React from "react";
+import type * as React from "react";
 import { Toaster as SonnerToaster } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof SonnerToaster>;
 
-function Toaster({ theme = "system", ref, ...props }: ToasterProps & { ref?: React.Ref<HTMLElement> }) {
+function Toaster({
+  theme = "system",
+  ref,
+  ...props
+}: ToasterProps & { ref?: React.Ref<HTMLElement> }) {
   return (
     <SonnerToaster
       ref={ref}
@@ -28,5 +32,5 @@ function Toaster({ theme = "system", ref, ...props }: ToasterProps & { ref?: Rea
 }
 Toaster.displayName = "Toaster";
 
-export { Toaster };
 export type { ToasterProps };
+export { Toaster };

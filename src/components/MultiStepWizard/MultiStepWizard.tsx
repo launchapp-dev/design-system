@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const multiStepWizardVariants = cva("w-full", {
@@ -55,7 +55,8 @@ function MultiStepWizard({
   const step = steps[currentStep];
   const isFirst = currentStep === 0;
   const isLast = currentStep === steps.length - 1;
-  const progress = steps.length > 0 ? ((currentStep + 1) / steps.length) * 100 : 0;
+  const progress =
+    steps.length > 0 ? ((currentStep + 1) / steps.length) * 100 : 0;
   const stepTitleId = `wizard-step-${currentStep}-title`;
 
   const handleNext = async () => {
@@ -115,7 +116,7 @@ function MultiStepWizard({
               key={s.id}
               className={cn(
                 "flex-1 h-1 rounded-full transition-colors duration-200",
-                i <= currentStep ? "bg-primary" : "bg-muted"
+                i <= currentStep ? "bg-primary" : "bg-muted",
               )}
               aria-hidden="true"
             />
@@ -126,15 +127,27 @@ function MultiStepWizard({
       {(step?.title || step?.description) && (
         <div className="mb-6">
           {step.title && (
-            <h3 id={stepTitleId} className="text-lg font-semibold text-foreground">{step.title}</h3>
+            <h3
+              id={stepTitleId}
+              className="text-lg font-semibold text-foreground"
+            >
+              {step.title}
+            </h3>
           )}
           {step.description && (
-            <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              {step.description}
+            </p>
           )}
         </div>
       )}
 
-      <div className="mb-6" aria-labelledby={step?.title ? stepTitleId : undefined}>{step?.content}</div>
+      <div
+        className="mb-6"
+        aria-labelledby={step?.title ? stepTitleId : undefined}
+      >
+        {step?.content}
+      </div>
 
       <div className="flex items-center justify-between gap-3">
         <div className="flex gap-2">
@@ -148,7 +161,7 @@ function MultiStepWizard({
               "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
               "h-10 px-4 py-2",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              "disabled:pointer-events-none disabled:opacity-50"
+              "disabled:pointer-events-none disabled:opacity-50",
             )}
           >
             {prevLabel}
@@ -162,7 +175,7 @@ function MultiStepWizard({
                 "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
                 "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
                 "h-10 px-4 py-2",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               )}
             >
               {saveDraftLabel}
@@ -173,13 +186,17 @@ function MultiStepWizard({
           type="button"
           onClick={handleNext}
           disabled={validating}
-          aria-label={isLast ? `${completeLabel} wizard` : `Go to next step (Step ${currentStep + 2} of ${steps.length})`}
+          aria-label={
+            isLast
+              ? `${completeLabel} wizard`
+              : `Go to next step (Step ${currentStep + 2} of ${steps.length})`
+          }
           className={cn(
             "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
             "bg-primary text-primary-foreground hover:bg-primary/90",
             "h-10 px-4 py-2",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            "disabled:pointer-events-none disabled:opacity-50"
+            "disabled:pointer-events-none disabled:opacity-50",
           )}
         >
           {validating ? "Validating…" : isLast ? completeLabel : nextLabel}
@@ -191,6 +208,8 @@ function MultiStepWizard({
 
 MultiStepWizard.displayName = "MultiStepWizard";
 
-export type MultiStepWizardVariants = VariantProps<typeof multiStepWizardVariants>;
+export type MultiStepWizardVariants = VariantProps<
+  typeof multiStepWizardVariants
+>;
 
 export { MultiStepWizard };

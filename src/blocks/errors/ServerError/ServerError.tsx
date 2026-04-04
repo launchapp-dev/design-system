@@ -19,7 +19,15 @@ const defaultIllustration = (
     aria-hidden="true"
   >
     <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="4" />
-    <text x="50%" y="52%" dominantBaseline="middle" textAnchor="middle" fontSize="64" fontWeight="bold" fill="currentColor">
+    <text
+      x="50%"
+      y="52%"
+      dominantBaseline="middle"
+      textAnchor="middle"
+      fontSize="64"
+      fontWeight="bold"
+      fill="currentColor"
+    >
       500
     </text>
   </svg>
@@ -38,29 +46,34 @@ const ServerError = React.forwardRef<HTMLDivElement, ServerErrorProps>(
       illustration,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
         className={cn(
           "flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center",
-          className
+          className,
         )}
         {...props}
       >
         <div className="mb-8">{illustration ?? defaultIllustration}</div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{title}</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          {title}
+        </h1>
         <p className="mt-4 max-w-md text-muted-foreground">{description}</p>
         {(errorCode || errorDetails) && (
           <div className="mt-6 rounded-lg border border-border bg-muted/50 px-4 py-3 text-left max-w-sm w-full">
             {errorCode && (
               <p className="text-xs font-medium text-muted-foreground">
-                Error code: <span className="font-mono text-foreground">{errorCode}</span>
+                Error code:{" "}
+                <span className="font-mono text-foreground">{errorCode}</span>
               </p>
             )}
             {errorDetails && (
-              <p className="mt-1 text-xs font-mono text-muted-foreground break-all">{errorDetails}</p>
+              <p className="mt-1 text-xs font-mono text-muted-foreground break-all">
+                {errorDetails}
+              </p>
             )}
           </div>
         )}
@@ -72,7 +85,7 @@ const ServerError = React.forwardRef<HTMLDivElement, ServerErrorProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 ServerError.displayName = "ServerError";

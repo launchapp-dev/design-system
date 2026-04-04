@@ -2,19 +2,19 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import {
   ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
   ContextMenuCheckboxItem,
-  ContextMenuRadioItem,
+  ContextMenuContent,
+  ContextMenuGroup,
+  ContextMenuItem,
   ContextMenuLabel,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
   ContextMenuSeparator,
   ContextMenuShortcut,
-  ContextMenuGroup,
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
-  ContextMenuRadioGroup,
+  ContextMenuTrigger,
 } from "./index";
 
 const meta: Meta<typeof ContextMenu> = {
@@ -76,17 +76,48 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "24px" }}>
+    <div
+      style={{
+        padding: "32px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+      }}
+    >
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>With Checkbox Items</p>
+        <p
+          style={{
+            fontSize: "12px",
+            marginBottom: "8px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          With Checkbox Items
+        </p>
         <CheckboxExample />
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>With Radio Items</p>
+        <p
+          style={{
+            fontSize: "12px",
+            marginBottom: "8px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          With Radio Items
+        </p>
         <RadioExample />
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>With Sub Menu</p>
+        <p
+          style={{
+            fontSize: "12px",
+            marginBottom: "8px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          With Sub Menu
+        </p>
         <SubMenuExample />
       </div>
     </div>
@@ -104,11 +135,17 @@ function CheckboxExample() {
       <ContextMenuContent className="w-56">
         <ContextMenuLabel>View Options</ContextMenuLabel>
         <ContextMenuSeparator />
-        <ContextMenuCheckboxItem checked={showBookmarks} onCheckedChange={setShowBookmarks}>
+        <ContextMenuCheckboxItem
+          checked={showBookmarks}
+          onCheckedChange={setShowBookmarks}
+        >
           Show Bookmarks Bar
           <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
         </ContextMenuCheckboxItem>
-        <ContextMenuCheckboxItem checked={showUrls} onCheckedChange={setShowUrls}>
+        <ContextMenuCheckboxItem
+          checked={showUrls}
+          onCheckedChange={setShowUrls}
+        >
           Show Full URLs
         </ContextMenuCheckboxItem>
       </ContextMenuContent>
@@ -127,7 +164,9 @@ function RadioExample() {
         <ContextMenuLabel>People</ContextMenuLabel>
         <ContextMenuSeparator />
         <ContextMenuRadioGroup value={person} onValueChange={setPerson}>
-          <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="pedro">
+            Pedro Duarte
+          </ContextMenuRadioItem>
           <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
           <ContextMenuRadioItem value="adam">Adam Wathan</ContextMenuRadioItem>
         </ContextMenuRadioGroup>
@@ -172,7 +211,14 @@ export const Interactive: Story = {
     const [theme, setTheme] = React.useState("system");
     const [lastAction, setLastAction] = React.useState<string | null>(null);
     return (
-      <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div
+        style={{
+          padding: "32px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+        }}
+      >
         <ContextMenu>
           <ContextMenuTrigger asChild>
             <TriggerArea>Right-click for full interactive menu</TriggerArea>
@@ -192,7 +238,10 @@ export const Interactive: Story = {
               </ContextMenuItem>
             </ContextMenuGroup>
             <ContextMenuSeparator />
-            <ContextMenuCheckboxItem checked={bookmarks} onCheckedChange={setBookmarks}>
+            <ContextMenuCheckboxItem
+              checked={bookmarks}
+              onCheckedChange={setBookmarks}
+            >
               Show Bookmarks
             </ContextMenuCheckboxItem>
             <ContextMenuSeparator />
@@ -243,9 +292,24 @@ export const DarkMode: Story = {
 
 export const EdgeCases: Story = {
   render: () => (
-    <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "24px" }}>
+    <div
+      style={{
+        padding: "32px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+      }}
+    >
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Inset labels</p>
+        <p
+          style={{
+            fontSize: "12px",
+            marginBottom: "8px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          Inset labels
+        </p>
         <ContextMenu>
           <ContextMenuTrigger asChild>
             <TriggerArea>Right-click (inset items)</TriggerArea>
@@ -253,14 +317,24 @@ export const EdgeCases: Story = {
           <ContextMenuContent className="w-56">
             <ContextMenuLabel inset>Section</ContextMenuLabel>
             <ContextMenuItem inset>Item with inset</ContextMenuItem>
-            <ContextMenuItem inset disabled>Disabled inset</ContextMenuItem>
+            <ContextMenuItem inset disabled>
+              Disabled inset
+            </ContextMenuItem>
             <ContextMenuSeparator />
             <ContextMenuItem inset>Another item</ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Many items</p>
+        <p
+          style={{
+            fontSize: "12px",
+            marginBottom: "8px",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          Many items
+        </p>
         <ContextMenu>
           <ContextMenuTrigger asChild>
             <TriggerArea>Right-click (many items)</TriggerArea>

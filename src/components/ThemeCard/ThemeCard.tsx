@@ -1,9 +1,16 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../Card";
+import type { CommunityTheme } from "@/themes/community-themes";
 import { Badge } from "../Badge";
 import { Button } from "../Button";
-import type { CommunityTheme } from "@/themes/community-themes";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../Card";
 
 export interface ThemeCardProps extends React.HTMLAttributes<HTMLDivElement> {
   theme: CommunityTheme;
@@ -13,11 +20,18 @@ export interface ThemeCardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const ThemeCard = React.forwardRef<HTMLDivElement, ThemeCardProps>(
-  ({ theme, onViewDetails, onUseTheme, isFeatured, className, ...props }, ref) => {
+  (
+    { theme, onViewDetails, onUseTheme, isFeatured, className, ...props },
+    ref,
+  ) => {
     const previewColor = theme.previewColor || "262 83% 58%";
 
     return (
-      <Card ref={ref} className={cn(isFeatured && "ring-2 ring-primary", className)} {...props}>
+      <Card
+        ref={ref}
+        className={cn(isFeatured && "ring-2 ring-primary", className)}
+        {...props}
+      >
         <CardHeader className="pb-3">
           {isFeatured && (
             <Badge variant="default" className="mb-2 w-fit">
@@ -40,7 +54,9 @@ const ThemeCard = React.forwardRef<HTMLDivElement, ThemeCardProps>(
         </CardHeader>
 
         <CardContent className="pb-3">
-          <p className="text-sm text-muted-foreground line-clamp-2">{theme.description}</p>
+          <p className="text-sm text-muted-foreground line-clamp-2">
+            {theme.description}
+          </p>
 
           {theme.keywords && theme.keywords.length > 0 && (
             <div className="flex flex-wrap gap-1 mt-3">
@@ -86,7 +102,7 @@ const ThemeCard = React.forwardRef<HTMLDivElement, ThemeCardProps>(
         </CardFooter>
       </Card>
     );
-  }
+  },
 );
 
 ThemeCard.displayName = "ThemeCard";

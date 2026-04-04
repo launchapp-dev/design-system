@@ -1,16 +1,26 @@
-import * as React from "react";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  PaginationState,
+  type ColumnDef,
+  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type PaginationState,
+  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import * as React from "react";
+import { Badge } from "@/components/Badge";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
+import {
+  SelectContent,
+  SelectItem,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/Select";
 import {
   Table,
   TableBody,
@@ -19,16 +29,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/Table";
-import { Input } from "@/components/Input";
-import { Button } from "@/components/Button";
-import { Badge } from "@/components/Badge";
-import {
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/Select";
 import { cn } from "@/lib/utils";
 
 export interface SearchableDataTableFilterOption {
@@ -60,10 +60,12 @@ function SearchableDataTableInner<TData>(
     pageSize = 10,
     className,
   }: SearchableDataTableProps<TData>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
   const [activeFilter, setActiveFilter] = React.useState<string>("");
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
@@ -73,7 +75,9 @@ function SearchableDataTableInner<TData>(
   const effectiveData = React.useMemo(() => {
     if (!filterColumn || !activeFilter) return data;
     return data.filter(
-      (row) => String((row as Record<string, unknown>)[filterColumn] ?? "") === activeFilter
+      (row) =>
+        String((row as Record<string, unknown>)[filterColumn] ?? "") ===
+        activeFilter,
     );
   }, [data, filterColumn, activeFilter]);
 
@@ -111,7 +115,9 @@ function SearchableDataTableInner<TData>(
           <Input
             placeholder={searchPlaceholder}
             value={
-              (table.getColumn(String(searchCol))?.getFilterValue() as string) ?? ""
+              (table
+                .getColumn(String(searchCol))
+                ?.getFilterValue() as string) ?? ""
             }
             onChange={handleSearchChange}
             className="max-w-xs"
@@ -141,7 +147,8 @@ function SearchableDataTableInner<TData>(
                 className="cursor-pointer gap-1"
                 onClick={() => handleFilterChange("__all__")}
               >
-                {filterOptions.find((o) => o.value === activeFilter)?.label ?? activeFilter}
+                {filterOptions.find((o) => o.value === activeFilter)?.label ??
+                  activeFilter}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -180,18 +187,25 @@ function SearchableDataTableInner<TData>(
                         ? header.column.getToggleSortingHandler()
                         : undefined
                     }
-                    className={header.column.getCanSort() ? "cursor-pointer select-none" : ""}
+                    className={
+                      header.column.getCanSort()
+                        ? "cursor-pointer select-none"
+                        : ""
+                    }
                   >
                     {header.isPlaceholder ? null : (
                       <span className="inline-flex items-center gap-1">
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                         {header.column.getCanSort() && (
                           <span className="text-xs text-muted-foreground">
                             {header.column.getIsSorted() === "asc"
                               ? "↑"
                               : header.column.getIsSorted() === "desc"
-                              ? "↓"
-                              : "↕"}
+                                ? "↓"
+                                : "↕"}
                           </span>
                         )}
                       </span>
@@ -207,7 +221,10 @@ function SearchableDataTableInner<TData>(
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -272,10 +289,16 @@ function SearchableDataTableInner<TData>(
   );
 }
 
-export const SearchableDataTable = React.forwardRef(SearchableDataTableInner) as <TData>(
-  props: SearchableDataTableProps<TData> & { ref?: React.ForwardedRef<HTMLDivElement> }
+export const SearchableDataTable = React.forwardRef(
+  SearchableDataTableInner,
+) as <TData>(
+  props: SearchableDataTableProps<TData> & {
+    ref?: React.ForwardedRef<HTMLDivElement>;
+  },
 ) => React.ReactElement;
 
 (
-  SearchableDataTable as React.ForwardRefExoticComponent<SearchableDataTableProps<unknown>>
+  SearchableDataTable as React.ForwardRefExoticComponent<
+    SearchableDataTableProps<unknown>
+  >
 ).displayName = "SearchableDataTable";

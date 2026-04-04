@@ -1,4 +1,4 @@
-declare module 'vscode' {
+declare module "vscode" {
   export type ProviderResult<T> = T | Thenable<T> | null | undefined;
 
   export namespace window {
@@ -8,15 +8,15 @@ declare module 'vscode' {
       viewType: string,
       title: string,
       column: ViewColumn,
-      options?: any
+      options?: any,
     ): WebviewPanel;
     function showQuickPick(
       items: string[] | Promise<string[]>,
-      options?: QuickPickOptions
+      options?: QuickPickOptions,
     ): Promise<string | undefined>;
     function showQuickPick(
       items: QuickPickItem[] | Promise<QuickPickItem[]>,
-      options?: QuickPickOptions
+      options?: QuickPickOptions,
     ): Promise<QuickPickItem | undefined>;
     const activeTextEditor: TextEditor | undefined;
   }
@@ -63,7 +63,7 @@ declare module 'vscode' {
 
     function registerHoverProvider(
       selector: DocumentSelector | DocumentSelector[],
-      provider: HoverProvider
+      provider: HoverProvider,
     ): Disposable;
   }
 
@@ -71,7 +71,7 @@ declare module 'vscode' {
     function registerCommand(
       command: string,
       callback: (...args: any[]) => any,
-      thisArg?: any
+      thisArg?: any,
     ): Disposable;
   }
 
@@ -102,7 +102,10 @@ declare module 'vscode' {
   export interface TextDocument {
     lineAt(line: number): TextLine;
     getText(range?: Range): string;
-    getWordRangeAtPosition(position: Position, regex?: RegExp): Range | undefined;
+    getWordRangeAtPosition(
+      position: Position,
+      regex?: RegExp,
+    ): Range | undefined;
     readonly languageId: string;
   }
 
@@ -135,16 +138,19 @@ declare module 'vscode' {
       document: TextDocument,
       position: Position,
       token: CancellationToken,
-      context: CompletionContext
+      context: CompletionContext,
     ): ProviderResult<CompletionItem[]>;
-    resolveCompletionItem?(item: CompletionItem, token: CancellationToken): ProviderResult<CompletionItem>;
+    resolveCompletionItem?(
+      item: CompletionItem,
+      token: CancellationToken,
+    ): ProviderResult<CompletionItem>;
   }
 
   export interface HoverProvider {
     provideHover(
       document: TextDocument,
       position: Position,
-      token: CancellationToken
+      token: CancellationToken,
     ): ProviderResult<Hover>;
   }
 
@@ -190,7 +196,7 @@ declare module 'vscode' {
     Struct = 21,
     Event = 22,
     Operator = 23,
-    TypeParameter = 24
+    TypeParameter = 24,
   }
 
   export class Hover {
@@ -214,7 +220,7 @@ declare module 'vscode' {
     One = 1,
     Two = 2,
     Three = 3,
-    Beside = -2
+    Beside = -2,
   }
 
   export type Thenable<T> = Promise<T>;

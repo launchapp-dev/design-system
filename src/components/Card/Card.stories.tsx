@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./index";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./index";
 
 const meta = {
   title: "Components/Card",
@@ -20,13 +27,17 @@ export const Default: Story = {
       <Card>
         <CardHeader>
           <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card description with supporting text.</CardDescription>
+          <CardDescription>
+            Card description with supporting text.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <p>Card content goes here.</p>
         </CardContent>
         <CardFooter>
-          <p style={{ fontSize: "0.875rem", color: "var(--muted-foreground)" }}>Footer content</p>
+          <p style={{ fontSize: "0.875rem", color: "var(--muted-foreground)" }}>
+            Footer content
+          </p>
         </CardFooter>
       </Card>
     </div>
@@ -35,7 +46,14 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "360px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        width: "360px",
+      }}
+    >
       <Card>
         <CardHeader>
           <CardTitle>Header + Content</CardTitle>
@@ -49,7 +67,9 @@ export const AllVariants: Story = {
       <Card>
         <CardHeader>
           <CardTitle>Full Card</CardTitle>
-          <CardDescription>Card with all sub-components composed together.</CardDescription>
+          <CardDescription>
+            Card with all sub-components composed together.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <p>Main content section with descriptive body text.</p>
@@ -68,7 +88,9 @@ export const AllVariants: Story = {
       <Card>
         <CardHeader>
           <CardTitle>Header Only</CardTitle>
-          <CardDescription>No content or footer sub-components.</CardDescription>
+          <CardDescription>
+            No content or footer sub-components.
+          </CardDescription>
         </CardHeader>
       </Card>
     </div>
@@ -109,7 +131,10 @@ export const AllSizes: Story = {
             <CardDescription>Full-width dashboard card.</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Expanded layout for richer content areas like dashboards or data panels.</p>
+            <p>
+              Expanded layout for richer content areas like dashboards or data
+              panels.
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -123,7 +148,9 @@ export const Interactive: Story = {
       <Card>
         <CardHeader>
           <CardTitle>Interactive Card</CardTitle>
-          <CardDescription>Use Storybook controls to customize className.</CardDescription>
+          <CardDescription>
+            Use Storybook controls to customize className.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <p>This card renders with live args from the controls panel.</p>
@@ -139,17 +166,29 @@ export const Interactive: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
   ],
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "360px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        width: "360px",
+      }}
+    >
       <Card>
         <CardHeader>
           <CardTitle>Dark Mode Card</CardTitle>
-          <CardDescription>Card rendered in dark theme context.</CardDescription>
+          <CardDescription>
+            Card rendered in dark theme context.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <p>Content adapts to dark background via CSS variables.</p>
@@ -165,7 +204,9 @@ export const DarkMode: Story = {
           <CardDescription>Multiple cards in dark mode.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Verifies border and shadow render correctly on dark backgrounds.</p>
+          <p>
+            Verifies border and shadow render correctly on dark backgrounds.
+          </p>
         </CardContent>
       </Card>
     </div>
@@ -174,12 +215,23 @@ export const DarkMode: Story = {
 
 export const EdgeCases: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "360px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        width: "360px",
+      }}
+    >
       <Card>
         <CardHeader>
-          <CardTitle>A very long card title that may wrap across multiple lines in a constrained layout</CardTitle>
+          <CardTitle>
+            A very long card title that may wrap across multiple lines in a
+            constrained layout
+          </CardTitle>
           <CardDescription>
-            A description that is also quite long and tests how the card handles multiline text gracefully in the header sub-component.
+            A description that is also quite long and tests how the card handles
+            multiline text gracefully in the header sub-component.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -199,7 +251,9 @@ export const EdgeCases: Story = {
 
       <Card>
         <CardFooter>
-          <p style={{ fontSize: "0.875rem" }}>Footer-only card with no header or content.</p>
+          <p style={{ fontSize: "0.875rem" }}>
+            Footer-only card with no header or content.
+          </p>
         </CardFooter>
       </Card>
     </div>

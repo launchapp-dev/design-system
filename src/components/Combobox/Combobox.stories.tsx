@@ -88,7 +88,10 @@ export const Default: Story = {
   },
   render: () => (
     <div className="w-full max-w-sm">
-      <ControlledCombobox options={frameworks} placeholder="Select a framework..." />
+      <ControlledCombobox
+        options={frameworks}
+        placeholder="Select a framework..."
+      />
     </div>
   ),
 };
@@ -99,18 +102,67 @@ export const AllSizes: Story = {
     const [md, setMd] = React.useState("");
     const [lg, setLg] = React.useState("");
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "320px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          maxWidth: "320px",
+        }}
+      >
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Small</p>
-          <Combobox size="sm" options={frameworks} value={sm} onValueChange={setSm} placeholder="Select..." />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            Small
+          </p>
+          <Combobox
+            size="sm"
+            options={frameworks}
+            value={sm}
+            onValueChange={setSm}
+            placeholder="Select..."
+          />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Medium (default)</p>
-          <Combobox size="md" options={frameworks} value={md} onValueChange={setMd} placeholder="Select..." />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            Medium (default)
+          </p>
+          <Combobox
+            size="md"
+            options={frameworks}
+            value={md}
+            onValueChange={setMd}
+            placeholder="Select..."
+          />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Large</p>
-          <Combobox size="lg" options={frameworks} value={lg} onValueChange={setLg} placeholder="Select..." />
+          <p
+            style={{
+              fontSize: "12px",
+              marginBottom: "8px",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
+            Large
+          </p>
+          <Combobox
+            size="lg"
+            options={frameworks}
+            value={lg}
+            onValueChange={setLg}
+            placeholder="Select..."
+          />
         </div>
       </div>
     );
@@ -142,7 +194,8 @@ export const Interactive: Story = {
         />
         {value && (
           <p className="text-sm text-muted-foreground">
-            Selected: <strong>{countries.find((c) => c.value === value)?.label}</strong>
+            Selected:{" "}
+            <strong>{countries.find((c) => c.value === value)?.label}</strong>
           </p>
         )}
         <button
@@ -181,7 +234,12 @@ export const WithDisabledOptions: Story = {
     const [value, setValue] = React.useState("");
     return (
       <div className="w-full max-w-sm">
-        <Combobox options={options} value={value} onValueChange={setValue} placeholder="Select framework..." />
+        <Combobox
+          options={options}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Select framework..."
+        />
       </div>
     );
   },
@@ -200,7 +258,13 @@ export const LongOptionList: Story = {
     const [value, setValue] = React.useState("");
     return (
       <div className="w-full max-w-sm">
-        <Combobox options={countries} value={value} onValueChange={setValue} placeholder="Select a country..." searchPlaceholder="Search countries..." />
+        <Combobox
+          options={countries}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Select a country..."
+          searchPlaceholder="Search countries..."
+        />
       </div>
     );
   },
@@ -209,7 +273,10 @@ export const LongOptionList: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),

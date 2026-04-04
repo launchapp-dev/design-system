@@ -1,5 +1,5 @@
-import { createTheme } from "../themes/createTheme";
 import type { ThemeResult } from "../themes/createTheme";
+import { createTheme } from "../themes/createTheme";
 
 export interface VisionThemeOptions {
   apiKey: string;
@@ -79,7 +79,7 @@ function parseColorMap(raw: unknown): VisionColorMap {
   for (const key of required) {
     if (!isValidHex(obj[key])) {
       throw new Error(
-        `Vision API response missing or invalid hex for "${key}": ${JSON.stringify(obj[key])}`
+        `Vision API response missing or invalid hex for "${key}": ${JSON.stringify(obj[key])}`,
       );
     }
   }
@@ -111,7 +111,9 @@ async function convertUrlToBase64(url: string): Promise<string> {
   });
 }
 
-function getMediaType(url: string): "image/jpeg" | "image/png" | "image/gif" | "image/webp" {
+function getMediaType(
+  url: string,
+): "image/jpeg" | "image/png" | "image/gif" | "image/webp" {
   const urlObj = new URL(url);
   const path = urlObj.pathname.toLowerCase();
   if (path.includes(".png")) return "image/png";
@@ -122,7 +124,7 @@ function getMediaType(url: string): "image/jpeg" | "image/png" | "image/gif" | "
 
 export async function analyzeImageColors(
   image: string,
-  options: VisionThemeOptions
+  options: VisionThemeOptions,
 ): Promise<VisionThemeResult> {
   const {
     apiKey,
@@ -137,7 +139,11 @@ export async function analyzeImageColors(
     if (!matches) {
       throw new Error("Invalid data URL format");
     }
-    const mediaType = matches[1] as "image/jpeg" | "image/png" | "image/gif" | "image/webp";
+    const mediaType = matches[1] as
+      | "image/jpeg"
+      | "image/png"
+      | "image/gif"
+      | "image/webp";
     const data = matches[2];
     imageSource = { type: "base64", media_type: mediaType, data };
   } else if (image.startsWith("http://") || image.startsWith("https://")) {
@@ -156,7 +162,7 @@ export async function analyzeImageColors(
     model,
     max_tokens: 256,
     system:
-      "You are a color analysis assistant. Analyze the image and return ONLY a JSON object with exactly these five hex color keys: primary, secondary, muted, accent, destructive. Each value must be a 6-digit hex color string (e.g. \"#3b82f6\"). primary should be the most prominent brand color. secondary should be a supporting color. muted should be a low-saturation background or neutral tone. accent should be a highlight color. destructive should be a red or error-like color extracted from the image, or a sensible default like \"#ef4444\" if none is present. Return only the JSON object, no prose.",
+      'You are a color analysis assistant. Analyze the image and return ONLY a JSON object with exactly these five hex color keys: primary, secondary, muted, accent, destructive. Each value must be a 6-digit hex color string (e.g. "#3b82f6"). primary should be the most prominent brand color. secondary should be a supporting color. muted should be a low-saturation background or neutral tone. accent should be a highlight color. destructive should be a red or error-like color extracted from the image, or a sensible default like "#ef4444" if none is present. Return only the JSON object, no prose.',
     messages: [
       {
         role: "user",

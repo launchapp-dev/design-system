@@ -6,11 +6,12 @@ function usePrefersReducedMotion() {
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 }
 
-export interface PageTransitionProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface PageTransitionProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "fade" | "slide" | "scale" | "morph";
   direction?: "up" | "down" | "left" | "right";
   duration?: number;
@@ -56,8 +57,8 @@ function PageTransition({
       return variant === "scale"
         ? "scale(0.95)"
         : variant === "slide"
-        ? transforms[direction]
-        : "none";
+          ? transforms[direction]
+          : "none";
     }
     return "none";
   };
@@ -87,7 +88,8 @@ function PageTransition({
 }
 PageTransition.displayName = "PageTransition";
 
-export interface TransitionGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TransitionGroupProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   mode?: "single" | "out-in" | "in-out";
 }
 
@@ -100,7 +102,7 @@ function TransitionGroup({
 }: TransitionGroupProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [currentKey, setCurrentKey] = React.useState<React.Key | null>(null);
   const [currentChild, setCurrentChild] = React.useState<React.ReactNode>(null);
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
+  const [_isTransitioning, setIsTransitioning] = React.useState(false);
 
   React.useEffect(() => {
     const arr = React.Children.toArray(children);
@@ -131,7 +133,9 @@ function TransitionGroup({
 }
 TransitionGroup.displayName = "TransitionGroup";
 
-export interface RouteTransitionProps extends React.ComponentPropsWithoutRef<"div">, Omit<PageTransitionProps, "show"> {
+export interface RouteTransitionProps
+  extends React.ComponentPropsWithoutRef<"div">,
+    Omit<PageTransitionProps, "show"> {
   activeRoute?: string;
   routes?: Array<{ path: string; element: React.ReactNode }>;
 }
@@ -153,10 +157,13 @@ function RouteTransition({
   React.useEffect(() => {
     if (activeRoute !== displayedRoute) {
       setIsAnimating(true);
-      const timer = setTimeout(() => {
-        setDisplayedRoute(activeRoute);
-        setTimeout(() => setIsAnimating(false), reduced ? 0 : 300);
-      }, reduced ? 0 : 150);
+      const timer = setTimeout(
+        () => {
+          setDisplayedRoute(activeRoute);
+          setTimeout(() => setIsAnimating(false), reduced ? 0 : 300);
+        },
+        reduced ? 0 : 150,
+      );
       return () => clearTimeout(timer);
     }
   }, [activeRoute, displayedRoute, reduced]);
@@ -169,7 +176,7 @@ function RouteTransition({
       className={cn(
         "transition-[opacity,transform]",
         isAnimating && "opacity-0 translate-y-2",
-        className
+        className,
       )}
       style={{
         transitionDuration: reduced ? "0ms" : "300ms",
@@ -183,7 +190,8 @@ function RouteTransition({
 }
 RouteTransition.displayName = "RouteTransition";
 
-export interface AnimatePresenceProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatePresenceProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   mode?: "sync" | "wait" | "popLayout";
 }
 
@@ -194,9 +202,10 @@ function AnimatePresence({
   ref,
   ...props
 }: AnimatePresenceProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const [childrenState, setChildrenState] = React.useState<React.ReactNode>(children);
-  const [isExiting, setIsExiting] = React.useState(false);
-  const reduced = usePrefersReducedMotion();
+  const [childrenState, setChildrenState] =
+    React.useState<React.ReactNode>(children);
+  const [_isExiting, _setIsExiting] = React.useState(false);
+  const _reduced = usePrefersReducedMotion();
 
   React.useEffect(() => {
     setChildrenState(children);
@@ -210,7 +219,8 @@ function AnimatePresence({
 }
 AnimatePresence.displayName = "AnimatePresence";
 
-export interface MorphTransitionProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MorphTransitionProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   isActive?: boolean;
   duration?: number;
 }
@@ -232,10 +242,13 @@ function MorphTransition({
   React.useEffect(() => {
     if (!isActive) {
       setIsMorphing(true);
-      const timer = setTimeout(() => {
-        setPrevChildren(children);
-        setIsMorphing(false);
-      }, reduced ? 0 : duration / 2);
+      const timer = setTimeout(
+        () => {
+          setPrevChildren(children);
+          setIsMorphing(false);
+        },
+        reduced ? 0 : duration / 2,
+      );
       return () => clearTimeout(timer);
     } else if (prevChildren !== children) {
       setPrevChildren(children);
@@ -245,9 +258,14 @@ function MorphTransition({
   return (
     <div
       ref={(node) => {
-        (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        (
+          containerRef as React.MutableRefObject<HTMLDivElement | null>
+        ).current = node;
         if (typeof ref === "function") ref(node);
-        else if (ref) (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        else if (ref)
+          (
+            containerRef as React.MutableRefObject<HTMLDivElement | null>
+          ).current = node;
       }}
       className={cn("relative overflow-hidden", className)}
       style={style}
@@ -259,8 +277,14 @@ function MorphTransition({
           className="absolute inset-0"
           style={{
             opacity: reduced ? 0 : isMorphing ? 0 : 1,
-            transform: reduced ? "none" : isMorphing ? "scale(0.9)" : "scale(1)",
-            transition: reduced ? "none" : `opacity ${duration / 2}ms ease-out, transform ${duration / 2}ms ease-out`,
+            transform: reduced
+              ? "none"
+              : isMorphing
+                ? "scale(0.9)"
+                : "scale(1)",
+            transition: reduced
+              ? "none"
+              : `opacity ${duration / 2}ms ease-out, transform ${duration / 2}ms ease-out`,
           }}
         >
           {prevChildren}
@@ -270,7 +294,9 @@ function MorphTransition({
         style={{
           opacity: reduced ? 1 : isMorphing ? 0 : 1,
           transform: reduced ? "none" : isMorphing ? "scale(1.1)" : "scale(1)",
-          transition: reduced ? "none" : `opacity ${duration / 2}ms ease-out, transform ${duration / 2}ms ease-out`,
+          transition: reduced
+            ? "none"
+            : `opacity ${duration / 2}ms ease-out, transform ${duration / 2}ms ease-out`,
           transitionDelay: reduced ? "0ms" : `${duration / 2}ms`,
         }}
       >
@@ -282,9 +308,9 @@ function MorphTransition({
 MorphTransition.displayName = "MorphTransition";
 
 export {
-  PageTransition,
-  TransitionGroup,
-  RouteTransition,
   AnimatePresence,
   MorphTransition,
+  PageTransition,
+  RouteTransition,
+  TransitionGroup,
 };

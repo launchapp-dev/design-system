@@ -11,7 +11,7 @@ export default meta;
 export const Default: StoryObj = {
   name: "Default",
   render: () => {
-    const [text, setText] = React.useState("Hello, this is streaming text!");
+    const [text, _setText] = React.useState("Hello, this is streaming text!");
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <StreamingText text={text} speed={30} />
@@ -29,7 +29,9 @@ export const Sizes: StoryObj = {
         <StreamingText text="Small text size" size="sm" />
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Medium (default)</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>
+          Medium (default)
+        </p>
         <StreamingText text="Medium text size" size="md" />
       </div>
       <div>
@@ -65,12 +67,22 @@ export const ChunkSizes: StoryObj = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px" }}>Character by character</p>
-        <StreamingText text="Types one character at a time" chunkSize="character" speed={40} />
+        <p style={{ fontSize: "12px", marginBottom: "8px" }}>
+          Character by character
+        </p>
+        <StreamingText
+          text="Types one character at a time"
+          chunkSize="character"
+          speed={40}
+        />
       </div>
       <div>
         <p style={{ fontSize: "12px", marginBottom: "8px" }}>Word by word</p>
-        <StreamingText text="Types one word at a time" chunkSize="word" speed={200} />
+        <StreamingText
+          text="Types one word at a time"
+          chunkSize="word"
+          speed={200}
+        />
       </div>
     </div>
   ),
@@ -108,7 +120,9 @@ export const WithCodeBlock: StoryObj = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <StreamingText
-        text={'Here is a code block:\n```\nfunction hello() {\n  console.log("world");\n}\n```'}
+        text={
+          'Here is a code block:\n```\nfunction hello() {\n  console.log("world");\n}\n```'
+        }
         renderMarkdown={true}
         speed={10}
       />

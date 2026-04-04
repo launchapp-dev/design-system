@@ -113,8 +113,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerCompletionItemProvider(
       { scheme: "file", language: "typescriptreact" },
       componentProvider,
-      "<"
-    )
+      "<",
+    ),
   );
 
   tokenProvider = new TokenCompletionProvider();
@@ -122,8 +122,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerCompletionItemProvider(
       { scheme: "file", language: "typescriptreact" },
       tokenProvider,
-      "-"
-    )
+      "-",
+    ),
   );
 
   context.subscriptions.push(
@@ -131,14 +131,14 @@ export function activate(context: vscode.ExtensionContext) {
       "launchapp-ds.insertComponent",
       async () => {
         await insertComponentCommand();
-      }
-    )
+      },
+    ),
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("launchapp-ds.previewToken", () => {
       previewTokenCommand();
-    })
+    }),
   );
 }
 
@@ -146,8 +146,8 @@ export function deactivate() {}
 
 class ComponentCompletionProvider implements vscode.CompletionItemProvider {
   provideCompletionItems(
-    document: vscode.TextDocument,
-    position: vscode.Position
+    _document: vscode.TextDocument,
+    _position: vscode.Position,
   ): vscode.CompletionItem[] {
     const items: vscode.CompletionItem[] = [];
     return items;
@@ -160,8 +160,8 @@ class ComponentCompletionProvider implements vscode.CompletionItemProvider {
 
 class TokenCompletionProvider implements vscode.CompletionItemProvider {
   provideCompletionItems(
-    document: vscode.TextDocument,
-    position: vscode.Position
+    _document: vscode.TextDocument,
+    _position: vscode.Position,
   ): vscode.CompletionItem[] {
     const items: vscode.CompletionItem[] = [];
     return items;
@@ -199,20 +199,20 @@ async function insertComponentCommand(): Promise<void> {
 
 async function insertComponent(
   editor: vscode.TextEditor,
-  component: (typeof COMPONENTS)[0]
+  component: (typeof COMPONENTS)[0],
 ): Promise<void> {
   const document = editor.document;
   const selection = editor.selection;
 
   const hasImport = document.getText().includes(component.imports);
 
-  let insertText = component.template;
+  const insertText = component.template;
   if (!hasImport) {
-    const firstLine = document.lineAt(0);
+    const _firstLine = document.lineAt(0);
     const importInsertPosition = new vscode.Position(0, 0);
 
     await editor.edit((editBuilder) => {
-      editBuilder.insert(importInsertPosition, component.imports + "\n");
+      editBuilder.insert(importInsertPosition, `${component.imports}\n`);
     });
   }
 
@@ -224,7 +224,5 @@ async function insertComponent(
 }
 
 function previewTokenCommand(): void {
-  vscode.window.showInformationMessage(
-    "Token preview feature coming soon"
-  );
+  vscode.window.showInformationMessage("Token preview feature coming soon");
 }

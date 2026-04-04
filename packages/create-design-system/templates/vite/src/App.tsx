@@ -6,7 +6,7 @@ export default function App() {
       <div className="space-y-8 text-center">
         <div>
           <h1 className="text-4xl font-bold tracking-tight">
-            Welcome to {{projectName}}
+            Welcome to {{ projectName }}
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
             Built with the LaunchApp Design System

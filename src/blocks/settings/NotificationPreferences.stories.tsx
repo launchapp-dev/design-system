@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { NotificationPreferences } from "./NotificationPreferences";
 
 const meta: Meta<typeof NotificationPreferences> = {
@@ -31,7 +30,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <div style={{ maxWidth: 640 }}>
-      <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
+      <NotificationPreferences
+        onChange={(id, checked) => console.log(id, checked)}
+      />
     </div>
   ),
 };
@@ -61,7 +62,10 @@ export const AllEnabled: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),
@@ -78,7 +82,9 @@ export const Mobile: Story = {
     viewport: { defaultViewport: "mobile1" },
   },
   render: () => (
-    <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
+    <NotificationPreferences
+      onChange={(id, checked) => console.log(id, checked)}
+    />
   ),
 };
 
@@ -88,7 +94,9 @@ export const Tablet: Story = {
   },
   render: () => (
     <div style={{ maxWidth: 640, margin: "0 auto" }}>
-      <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
+      <NotificationPreferences
+        onChange={(id, checked) => console.log(id, checked)}
+      />
     </div>
   ),
 };
@@ -97,7 +105,9 @@ export const CompositionExample: Story = {
   name: "Composition (Built From)",
   render: () => (
     <div style={{ maxWidth: 640 }}>
-      <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
+      <NotificationPreferences
+        onChange={(id, checked) => console.log(id, checked)}
+      />
     </div>
   ),
   parameters: {

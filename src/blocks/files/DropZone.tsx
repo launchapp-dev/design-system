@@ -2,7 +2,8 @@ import * as React from "react";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 
-export interface DropZoneProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrop" | "onError"> {
+export interface DropZoneProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrop" | "onError"> {
   accept?: string;
   maxSize?: number;
   multiple?: boolean;
@@ -29,7 +30,7 @@ const DropZone = React.forwardRef<HTMLDivElement, DropZoneProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [dragActive, setDragActive] = React.useState(false);
     const [error, setError] = React.useState<string | null>(null);
@@ -105,8 +106,10 @@ const DropZone = React.forwardRef<HTMLDivElement, DropZoneProps>(
           className={cn(
             "flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed px-6 py-12 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             dragActive && "border-primary bg-primary/5",
-            !dragActive && !disabled && "border-border hover:border-primary/50 hover:bg-muted/30 cursor-pointer",
-            disabled && "cursor-not-allowed opacity-50 border-muted"
+            !dragActive &&
+              !disabled &&
+              "border-border hover:border-primary/50 hover:bg-muted/30 cursor-pointer",
+            disabled && "cursor-not-allowed opacity-50 border-muted",
           )}
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
@@ -127,7 +130,9 @@ const DropZone = React.forwardRef<HTMLDivElement, DropZoneProps>(
           </div>
           <div className="space-y-1">
             <p className="text-sm font-medium">
-              {dragActive ? "Drop to upload" : "Drag & drop here, or click to browse"}
+              {dragActive
+                ? "Drop to upload"
+                : "Drag & drop here, or click to browse"}
             </p>
             <p className="text-xs text-muted-foreground">
               {[
@@ -170,7 +175,7 @@ const DropZone = React.forwardRef<HTMLDivElement, DropZoneProps>(
         />
       </div>
     );
-  }
+  },
 );
 DropZone.displayName = "DropZone";
 

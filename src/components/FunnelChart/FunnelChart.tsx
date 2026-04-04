@@ -1,8 +1,8 @@
-import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../lib/utils";
+import * as React from "react";
 import { useReducedMotion } from "../../lib/animation";
+import { cn } from "../../lib/utils";
 
 const funnelChartVariants = cva("relative", {
   variants: {
@@ -22,22 +22,19 @@ const funnelChartVariants = cva("relative", {
   },
 });
 
-const funnelStageVariants = cva(
-  "transition-all",
-  {
-    variants: {
-      borderRadius: {
-        none: "rounded-none",
-        sm: "rounded-sm",
-        md: "rounded-[--la-radius]",
-        lg: "rounded-lg",
-      },
+const funnelStageVariants = cva("transition-all", {
+  variants: {
+    borderRadius: {
+      none: "rounded-none",
+      sm: "rounded-sm",
+      md: "rounded-[--la-radius]",
+      lg: "rounded-lg",
     },
-    defaultVariants: {
-      borderRadius: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    borderRadius: "md",
+  },
+});
 
 export interface FunnelStage {
   id: string;
@@ -63,7 +60,12 @@ export interface FunnelChartProps
   onStageClick?: (stage: FunnelStage, index: number) => void;
   onStageHover?: (stage: FunnelStage | null, index: number | null) => void;
   showTooltip?: boolean;
-  tooltipContent?: (stage: FunnelStage, index: number, percentage: number, conversionRate: number) => React.ReactNode;
+  tooltipContent?: (
+    stage: FunnelStage,
+    index: number,
+    percentage: number,
+    conversionRate: number,
+  ) => React.ReactNode;
   borderRadius?: VariantProps<typeof funnelStageVariants>["borderRadius"];
   animationDuration?: number;
   "aria-label"?: string;
@@ -99,7 +101,7 @@ function getStageColor(
   index: number,
   total: number,
   colorScale: FunnelChartProps["colorScale"],
-  customColors?: string[]
+  customColors?: string[],
 ): string {
   if (stage.color) return stage.color;
 
@@ -112,7 +114,6 @@ function getStageColor(
       return getDivergingColor(index, total);
     case "gradient":
       return getGradientColor(index, total);
-    case "sequential":
     default:
       return getSequentialColor(index, total);
   }
@@ -144,13 +145,14 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
       "aria-label": ariaLabel,
       ...props
     },
-    ref
+    ref,
   ) => {
     const reducedMotion = useReducedMotion();
     const [hoveredStage, setHoveredStage] = React.useState<number | null>(null);
     const [animatedWidths, setAnimatedWidths] = React.useState<number[]>([]);
 
-    const stageHeight = propStageHeight ?? (size === "sm" ? 40 : size === "lg" ? 80 : 60);
+    const stageHeight =
+      propStageHeight ?? (size === "sm" ? 40 : size === "lg" ? 80 : 60);
     const defaultHeight = size === "sm" ? 200 : size === "lg" ? 450 : 320;
     const svgHeight = typeof height === "number" ? height : defaultHeight;
 
@@ -160,9 +162,10 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
     const stageMetrics = React.useMemo(() => {
       return data.map((stage, index) => {
         const percentage = maxValue > 0 ? (stage.value / maxValue) * 100 : 0;
-        const conversionRate = index > 0 && data[index - 1].value > 0
-          ? ((stage.value / data[index - 1].value) * 100)
-          : 100;
+        const conversionRate =
+          index > 0 && data[index - 1].value > 0
+            ? (stage.value / data[index - 1].value) * 100
+            : 100;
         return { percentage, conversionRate };
       });
     }, [data, maxValue]);
@@ -193,7 +196,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
       stage: FunnelStage,
       index: number,
       percentage: number,
-      conversionRate: number
+      conversionRate: number,
     ): React.ReactNode => (
       <div className="text-xs space-y-1">
         <div className="font-medium">{stage.label}</div>
@@ -221,7 +224,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
           className={cn(
             funnelChartVariants({ size, orientation }),
             "flex items-center justify-center bg-muted/30 rounded-[--la-radius] p-8",
-            className
+            className,
           )}
           role="img"
           aria-label="Empty funnel chart"
@@ -233,14 +236,17 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
     }
 
     if (orientation === "horizontal") {
-      const totalWidth = 100;
-      const barHeight = stageHeight;
+      const _totalWidth = 100;
+      const _barHeight = stageHeight;
 
       return (
         <TooltipPrimitive.Provider>
           <div
             ref={ref}
-            className={cn(funnelChartVariants({ size, orientation }), className)}
+            className={cn(
+              funnelChartVariants({ size, orientation }),
+              className,
+            )}
             role="img"
             aria-label={autoAriaLabel}
             {...props}
@@ -249,7 +255,13 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
               {data.map((stage, index) => {
                 const percentage = stageMetrics[index].percentage;
                 const conversionRate = stageMetrics[index].conversionRate;
-                const color = getStageColor(stage, index, totalStages, colorScale, customColors);
+                const color = getStageColor(
+                  stage,
+                  index,
+                  totalStages,
+                  colorScale,
+                  customColors,
+                );
                 const isHovered = hoveredStage === index;
 
                 const stageElement = (
@@ -257,7 +269,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                     key={stage.id}
                     className={cn(
                       "flex items-center gap-3",
-                      onStageClick && "cursor-pointer"
+                      onStageClick && "cursor-pointer",
                     )}
                     onClick={() => handleStageClick(index)}
                     onMouseEnter={() => handleStageMouseEnter(index)}
@@ -275,7 +287,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                         className={cn(
                           funnelStageVariants({ borderRadius }),
                           "h-full transition-all",
-                          isHovered && "opacity-90"
+                          isHovered && "opacity-90",
                         )}
                         style={{
                           width: `${(animatedWidths[index] || 0) * 100}%`,
@@ -311,8 +323,18 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                           className="z-50 overflow-hidden rounded-md border border-border bg-popover px-3 py-1.5 text-xs text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
                         >
                           {tooltipContent
-                            ? tooltipContent(stage, index, percentage, conversionRate)
-                            : defaultTooltip(stage, index, percentage, conversionRate)}
+                            ? tooltipContent(
+                                stage,
+                                index,
+                                percentage,
+                                conversionRate,
+                              )
+                            : defaultTooltip(
+                                stage,
+                                index,
+                                percentage,
+                                conversionRate,
+                              )}
                         </TooltipPrimitive.Content>
                       </TooltipPrimitive.Portal>
                     </TooltipPrimitive.Root>
@@ -348,15 +370,32 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <filter id="funnel-shadow" x="-10%" y="-10%" width="120%" height="120%">
-                <feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity="0.1" />
+              <filter
+                id="funnel-shadow"
+                x="-10%"
+                y="-10%"
+                width="120%"
+                height="120%"
+              >
+                <feDropShadow
+                  dx="0"
+                  dy="2"
+                  stdDeviation="2"
+                  floodOpacity="0.1"
+                />
               </filter>
             </defs>
 
             {data.map((stage, index) => {
               const percentage = stageMetrics[index].percentage;
               const conversionRate = stageMetrics[index].conversionRate;
-              const color = getStageColor(stage, index, totalStages, colorScale, customColors);
+              const color = getStageColor(
+                stage,
+                index,
+                totalStages,
+                colorScale,
+                customColors,
+              );
               const isHovered = hoveredStage === index;
 
               const currentWidthRatio = animatedWidths[index] || 0;
@@ -364,7 +403,14 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
               const xOffset = (maxWidth - currentWidth) / 2;
 
               const y = index * (stageHeight + gap);
-              const radius = borderRadius === "none" ? 0 : borderRadius === "sm" ? 2 : borderRadius === "lg" ? 8 : 4;
+              const radius =
+                borderRadius === "none"
+                  ? 0
+                  : borderRadius === "sm"
+                    ? 2
+                    : borderRadius === "lg"
+                      ? 8
+                      : 4;
 
               const stageElement = (
                 <g key={stage.id}>
@@ -380,7 +426,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                     className={cn(
                       funnelStageVariants({ borderRadius }),
                       onStageClick && "cursor-pointer",
-                      isHovered && "opacity-90"
+                      isHovered && "opacity-90",
                     )}
                     style={{
                       transition: reducedMotion
@@ -390,7 +436,6 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                     onClick={() => handleStageClick(index)}
                     onMouseEnter={() => handleStageMouseEnter(index)}
                     onMouseLeave={handleStageMouseLeave}
-                    role="img"
                     aria-label={`${stage.label}: ${formatValue(stage.value)}, ${percentage.toFixed(1)}%`}
                     tabIndex={0}
                     onKeyDown={(e) => {
@@ -404,7 +449,11 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                   {showLabels && currentWidth > 20 && (
                     <text
                       x={maxWidth / 2}
-                      y={y + stageHeight / 2 - (showValues || showPercentage ? 6 : 0)}
+                      y={
+                        y +
+                        stageHeight / 2 -
+                        (showValues || showPercentage ? 6 : 0)
+                      }
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fill="hsl(var(--la-card-foreground))"
@@ -465,8 +514,18 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                         className="z-50 overflow-hidden rounded-md border border-border bg-popover px-3 py-1.5 text-xs text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
                       >
                         {tooltipContent
-                          ? tooltipContent(stage, index, percentage, conversionRate)
-                          : defaultTooltip(stage, index, percentage, conversionRate)}
+                          ? tooltipContent(
+                              stage,
+                              index,
+                              percentage,
+                              conversionRate,
+                            )
+                          : defaultTooltip(
+                              stage,
+                              index,
+                              percentage,
+                              conversionRate,
+                            )}
                       </TooltipPrimitive.Content>
                     </TooltipPrimitive.Portal>
                   </TooltipPrimitive.Root>
@@ -484,7 +543,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
         </div>
       </TooltipPrimitive.Provider>
     );
-  }
+  },
 );
 
 FunnelChart.displayName = "FunnelChart";

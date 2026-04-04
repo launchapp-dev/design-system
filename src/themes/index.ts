@@ -500,19 +500,23 @@ export const palettes: Palette[] = [
 ];
 
 export const paletteMap: Record<string, Palette> = Object.fromEntries(
-  palettes.map((p) => [p.name, p])
+  palettes.map((p) => [p.name, p]),
 );
 
-export { generatePaletteFromColors } from "./generatePaletteFromColors";
-
-export type { CommunityTheme, CommunityThemeAuthor, CommunityThemeTokens } from "./community-themes";
 export {
-  validateCommunityTheme,
-  validateHslValue,
-  getCommunityThemesCssString,
-} from "./community-themes";
-export {
-  getCommunityThemeRegistry,
   getCommunityThemeById,
+  getCommunityThemeRegistry,
   listCommunityThemes,
 } from "./community-registry";
+
+export type {
+  CommunityTheme,
+  CommunityThemeAuthor,
+  CommunityThemeTokens,
+} from "./community-themes";
+export {
+  getCommunityThemesCssString,
+  validateCommunityTheme,
+  validateHslValue,
+} from "./community-themes";
+export { generatePaletteFromColors } from "./generatePaletteFromColors";

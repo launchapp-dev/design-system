@@ -21,10 +21,12 @@ export const BLOCK_CATEGORY_DESCRIPTIONS: Record<BlockCategory, string> = {
   auth: "Login, signup, password reset, and OTP verification forms.",
   dashboard: "Metric cards, stats overview, and activity feeds for dashboards.",
   settings: "Account, billing, notification, and profile settings pages.",
-  navigation: "Application sidebar, top navigation, and mobile navigation drawer.",
+  navigation:
+    "Application sidebar, top navigation, and mobile navigation drawer.",
   data: "Data tables, Kanban boards, searchable tables, and timeline components.",
   ecommerce: "Product cards, shopping cart, and checkout form components.",
-  marketing: "Hero sections, feature grids, pricing tables, and testimonial carousels.",
+  marketing:
+    "Hero sections, feature grids, pricing tables, and testimonial carousels.",
 };
 
 export interface BlockEntry {
@@ -50,7 +52,8 @@ export const blocks: BlockEntry[] = [
   {
     id: "login-form",
     name: "Login Form",
-    description: "Email and password login form with remember me checkbox and validation.",
+    description:
+      "Email and password login form with remember me checkbox and validation.",
     category: "auth",
     sourcePath: "auth/LoginForm.tsx",
     code: `import { LoginForm } from "@launchapp/design-system/blocks/auth";
@@ -69,7 +72,8 @@ export default function Page() {
   {
     id: "sign-up-form",
     name: "Sign Up Form",
-    description: "User registration form with name, email, and password fields.",
+    description:
+      "User registration form with name, email, and password fields.",
     category: "auth",
     sourcePath: "auth/SignUpForm.tsx",
     code: `import { SignUpForm } from "@launchapp/design-system/blocks/auth";
@@ -88,7 +92,8 @@ export default function Page() {
   {
     id: "forgot-password-form",
     name: "Forgot Password Form",
-    description: "Password reset request form with email input and success state.",
+    description:
+      "Password reset request form with email input and success state.",
     category: "auth",
     sourcePath: "auth/ForgotPasswordForm.tsx",
     code: `import { ForgotPasswordForm } from "@launchapp/design-system/blocks/auth";
@@ -126,7 +131,8 @@ export default function Page() {
   {
     id: "metric-cards",
     name: "Metric Cards",
-    description: "Grid of KPI metric cards with trend indicators and sparkline charts.",
+    description:
+      "Grid of KPI metric cards with trend indicators and sparkline charts.",
     category: "dashboard",
     sourcePath: "dashboard/MetricCards.tsx",
     code: `import { MetricCards } from "@launchapp/design-system/blocks/dashboard";
@@ -157,7 +163,8 @@ export default function Page() {
   {
     id: "stats-overview",
     name: "Stats Overview",
-    description: "Dashboard stats overview with summary metrics and area chart.",
+    description:
+      "Dashboard stats overview with summary metrics and area chart.",
     category: "dashboard",
     sourcePath: "dashboard/StatsOverview.tsx",
     code: `import { StatsOverview } from "@launchapp/design-system/blocks/dashboard";
@@ -182,7 +189,8 @@ export default function Page() {
   {
     id: "activity-feed",
     name: "Activity Feed",
-    description: "Chronological activity feed with avatar, action badge, and timestamp.",
+    description:
+      "Chronological activity feed with avatar, action badge, and timestamp.",
     category: "dashboard",
     sourcePath: "dashboard/ActivityFeed.tsx",
     code: `import { ActivityFeed } from "@launchapp/design-system/blocks/dashboard";
@@ -213,7 +221,8 @@ export default function Page() {
   {
     id: "profile-settings",
     name: "Profile Settings",
-    description: "User profile edit form with avatar, display name, bio, and social links.",
+    description:
+      "User profile edit form with avatar, display name, bio, and social links.",
     category: "settings",
     sourcePath: "settings/ProfileSettings.tsx",
     code: `import { ProfileSettings } from "@launchapp/design-system/blocks/settings";
@@ -231,7 +240,8 @@ export default function Page() {
   {
     id: "account-settings",
     name: "Account Settings",
-    description: "Account preferences including email change, password update, and danger zone.",
+    description:
+      "Account preferences including email change, password update, and danger zone.",
     category: "settings",
     sourcePath: "settings/AccountSettings.tsx",
     code: `import { AccountSettings } from "@launchapp/design-system/blocks/settings";
@@ -267,7 +277,8 @@ export default function Page() {
   {
     id: "billing-page",
     name: "Billing Page",
-    description: "Subscription plan comparison, usage meters, payment methods, and invoices.",
+    description:
+      "Subscription plan comparison, usage meters, payment methods, and invoices.",
     category: "settings",
     sourcePath: "settings/BillingPage.tsx",
     code: `import { BillingPage } from "@launchapp/design-system/blocks/settings";
@@ -285,7 +296,8 @@ export default function Page() {
   {
     id: "app-sidebar",
     name: "App Sidebar",
-    description: "Collapsible application sidebar with nested navigation sections and user area.",
+    description:
+      "Collapsible application sidebar with nested navigation sections and user area.",
     category: "navigation",
     sourcePath: "navigation/AppSidebar.tsx",
     code: `import { AppSidebar } from "@launchapp/design-system/blocks/navigation";
@@ -320,7 +332,8 @@ export default function Page() {
   {
     id: "top-nav",
     name: "Top Navigation",
-    description: "Horizontal top navigation bar with logo, links, notifications, and user menu.",
+    description:
+      "Horizontal top navigation bar with logo, links, notifications, and user menu.",
     category: "navigation",
     sourcePath: "navigation/TopNav.tsx",
     code: `import { TopNav } from "@launchapp/design-system/blocks/navigation";
@@ -348,7 +361,8 @@ export default function Page() {
   {
     id: "mobile-nav-drawer",
     name: "Mobile Nav Drawer",
-    description: "Slide-in mobile navigation drawer with menu items and close button.",
+    description:
+      "Slide-in mobile navigation drawer with menu items and close button.",
     category: "navigation",
     sourcePath: "navigation/MobileNavDrawer.tsx",
     code: `import { MobileNavDrawer } from "@launchapp/design-system/blocks/navigation";
@@ -367,7 +381,8 @@ export default function Page() {
   {
     id: "full-data-table",
     name: "Full Data Table",
-    description: "Feature-rich data table with sorting, filtering, pagination, and bulk actions.",
+    description:
+      "Feature-rich data table with sorting, filtering, pagination, and bulk actions.",
     category: "data",
     sourcePath: "data/FullDataTable/FullDataTable.tsx",
     code: `import { FullDataTable } from "@launchapp/design-system/blocks/data";
@@ -477,7 +492,8 @@ export default function Page() {
   {
     id: "timeline",
     name: "Timeline",
-    description: "Vertical timeline for displaying chronological events with icons and badges.",
+    description:
+      "Vertical timeline for displaying chronological events with icons and badges.",
     category: "data",
     sourcePath: "data/Timeline/Timeline.tsx",
     code: `import { Timeline } from "@launchapp/design-system/blocks/data";
@@ -520,7 +536,8 @@ export default function Page() {
   {
     id: "product-card",
     name: "Product Card",
-    description: "Product card grid with image, title, price, rating, and add-to-cart action.",
+    description:
+      "Product card grid with image, title, price, rating, and add-to-cart action.",
     category: "ecommerce",
     sourcePath: "ecommerce/ProductCard/ProductCard.tsx",
     code: `import { ProductCardGrid } from "@launchapp/design-system/blocks/ecommerce";
@@ -561,7 +578,8 @@ export default function Page() {
   {
     id: "shopping-cart",
     name: "Shopping Cart",
-    description: "Shopping cart with item list, quantity controls, and order summary.",
+    description:
+      "Shopping cart with item list, quantity controls, and order summary.",
     category: "ecommerce",
     sourcePath: "ecommerce/ShoppingCart/ShoppingCart.tsx",
     code: `import { ShoppingCart } from "@launchapp/design-system/blocks/ecommerce";
@@ -600,7 +618,8 @@ export default function Page() {
   {
     id: "checkout-form",
     name: "Checkout Form",
-    description: "Multi-step checkout form with shipping address and payment information.",
+    description:
+      "Multi-step checkout form with shipping address and payment information.",
     category: "ecommerce",
     sourcePath: "ecommerce/CheckoutForm/CheckoutForm.tsx",
     code: `import { CheckoutForm } from "@launchapp/design-system/blocks/ecommerce";
@@ -624,7 +643,8 @@ export default function Page() {
   {
     id: "hero-section",
     name: "Hero Section",
-    description: "Landing page hero with headline, subheadline, and CTA buttons.",
+    description:
+      "Landing page hero with headline, subheadline, and CTA buttons.",
     category: "marketing",
     sourcePath: "marketing/HeroSection/HeroSection.tsx",
     code: `import { HeroSection } from "@launchapp/design-system/blocks/marketing";
@@ -645,7 +665,8 @@ export default function Page() {
   {
     id: "feature-grid",
     name: "Feature Grid",
-    description: "Grid layout showcasing product features with icons and descriptions.",
+    description:
+      "Grid layout showcasing product features with icons and descriptions.",
     category: "marketing",
     sourcePath: "marketing/FeatureGrid/FeatureGrid.tsx",
     code: `import { FeatureGrid } from "@launchapp/design-system/blocks/marketing";
@@ -680,7 +701,8 @@ export default function Page() {
   {
     id: "pricing-table",
     name: "Pricing Table",
-    description: "Pricing plans comparison table with feature lists and CTA buttons.",
+    description:
+      "Pricing plans comparison table with feature lists and CTA buttons.",
     category: "marketing",
     sourcePath: "marketing/PricingTable/PricingTable.tsx",
     code: `import { PricingTable } from "@launchapp/design-system/blocks/marketing";
@@ -719,7 +741,8 @@ export default function Page() {
   {
     id: "testimonial-carousel",
     name: "Testimonial Carousel",
-    description: "Auto-rotating testimonials from customers with avatar and quote.",
+    description:
+      "Auto-rotating testimonials from customers with avatar and quote.",
     category: "marketing",
     sourcePath: "marketing/TestimonialCarousel/TestimonialCarousel.tsx",
     code: `import { TestimonialCarousel } from "@launchapp/design-system/blocks/marketing";

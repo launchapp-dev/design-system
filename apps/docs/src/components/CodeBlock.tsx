@@ -14,10 +14,16 @@ export async function CodeBlock({ code, lang = "tsx", title }: CodeBlockProps) {
   });
 
   return (
-    <div className="relative rounded-lg border overflow-hidden" style={{ background: bg }}>
+    <div
+      className="relative rounded-lg border overflow-hidden"
+      style={{ background: bg }}
+    >
       {title && (
         <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
-          <span className="text-xs font-mono" style={{ color: fg, opacity: 0.5 }}>
+          <span
+            className="text-xs font-mono"
+            style={{ color: fg, opacity: 0.5 }}
+          >
             {title}
           </span>
           <CopyButton text={code.trim()} />
@@ -28,7 +34,10 @@ export async function CodeBlock({ code, lang = "tsx", title }: CodeBlockProps) {
           <CopyButton text={code.trim()} />
         </div>
       )}
-      <pre className="overflow-x-auto p-4 text-sm m-0" style={{ background: bg, color: fg }}>
+      <pre
+        className="overflow-x-auto p-4 text-sm m-0"
+        style={{ background: bg, color: fg }}
+      >
         <code>
           {tokens.map((line, lineIdx) => (
             <span key={lineIdx} className="block">

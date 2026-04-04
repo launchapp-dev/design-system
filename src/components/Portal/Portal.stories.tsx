@@ -62,7 +62,9 @@ export const WithCustomContainer: Story = {
             borderRadius: "6px",
           }}
         >
-          <p style={{ margin: 0, fontSize: "12px", color: "#71717a" }}>Custom container</p>
+          <p style={{ margin: 0, fontSize: "12px", color: "#71717a" }}>
+            Custom container
+          </p>
           {open && containerRef.current && (
             <Portal container={containerRef.current}>
               <p style={{ margin: "8px 0 0" }}>Portal content here</p>

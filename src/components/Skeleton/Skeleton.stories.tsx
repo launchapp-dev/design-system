@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { Skeleton } from "./index";
 
 const meta: Meta<typeof Skeleton> = {
@@ -21,7 +20,9 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>Card Skeleton</p>
+        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>
+          Card Skeleton
+        </p>
         <div className="flex flex-col space-y-3" style={{ width: 300 }}>
           <Skeleton className="h-40 w-full rounded-lg" />
           <div className="space-y-2">
@@ -38,7 +39,9 @@ export const AllVariants: Story = {
         </div>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>List Skeleton</p>
+        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>
+          List Skeleton
+        </p>
         <div className="flex flex-col space-y-4" style={{ width: 400 }}>
           {Array.from({ length: 5 }).map((_, i) => (
             <div key={i} className="flex items-center space-x-4">
@@ -52,7 +55,9 @@ export const AllVariants: Story = {
         </div>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>Text Skeleton</p>
+        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>
+          Text Skeleton
+        </p>
         <div className="space-y-2" style={{ width: 400 }}>
           <Skeleton className="h-5 w-2/3" />
           <Skeleton className="h-4 w-full" />
@@ -61,7 +66,9 @@ export const AllVariants: Story = {
         </div>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>Form Skeleton</p>
+        <p style={{ fontSize: "12px", marginBottom: "12px", fontWeight: 500 }}>
+          Form Skeleton
+        </p>
         <div className="space-y-4" style={{ width: 360 }}>
           <div className="space-y-2">
             <Skeleton className="h-4 w-24" />
@@ -86,7 +93,9 @@ export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Height Variations</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Height Variations
+        </p>
         <div className="space-y-2" style={{ width: 300 }}>
           <Skeleton className="h-2 w-full" />
           <Skeleton className="h-3 w-full" />
@@ -100,7 +109,9 @@ export const AllSizes: Story = {
         </div>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Width Variations</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Width Variations
+        </p>
         <div className="space-y-2">
           <Skeleton className="h-4 w-16" />
           <Skeleton className="h-4 w-32" />
@@ -110,8 +121,17 @@ export const AllSizes: Story = {
         </div>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Shape Variations</p>
-        <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Shape Variations
+        </p>
+        <div
+          style={{
+            display: "flex",
+            gap: "16px",
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
           <Skeleton className="h-10 w-10" />
           <Skeleton className="h-10 w-10 rounded-md" />
           <Skeleton className="h-10 w-10 rounded-full" />
@@ -129,7 +149,9 @@ export const Interactive: Story = {
   },
   render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <p style={{ fontSize: "12px", color: "#888" }}>Use the className control to adjust shape and size.</p>
+      <p style={{ fontSize: "12px", color: "#888" }}>
+        Use the className control to adjust shape and size.
+      </p>
       <Skeleton {...args} />
     </div>
   ),
@@ -138,7 +160,10 @@ export const Interactive: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),

@@ -1,11 +1,11 @@
 import * as React from "react";
+import { Button } from "@/components/Button";
 import {
-  DialogRoot,
-  DialogContent,
   DialogClose,
+  DialogContent,
+  DialogRoot,
   DialogTitle,
 } from "@/components/Dialog";
-import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 
 export interface GalleryImage {
@@ -15,7 +15,8 @@ export interface GalleryImage {
   name?: string;
 }
 
-export interface ImageGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ImageGalleryProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   images: GalleryImage[];
   columns?: 2 | 3 | 4;
   onRemove?: (id: string) => void;
@@ -36,11 +37,18 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
       <>
         <div
           ref={ref}
-          className={cn("grid gap-3", colClasses[columns] ?? colClasses[3], className)}
+          className={cn(
+            "grid gap-3",
+            colClasses[columns] ?? colClasses[3],
+            className,
+          )}
           {...props}
         >
           {images.map((image) => (
-            <div key={image.id} className="group relative aspect-square overflow-hidden rounded-lg border bg-muted">
+            <div
+              key={image.id}
+              className="group relative aspect-square overflow-hidden rounded-lg border bg-muted"
+            >
               <img
                 src={image.src}
                 alt={image.alt}
@@ -54,7 +62,9 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
                   aria-label={`Preview ${image.alt}`}
                 >
                   {image.name ? (
-                    <span className="max-w-[100px] truncate block">{image.name}</span>
+                    <span className="max-w-[100px] truncate block">
+                      {image.name}
+                    </span>
                   ) : (
                     "Preview"
                   )}
@@ -89,7 +99,10 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
           ))}
         </div>
 
-        <DialogRoot open={lightboxId !== null} onOpenChange={(open) => !open && setLightboxId(null)}>
+        <DialogRoot
+          open={lightboxId !== null}
+          onOpenChange={(open) => !open && setLightboxId(null)}
+        >
           <DialogContent className="max-w-3xl border-0 bg-black/90 p-2 shadow-2xl">
             <DialogTitle className="sr-only">
               {lightboxImage?.alt ?? "Image preview"}
@@ -120,7 +133,12 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </Button>
             </DialogClose>
@@ -128,7 +146,7 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
         </DialogRoot>
       </>
     );
-  }
+  },
 );
 ImageGallery.displayName = "ImageGallery";
 

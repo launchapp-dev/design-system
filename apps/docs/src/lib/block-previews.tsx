@@ -1,20 +1,38 @@
 "use client";
 
-import * as React from "react";
-
-import { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification } from "@ds/blocks/auth";
-import { MetricCards, StatsOverview, ActivityFeed } from "@ds/blocks/dashboard";
 import {
-  ProfileSettings,
+  ForgotPasswordForm,
+  LoginForm,
+  OTPVerification,
+  SignUpForm,
+} from "@ds/blocks/auth";
+import { ActivityFeed, MetricCards, StatsOverview } from "@ds/blocks/dashboard";
+import {
+  FullDataTable,
+  KanbanBoard,
+  SearchableDataTable,
+  Timeline,
+} from "@ds/blocks/data";
+import {
+  CheckoutForm,
+  ProductCardGrid,
+  ShoppingCart,
+} from "@ds/blocks/ecommerce";
+import {
+  FeatureGrid,
+  HeroSection,
+  PricingTable,
+  TestimonialCarousel,
+} from "@ds/blocks/marketing";
+import { AppSidebar, MobileNavDrawer, TopNav } from "@ds/blocks/navigation";
+import {
   AccountSettings,
-  NotificationPreferences,
   BillingPage,
+  NotificationPreferences,
+  ProfileSettings,
 } from "@ds/blocks/settings";
-import { AppSidebar, TopNav, MobileNavDrawer } from "@ds/blocks/navigation";
-import { FullDataTable, KanbanBoard, SearchableDataTable, Timeline } from "@ds/blocks/data";
-import { ProductCardGrid, ShoppingCart, CheckoutForm } from "@ds/blocks/ecommerce";
-import { HeroSection, FeatureGrid, PricingTable, TestimonialCarousel } from "@ds/blocks/marketing";
 import type { ColumnDef } from "@tanstack/react-table";
+import type * as React from "react";
 
 export type BlockPreviewFn = () => React.ReactElement;
 
@@ -54,10 +72,30 @@ const metricCardItems = [
 ];
 
 const statsItems = [
-  { label: "Total Revenue", value: "$45,231", trend: "up" as const, trendLabel: "+20.1%" },
-  { label: "Subscriptions", value: "+2350", trend: "up" as const, trendLabel: "+180.1%" },
-  { label: "Sales", value: "+12,234", trend: "up" as const, trendLabel: "+19%" },
-  { label: "Active Now", value: "+573", trend: "up" as const, trendLabel: "+201" },
+  {
+    label: "Total Revenue",
+    value: "$45,231",
+    trend: "up" as const,
+    trendLabel: "+20.1%",
+  },
+  {
+    label: "Subscriptions",
+    value: "+2350",
+    trend: "up" as const,
+    trendLabel: "+180.1%",
+  },
+  {
+    label: "Sales",
+    value: "+12,234",
+    trend: "up" as const,
+    trendLabel: "+19%",
+  },
+  {
+    label: "Active Now",
+    value: "+573",
+    trend: "up" as const,
+    trendLabel: "+201",
+  },
 ];
 
 const activityItems = [
@@ -103,10 +141,34 @@ const userColumns: ColumnDef<UserRow>[] = [
 ];
 
 const userData: UserRow[] = [
-  { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Admin", status: "Active" },
-  { id: "2", name: "Bob Smith", email: "bob@example.com", role: "Member", status: "Active" },
-  { id: "3", name: "Carol White", email: "carol@example.com", role: "Member", status: "Inactive" },
-  { id: "4", name: "Dave Brown", email: "dave@example.com", role: "Viewer", status: "Active" },
+  {
+    id: "1",
+    name: "Alice Johnson",
+    email: "alice@example.com",
+    role: "Admin",
+    status: "Active",
+  },
+  {
+    id: "2",
+    name: "Bob Smith",
+    email: "bob@example.com",
+    role: "Member",
+    status: "Active",
+  },
+  {
+    id: "3",
+    name: "Carol White",
+    email: "carol@example.com",
+    role: "Member",
+    status: "Inactive",
+  },
+  {
+    id: "4",
+    name: "Dave Brown",
+    email: "dave@example.com",
+    role: "Viewer",
+    status: "Active",
+  },
 ];
 
 const kanbanColumns = [
@@ -114,23 +176,48 @@ const kanbanColumns = [
     id: "todo",
     title: "To Do",
     cards: [
-      { id: "1", title: "Research competitors", badge: "Research", badgeVariant: "secondary" as const },
-      { id: "2", title: "Design wireframes", badge: "Design", badgeVariant: "outline" as const },
+      {
+        id: "1",
+        title: "Research competitors",
+        badge: "Research",
+        badgeVariant: "secondary" as const,
+      },
+      {
+        id: "2",
+        title: "Design wireframes",
+        badge: "Design",
+        badgeVariant: "outline" as const,
+      },
     ],
   },
   {
     id: "in-progress",
     title: "In Progress",
     cards: [
-      { id: "3", title: "Build API endpoints", badge: "Engineering", badgeVariant: "default" as const },
-      { id: "4", title: "Write unit tests", badge: "QA", badgeVariant: "secondary" as const },
+      {
+        id: "3",
+        title: "Build API endpoints",
+        badge: "Engineering",
+        badgeVariant: "default" as const,
+      },
+      {
+        id: "4",
+        title: "Write unit tests",
+        badge: "QA",
+        badgeVariant: "secondary" as const,
+      },
     ],
   },
   {
     id: "done",
     title: "Done",
     cards: [
-      { id: "5", title: "Project kickoff", badge: "Planning", badgeVariant: "outline" as const },
+      {
+        id: "5",
+        title: "Project kickoff",
+        badge: "Planning",
+        badgeVariant: "outline" as const,
+      },
     ],
   },
 ];
@@ -205,33 +292,58 @@ const cartItems = [
 const features = [
   {
     title: "Accessible",
-    description: "Built on Radix UI primitives for full keyboard and screen reader support.",
-    icon: <span aria-hidden className="text-2xl">♿</span>,
+    description:
+      "Built on Radix UI primitives for full keyboard and screen reader support.",
+    icon: (
+      <span aria-hidden className="text-2xl">
+        ♿
+      </span>
+    ),
   },
   {
     title: "Customizable",
     description: "CSS custom properties and Tailwind for effortless theming.",
-    icon: <span aria-hidden className="text-2xl">🎨</span>,
+    icon: (
+      <span aria-hidden className="text-2xl">
+        🎨
+      </span>
+    ),
   },
   {
     title: "TypeScript",
     description: "Fully typed APIs with IntelliSense for a great DX.",
-    icon: <span aria-hidden className="text-2xl">📘</span>,
+    icon: (
+      <span aria-hidden className="text-2xl">
+        📘
+      </span>
+    ),
   },
   {
     title: "Dark Mode",
     description: "First-class dark mode support out of the box.",
-    icon: <span aria-hidden className="text-2xl">🌙</span>,
+    icon: (
+      <span aria-hidden className="text-2xl">
+        🌙
+      </span>
+    ),
   },
   {
     title: "Production Ready",
     description: "Battle-tested components shipped in production apps.",
-    icon: <span aria-hidden className="text-2xl">🚀</span>,
+    icon: (
+      <span aria-hidden className="text-2xl">
+        🚀
+      </span>
+    ),
   },
   {
     title: "Open Source",
     description: "MIT licensed and open for contributions.",
-    icon: <span aria-hidden className="text-2xl">🔓</span>,
+    icon: (
+      <span aria-hidden className="text-2xl">
+        🔓
+      </span>
+    ),
   },
 ];
 
@@ -247,7 +359,12 @@ const pricingTiers = [
     name: "Pro",
     price: "$29",
     description: "Best for growing teams and businesses.",
-    features: ["Unlimited projects", "100 GB storage", "Priority support", "Analytics"],
+    features: [
+      "Unlimited projects",
+      "100 GB storage",
+      "Priority support",
+      "Analytics",
+    ],
     ctaLabel: "Start free trial",
     popular: true,
     badge: "Most Popular",
@@ -256,26 +373,34 @@ const pricingTiers = [
     name: "Enterprise",
     price: "Custom",
     description: "For large organizations with advanced needs.",
-    features: ["Unlimited everything", "Dedicated support", "Custom integrations", "SLA"],
+    features: [
+      "Unlimited everything",
+      "Dedicated support",
+      "Custom integrations",
+      "SLA",
+    ],
     ctaLabel: "Contact sales",
   },
 ];
 
 const testimonials = [
   {
-    quote: "LaunchApp cut our frontend development time in half. The components are beautiful and accessible out of the box.",
+    quote:
+      "LaunchApp cut our frontend development time in half. The components are beautiful and accessible out of the box.",
     name: "Sarah Chen",
     role: "CTO at Startup Inc.",
     avatarFallback: "SC",
   },
   {
-    quote: "The best design system I've worked with. Theming support and dark mode made our redesign a breeze.",
+    quote:
+      "The best design system I've worked with. Theming support and dark mode made our redesign a breeze.",
     name: "Mark Rivera",
     role: "Lead Engineer at TechCorp",
     avatarFallback: "MR",
   },
   {
-    quote: "We migrated our entire component library to LaunchApp in a weekend. Incredible productivity boost.",
+    quote:
+      "We migrated our entire component library to LaunchApp in a weekend. Incredible productivity boost.",
     name: "Priya Patel",
     role: "Frontend Lead at GrowthCo",
     avatarFallback: "PP",
@@ -300,7 +425,11 @@ const navSections = [
   },
 ];
 
-const navUser = { name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" };
+const navUser = {
+  name: "Alice Johnson",
+  email: "alice@example.com",
+  avatarFallback: "AJ",
+};
 
 const topNavItems = [
   { label: "Dashboard", href: "#" },
@@ -321,11 +450,16 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       items={statsItems}
     />
   ),
-  "activity-feed": () => <ActivityFeed items={activityItems} title="Recent Activity" />,
+  "activity-feed": () => (
+    <ActivityFeed items={activityItems} title="Recent Activity" />
+  ),
   "profile-settings": () => (
     <ProfileSettings
       avatarFallback="AJ"
-      defaultValues={{ name: "Alice Johnson", bio: "Product designer at LaunchApp." }}
+      defaultValues={{
+        name: "Alice Johnson",
+        bio: "Product designer at LaunchApp.",
+      }}
     />
   ),
   "account-settings": () => <AccountSettings />,
@@ -337,18 +471,10 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     </div>
   ),
   "top-nav": () => (
-    <TopNav
-      items={topNavItems}
-      notificationCount={3}
-      user={navUser}
-    />
+    <TopNav items={topNavItems} notificationCount={3} user={navUser} />
   ),
   "mobile-nav-drawer": () => (
-    <MobileNavDrawer
-      sections={navSections}
-      title="Navigation"
-      user={navUser}
-    />
+    <MobileNavDrawer sections={navSections} title="Navigation" user={navUser} />
   ),
   "full-data-table": () => (
     <FullDataTable columns={userColumns} data={userData} searchColumn="name" />
@@ -362,12 +488,15 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       searchPlaceholder="Search users..."
     />
   ),
-  "timeline": () => <Timeline items={timelineItems} />,
-  "product-card": () => (
-    <ProductCardGrid products={products} columns={3} />
-  ),
+  timeline: () => <Timeline items={timelineItems} />,
+  "product-card": () => <ProductCardGrid products={products} columns={3} />,
   "shopping-cart": () => (
-    <ShoppingCart items={cartItems} taxRate={0.08} shippingCost={9.99} freeShippingThreshold={100} />
+    <ShoppingCart
+      items={cartItems}
+      taxRate={0.08}
+      shippingCost={9.99}
+      freeShippingThreshold={100}
+    />
   ),
   "checkout-form": () => (
     <CheckoutForm
@@ -392,7 +521,9 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       subheadline="Everything you need to ship production UIs."
     />
   ),
-  "pricing-table": () => <PricingTable tiers={pricingTiers} headline="Simple, transparent pricing" />,
+  "pricing-table": () => (
+    <PricingTable tiers={pricingTiers} headline="Simple, transparent pricing" />
+  ),
   "testimonial-carousel": () => (
     <TestimonialCarousel
       testimonials={testimonials}

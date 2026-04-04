@@ -1,36 +1,58 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { cn } from "../../lib/utils";
+import { Button } from "../../components/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../../components/Card";
 import {
   Form,
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormMessage,
-  FormDescription,
 } from "../../components/Form";
 import { Input } from "../../components/Input";
+import {
+  TabsContent,
+  TabsList,
+  TabsRoot,
+  TabsTrigger,
+} from "../../components/Tabs";
 import { Textarea } from "../../components/Textarea";
-import { Button } from "../../components/Button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../../components/Card";
-import { TabsRoot, TabsContent, TabsList, TabsTrigger } from "../../components/Tabs";
-import { Label } from "../../components/Label";
 import { ThemePreview } from "../../components/ThemePreview";
-import { validateCommunityTheme, validateHslValue, type CommunityTheme } from "../../themes/community-themes";
+import { cn } from "../../lib/utils";
+import {
+  type CommunityTheme,
+  validateCommunityTheme,
+  validateHslValue,
+} from "../../themes/community-themes";
 
-const tokenSchema = z.record(
+const _tokenSchema = z.record(
   z.string().regex(/^--la-/, "Token name must start with --la-"),
-  z.string().refine((val) => validateHslValue(val), "Must be valid HSL value (e.g., '262 83% 58%')")
+  z
+    .string()
+    .refine(
+      (val) => validateHslValue(val),
+      "Must be valid HSL value (e.g., '262 83% 58%')",
+    ),
 );
 
 const themeSubmissionSchema = z.object({
   id: z
     .string()
     .min(1, "Theme ID is required")
-    .regex(/^[a-z0-9-]+$/, "ID must contain only lowercase letters, numbers, and hyphens")
+    .regex(
+      /^[a-z0-9-]+$/,
+      "ID must contain only lowercase letters, numbers, and hyphens",
+    )
     .max(50, "ID must be at most 50 characters"),
   name: z
     .string()
@@ -44,11 +66,7 @@ const themeSubmissionSchema = z.object({
     .string()
     .min(1, "Author name is required")
     .max(100, "Author name must be at most 100 characters"),
-  authorUrl: z
-    .string()
-    .url("Must be a valid URL")
-    .optional()
-    .or(z.literal("")),
+  authorUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   authorEmail: z
     .string()
     .email("Must be a valid email")
@@ -66,15 +84,15 @@ const themeSubmissionSchema = z.object({
     .url("Must be a valid URL")
     .optional()
     .or(z.literal("")),
-  keywords: z
-    .string()
-    .optional(),
+  keywords: z.string().optional(),
   previewColor: z
     .string()
     .regex(/^\d{1,3}\s+\d{1,3}%\s+\d{1,3}%$/, "Must be valid HSL value")
     .optional(),
   primaryColor: z.string().regex(/^#[0-9a-f]{6}$/i, "Must be valid hex color"),
-  secondaryColor: z.string().regex(/^#[0-9a-f]{6}$/i, "Must be valid hex color"),
+  secondaryColor: z
+    .string()
+    .regex(/^#[0-9a-f]{6}$/i, "Must be valid hex color"),
   accentColor: z.string().regex(/^#[0-9a-f]{6}$/i, "Must be valid hex color"),
 });
 
@@ -90,9 +108,12 @@ export interface ThemeSubmissionFormProps {
 
 function ThemeSubmissionForm(
   { onSubmit, onCancel, isLoading, error, className }: ThemeSubmissionFormProps,
-  ref: React.Ref<HTMLDivElement>
+  ref: React.Ref<HTMLDivElement>,
 ): React.ReactElement {
-  const [previewColors, setPreviewColors] = React.useState<Record<string, string> | null>(null);
+  const [previewColors, setPreviewColors] = React.useState<Record<
+    string,
+    string
+  > | null>(null);
 
   const form = useForm<ThemeSubmissionValues>({
     resolver: zodResolver(themeSubmissionSchema),
@@ -119,23 +140,33 @@ function ThemeSubmissionForm(
         primary: values.primaryColor || "#262350",
         secondary: values.secondaryColor || "#6d5d7b",
         accent: values.accentColor || "#c6a0ff",
-        muted: values.secondaryColor ? adjustHue(values.secondaryColor, 10) : "#a89db5",
+        muted: values.secondaryColor
+          ? adjustHue(values.secondaryColor, 10)
+          : "#a89db5",
         destructive: "#ff6b6b",
       });
     });
     return () => subscription.unsubscribe();
-  }, [form]);
+  }, [form, adjustHue]);
 
   function adjustHue(hex: string, amount: number): string {
     const clean = hex.replace("#", "");
     let h = parseInt(clean.substring(0, 2), 16);
     h = Math.min(255, Math.max(0, h + amount));
-    return "#" + h.toString(16).padStart(2, "0") + clean.substring(2);
+    return `#${h.toString(16).padStart(2, "0")}${clean.substring(2)}`;
   }
 
   async function handleSubmit(values: ThemeSubmissionValues) {
-    const lightTokens = generateTokens(values.primaryColor, values.secondaryColor, "light");
-    const darkTokens = generateTokens(values.primaryColor, values.secondaryColor, "dark");
+    const lightTokens = generateTokens(
+      values.primaryColor,
+      values.secondaryColor,
+      "light",
+    );
+    const darkTokens = generateTokens(
+      values.primaryColor,
+      values.secondaryColor,
+      "dark",
+    );
 
     const theme: CommunityTheme = {
       id: values.id,
@@ -149,7 +180,12 @@ function ThemeSubmissionForm(
       version: values.version,
       license: values.license,
       repository: values.repository || undefined,
-      keywords: values.keywords ? values.keywords.split(",").map((k) => k.trim()).filter(Boolean) : [],
+      keywords: values.keywords
+        ? values.keywords
+            .split(",")
+            .map((k) => k.trim())
+            .filter(Boolean)
+        : [],
       previewColor: values.previewColor,
       tokens: {
         light: lightTokens,
@@ -174,7 +210,8 @@ function ThemeSubmissionForm(
         <CardHeader>
           <CardTitle>Submit a Community Theme</CardTitle>
           <CardDescription>
-            Create and submit a custom color theme for the LaunchApp design system
+            Create and submit a custom color theme for the LaunchApp design
+            system
           </CardDescription>
         </CardHeader>
 
@@ -187,7 +224,10 @@ function ThemeSubmissionForm(
             </TabsList>
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 mt-6">
+              <form
+                onSubmit={form.handleSubmit(handleSubmit)}
+                className="space-y-6 mt-6"
+              >
                 {error && (
                   <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                     {error}
@@ -260,7 +300,9 @@ function ThemeSubmissionForm(
                   />
 
                   <div className="space-y-4 border-t pt-6">
-                    <h3 className="font-semibold text-sm">Author Information</h3>
+                    <h3 className="font-semibold text-sm">
+                      Author Information
+                    </h3>
                     <FormField
                       control={form.control}
                       name="authorName"
@@ -401,7 +443,8 @@ function ThemeSubmissionForm(
 
                 <TabsContent value="colors" className="space-y-6 mt-0">
                   <p className="text-sm text-muted-foreground">
-                    Choose your primary colors. Additional shades will be automatically generated.
+                    Choose your primary colors. Additional shades will be
+                    automatically generated.
                   </p>
 
                   <div className="grid grid-cols-3 gap-4">
@@ -490,7 +533,8 @@ function ThemeSubmissionForm(
                           />
                         </FormControl>
                         <FormDescription className="text-xs">
-                          HSL value shown in theme gallery (optional, will auto-detect if omitted)
+                          HSL value shown in theme gallery (optional, will
+                          auto-detect if omitted)
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -532,31 +576,45 @@ function ThemeSubmissionForm(
 function generateTokens(
   primaryHex: string,
   secondaryHex: string,
-  mode: "light" | "dark"
+  mode: "light" | "dark",
 ): Record<string, string> {
   const primaryHsl = hexToHsl(primaryHex);
   const secondaryHsl = hexToHsl(secondaryHex);
-  const lightness = mode === "light" ? 50 : 30;
+  const _lightness = mode === "light" ? 50 : 30;
 
   return {
-    "--la-background": mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 18%`,
-    "--la-foreground": mode === "light" ? `${primaryHsl.split(" ")[0]} 15% 18%` : "60 30% 96%",
-    "--la-card": mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 22%`,
-    "--la-card-foreground": mode === "light" ? `${primaryHsl.split(" ")[0]} 15% 18%` : "60 30% 96%",
-    "--la-popover": mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 22%`,
-    "--la-popover-foreground": mode === "light" ? `${primaryHsl.split(" ")[0]} 15% 18%` : "60 30% 96%",
+    "--la-background":
+      mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 18%`,
+    "--la-foreground":
+      mode === "light" ? `${primaryHsl.split(" ")[0]} 15% 18%` : "60 30% 96%",
+    "--la-card":
+      mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 22%`,
+    "--la-card-foreground":
+      mode === "light" ? `${primaryHsl.split(" ")[0]} 15% 18%` : "60 30% 96%",
+    "--la-popover":
+      mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 22%`,
+    "--la-popover-foreground":
+      mode === "light" ? `${primaryHsl.split(" ")[0]} 15% 18%` : "60 30% 96%",
     "--la-primary": primaryHsl,
-    "--la-primary-foreground": mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 18%`,
+    "--la-primary-foreground":
+      mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 18%`,
     "--la-secondary": secondaryHsl,
     "--la-secondary-foreground": mode === "light" ? "0 0% 100%" : "60 30% 96%",
-    "--la-muted": mode === "light" ? "0 0% 90%" : `${primaryHsl.split(" ")[0]} 15% 40%`,
-    "--la-muted-foreground": mode === "light" ? `${primaryHsl.split(" ")[0]} 15% 45%` : `${primaryHsl.split(" ")[0]} 15% 70%`,
+    "--la-muted":
+      mode === "light" ? "0 0% 90%" : `${primaryHsl.split(" ")[0]} 15% 40%`,
+    "--la-muted-foreground":
+      mode === "light"
+        ? `${primaryHsl.split(" ")[0]} 15% 45%`
+        : `${primaryHsl.split(" ")[0]} 15% 70%`,
     "--la-accent": primaryHsl,
-    "--la-accent-foreground": mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 18%`,
+    "--la-accent-foreground":
+      mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 18%`,
     "--la-destructive": "0 100% 67%",
     "--la-destructive-foreground": "0 0% 100%",
-    "--la-border": mode === "light" ? "0 0% 88%" : `${primaryHsl.split(" ")[0]} 15% 32%`,
-    "--la-input": mode === "light" ? "0 0% 88%" : `${primaryHsl.split(" ")[0]} 15% 32%`,
+    "--la-border":
+      mode === "light" ? "0 0% 88%" : `${primaryHsl.split(" ")[0]} 15% 32%`,
+    "--la-input":
+      mode === "light" ? "0 0% 88%" : `${primaryHsl.split(" ")[0]} 15% 32%`,
     "--la-ring": primaryHsl,
   };
 }
@@ -589,9 +647,10 @@ function hexToHsl(hex: string): string {
   return `${Math.round(h * 360)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`;
 }
 
-const ThemeSubmissionFormComponent = React.forwardRef<HTMLDivElement, ThemeSubmissionFormProps>(
-  ThemeSubmissionForm
-);
+const ThemeSubmissionFormComponent = React.forwardRef<
+  HTMLDivElement,
+  ThemeSubmissionFormProps
+>(ThemeSubmissionForm);
 ThemeSubmissionFormComponent.displayName = "ThemeSubmissionForm";
 
 export { ThemeSubmissionFormComponent as ThemeSubmissionForm };

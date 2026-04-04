@@ -1,163 +1,162 @@
 "use client";
 
-import * as React from "react";
 import {
-  Button,
-  Input,
-  Label,
-  Badge,
-  Alert,
-  AlertTitle,
-  AlertDescription,
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-  Progress,
-  Slider,
-  Switch,
-  Checkbox,
-  Separator,
-  Skeleton,
-  Textarea,
-  Toggle,
-  ToggleGroup,
-  ToggleGroupItem,
-  TabsRoot,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  AccordionRoot,
-  AccordionItem,
-  AccordionTrigger,
   AccordionContent,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-  RadioGroup,
-  RadioGroupItem,
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  TooltipProvider,
-  TooltipRoot,
-  TooltipTrigger,
-  TooltipContent,
-  ScrollArea,
-  AspectRatio,
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
-  KPICard,
-  StatDisplay,
-  VisuallyHidden,
-  AlertDialogRoot,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  AlertDialogTitle,
-  AlertDialogDescription,
+  AccordionItem,
+  AccordionRoot,
+  AccordionTrigger,
+  Alert,
+  AlertDescription,
   AlertDialogAction,
   AlertDialogCancel,
-  Calendar,
-  ChartContainer,
-  BarChart,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogRoot,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AlertTitle,
+  AspectRatio,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Badge,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  Button,
+  Calendar,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
   CartesianGrid,
+  ChartContainer,
+  Checkbox,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
   Combobox,
   Command,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
+  CommandList,
   CommandSeparator,
   CommandShortcut,
   ContextMenu,
-  ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuSeparator,
   ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
   DataTable,
   DatePicker,
-  DialogRoot,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
   FocusScope,
-  MenubarRoot,
-  MenubarMenu,
-  MenubarTrigger,
+  Input,
+  KPICard,
+  Label,
   MenubarContent,
   MenubarItem,
+  MenubarMenu,
+  MenubarRoot,
   MenubarSeparator,
   MenubarShortcut,
+  MenubarTrigger,
   MultiSelect,
   NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
   NavigationMenuContent,
+  NavigationMenuItem,
   NavigationMenuLink,
-  Portal,
-  ResizablePanelGroup,
-  ResizablePanel,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Progress,
+  RadioGroup,
+  RadioGroupItem,
   ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+  ScrollArea,
+  SelectContent,
+  SelectItem,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  Separator,
   Sheet,
-  SheetTrigger,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
+  SheetTrigger,
+  Skeleton,
+  Slider,
   SonnerToaster,
+  StatDisplay,
+  Switch,
   sonnerToast,
   Table,
-  TableHeader,
   TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
   TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TabsContent,
+  TabsList,
+  TabsRoot,
+  TabsTrigger,
+  Textarea,
   Toaster,
-  useToast,
-  ToolbarRoot,
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
   ToolbarButton,
+  ToolbarRoot,
   ToolbarSeparator,
   ToolbarToggleGroup,
   ToolbarToggleItem,
+  TooltipContent,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+  useToast,
+  VisuallyHidden,
+  XAxis,
+  YAxis,
 } from "@launchapp/design-system";
+import * as React from "react";
 
 export type PreviewFn = () => React.ReactElement;
 
@@ -203,11 +202,15 @@ export const previews: Record<string, PreviewFn> = {
     <div className="flex flex-col gap-3 w-full max-w-md">
       <Alert>
         <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>You can add components using the CLI.</AlertDescription>
+        <AlertDescription>
+          You can add components using the CLI.
+        </AlertDescription>
       </Alert>
       <Alert variant="destructive">
         <AlertTitle>Error</AlertTitle>
-        <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+        <AlertDescription>
+          Your session has expired. Please log in again.
+        </AlertDescription>
       </Alert>
     </div>
   ),
@@ -286,7 +289,9 @@ export const previews: Record<string, PreviewFn> = {
     <div className="space-y-3">
       <div className="space-y-1">
         <h4 className="text-sm font-medium">Radix Primitives</h4>
-        <p className="text-sm text-muted-foreground">An open-source UI component library.</p>
+        <p className="text-sm text-muted-foreground">
+          An open-source UI component library.
+        </p>
       </div>
       <Separator />
       <div className="flex h-5 items-center space-x-4 text-sm">
@@ -358,7 +363,9 @@ export const previews: Record<string, PreviewFn> = {
     <AccordionRoot type="single" collapsible className="w-full max-w-md">
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
         <AccordionTrigger>Is it styled?</AccordionTrigger>
@@ -428,7 +435,11 @@ export const previews: Record<string, PreviewFn> = {
   collapsible: function CollapsiblePreview() {
     const [open, setOpen] = React.useState(false);
     return (
-      <Collapsible open={open} onOpenChange={setOpen} className="w-[350px] space-y-2">
+      <Collapsible
+        open={open}
+        onOpenChange={setOpen}
+        className="w-[350px] space-y-2"
+      >
         <div className="flex items-center justify-between space-x-4 px-4">
           <h4 className="text-sm font-semibold">Starred repositories</h4>
           <CollapsibleTrigger asChild>
@@ -441,8 +452,12 @@ export const previews: Record<string, PreviewFn> = {
           @radix-ui/primitives
         </div>
         <CollapsibleContent className="space-y-2">
-          <div className="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/colors</div>
-          <div className="rounded-md border px-4 py-3 font-mono text-sm">@stitches/react</div>
+          <div className="rounded-md border px-4 py-3 font-mono text-sm">
+            @radix-ui/colors
+          </div>
+          <div className="rounded-md border px-4 py-3 font-mono text-sm">
+            @stitches/react
+          </div>
         </CollapsibleContent>
       </Collapsible>
     );
@@ -457,11 +472,17 @@ export const previews: Record<string, PreviewFn> = {
         <div className="grid gap-4">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Dimensions</h4>
-            <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+            <p className="text-sm text-muted-foreground">
+              Set the dimensions for the layer.
+            </p>
           </div>
           <div className="grid grid-cols-3 items-center gap-4">
             <Label htmlFor="pop-width">Width</Label>
-            <Input id="pop-width" defaultValue="100%" className="col-span-2 h-8" />
+            <Input
+              id="pop-width"
+              defaultValue="100%"
+              className="col-span-2 h-8"
+            />
           </div>
         </div>
       </PopoverContent>
@@ -565,8 +586,18 @@ export const previews: Record<string, PreviewFn> = {
   "stat-display": () => (
     <StatDisplay
       items={[
-        { label: "Active Users", value: "2,420", trend: "up", trendLabel: "+15%" },
-        { label: "Bounce Rate", value: "38%", trend: "down", trendLabel: "-2%" },
+        {
+          label: "Active Users",
+          value: "2,420",
+          trend: "up",
+          trendLabel: "+15%",
+        },
+        {
+          label: "Bounce Rate",
+          value: "38%",
+          trend: "down",
+          trendLabel: "-2%",
+        },
         { label: "Page Views", value: "12.4k" },
       ]}
       cols={3}
@@ -594,7 +625,8 @@ export const previews: Record<string, PreviewFn> = {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your account.
+            This action cannot be undone. This will permanently delete your
+            account.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -726,7 +758,11 @@ export const previews: Record<string, PreviewFn> = {
   "date-picker": function DatePickerPreview() {
     const [date, setDate] = React.useState<Date | undefined>();
     return (
-      <DatePicker selected={date} onSelect={setDate} placeholder="Pick a date" />
+      <DatePicker
+        selected={date}
+        onSelect={setDate}
+        placeholder="Pick a date"
+      />
     );
   },
 
@@ -749,7 +785,11 @@ export const previews: Record<string, PreviewFn> = {
           </div>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="dialog-email">Email</Label>
-            <Input id="dialog-email" type="email" placeholder="email@example.com" />
+            <Input
+              id="dialog-email"
+              type="email"
+              placeholder="email@example.com"
+            />
           </div>
         </div>
         <DialogFooter>
@@ -780,9 +820,15 @@ export const previews: Record<string, PreviewFn> = {
     <FocusScope loop>
       <div className="flex gap-2 p-4 border rounded-md items-center">
         <Button size="sm">First</Button>
-        <Button size="sm" variant="outline">Second</Button>
-        <Button size="sm" variant="ghost">Third</Button>
-        <span className="text-xs text-muted-foreground ml-2">Tab cycles within</span>
+        <Button size="sm" variant="outline">
+          Second
+        </Button>
+        <Button size="sm" variant="ghost">
+          Third
+        </Button>
+        <span className="text-xs text-muted-foreground ml-2">
+          Tab cycles within
+        </span>
       </div>
     </FocusScope>
   ),
@@ -792,11 +838,17 @@ export const previews: Record<string, PreviewFn> = {
       <div className="space-y-1.5">
         <Label htmlFor="form-preview-username">Username</Label>
         <Input id="form-preview-username" placeholder="Enter username" />
-        <p className="text-xs text-muted-foreground">This is your public display name.</p>
+        <p className="text-xs text-muted-foreground">
+          This is your public display name.
+        </p>
       </div>
       <div className="space-y-1.5">
         <Label htmlFor="form-preview-email">Email</Label>
-        <Input id="form-preview-email" type="email" placeholder="email@example.com" />
+        <Input
+          id="form-preview-email"
+          type="email"
+          placeholder="email@example.com"
+        />
       </div>
       <Button className="w-full">Submit</Button>
     </div>
@@ -860,22 +912,34 @@ export const previews: Record<string, PreviewFn> = {
           <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="p-4 w-[200px] space-y-1">
-              <NavigationMenuLink href="#" className="block text-sm hover:underline">
+              <NavigationMenuLink
+                href="#"
+                className="block text-sm hover:underline"
+              >
                 Introduction
               </NavigationMenuLink>
-              <NavigationMenuLink href="#" className="block text-sm hover:underline">
+              <NavigationMenuLink
+                href="#"
+                className="block text-sm hover:underline"
+              >
                 Installation
               </NavigationMenuLink>
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#" className="text-sm px-4 py-2 hover:underline">
+          <NavigationMenuLink
+            href="#"
+            className="text-sm px-4 py-2 hover:underline"
+          >
             Docs
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#" className="text-sm px-4 py-2 hover:underline">
+          <NavigationMenuLink
+            href="#"
+            className="text-sm px-4 py-2 hover:underline"
+          >
             GitHub
           </NavigationMenuLink>
         </NavigationMenuItem>
@@ -885,20 +949,35 @@ export const previews: Record<string, PreviewFn> = {
 
   portal: () => (
     <div className="flex flex-col items-center gap-4 p-4 border rounded-md text-sm text-center text-muted-foreground">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-primary/40">
+      <svg
+        width="40"
+        height="40"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="text-primary/40"
+      >
         <rect x="3" y="3" width="18" height="18" rx="2" />
         <path d="M3 9h18" />
         <path d="M9 21V9" />
       </svg>
       <div>
         <p className="font-medium text-foreground mb-1">Portal</p>
-        <p className="text-xs">Renders children outside the DOM hierarchy into a target container (defaults to <code className="font-mono text-primary">document.body</code>).</p>
+        <p className="text-xs">
+          Renders children outside the DOM hierarchy into a target container
+          (defaults to{" "}
+          <code className="font-mono text-primary">document.body</code>).
+        </p>
       </div>
     </div>
   ),
 
   resizable: () => (
-    <ResizablePanelGroup orientation="horizontal" className="max-w-md rounded-lg border h-[150px]">
+    <ResizablePanelGroup
+      orientation="horizontal"
+      className="max-w-md rounded-lg border h-[150px]"
+    >
       <ResizablePanel defaultSize={50}>
         <div className="flex h-full items-center justify-center p-4">
           <span className="text-sm font-medium">Panel One</span>
@@ -932,7 +1011,11 @@ export const previews: Record<string, PreviewFn> = {
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="sheet-email">Email</Label>
-            <Input id="sheet-email" type="email" placeholder="email@example.com" />
+            <Input
+              id="sheet-email"
+              type="email"
+              placeholder="email@example.com"
+            />
           </div>
         </div>
         <Button className="w-full">Save changes</Button>
@@ -944,16 +1027,28 @@ export const previews: Record<string, PreviewFn> = {
     <div className="flex flex-col items-center gap-3">
       <SonnerToaster position="bottom-right" />
       <div className="flex flex-wrap gap-2 justify-center">
-        <Button variant="outline" onClick={() => sonnerToast("Event has been created")}>
+        <Button
+          variant="outline"
+          onClick={() => sonnerToast("Event has been created")}
+        >
           Default
         </Button>
-        <Button variant="outline" onClick={() => (sonnerToast as any).success("Profile updated!")}>
+        <Button
+          variant="outline"
+          onClick={() => (sonnerToast as any).success("Profile updated!")}
+        >
           Success
         </Button>
-        <Button variant="outline" onClick={() => (sonnerToast as any).error("Something went wrong")}>
+        <Button
+          variant="outline"
+          onClick={() => (sonnerToast as any).error("Something went wrong")}
+        >
           Error
         </Button>
-        <Button variant="outline" onClick={() => (sonnerToast as any).warning("Unsaved changes")}>
+        <Button
+          variant="outline"
+          onClick={() => (sonnerToast as any).warning("Unsaved changes")}
+        >
           Warning
         </Button>
       </div>
@@ -1002,14 +1097,23 @@ export const previews: Record<string, PreviewFn> = {
         <div className="flex flex-wrap gap-2 justify-center">
           <Button
             variant="outline"
-            onClick={() => toast({ title: "Scheduled", description: "Monday, January 3rd at 6:00pm" })}
+            onClick={() =>
+              toast({
+                title: "Scheduled",
+                description: "Monday, January 3rd at 6:00pm",
+              })
+            }
           >
             Show Toast
           </Button>
           <Button
             variant="destructive"
             onClick={() =>
-              toast({ title: "Error", description: "Something went wrong.", variant: "destructive" })
+              toast({
+                title: "Error",
+                description: "Something went wrong.",
+                variant: "destructive",
+              })
             }
           >
             Error Toast

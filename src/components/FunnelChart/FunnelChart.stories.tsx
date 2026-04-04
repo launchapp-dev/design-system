@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { FunnelChart } from "./index";
 import type { FunnelStage } from "./FunnelChart";
+import { FunnelChart } from "./index";
 
 const salesFunnelData: FunnelStage[] = [
   { id: "visitors", label: "Website Visitors", value: 10000 },
@@ -131,7 +131,8 @@ export const LeadGeneration: Story = {
     data: leadGenData,
     colorScale: "sequential",
     size: "lg",
-    formatValue: (v) => (v >= 1000 ? `${(v / 1000).toFixed(1)}K` : v.toString()),
+    formatValue: (v) =>
+      v >= 1000 ? `${(v / 1000).toFixed(1)}K` : v.toString(),
   },
 };
 
@@ -363,7 +364,9 @@ export const Interactive: Story = {
       <div>
         <FunnelChart
           {...args}
-          onStageClick={(stage) => setSelected(`${stage.label}: ${stage.value.toLocaleString()}`)}
+          onStageClick={(stage) =>
+            setSelected(`${stage.label}: ${stage.value.toLocaleString()}`)
+          }
         />
         {selected && (
           <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm">
@@ -388,7 +391,9 @@ export const HoverCallback: Story = {
         <FunnelChart
           {...args}
           onStageHover={(stage) =>
-            setHovered(stage ? `${stage.label}: ${stage.value.toLocaleString()}` : null)
+            setHovered(
+              stage ? `${stage.label}: ${stage.value.toLocaleString()}` : null,
+            )
           }
         />
         <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm min-h-[2.5rem]">
@@ -415,7 +420,7 @@ export const CustomTooltip: Story = {
       stage: FunnelStage,
       index: number,
       percentage: number,
-      conversionRate: number
+      conversionRate: number,
     ) => (
       <div className="text-xs p-1">
         <div className="font-bold text-primary mb-1">{stage.label}</div>
@@ -430,7 +435,9 @@ export const CustomTooltip: Story = {
         {index > 0 && (
           <div className="flex items-center gap-2 text-muted-foreground">
             <span>Conversion:</span>
-            <span className="text-green-500 font-medium">{conversionRate.toFixed(1)}%</span>
+            <span className="text-green-500 font-medium">
+              {conversionRate.toFixed(1)}%
+            </span>
           </div>
         )}
       </div>
@@ -460,7 +467,7 @@ export const AnimatedDataChange: Story = {
         setDataIndex((prev) => (prev + 1) % datasets.length);
       }, 3000);
       return () => clearInterval(interval);
-    }, []);
+    }, [datasets.length]);
 
     return (
       <div>
@@ -475,11 +482,7 @@ export const AnimatedDataChange: Story = {
             Next Dataset
           </button>
         </div>
-        <FunnelChart
-          {...args}
-          data={datasets[dataIndex]}
-          key={dataIndex}
-        />
+        <FunnelChart {...args} data={datasets[dataIndex]} key={dataIndex} />
       </div>
     );
   },

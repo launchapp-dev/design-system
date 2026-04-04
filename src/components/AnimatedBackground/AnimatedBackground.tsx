@@ -32,15 +32,17 @@ function Particles({
   ...props
 }: ParticlesProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
-  const [particles, setParticles] = React.useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    speedX: number;
-    speedY: number;
-    opacity: number;
-  }>>([]);
+  const [particles, setParticles] = React.useState<
+    Array<{
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
+    }>
+  >([]);
 
   React.useEffect(() => {
     if (reduced) return;
@@ -75,7 +77,7 @@ function Particles({
             if (newY < 0) newY = 100;
             if (newY > 100) newY = 0;
             return { ...p, x: newX, y: newY };
-          })
+          }),
         );
       }
       animationId = requestAnimationFrame(animate);
@@ -148,14 +150,16 @@ function Stars({
   ...props
 }: StarsProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
-  const [stars, setStars] = React.useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    opacity: number;
-    twinkleSpeed: number;
-  }>>([]);
+  const [stars, setStars] = React.useState<
+    Array<{
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      opacity: number;
+      twinkleSpeed: number;
+    }>
+  >([]);
 
   React.useEffect(() => {
     const newStars = Array.from({ length: count }, (_, i) => ({
@@ -172,7 +176,10 @@ function Stars({
   return (
     <div
       ref={ref}
-      className={cn("relative overflow-hidden bg-[#0a0a1a] dark:bg-[#0a0a1a]", className)}
+      className={cn(
+        "relative overflow-hidden bg-[#0a0a1a] dark:bg-[#0a0a1a]",
+        className,
+      )}
       {...props}
     >
       <div aria-hidden className="absolute inset-0">
@@ -236,11 +243,11 @@ function MatrixRain({
 
     const interval = setInterval(() => {
       setDrops((prev) =>
-        prev.map((drop, i) => {
+        prev.map((drop, _i) => {
           const random = Math.random();
           if (random > 0.975) return 0;
           return drop + 1;
-        })
+        }),
       );
     }, speed);
 
@@ -309,7 +316,8 @@ function MatrixRain({
 }
 MatrixRain.displayName = "MatrixRain";
 
-export interface NoiseTextureProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface NoiseTextureProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   opacity?: number;
   noiseFrequency?: number;
 }
@@ -346,7 +354,7 @@ function NoiseTexture({
 
     ctx.putImageData(imageData, 0, 0);
     setNoiseData(canvas.toDataURL());
-  }, [noiseFrequency]);
+  }, []);
 
   return (
     <div
@@ -376,7 +384,8 @@ function NoiseTexture({
 }
 NoiseTexture.displayName = "NoiseTexture";
 
-export interface AnimatedGridProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatedGridProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   cellSize?: number;
   color?: string;
   strokeWidth?: number;
@@ -453,7 +462,8 @@ function AnimatedGrid({
 }
 AnimatedGrid.displayName = "AnimatedGrid";
 
-export interface GradientBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GradientBackgroundProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   colors?: string[];
   speed?: number;
   direction?: "linear" | "radial" | "conic";
@@ -461,7 +471,11 @@ export interface GradientBackgroundProps extends React.HTMLAttributes<HTMLDivEle
 }
 
 function GradientBackground({
-  colors = ["hsl(var(--la-primary))", "hsl(var(--la-secondary))", "hsl(var(--la-accent))"],
+  colors = [
+    "hsl(var(--la-primary))",
+    "hsl(var(--la-secondary))",
+    "hsl(var(--la-accent))",
+  ],
   speed = 8,
   direction = "linear",
   angle = 45,
@@ -513,7 +527,8 @@ function GradientBackground({
 }
 GradientBackground.displayName = "GradientBackground";
 
-export interface AnimatedGradientProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatedGradientProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   colors?: string[];
   speed?: number;
   size?: number;
@@ -541,7 +556,9 @@ function AnimatedGradient({
         style={{
           background: `linear-gradient(45deg, ${colors.join(", ")})`,
           backgroundSize: "300% 300%",
-          animation: reduced ? "none" : `animated-gradient ${speed}s ease infinite`,
+          animation: reduced
+            ? "none"
+            : `animated-gradient ${speed}s ease infinite`,
         }}
       />
       <style>{`
@@ -558,7 +575,8 @@ function AnimatedGradient({
 }
 AnimatedGradient.displayName = "AnimatedGradient";
 
-export interface ShimmerBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ShimmerBackgroundProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   color?: string;
   speed?: number;
   intensity?: number;
@@ -604,4 +622,13 @@ function ShimmerBackground({
 }
 ShimmerBackground.displayName = "ShimmerBackground";
 
-export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid, GradientBackground, AnimatedGradient, ShimmerBackground };
+export {
+  AnimatedGradient,
+  AnimatedGrid,
+  GradientBackground,
+  MatrixRain,
+  NoiseTexture,
+  Particles,
+  ShimmerBackground,
+  Stars,
+};

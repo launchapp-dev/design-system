@@ -12,7 +12,8 @@ export interface BubbleMessage {
   avatarInitials?: string;
 }
 
-export interface MessageBubblesProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MessageBubblesProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   messages: BubbleMessage[];
 }
 
@@ -31,19 +32,32 @@ const MessageBubbles = React.forwardRef<HTMLDivElement, MessageBubblesProps>(
         return (
           <div
             key={message.id}
-            className={cn("flex items-end gap-2", isSent ? "flex-row-reverse" : "flex-row")}
+            className={cn(
+              "flex items-end gap-2",
+              isSent ? "flex-row-reverse" : "flex-row",
+            )}
           >
             {!isSent && (
               <Avatar size="sm" className="shrink-0">
                 {message.avatarSrc && (
-                  <AvatarImage src={message.avatarSrc} alt={message.senderName ?? "User"} />
+                  <AvatarImage
+                    src={message.avatarSrc}
+                    alt={message.senderName ?? "User"}
+                  />
                 )}
                 <AvatarFallback>
-                  {message.avatarInitials ?? message.senderName?.slice(0, 2).toUpperCase() ?? "?"}
+                  {message.avatarInitials ??
+                    message.senderName?.slice(0, 2).toUpperCase() ??
+                    "?"}
                 </AvatarFallback>
               </Avatar>
             )}
-            <div className={cn("flex max-w-[75%] flex-col gap-1", isSent ? "items-end" : "items-start")}>
+            <div
+              className={cn(
+                "flex max-w-[75%] flex-col gap-1",
+                isSent ? "items-end" : "items-start",
+              )}
+            >
               {message.senderName && !isSent && (
                 <span className="text-xs font-medium text-muted-foreground">
                   {message.senderName}
@@ -54,13 +68,16 @@ const MessageBubbles = React.forwardRef<HTMLDivElement, MessageBubblesProps>(
                   "rounded-2xl px-4 py-2 text-sm leading-relaxed",
                   isSent
                     ? "rounded-br-sm bg-primary text-primary-foreground"
-                    : "rounded-bl-sm bg-muted text-foreground"
+                    : "rounded-bl-sm bg-muted text-foreground",
                 )}
               >
                 {message.content}
               </div>
               {message.timestamp && (
-                <time className="text-xs text-muted-foreground" dateTime={message.timestamp}>
+                <time
+                  className="text-xs text-muted-foreground"
+                  dateTime={message.timestamp}
+                >
                   {message.timestamp}
                 </time>
               )}
@@ -69,7 +86,7 @@ const MessageBubbles = React.forwardRef<HTMLDivElement, MessageBubblesProps>(
         );
       })}
     </div>
-  )
+  ),
 );
 MessageBubbles.displayName = "MessageBubbles";
 

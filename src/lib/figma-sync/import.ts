@@ -3,17 +3,17 @@
  */
 
 import {
-  Palette,
-  RGBColor,
-  TokenSet,
-  FigmaVariable,
-  ValidationResult,
-  SyncError,
-  rgbToHSL,
+  type FigmaVariable,
   isSemanticTokenName,
-  SemanticTokenName,
+  type Palette,
+  type RGBColor,
+  rgbToHSL,
   SEMANTIC_TOKEN_NAMES,
-} from './types';
+  type SemanticTokenName,
+  type SyncError,
+  type TokenSet,
+  type ValidationResult,
+} from "./types";
 
 /**
  * Parse Figma variable name to extract components
@@ -21,17 +21,17 @@ import {
  */
 export function parseFigmaVariableName(variableName: string): {
   palette: string;
-  variant: 'light' | 'dark';
+  variant: "light" | "dark";
   tokenName: string;
 } | null {
-  const parts = variableName.split('/');
-  if (parts.length !== 4 || parts[0] !== 'launchapp') {
+  const parts = variableName.split("/");
+  if (parts.length !== 4 || parts[0] !== "launchapp") {
     return null;
   }
 
   const [, palette, variant, tokenName] = parts;
 
-  if (variant !== 'light' && variant !== 'dark') {
+  if (variant !== "light" && variant !== "dark") {
     return null;
   }
 
@@ -53,7 +53,7 @@ export function convertFigmaRGBToHSL(rgb: RGBColor): string {
  * Validate imported Figma variables
  */
 export function validateFigmaVariables(
-  variables: FigmaVariable[]
+  variables: FigmaVariable[],
 ): ValidationResult {
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -61,25 +61,33 @@ export function validateFigmaVariables(
   if (!Array.isArray(variables) || variables.length === 0) {
     return {
       valid: false,
-      errors: ['No variables provided'],
+      errors: ["No variables provided"],
       warnings,
     };
   }
 
-  const parsedVariables = new Map<string, { palette: string; variant: 'light' | 'dark'; tokenName: string }>();
-  const paletteMap = new Map<string, { light: Set<SemanticTokenName>; dark: Set<SemanticTokenName> }>();
+  const parsedVariables = new Map<
+    string,
+    { palette: string; variant: "light" | "dark"; tokenName: string }
+  >();
+  const paletteMap = new Map<
+    string,
+    { light: Set<SemanticTokenName>; dark: Set<SemanticTokenName> }
+  >();
 
   for (const variable of variables) {
-    if (variable.resolvedType !== 'COLOR') {
+    if (variable.resolvedType !== "COLOR") {
       warnings.push(
-        `Skipping non-color variable: ${variable.name} (type: ${variable.resolvedType})`
+        `Skipping non-color variable: ${variable.name} (type: ${variable.resolvedType})`,
       );
       continue;
     }
 
     const parsed = parseFigmaVariableName(variable.name);
     if (!parsed) {
-      warnings.push(`Skipping variable with unexpected name format: ${variable.name}`);
+      warnings.push(
+        `Skipping variable with unexpected name format: ${variable.name}`,
+      );
       continue;
     }
 
@@ -107,12 +115,12 @@ export function validateFigmaVariables(
     for (const tokenName of requiredTokens) {
       if (!lightTokens.has(tokenName)) {
         warnings.push(
-          `[${paletteName}] Missing light variant token: ${tokenName}`
+          `[${paletteName}] Missing light variant token: ${tokenName}`,
         );
       }
       if (!darkTokens.has(tokenName)) {
         warnings.push(
-          `[${paletteName}] Missing dark variant token: ${tokenName}`
+          `[${paletteName}] Missing dark variant token: ${tokenName}`,
         );
       }
     }
@@ -130,13 +138,13 @@ export function validateFigmaVariables(
  */
 export function convertFigmaVariablesToTokenSet(
   variables: FigmaVariable[],
-  modeId: string
+  modeId: string,
 ): { tokenSet: TokenSet; errors: SyncError[] } | null {
   const errors: SyncError[] = [];
   const tokens: Partial<TokenSet> = {};
 
   for (const variable of variables) {
-    if (variable.resolvedType !== 'COLOR') {
+    if (variable.resolvedType !== "COLOR") {
       continue;
     }
 
@@ -146,9 +154,14 @@ export function convertFigmaVariablesToTokenSet(
     }
 
     const colorValue = variable.valuesByMode[modeId];
-    if (!colorValue || typeof colorValue === 'string' || typeof colorValue === 'number' || typeof colorValue === 'boolean') {
+    if (
+      !colorValue ||
+      typeof colorValue === "string" ||
+      typeof colorValue === "number" ||
+      typeof colorValue === "boolean"
+    ) {
       errors.push({
-        code: 'INVALID_COLOR_VALUE',
+        code: "INVALID_COLOR_VALUE",
         message: `Invalid color value for variable`,
         context: {
           token: variable.name,
@@ -176,15 +189,15 @@ export function convertFigmaVariablesToTokenSet(
  */
 export function importFigmaVariablesToPalettes(
   variables: FigmaVariable[],
-  lightModeId: string = 'default',
-  darkModeId: string = 'dark'
+  lightModeId: string = "default",
+  darkModeId: string = "dark",
 ): { palettes: Palette[]; errors: SyncError[] } {
   const errors: SyncError[] = [];
   const paletteMap = new Map<string, Partial<Palette>>();
 
   // Group variables by palette
   for (const variable of variables) {
-    if (variable.resolvedType !== 'COLOR') {
+    if (variable.resolvedType !== "COLOR") {
       continue;
     }
 
@@ -205,12 +218,17 @@ export function importFigmaVariablesToPalettes(
     }
 
     const palette = paletteMap.get(parsed.palette)!;
-    const modeId = parsed.variant === 'light' ? lightModeId : darkModeId;
+    const modeId = parsed.variant === "light" ? lightModeId : darkModeId;
     const colorValue = variable.valuesByMode[modeId];
 
-    if (!colorValue || typeof colorValue === 'string' || typeof colorValue === 'number' || typeof colorValue === 'boolean') {
+    if (
+      !colorValue ||
+      typeof colorValue === "string" ||
+      typeof colorValue === "number" ||
+      typeof colorValue === "boolean"
+    ) {
       errors.push({
-        code: 'INVALID_COLOR_VALUE',
+        code: "INVALID_COLOR_VALUE",
         message: `Invalid color value for variable`,
         context: {
           palette: parsed.palette,
@@ -234,7 +252,11 @@ export function importFigmaVariablesToPalettes(
   // Convert to Palette objects
   const palettes: Palette[] = [];
   for (const [, paletteData] of paletteMap) {
-    if (paletteData.name && paletteData.tokens && paletteData.tokens.light && paletteData.tokens.dark) {
+    if (
+      paletteData.name &&
+      paletteData.tokens?.light &&
+      paletteData.tokens.dark
+    ) {
       palettes.push({
         name: paletteData.name,
         label: paletteData.label || paletteData.name,
@@ -263,7 +285,7 @@ export interface PaletteComparison {
 
 export function comparePalettes(
   existing: Palette,
-  imported: Palette
+  imported: Palette,
 ): PaletteComparison {
   const result: PaletteComparison = {
     palette: existing.name,
@@ -329,9 +351,7 @@ export function hasDestructiveChanges(comparison: PaletteComparison): boolean {
 /**
  * Generate a report of all changes
  */
-export function generateImportReport(
-  comparisons: PaletteComparison[]
-): {
+export function generateImportReport(comparisons: PaletteComparison[]): {
   totalPalettes: number;
   totalChanges: number;
   hasDestructive: boolean;

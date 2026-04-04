@@ -1,5 +1,5 @@
-import * as React from "react";
 import { format } from "date-fns";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Calendar, type CalendarProps } from "../Calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "../Popover";
@@ -35,49 +35,51 @@ export interface DatePickerProps {
 }
 
 function DatePicker({
-      selected,
-      onSelect,
-      placeholder = "Pick a date",
-      disabled,
-      className,
-      dateFormat = "PPP",
-      calendarProps, ref}: DatePickerProps & { ref?: React.Ref<HTMLButtonElement> }) {
-    const [open, setOpen] = React.useState(false);
-    return (
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <button
-            ref={ref}
-            disabled={disabled}
-            aria-label={selected ? format(selected, dateFormat) : placeholder}
-            aria-haspopup="dialog"
-            aria-expanded={open}
-            className={cn(
-              "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              "disabled:cursor-not-allowed disabled:opacity-50",
-              !selected && "text-muted-foreground",
-              className
-            )}
-          >
-            <span className="truncate">
-              {selected ? format(selected, dateFormat) : placeholder}
-            </span>
-            <CalendarIcon />
-          </button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
-          <Calendar
-            mode="single"
-            selected={selected}
-            onSelect={onSelect}
-            autoFocus
-            {...calendarProps}
-          />
-        </PopoverContent>
-      </Popover>
-    );
-  }
+  selected,
+  onSelect,
+  placeholder = "Pick a date",
+  disabled,
+  className,
+  dateFormat = "PPP",
+  calendarProps,
+  ref,
+}: DatePickerProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <button
+          ref={ref}
+          disabled={disabled}
+          aria-label={selected ? format(selected, dateFormat) : placeholder}
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          className={cn(
+            "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "disabled:cursor-not-allowed disabled:opacity-50",
+            !selected && "text-muted-foreground",
+            className,
+          )}
+        >
+          <span className="truncate">
+            {selected ? format(selected, dateFormat) : placeholder}
+          </span>
+          <CalendarIcon />
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start">
+        <Calendar
+          mode="single"
+          selected={selected}
+          onSelect={onSelect}
+          autoFocus
+          {...calendarProps}
+        />
+      </PopoverContent>
+    </Popover>
+  );
+}
 
 DatePicker.displayName = "DatePicker";
 

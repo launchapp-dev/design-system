@@ -11,12 +11,12 @@ export class QuickInsertProvider {
   registerCommands(context: vscode.ExtensionContext) {
     const insertComponentCommand = vscode.commands.registerCommand(
       "launchapp.insertComponent",
-      () => this.showComponentPicker()
+      () => this.showComponentPicker(),
     );
 
     const insertBlockCommand = vscode.commands.registerCommand(
       "launchapp.insertBlock",
-      () => this.showBlockPicker()
+      () => this.showBlockPicker(),
     );
 
     context.subscriptions.push(insertComponentCommand);

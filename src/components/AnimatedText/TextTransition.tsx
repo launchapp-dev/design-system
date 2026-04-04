@@ -1,7 +1,8 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-export interface TextTransitionProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface TextTransitionProps
+  extends React.HTMLAttributes<HTMLSpanElement> {
   text: string;
   duration?: number;
   staggerDelay?: number;
@@ -25,7 +26,7 @@ function TextTransition({
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 
   React.useEffect(() => {
@@ -88,5 +89,5 @@ function TextTransition({
 }
 TextTransition.displayName = "TextTransition";
 
-export { TextTransition };
 export type { TextTransitionProps };
+export { TextTransition };

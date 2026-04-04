@@ -85,7 +85,13 @@ export const loadingStatePlugin: ComponentPlugin = {
   author: "Design System Team",
 
   beforeRender: (props) => {
-    const { isLoading, loadingText = "Loading...", disabled, children, ...rest } = props;
+    const {
+      isLoading,
+      loadingText = "Loading...",
+      disabled,
+      children,
+      ...rest
+    } = props;
 
     return {
       ...rest,

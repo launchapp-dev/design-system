@@ -1,9 +1,11 @@
+export type {
+  ChatInputButtonVariants,
+  ChatInputProps,
+  ChatInputTextareaVariants,
+  ChatInputVariants,
+} from "./ChatInput";
 export {
   ChatInput,
-  chatInputVariants,
   chatInputButtonVariants,
+  chatInputVariants,
 } from "./ChatInput";
-export type { ChatInputProps } from "./ChatInput";
-export type { ChatInputVariants } from "./ChatInput";
-export type { ChatInputTextareaVariants } from "./ChatInput";
-export type { ChatInputButtonVariants } from "./ChatInput";

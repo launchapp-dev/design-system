@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { TopNav } from "./TopNav";
 import type { TopNavItem } from "./TopNav";
+import { TopNav } from "./TopNav";
 
 const navItems: TopNavItem[] = [
   { label: "Dashboard", href: "#", isActive: true },
@@ -22,7 +21,9 @@ const sampleUser = {
 const LogoMark = () => (
   <div className="flex items-center gap-2">
     <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
-      <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
+      <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">
+        A
+      </span>
     </div>
     <span className="text-sm font-semibold">Acme</span>
   </div>
@@ -64,7 +65,9 @@ export default function Page() {
       <div className="w-full">
         <Story />
         <main className="flex h-64 items-center justify-center bg-[hsl(var(--la-muted))]">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Page content</p>
+          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+            Page content
+          </p>
         </main>
       </div>
     ),
@@ -100,18 +103,11 @@ export const WithNotificationBadge: Story = {
 };
 
 export const LogoOnly: Story = {
-  render: () => (
-    <TopNav logo={<LogoMark />} />
-  ),
+  render: () => <TopNav logo={<LogoMark />} />,
 };
 
 export const WithUserOnly: Story = {
-  render: () => (
-    <TopNav
-      logo={<LogoMark />}
-      user={sampleUser}
-    />
-  ),
+  render: () => <TopNav logo={<LogoMark />} user={sampleUser} />,
 };
 
 export const FullFeatured: Story = {
@@ -133,7 +129,9 @@ export const DarkMode: Story = {
       <div className="dark w-full bg-[hsl(var(--la-background))]">
         <Story />
         <main className="flex h-64 items-center justify-center bg-[hsl(var(--la-muted))]">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Page content</p>
+          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+            Page content
+          </p>
         </main>
       </div>
     ),

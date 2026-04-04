@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { analyzeImageColors } from "./vision";
 
 const VALID_COLORS = {
@@ -13,7 +13,8 @@ function makeFetchResponse(body: unknown, ok = true, status = 200) {
   return Promise.resolve({
     ok,
     status,
-    text: () => Promise.resolve(typeof body === "string" ? body : JSON.stringify(body)),
+    text: () =>
+      Promise.resolve(typeof body === "string" ? body : JSON.stringify(body)),
     json: () => Promise.resolve(body),
   } as Response);
 }
@@ -33,9 +34,19 @@ beforeEach(() => {
 
 describe("analyzeImageColors", () => {
   it("returns colors and theme for a valid API response", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS))));
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockReturnValue(
+          makeFetchResponse(makeAnthropicResponse(VALID_COLORS)),
+        ),
+    );
 
-    const result = await analyzeImageColors("data:image/jpeg;base64,/9j/4AAQSkZJRgABA...", OPTIONS);
+    const result = await analyzeImageColors(
+      "data:image/jpeg;base64,/9j/4AAQSkZJRgABA...",
+      OPTIONS,
+    );
 
     expect(result.colors).toEqual(VALID_COLORS);
     expect(result.theme).toBeDefined();
@@ -50,10 +61,15 @@ describe("analyzeImageColors", () => {
       .mockReturnValueOnce(
         Promise.resolve({
           ok: true,
-          blob: () => Promise.resolve(new Blob(["fake-image-data"], { type: "image/jpeg" })),
-        })
+          blob: () =>
+            Promise.resolve(
+              new Blob(["fake-image-data"], { type: "image/jpeg" }),
+            ),
+        }),
       )
-      .mockReturnValueOnce(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
+      .mockReturnValueOnce(
+        makeFetchResponse(makeAnthropicResponse(VALID_COLORS)),
+      );
     vi.stubGlobal("fetch", fetchMock);
 
     await analyzeImageColors("https://example.com/image.jpg", OPTIONS);
@@ -64,7 +80,9 @@ describe("analyzeImageColors", () => {
   });
 
   it("uses the provided model override", async () => {
-    const fetchMock = vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
+    const fetchMock = vi
+      .fn()
+      .mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
     vi.stubGlobal("fetch", fetchMock);
 
     await analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", {
@@ -78,7 +96,9 @@ describe("analyzeImageColors", () => {
   });
 
   it("uses a custom baseUrl when provided", async () => {
-    const fetchMock = vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
+    const fetchMock = vi
+      .fn()
+      .mockReturnValue(makeFetchResponse(makeAnthropicResponse(VALID_COLORS)));
     vi.stubGlobal("fetch", fetchMock);
 
     await analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", {
@@ -93,37 +113,50 @@ describe("analyzeImageColors", () => {
   it("throws when the API returns a non-OK status", async () => {
     vi.stubGlobal(
       "fetch",
-      vi.fn().mockReturnValue(makeFetchResponse("Unauthorized", false, 401))
+      vi.fn().mockReturnValue(makeFetchResponse("Unauthorized", false, 401)),
     );
 
     await expect(
-      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS),
     ).rejects.toThrow("Vision API request failed (401)");
   });
 
   it("throws when content array is missing", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse({ content: [] })));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockReturnValue(makeFetchResponse({ content: [] })),
+    );
 
     await expect(
-      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS),
     ).rejects.toThrow("Vision API returned unexpected response shape");
   });
 
   it("throws when a required color key is missing", async () => {
     const incomplete = { primary: "#3b82f6", secondary: "#6366f1" };
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(incomplete))));
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockReturnValue(makeFetchResponse(makeAnthropicResponse(incomplete))),
+    );
 
     await expect(
-      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS),
     ).rejects.toThrow(/missing or invalid hex for "muted"/);
   });
 
   it("throws when a color value is not a valid hex", async () => {
     const badColors = { ...VALID_COLORS, primary: "blue" };
-    vi.stubGlobal("fetch", vi.fn().mockReturnValue(makeFetchResponse(makeAnthropicResponse(badColors))));
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockReturnValue(makeFetchResponse(makeAnthropicResponse(badColors))),
+    );
 
     await expect(
-      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS),
     ).rejects.toThrow(/missing or invalid hex for "primary"/);
   });
 
@@ -133,12 +166,12 @@ describe("analyzeImageColors", () => {
       vi.fn().mockReturnValue(
         makeFetchResponse({
           content: [{ type: "text", text: JSON.stringify(null) }],
-        })
-      )
+        }),
+      ),
     );
 
     await expect(
-      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS)
+      analyzeImageColors("data:image/jpeg;base64,/9j/4AAQ...", OPTIONS),
     ).rejects.toThrow("Vision API returned non-object JSON");
   });
 });

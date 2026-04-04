@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { MobileNav } from "./index";
 import type { MobileNavItem } from "./MobileNav";
 
@@ -113,8 +112,8 @@ export const MobileOnly: Story = {
       </div>
       <div className="p-4">
         <p className="text-sm text-gray-600">
-          The menu button is only visible on mobile screens (md:hidden breakpoint).
-          Resize your browser to see it appear and disappear.
+          The menu button is only visible on mobile screens (md:hidden
+          breakpoint). Resize your browser to see it appear and disappear.
         </p>
       </div>
     </div>
@@ -133,17 +132,21 @@ export const TouchTargets: Story = {
   render: () => (
     <div className="space-y-4">
       <div>
-        <h3 className="mb-2 text-sm font-semibold">Touch-Friendly Navigation</h3>
+        <h3 className="mb-2 text-sm font-semibold">
+          Touch-Friendly Navigation
+        </h3>
         <p className="mb-4 text-sm text-gray-600">
-          All interactive elements have a minimum height of 44px for comfortable touch targets.
+          All interactive elements have a minimum height of 44px for comfortable
+          touch targets.
         </p>
         <MobileNav items={basicItems} />
       </div>
       <div className="rounded-lg bg-blue-50 p-4">
         <p className="text-xs text-blue-900">
-          <strong>Accessibility:</strong> Each menu item has a minimum height of 44px × 44px,
-          meeting WCAG guidelines for touch targets. Navigation items also support keyboard
-          navigation (arrow keys, Enter) and screen readers.
+          <strong>Accessibility:</strong> Each menu item has a minimum height of
+          44px × 44px, meeting WCAG guidelines for touch targets. Navigation
+          items also support keyboard navigation (arrow keys, Enter) and screen
+          readers.
         </p>
       </div>
     </div>
@@ -163,8 +166,8 @@ export const ExpandableMenus: Story = {
     <div className="space-y-4">
       <h3 className="text-sm font-semibold">Expandable Menu Items</h3>
       <p className="text-sm text-gray-600">
-        Click on menu items with nested content to expand/collapse them. The chevron icon
-        rotates to indicate the expanded state.
+        Click on menu items with nested content to expand/collapse them. The
+        chevron icon rotates to indicate the expanded state.
       </p>
       <MobileNav items={nestedItems} />
     </div>
@@ -209,7 +212,8 @@ export const LongMenuList: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Demonstrates how the mobile nav handles a larger list of menu items with scrolling.",
+        story:
+          "Demonstrates how the mobile nav handles a larger list of menu items with scrolling.",
       },
     },
   },

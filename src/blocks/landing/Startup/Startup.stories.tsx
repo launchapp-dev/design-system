@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { Startup } from "./index";
-import { Button } from "../../../components/Button";
 import { Badge } from "../../../components/Badge";
+import { Button } from "../../../components/Button";
+import { Startup } from "./index";
 
 const sampleMetrics = [
   { metric: "10K+", label: "Active users" },
@@ -13,19 +12,22 @@ const sampleMetrics = [
 
 const sampleTestimonials = [
   {
-    quote: "This product completely changed how our team collaborates. We ship 3× faster now.",
+    quote:
+      "This product completely changed how our team collaborates. We ship 3× faster now.",
     author: "Sarah Chen",
     role: "CTO at Luma",
     avatarFallback: "SC",
   },
   {
-    quote: "We evaluated 12 tools before choosing this one. Hasn't let us down once.",
+    quote:
+      "We evaluated 12 tools before choosing this one. Hasn't let us down once.",
     author: "Marcus Oliveira",
     role: "Founder at Petal",
     avatarFallback: "MO",
   },
   {
-    quote: "The DX is exceptional. Our engineers actually look forward to using it.",
+    quote:
+      "The DX is exceptional. Our engineers actually look forward to using it.",
     author: "Aisha Nwosu",
     role: "VP Engineering at Bloom",
     avatarFallback: "AN",
@@ -51,11 +53,36 @@ const sampleTestimonials = [
 ];
 
 const sampleLogoBar = [
-  <div key="1" className="text-muted-foreground font-bold text-sm tracking-widest">ACME</div>,
-  <div key="2" className="text-muted-foreground font-bold text-sm tracking-widest">LUMA</div>,
-  <div key="3" className="text-muted-foreground font-bold text-sm tracking-widest">PETAL</div>,
-  <div key="4" className="text-muted-foreground font-bold text-sm tracking-widest">BLOOM</div>,
-  <div key="5" className="text-muted-foreground font-bold text-sm tracking-widest">STRIDE</div>,
+  <div
+    key="1"
+    className="text-muted-foreground font-bold text-sm tracking-widest"
+  >
+    ACME
+  </div>,
+  <div
+    key="2"
+    className="text-muted-foreground font-bold text-sm tracking-widest"
+  >
+    LUMA
+  </div>,
+  <div
+    key="3"
+    className="text-muted-foreground font-bold text-sm tracking-widest"
+  >
+    PETAL
+  </div>,
+  <div
+    key="4"
+    className="text-muted-foreground font-bold text-sm tracking-widest"
+  >
+    BLOOM
+  </div>,
+  <div
+    key="5"
+    className="text-muted-foreground font-bold text-sm tracking-widest"
+  >
+    STRIDE
+  </div>,
 ];
 
 const meta: Meta<typeof Startup> = {
@@ -97,7 +124,11 @@ export const Default: Story = {
       headline="Ship your startup idea in days, not months"
       subheadline="The all-in-one platform that removes friction from product development. Focus on what matters: your users."
       primaryAction={<Button size="lg">Get early access</Button>}
-      secondaryAction={<Button size="lg" variant="outline">See how it works</Button>}
+      secondaryAction={
+        <Button size="lg" variant="outline">
+          See how it works
+        </Button>
+      }
       socialProof={sampleMetrics}
       logoBar={sampleLogoBar}
       logoBarLabel="Trusted by leading companies"

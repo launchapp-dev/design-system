@@ -35,7 +35,9 @@ function toast(input: ToastInput) {
   const id = genId();
 
   const dismiss = () =>
-    dispatch(memoryToasts.map((t) => (t.id === id ? { ...t, open: false } : t)));
+    dispatch(
+      memoryToasts.map((t) => (t.id === id ? { ...t, open: false } : t)),
+    );
 
   dispatch([
     ...memoryToasts,
@@ -54,7 +56,9 @@ function toast(input: ToastInput) {
 
 function dismiss(toastId?: string) {
   if (toastId) {
-    dispatch(memoryToasts.map((t) => (t.id === toastId ? { ...t, open: false } : t)));
+    dispatch(
+      memoryToasts.map((t) => (t.id === toastId ? { ...t, open: false } : t)),
+    );
   } else {
     dispatch(memoryToasts.map((t) => ({ ...t, open: false })));
   }
@@ -73,4 +77,4 @@ function useToast() {
   return { toasts, toast, dismiss };
 }
 
-export { useToast, toast, dismiss };
+export { dismiss, toast, useToast };

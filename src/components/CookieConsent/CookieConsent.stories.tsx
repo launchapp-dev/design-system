@@ -43,7 +43,9 @@ type Story = StoryObj<typeof CookieConsent>;
 
 function Controlled() {
   const [open, setOpen] = React.useState(false);
-  const [saved, setSaved] = React.useState<Record<string, boolean> | null>(null);
+  const [saved, setSaved] = React.useState<Record<string, boolean> | null>(
+    null,
+  );
   return (
     <div style={{ padding: "24px" }}>
       <button
@@ -65,8 +67,18 @@ function Controlled() {
       <CookieConsent
         open={open}
         onOpenChange={setOpen}
-        onAcceptAll={() => setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, true])))}
-        onRejectAll={() => setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, c.required === true])))}
+        onAcceptAll={() =>
+          setSaved(
+            Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, true])),
+          )
+        }
+        onRejectAll={() =>
+          setSaved(
+            Object.fromEntries(
+              DEFAULT_CATEGORIES.map((c) => [c.id, c.required === true]),
+            ),
+          )
+        }
         onSavePreferences={setSaved}
       />
     </div>
@@ -78,12 +90,7 @@ export const Default: Story = {
 };
 
 export const OpenByDefault: Story = {
-  render: () => (
-    <CookieConsent
-      open={true}
-      onOpenChange={() => undefined}
-    />
-  ),
+  render: () => <CookieConsent open={true} onOpenChange={() => undefined} />,
 };
 
 export const CustomCategories: Story = {

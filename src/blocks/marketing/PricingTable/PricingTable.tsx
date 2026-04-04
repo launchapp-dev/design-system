@@ -1,16 +1,16 @@
-import * as React from "react";
-import { cn } from "../../../lib/utils";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "../../../components/Card";
+import type * as React from "react";
 import { Badge } from "../../../components/Badge";
 import { Button } from "../../../components/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../../components/Card";
 import { Separator } from "../../../components/Separator";
+import { cn } from "../../../lib/utils";
 
 export interface PricingTier {
   name: string;
@@ -29,9 +29,20 @@ export interface PricingTableProps extends React.HTMLAttributes<HTMLElement> {
   subheadline?: React.ReactNode;
 }
 
-function PricingTable({ className, tiers, headline, subheadline, ref, ...props }: PricingTableProps & { ref?: React.Ref<HTMLElement> }) {
+function PricingTable({
+  className,
+  tiers,
+  headline,
+  subheadline,
+  ref,
+  ...props
+}: PricingTableProps & { ref?: React.Ref<HTMLElement> }) {
   return (
-    <section ref={ref} className={cn("w-full px-4 py-16 md:py-24", className)} {...props}>
+    <section
+      ref={ref}
+      className={cn("w-full px-4 py-16 md:py-24", className)}
+      {...props}
+    >
       {(headline || subheadline) && (
         <div className="mb-12 text-center space-y-3">
           {headline && (
@@ -50,7 +61,7 @@ function PricingTable({ className, tiers, headline, subheadline, ref, ...props }
             key={i}
             className={cn(
               "relative flex flex-col",
-              tier.popular && "border-primary shadow-lg ring-2 ring-primary"
+              tier.popular && "border-primary shadow-lg ring-2 ring-primary",
             )}
           >
             {tier.popular && (
@@ -61,7 +72,9 @@ function PricingTable({ className, tiers, headline, subheadline, ref, ...props }
             <CardHeader>
               <CardTitle className="text-xl">{tier.name}</CardTitle>
               <div className="mt-2">
-                <span className="text-4xl font-bold text-foreground">{tier.price}</span>
+                <span className="text-4xl font-bold text-foreground">
+                  {tier.price}
+                </span>
               </div>
               <CardDescription>{tier.description}</CardDescription>
             </CardHeader>
@@ -69,8 +82,13 @@ function PricingTable({ className, tiers, headline, subheadline, ref, ...props }
               <Separator className="mb-4" />
               <ul className="space-y-2">
                 {tier.features.map((feature, fi) => (
-                  <li key={fi} className="flex items-center gap-2 text-sm text-foreground">
-                    <span className="text-primary" aria-hidden="true">✓</span>
+                  <li
+                    key={fi}
+                    className="flex items-center gap-2 text-sm text-foreground"
+                  >
+                    <span className="text-primary" aria-hidden="true">
+                      ✓
+                    </span>
                     {feature}
                   </li>
                 ))}

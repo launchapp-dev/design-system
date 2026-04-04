@@ -1,6 +1,6 @@
-import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 
 const dockVariants = cva(
@@ -16,7 +16,7 @@ const dockVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 const dockItemVariants = cva(
@@ -32,7 +32,7 @@ const dockItemVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface DockItemData {
@@ -87,7 +87,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
       tooltipSideOffset = 8,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [mouseX, setMouseX] = React.useState<number>(-1000);
     const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
@@ -137,15 +137,12 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         setFocusedIndex(newIndex);
         itemRefs.current[newIndex]?.focus();
       },
-      [focusedIndex, items.length]
+      [focusedIndex, items.length],
     );
 
-    const handleFocus = React.useCallback(
-      (index: number) => {
-        setFocusedIndex(index);
-      },
-      []
-    );
+    const handleFocus = React.useCallback((index: number) => {
+      setFocusedIndex(index);
+    }, []);
 
     const contextValue = React.useMemo<DockContextValue>(
       () => ({
@@ -165,7 +162,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         size,
         focusedIndex,
         handleFocus,
-      ]
+      ],
     );
 
     return (
@@ -178,7 +175,6 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
           onKeyDown={handleKeyDown}
           role="toolbar"
           aria-label="Dock navigation"
-          tabIndex={0}
           {...props}
         >
           <DockContext.Provider value={contextValue}>
@@ -198,7 +194,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         </div>
       </TooltipPrimitive.Provider>
     );
-  }
+  },
 );
 Dock.displayName = "Dock";
 
@@ -242,7 +238,8 @@ function DockItem({
         const normalizedDistance = distance / magnificationDistance;
         const calculatedScale =
           1 +
-          (magnification - 1) * Math.pow(Math.cos((normalizedDistance * Math.PI) / 2), 2);
+          (magnification - 1) *
+            Math.cos((normalizedDistance * Math.PI) / 2) ** 2;
         setScale(calculatedScale);
       } else {
         setScale(1);
@@ -260,7 +257,7 @@ function DockItem({
           ref={internalRef}
           className={cn(
             dockItemVariants({ size }),
-            "origin-bottom transition-transform"
+            "origin-bottom transition-transform",
           )}
           style={{
             width: `${scaledSize}px`,
@@ -304,4 +301,4 @@ DockItem.displayName = "DockItem";
 export type DockVariants = VariantProps<typeof dockVariants>;
 export type DockItemVariants = VariantProps<typeof dockItemVariants>;
 
-export { Dock, dockVariants, dockItemVariants };
+export { Dock, dockItemVariants, dockVariants };

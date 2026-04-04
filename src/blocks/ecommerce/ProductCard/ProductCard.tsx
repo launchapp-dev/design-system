@@ -1,13 +1,9 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../../lib/utils";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "../../../components/Card";
-import { Button } from "../../../components/Button";
+import type * as React from "react";
 import { Badge } from "../../../components/Badge";
+import { Button } from "../../../components/Button";
+import { Card, CardContent, CardFooter } from "../../../components/Card";
+import { cn } from "../../../lib/utils";
 
 const productCardVariants = cva("group overflow-hidden", {
   variants: {
@@ -56,7 +52,7 @@ function StarRating({ rating, count }: { rating: number; count?: number }) {
                 ? "fill-amber-400 text-amber-400"
                 : star - 0.5 <= rating
                   ? "fill-amber-200 text-amber-400"
-                  : "fill-muted text-muted-foreground"
+                  : "fill-muted text-muted-foreground",
             )}
             viewBox="0 0 20 20"
             aria-hidden="true"
@@ -72,97 +68,36 @@ function StarRating({ rating, count }: { rating: number; count?: number }) {
   );
 }
 
-function ProductCard({ className, variant, product, onAddToCart, isLoading, ref, ...props }: ProductCardProps & { ref?: React.Ref<HTMLDivElement> }) {
-    const currency = product.currency ?? "$";
-    const discount =
-      product.originalPrice
-        ? Math.round((1 - product.price / product.originalPrice) * 100)
-        : null;
+function ProductCard({
+  className,
+  variant,
+  product,
+  onAddToCart,
+  isLoading,
+  ref,
+  ...props
+}: ProductCardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const currency = product.currency ?? "$";
+  const discount = product.originalPrice
+    ? Math.round((1 - product.price / product.originalPrice) * 100)
+    : null;
 
-    if (variant === "horizontal") {
-      return (
-        <Card
-          ref={ref}
-          className={cn(productCardVariants({ variant }), className)}
-          {...props}
-        >
-          <div className="relative w-32 shrink-0 overflow-hidden rounded-l-lg sm:w-48">
-            {product.image ? (
-              <img
-                src={product.image}
-                alt={product.name}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="flex h-full min-h-[100px] w-full items-center justify-center bg-muted text-muted-foreground text-xs">
-                No image
-              </div>
-            )}
-            {product.badge && (
-              <Badge className="absolute left-2 top-2" variant="secondary">
-                {product.badge}
-              </Badge>
-            )}
-          </div>
-          <div className="flex flex-1 flex-col justify-between p-4">
-            <div className="space-y-1">
-              <p className="text-sm font-medium leading-tight">{product.name}</p>
-              {product.description && (
-                <p className="text-xs text-muted-foreground line-clamp-2">
-                  {product.description}
-                </p>
-              )}
-              {product.rating !== undefined && (
-                <StarRating rating={product.rating} count={product.reviewCount} />
-              )}
-            </div>
-            <div className="mt-3 flex items-center justify-between gap-2">
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-base font-semibold">
-                  {currency}{product.price.toFixed(2)}
-                </span>
-                {product.originalPrice && (
-                  <span className="text-sm text-muted-foreground line-through">
-                    {currency}{product.originalPrice.toFixed(2)}
-                  </span>
-                )}
-              </div>
-              <Button
-                size="sm"
-                onClick={() => onAddToCart?.(product)}
-                disabled={isLoading}
-              >
-                Add to cart
-              </Button>
-            </div>
-          </div>
-        </Card>
-      );
-    }
-
+  if (variant === "horizontal") {
     return (
       <Card
         ref={ref}
         className={cn(productCardVariants({ variant }), className)}
         {...props}
       >
-        <div className="relative overflow-hidden rounded-t-lg">
+        <div className="relative w-32 shrink-0 overflow-hidden rounded-l-lg sm:w-48">
           {product.image ? (
             <img
               src={product.image}
               alt={product.name}
-              className={cn(
-                "w-full object-cover transition-transform duration-300 group-hover:scale-105",
-                variant === "detailed" ? "h-56" : "h-40"
-              )}
+              className="h-full w-full object-cover"
             />
           ) : (
-            <div
-              className={cn(
-                "flex w-full items-center justify-center bg-muted text-muted-foreground text-xs",
-                variant === "detailed" ? "h-56" : "h-40"
-              )}
-            >
+            <div className="flex h-full min-h-[100px] w-full items-center justify-center bg-muted text-muted-foreground text-xs">
               No image
             </div>
           )}
@@ -171,62 +106,134 @@ function ProductCard({ className, variant, product, onAddToCart, isLoading, ref,
               {product.badge}
             </Badge>
           )}
-          {discount && (
-            <Badge className="absolute right-2 top-2" variant="destructive">
-              -{discount}%
-            </Badge>
-          )}
         </div>
-        <CardContent
-          className={cn(
-            "flex flex-1 flex-col",
-            variant === "detailed" ? "p-4" : "p-3"
-          )}
-        >
-          <p
-            className={cn(
-              "font-medium leading-tight",
-              variant === "detailed" ? "text-sm" : "text-sm line-clamp-2"
+        <div className="flex flex-1 flex-col justify-between p-4">
+          <div className="space-y-1">
+            <p className="text-sm font-medium leading-tight">{product.name}</p>
+            {product.description && (
+              <p className="text-xs text-muted-foreground line-clamp-2">
+                {product.description}
+              </p>
             )}
-          >
-            {product.name}
-          </p>
-          {variant === "detailed" && product.description && (
-            <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
-              {product.description}
-            </p>
-          )}
-          {product.rating !== undefined && (
-            <div className="mt-1.5">
+            {product.rating !== undefined && (
               <StarRating rating={product.rating} count={product.reviewCount} />
-            </div>
-          )}
-          <div className="mt-2 flex items-baseline gap-1.5">
-            <span className="text-base font-semibold">
-              {currency}{product.price.toFixed(2)}
-            </span>
-            {product.originalPrice && (
-              <span className="text-xs text-muted-foreground line-through">
-                {currency}{product.originalPrice.toFixed(2)}
-              </span>
             )}
           </div>
-        </CardContent>
-        <CardFooter
-          className={cn(variant === "detailed" ? "px-4 pb-4" : "px-3 pb-3")}
-        >
-          <Button
-            className="w-full"
-            size={variant === "detailed" ? "md" : "sm"}
-            onClick={() => onAddToCart?.(product)}
-            disabled={isLoading}
-          >
-            Add to cart
-          </Button>
-        </CardFooter>
+          <div className="mt-3 flex items-center justify-between gap-2">
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-base font-semibold">
+                {currency}
+                {product.price.toFixed(2)}
+              </span>
+              {product.originalPrice && (
+                <span className="text-sm text-muted-foreground line-through">
+                  {currency}
+                  {product.originalPrice.toFixed(2)}
+                </span>
+              )}
+            </div>
+            <Button
+              size="sm"
+              onClick={() => onAddToCart?.(product)}
+              disabled={isLoading}
+            >
+              Add to cart
+            </Button>
+          </div>
+        </div>
       </Card>
     );
   }
+
+  return (
+    <Card
+      ref={ref}
+      className={cn(productCardVariants({ variant }), className)}
+      {...props}
+    >
+      <div className="relative overflow-hidden rounded-t-lg">
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className={cn(
+              "w-full object-cover transition-transform duration-300 group-hover:scale-105",
+              variant === "detailed" ? "h-56" : "h-40",
+            )}
+          />
+        ) : (
+          <div
+            className={cn(
+              "flex w-full items-center justify-center bg-muted text-muted-foreground text-xs",
+              variant === "detailed" ? "h-56" : "h-40",
+            )}
+          >
+            No image
+          </div>
+        )}
+        {product.badge && (
+          <Badge className="absolute left-2 top-2" variant="secondary">
+            {product.badge}
+          </Badge>
+        )}
+        {discount && (
+          <Badge className="absolute right-2 top-2" variant="destructive">
+            -{discount}%
+          </Badge>
+        )}
+      </div>
+      <CardContent
+        className={cn(
+          "flex flex-1 flex-col",
+          variant === "detailed" ? "p-4" : "p-3",
+        )}
+      >
+        <p
+          className={cn(
+            "font-medium leading-tight",
+            variant === "detailed" ? "text-sm" : "text-sm line-clamp-2",
+          )}
+        >
+          {product.name}
+        </p>
+        {variant === "detailed" && product.description && (
+          <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
+            {product.description}
+          </p>
+        )}
+        {product.rating !== undefined && (
+          <div className="mt-1.5">
+            <StarRating rating={product.rating} count={product.reviewCount} />
+          </div>
+        )}
+        <div className="mt-2 flex items-baseline gap-1.5">
+          <span className="text-base font-semibold">
+            {currency}
+            {product.price.toFixed(2)}
+          </span>
+          {product.originalPrice && (
+            <span className="text-xs text-muted-foreground line-through">
+              {currency}
+              {product.originalPrice.toFixed(2)}
+            </span>
+          )}
+        </div>
+      </CardContent>
+      <CardFooter
+        className={cn(variant === "detailed" ? "px-4 pb-4" : "px-3 pb-3")}
+      >
+        <Button
+          className="w-full"
+          size={variant === "detailed" ? "md" : "sm"}
+          onClick={() => onAddToCart?.(product)}
+          disabled={isLoading}
+        >
+          Add to cart
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
 
 ProductCard.displayName = "ProductCard";
 
@@ -237,18 +244,31 @@ const columnsClass: Record<number, string> = {
   4: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
 };
 
-export interface ProductCardGridProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ProductCardGridProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   products: ProductCardItem[];
   columns?: 1 | 2 | 3 | 4;
   variant?: "compact" | "detailed" | "horizontal";
   onAddToCart?: (product: ProductCardItem) => void;
 }
 
-function ProductCardGrid({ className, products, columns = 3, variant = "compact", onAddToCart, ref, ...props }: ProductCardGridProps & { ref?: React.Ref<HTMLDivElement> }) {
+function ProductCardGrid({
+  className,
+  products,
+  columns = 3,
+  variant = "compact",
+  onAddToCart,
+  ref,
+  ...props
+}: ProductCardGridProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}
-      className={cn("grid gap-4", columnsClass[columns] ?? columnsClass[3], className)}
+      className={cn(
+        "grid gap-4",
+        columnsClass[columns] ?? columnsClass[3],
+        className,
+      )}
       {...props}
     >
       {products.map((product) => (
@@ -265,4 +285,4 @@ function ProductCardGrid({ className, products, columns = 3, variant = "compact"
 
 ProductCardGrid.displayName = "ProductCardGrid";
 
-export { ProductCard, productCardVariants, ProductCardGrid };
+export { ProductCard, ProductCardGrid, productCardVariants };

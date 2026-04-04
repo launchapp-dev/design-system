@@ -1,7 +1,11 @@
-import * as React from "react";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 
-function Skeleton({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
+function Skeleton({
+  className,
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div
       ref={ref}
@@ -13,6 +17,8 @@ function Skeleton({ className, ref, ...props }: React.HTMLAttributes<HTMLDivElem
 }
 Skeleton.displayName = "Skeleton";
 
-export type SkeletonProps = React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> };
+export type SkeletonProps = React.HTMLAttributes<HTMLDivElement> & {
+  ref?: React.Ref<HTMLDivElement>;
+};
 
 export { Skeleton };

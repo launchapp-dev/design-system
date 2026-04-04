@@ -1,7 +1,11 @@
-import * as React from "react";
+import type * as React from "react";
 import { DocsSidebar } from "@/components/DocsSidebar";
 
-export default function DocsLayout({ children }: { children: React.ReactNode }) {
+export default function DocsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="mx-auto flex w-full max-w-screen-xl flex-1 px-4 sm:px-6 lg:px-8">
       <DocsSidebar />

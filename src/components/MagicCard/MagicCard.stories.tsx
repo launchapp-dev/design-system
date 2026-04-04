@@ -1,20 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import {
-  TiltCard,
-  SpotlightCard,
-  GlassCard,
-  MagneticButton,
-  ShimmerButton,
   AnimatedBorderCard,
+  AnimatedCard,
+  GlassCard,
+  GlowPulseButton,
   HolographicCard,
+  HoverCard,
+  MagicCard,
+  MagneticButton,
+  MorphButton,
   NeonGlowCard,
   RippleButton,
-  GlowPulseButton,
-  MorphButton,
-  MagicCard,
-  HoverCard,
-  AnimatedCard,
+  ShimmerButton,
+  SpotlightCard,
+  TiltCard,
 } from "./index";
 
 const meta: Meta = {
@@ -25,8 +24,12 @@ export default meta;
 const cardContent = (
   <>
     <div style={{ padding: "24px 24px 0" }}>
-      <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 4 }}>Card Title</h3>
-      <p style={{ fontSize: 14, opacity: 0.6 }}>A description for this card component.</p>
+      <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 4 }}>
+        Card Title
+      </h3>
+      <p style={{ fontSize: 14, opacity: 0.6 }}>
+        A description for this card component.
+      </p>
     </div>
     <div style={{ padding: 24 }}>
       <p style={{ fontSize: 14 }}>Card body content goes here.</p>
@@ -47,7 +50,9 @@ export const TiltCardMaxTilt: StoryObj = {
   name: "TiltCard — High Tilt",
   render: () => (
     <div style={{ display: "flex", justifyContent: "center", padding: 48 }}>
-      <TiltCard maxTilt={25} style={{ width: 320 }}>{cardContent}</TiltCard>
+      <TiltCard maxTilt={25} style={{ width: 320 }}>
+        {cardContent}
+      </TiltCard>
     </div>
   ),
 };
@@ -109,7 +114,9 @@ export const GlassCardBlurVariants: StoryObj = {
       {(["sm", "md", "lg", "xl"] as const).map((blur) => (
         <GlassCard key={blur} blur={blur} style={{ flex: "1 1 200px" }}>
           <div style={{ padding: 16 }}>
-            <p style={{ fontSize: 12, fontWeight: 600, color: "white" }}>blur: {blur}</p>
+            <p style={{ fontSize: 12, fontWeight: 600, color: "white" }}>
+              blur: {blur}
+            </p>
           </div>
         </GlassCard>
       ))}
@@ -130,7 +137,9 @@ export const HolographicCardHighIntensity: StoryObj = {
   name: "HolographicCard — High Intensity",
   render: () => (
     <div style={{ display: "flex", justifyContent: "center", padding: 48 }}>
-      <HolographicCard intensity={1.5} style={{ width: 320 }}>{cardContent}</HolographicCard>
+      <HolographicCard intensity={1.5} style={{ width: 320 }}>
+        {cardContent}
+      </HolographicCard>
     </div>
   ),
 };
@@ -138,17 +147,37 @@ export const HolographicCardHighIntensity: StoryObj = {
 export const NeonGlowCardStory: StoryObj = {
   name: "NeonGlowCard",
   render: () => (
-    <div style={{ display: "flex", gap: 24, padding: 48, background: "#0a0a0a", flexWrap: "wrap" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: 24,
+        padding: 48,
+        background: "#0a0a0a",
+        flexWrap: "wrap",
+      }}
+    >
       <NeonGlowCard glowColor="#8b5cf6" style={{ width: 280 }}>
         <div style={{ padding: 24 }}>
-          <p style={{ fontSize: 14, fontWeight: 600, color: "white" }}>Purple Glow</p>
-          <p style={{ fontSize: 12, opacity: 0.6, color: "white" }}>Hover to see effect</p>
+          <p style={{ fontSize: 14, fontWeight: 600, color: "white" }}>
+            Purple Glow
+          </p>
+          <p style={{ fontSize: 12, opacity: 0.6, color: "white" }}>
+            Hover to see effect
+          </p>
         </div>
       </NeonGlowCard>
-      <NeonGlowCard glowColor="#06b6d4" glowIntensity="lg" style={{ width: 280 }}>
+      <NeonGlowCard
+        glowColor="#06b6d4"
+        glowIntensity="lg"
+        style={{ width: 280 }}
+      >
         <div style={{ padding: 24 }}>
-          <p style={{ fontSize: 14, fontWeight: 600, color: "white" }}>Cyan Glow (Large)</p>
-          <p style={{ fontSize: 12, opacity: 0.6, color: "white" }}>Hover to see effect</p>
+          <p style={{ fontSize: 14, fontWeight: 600, color: "white" }}>
+            Cyan Glow (Large)
+          </p>
+          <p style={{ fontSize: 12, opacity: 0.6, color: "white" }}>
+            Hover to see effect
+          </p>
         </div>
       </NeonGlowCard>
     </div>
@@ -160,9 +189,7 @@ export const AnimatedBorderCardStory: StoryObj = {
   render: () => (
     <div style={{ display: "flex", justifyContent: "center", padding: 48 }}>
       <AnimatedBorderCard style={{ width: 320 }}>
-        <div style={{ padding: 24 }}>
-          {cardContent}
-        </div>
+        <div style={{ padding: 24 }}>{cardContent}</div>
       </AnimatedBorderCard>
     </div>
   ),
@@ -172,13 +199,21 @@ export const AnimatedBorderCardCustom: StoryObj = {
   name: "AnimatedBorderCard — Custom Border",
   render: () => (
     <div style={{ display: "flex", gap: 24, padding: 48, flexWrap: "wrap" }}>
-      <AnimatedBorderCard borderColor="#8b5cf6" duration={2} style={{ width: 280 }}>
+      <AnimatedBorderCard
+        borderColor="#8b5cf6"
+        duration={2}
+        style={{ width: 280 }}
+      >
         <div style={{ padding: 24 }}>
           <p style={{ fontSize: 14, fontWeight: 600 }}>Purple Border</p>
           <p style={{ fontSize: 12, opacity: 0.6 }}>2s rotation speed</p>
         </div>
       </AnimatedBorderCard>
-      <AnimatedBorderCard borderColor="#06b6d4" duration={5} style={{ width: 280 }}>
+      <AnimatedBorderCard
+        borderColor="#06b6d4"
+        duration={5}
+        style={{ width: 280 }}
+      >
         <div style={{ padding: 24 }}>
           <p style={{ fontSize: 14, fontWeight: 600 }}>Cyan Border</p>
           <p style={{ fontSize: 12, opacity: 0.6 }}>5s rotation speed</p>
@@ -191,7 +226,9 @@ export const AnimatedBorderCardCustom: StoryObj = {
 export const MagneticButtonStory: StoryObj = {
   name: "MagneticButton",
   render: () => (
-    <div style={{ display: "flex", gap: 16, alignItems: "center", padding: 48 }}>
+    <div
+      style={{ display: "flex", gap: 16, alignItems: "center", padding: 48 }}
+    >
       <MagneticButton>Magnetic</MagneticButton>
       <MagneticButton strength={0.5}>Strong Pull</MagneticButton>
       <MagneticButton strength={0.1}>Subtle Pull</MagneticButton>
@@ -203,9 +240,13 @@ export const MagneticButtonStory: StoryObj = {
 export const ShimmerButtonStory: StoryObj = {
   name: "ShimmerButton",
   render: () => (
-    <div style={{ display: "flex", gap: 16, alignItems: "center", padding: 24 }}>
+    <div
+      style={{ display: "flex", gap: 16, alignItems: "center", padding: 24 }}
+    >
       <ShimmerButton>Shimmer</ShimmerButton>
-      <ShimmerButton shimmerColor="rgba(255,255,255,0.6)">Bright Shimmer</ShimmerButton>
+      <ShimmerButton shimmerColor="rgba(255,255,255,0.6)">
+        Bright Shimmer
+      </ShimmerButton>
       <ShimmerButton disabled>Disabled</ShimmerButton>
     </div>
   ),
@@ -214,9 +255,13 @@ export const ShimmerButtonStory: StoryObj = {
 export const RippleButtonStory: StoryObj = {
   name: "RippleButton",
   render: () => (
-    <div style={{ display: "flex", gap: 16, alignItems: "center", padding: 24 }}>
+    <div
+      style={{ display: "flex", gap: 16, alignItems: "center", padding: 24 }}
+    >
       <RippleButton>Click Me</RippleButton>
-      <RippleButton rippleColor="rgba(139, 92, 246, 0.5)">Purple Ripple</RippleButton>
+      <RippleButton rippleColor="rgba(139, 92, 246, 0.5)">
+        Purple Ripple
+      </RippleButton>
       <RippleButton disabled>Disabled</RippleButton>
     </div>
   ),
@@ -225,10 +270,22 @@ export const RippleButtonStory: StoryObj = {
 export const GlowPulseButtonStory: StoryObj = {
   name: "GlowPulseButton",
   render: () => (
-    <div style={{ display: "flex", gap: 16, alignItems: "center", padding: 24, background: "#0a0a0a" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: 16,
+        alignItems: "center",
+        padding: 24,
+        background: "#0a0a0a",
+      }}
+    >
       <GlowPulseButton>Hover Me</GlowPulseButton>
-      <GlowPulseButton glowColor="#8b5cf6" pulseIntensity="lg">Large Pulse</GlowPulseButton>
-      <GlowPulseButton glowColor="#06b6d4" pulseIntensity="sm">Small Pulse</GlowPulseButton>
+      <GlowPulseButton glowColor="#8b5cf6" pulseIntensity="lg">
+        Large Pulse
+      </GlowPulseButton>
+      <GlowPulseButton glowColor="#06b6d4" pulseIntensity="sm">
+        Small Pulse
+      </GlowPulseButton>
     </div>
   ),
 };
@@ -236,7 +293,15 @@ export const GlowPulseButtonStory: StoryObj = {
 export const MorphButtonStory: StoryObj = {
   name: "MorphButton",
   render: () => (
-    <div style={{ display: "flex", gap: 16, alignItems: "center", padding: 24, flexWrap: "wrap" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: 16,
+        alignItems: "center",
+        padding: 24,
+        flexWrap: "wrap",
+      }}
+    >
       <MorphButton morphStyle="blob">Blob Morph</MorphButton>
       <MorphButton morphStyle="pill">Pill Morph</MorphButton>
       <MorphButton morphStyle="rounded">Rounded Morph</MorphButton>
@@ -247,31 +312,60 @@ export const MorphButtonStory: StoryObj = {
 export const AllMagicCards: StoryObj = {
   name: "All Magic Cards",
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 32, padding: 24 }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: 32, padding: 24 }}
+    >
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>TiltCard</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          TiltCard
+        </p>
         <TiltCard style={{ maxWidth: 320 }}>{cardContent}</TiltCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>SpotlightCard</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          SpotlightCard
+        </p>
         <SpotlightCard style={{ maxWidth: 320 }}>{cardContent}</SpotlightCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>GlassCard</p>
-        <div style={{ padding: 24, background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", borderRadius: 8 }}>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          GlassCard
+        </p>
+        <div
+          style={{
+            padding: 24,
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            borderRadius: 8,
+          }}
+        >
           <GlassCard style={{ maxWidth: 320 }}>{cardContent}</GlassCard>
         </div>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>HolographicCard</p>
-        <HolographicCard style={{ maxWidth: 320 }}>{cardContent}</HolographicCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          HolographicCard
+        </p>
+        <HolographicCard style={{ maxWidth: 320 }}>
+          {cardContent}
+        </HolographicCard>
       </div>
       <div style={{ background: "#0a0a0a", padding: 24, borderRadius: 8 }}>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500, color: "white" }}>NeonGlowCard</p>
+        <p
+          style={{
+            marginBottom: 8,
+            fontSize: 12,
+            fontWeight: 500,
+            color: "white",
+          }}
+        >
+          NeonGlowCard
+        </p>
         <NeonGlowCard style={{ maxWidth: 320 }}>{cardContent}</NeonGlowCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>AnimatedBorderCard</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          AnimatedBorderCard
+        </p>
         <AnimatedBorderCard style={{ maxWidth: 320 }}>
           <div style={{ padding: 24 }}>{cardContent}</div>
         </AnimatedBorderCard>
@@ -283,25 +377,44 @@ export const AllMagicCards: StoryObj = {
 export const AllMagicButtons: StoryObj = {
   name: "All Magic Buttons",
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}
+    >
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagneticButton</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          MagneticButton
+        </p>
         <MagneticButton>Magnetic Button</MagneticButton>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>ShimmerButton</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          ShimmerButton
+        </p>
         <ShimmerButton>Shimmer Button</ShimmerButton>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>RippleButton</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          RippleButton
+        </p>
         <RippleButton>Click for Ripple</RippleButton>
       </div>
       <div style={{ background: "#0a0a0a", padding: 16, borderRadius: 8 }}>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500, color: "white" }}>GlowPulseButton</p>
+        <p
+          style={{
+            marginBottom: 8,
+            fontSize: 12,
+            fontWeight: 500,
+            color: "white",
+          }}
+        >
+          GlowPulseButton
+        </p>
         <GlowPulseButton>Hover for Glow</GlowPulseButton>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MorphButton</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          MorphButton
+        </p>
         <div style={{ display: "flex", gap: 8 }}>
           <MorphButton morphStyle="blob">Blob</MorphButton>
           <MorphButton morphStyle="pill">Pill</MorphButton>
@@ -315,22 +428,38 @@ export const AllMagicButtons: StoryObj = {
 export const MagicCardStory: StoryObj = {
   name: "MagicCard",
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 32, padding: 24 }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: 32, padding: 24 }}
+    >
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — No Effect</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          MagicCard — No Effect
+        </p>
         <MagicCard style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — Tilt Effect</p>
-        <MagicCard effect="tilt" style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          MagicCard — Tilt Effect
+        </p>
+        <MagicCard effect="tilt" style={{ maxWidth: 320 }}>
+          {cardContent}
+        </MagicCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — Spotlight Effect</p>
-        <MagicCard effect="spotlight" style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          MagicCard — Spotlight Effect
+        </p>
+        <MagicCard effect="spotlight" style={{ maxWidth: 320 }}>
+          {cardContent}
+        </MagicCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>MagicCard — Glow Effect</p>
-        <MagicCard effect="glow" intensity={1.5} style={{ maxWidth: 320 }}>{cardContent}</MagicCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          MagicCard — Glow Effect
+        </p>
+        <MagicCard effect="glow" intensity={1.5} style={{ maxWidth: 320 }}>
+          {cardContent}
+        </MagicCard>
       </div>
     </div>
   ),
@@ -339,18 +468,30 @@ export const MagicCardStory: StoryObj = {
 export const HoverCardStory: StoryObj = {
   name: "HoverCard",
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}
+    >
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>HoverCard — Default</p>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          HoverCard — Default
+        </p>
         <HoverCard style={{ maxWidth: 320 }}>{cardContent}</HoverCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>HoverCard — Large Shadow</p>
-        <HoverCard hoverShadow="lg" hoverScale={1.05} style={{ maxWidth: 320 }}>{cardContent}</HoverCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          HoverCard — Large Shadow
+        </p>
+        <HoverCard hoverShadow="lg" hoverScale={1.05} style={{ maxWidth: 320 }}>
+          {cardContent}
+        </HoverCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>HoverCard — No Border</p>
-        <HoverCard showBorder={false} style={{ maxWidth: 320 }}>{cardContent}</HoverCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          HoverCard — No Border
+        </p>
+        <HoverCard showBorder={false} style={{ maxWidth: 320 }}>
+          {cardContent}
+        </HoverCard>
       </div>
     </div>
   ),
@@ -359,18 +500,40 @@ export const HoverCardStory: StoryObj = {
 export const AnimatedCardStory: StoryObj = {
   name: "AnimatedCard",
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: 24, padding: 24 }}
+    >
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>AnimatedCard — Fade Slide</p>
-        <AnimatedCard animationType="fade-slide" style={{ maxWidth: 320 }}>{cardContent}</AnimatedCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          AnimatedCard — Fade Slide
+        </p>
+        <AnimatedCard animationType="fade-slide" style={{ maxWidth: 320 }}>
+          {cardContent}
+        </AnimatedCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>AnimatedCard — Scale Fade</p>
-        <AnimatedCard animationType="scale-fade" animationDelay={100} style={{ maxWidth: 320 }}>{cardContent}</AnimatedCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          AnimatedCard — Scale Fade
+        </p>
+        <AnimatedCard
+          animationType="scale-fade"
+          animationDelay={100}
+          style={{ maxWidth: 320 }}
+        >
+          {cardContent}
+        </AnimatedCard>
       </div>
       <div>
-        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>AnimatedCard — Slide Up</p>
-        <AnimatedCard animationType="slide-up" animationDelay={200} style={{ maxWidth: 320 }}>{cardContent}</AnimatedCard>
+        <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>
+          AnimatedCard — Slide Up
+        </p>
+        <AnimatedCard
+          animationType="slide-up"
+          animationDelay={200}
+          style={{ maxWidth: 320 }}
+        >
+          {cardContent}
+        </AnimatedCard>
       </div>
     </div>
   ),
@@ -379,9 +542,21 @@ export const AnimatedCardStory: StoryObj = {
 export const AnimatedCardGrid: StoryObj = {
   name: "AnimatedCard — Grid Layout",
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, padding: 24 }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: 24,
+        padding: 24,
+      }}
+    >
       {[0, 1, 2, 3, 4, 5].map((i) => (
-        <AnimatedCard key={i} animationType="fade-slide" animationDelay={i * 100} style={{ maxWidth: 320 }}>
+        <AnimatedCard
+          key={i}
+          animationType="fade-slide"
+          animationDelay={i * 100}
+          style={{ maxWidth: 320 }}
+        >
           {cardContent}
         </AnimatedCard>
       ))}
@@ -394,7 +569,8 @@ export const ReducedMotionTest: StoryObj = {
   render: () => (
     <div style={{ padding: 24 }}>
       <p style={{ marginBottom: 16, fontSize: 14, fontWeight: 500 }}>
-        Enable &quot;prefers-reduced-motion&quot; in your OS settings to see animations disabled.
+        Enable &quot;prefers-reduced-motion&quot; in your OS settings to see
+        animations disabled.
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         <TiltCard style={{ width: 200 }}>
@@ -405,7 +581,9 @@ export const ReducedMotionTest: StoryObj = {
         <RippleButton>Ripple (respects reduced motion)</RippleButton>
         <MorphButton>Morph (respects reduced motion)</MorphButton>
         <AnimatedCard style={{ maxWidth: 200 }}>
-          <div style={{ padding: 16 }}>AnimatedCard (respects reduced motion)</div>
+          <div style={{ padding: 16 }}>
+            AnimatedCard (respects reduced motion)
+          </div>
         </AnimatedCard>
       </div>
     </div>

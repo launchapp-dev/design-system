@@ -45,8 +45,19 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       {(["default", "outline"] as const).map((variant) => (
-        <div key={variant} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <span style={{ fontSize: "12px", color: "var(--muted-foreground)", textTransform: "capitalize" }}>{variant}</span>
+        <div
+          key={variant}
+          style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+        >
+          <span
+            style={{
+              fontSize: "12px",
+              color: "var(--muted-foreground)",
+              textTransform: "capitalize",
+            }}
+          >
+            {variant}
+          </span>
           <ToggleGroup type="single" variant={variant} defaultValue="b">
             <ToggleGroupItem value="a">Left</ToggleGroupItem>
             <ToggleGroupItem value="b">Center</ToggleGroupItem>
@@ -55,15 +66,23 @@ export const AllVariants: Story = {
         </div>
       ))}
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>multiple selection</span>
-        <ToggleGroup type="multiple" variant="outline" defaultValue={["a", "c"]}>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          multiple selection
+        </span>
+        <ToggleGroup
+          type="multiple"
+          variant="outline"
+          defaultValue={["a", "c"]}
+        >
           <ToggleGroupItem value="a">Bold</ToggleGroupItem>
           <ToggleGroupItem value="b">Italic</ToggleGroupItem>
           <ToggleGroupItem value="c">Underline</ToggleGroupItem>
         </ToggleGroup>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>disabled</span>
+        <span style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+          disabled
+        </span>
         <ToggleGroup type="single" variant="outline" disabled>
           <ToggleGroupItem value="a">A</ToggleGroupItem>
           <ToggleGroupItem value="b">B</ToggleGroupItem>
@@ -78,9 +97,25 @@ export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       {(["sm", "md", "lg"] as const).map((size) => (
-        <div key={size} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>{size}</span>
-          <ToggleGroup type="single" size={size} variant="outline" defaultValue="b">
+        <div
+          key={size}
+          style={{ display: "flex", alignItems: "center", gap: "12px" }}
+        >
+          <span
+            style={{
+              width: 24,
+              fontSize: "12px",
+              color: "var(--muted-foreground)",
+            }}
+          >
+            {size}
+          </span>
+          <ToggleGroup
+            type="single"
+            size={size}
+            variant="outline"
+            defaultValue="b"
+          >
             <ToggleGroupItem value="a">A</ToggleGroupItem>
             <ToggleGroupItem value="b">B</ToggleGroupItem>
             <ToggleGroupItem value="c">C</ToggleGroupItem>
@@ -100,7 +135,9 @@ export const Interactive: Story = {
           {...args}
           type="single"
           value={value}
-          onValueChange={(v) => { if (v) setValue(v); }}
+          onValueChange={(v) => {
+            if (v) setValue(v);
+          }}
         >
           <ToggleGroupItem value="a">Option A</ToggleGroupItem>
           <ToggleGroupItem value="b">Option B</ToggleGroupItem>
@@ -119,7 +156,16 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <ToggleGroup type="single" defaultValue="b">
         <ToggleGroupItem value="a">A</ToggleGroupItem>
         <ToggleGroupItem value="b">B</ToggleGroupItem>

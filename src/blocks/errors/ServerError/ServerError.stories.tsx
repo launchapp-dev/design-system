@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { ServerError } from "./index";
 import { Button } from "../../../components/Button";
+import { ServerError } from "./index";
 
 const meta: Meta<typeof ServerError> = {
   title: "Blocks/Errors/ServerError",

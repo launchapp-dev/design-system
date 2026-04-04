@@ -6,11 +6,12 @@ function usePrefersReducedMotion() {
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 }
 
-export interface AnimatedBorderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnimatedBorderProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "beam" | "gradient-spin" | "dashed";
   borderColor?: string;
   secondaryColor?: string;
@@ -85,11 +86,14 @@ function AnimatedBorder({
         background: reduced
           ? `repeating-linear-gradient(0deg, ${borderColor}, ${borderColor} ${dashLength}px, transparent ${dashLength}px, transparent ${dashLength + gapLength}px), repeating-linear-gradient(90deg, ${borderColor}, ${borderColor} ${dashLength}px, transparent ${dashLength}px, transparent ${dashLength + gapLength}px), repeating-linear-gradient(180deg, ${borderColor}, ${borderColor} ${dashLength}px, transparent ${dashLength}px, transparent ${dashLength + gapLength}px), repeating-linear-gradient(270deg, ${borderColor}, ${borderColor} ${dashLength}px, transparent ${dashLength}px, transparent ${dashLength + gapLength}px)`
           : `repeating-linear-gradient(0deg, ${borderColor}, ${borderColor} ${dashLength}px, transparent ${dashLength}px, transparent ${dashLength + gapLength}px)`,
-        backgroundSize: reduced ? "100% 100%" : `${dashLength + gapLength}px 100%`,
+        backgroundSize: reduced
+          ? "100% 100%"
+          : `${dashLength + gapLength}px 100%`,
         animation: reduced ? "none" : `dash-march ${duration}s linear infinite`,
         mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
         maskComposite: "exclude",
-        WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+        WebkitMask:
+          "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
         WebkitMaskComposite: "xor",
       }}
     />
@@ -98,7 +102,10 @@ function AnimatedBorder({
   return (
     <div
       ref={ref}
-      className={cn("relative rounded-[calc(var(--la-radius)-1px)] overflow-hidden", className)}
+      className={cn(
+        "relative rounded-[calc(var(--la-radius)-1px)] overflow-hidden",
+        className,
+      )}
       style={style}
       {...props}
     >

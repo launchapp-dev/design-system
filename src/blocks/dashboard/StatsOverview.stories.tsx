@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { StatsOverview } from "./StatsOverview";
 
 const kpiItems = [
@@ -8,7 +7,10 @@ const kpiItems = [
     value: "$89,600",
     trend: "up" as const,
     trendLabel: "+12.3% vs last month",
-    sparklineData: [42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000, 79000, 89600],
+    sparklineData: [
+      42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000,
+      79000, 89600,
+    ],
     sparklineColor: "hsl(var(--la-chart-1))",
   },
   {
@@ -16,7 +18,9 @@ const kpiItems = [
     value: "5,100",
     trend: "up" as const,
     trendLabel: "+4.7% vs last month",
-    sparklineData: [3800, 3900, 4100, 4000, 4300, 4500, 4600, 4800, 4900, 5000, 5050, 5100],
+    sparklineData: [
+      3800, 3900, 4100, 4000, 4300, 4500, 4600, 4800, 4900, 5000, 5050, 5100,
+    ],
     sparklineColor: "hsl(var(--la-chart-2))",
   },
   {
@@ -24,7 +28,9 @@ const kpiItems = [
     value: "3.24%",
     trend: "neutral" as const,
     trendLabel: "+0.1% vs last month",
-    sparklineData: [2.8, 3.1, 2.9, 3.4, 3.2, 3.0, 3.3, 3.1, 3.4, 3.2, 3.3, 3.24],
+    sparklineData: [
+      2.8, 3.1, 2.9, 3.4, 3.2, 3.0, 3.3, 3.1, 3.4, 3.2, 3.3, 3.24,
+    ],
     sparklineColor: "hsl(var(--la-chart-3))",
   },
   {
@@ -116,7 +122,10 @@ export const TwoColumns: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px" }}
+    >
       <StatsOverview {...args} />
     </div>
   ),

@@ -67,11 +67,19 @@ function parseColor(color: string): HSL {
   }
   const hslFn = trimmed.match(/hsl\(\s*(\d+)\s+(\d+)%\s+(\d+)%\s*\)/);
   if (hslFn) {
-    return { h: parseInt(hslFn[1]), s: parseInt(hslFn[2]), l: parseInt(hslFn[3]) };
+    return {
+      h: parseInt(hslFn[1], 10),
+      s: parseInt(hslFn[2], 10),
+      l: parseInt(hslFn[3], 10),
+    };
   }
   const bare = trimmed.match(/^(\d+)\s+(\d+)%?\s+(\d+)%?$/);
   if (bare) {
-    return { h: parseInt(bare[1]), s: parseInt(bare[2]), l: parseInt(bare[3]) };
+    return {
+      h: parseInt(bare[1], 10),
+      s: parseInt(bare[2], 10),
+      l: parseInt(bare[3], 10),
+    };
   }
   throw new Error(`Cannot parse color: ${color}`);
 }

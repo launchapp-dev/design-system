@@ -1,7 +1,7 @@
 export {
   Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
   PopoverAnchor,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
 } from "./Popover";
