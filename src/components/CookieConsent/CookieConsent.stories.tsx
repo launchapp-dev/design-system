@@ -1,37 +1,47 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { CookieConsent, DEFAULT_CATEGORIES } from "./index";
+import {
+  CookieBanner,
+  CookiePreferences,
+  CookieConsentProvider,
+  ConsentGate,
+  useCookieConsent,
+  DEFAULT_CATEGORIES,
+} from "./index";
+import type { ConsentPreferences } from "./index";
 
-const meta: Meta<typeof CookieConsent> = {
+const meta: Meta<typeof CookieConsentProvider> = {
   title: "Components/CookieConsent",
-  component: CookieConsent,
+  component: CookieConsentProvider,
   parameters: {
     docs: {
       description: {
         component: `
-## Accessibility Features
+## Cookie Consent System
 
-### ARIA Roles & Attributes
-- Dialog has \`role="dialog"\` with \`aria-labelledby\` pointing to title
-- Checkboxes have proper \`aria-label\` descriptions
-- Buttons clearly labeled (Accept, Reject, Preferences)
+Full GDPR/ePrivacy cookie consent system with:
+- **CookieBanner** — fixed bottom banner shown on first visit
+- **CookiePreferences** — modal for granular cookie control
+- **CookieConsentProvider** — context provider with persistent cookie storage
+- **useCookieConsent** — hook to check consent status
+- **ConsentGate** — conditionally render children based on consent
+- **ConsentScript** — inject scripts only when consent is granted
 
-### Keyboard Navigation
-- **Tab**: Navigate through all controls
-- **Space**: Toggle checkbox
-- **Enter**: Activate buttons
-- **Escape**: Close dialog (if allowed)
+### Categories
+- **Essential** — required, always on
+- **Functional** — preferences, language, region
+- **Analytics** — anonymous usage tracking
+- **Marketing** — advertising and retargeting
 
-### Screen Reader Behavior
-- Modal announced as dialog
-- Purpose and available options described
-- Current checkbox states announced
-- Button functions clearly stated
+### Accessibility (WCAG AA)
+- Banner has \`role="dialog"\` with \`aria-label\`
+- Preferences modal uses Radix Dialog (focus trap, aria-labelledby)
+- All switches have \`aria-label\` descriptions
+- Keyboard: Tab, Space, Enter, Escape
+- Focus management within modal
 
-### Focus Management
-- Focus trap within dialog
-- Return focus to trigger button after close
-- Clear focus indicators on all controls
+### Script Blocking
+Wrap analytics/marketing scripts in \`<ConsentScript>\` or \`<ConsentGate>\` — they only execute after the user grants consent for that category.
         `,
       },
     },
@@ -39,86 +49,106 @@ const meta: Meta<typeof CookieConsent> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CookieConsent>;
+type Story = StoryObj<typeof CookieConsentProvider>;
 
-function Controlled() {
-  const [open, setOpen] = React.useState(false);
-  const [saved, setSaved] = React.useState<Record<string, boolean> | null>(null);
+function PreferencesLink() {
+  const { setShowPreferences, hasConsented, consent } = useCookieConsent();
   return (
     <div style={{ padding: "24px" }}>
+      <p style={{ marginBottom: "16px", fontSize: "14px", color: "#666" }}>
+        {hasConsented
+          ? `Consent saved: ${JSON.stringify(consent)}`
+          : "No consent given yet — banner should be visible below."}
+      </p>
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => setShowPreferences(true)}
         style={{
           padding: "8px 16px",
           borderRadius: "6px",
           border: "1px solid #e2e8f0",
           cursor: "pointer",
+          fontSize: "14px",
         }}
       >
-        Open Cookie Preferences
+        Cookie Settings (footer link)
       </button>
-      {saved && (
-        <pre style={{ marginTop: "16px", fontSize: "12px" }}>
-          {JSON.stringify(saved, null, 2)}
-        </pre>
-      )}
-      <CookieConsent
-        open={open}
-        onOpenChange={setOpen}
-        onAcceptAll={() => setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, true])))}
-        onRejectAll={() => setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, c.required === true])))}
-        onSavePreferences={setSaved}
-      />
+    </div>
+  );
+}
+
+function GatedContent() {
+  const { hasConsent } = useCookieConsent();
+  return (
+    <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "8px" }}>
+      <ConsentGate category="analytics" fallback={<span style={{ color: "#999" }}>Analytics blocked</span>}>
+        <span style={{ color: "#22c55e" }}>Analytics scripts loaded</span>
+      </ConsentGate>
+      <ConsentGate category="marketing" fallback={<span style={{ color: "#999" }}>Marketing blocked</span>}>
+        <span style={{ color: "#22c55e" }}>Marketing pixels loaded</span>
+      </ConsentGate>
     </div>
   );
 }
 
 export const Default: Story = {
-  render: () => <Controlled />,
-};
-
-export const OpenByDefault: Story = {
   render: () => (
-    <CookieConsent
-      open={true}
-      onOpenChange={() => undefined}
-    />
+    <CookieConsentProvider privacyPolicyUrl="/privacy">
+      <PreferencesLink />
+      <GatedContent />
+    </CookieConsentProvider>
   ),
 };
 
-export const CustomCategories: Story = {
+export const BannerOnly: Story = {
+  render: () => (
+    <div style={{ position: "relative", minHeight: "300px" }}>
+      <CookieBanner
+        onAcceptAll={() => alert("Accepted all")}
+        onRejectAll={() => alert("Rejected all")}
+        onOpenPreferences={() => alert("Open preferences")}
+        privacyPolicyUrl="/privacy"
+      />
+    </div>
+  ),
+};
+
+export const PreferencesModal: Story = {
   render: () => {
-    const [open, setOpen] = React.useState(true);
+    const [prefs, setPrefs] = React.useState<ConsentPreferences>({
+      essential: true,
+      functional: false,
+      analytics: false,
+      marketing: false,
+    });
     return (
-      <CookieConsent
-        open={open}
-        onOpenChange={setOpen}
-        title="Privacy Settings"
-        description="Manage your data and privacy preferences."
-        categories={[
-          {
-            id: "essential",
-            name: "Essential",
-            description: "Required for the site to work.",
-            required: true,
-            enabled: true,
-          },
-          {
-            id: "personalisation",
-            name: "Personalisation",
-            description: "Remember your preferences for a tailored experience.",
-            required: false,
-            enabled: true,
-          },
-          {
-            id: "thirdParty",
-            name: "Third-party Embeds",
-            description: "Enable YouTube, Vimeo, and other embedded content.",
-            required: false,
-            enabled: false,
-          },
-        ]}
+      <CookiePreferences
+        open={true}
+        onOpenChange={() => undefined}
+        categories={DEFAULT_CATEGORIES}
+        preferences={prefs}
+        onToggle={(id, checked) => setPrefs((p) => ({ ...p, [id]: checked }))}
+        onAcceptAll={() => undefined}
+        onRejectAll={() => undefined}
+        onSave={() => undefined}
       />
     );
   },
+};
+
+export const WithCustomCategories: Story = {
+  render: () => (
+    <CookieConsentProvider
+      categories={[
+        { id: "essential", name: "Essential", description: "Required for site operation.", required: true, enabled: true },
+        { id: "functional", name: "Functional", description: "Remember your preferences.", required: false, enabled: false },
+        { id: "analytics", name: "Performance", description: "Help us measure and improve.", required: false, enabled: false },
+        { id: "marketing", name: "Advertising", description: "Personalised ads.", required: false, enabled: false },
+      ]}
+      bannerTitle="Your Privacy Matters"
+      bannerDescription="Choose which cookies we can use."
+      preferencesTitle="Privacy Settings"
+    >
+      <PreferencesLink />
+    </CookieConsentProvider>
+  ),
 };
