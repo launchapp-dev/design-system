@@ -1,10 +1,20 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
-import { CookieConsent } from "./CookieConsent";
+import {
+  CookieConsent,
+  CookieConsentBanner,
+  CookieConsentProvider,
+  CookiePreferencesModal,
+  useCookieConsent,
+} from "./CookieConsent";
 
-describe("CookieConsent", () => {
+beforeEach(() => {
+  localStorage.clear();
+});
+
+describe("CookieConsent (backward-compatible modal)", () => {
   it("renders dialog role when open", () => {
     render(<CookieConsent open onOpenChange={() => undefined} />);
     expect(screen.getByRole("dialog")).toBeInTheDocument();
@@ -231,5 +241,239 @@ describe("CookieConsent", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
       expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
+  });
+});
+
+describe("CookieConsentBanner", () => {
+  it("renders banner when no provider (always visible)", () => {
+    render(<CookieConsentBanner />);
+    expect(screen.getByRole("region", { name: /cookie consent/i })).toBeInTheDocument();
+  });
+
+  it("renders default title and description", () => {
+    render(<CookieConsentBanner />);
+    expect(screen.getByText("We use cookies")).toBeInTheDocument();
+  });
+
+  it("renders custom title and description", () => {
+    render(<CookieConsentBanner title="Privacy" description="We care." />);
+    expect(screen.getByText("Privacy")).toBeInTheDocument();
+    expect(screen.getByText("We care.")).toBeInTheDocument();
+  });
+
+  it("renders Accept All, Customize, and Reject All buttons by default", () => {
+    render(<CookieConsentBanner />);
+    expect(screen.getByRole("button", { name: "Accept All" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Customize" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Reject All" })).toBeInTheDocument();
+  });
+
+  it("hides Reject All when showReject is false", () => {
+    render(<CookieConsentBanner showReject={false} />);
+    expect(screen.queryByRole("button", { name: "Reject All" })).toBeNull();
+  });
+
+  it("renders custom button labels", () => {
+    render(
+      <CookieConsentBanner
+        acceptLabel="OK"
+        rejectLabel="No Thanks"
+        customizeLabel="Settings"
+      />
+    );
+    expect(screen.getByRole("button", { name: "OK" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "No Thanks" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Settings" })).toBeInTheDocument();
+  });
+});
+
+describe("CookieConsentProvider + useCookieConsent", () => {
+  function HookConsumer() {
+    const { state, preferences, showBanner } = useCookieConsent();
+    return (
+      <div>
+        <span data-testid="state">{state}</span>
+        <span data-testid="banner">{showBanner ? "visible" : "hidden"}</span>
+        <span data-testid="prefs">{JSON.stringify(preferences)}</span>
+      </div>
+    );
+  }
+
+  it("throws when used outside provider", () => {
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    expect(() => render(<HookConsumer />)).toThrow(
+      "useCookieConsent must be used within a CookieConsentProvider"
+    );
+    spy.mockRestore();
+  });
+
+  it("starts with undecided state and banner visible", () => {
+    render(
+      <CookieConsentProvider>
+        <HookConsumer />
+      </CookieConsentProvider>
+    );
+    expect(screen.getByTestId("state").textContent).toBe("undecided");
+    expect(screen.getByTestId("banner").textContent).toBe("visible");
+  });
+
+  it("acceptAll sets accepted state and persists to localStorage", async () => {
+    function AcceptButton() {
+      const { acceptAll } = useCookieConsent();
+      return <button onClick={acceptAll}>accept</button>;
+    }
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider>
+        <HookConsumer />
+        <AcceptButton />
+      </CookieConsentProvider>
+    );
+    await user.click(screen.getByRole("button", { name: "accept" }));
+    expect(screen.getByTestId("state").textContent).toBe("accepted");
+    expect(screen.getByTestId("banner").textContent).toBe("hidden");
+    const stored = JSON.parse(localStorage.getItem("la-cookie-consent")!);
+    expect(stored.state).toBe("accepted");
+  });
+
+  it("rejectAll sets rejected state with only required cookies", async () => {
+    function RejectButton() {
+      const { rejectAll } = useCookieConsent();
+      return <button onClick={rejectAll}>reject</button>;
+    }
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider>
+        <HookConsumer />
+        <RejectButton />
+      </CookieConsentProvider>
+    );
+    await user.click(screen.getByRole("button", { name: "reject" }));
+    expect(screen.getByTestId("state").textContent).toBe("rejected");
+    const prefs = JSON.parse(screen.getByTestId("prefs").textContent!);
+    expect(prefs.necessary).toBe(true);
+    expect(prefs.analytics).toBe(false);
+    expect(prefs.marketing).toBe(false);
+  });
+
+  it("savePreferences sets custom state", async () => {
+    function SaveButton() {
+      const { savePreferences } = useCookieConsent();
+      return (
+        <button onClick={() => savePreferences({ necessary: true, analytics: true, marketing: false, preferences: false })}>
+          save
+        </button>
+      );
+    }
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider>
+        <HookConsumer />
+        <SaveButton />
+      </CookieConsentProvider>
+    );
+    await user.click(screen.getByRole("button", { name: "save" }));
+    expect(screen.getByTestId("state").textContent).toBe("custom");
+    const prefs = JSON.parse(screen.getByTestId("prefs").textContent!);
+    expect(prefs.analytics).toBe(true);
+    expect(prefs.marketing).toBe(false);
+  });
+
+  it("reset clears state back to undecided and removes localStorage", async () => {
+    function Controls() {
+      const { acceptAll, reset } = useCookieConsent();
+      return (
+        <>
+          <button onClick={acceptAll}>accept</button>
+          <button onClick={reset}>reset</button>
+        </>
+      );
+    }
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider>
+        <HookConsumer />
+        <Controls />
+      </CookieConsentProvider>
+    );
+    await user.click(screen.getByRole("button", { name: "accept" }));
+    expect(screen.getByTestId("state").textContent).toBe("accepted");
+    await user.click(screen.getByRole("button", { name: "reset" }));
+    expect(screen.getByTestId("state").textContent).toBe("undecided");
+    expect(localStorage.getItem("la-cookie-consent")).toBeNull();
+  });
+
+  it("restores state from localStorage on mount", () => {
+    localStorage.setItem(
+      "la-cookie-consent",
+      JSON.stringify({ state: "accepted", preferences: { necessary: true, analytics: true, marketing: true, preferences: true } })
+    );
+    render(
+      <CookieConsentProvider>
+        <HookConsumer />
+      </CookieConsentProvider>
+    );
+    expect(screen.getByTestId("state").textContent).toBe("accepted");
+    expect(screen.getByTestId("banner").textContent).toBe("hidden");
+  });
+
+  it("calls onConsentChange callback", async () => {
+    const onConsentChange = vi.fn();
+    function AcceptButton() {
+      const { acceptAll } = useCookieConsent();
+      return <button onClick={acceptAll}>accept</button>;
+    }
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider onConsentChange={onConsentChange}>
+        <AcceptButton />
+      </CookieConsentProvider>
+    );
+    await user.click(screen.getByRole("button", { name: "accept" }));
+    expect(onConsentChange).toHaveBeenCalledWith("accepted", expect.objectContaining({ necessary: true }));
+  });
+});
+
+describe("CookieConsentBanner within Provider", () => {
+  it("hides banner after accepting", async () => {
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider>
+        <CookieConsentBanner />
+      </CookieConsentProvider>
+    );
+    expect(screen.getByRole("region", { name: /cookie consent/i })).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Accept All" }));
+    expect(screen.queryByRole("region", { name: /cookie consent/i })).toBeNull();
+  });
+
+  it("hides banner after rejecting", async () => {
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider>
+        <CookieConsentBanner />
+      </CookieConsentProvider>
+    );
+    await user.click(screen.getByRole("button", { name: "Reject All" }));
+    expect(screen.queryByRole("region", { name: /cookie consent/i })).toBeNull();
+  });
+});
+
+describe("CookiePreferencesModal within Provider", () => {
+  it("opens when openPreferences is called from provider", async () => {
+    function OpenButton() {
+      const { openPreferences } = useCookieConsent();
+      return <button onClick={openPreferences}>open prefs</button>;
+    }
+    const user = userEvent.setup();
+    render(
+      <CookieConsentProvider>
+        <OpenButton />
+        <CookiePreferencesModal />
+      </CookieConsentProvider>
+    );
+    expect(screen.queryByRole("dialog")).toBeNull();
+    await user.click(screen.getByRole("button", { name: "open prefs" }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
 });

@@ -626,8 +626,24 @@ export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from 
 export { Changelog, changelogTagVariants } from "./components/Changelog";
 export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
 
-export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
-export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
+export {
+  CookieConsent,
+  CookieConsentBanner,
+  CookieConsentContext,
+  CookieConsentProvider,
+  CookiePreferencesModal,
+  DEFAULT_CATEGORIES,
+  useCookieConsent,
+} from "./components/CookieConsent";
+export type {
+  CookieCategory,
+  CookieConsentBannerProps,
+  CookieConsentContextValue,
+  CookieConsentProps,
+  CookieConsentProviderProps,
+  CookieConsentState,
+  CookiePreferencesModalProps,
+} from "./components/CookieConsent";
 
 export { TreeMap, treeMapVariants } from "./components/TreeMap";
 export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";

@@ -1,2 +1,18 @@
-export { CookieConsent, DEFAULT_CATEGORIES } from "./CookieConsent";
-export type { CookieConsentProps, CookieCategory } from "./CookieConsent";
+export {
+  CookieConsent,
+  CookieConsentBanner,
+  CookieConsentContext,
+  CookieConsentProvider,
+  CookiePreferencesModal,
+  DEFAULT_CATEGORIES,
+  useCookieConsent,
+} from "./CookieConsent";
+export type {
+  CookieCategory,
+  CookieConsentBannerProps,
+  CookieConsentContextValue,
+  CookieConsentProps,
+  CookieConsentProviderProps,
+  CookieConsentState,
+  CookiePreferencesModalProps,
+} from "./CookieConsent";

@@ -12,15 +12,31 @@ export interface CookieCategory {
   enabled: boolean;
 }
 
-export interface CookieConsentProps {
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-  onAcceptAll?: () => void;
-  onRejectAll?: () => void;
-  onSavePreferences?: (preferences: Record<string, boolean>) => void;
-  categories?: CookieCategory[];
-  title?: string;
-  description?: string;
+export type CookieConsentState = "undecided" | "accepted" | "rejected" | "custom";
+
+export interface CookieConsentContextValue {
+  state: CookieConsentState;
+  preferences: Record<string, boolean>;
+  showBanner: boolean;
+  showPreferences: boolean;
+  acceptAll: () => void;
+  rejectAll: () => void;
+  savePreferences: (prefs: Record<string, boolean>) => void;
+  openPreferences: () => void;
+  closePreferences: () => void;
+  reset: () => void;
+}
+
+const STORAGE_KEY = "la-cookie-consent";
+
+const CookieConsentContext = React.createContext<CookieConsentContextValue | null>(null);
+
+function useCookieConsent(): CookieConsentContextValue {
+  const ctx = React.useContext(CookieConsentContext);
+  if (!ctx) {
+    throw new Error("useCookieConsent must be used within a CookieConsentProvider");
+  }
+  return ctx;
 }
 
 const DEFAULT_CATEGORIES: CookieCategory[] = [
@@ -58,47 +74,314 @@ const DEFAULT_CATEGORIES: CookieCategory[] = [
   },
 ];
 
-function CookieConsent({
-  open,
-  onOpenChange,
-  onAcceptAll,
-  onRejectAll,
-  onSavePreferences,
+interface StoredConsent {
+  state: CookieConsentState;
+  preferences: Record<string, boolean>;
+}
+
+function readStorage(): StoredConsent | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as StoredConsent;
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(data: StoredConsent): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    // noop
+  }
+}
+
+function clearStorage(): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // noop
+  }
+}
+
+export interface CookieConsentProviderProps {
+  children: React.ReactNode;
+  categories?: CookieCategory[];
+  onConsentChange?: (state: CookieConsentState, preferences: Record<string, boolean>) => void;
+}
+
+function CookieConsentProvider({
+  children,
+  categories = DEFAULT_CATEGORIES,
+  onConsentChange,
+}: CookieConsentProviderProps) {
+  const [state, setState] = React.useState<CookieConsentState>(() => {
+    const stored = readStorage();
+    return stored?.state ?? "undecided";
+  });
+  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(() => {
+    const stored = readStorage();
+    return stored?.preferences ?? Object.fromEntries(categories.map((c) => [c.id, c.enabled]));
+  });
+  const [showPreferences, setShowPreferences] = React.useState(false);
+
+  const showBanner = state === "undecided";
+
+  const acceptAll = React.useCallback(() => {
+    const all = Object.fromEntries(categories.map((c) => [c.id, true]));
+    setPreferences(all);
+    setState("accepted");
+    setShowPreferences(false);
+    writeStorage({ state: "accepted", preferences: all });
+    onConsentChange?.("accepted", all);
+  }, [categories, onConsentChange]);
+
+  const rejectAll = React.useCallback(() => {
+    const required = Object.fromEntries(
+      categories.map((c) => [c.id, c.required === true])
+    );
+    setPreferences(required);
+    setState("rejected");
+    setShowPreferences(false);
+    writeStorage({ state: "rejected", preferences: required });
+    onConsentChange?.("rejected", required);
+  }, [categories, onConsentChange]);
+
+  const savePreferences = React.useCallback(
+    (prefs: Record<string, boolean>) => {
+      setPreferences(prefs);
+      setState("custom");
+      setShowPreferences(false);
+      writeStorage({ state: "custom", preferences: prefs });
+      onConsentChange?.("custom", prefs);
+    },
+    [onConsentChange]
+  );
+
+  const openPreferences = React.useCallback(() => {
+    setShowPreferences(true);
+  }, []);
+
+  const closePreferences = React.useCallback(() => {
+    setShowPreferences(false);
+  }, []);
+
+  const reset = React.useCallback(() => {
+    const defaults = Object.fromEntries(categories.map((c) => [c.id, c.enabled]));
+    setPreferences(defaults);
+    setState("undecided");
+    setShowPreferences(false);
+    clearStorage();
+    onConsentChange?.("undecided", defaults);
+  }, [categories, onConsentChange]);
+
+  const value = React.useMemo<CookieConsentContextValue>(
+    () => ({
+      state,
+      preferences,
+      showBanner,
+      showPreferences,
+      acceptAll,
+      rejectAll,
+      savePreferences,
+      openPreferences,
+      closePreferences,
+      reset,
+    }),
+    [
+      state,
+      preferences,
+      showBanner,
+      showPreferences,
+      acceptAll,
+      rejectAll,
+      savePreferences,
+      openPreferences,
+      closePreferences,
+      reset,
+    ]
+  );
+
+  return (
+    <CookieConsentContext.Provider value={value}>
+      {children}
+    </CookieConsentContext.Provider>
+  );
+}
+
+CookieConsentProvider.displayName = "CookieConsentProvider";
+
+export interface CookieConsentBannerProps {
+  className?: string;
+  title?: string;
+  description?: string;
+  acceptLabel?: string;
+  rejectLabel?: string;
+  customizeLabel?: string;
+  showReject?: boolean;
+  position?: "bottom" | "bottom-left" | "bottom-right";
+}
+
+const CookieConsentBanner = React.forwardRef<HTMLDivElement, CookieConsentBannerProps>(
+  (
+    {
+      className,
+      title = "We use cookies",
+      description = "We use cookies to enhance your browsing experience and analyse our traffic. You can accept all cookies or customise your preferences.",
+      acceptLabel = "Accept All",
+      rejectLabel = "Reject All",
+      customizeLabel = "Customize",
+      showReject = true,
+      position = "bottom",
+    },
+    ref
+  ) => {
+    const ctx = React.useContext(CookieConsentContext);
+
+    const showBanner = ctx ? ctx.showBanner : true;
+    const acceptAll = ctx?.acceptAll;
+    const rejectAll = ctx?.rejectAll;
+    const openPreferences = ctx?.openPreferences;
+
+    if (!showBanner) return null;
+
+    const positionClasses = {
+      bottom: "inset-x-0 bottom-0",
+      "bottom-left": "bottom-4 left-4 max-w-md",
+      "bottom-right": "bottom-4 right-4 max-w-md",
+    };
+
+    return (
+      <div
+        ref={ref}
+        role="region"
+        aria-label="Cookie consent"
+        className={cn(
+          "fixed z-50 p-4",
+          positionClasses[position],
+          className
+        )}
+      >
+        <div
+          className={cn(
+            "rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] p-6 shadow-lg",
+            position === "bottom" && "mx-auto max-w-4xl"
+          )}
+        >
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0 flex-1">
+              <h3 className="text-sm font-semibold text-[hsl(var(--la-foreground))]">
+                {title}
+              </h3>
+              <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">
+                {description}
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+              {showReject && (
+                <Button variant="outline" size="sm" onClick={rejectAll}>
+                  {rejectLabel}
+                </Button>
+              )}
+              <Button variant="outline" size="sm" onClick={openPreferences}>
+                {customizeLabel}
+              </Button>
+              <Button size="sm" onClick={acceptAll}>
+                {acceptLabel}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+);
+
+CookieConsentBanner.displayName = "CookieConsentBanner";
+
+export interface CookiePreferencesModalProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  onAcceptAll?: () => void;
+  onRejectAll?: () => void;
+  onSavePreferences?: (preferences: Record<string, boolean>) => void;
+  categories?: CookieCategory[];
+  title?: string;
+  description?: string;
+}
+
+function CookiePreferencesModal({
+  open: openProp,
+  onOpenChange: onOpenChangeProp,
+  onAcceptAll: onAcceptAllProp,
+  onRejectAll: onRejectAllProp,
+  onSavePreferences: onSavePreferencesProp,
   categories = DEFAULT_CATEGORIES,
   title = "Cookie Preferences",
   description = "We use cookies to enhance your browsing experience and analyse our traffic. Please choose which cookies you are happy for us to use.",
-}: CookieConsentProps) {
-  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(
-    () => Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
+}: CookiePreferencesModalProps) {
+  const ctx = React.useContext(CookieConsentContext);
+
+  const isControlled = openProp !== undefined;
+  const open = isControlled ? openProp : (ctx?.showPreferences ?? false);
+  const onOpenChange = isControlled
+    ? onOpenChangeProp
+    : (val: boolean) => {
+        if (!val) ctx?.closePreferences();
+        onOpenChangeProp?.(val);
+      };
+
+  const [localPrefs, setLocalPrefs] = React.useState<Record<string, boolean>>(
+    () => ctx?.preferences ?? Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
   );
 
   React.useEffect(() => {
-    setPreferences(Object.fromEntries(categories.map((c) => [c.id, c.enabled])));
-  }, [categories]);
+    if (open) {
+      setLocalPrefs(
+        ctx?.preferences ?? Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
+      );
+    }
+  }, [open, ctx?.preferences, categories]);
 
   function handleToggle(id: string, checked: boolean) {
-    setPreferences((prev) => ({ ...prev, [id]: checked }));
+    setLocalPrefs((prev) => ({ ...prev, [id]: checked }));
   }
 
   function handleAcceptAll() {
     const all = Object.fromEntries(categories.map((c) => [c.id, true]));
-    setPreferences(all);
-    onAcceptAll?.();
-    onOpenChange?.(false);
+    setLocalPrefs(all);
+    if (ctx) {
+      ctx.acceptAll();
+    } else {
+      onOpenChangeProp?.(false);
+    }
+    onAcceptAllProp?.();
   }
 
   function handleRejectAll() {
     const required = Object.fromEntries(
       categories.map((c) => [c.id, c.required === true])
     );
-    setPreferences(required);
-    onRejectAll?.();
-    onOpenChange?.(false);
+    setLocalPrefs(required);
+    if (ctx) {
+      ctx.rejectAll();
+    } else {
+      onOpenChangeProp?.(false);
+    }
+    onRejectAllProp?.();
   }
 
   function handleSave() {
-    onSavePreferences?.(preferences);
-    onOpenChange?.(false);
+    if (ctx) {
+      ctx.savePreferences(localPrefs);
+    } else {
+      onOpenChangeProp?.(false);
+    }
+    onSavePreferencesProp?.(localPrefs);
   }
 
   return (
@@ -153,7 +436,7 @@ function CookieConsent({
                   </p>
                 </div>
                 <SwitchPrimitive.Root
-                  checked={preferences[category.id] ?? category.enabled}
+                  checked={localPrefs[category.id] ?? category.enabled}
                   onCheckedChange={(checked) => handleToggle(category.id, checked)}
                   disabled={category.required}
                   aria-label={`${category.name} cookies`}
@@ -219,5 +502,17 @@ function CookieConsent({
   );
 }
 
-CookieConsent.displayName = "CookieConsent";
-export { CookieConsent, DEFAULT_CATEGORIES };
+CookiePreferencesModal.displayName = "CookiePreferencesModal";
+
+export type CookieConsentProps = CookiePreferencesModalProps;
+const CookieConsent = CookiePreferencesModal;
+
+export {
+  CookieConsent,
+  CookieConsentBanner,
+  CookieConsentContext,
+  CookieConsentProvider,
+  CookiePreferencesModal,
+  DEFAULT_CATEGORIES,
+  useCookieConsent,
+};
