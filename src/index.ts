@@ -631,6 +631,18 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
 
+export { CookieConsentBanner, BANNER_DEFAULT_CATEGORIES, cookieConsentBannerVariants } from "./components/CookieConsentBanner";
+export type { CookieConsentBannerProps, CookieConsentBannerCategory } from "./components/CookieConsentBanner";
+
+export { CookiePreferencesDialog, PREFERENCES_DEFAULT_CATEGORIES } from "./components/CookiePreferencesDialog";
+export type { CookiePreferencesDialogProps, CookiePreferenceCategory } from "./components/CookiePreferencesDialog";
+
+export { ConsentHistoryTable, actionBadgeVariants, ACTION_LABELS } from "./components/ConsentHistoryTable";
+export type { ConsentHistoryTableProps, ConsentHistoryEntry, ConsentAction } from "./components/ConsentHistoryTable";
+
+export { PrivacyDashboard } from "./components/PrivacyDashboard";
+export type { PrivacyDashboardProps, DataRequestStatus, DeleteAccountStatus } from "./components/PrivacyDashboard";
+
 export { TreeMap, treeMapVariants } from "./components/TreeMap";
 export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";
 
