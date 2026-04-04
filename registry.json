@@ -2204,6 +2204,25 @@
       "devDependencies": []
     },
     {
+      "name": "block-pricing-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/PricingSectionBlock/PricingSectionBlock.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/landing/PricingSectionBlock/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "@launchapp/design-system"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-pricing-table",
       "type": "registry:block",
       "files": [

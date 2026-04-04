@@ -5,3 +5,4 @@ export * from "./Startup";
 export * from "./HeroSection";
 export * from "./PricingTableBlock";
 export * from "./FeatureGridBlock";
+export * from "./PricingSectionBlock";
