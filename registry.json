@@ -2122,6 +2122,21 @@
       "devDependencies": []
     },
     {
+      "name": "block-hero-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/HeroSection/HeroSection.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ]
+    },
+    {
       "name": "block-portfolio",
       "type": "registry:block",
       "files": [
