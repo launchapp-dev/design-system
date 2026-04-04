@@ -86,7 +86,7 @@ function validateAPIRequest(request: unknown): asserts request is APIRequest {
     );
   }
 
-  if (!req.payload) {
+  if (req.payload === undefined || req.payload === null) {
     throw new ValidationError(
       "Request must include a 'payload' field",
       "MISSING_PAYLOAD"

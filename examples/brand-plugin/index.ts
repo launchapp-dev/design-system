@@ -112,6 +112,11 @@ function createAnalyticsHook() {
       }
     },
     getStats: () => variantUsage,
+    reset: () => {
+      for (const key in variantUsage) {
+        delete variantUsage[key];
+      }
+    },
   };
 }
 
@@ -135,6 +140,7 @@ export const brandPlugin: PluginConfig = {
     'variant:resolve': analyticsHook['variant:resolve'],
   },
   initialize: async (context) => {
+    analyticsHook.reset();
     if (process.env.NODE_ENV === 'development') {
       console.log('[BrandPlugin] Initializing brand plugin...');
       console.log(`[BrandPlugin] Registered ${context.getLoadedPlugins().length} plugins total`);
