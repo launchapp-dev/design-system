@@ -30,7 +30,7 @@ export default function Page() {
   argTypes: {
     variant: {
       control: "select",
-      options: ["centered", "split", "minimal"],
+      options: ["centered", "split", "minimal", "imageBackground", "gradient"],
     },
   },
   args: {
@@ -86,6 +86,43 @@ export const Minimal: Story = {
   ),
 };
 
+export const Gradient: Story = {
+  render: (args) => (
+    <HeroSection
+      {...args}
+      variant="gradient"
+      badge={<Badge variant="secondary">New Release</Badge>}
+      headline="Build faster with gradient style"
+      subheadline="A beautiful gradient background that makes your hero section stand out."
+      primaryAction={<Button size="lg">Get started</Button>}
+      secondaryAction={<Button size="lg" variant="outline">Learn more</Button>}
+      gradient={{
+        from: "from-primary/20",
+        to: "to-background",
+        direction: "to-br",
+      }}
+    />
+  ),
+};
+
+export const GradientCustomColors: Story = {
+  render: (args) => (
+    <HeroSection
+      {...args}
+      variant="gradient"
+      headline="Custom gradient colors"
+      subheadline="Use any Tailwind color classes to create unique gradients."
+      primaryAction={<Button size="lg">Explore</Button>}
+      gradient={{
+        from: "from-indigo-500/30",
+        via: "via-purple-500/20",
+        to: "to-pink-500/10",
+        direction: "to-tr",
+      }}
+    />
+  ),
+};
+
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col divide-y divide-border">
@@ -112,6 +149,14 @@ export const AllVariants: Story = {
         variant="minimal"
         headline="Minimal hero variant"
         primaryAction={<Button>Single CTA</Button>}
+      />
+      <HeroSection
+        variant="gradient"
+        badge={<Badge>Gradient</Badge>}
+        headline="Gradient hero variant"
+        subheadline="Beautiful gradient background for visual impact."
+        primaryAction={<Button>Get started</Button>}
+        secondaryAction={<Button variant="outline">Learn more</Button>}
       />
     </div>
   ),

@@ -9,6 +9,7 @@ const heroSectionVariants = cva("w-full", {
       split: "grid grid-cols-1 md:grid-cols-2 gap-8 px-4 py-16 md:py-24 items-center",
       minimal: "flex flex-col px-4 py-16 md:py-24 lg:py-32",
       imageBackground: "relative flex flex-col items-center text-center px-4 py-24 md:py-32 lg:py-48 overflow-hidden",
+      gradient: "relative flex flex-col items-center text-center px-4 py-24 md:py-32 lg:py-48 overflow-hidden",
     },
   },
   defaultVariants: {
@@ -26,6 +27,12 @@ export interface HeroSectionProps
   secondaryAction?: React.ReactNode;
   media?: React.ReactNode;
   backgroundImageSrc?: string;
+  gradient?: {
+    from?: string;
+    to?: string;
+    via?: string;
+    direction?: "to-t" | "to-tr" | "to-r" | "to-br" | "to-b" | "to-bl" | "to-l" | "to-tl";
+  };
 }
 
 function HeroSection({
@@ -37,7 +44,9 @@ function HeroSection({
       primaryAction,
       secondaryAction,
       media,
-      backgroundImageSrc, ref,
+      backgroundImageSrc,
+      gradient,
+      ref,
       ...props
     }: HeroSectionProps & { ref?: React.Ref<HTMLElement> }) {
     if (variant === "imageBackground") {
@@ -55,6 +64,45 @@ function HeroSection({
             />
           )}
           <div className="absolute inset-0 bg-background/70" aria-hidden="true" />
+          <div className="relative z-10 max-w-3xl space-y-6">
+            {badge}
+            <h1 className="text-4xl font-bold tracking-tight text-foreground lg:text-6xl">
+              {headline}
+            </h1>
+            {subheadline && (
+              <p className="text-lg text-muted-foreground">{subheadline}</p>
+            )}
+            {(primaryAction || secondaryAction) && (
+              <div className="flex flex-wrap justify-center gap-3">
+                {primaryAction}
+                {secondaryAction}
+              </div>
+            )}
+          </div>
+        </section>
+      );
+    }
+
+    if (variant === "gradient") {
+      const gradientDirection = gradient?.direction || "to-br";
+      const fromColor = gradient?.from || "from-primary/20";
+      const viaColor = gradient?.via || "";
+      const toColor = gradient?.to || "to-background";
+
+      const gradientClasses = cn(
+        "absolute inset-0 bg-gradient-to-" + gradientDirection,
+        fromColor,
+        viaColor,
+        toColor
+      );
+
+      return (
+        <section
+          ref={ref}
+          className={cn(heroSectionVariants({ variant }), className)}
+          {...props}
+        >
+          <div className={gradientClasses} aria-hidden="true" />
           <div className="relative z-10 max-w-3xl space-y-6">
             {badge}
             <h1 className="text-4xl font-bold tracking-tight text-foreground lg:text-6xl">
