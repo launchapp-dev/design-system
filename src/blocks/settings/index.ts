@@ -6,3 +6,5 @@ export { NotificationPreferences } from "./NotificationPreferences";
 export type { NotificationPreferencesProps, NotificationGroup, NotificationPreferenceItem } from "./NotificationPreferences";
 export { BillingPage } from "./BillingPage";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./BillingPage";
+export { SettingsLayoutBlock } from "./SettingsLayoutBlock";
+export type { SettingsLayoutBlockProps, SettingsSection, SettingsSectionId } from "./SettingsLayoutBlock";
