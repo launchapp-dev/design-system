@@ -237,27 +237,30 @@ const features = [
 
 const pricingTiers = [
   {
+    id: "starter",
     name: "Starter",
-    price: "$9",
+    price: { monthly: 9, annually: 7 },
     description: "Perfect for individuals and small projects.",
     features: ["5 projects", "10 GB storage", "Email support"],
-    ctaLabel: "Get started",
+    cta: { label: "Get started" },
   },
   {
+    id: "pro",
     name: "Pro",
-    price: "$29",
+    price: { monthly: 29, annually: 24 },
     description: "Best for growing teams and businesses.",
     features: ["Unlimited projects", "100 GB storage", "Priority support", "Analytics"],
-    ctaLabel: "Start free trial",
+    cta: { label: "Start free trial" },
     popular: true,
     badge: "Most Popular",
   },
   {
+    id: "enterprise",
     name: "Enterprise",
-    price: "Custom",
+    price: { monthly: "Custom", annually: "Custom" },
     description: "For large organizations with advanced needs.",
     features: ["Unlimited everything", "Dedicated support", "Custom integrations", "SLA"],
-    ctaLabel: "Contact sales",
+    cta: { label: "Contact sales" },
   },
 ];
 
