@@ -375,8 +375,8 @@ export { FocusScope } from "./components/FocusScope";
 export type { FocusScopeProps } from "./components/FocusScope";
 export { NotificationBell, notificationBellVariants } from "./components/NotificationBell";
 export type { NotificationBellProps, NotificationItem } from "./components/NotificationBell";
-export { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification } from "./blocks/auth";
-export type { LoginFormProps, LoginValues, SignUpFormProps, SignUpValues, ForgotPasswordFormProps, ForgotPasswordValues, OTPVerificationProps } from "./blocks/auth";
+export { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification, AuthFormBlock } from "./blocks/auth";
+export type { LoginFormProps, LoginValues, SignUpFormProps, SignUpValues, ForgotPasswordFormProps, ForgotPasswordValues, OTPVerificationProps, AuthFormBlockProps, AuthFormVariant, SocialProvider, AuthFormLoginValues, AuthFormRegisterValues, AuthFormForgotPasswordValues } from "./blocks/auth";
 
 export { AppSidebar } from "./blocks/navigation";
 export type { AppSidebarProps, NavItem, NavSection } from "./blocks/navigation";
