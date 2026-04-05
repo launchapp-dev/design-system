@@ -17,3 +17,5 @@ export type { PrivacySettingsLayoutProps } from "./PrivacySettingsLayout";
 export { BillingOverview } from "./BillingOverview";
 export type { BillingOverviewProps, PlanDetails, SubscriptionStatus } from "./BillingOverview";
 // Note: UsageMeter type from BillingOverview is not re-exported to avoid conflict with BillingPage.UsageMeter
+export { CookiePreferences, COOKIE_PREFERENCES_DEFAULT_CATEGORIES } from "./CookiePreferences";
+export type { CookiePreferencesProps, CookieCategory, CookieCategoryId } from "./CookiePreferences";
