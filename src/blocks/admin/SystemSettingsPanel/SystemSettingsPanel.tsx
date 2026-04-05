@@ -141,7 +141,6 @@ function SystemSettingsPanelInner(
               size="sm"
               onClick={handleSaveConfig}
               disabled={!configDirty || saving}
-              loading={saving}
             >
               Save Config
             </Button>
@@ -189,7 +188,6 @@ function SystemSettingsPanelInner(
                 size="sm"
                 onClick={handleSaveFlags}
                 disabled={!flagsDirty || saving}
-                loading={saving}
               >
                 Save Flags
               </Button>

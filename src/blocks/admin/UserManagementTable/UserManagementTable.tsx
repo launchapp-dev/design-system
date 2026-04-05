@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
-import { FullDataTable } from "@/components/DataTable";
+import { DataTable } from "@/components/DataTable";
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import {
@@ -12,7 +12,7 @@ import {
   SelectItem,
 } from "@/components/Select";
 import {
-  Dialog,
+  DialogRoot,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -177,9 +177,9 @@ function UserManagementTableInner(
         )}
       </div>
 
-      <FullDataTable columns={columns} data={users} pageSize={10} />
+      <DataTable columns={columns} data={users} pageSize={10} />
 
-      <Dialog open={!!deleteTarget} onOpenChange={() => setDeleteTarget(null)}>
+      <DialogRoot open={!!deleteTarget} onOpenChange={() => setDeleteTarget(null)}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Delete User</DialogTitle>
@@ -202,7 +202,7 @@ function UserManagementTableInner(
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </DialogRoot>
     </div>
   );
 }

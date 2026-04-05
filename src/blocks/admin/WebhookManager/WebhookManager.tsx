@@ -6,7 +6,7 @@ import { Label } from "@/components/Label";
 import { Badge } from "@/components/Badge";
 import { ScrollArea } from "@/components/ScrollArea";
 import {
-  Dialog,
+  DialogRoot,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -224,7 +224,7 @@ function WebhookManagerInner(
         </div>
       )}
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <DialogRoot open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Add Webhook Endpoint</DialogTitle>
@@ -265,13 +265,12 @@ function WebhookManagerInner(
             <Button
               onClick={handleCreate}
               disabled={!name.trim() || !url.trim() || creating}
-              loading={creating}
             >
               Add Endpoint
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </DialogRoot>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { Input } from "@/components/Input";
 import { Label } from "@/components/Label";
 import { Badge } from "@/components/Badge";
 import {
-  Dialog,
+  DialogRoot,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -163,7 +163,7 @@ function APIKeyManagerInner(
         </div>
       )}
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <DialogRoot open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Create API Key</DialogTitle>
@@ -205,13 +205,12 @@ function APIKeyManagerInner(
             <Button
               onClick={handleCreate}
               disabled={!name.trim() || creating}
-              loading={creating}
             >
               Create Key
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </DialogRoot>
     </div>
   );
 }
