@@ -473,6 +473,12 @@ export { WelcomeScreen } from "./blocks/onboarding/WelcomeScreen";
 export type { WelcomeScreenProps, WelcomeFeature } from "./blocks/onboarding/WelcomeScreen";
 export { OnboardingStepper, stepperVariants, stepIndicatorVariants } from "./blocks/onboarding/OnboardingStepper";
 export type { Step, OnboardingStepperProps } from "./blocks/onboarding/OnboardingStepper";
+export { OnboardingWizard } from "./blocks/onboarding/OnboardingWizard";
+export type { OnboardingWizardProps, WizardStep as OnboardingWizardStep } from "./blocks/onboarding/OnboardingWizard";
+export { ProgressStepper, stepperVariants as progressStepperVariants, stepIndicatorVariants as progressStepIndicatorVariants } from "./blocks/onboarding/ProgressStepper";
+export type { Step as ProgressStep, ProgressStepperProps } from "./blocks/onboarding/ProgressStepper";
+export { SetupChecklist } from "./blocks/onboarding/SetupChecklist";
+export type { SetupChecklistProps, ChecklistItem as SetupChecklistItem } from "./blocks/onboarding/SetupChecklist";
 
 export { DropZone } from "./blocks/files/DropZone";
 export type { DropZoneProps } from "./blocks/files/DropZone";
