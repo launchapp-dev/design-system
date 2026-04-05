@@ -26,7 +26,7 @@ const pricingTableVariants = cva("w-full", {
 const popularTierVariants = cva("", {
   variants: {
     popularVariant: {
-      default: "border-primary shadow-lg shadow-primary/10 md:-mt-4 md:mb-4",
+      default: "border border-primary shadow-lg shadow-primary/10 md:-mt-4 md:mb-4",
       gradient: "border-0 bg-gradient-to-br from-gray-900 to-indigo-950 shadow-xl",
     },
   },
