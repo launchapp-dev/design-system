@@ -1,14 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../lib/utils";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "../../../components/Card";
 import { Badge } from "../../../components/Badge";
 import { Button } from "../../../components/Button";
 import { Switch } from "../../../components/Switch";
@@ -34,9 +26,8 @@ const pricingTableVariants = cva("w-full", {
 const popularTierVariants = cva("", {
   variants: {
     popularVariant: {
-      default: "border-primary shadow-lg shadow-primary/10",
-      gradient:
-        "border-0 bg-gradient-to-br from-gray-900 to-indigo-950 shadow-xl dark:from-gray-900 dark:to-indigo-950",
+      default: "border-primary shadow-lg shadow-primary/10 md:-mt-4 md:mb-4",
+      gradient: "border-0 bg-gradient-to-br from-gray-900 to-indigo-950 shadow-xl",
     },
   },
   defaultVariants: {
@@ -58,13 +49,7 @@ export interface PricingTier {
     label: string;
     href?: string;
     onClick?: () => void;
-    variant?:
-      | "default"
-      | "secondary"
-      | "outline"
-      | "ghost"
-      | "link"
-      | "destructive";
+    variant?: "default" | "secondary" | "outline" | "ghost" | "link" | "destructive";
   };
   popular?: boolean;
   disabled?: boolean;
@@ -77,7 +62,8 @@ export interface PricingTableFAQItem {
 
 export interface PricingTableProps
   extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof pricingTableVariants> {
+    VariantProps<typeof pricingTableVariants>,
+    Pick<VariantProps<typeof popularTierVariants>, "popularVariant"> {
   tiers: PricingTier[];
   headline?: React.ReactNode;
   subheadline?: React.ReactNode;
@@ -89,8 +75,7 @@ export interface PricingTableProps
   defaultAnnual?: boolean;
   onToggleChange?: (isAnnual: boolean) => void;
   footer?: React.ReactNode;
-  popularVariant?: "default" | "gradient";
-  faqHeader?: React.ReactNode;
+  faqHeader?: string;
   faqItems?: PricingTableFAQItem[];
 }
 
@@ -122,11 +107,7 @@ function PricingTable({
   const isGradient = popularVariant === "gradient";
 
   return (
-    <section
-      ref={ref}
-      className={cn(pricingTableVariants({ variant }), className)}
-      {...props}
-    >
+    <section ref={ref} className={cn(pricingTableVariants({ variant }), className)} {...props}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {(headline || subheadline) && (
           <div className="text-center mb-10">
@@ -136,9 +117,7 @@ function PricingTable({
               </h2>
             )}
             {subheadline && (
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                {subheadline}
-              </p>
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto">{subheadline}</p>
             )}
           </div>
         )}
@@ -147,7 +126,7 @@ function PricingTable({
           <span
             className={cn(
               "text-sm font-medium transition-colors",
-              !isAnnual ? "text-foreground" : "text-muted-foreground"
+              !isAnnual ? "text-foreground" : "text-muted-foreground",
             )}
           >
             {toggleLabels.monthly}
@@ -160,7 +139,7 @@ function PricingTable({
           <span
             className={cn(
               "text-sm font-medium transition-colors",
-              isAnnual ? "text-foreground" : "text-muted-foreground"
+              isAnnual ? "text-foreground" : "text-muted-foreground",
             )}
           >
             {toggleLabels.annually}
@@ -183,8 +162,7 @@ function PricingTable({
                 className={cn(
                   "flex flex-col relative rounded-xl p-8",
                   tier.popular && popularTierVariants({ popularVariant }),
-                  !tier.popular &&
-                    "border border-border bg-background dark:bg-card"
+                  !tier.popular && "border border-border bg-card text-card-foreground",
                 )}
               >
                 {tier.popular && (
@@ -194,7 +172,7 @@ function PricingTable({
                         "px-3 py-1 text-xs font-semibold",
                         isGradient
                           ? "bg-indigo-500 text-white"
-                          : "bg-primary text-primary-foreground"
+                          : "bg-primary text-primary-foreground",
                       )}
                     >
                       Most popular
@@ -206,9 +184,7 @@ function PricingTable({
                   <h3
                     className={cn(
                       "text-base font-semibold mb-1",
-                      tier.popular && isGradient
-                        ? "text-white"
-                        : "text-foreground"
+                      tier.popular && isGradient ? "text-white" : "text-foreground",
                     )}
                   >
                     {tier.name}
@@ -218,9 +194,7 @@ function PricingTable({
                       <span
                         className={cn(
                           "text-4xl font-bold",
-                          tier.popular && isGradient
-                            ? "text-white"
-                            : "text-foreground"
+                          tier.popular && isGradient ? "text-white" : "text-foreground",
                         )}
                       >
                         {tier.currency || "$"}
@@ -231,9 +205,7 @@ function PricingTable({
                       <span
                         className={cn(
                           "text-4xl font-bold",
-                          tier.popular && isGradient
-                            ? "text-white"
-                            : "text-foreground"
+                          tier.popular && isGradient ? "text-white" : "text-foreground",
                         )}
                       >
                         {price}
@@ -243,9 +215,7 @@ function PricingTable({
                       <span
                         className={cn(
                           "text-sm",
-                          tier.popular && isGradient
-                            ? "text-indigo-300"
-                            : "text-muted-foreground"
+                          tier.popular && isGradient ? "text-indigo-300" : "text-muted-foreground",
                         )}
                       >
                         /mo{isAnnual ? " · billed annually" : ""}
@@ -255,9 +225,7 @@ function PricingTable({
                   <p
                     className={cn(
                       "text-sm",
-                      tier.popular && isGradient
-                        ? "text-indigo-200"
-                        : "text-muted-foreground"
+                      tier.popular && isGradient ? "text-indigo-200" : "text-muted-foreground",
                     )}
                   >
                     {tier.description}
@@ -268,9 +236,7 @@ function PricingTable({
                   <div
                     className={cn(
                       "h-px mb-4",
-                      tier.popular && isGradient
-                        ? "bg-indigo-700"
-                        : "bg-border"
+                      tier.popular && isGradient ? "bg-indigo-700" : "bg-border",
                     )}
                   />
                   <ul className="space-y-3">
@@ -281,24 +247,18 @@ function PricingTable({
                             "mt-0.5 h-4 w-4 shrink-0",
                             tier.popular && isGradient
                               ? "text-indigo-300"
-                              : "text-muted-foreground"
+                              : "text-muted-foreground",
                           )}
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           strokeWidth={2}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                         <span
                           className={cn(
-                            tier.popular && isGradient
-                              ? "text-indigo-100"
-                              : "text-foreground/80"
+                            tier.popular && isGradient ? "text-indigo-100" : "text-foreground/80",
                           )}
                         >
                           {feature}
@@ -310,23 +270,24 @@ function PricingTable({
 
                 <div className="pt-0 mt-6">
                   {tier.popular && isGradient ? (
-                    <a
-                      href={tier.cta.href || "#"}
-                      onClick={tier.cta.onClick}
+                    <Button
                       className={cn(
-                        "w-full block text-center py-2.5 px-4 rounded-lg text-sm font-medium transition-colors",
-                        "bg-white text-gray-900 hover:bg-indigo-50",
-                        tier.disabled && "opacity-60 pointer-events-none"
+                        "w-full bg-white text-gray-900 hover:bg-indigo-50",
+                        "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/50",
                       )}
+                      disabled={tier.disabled}
+                      onClick={tier.cta.onClick}
+                      asChild={!!tier.cta.href}
                     >
-                      {tier.cta.label}
-                    </a>
+                      {tier.cta.href ? (
+                        <a href={tier.cta.href}>{tier.cta.label}</a>
+                      ) : (
+                        tier.cta.label
+                      )}
+                    </Button>
                   ) : (
                     <Button
-                      variant={
-                        tier.cta.variant ||
-                        (tier.popular ? "default" : "outline")
-                      }
+                      variant={tier.cta.variant || (tier.popular ? "default" : "outline")}
                       className="w-full"
                       onClick={tier.cta.onClick}
                       disabled={tier.disabled}
@@ -345,22 +306,21 @@ function PricingTable({
           })}
         </div>
 
-        {footer && (
-          <div className="mt-10 text-center">
-            {footer}
-          </div>
-        )}
+        {footer && <div className="mt-10 text-center">{footer}</div>}
 
         {faqItems && faqItems.length > 0 && (
           <div className="mt-20 max-w-2xl mx-auto">
             {faqHeader && (
-              <h3 className="text-2xl font-bold text-center mb-8 text-foreground">
-                {faqHeader}
-              </h3>
+              <h3 className="text-2xl font-bold text-center mb-8 text-foreground">{faqHeader}</h3>
             )}
-            <AccordionRoot type="single" collapsible className="w-full">
-              {faqItems.map((item, i) => (
-                <AccordionItem key={i} value={`faq-${i}`}>
+            <AccordionRoot
+              type="single"
+              collapsible
+              className="w-full"
+              aria-label={faqHeader ?? "Frequently asked questions"}
+            >
+              {faqItems.map((item) => (
+                <AccordionItem key={item.question} value={item.question}>
                   <AccordionTrigger className="text-left font-medium text-foreground">
                     {item.question}
                   </AccordionTrigger>
