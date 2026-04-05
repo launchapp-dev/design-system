@@ -6,3 +6,4 @@ export type { TopNavProps, TopNavItem, TopNavUser } from "./TopNav";
 
 export { MobileNavDrawer } from "./MobileNavDrawer";
 export type { MobileNavDrawerProps } from "./MobileNavDrawer";
+export * from "./CommandPalette";
