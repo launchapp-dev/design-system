@@ -19,7 +19,7 @@ const heroSectionBlockVariants = cva("w-full", {
   },
 });
 
-export interface SocialProofMetric {
+export interface HeroSectionSocialProofMetric {
   value: string;
   label: string;
 }
@@ -35,7 +35,7 @@ export interface HeroSectionBlockProps
   media?: React.ReactNode;
   gradientFrom?: string;
   gradientTo?: string;
-  socialProofMetrics?: SocialProofMetric[];
+  socialProofMetrics?: HeroSectionSocialProofMetric[];
   logoBar?: React.ReactNode[];
   logoBarLabel?: string;
 }

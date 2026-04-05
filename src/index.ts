@@ -437,7 +437,7 @@ export type { AgencyProps, AgencyService, AgencyTeamMember, AgencyCaseStudy } fr
 export { Startup } from "./blocks/landing/Startup";
 export type { StartupProps, SocialProofMetric, StartupTestimonial } from "./blocks/landing/Startup";
 export { HeroSectionBlock, heroSectionBlockVariants } from "./blocks/landing/HeroSection";
-export type { HeroSectionBlockProps, SocialProofMetric as HeroSectionSocialProofMetric } from "./blocks/landing/HeroSection";
+export type { HeroSectionBlockProps, HeroSectionSocialProofMetric } from "./blocks/landing/HeroSection";
 
 export { PostList } from "./blocks/blog/PostList";
 export type { PostListProps, BlogPost } from "./blocks/blog/PostList";
@@ -630,10 +630,6 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
-export { CookieConsentBanner, CookieSettingsButton, LAUNCHAPP_CATEGORIES } from "./components/CookieConsent";
-export type { CookieConsentBannerProps, CookieSettingsButtonProps } from "./components/CookieConsent";
-export { useCookieConsent, readConsentCookie, writeConsentCookie, clearConsentCookie } from "./components/CookieConsent";
-export type { ConsentState } from "./components/CookieConsent";
 
 export { TreeMap, treeMapVariants } from "./components/TreeMap";
 export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";
