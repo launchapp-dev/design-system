@@ -630,8 +630,8 @@ export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } fr
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
-export { CookieConsentBanner, CookieSettingsButton, LAUNCHAPP_CATEGORIES } from "./components/CookieConsent";
-export type { CookieConsentBannerProps, CookieSettingsButtonProps } from "./components/CookieConsent";
+export { CookieSettingsButton, LAUNCHAPP_CATEGORIES } from "./components/CookieConsent";
+export type { CookieSettingsButtonProps } from "./components/CookieConsent";
 export { useCookieConsent, readConsentCookie, writeConsentCookie, clearConsentCookie } from "./components/CookieConsent";
 export type { ConsentState } from "./components/CookieConsent";
 
