@@ -7,3 +7,4 @@ export * from "./HeroSection";
 export * from "./PricingTableBlock";
 export * from "./FeatureGridBlock";
 export * from "./PricingSectionBlock";
+export * from "./TestimonialsSection";
