@@ -2196,6 +2196,21 @@
       "devDependencies": []
     },
     {
+      "name": "pricing-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/PricingTableBlock/PricingTableBlock.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/landing/PricingTableBlock/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-testimonial-carousel",
       "type": "registry:block",
       "files": [
