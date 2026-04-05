@@ -14,3 +14,6 @@ export { AccountDeletionCard } from "./AccountDeletionCard";
 export type { AccountDeletionCardProps } from "./AccountDeletionCard";
 export { PrivacySettingsLayout } from "./PrivacySettingsLayout";
 export type { PrivacySettingsLayoutProps } from "./PrivacySettingsLayout";
+export { BillingOverview } from "./BillingOverview";
+export type { BillingOverviewProps, PlanDetails, SubscriptionStatus } from "./BillingOverview";
+// Note: UsageMeter type from BillingOverview is not re-exported to avoid conflict with BillingPage.UsageMeter
