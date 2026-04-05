@@ -45,7 +45,7 @@
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
-    "release": "changeset publish",
+    "release": "if [ -z \"$NODE_AUTH_TOKEN\" ]; then echo 'Skipping npm publish: NODE_AUTH_TOKEN not set. Add NPM_TOKEN secret to repo settings to enable publishing.'; exit 0; else changeset publish; fi",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {

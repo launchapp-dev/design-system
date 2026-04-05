@@ -3,6 +3,7 @@
   "displayName": "LaunchApp Design System",
   "description": "Component snippets, prop autocomplete, design token preview, and quick-insert actions for LaunchApp design system",
   "version": "0.1.0",
+  "private": true,
   "publisher": "launchapp",
   "license": "MIT",
   "repository": {

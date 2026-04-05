@@ -3,6 +3,7 @@
   "displayName": "LaunchApp Design System",
   "description": "VS Code extension providing component snippets, prop autocomplete, and design token preview for LaunchApp design system",
   "version": "0.1.0",
+  "private": true,
   "publisher": "launchapp",
   "license": "MIT",
   "engines": {
