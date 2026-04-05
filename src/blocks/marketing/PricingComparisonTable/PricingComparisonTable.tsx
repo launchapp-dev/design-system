@@ -2,7 +2,7 @@ import * as React from "react";
 import { cn } from "../../../lib/utils";
 import { Badge } from "../../../components/Badge";
 import { Button } from "../../../components/Button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../../components/Tooltip";
+import { TooltipRoot, TooltipContent, TooltipProvider, TooltipTrigger } from "../../../components/Tooltip";
 
 // ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
 
@@ -328,7 +328,7 @@ export function PricingComparisonTable({
                             {feature.name}
                           </span>
                           {feature.description && (
-                            <Tooltip>
+                            <TooltipRoot>
                               <TooltipTrigger asChild>
                                 <button
                                   type="button"
@@ -341,7 +341,7 @@ export function PricingComparisonTable({
                               <TooltipContent side="right" className="max-w-[220px] text-xs">
                                 {feature.description}
                               </TooltipContent>
-                            </Tooltip>
+                            </TooltipRoot>
                           )}
                         </div>
                       </td>
