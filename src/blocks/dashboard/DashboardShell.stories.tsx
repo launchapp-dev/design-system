@@ -3,6 +3,7 @@ import { DashboardShell } from "./DashboardShell";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { StatDisplay } from "@/components/StatDisplay";
+import { Tabs, TabsList, TabsTrigger } from "@/components/Tabs";
 
 const meta: Meta<typeof DashboardShell> = {
   title: "Blocks/Dashboard/DashboardShell",
@@ -315,5 +316,64 @@ export const ManyNotifications: Story = {
     ],
     breadcrumbs: [{ label: "Dashboard" }],
     children: <SampleContent />,
+  },
+};
+
+export const WithTabs: Story = {
+  args: {
+    navigation: sampleNavigation,
+    user: sampleUser,
+    notifications: sampleNotifications,
+    breadcrumbs: [{ label: "Settings" }],
+    children: (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+          <p className="text-[hsl(var(--la-muted-foreground))]">
+            Manage your account settings and preferences.
+          </p>
+        </div>
+        <Tabs defaultValue="general" className="w-full">
+          <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0 h-auto">
+            <TabsTrigger
+              value="general"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+            >
+              General
+            </TabsTrigger>
+            <TabsTrigger
+              value="notifications"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+            >
+              Notifications
+            </TabsTrigger>
+            <TabsTrigger
+              value="security"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+            >
+              Security
+            </TabsTrigger>
+            <TabsTrigger
+              value="billing"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+            >
+              Billing
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        <Card>
+          <CardHeader>
+            <CardTitle>General Settings</CardTitle>
+            <CardDescription>Configure your general account preferences.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-[hsl(var(--la-muted-foreground))]">
+              Settings form would appear here. This demonstrates the DashboardShell with tabs
+              integrated into the main content area.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    ),
   },
 };

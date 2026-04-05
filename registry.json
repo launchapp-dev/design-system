@@ -118,6 +118,24 @@
       "devDependencies": []
     },
     {
+      "name": "animated-text",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/AnimatedText/AnimatedText.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/AnimatedText/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "files": [
@@ -479,6 +497,24 @@
       "devDependencies": []
     },
     {
+      "name": "consent-history-table",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ConsentHistoryTable/ConsentHistoryTable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ConsentHistoryTable/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "context-menu",
       "type": "registry:ui",
       "files": [
@@ -512,6 +548,45 @@
       "dependencies": [
         "@radix-ui/react-dialog",
         "@radix-ui/react-switch"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "cookie-consent-banner",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/CookieConsentBanner/CookieConsentBanner.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/CookieConsentBanner/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-switch",
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "cookie-preferences-dialog",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/CookiePreferencesDialog/CookiePreferencesDialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/CookiePreferencesDialog/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "@radix-ui/react-switch",
+        "@radix-ui/react-tabs"
       ],
       "devDependencies": []
     },
@@ -1119,6 +1194,24 @@
       "devDependencies": []
     },
     {
+      "name": "privacy-dashboard",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/PrivacyDashboard/PrivacyDashboard.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/PrivacyDashboard/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-separator"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "progress",
       "type": "registry:ui",
       "files": [
@@ -1344,6 +1437,21 @@
       ],
       "dependencies": [
         "@radix-ui/react-slider"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "smart-theming-generator",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/SmartThemingGenerator/SmartThemingGenerator.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/SmartThemingGenerator/index.ts",
+          "type": "registry:ui"
+        }
       ],
       "devDependencies": []
     },
@@ -1604,6 +1712,51 @@
       "devDependencies": []
     },
     {
+      "name": "theme-card",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ThemeCard/ThemeCard.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ThemeCard/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "theme-generator",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ThemeGenerator/ThemeGenerator.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ThemeGenerator/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "theme-preview",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/ThemePreview/ThemePreview.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ThemePreview/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "thinking-indicator",
       "type": "registry:ui",
       "files": [
@@ -1774,6 +1927,21 @@
       "devDependencies": []
     },
     {
+      "name": "block-auth-form-block",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/auth/AuthFormBlock.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "react-hook-form",
+        "zod"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-forgot-password-form",
       "type": "registry:block",
       "files": [
@@ -1920,6 +2088,32 @@
       "devDependencies": []
     },
     {
+      "name": "block-community-themes-gallery",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/community/CommunityThemesGallery.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-theme-submission-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/community/ThemeSubmissionForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "react-hook-form",
+        "zod"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-activity-feed",
       "type": "registry:block",
       "files": [
@@ -1935,6 +2129,31 @@
         "scroll-area",
         "separator",
         "card"
+      ]
+    },
+    {
+      "name": "block-dashboard-shell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/dashboard/DashboardShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "button",
+        "avatar",
+        "collapsible",
+        "sheet",
+        "breadcrumb",
+        "dropdown-menu",
+        "notification-bell",
+        "scroll-area",
+        "separator"
       ]
     },
     {
@@ -2144,6 +2363,34 @@
       "devDependencies": []
     },
     {
+      "name": "block-feature-grid-block",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/FeatureGridBlock/FeatureGridBlock.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-hero-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/HeroSection/HeroSection.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-portfolio",
       "type": "registry:block",
       "files": [
@@ -2151,6 +2398,31 @@
           "path": "src/blocks/landing/Portfolio/Portfolio.tsx",
           "type": "registry:block"
         }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-pricing-section-block",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/PricingSectionBlock/PricingSectionBlock.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-pricing-table-block",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/PricingTableBlock/PricingTableBlock.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
       ],
       "devDependencies": []
     },
@@ -2177,6 +2449,31 @@
       "devDependencies": []
     },
     {
+      "name": "block-testimonials-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/TestimonialsSection/TestimonialsSection.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-changelog-timeline",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/ChangelogTimeline.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-feature-grid",
       "type": "registry:block",
       "files": [
@@ -2192,55 +2489,12 @@
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/landing/HeroSection/HeroSection.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/landing/HeroSection/index.ts",
+          "path": "src/blocks/marketing/HeroSection/HeroSection.tsx",
           "type": "registry:block"
         }
       ],
       "dependencies": [
-        "class-variance-authority",
-        "@launchapp/design-system"
-      ],
-      "devDependencies": []
-    },
-    {
-      "name": "block-feature-grid",
-      "type": "registry:block",
-      "files": [
-        {
-          "path": "src/blocks/landing/FeatureGridBlock/FeatureGridBlock.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/landing/FeatureGridBlock/index.ts",
-          "type": "registry:block"
-        }
-      ],
-      "dependencies": [
-        "class-variance-authority",
-        "@launchapp/design-system"
-      ],
-      "devDependencies": []
-    },
-    {
-      "name": "block-pricing-section",
-      "type": "registry:block",
-      "files": [
-        {
-          "path": "src/blocks/landing/PricingSectionBlock/PricingSectionBlock.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/landing/PricingSectionBlock/index.ts",
-          "type": "registry:block"
-        }
-      ],
-      "dependencies": [
-        "@radix-ui/react-accordion",
-        "@launchapp/design-system"
+        "class-variance-authority"
       ],
       "devDependencies": []
     },
@@ -2253,20 +2507,8 @@
           "type": "registry:block"
         }
       ],
-      "devDependencies": []
-    },
-    {
-      "name": "pricing-section",
-      "type": "registry:block",
-      "files": [
-        {
-          "path": "src/blocks/landing/PricingTableBlock/PricingTableBlock.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/landing/PricingTableBlock/index.ts",
-          "type": "registry:block"
-        }
+      "dependencies": [
+        "class-variance-authority"
       ],
       "devDependencies": []
     },
@@ -2422,11 +2664,36 @@
       "devDependencies": []
     },
     {
+      "name": "block-onboarding-stepper",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/OnboardingStepper.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-welcome-screen",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/onboarding/WelcomeScreen.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-account-deletion-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/AccountDeletionCard/AccountDeletionCard.tsx",
           "type": "registry:block"
         }
       ],
@@ -2455,6 +2722,17 @@
       ]
     },
     {
+      "name": "block-billing-overview",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/BillingOverview.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-billing-page",
       "type": "registry:block",
       "files": [
@@ -2474,6 +2752,17 @@
       ]
     },
     {
+      "name": "block-data-export-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/DataExportCard/DataExportCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-notification-preferences",
       "type": "registry:block",
       "files": [
@@ -2489,6 +2778,17 @@
         "separator",
         "card"
       ]
+    },
+    {
+      "name": "block-privacy-settings-layout",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/PrivacySettingsLayout/PrivacySettingsLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-profile-settings",
@@ -2512,6 +2812,17 @@
         "separator",
         "form"
       ]
+    },
+    {
+      "name": "block-settings-layout-block",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/SettingsLayoutBlock.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     }
   ]
 }
