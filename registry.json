@@ -1818,6 +1818,28 @@
       ]
     },
     {
+      "name": "block-reset-password-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/auth/ResetPasswordForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "react-hook-form",
+        "@hookform/resolvers/zod",
+        "zod"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "form",
+        "input",
+        "button",
+        "card"
+      ]
+    },
+    {
       "name": "block-otp-verification",
       "type": "registry:block",
       "files": [
