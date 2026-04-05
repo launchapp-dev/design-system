@@ -418,8 +418,6 @@ export type { LogoCloudProps, LogoItem } from "./blocks/marketing/LogoCloud";
 
 export { StatsOverview } from "./blocks/dashboard";
 export type { StatsOverviewProps, StatsOverviewChartData } from "./blocks/dashboard";
-export { ActivityFeed } from "./blocks/dashboard";
-export type { ActivityFeedProps, ActivityItem } from "./blocks/dashboard";
 export { MetricCards } from "./blocks/dashboard";
 export type { MetricCardsProps, MetricCardItem } from "./blocks/dashboard";
 
@@ -431,6 +429,14 @@ export { SearchableDataTable } from "./blocks/data/SearchableDataTable";
 export type { SearchableDataTableProps, SearchableDataTableFilterOption } from "./blocks/data/SearchableDataTable";
 export { Timeline } from "./blocks/data/Timeline";
 export type { TimelineProps, TimelineItem } from "./blocks/data/Timeline";
+export { StatsCard } from "./blocks/data/StatsCard";
+export type { StatsCardProps } from "./blocks/data/StatsCard";
+export { MetricGrid } from "./blocks/data/MetricGrid";
+export type { Metric, MetricGridProps } from "./blocks/data/MetricGrid";
+export { ActivityFeed } from "./blocks/data/ActivityFeed";
+export type { ActivityType, ActivityItem, ActivityFeedProps } from "./blocks/data/ActivityFeed";
+export { EmptyState, emptyStateIcons } from "./blocks/data/EmptyState";
+export type { EmptyStateProps } from "./blocks/data/EmptyState";
 
 export { ProductCard, productCardVariants, ProductCardGrid } from "./blocks/ecommerce/ProductCard";
 export type { ProductCardProps, ProductCardItem, ProductCardGridProps } from "./blocks/ecommerce/ProductCard";

@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification } from "@ds/blocks/auth";
-import { MetricCards, StatsOverview, ActivityFeed } from "@ds/blocks/dashboard";
+import { MetricCards, StatsOverview } from "@ds/blocks/dashboard";
 import {
   ProfileSettings,
   AccountSettings,
@@ -11,7 +11,16 @@ import {
   BillingPage,
 } from "@ds/blocks/settings";
 import { AppSidebar, TopNav, MobileNavDrawer } from "@ds/blocks/navigation";
-import { FullDataTable, KanbanBoard, SearchableDataTable, Timeline } from "@ds/blocks/data";
+import {
+  FullDataTable,
+  KanbanBoard,
+  SearchableDataTable,
+  Timeline,
+  StatsCard,
+  MetricGrid,
+  ActivityFeed,
+  EmptyState,
+} from "@ds/blocks/data";
 import { ProductCardGrid, ShoppingCart, CheckoutForm } from "@ds/blocks/ecommerce";
 import { HeroSection, FeatureGrid, PricingTable, TestimonialCarousel } from "@ds/blocks/marketing";
 import type { ColumnDef } from "@tanstack/react-table";
@@ -63,27 +72,27 @@ const statsItems = [
 const activityItems = [
   {
     id: "1",
-    user: { name: "Alice Johnson", initials: "AJ" },
-    description: "created a new project",
-    timestamp: "2 minutes ago",
-    actionType: "Created",
-    actionVariant: "default" as const,
+    type: "create" as const,
+    title: "Created a new project",
+    description: "Project 'LaunchApp v2' was created",
+    timestamp: new Date(Date.now() - 2 * 60 * 1000),
+    user: { name: "Alice Johnson" },
   },
   {
     id: "2",
-    user: { name: "Bob Smith", initials: "BS" },
-    description: "merged pull request #42",
-    timestamp: "1 hour ago",
-    actionType: "Merged",
-    actionVariant: "secondary" as const,
+    type: "update" as const,
+    title: "Merged pull request #42",
+    description: "feat(auth): add OAuth providers",
+    timestamp: new Date(Date.now() - 60 * 60 * 1000),
+    user: { name: "Bob Smith" },
   },
   {
     id: "3",
-    user: { name: "Carol White", initials: "CW" },
-    description: "left a comment on issue #18",
-    timestamp: "3 hours ago",
-    actionType: "Commented",
-    actionVariant: "outline" as const,
+    type: "comment" as const,
+    title: "Commented on issue #18",
+    description: "Left a review on the design tokens RFC",
+    timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000),
+    user: { name: "Carol White" },
   },
 ];
 
@@ -327,7 +336,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       items={statsItems}
     />
   ),
-  "activity-feed": () => <ActivityFeed items={activityItems} title="Recent Activity" />,
+  "activity-feed": () => <ActivityFeed activities={activityItems} title="Recent Activity" />,
   "profile-settings": () => (
     <ProfileSettings
       avatarFallback="AJ"
@@ -369,6 +378,31 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     />
   ),
   "timeline": () => <Timeline items={timelineItems} />,
+  "stats-card": () => (
+    <StatsCard
+      title="Total Revenue"
+      value="$45,231"
+      description="Monthly recurring revenue"
+      trend={{ direction: "up", value: "+20.1%", label: "vs last month" }}
+    />
+  ),
+  "metric-grid": () => (
+    <MetricGrid
+      columns={3}
+      metrics={[
+        { id: "revenue", stats: { title: "Revenue", value: "$45,231", trend: { direction: "up", value: "+20.1%" } } },
+        { id: "users", stats: { title: "Active Users", value: "2,350", trend: { direction: "up", value: "+8.2%" } } },
+        { id: "churn", stats: { title: "Churn Rate", value: "3.2%", trend: { direction: "down", value: "-1.1%" } } },
+      ]}
+    />
+  ),
+  "empty-state": () => (
+    <EmptyState
+      title="No projects yet"
+      description="Create your first project to get started."
+      primaryAction={{ label: "Create project" }}
+    />
+  ),
   "product-card": () => (
     <ProductCardGrid products={products} columns={3} />
   ),
