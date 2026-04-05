@@ -375,8 +375,8 @@ export { FocusScope } from "./components/FocusScope";
 export type { FocusScopeProps } from "./components/FocusScope";
 export { NotificationBell, notificationBellVariants } from "./components/NotificationBell";
 export type { NotificationBellProps, NotificationItem } from "./components/NotificationBell";
-export { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification } from "./blocks/auth";
-export type { LoginFormProps, LoginValues, SignUpFormProps, SignUpValues, ForgotPasswordFormProps, ForgotPasswordValues, OTPVerificationProps } from "./blocks/auth";
+export { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification, AuthFormBlock } from "./blocks/auth";
+export type { LoginFormProps, LoginValues, SignUpFormProps, SignUpValues, ForgotPasswordFormProps, ForgotPasswordValues, OTPVerificationProps, AuthFormBlockProps, AuthFormVariant, SocialProvider, AuthFormLoginValues, AuthFormRegisterValues, AuthFormForgotPasswordValues } from "./blocks/auth";
 
 export { AppSidebar } from "./blocks/navigation";
 export type { AppSidebarProps, NavItem, NavSection } from "./blocks/navigation";
@@ -437,7 +437,7 @@ export type { AgencyProps, AgencyService, AgencyTeamMember, AgencyCaseStudy } fr
 export { Startup } from "./blocks/landing/Startup";
 export type { StartupProps, SocialProofMetric, StartupTestimonial } from "./blocks/landing/Startup";
 export { HeroSectionBlock, heroSectionBlockVariants } from "./blocks/landing/HeroSection";
-export type { HeroSectionBlockProps, SocialProofMetric as HeroSectionSocialProofMetric } from "./blocks/landing/HeroSection";
+export type { HeroSectionBlockProps, HeroSectionSocialProofMetric } from "./blocks/landing/HeroSection";
 
 export { PostList } from "./blocks/blog/PostList";
 export type { PostListProps, BlogPost } from "./blocks/blog/PostList";
