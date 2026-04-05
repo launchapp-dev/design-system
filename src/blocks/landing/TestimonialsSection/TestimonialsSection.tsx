@@ -276,4 +276,3 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
 TestimonialsSection.displayName = "TestimonialsSection";
 
 export { TestimonialsSection, testimonialsSectionVariants };
-export type { TestimonialsSectionProps, TestimonialItem, TestimonialAuthor };
