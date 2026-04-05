@@ -8,7 +8,8 @@ const testimonials: Testimonial[] = [
     quote:
       "This design system has completely transformed how our team builds products. We ship features twice as fast now.",
     name: "Sarah Chen",
-    role: "VP of Engineering at Acme Corp",
+    role: "VP of Engineering",
+    company: "Acme Corp",
     avatarFallback: "SC",
     badge: "Verified customer",
   },
@@ -16,14 +17,16 @@ const testimonials: Testimonial[] = [
     quote:
       "The accessibility built into every component means we stopped worrying about compliance and started focusing on our users.",
     name: "Marcus Johnson",
-    role: "Lead Designer at BuildCo",
+    role: "Lead Designer",
+    company: "BuildCo",
     avatarFallback: "MJ",
   },
   {
     quote:
       "I evaluated five design systems and this one won on TypeScript support and documentation alone. The components are a bonus.",
     name: "Priya Patel",
-    role: "Senior Frontend Engineer at StartupXYZ",
+    role: "Senior Frontend Engineer",
+    company: "StartupXYZ",
     avatarFallback: "PP",
     badge: "Top reviewer",
   },
@@ -31,7 +34,8 @@ const testimonials: Testimonial[] = [
     quote:
       "Dark mode support out of the box. That sold our whole team. No more 2am CSS overrides.",
     name: "Alex Rivera",
-    role: "CTO at DevShop",
+    role: "CTO",
+    company: "DevShop",
     avatarFallback: "AR",
   },
 ];
@@ -121,6 +125,17 @@ export const SlowAutoAdvance: Story = {
       headline="Testimonials"
       testimonials={testimonials}
       autoAdvanceInterval={8000}
+    />
+  ),
+};
+
+export const GridMode: Story = {
+  render: () => (
+    <TestimonialCarousel
+      headline="What our customers say"
+      subheadline="Trusted by teams at companies of all sizes."
+      testimonials={testimonials}
+      displayMode="grid"
     />
   ),
 };

@@ -265,19 +265,22 @@ const testimonials = [
   {
     quote: "LaunchApp cut our frontend development time in half. The components are beautiful and accessible out of the box.",
     name: "Sarah Chen",
-    role: "CTO at Startup Inc.",
+    role: "CTO",
+    company: "Startup Inc.",
     avatarFallback: "SC",
   },
   {
     quote: "The best design system I've worked with. Theming support and dark mode made our redesign a breeze.",
     name: "Mark Rivera",
-    role: "Lead Engineer at TechCorp",
+    role: "Lead Engineer",
+    company: "TechCorp",
     avatarFallback: "MR",
   },
   {
     quote: "We migrated our entire component library to LaunchApp in a weekend. Incredible productivity boost.",
     name: "Priya Patel",
-    role: "Frontend Lead at GrowthCo",
+    role: "Frontend Lead",
+    company: "GrowthCo",
     avatarFallback: "PP",
   },
 ];
@@ -397,6 +400,13 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     <TestimonialCarousel
       testimonials={testimonials}
       headline="Loved by developers"
+    />
+  ),
+  "testimonial-grid": () => (
+    <TestimonialCarousel
+      testimonials={testimonials}
+      headline="Loved by developers"
+      displayMode="grid"
     />
   ),
 };
