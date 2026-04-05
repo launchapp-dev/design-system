@@ -112,20 +112,28 @@ export const TopPosition: Story = {
 export const CustomizeOpen: Story = {
   render: (args) => {
     const [saved, setSaved] = React.useState<Record<string, boolean> | null>(null);
-    const ref = React.useRef<HTMLButtonElement>(null);
+    const containerRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
-      ref.current?.click();
+      const buttons = containerRef.current?.querySelectorAll("button");
+      if (buttons) {
+        for (const btn of buttons) {
+          if (btn.textContent?.trim() === "Customize") {
+            btn.click();
+            break;
+          }
+        }
+      }
     }, []);
 
     return (
-      <div style={{ minHeight: "300px", position: "relative" }}>
+      <div ref={containerRef} style={{ minHeight: "300px", position: "relative" }}>
         {saved && (
           <pre style={{ padding: "16px", fontSize: "12px", fontFamily: "monospace" }}>
             Saved: {JSON.stringify(saved, null, 2)}
           </pre>
         )}
-        <CookieConsentBannerWithCustomizeRef
+        <CookieConsentBanner
           {...args}
           onCustomize={(prefs) => {
             args.onCustomize?.(prefs);
@@ -136,28 +144,6 @@ export const CustomizeOpen: Story = {
     );
   },
 };
-
-function CookieConsentBannerWithCustomizeRef(
-  props: React.ComponentProps<typeof CookieConsentBanner>
-) {
-  const [showCustomize, setShowCustomize] = React.useState(true);
-  return (
-    <CookieConsentBanner
-      {...props}
-      categories={BANNER_DEFAULT_CATEGORIES}
-      visible
-      onAcceptAll={() => {
-        setShowCustomize(false);
-        props.onAcceptAll?.();
-      }}
-      onRejectAll={() => {
-        setShowCustomize(false);
-        props.onRejectAll?.();
-      }}
-      key={showCustomize ? "customize" : "default"}
-    />
-  );
-}
 
 export const CustomCategories: Story = {
   args: {
