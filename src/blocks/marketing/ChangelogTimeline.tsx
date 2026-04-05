@@ -96,7 +96,7 @@ function ChangelogTimelineEntry({ entry, isLast }: { entry: ChangelogEntry; isLa
             {entry.tags && entry.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {entry.tags.map((tag) => (
-                  <Badge key={tag} variant={tagBadgeVariant[tag]} size="sm">
+                  <Badge key={tag} variant={tagBadgeVariant[tag]}>
                     {tagLabel[tag]}
                   </Badge>
                 ))}
