@@ -73,13 +73,13 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
       subheadline,
       features = [],
       featuredIndex,
-      maxWidth = "5xl",
+      maxWidth = "lg",
       align = "center",
       ...props
     },
     ref
   ) => {
-    const containerClass = maxWidthMap[maxWidth ?? "5xl"];
+    const containerClass = maxWidthMap[maxWidth];
     const isCenter = align === "center";
 
     const renderHeader = () => {
@@ -199,4 +199,3 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
 FeatureGridBlock.displayName = "FeatureGridBlock";
 
 export { FeatureGridBlock, featureGridBlockVariants, gridCols };
-export type { FeatureItem, FeatureGridBlockProps };
