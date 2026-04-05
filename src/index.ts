@@ -465,6 +465,8 @@ export { OnboardingChecklist } from "./blocks/onboarding/OnboardingChecklist";
 export type { OnboardingChecklistProps, ChecklistItem } from "./blocks/onboarding/OnboardingChecklist";
 export { WelcomeScreen } from "./blocks/onboarding/WelcomeScreen";
 export type { WelcomeScreenProps, WelcomeFeature } from "./blocks/onboarding/WelcomeScreen";
+export { OnboardingStepper, stepperVariants, stepIndicatorVariants } from "./blocks/onboarding/OnboardingStepper";
+export type { Step, OnboardingStepperProps } from "./blocks/onboarding/OnboardingStepper";
 
 export { DropZone } from "./blocks/files/DropZone";
 export type { DropZoneProps } from "./blocks/files/DropZone";
