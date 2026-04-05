@@ -6,3 +6,4 @@ export { ForgotPasswordForm } from "./ForgotPasswordForm";
 export type { ForgotPasswordFormProps, ForgotPasswordValues } from "./ForgotPasswordForm";
 export { OTPVerification } from "./OTPVerification";
 export type { OTPVerificationProps } from "./OTPVerification";
+export { AuthFormBlock, authFormBlockVariants } from "./AuthFormBlock";
