@@ -398,6 +398,12 @@ export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./blocks/settings";
 export { SettingsLayoutBlock } from "./blocks/settings";
 export type { SettingsLayoutBlockProps, SettingsSection, SettingsSectionId } from "./blocks/settings";
+export { DataExportCard } from "./blocks/settings";
+export type { DataExportCardProps } from "./blocks/settings";
+export { AccountDeletionCard } from "./blocks/settings";
+export type { AccountDeletionCardProps } from "./blocks/settings";
+export { PrivacySettingsLayout } from "./blocks/settings";
+export type { PrivacySettingsLayoutProps } from "./blocks/settings";
 
 export { HeroSection, heroSectionVariants } from "./blocks/marketing/HeroSection";
 export type { HeroSectionProps } from "./blocks/marketing/HeroSection";
