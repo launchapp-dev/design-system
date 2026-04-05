@@ -2185,6 +2185,25 @@
       "devDependencies": []
     },
     {
+      "name": "block-feature-grid",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/FeatureGridBlock/FeatureGridBlock.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/landing/FeatureGridBlock/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "@launchapp/design-system"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-pricing-table",
       "type": "registry:block",
       "files": [
