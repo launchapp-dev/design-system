@@ -15,7 +15,7 @@ import {
 import {
   Breadcrumb,
   BreadcrumbList,
-  BreadcrumbItem,
+  BreadcrumbItem as BreadcrumbItemPrimitive,
   BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -47,13 +47,13 @@ const sidebarVariants = cva(
   }
 );
 
-export interface NavItem {
+export interface DashboardNavItem {
   id: string;
   label: string;
   href?: string;
   icon?: React.ReactNode;
   active?: boolean;
-  items?: NavItem[];
+  items?: DashboardNavItem[];
 }
 
 export interface BreadcrumbItem {
@@ -71,7 +71,7 @@ export interface UserProfile {
 export interface DashboardShellProps extends React.HTMLAttributes<HTMLDivElement> {
   sidebarCollapsed?: boolean;
   onSidebarCollapse?: (collapsed: boolean) => void;
-  navigation: NavItem[];
+  navigation: DashboardNavItem[];
   breadcrumbs?: BreadcrumbItem[];
   user: UserProfile;
   notifications?: NotificationItem[];
@@ -229,13 +229,13 @@ const CreditCardIcon = () => (
   </svg>
 );
 
-function NavItemRenderer({
+function DashboardNavItemRenderer({
   item,
   collapsed,
   onNavigate,
   level = 0,
 }: {
-  item: NavItem;
+  item: DashboardNavItem;
   collapsed: boolean;
   onNavigate?: (href: string) => void;
   level?: number;
@@ -282,7 +282,7 @@ function NavItemRenderer({
         {!collapsed && (
           <CollapsibleContent className="space-y-1 pt-1">
             {item.items?.map((subItem) => (
-              <NavItemRenderer
+              <DashboardNavItemRenderer
                 key={subItem.id}
                 item={subItem}
                 collapsed={collapsed}
@@ -326,7 +326,7 @@ function MobileNav({
   onNavigate,
   onUserMenuAction,
 }: {
-  navigation: NavItem[];
+  navigation: DashboardNavItem[];
   user: UserProfile;
   logo?: React.ReactNode;
   onNavigate?: (href: string) => void;
@@ -352,7 +352,7 @@ function MobileNav({
           <ScrollArea className="flex-1 px-3 py-4">
             <nav className="space-y-1">
               {navigation.map((item) => (
-                <NavItemRenderer
+                <DashboardNavItemRenderer
                   key={item.id}
                   item={item}
                   collapsed={false}
@@ -461,7 +461,7 @@ function DashboardShell({
         <ScrollArea className="flex-1 px-3 py-4">
           <nav className="space-y-1">
             {navigation.map((item) => (
-              <NavItemRenderer
+              <DashboardNavItemRenderer
                 key={item.id}
                 item={item}
                 collapsed={collapsed}
@@ -550,7 +550,7 @@ function DashboardShell({
           {breadcrumbs && breadcrumbs.length > 0 && (
             <Breadcrumb className="hidden md:flex">
               <BreadcrumbList>
-                <BreadcrumbItem>
+                <BreadcrumbItemPrimitive>
                   <BreadcrumbLink
                     href="/"
                     onClick={(e) => {
@@ -561,11 +561,11 @@ function DashboardShell({
                   >
                     <HomeIcon />
                   </BreadcrumbLink>
-                </BreadcrumbItem>
+                </BreadcrumbItemPrimitive>
                 {breadcrumbs.map((crumb, index) => (
                   <React.Fragment key={index}>
                     <BreadcrumbSeparator />
-                    <BreadcrumbItem>
+                    <BreadcrumbItemPrimitive>
                       {index === breadcrumbs.length - 1 ? (
                         <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
                       ) : (
@@ -581,7 +581,7 @@ function DashboardShell({
                           {crumb.label}
                         </BreadcrumbLink>
                       )}
-                    </BreadcrumbItem>
+                    </BreadcrumbItemPrimitive>
                   </React.Fragment>
                 ))}
               </BreadcrumbList>
@@ -652,4 +652,3 @@ function DashboardShell({
 DashboardShell.displayName = "DashboardShell";
 
 export { DashboardShell };
-export type { DashboardShellProps, NavItem, BreadcrumbItem, UserProfile };

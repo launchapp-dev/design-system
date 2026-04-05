@@ -7,7 +7,7 @@ export type { MetricCardsProps, MetricCardItem } from "./MetricCards";
 export { DashboardShell } from "./DashboardShell";
 export type {
   DashboardShellProps,
-  NavItem,
+  DashboardNavItem,
   BreadcrumbItem,
   UserProfile,
 } from "./DashboardShell";
