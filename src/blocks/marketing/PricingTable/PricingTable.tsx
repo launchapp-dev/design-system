@@ -112,7 +112,7 @@ function PricingTable({
           <Switch
             checked={isAnnual}
             onCheckedChange={handleToggle}
-            aria-label={\`Switch to \${isAnnual ? toggleLabels.monthly : toggleLabels.annually} billing\`}
+            aria-label={`Switch to ${isAnnual ? toggleLabels.monthly : toggleLabels.annually} billing`}
           />
           <span
             className={cn(
