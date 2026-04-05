@@ -39,7 +39,7 @@ export interface FAQSectionProps
   searchPlaceholder?: string;
   maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
   align?: "left" | "center";
-  variant?: "single" | "multiple";
+  accordionType?: "single" | "multiple";
 }
 
 const maxWidthMap = {
@@ -64,7 +64,7 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
       searchPlaceholder = "Search questions...",
       maxWidth = "lg",
       align = "center",
-      variant: accordionVariant = "single",
+      accordionType = "single",
       ...props
     },
     ref
@@ -149,7 +149,7 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
           )}
 
           <AccordionRoot
-            type={accordionVariant === "multiple" ? "multiple" : "single"}
+            type={accordionType === "multiple" ? "multiple" : "single"}
             className={cn(isCenter && "max-w-2xl mx-auto")}
           >
             {filteredItems.map((item, index) => (
