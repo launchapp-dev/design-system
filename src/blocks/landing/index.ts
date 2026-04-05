@@ -4,3 +4,4 @@ export * from "./Agency";
 export * from "./Startup";
 export * from "./HeroSection";
 export * from "./PricingTableBlock";
+export * from "./FeatureGridBlock";
