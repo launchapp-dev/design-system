@@ -396,6 +396,8 @@ export { NotificationPreferences } from "./blocks/settings";
 export type { NotificationPreferencesProps, NotificationGroup, NotificationPreferenceItem } from "./blocks/settings";
 export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./blocks/settings";
+export { SettingsLayoutBlock } from "./blocks/settings";
+export type { SettingsLayoutBlockProps, SettingsSection, SettingsSectionId } from "./blocks/settings";
 
 export { HeroSection, heroSectionVariants } from "./blocks/marketing/HeroSection";
 export type { HeroSectionProps } from "./blocks/marketing/HeroSection";
