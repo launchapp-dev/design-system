@@ -16,3 +16,6 @@ export * from "./community";
 export * from "./admin";
 export * from "./forms";
 export * from "./app";
+export * from "./billing";
+export * from "./team";
+export * from "./integrations";
