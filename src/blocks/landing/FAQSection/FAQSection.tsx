@@ -150,6 +150,7 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
 
           <AccordionRoot
             type={accordionType === "multiple" ? "multiple" : "single"}
+            collapsible={accordionType !== "multiple"}
             className={cn(isCenter && "max-w-2xl mx-auto")}
           >
             {filteredItems.map((item, index) => (
