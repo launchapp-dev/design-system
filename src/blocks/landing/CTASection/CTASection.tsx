@@ -24,7 +24,6 @@ const ctaSectionVariants = cva("w-full", {
 
 export interface CTASectionProps
   extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof ctaSectionVariants>,
     VariantProps<typeof ctaSectionVariants> {
   headline: React.ReactNode;
   subtext?: React.ReactNode;

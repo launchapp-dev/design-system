@@ -81,7 +81,7 @@ export const MultipleOpen: Story = {
     eyebrow: "Details",
     headline: "Everything you need to know",
     items: defaultItems,
-    variant: "multiple",
+    accordionType: "multiple",
   },
 };
 
