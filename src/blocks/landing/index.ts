@@ -8,3 +8,5 @@ export * from "./PricingTableBlock";
 export * from "./FeatureGridBlock";
 export * from "./PricingSectionBlock";
 export * from "./TestimonialsSection";
+export * from "./FAQSection";
+export * from "./CTASection";
