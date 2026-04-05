@@ -14,3 +14,4 @@ export * from "./messaging";
 export * from "./notifications";
 export * from "./community";
 export * from "./admin";
+export * from "./forms";
