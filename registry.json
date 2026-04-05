@@ -2524,6 +2524,20 @@
       "devDependencies": []
     },
     {
+      "name": "block-logo-cloud",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/LogoCloud/LogoCloud.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-chat-interface",
       "type": "registry:block",
       "files": [
