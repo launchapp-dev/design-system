@@ -405,6 +405,8 @@ export { PricingTable } from "./blocks/marketing/PricingTable";
 export type { PricingTableProps, PricingTier } from "./blocks/marketing/PricingTable";
 export { TestimonialCarousel } from "./blocks/marketing/TestimonialCarousel";
 export type { TestimonialCarouselProps, Testimonial } from "./blocks/marketing/TestimonialCarousel";
+export { TestimonialSection, testimonialSectionVariants } from "./blocks/marketing/TestimonialSection";
+export type { TestimonialSectionProps, TestimonialItem } from "./blocks/marketing/TestimonialSection";
 
 export { StatsOverview } from "./blocks/dashboard";
 export type { StatsOverviewProps, StatsOverviewChartData } from "./blocks/dashboard";
