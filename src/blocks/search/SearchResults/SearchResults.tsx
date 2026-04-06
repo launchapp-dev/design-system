@@ -1,15 +1,15 @@
 import * as React from "react";
-import { Input } from "../../../components/Input";
-import { Button } from "../../../components/Button";
-import { Badge } from "../../../components/Badge";
+import { Input } from "@/components/Input";
+import { Button } from "@/components/Button";
+import { Badge } from "@/components/Badge";
 import {
   SelectRoot,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "../../../components/Select";
-import { cn } from "../../../lib/utils";
+} from "@/components/Select";
+import { cn } from "@/lib/utils";
 
 export interface SearchResultItem {
   id: string;
@@ -195,7 +195,6 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
                   result.url === undefined && "cursor-default"
                 )}
                 onClick={() => (result.onClick ? result.onClick() : onResultClick?.(result))}
-                role={result.url !== undefined ? "link" : undefined}
                 tabIndex={0}
                 onKeyDown={(e) => {
                   if ((e.key === "Enter" || e.key === " ") && result.url) {

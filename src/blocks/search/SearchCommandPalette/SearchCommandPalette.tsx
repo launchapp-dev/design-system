@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "../../../lib/utils";
+import { cn } from "@/lib/utils";
 import {
   Command,
   CommandDialog,
@@ -9,9 +9,9 @@ import {
   CommandGroup,
   CommandItem,
   CommandSeparator,
-} from "../../../components/Command";
-import { Badge } from "../../../components/Badge";
-import { ScrollArea } from "../../../components/ScrollArea";
+} from "@/components/Command";
+import { Badge } from "@/components/Badge";
+import { ScrollArea } from "@/components/ScrollArea";
 
 export interface SearchResult {
   id: string;
@@ -166,7 +166,7 @@ export function SearchCommandPalette({
             <CommandSeparator />
           </>
         )}
-        {showFilters && !query && filters.length > 0 && (
+        {showFilters && (
           <>
             <CommandGroup heading="Browse categories">
               {filters.map((filter) => (
