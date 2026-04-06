@@ -11,7 +11,6 @@ import type { CalendarDay } from "react-day-picker";
 import { Calendar } from "@/components/Calendar";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/Card";
 import { Button } from "@/components/Button";
-import { Badge } from "@/components/Badge";
 import { ScrollArea } from "@/components/ScrollArea";
 import { cn } from "@/lib/utils";
 
@@ -68,6 +67,10 @@ function CalendarViewInner(
     selectedDate ?? new Date()
   );
 
+  React.useEffect(() => {
+    if (selectedDate !== undefined) setInternalSelectedDate(selectedDate);
+  }, [selectedDate]);
+
   const effectiveSelectedDate = selectedDate ?? internalSelectedDate;
 
   const handleSelect = React.useCallback(
@@ -91,10 +94,8 @@ function CalendarViewInner(
   const goToNextMonth = () => handleMonthChange(addMonths(currentMonth, 1));
   const goToToday = () => {
     const today = new Date();
-    setCurrentMonth(today);
-    setInternalSelectedDate(today);
-    onDateSelect?.(today);
-    onMonthChange?.(today);
+    handleMonthChange(today);
+    handleSelect(today);
   };
 
   const getEventsForDay = React.useCallback(
@@ -124,7 +125,7 @@ function CalendarViewInner(
             <Button variant="ghost" size="sm" onClick={goToToday} className="h-8 px-2 text-xs">
               Today
             </Button>
-            <Button variant="ghost" size="icon" onClick={goToPreviousMonth} className="h-8 w-8">
+            <Button variant="ghost" size="icon" onClick={goToPreviousMonth} className="h-8 w-8" aria-label="Previous month">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
@@ -143,7 +144,7 @@ function CalendarViewInner(
             <span className="min-w-[8rem] text-center text-sm font-medium">
               {format(currentMonth, "MMMM yyyy")}
             </span>
-            <Button variant="ghost" size="icon" onClick={goToNextMonth} className="h-8 w-8">
+            <Button variant="ghost" size="icon" onClick={goToNextMonth} className="h-8 w-8" aria-label="Next month">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
@@ -191,7 +192,7 @@ function CalendarViewInner(
                     <span>{date.getDate()}</span>
                     {hasEvents && isCurrentMonth && (
                       <div className="absolute bottom-0.5 left-1/2 flex -translate-x-1/2 gap-0.5">
-                        {dayEvents.slice(0, 3).map((event) => (
+                        {dayEvents.slice(0, maxEventsPerDay).map((event) => (
                           <div
                             key={event.id}
                             className={cn(
@@ -204,7 +205,7 @@ function CalendarViewInner(
                             )}
                           />
                         ))}
-                        {dayEvents.length > 3 && (
+                        {dayEvents.length > maxEventsPerDay && (
                           <span className="text-[8px] text-muted-foreground">+</span>
                         )}
                       </div>
