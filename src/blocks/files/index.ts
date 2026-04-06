@@ -4,3 +4,5 @@ export { FileList } from "./FileList";
 export type { FileListProps, UploadFile, UploadStatus } from "./FileList";
 export { ImageGallery } from "./ImageGallery";
 export type { ImageGalleryProps, GalleryImage } from "./ImageGallery";
+export { FileGrid } from "./FileGrid/FileGrid";
+export type { FileGridProps, FileGridItem, FileItemType } from "./FileGrid/FileGrid";
