@@ -28,3 +28,5 @@ export { ActivityFeed } from "./dashboard";
 export type { ActivityFeedProps } from "./dashboard";
 export { Timeline } from "./dashboard";
 export type { TimelineProps, TimelineEntry } from "./dashboard";
+// team is the authoritative source for TeamMember (also exported by settings).
+export type { TeamMember } from "./team";
