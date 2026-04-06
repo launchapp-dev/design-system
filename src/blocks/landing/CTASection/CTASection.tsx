@@ -47,18 +47,24 @@ const CTASection = React.forwardRef<HTMLElement, CTASectionProps>(
       maxWidth = "lg",
       ...props
     },
-    ref
+    ref,
   ) => {
     const isCenter = align === "center";
 
     const containerClass = (() => {
       switch (maxWidth) {
-        case "sm": return "max-w-2xl";
-        case "md": return "max-w-4xl";
-        case "lg": return "max-w-5xl";
-        case "xl": return "max-w-6xl";
-        case "2xl": return "max-w-7xl";
-        default: return "max-w-5xl";
+        case "sm":
+          return "max-w-2xl";
+        case "md":
+          return "max-w-4xl";
+        case "lg":
+          return "max-w-5xl";
+        case "xl":
+          return "max-w-6xl";
+        case "2xl":
+          return "max-w-7xl";
+        default:
+          return "max-w-5xl";
       }
     })();
 
@@ -73,29 +79,19 @@ const CTASection = React.forwardRef<HTMLElement, CTASectionProps>(
             containerClass,
             "mx-auto",
             isCenter ? "text-center" : "text-left",
-            isCenter && "flex flex-col items-center"
+            isCenter && "flex flex-col items-center",
           )}
         >
           <h2 className="text-3xl font-bold tracking-tight text-foreground lg:text-5xl">
             {headline}
           </h2>
           {subtext && (
-            <p
-              className={cn(
-                "mt-4 text-lg text-muted-foreground",
-                isCenter && "max-w-xl"
-              )}
-            >
+            <p className={cn("mt-4 text-lg text-muted-foreground", isCenter && "max-w-xl")}>
               {subtext}
             </p>
           )}
           {(primaryAction || secondaryAction) && (
-            <div
-              className={cn(
-                "mt-8 flex flex-wrap gap-4",
-                isCenter && "justify-center"
-              )}
-            >
+            <div className={cn("mt-8 flex flex-wrap gap-4", isCenter && "justify-center")}>
               {primaryAction}
               {secondaryAction}
             </div>
@@ -103,7 +99,7 @@ const CTASection = React.forwardRef<HTMLElement, CTASectionProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 CTASection.displayName = "CTASection";

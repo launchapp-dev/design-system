@@ -16,12 +16,7 @@ import { Button } from "../../../components/Button";
 import { Label } from "../../../components/Label";
 import { RadioGroup, RadioGroupItem } from "../../../components/RadioGroup";
 import { Separator } from "../../../components/Separator";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../../components/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../../components/Card";
 import { Badge } from "../../../components/Badge";
 
 const checkoutSchema = z.object({
@@ -103,7 +98,7 @@ function StepIndicator({ current }: { current: Step }) {
                       ? "bg-primary text-primary-foreground"
                       : active
                         ? "border-2 border-primary text-primary"
-                        : "border-2 border-muted text-muted-foreground"
+                        : "border-2 border-muted text-muted-foreground",
                   )}
                   aria-current={active ? "step" : undefined}
                 >
@@ -127,7 +122,7 @@ function StepIndicator({ current }: { current: Step }) {
                 <span
                   className={cn(
                     "ml-2 text-sm font-medium",
-                    active ? "text-foreground" : "text-muted-foreground"
+                    active ? "text-foreground" : "text-muted-foreground",
                   )}
                 >
                   {step.label}
@@ -137,7 +132,7 @@ function StepIndicator({ current }: { current: Step }) {
                 <div
                   className={cn(
                     "mx-4 h-px flex-1 min-w-[2rem]",
-                    idx < currentIndex ? "bg-primary" : "bg-muted"
+                    idx < currentIndex ? "bg-primary" : "bg-muted",
                   )}
                   aria-hidden="true"
                 />
@@ -196,12 +191,11 @@ function OrderSummaryPanel({
               <div className="flex flex-1 items-center justify-between min-w-0">
                 <div className="min-w-0">
                   <p className="text-sm font-medium leading-tight truncate">{item.name}</p>
-                  {item.variant && (
-                    <p className="text-xs text-muted-foreground">{item.variant}</p>
-                  )}
+                  {item.variant && <p className="text-xs text-muted-foreground">{item.variant}</p>}
                 </div>
                 <span className="ml-2 shrink-0 text-sm font-medium">
-                  {currency}{(item.price * item.quantity).toFixed(2)}
+                  {currency}
+                  {(item.price * item.quantity).toFixed(2)}
                 </span>
               </div>
             </div>
@@ -211,20 +205,32 @@ function OrderSummaryPanel({
         <div className="space-y-1.5 text-sm">
           <div className="flex justify-between text-muted-foreground">
             <span>Subtotal</span>
-            <span>{currency}{subtotal.toFixed(2)}</span>
+            <span>
+              {currency}
+              {subtotal.toFixed(2)}
+            </span>
           </div>
           <div className="flex justify-between text-muted-foreground">
             <span>Shipping</span>
-            <span>{currency}{shippingCost.toFixed(2)}</span>
+            <span>
+              {currency}
+              {shippingCost.toFixed(2)}
+            </span>
           </div>
           <div className="flex justify-between text-muted-foreground">
             <span>Tax</span>
-            <span>{currency}{tax.toFixed(2)}</span>
+            <span>
+              {currency}
+              {tax.toFixed(2)}
+            </span>
           </div>
           <Separator />
           <div className="flex justify-between font-semibold text-base">
             <span>Total</span>
-            <span>{currency}{total.toFixed(2)}</span>
+            <span>
+              {currency}
+              {total.toFixed(2)}
+            </span>
           </div>
         </div>
       </CardContent>
@@ -243,501 +249,483 @@ function ReviewRow({ label, value }: { label: string; value?: string }) {
 }
 
 function CheckoutForm({
-      className,
-      orderItems = [],
-      taxRate = 0.08,
-      shippingCost = 5.99,
-      currency = "$",
-      onSubmit,
-      isLoading, ref,
-      ...props
-    }: CheckoutFormProps & { ref?: React.Ref<HTMLDivElement> }) {
-    const [step, setStep] = React.useState<Step>("shipping");
+  className,
+  orderItems = [],
+  taxRate = 0.08,
+  shippingCost = 5.99,
+  currency = "$",
+  onSubmit,
+  isLoading,
+  ref,
+  ...props
+}: CheckoutFormProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const [step, setStep] = React.useState<Step>("shipping");
 
-    const form = useForm<CheckoutValues>({
-      resolver: zodResolver(checkoutSchema),
-      defaultValues: {
-        email: "",
-        phone: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-        apartment: "",
-        city: "",
-        state: "",
-        zip: "",
-        country: "",
-        paymentMethod: "card",
-        cardName: "",
-        cardNumber: "",
-        cardExpiry: "",
-        cardCvv: "",
-      },
-    });
+  const form = useForm<CheckoutValues>({
+    resolver: zodResolver(checkoutSchema),
+    defaultValues: {
+      email: "",
+      phone: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      apartment: "",
+      city: "",
+      state: "",
+      zip: "",
+      country: "",
+      paymentMethod: "card",
+      cardName: "",
+      cardNumber: "",
+      cardExpiry: "",
+      cardCvv: "",
+    },
+  });
 
-    const paymentMethod = form.watch("paymentMethod");
-    const values = form.getValues();
+  const paymentMethod = form.watch("paymentMethod");
+  const values = form.getValues();
 
-    async function handleNext() {
-      const fields = step === "shipping" ? SHIPPING_FIELDS : PAYMENT_FIELDS;
-      const valid = await form.trigger(fields);
-      if (!valid) return;
-      setStep(step === "shipping" ? "payment" : "review");
-    }
+  async function handleNext() {
+    const fields = step === "shipping" ? SHIPPING_FIELDS : PAYMENT_FIELDS;
+    const valid = await form.trigger(fields);
+    if (!valid) return;
+    setStep(step === "shipping" ? "payment" : "review");
+  }
 
-    function handleBack() {
-      setStep(step === "review" ? "payment" : "shipping");
-    }
+  function handleBack() {
+    setStep(step === "review" ? "payment" : "shipping");
+  }
 
-    async function handleSubmit(data: CheckoutValues) {
-      await onSubmit?.(data);
-    }
+  async function handleSubmit(data: CheckoutValues) {
+    await onSubmit?.(data);
+  }
 
-    return (
-      <div ref={ref} className={cn("w-full", className)} {...props}>
-        <StepIndicator current={step} />
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-              {step === "shipping" && (
-                <section aria-labelledby="shipping-heading">
-                  <h2
-                    id="shipping-heading"
-                    className="text-base font-semibold text-foreground mb-4"
-                  >
-                    Shipping Information
-                  </h2>
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem className="sm:col-span-2">
-                          <FormLabel>Email address</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="email"
-                              placeholder="you@example.com"
-                              autoComplete="email"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem className="sm:col-span-2">
-                          <FormLabel>Phone number</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="tel"
-                              placeholder="+1 (555) 000-0000"
-                              autoComplete="tel"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="firstName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>First name</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Jane"
-                              autoComplete="given-name"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="lastName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Last name</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Smith"
-                              autoComplete="family-name"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem className="sm:col-span-2">
-                          <FormLabel>Address</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="123 Main Street"
-                              autoComplete="street-address"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="apartment"
-                      render={({ field }) => (
-                        <FormItem className="sm:col-span-2">
-                          <FormLabel>Apartment, suite, etc. (optional)</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Apt 4B"
-                              autoComplete="address-line2"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="city"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>City</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="San Francisco"
-                              autoComplete="address-level2"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="state"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>State / Province</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="CA"
-                              autoComplete="address-level1"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="zip"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>ZIP / Postal code</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="94103"
-                              autoComplete="postal-code"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="country"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Country</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="United States"
-                              autoComplete="country-name"
-                              disabled={isLoading}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </section>
-              )}
-
-              {step === "payment" && (
-                <section aria-labelledby="payment-heading">
-                  <h2
-                    id="payment-heading"
-                    className="text-base font-semibold text-foreground mb-4"
-                  >
-                    Payment Method
-                  </h2>
+  return (
+    <div ref={ref} className={cn("w-full", className)} {...props}>
+      <StepIndicator current={step} />
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+            {step === "shipping" && (
+              <section aria-labelledby="shipping-heading">
+                <h2 id="shipping-heading" className="text-base font-semibold text-foreground mb-4">
+                  Shipping Information
+                </h2>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <FormField
                     control={form.control}
-                    name="paymentMethod"
+                    name="email"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="sm:col-span-2">
+                        <FormLabel>Email address</FormLabel>
                         <FormControl>
-                          <RadioGroup
-                            value={field.value}
-                            onValueChange={field.onChange}
-                            className="grid grid-cols-2 gap-3"
+                          <Input
+                            type="email"
+                            placeholder="you@example.com"
+                            autoComplete="email"
                             disabled={isLoading}
-                          >
-                            <div>
-                              <RadioGroupItem
-                                value="card"
-                                id="payment-card"
-                                className="peer sr-only"
-                              />
-                              <Label
-                                htmlFor="payment-card"
-                                className="flex cursor-pointer items-center justify-center rounded-lg border-2 border-muted bg-background p-3 text-sm font-medium transition-colors hover:bg-muted peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
-                              >
-                                Credit Card
-                              </Label>
-                            </div>
-                            <div>
-                              <RadioGroupItem
-                                value="paypal"
-                                id="payment-paypal"
-                                className="peer sr-only"
-                              />
-                              <Label
-                                htmlFor="payment-paypal"
-                                className="flex cursor-pointer items-center justify-center rounded-lg border-2 border-muted bg-background p-3 text-sm font-medium transition-colors hover:bg-muted peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
-                              >
-                                PayPal
-                              </Label>
-                            </div>
-                          </RadioGroup>
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-
-                  {paymentMethod === "card" && (
-                    <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <FormField
-                        control={form.control}
-                        name="cardName"
-                        render={({ field }) => (
-                          <FormItem className="sm:col-span-2">
-                            <FormLabel>Name on card</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Jane Smith"
-                                autoComplete="cc-name"
-                                disabled={isLoading}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="cardNumber"
-                        render={({ field }) => (
-                          <FormItem className="sm:col-span-2">
-                            <FormLabel>Card number</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="4242 4242 4242 4242"
-                                autoComplete="cc-number"
-                                maxLength={19}
-                                disabled={isLoading}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="cardExpiry"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Expiry date</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="MM / YY"
-                                autoComplete="cc-exp"
-                                maxLength={7}
-                                disabled={isLoading}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="cardCvv"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>CVV</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="123"
-                                autoComplete="cc-csc"
-                                maxLength={4}
-                                disabled={isLoading}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  )}
-
-                  {paymentMethod === "paypal" && (
-                    <div className="mt-4 rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">
-                      You will be redirected to PayPal to complete your payment.
-                    </div>
-                  )}
-                </section>
-              )}
-
-              {step === "review" && (
-                <section aria-labelledby="review-heading">
-                  <h2
-                    id="review-heading"
-                    className="text-base font-semibold text-foreground mb-4"
-                  >
-                    Review Your Order
-                  </h2>
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-2">
-                        Shipping Information
-                      </h3>
-                      <Card>
-                        <CardContent className="py-4 space-y-1.5">
-                          <ReviewRow
-                            label="Name"
-                            value={`${values.firstName} ${values.lastName}`}
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem className="sm:col-span-2">
+                        <FormLabel>Phone number</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            placeholder="+1 (555) 000-0000"
+                            autoComplete="tel"
+                            disabled={isLoading}
+                            {...field}
                           />
-                          <ReviewRow label="Email" value={values.email} />
-                          <ReviewRow label="Phone" value={values.phone} />
-                          <Separator className="my-2" />
-                          <ReviewRow label="Address" value={values.address} />
-                          {values.apartment && (
-                            <ReviewRow label="Apt / Suite" value={values.apartment} />
-                          )}
-                          <ReviewRow
-                            label="City / State / ZIP"
-                            value={`${values.city}, ${values.state} ${values.zip}`}
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>First name</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Jane"
+                            autoComplete="given-name"
+                            disabled={isLoading}
+                            {...field}
                           />
-                          <ReviewRow label="Country" value={values.country} />
-                        </CardContent>
-                      </Card>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-2">
-                        Payment
-                      </h3>
-                      <Card>
-                        <CardContent className="py-4 space-y-1.5">
-                          <ReviewRow
-                            label="Method"
-                            value={values.paymentMethod === "card" ? "Credit Card" : "PayPal"}
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Last name</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Smith"
+                            autoComplete="family-name"
+                            disabled={isLoading}
+                            {...field}
                           />
-                          {values.paymentMethod === "card" && values.cardNumber && (
-                            <ReviewRow
-                              label="Card"
-                              value={`•••• •••• •••• ${values.cardNumber.slice(-4)}`}
-                            />
-                          )}
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </div>
-                </section>
-              )}
-
-              <div className="flex items-center justify-between pt-2">
-                {step !== "shipping" ? (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleBack}
-                    disabled={isLoading}
-                  >
-                    Back
-                  </Button>
-                ) : (
-                  <div />
-                )}
-                {step !== "review" ? (
-                  <Button type="button" onClick={handleNext} disabled={isLoading}>
-                    Continue
-                  </Button>
-                ) : (
-                  <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Placing order…" : "Place Order"}
-                  </Button>
-                )}
-              </div>
-            </form>
-          </Form>
-
-          <aside className="lg:sticky lg:top-6 h-fit">
-            {orderItems.length > 0 ? (
-              <OrderSummaryPanel
-                items={orderItems}
-                taxRate={taxRate}
-                shippingCost={shippingCost}
-                currency={currency}
-              />
-            ) : (
-              <Card>
-                <CardContent className="py-8 text-center text-sm text-muted-foreground">
-                  No items in order
-                </CardContent>
-              </Card>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                      <FormItem className="sm:col-span-2">
+                        <FormLabel>Address</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="123 Main Street"
+                            autoComplete="street-address"
+                            disabled={isLoading}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="apartment"
+                    render={({ field }) => (
+                      <FormItem className="sm:col-span-2">
+                        <FormLabel>Apartment, suite, etc. (optional)</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Apt 4B"
+                            autoComplete="address-line2"
+                            disabled={isLoading}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="city"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>City</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="San Francisco"
+                            autoComplete="address-level2"
+                            disabled={isLoading}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="state"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>State / Province</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="CA"
+                            autoComplete="address-level1"
+                            disabled={isLoading}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="zip"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>ZIP / Postal code</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="94103"
+                            autoComplete="postal-code"
+                            disabled={isLoading}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Country</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="United States"
+                            autoComplete="country-name"
+                            disabled={isLoading}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </section>
             )}
-          </aside>
-        </div>
+
+            {step === "payment" && (
+              <section aria-labelledby="payment-heading">
+                <h2 id="payment-heading" className="text-base font-semibold text-foreground mb-4">
+                  Payment Method
+                </h2>
+                <FormField
+                  control={form.control}
+                  name="paymentMethod"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <RadioGroup
+                          value={field.value}
+                          onValueChange={field.onChange}
+                          className="grid grid-cols-2 gap-3"
+                          disabled={isLoading}
+                        >
+                          <div>
+                            <RadioGroupItem
+                              value="card"
+                              id="payment-card"
+                              className="peer sr-only"
+                            />
+                            <Label
+                              htmlFor="payment-card"
+                              className="flex cursor-pointer items-center justify-center rounded-lg border-2 border-muted bg-background p-3 text-sm font-medium transition-colors hover:bg-muted peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
+                            >
+                              Credit Card
+                            </Label>
+                          </div>
+                          <div>
+                            <RadioGroupItem
+                              value="paypal"
+                              id="payment-paypal"
+                              className="peer sr-only"
+                            />
+                            <Label
+                              htmlFor="payment-paypal"
+                              className="flex cursor-pointer items-center justify-center rounded-lg border-2 border-muted bg-background p-3 text-sm font-medium transition-colors hover:bg-muted peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
+                            >
+                              PayPal
+                            </Label>
+                          </div>
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {paymentMethod === "card" && (
+                  <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="cardName"
+                      render={({ field }) => (
+                        <FormItem className="sm:col-span-2">
+                          <FormLabel>Name on card</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Jane Smith"
+                              autoComplete="cc-name"
+                              disabled={isLoading}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="cardNumber"
+                      render={({ field }) => (
+                        <FormItem className="sm:col-span-2">
+                          <FormLabel>Card number</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="4242 4242 4242 4242"
+                              autoComplete="cc-number"
+                              maxLength={19}
+                              disabled={isLoading}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="cardExpiry"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Expiry date</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="MM / YY"
+                              autoComplete="cc-exp"
+                              maxLength={7}
+                              disabled={isLoading}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="cardCvv"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>CVV</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="123"
+                              autoComplete="cc-csc"
+                              maxLength={4}
+                              disabled={isLoading}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
+
+                {paymentMethod === "paypal" && (
+                  <div className="mt-4 rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">
+                    You will be redirected to PayPal to complete your payment.
+                  </div>
+                )}
+              </section>
+            )}
+
+            {step === "review" && (
+              <section aria-labelledby="review-heading">
+                <h2 id="review-heading" className="text-base font-semibold text-foreground mb-4">
+                  Review Your Order
+                </h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground mb-2">
+                      Shipping Information
+                    </h3>
+                    <Card>
+                      <CardContent className="py-4 space-y-1.5">
+                        <ReviewRow label="Name" value={`${values.firstName} ${values.lastName}`} />
+                        <ReviewRow label="Email" value={values.email} />
+                        <ReviewRow label="Phone" value={values.phone} />
+                        <Separator className="my-2" />
+                        <ReviewRow label="Address" value={values.address} />
+                        {values.apartment && (
+                          <ReviewRow label="Apt / Suite" value={values.apartment} />
+                        )}
+                        <ReviewRow
+                          label="City / State / ZIP"
+                          value={`${values.city}, ${values.state} ${values.zip}`}
+                        />
+                        <ReviewRow label="Country" value={values.country} />
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground mb-2">Payment</h3>
+                    <Card>
+                      <CardContent className="py-4 space-y-1.5">
+                        <ReviewRow
+                          label="Method"
+                          value={values.paymentMethod === "card" ? "Credit Card" : "PayPal"}
+                        />
+                        {values.paymentMethod === "card" && values.cardNumber && (
+                          <ReviewRow
+                            label="Card"
+                            value={`•••• •••• •••• ${values.cardNumber.slice(-4)}`}
+                          />
+                        )}
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            <div className="flex items-center justify-between pt-2">
+              {step !== "shipping" ? (
+                <Button type="button" variant="outline" onClick={handleBack} disabled={isLoading}>
+                  Back
+                </Button>
+              ) : (
+                <div />
+              )}
+              {step !== "review" ? (
+                <Button type="button" onClick={handleNext} disabled={isLoading}>
+                  Continue
+                </Button>
+              ) : (
+                <Button type="submit" disabled={isLoading}>
+                  {isLoading ? "Placing order…" : "Place Order"}
+                </Button>
+              )}
+            </div>
+          </form>
+        </Form>
+
+        <aside className="lg:sticky lg:top-6 h-fit">
+          {orderItems.length > 0 ? (
+            <OrderSummaryPanel
+              items={orderItems}
+              taxRate={taxRate}
+              shippingCost={shippingCost}
+              currency={currency}
+            />
+          ) : (
+            <Card>
+              <CardContent className="py-8 text-center text-sm text-muted-foreground">
+                No items in order
+              </CardContent>
+            </Card>
+          )}
+        </aside>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 CheckoutForm.displayName = "CheckoutForm";
 

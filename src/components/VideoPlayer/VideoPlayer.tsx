@@ -17,7 +17,7 @@ const videoPlayerVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 const videoPlayerOverlayVariants = cva(
@@ -32,7 +32,7 @@ const videoPlayerOverlayVariants = cva(
     defaultVariants: {
       isPlaying: false,
     },
-  }
+  },
 );
 
 export interface VideoPlayerProps
@@ -91,7 +91,7 @@ function VideoPlayerInner(
     onLoadedMetadata,
     ...props
   }: VideoPlayerProps,
-  ref: React.Ref<VideoPlayerRef>
+  ref: React.Ref<VideoPlayerRef>,
 ) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -427,17 +427,33 @@ function VideoPlayerInner(
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
-                onClick={() => videoRef.current?.paused ? videoRef.current?.play() : videoRef.current?.pause()}
+                onClick={() =>
+                  videoRef.current?.paused ? videoRef.current?.play() : videoRef.current?.pause()
+                }
                 className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/20 transition-colors min-h-[44px] min-w-[44px]"
                 aria-label={isPlaying ? "Pause" : "Play"}
               >
                 {isPlaying ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="none">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="white"
+                    stroke="none"
+                  >
                     <rect x="6" y="4" width="4" height="16" />
                     <rect x="14" y="4" width="4" height="16" />
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="none">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="white"
+                    stroke="none"
+                  >
                     <polygon points="5 3 19 12 5 21 5 3" />
                   </svg>
                 )}
@@ -451,18 +467,48 @@ function VideoPlayerInner(
                     aria-label={muted ? "Unmute" : "Mute"}
                   >
                     {muted || volume === 0 ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                         <line x1="23" y1="9" x2="17" y2="15" />
                         <line x1="17" y1="9" x2="23" y2="15" />
                       </svg>
                     ) : volume < 0.5 ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                         <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
                       </svg>
                     ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                         <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
                         <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
@@ -512,7 +558,7 @@ function VideoPlayerInner(
                           onClick={() => handlePlaybackRateChange(speed)}
                           className={cn(
                             "w-full px-4 py-1 text-sm text-left hover:bg-white/20 transition-colors min-h-[36px]",
-                            playbackRate === speed ? "text-primary font-medium" : "text-white"
+                            playbackRate === speed ? "text-primary font-medium" : "text-white",
                           )}
                           role="option"
                           aria-selected={playbackRate === speed}
@@ -530,7 +576,17 @@ function VideoPlayerInner(
                 className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/20 transition-colors min-h-[44px] min-w-[44px]"
                 aria-label="Toggle fullscreen"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M8 3H5a2 2 0 0 0-2 2v3" />
                   <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
                   <path d="M3 16v3a2 2 0 0 0 2 2h3" />

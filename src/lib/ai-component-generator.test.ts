@@ -46,6 +46,7 @@ describe("Button", () => {
 const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
 
 vi.mock("@anthropic-ai/sdk", () => ({
+  // biome-ignore lint/complexity/useArrowFunction: must be function constructor for `new` to work
   default: vi.fn(function () {
     return { messages: { create: mockCreate } };
   }),
@@ -91,7 +92,7 @@ describe("generateComponent", () => {
   it("validates generated component code", async () => {
     const result = await generateComponent(
       { name: "TestButton", description: "Test button component" },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.validation).toHaveProperty("isValid");
@@ -102,7 +103,7 @@ describe("generateComponent", () => {
   it("includes design system patterns in generated code", async () => {
     const result = await generateComponent(
       { name: "StyledButton", description: "Styled button with design tokens" },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toContain("cva");
@@ -117,7 +118,7 @@ describe("generateComponent", () => {
 
     try {
       await expect(
-        generateComponent({ name: "Button", description: "A button" }, undefined)
+        generateComponent({ name: "Button", description: "A button" }, undefined),
       ).rejects.toThrow();
     } finally {
       if (oldEnv) process.env.ANTHROPIC_API_KEY = oldEnv;
@@ -134,7 +135,7 @@ describe("generateComponentFromDescription", () => {
   it("extracts component name from description", async () => {
     const result = await generateComponentFromDescription(
       "Button - A customizable button component",
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toBeDefined();
@@ -145,7 +146,7 @@ describe("generateComponentFromDescription", () => {
   it("uses full description as name when no delimiter found", async () => {
     const result = await generateComponentFromDescription(
       "A completely new component with multiple features",
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toBeDefined();
@@ -156,7 +157,7 @@ describe("Component code generation requirements", () => {
   it("generates TypeScript strict mode compliant code", async () => {
     const result = await generateComponent(
       { name: "StrictButton", description: "Strict mode compliant button" },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toContain("interface");
@@ -166,7 +167,7 @@ describe("Component code generation requirements", () => {
   it("generates Storybook CSF3 compatible stories", async () => {
     const result = await generateComponent(
       { name: "StoryButton", description: "Button with stories" },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.story).toContain("Meta");
@@ -194,7 +195,7 @@ describe("Component code generation requirements", () => {
         description: "Accessible button component",
         requirements: ["ARIA labels", "Keyboard navigation"],
       },
-      "test-api-key"
+      "test-api-key",
     );
 
     expect(result.component).toBeDefined();

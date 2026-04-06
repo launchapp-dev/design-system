@@ -94,11 +94,7 @@ export const WithMarkdown: StoryObj = {
         renderMarkdown={true}
         speed={25}
       />
-      <StreamingText
-        text="Here is some code: `const x = 42;`"
-        renderMarkdown={true}
-        speed={20}
-      />
+      <StreamingText text="Here is some code: `const x = 42;`" renderMarkdown={true} speed={20} />
     </div>
   ),
 };
@@ -131,17 +127,8 @@ export const OnCompleteCallback: StoryObj = {
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <StreamingText
-          key={key}
-          text={text}
-          onComplete={() => setCompleted(true)}
-          speed={30}
-        />
-        {completed && (
-          <p style={{ fontSize: "12px", color: "green" }}>
-            Streaming completed!
-          </p>
-        )}
+        <StreamingText key={key} text={text} onComplete={() => setCompleted(true)} speed={30} />
+        {completed && <p style={{ fontSize: "12px", color: "green" }}>Streaming completed!</p>}
         <button
           onClick={handleRestart}
           style={{
@@ -170,11 +157,7 @@ export const StyledText: StoryObj = {
         className="text-3xl font-bold text-primary"
         speed={40}
       />
-      <StreamingText
-        text="Secondary styled text"
-        className="text-xl text-secondary"
-        speed={30}
-      />
+      <StreamingText text="Secondary styled text" className="text-xl text-secondary" speed={30} />
     </div>
   ),
 };
@@ -220,12 +203,7 @@ Let me know if you have any questions!`;
             Generate AI Response
           </button>
         ) : (
-          <StreamingText
-            key={key}
-            text={fullResponse}
-            renderMarkdown={true}
-            speed={15}
-          />
+          <StreamingText key={key} text={fullResponse} renderMarkdown={true} speed={15} />
         )}
       </div>
     );

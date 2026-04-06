@@ -4,27 +4,33 @@ import { FAQSection } from "./index";
 const defaultItems = [
   {
     question: "How do I get started with LaunchApp?",
-    answer: "Getting started is easy. Clone the repository, install dependencies with pnpm install, and run pnpm dev. You'll have a fully functional SaaS template up and running in under 5 minutes.",
+    answer:
+      "Getting started is easy. Clone the repository, install dependencies with pnpm install, and run pnpm dev. You'll have a fully functional SaaS template up and running in under 5 minutes.",
   },
   {
     question: "Is the template production-ready?",
-    answer: "Yes. LaunchApp includes authentication, database, payments, email, and deployment configuration out of the box. It's been battle-tested across dozens of production applications.",
+    answer:
+      "Yes. LaunchApp includes authentication, database, payments, email, and deployment configuration out of the box. It's been battle-tested across dozens of production applications.",
   },
   {
     question: "What frameworks are supported?",
-    answer: "We support React Router 7 (flagship), Next.js 14+, Nuxt 4, and SvelteKit 2. All variants share the same design system, API contracts, and feature set.",
+    answer:
+      "We support React Router 7 (flagship), Next.js 14+, Nuxt 4, and SvelteKit 2. All variants share the same design system, API contracts, and feature set.",
   },
   {
     question: "Can I customize the design?",
-    answer: "Absolutely. The design system uses CSS variables with --la-* prefix, making it easy to theme. You can also swap out individual components or use the full ThemeGenerator for comprehensive customization.",
+    answer:
+      "Absolutely. The design system uses CSS variables with --la-* prefix, making it easy to theme. You can also swap out individual components or use the full ThemeGenerator for comprehensive customization.",
   },
   {
     question: "How does billing work?",
-    answer: "We integrate with Stripe and Polar.sh for subscription management. The billing package handles checkout sessions, webhooks, customer portals, and usage-based pricing out of the box.",
+    answer:
+      "We integrate with Stripe and Polar.sh for subscription management. The billing package handles checkout sessions, webhooks, customer portals, and usage-based pricing out of the box.",
   },
   {
     question: "What about GDPR and data privacy?",
-    answer: "All templates include GDPR endpoints for data export and deletion. Cookie consent is built-in, and the auth system supports data residency requirements.",
+    answer:
+      "All templates include GDPR endpoints for data export and deletion. Cookie consent is built-in, and the auth system supports data residency requirements.",
   },
 ];
 
@@ -41,7 +47,8 @@ export const Default: Story = {
   args: {
     eyebrow: "FAQ",
     headline: "Frequently asked questions",
-    subheadline: "Everything you need to know about LaunchApp. Can't find what you're looking for? Reach out to our team.",
+    subheadline:
+      "Everything you need to know about LaunchApp. Can't find what you're looking for? Reach out to our team.",
     items: defaultItems,
   },
 };

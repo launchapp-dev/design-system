@@ -2,7 +2,12 @@ import * as React from "react";
 import { cn } from "../../../lib/utils";
 import { Badge } from "../../../components/Badge";
 import { Button } from "../../../components/Button";
-import { TooltipRoot, TooltipContent, TooltipProvider, TooltipTrigger } from "../../../components/Tooltip";
+import {
+  TooltipRoot,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../../../components/Tooltip";
 
 // ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
 
@@ -121,9 +126,7 @@ export interface PricingComparisonTableProps extends React.HTMLAttributes<HTMLDi
 function renderValue(value: FeatureValue) {
   if (value === true) return <CheckIcon />;
   if (value === false || value === null) return <XIcon />;
-  return (
-    <span className="text-sm font-medium text-foreground">{String(value)}</span>
-  );
+  return <span className="text-sm font-medium text-foreground">{String(value)}</span>;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -174,9 +177,7 @@ export function PricingComparisonTable({
                 {headline}
               </h2>
             )}
-            {subheadline && (
-              <p className="mt-3 text-lg text-muted-foreground">{subheadline}</p>
-            )}
+            {subheadline && <p className="mt-3 text-lg text-muted-foreground">{subheadline}</p>}
           </div>
         )}
 
@@ -185,7 +186,7 @@ export function PricingComparisonTable({
           <span
             className={cn(
               "text-sm font-medium transition-colors",
-              !isAnnual ? "text-foreground" : "text-muted-foreground"
+              !isAnnual ? "text-foreground" : "text-muted-foreground",
             )}
           >
             {toggleLabels.monthly}
@@ -197,20 +198,20 @@ export function PricingComparisonTable({
             onClick={handleToggle}
             className={cn(
               "relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              isAnnual ? "bg-primary" : "bg-input"
+              isAnnual ? "bg-primary" : "bg-input",
             )}
           >
             <span
               className={cn(
                 "pointer-events-none inline-block h-4 w-4 rounded-full bg-background shadow-lg transition-transform",
-                isAnnual ? "translate-x-5" : "translate-x-0.5"
+                isAnnual ? "translate-x-5" : "translate-x-0.5",
               )}
             />
           </button>
           <span
             className={cn(
               "flex items-center gap-2 text-sm font-medium transition-colors",
-              isAnnual ? "text-foreground" : "text-muted-foreground"
+              isAnnual ? "text-foreground" : "text-muted-foreground",
             )}
           >
             {toggleLabels.annually}
@@ -224,11 +225,7 @@ export function PricingComparisonTable({
         <div className="w-full overflow-x-auto">
           <table className="w-full border-collapse">
             {/* Plan headers */}
-            <thead
-              className={cn(
-                stickyHeader && "sticky top-0 z-20 bg-background"
-              )}
-            >
+            <thead className={cn(stickyHeader && "sticky top-0 z-20 bg-background")}>
               <tr>
                 {/* Empty cell for feature label column */}
                 <th
@@ -242,8 +239,7 @@ export function PricingComparisonTable({
                     scope="col"
                     className={cn(
                       "w-full min-w-[160px] px-4 py-4 text-center align-bottom",
-                      plan.popular &&
-                        "rounded-t-xl bg-primary/5 ring-1 ring-primary/20"
+                      plan.popular && "rounded-t-xl bg-primary/5 ring-1 ring-primary/20",
                     )}
                   >
                     {plan.popular && (
@@ -253,13 +249,9 @@ export function PricingComparisonTable({
                         </Badge>
                       </div>
                     )}
-                    <div className="text-base font-semibold text-foreground">
-                      {plan.name}
-                    </div>
+                    <div className="text-base font-semibold text-foreground">{plan.name}</div>
                     {plan.description && (
-                      <div className="mt-1 text-xs text-muted-foreground">
-                        {plan.description}
-                      </div>
+                      <div className="mt-1 text-xs text-muted-foreground">{plan.description}</div>
                     )}
                     <div className="mt-3 flex items-baseline justify-center gap-1">
                       {typeof (isAnnual ? plan.price.annually : plan.price.monthly) === "number" ? (
@@ -318,15 +310,13 @@ export function PricingComparisonTable({
                       key={feature.name}
                       className={cn(
                         "border-t border-border/50 transition-colors hover:bg-muted/30",
-                        fi === categoryFeatures.length - 1 && "border-b border-border/50"
+                        fi === categoryFeatures.length - 1 && "border-b border-border/50",
                       )}
                     >
                       {/* Feature label */}
                       <td className="py-3.5 pr-4 text-left">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-sm text-foreground">
-                            {feature.name}
-                          </span>
+                          <span className="text-sm text-foreground">{feature.name}</span>
                           {feature.description && (
                             <TooltipRoot>
                               <TooltipTrigger asChild>
@@ -350,10 +340,7 @@ export function PricingComparisonTable({
                       {plans.map((plan) => (
                         <td
                           key={plan.id}
-                          className={cn(
-                            "py-3.5 px-4 text-center",
-                            plan.popular && "bg-primary/5"
-                          )}
+                          className={cn("py-3.5 px-4 text-center", plan.popular && "bg-primary/5")}
                         >
                           <div className="flex items-center justify-center">
                             {renderValue(feature.values[plan.id] ?? false)}
@@ -375,7 +362,7 @@ export function PricingComparisonTable({
                     key={plan.id}
                     className={cn(
                       "pt-8 px-4 text-center",
-                      plan.popular && "rounded-b-xl bg-primary/5 ring-1 ring-primary/20"
+                      plan.popular && "rounded-b-xl bg-primary/5 ring-1 ring-primary/20",
                     )}
                   >
                     <Button
@@ -399,9 +386,7 @@ export function PricingComparisonTable({
 
         {/* Footnote */}
         {footnote && (
-          <div className="mt-8 text-center text-sm text-muted-foreground">
-            {footnote}
-          </div>
+          <div className="mt-8 text-center text-sm text-muted-foreground">{footnote}</div>
         )}
       </div>
     </TooltipProvider>

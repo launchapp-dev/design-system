@@ -31,7 +31,11 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <SelectRoot>
-      <SelectTrigger size={args.size as "sm" | "md" | "lg"} disabled={args.disabled} style={{ width: 200 }}>
+      <SelectTrigger
+        size={args.size as "sm" | "md" | "lg"}
+        disabled={args.disabled}
+        style={{ width: 200 }}
+      >
         <SelectValue placeholder="Select a fruit" />
       </SelectTrigger>
       <SelectContent>
@@ -110,7 +114,9 @@ export const WithError: Story = {
           <SelectItem value="b">Option B</SelectItem>
         </SelectContent>
       </SelectRoot>
-      <span style={{ fontSize: "12px", color: "hsl(var(--destructive))" }}>Please select a value</span>
+      <span style={{ fontSize: "12px", color: "hsl(var(--destructive))" }}>
+        Please select a value
+      </span>
     </div>
   ),
 };
@@ -124,7 +130,9 @@ export const WithDisabledItems: Story = {
       <SelectContent>
         <SelectItem value="free">Free</SelectItem>
         <SelectItem value="pro">Pro</SelectItem>
-        <SelectItem value="enterprise" disabled>Enterprise (contact sales)</SelectItem>
+        <SelectItem value="enterprise" disabled>
+          Enterprise (contact sales)
+        </SelectItem>
       </SelectContent>
     </SelectRoot>
   ),

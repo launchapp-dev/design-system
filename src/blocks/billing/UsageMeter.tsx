@@ -56,9 +56,7 @@ function UsageMeter({
             <div key={item.id} className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-2">
-                  <span className={cn(isCapped && "text-muted-foreground")}>
-                    {item.label}
-                  </span>
+                  <span className={cn(isCapped && "text-muted-foreground")}>{item.label}</span>
                   {isWarning && !isCapped && (
                     <span className="text-xs font-medium text-destructive">Warning</span>
                   )}
@@ -70,7 +68,7 @@ function UsageMeter({
                   className={cn(
                     "font-medium",
                     isCapped && "text-muted-foreground",
-                    isWarning && !isCapped && "text-destructive"
+                    isWarning && !isCapped && "text-destructive",
                   )}
                 >
                   {item.used.toLocaleString()} / {item.total.toLocaleString()} {item.unit}
@@ -81,7 +79,7 @@ function UsageMeter({
                 size="sm"
                 className={cn(
                   isWarning && !isCapped && "[&>div]:bg-destructive",
-                  isCapped && "[&>div]:bg-muted"
+                  isCapped && "[&>div]:bg-muted",
                 )}
                 aria-label={`${item.label}: ${pct}%`}
               />

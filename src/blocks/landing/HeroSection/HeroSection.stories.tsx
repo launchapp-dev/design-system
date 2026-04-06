@@ -35,7 +35,11 @@ export const Centered: Story = {
     subheadline:
       "The production-ready React monorepo stack with auth, billing, database, and email pre-configured. Ship your next idea in days, not months.",
     primaryAction: <Button size="lg">Start building free</Button>,
-    secondaryAction: <Button size="lg" variant="outline">View demo</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        View demo
+      </Button>
+    ),
     media: (
       <img
         src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=700&fit=crop"
@@ -62,7 +66,11 @@ export const CenteredNoSocialProof: Story = {
     subheadline:
       "The production-ready React monorepo stack with auth, billing, database, and email pre-configured.",
     primaryAction: <Button size="lg">Get started</Button>,
-    secondaryAction: <Button size="lg" variant="outline">Learn more</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        Learn more
+      </Button>
+    ),
   },
 };
 
@@ -73,7 +81,11 @@ export const Split: Story = {
     subheadline:
       "Everything you need to build and launch a SaaS product. Auth, payments, database, emails — all wired up and ready.",
     primaryAction: <Button size="lg">Start free trial</Button>,
-    secondaryAction: <Button size="lg" variant="outline">Book a demo</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        Book a demo
+      </Button>
+    ),
     media: (
       <img
         src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
@@ -92,7 +104,11 @@ export const Gradient: Story = {
     subheadline:
       "A complete SaaS starter kit with everything you need to go from idea to production in record time.",
     primaryAction: <Button size="lg">Get started free</Button>,
-    secondaryAction: <Button size="lg" variant="outline">See pricing</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        See pricing
+      </Button>
+    ),
     media: (
       <img
         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=700&fit=crop"
@@ -120,7 +136,11 @@ export const WithBadgeAsNode: Story = {
     subheadline:
       "Ship faster with AI-powered code generation, intelligent monitoring, and automated testing built into your stack.",
     primaryAction: <Button size="lg">Try AI features</Button>,
-    secondaryAction: <Button size="lg" variant="ghost">Read the docs</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="ghost">
+        Read the docs
+      </Button>
+    ),
     media: (
       <img
         src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=700&fit=crop"

@@ -2,22 +2,19 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
-const imageComparisonVariants = cva(
-  "relative overflow-hidden select-none",
-  {
-    variants: {
-      size: {
-        sm: "h-48 md:h-40",
-        md: "h-64 md:h-56",
-        lg: "h-80 md:h-72",
-        full: "h-full",
-      },
+const imageComparisonVariants = cva("relative overflow-hidden select-none", {
+  variants: {
+    size: {
+      sm: "h-48 md:h-40",
+      md: "h-64 md:h-56",
+      lg: "h-80 md:h-72",
+      full: "h-full",
     },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 const imageComparisonSliderVariants = cva(
   "absolute top-0 bottom-0 w-1 bg-white/90 cursor-ew-resize z-10 touch-none",
@@ -32,7 +29,7 @@ const imageComparisonSliderVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 const imageComparisonHandleVariants = cva(
@@ -48,7 +45,7 @@ const imageComparisonHandleVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface ImageComparisonProps
@@ -110,7 +107,7 @@ function ImageComparison({
       }
       onPositionChange?.(newPosition);
     },
-    [controlledPosition, onPositionChange]
+    [controlledPosition, onPositionChange],
   );
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -124,7 +121,7 @@ function ImageComparison({
       if (!isDragging) return;
       updatePosition(e.clientX);
     },
-    [isDragging, updatePosition]
+    [isDragging, updatePosition],
   );
 
   const handleMouseUp = React.useCallback(() => {
@@ -142,7 +139,7 @@ function ImageComparison({
       e.preventDefault();
       updatePosition(e.touches[0].clientX);
     },
-    [isDragging, updatePosition]
+    [isDragging, updatePosition],
   );
 
   const handleTouchEnd = React.useCallback(() => {
@@ -176,7 +173,7 @@ function ImageComparison({
     }
 
     const newPosition = Math.max(0, Math.min(100, position + delta));
-    
+
     if (controlledPosition === undefined) {
       setInternalPosition(newPosition);
     }
@@ -212,17 +209,8 @@ function ImageComparison({
       className={cn(imageComparisonVariants({ size }), className)}
       {...props}
     >
-      <div
-        className="absolute inset-0"
-        role="img"
-        aria-label={afterAlt}
-      >
-        <img
-          src={afterSrc}
-          alt=""
-          className="h-full w-full object-cover"
-          draggable={false}
-        />
+      <div className="absolute inset-0" role="img" aria-label={afterAlt}>
+        <img src={afterSrc} alt="" className="h-full w-full object-cover" draggable={false} />
         {showLabels && (
           <div
             className="absolute right-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
@@ -241,12 +229,7 @@ function ImageComparison({
         role="img"
         aria-label={beforeAlt}
       >
-        <img
-          src={beforeSrc}
-          alt=""
-          className="h-full w-full object-cover"
-          draggable={false}
-        />
+        <img src={beforeSrc} alt="" className="h-full w-full object-cover" draggable={false} />
         {showLabels && (
           <div
             className="absolute left-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
@@ -261,7 +244,7 @@ function ImageComparison({
         className={cn(
           imageComparisonSliderVariants({ variant: sliderVariant }),
           "transition-[left] duration-75",
-          isDragging && "transition-none"
+          isDragging && "transition-none",
         )}
         style={{ left: `${clampedPosition}%` }}
         role="slider"
@@ -277,10 +260,7 @@ function ImageComparison({
       >
         <button
           type="button"
-          className={cn(
-            imageComparisonHandleVariants({ size: handleSize }),
-            "left-0"
-          )}
+          className={cn(imageComparisonHandleVariants({ size: handleSize }), "left-0")}
           tabIndex={-1}
           aria-hidden="true"
         >

@@ -48,9 +48,7 @@ const ENTRIES: ChangelogEntry[] = [
     version: "v2.3.1",
     date: "February 14, 2026",
     title: "Security patch for dependency vulnerability",
-    changes: [
-      { text: "Upgrade date-fns to address CVE-2025-XXXXX", tag: "security" },
-    ],
+    changes: [{ text: "Upgrade date-fns to address CVE-2025-XXXXX", tag: "security" }],
   },
 ];
 

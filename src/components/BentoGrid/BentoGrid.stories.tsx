@@ -183,7 +183,13 @@ export const SpanControls: Story = {
           <BentoCardDescription>
             This card spans 2 columns and 2 rows, perfect for hero content or featured items.
           </BentoCardDescription>
-          <div style={{ marginTop: "16px", fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
+          <div
+            style={{
+              marginTop: "16px",
+              fontSize: "0.875rem",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
             Additional content area for the larger card layout.
           </div>
         </BentoCardBody>
@@ -314,7 +320,14 @@ export const WithContentSlots: Story = {
       <BentoCard
         header={
           <div style={{ padding: "16px 16px 0" }}>
-            <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "hsl(var(--primary))" }}>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                color: "hsl(var(--primary))",
+              }}
+            >
               Featured
             </span>
           </div>
@@ -392,7 +405,13 @@ export const DashboardExample: Story = {
           <BentoCardDescription>Monthly performance metrics</BentoCardDescription>
           <div style={{ marginTop: "24px" }}>
             <div style={{ fontSize: "2.5rem", fontWeight: 700, lineHeight: 1 }}>$48,352</div>
-            <div style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", marginTop: "4px" }}>
+            <div
+              style={{
+                fontSize: "0.875rem",
+                color: "hsl(var(--muted-foreground))",
+                marginTop: "4px",
+              }}
+            >
               +12.5% from last month
             </div>
           </div>
@@ -405,7 +424,9 @@ export const DashboardExample: Story = {
         <BentoCardBody>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <UsersIcon />
-            <span style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>Users</span>
+            <span style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
+              Users
+            </span>
           </div>
           <div style={{ fontSize: "1.75rem", fontWeight: 600, marginTop: "8px" }}>2,451</div>
         </BentoCardBody>
@@ -414,7 +435,9 @@ export const DashboardExample: Story = {
         <BentoCardBody>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <SampleIcon />
-            <span style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>Projects</span>
+            <span style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
+              Projects
+            </span>
           </div>
           <div style={{ fontSize: "1.75rem", fontWeight: 600, marginTop: "8px" }}>128</div>
         </BentoCardBody>

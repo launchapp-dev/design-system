@@ -43,7 +43,7 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [currentStep, setCurrentStep] = React.useState(defaultStep);
     const [completed, setCompleted] = React.useState(false);
@@ -105,12 +105,7 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
         <div className="relative">
           <div className="absolute inset-0 animate-ping rounded-full bg-primary/20" />
           <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            <svg
-              className="h-10 w-10"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -123,9 +118,7 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
         </div>
         <div className="space-y-2">
           <h3 className="text-2xl font-bold">All done!</h3>
-          <p className="text-muted-foreground">
-            You&apos;ve completed all the steps.
-          </p>
+          <p className="text-muted-foreground">You&apos;ve completed all the steps.</p>
         </div>
       </div>
     );
@@ -142,7 +135,9 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
               <React.Fragment key={step.id}>
                 <li className="flex items-center gap-2">
                   <button
-                    ref={(el) => { stepRefs.current[index] = el; }}
+                    ref={(el) => {
+                      stepRefs.current[index] = el;
+                    }}
                     type="button"
                     onClick={() => isClickable && handleStepClick(index)}
                     disabled={!isClickable && status !== "current"}
@@ -150,15 +145,29 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
                     aria-label={`Step ${index + 1}: ${step.title}${status === "completed" ? " (completed)" : ""}`}
                     className={cn(
                       "flex items-center justify-center rounded-full border-2 font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                      status === "completed" && "h-9 w-9 border-primary bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer",
-                      status === "current" && "h-9 w-9 border-primary bg-background text-primary ring-2 ring-primary/20 cursor-default",
-                      status === "pending" && "h-9 w-9 border-muted-foreground/30 bg-background text-muted-foreground cursor-not-allowed",
-                      isClickable && "hover:scale-105"
+                      status === "completed" &&
+                        "h-9 w-9 border-primary bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer",
+                      status === "current" &&
+                        "h-9 w-9 border-primary bg-background text-primary ring-2 ring-primary/20 cursor-default",
+                      status === "pending" &&
+                        "h-9 w-9 border-muted-foreground/30 bg-background text-muted-foreground cursor-not-allowed",
+                      isClickable && "hover:scale-105",
                     )}
                   >
                     {status === "completed" ? (
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                     ) : showStepNumbers ? (
                       <span className="text-sm">{index + 1}</span>
@@ -166,10 +175,12 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
                       <span className="sr-only">Step {index + 1}</span>
                     )}
                   </button>
-                  <span className={cn(
-                    "hidden text-sm font-medium sm:block",
-                    status === "current" ? "text-foreground" : "text-muted-foreground"
-                  )}>
+                  <span
+                    className={cn(
+                      "hidden text-sm font-medium sm:block",
+                      status === "current" ? "text-foreground" : "text-muted-foreground",
+                    )}
+                  >
                     {step.title}
                   </span>
                 </li>
@@ -178,7 +189,7 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
                     aria-hidden="true"
                     className={cn(
                       "h-0.5 flex-1 rounded-full transition-colors",
-                      index < currentStep ? "bg-primary" : "bg-muted"
+                      index < currentStep ? "bg-primary" : "bg-muted",
                     )}
                   />
                 )}
@@ -200,7 +211,9 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
               return (
                 <button
                   key={step.id}
-                  ref={(el) => { stepRefs.current[index] = el; }}
+                  ref={(el) => {
+                    stepRefs.current[index] = el;
+                  }}
                   type="button"
                   onClick={() => isClickable && handleStepClick(index)}
                   disabled={!isClickable && status !== "current"}
@@ -210,20 +223,32 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
                     "flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors",
                     status === "current" && "bg-accent",
                     isClickable && "hover:bg-accent/50 cursor-pointer",
-                    !isClickable && status !== "current" && "cursor-default opacity-60"
+                    !isClickable && status !== "current" && "cursor-default opacity-60",
                   )}
                 >
                   <div
                     className={cn(
                       "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-medium",
                       status === "completed" && "border-primary bg-primary text-primary-foreground",
-                      status === "current" && "border-primary bg-background text-primary ring-2 ring-primary/20",
-                      status === "pending" && "border-muted-foreground/30 bg-background text-muted-foreground"
+                      status === "current" &&
+                        "border-primary bg-background text-primary ring-2 ring-primary/20",
+                      status === "pending" &&
+                        "border-muted-foreground/30 bg-background text-muted-foreground",
                     )}
                   >
                     {status === "completed" ? (
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                     ) : (
                       index + 1
@@ -233,14 +258,12 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
                     <div
                       className={cn(
                         "truncate text-sm font-medium",
-                        status === "current" ? "text-foreground" : "text-muted-foreground"
+                        status === "current" ? "text-foreground" : "text-muted-foreground",
                       )}
                     >
                       {step.title}
                     </div>
-                    {step.optional && (
-                      <div className="text-xs text-muted-foreground">Optional</div>
-                    )}
+                    {step.optional && <div className="text-xs text-muted-foreground">Optional</div>}
                   </div>
                 </button>
               );
@@ -273,11 +296,7 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
             </div>
 
             <div className="flex items-center justify-between">
-              <Button
-                variant="outline"
-                onClick={handleBack}
-                disabled={isFirst}
-              >
+              <Button variant="outline" onClick={handleBack} disabled={isFirst}>
                 {backLabel}
               </Button>
 
@@ -287,23 +306,18 @@ const OnboardingWizard = React.forwardRef<HTMLDivElement, OnboardingWizardProps>
 
               <div className="flex gap-3">
                 {allowSkip && activeStep?.optional && (
-                  <Button
-                    variant="ghost"
-                    onClick={handleSkip}
-                  >
+                  <Button variant="ghost" onClick={handleSkip}>
                     {skipLabel}
                   </Button>
                 )}
-                <Button onClick={handleNext}>
-                  {isLast ? completeLabel : nextLabel}
-                </Button>
+                <Button onClick={handleNext}>{isLast ? completeLabel : nextLabel}</Button>
               </div>
             </div>
           </>
         )}
       </div>
     );
-  }
+  },
 );
 OnboardingWizard.displayName = "OnboardingWizard";
 

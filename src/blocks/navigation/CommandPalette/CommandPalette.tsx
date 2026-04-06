@@ -102,10 +102,7 @@ export function CommandPalette({
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <CommandInput
-        placeholder={placeholder}
-        onValueChange={onSearch}
-      />
+      <CommandInput placeholder={placeholder} onValueChange={onSearch} />
       <CommandList>
         <CommandEmpty>{emptyText}</CommandEmpty>
         {resolvedGroups.map((group, gi) => {
@@ -144,9 +141,7 @@ export function CommandPalette({
                         {action.badge}
                       </Badge>
                     )}
-                    {action.shortcut && (
-                      <CommandShortcut>{action.shortcut}</CommandShortcut>
-                    )}
+                    {action.shortcut && <CommandShortcut>{action.shortcut}</CommandShortcut>}
                   </CommandItem>
                 ))}
               </CommandGroup>
@@ -226,10 +221,7 @@ export function InlineCommandPalette({
 
   return (
     <Command className={cn("rounded-lg border border-border shadow-md", className)}>
-      <CommandInput
-        placeholder={placeholder}
-        onValueChange={onSearch}
-      />
+      <CommandInput placeholder={placeholder} onValueChange={onSearch} />
       <CommandList>
         <CommandEmpty>{emptyText}</CommandEmpty>
         {resolvedGroups.map((group, gi) => {
@@ -265,9 +257,7 @@ export function InlineCommandPalette({
                         {action.badge}
                       </Badge>
                     )}
-                    {action.shortcut && (
-                      <CommandShortcut>{action.shortcut}</CommandShortcut>
-                    )}
+                    {action.shortcut && <CommandShortcut>{action.shortcut}</CommandShortcut>}
                   </CommandItem>
                 ))}
               </CommandGroup>

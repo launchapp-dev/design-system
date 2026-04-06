@@ -16,7 +16,11 @@ export const Default: Story = {
     headline: "Ready to ship faster?",
     subtext: "Join thousands of teams building with LaunchApp. Get started in minutes.",
     primaryAction: <Button size="lg">Get started free</Button>,
-    secondaryAction: <Button size="lg" variant="outline">View demo</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        View demo
+      </Button>
+    ),
   },
 };
 
@@ -41,7 +45,11 @@ export const Hero: Story = {
     headline: "Launch your SaaS in record time",
     subtext: "Everything you need to go from idea to production in one weekend.",
     primaryAction: <Button size="lg">Start building free</Button>,
-    secondaryAction: <Button size="lg" variant="outline">Watch demo</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        Watch demo
+      </Button>
+    ),
     variant: "hero",
   },
 };
@@ -59,8 +67,20 @@ export const WithPrimaryBackground: Story = {
   args: {
     headline: "Ready to get started?",
     subtext: "Ship your first feature today with our production-ready template.",
-    primaryAction: <Button size="lg" variant="secondary">Get started</Button>,
-    secondaryAction: <Button size="lg" variant="ghost" className="text-primary-foreground hover:bg-primary-foreground/10">Learn more</Button>,
+    primaryAction: (
+      <Button size="lg" variant="secondary">
+        Get started
+      </Button>
+    ),
+    secondaryAction: (
+      <Button
+        size="lg"
+        variant="ghost"
+        className="text-primary-foreground hover:bg-primary-foreground/10"
+      >
+        Learn more
+      </Button>
+    ),
     background: "primary",
   },
 };
@@ -70,7 +90,11 @@ export const WithGradientBackground: Story = {
     headline: "Build something amazing",
     subtext: "A complete toolkit for modern SaaS applications.",
     primaryAction: <Button size="lg">Start building</Button>,
-    secondaryAction: <Button size="lg" variant="outline">See pricing</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        See pricing
+      </Button>
+    ),
     background: "gradient",
   },
 };
@@ -78,9 +102,14 @@ export const WithGradientBackground: Story = {
 export const LeftAligned: Story = {
   args: {
     headline: "Take control of your infrastructure",
-    subtext: "Deploy to Railway, Vercel, or Fly.io with zero configuration. Self-host or use our managed cloud.",
+    subtext:
+      "Deploy to Railway, Vercel, or Fly.io with zero configuration. Self-host or use our managed cloud.",
     primaryAction: <Button size="lg">Get started</Button>,
-    secondaryAction: <Button size="lg" variant="outline">Read the docs</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        Read the docs
+      </Button>
+    ),
     align: "left",
   },
 };
@@ -97,7 +126,11 @@ export const DarkMode: Story = {
     headline: "Dark mode ready",
     subtext: "First-class dark mode support with no extra configuration.",
     primaryAction: <Button size="lg">Get started</Button>,
-    secondaryAction: <Button size="lg" variant="outline">Learn more</Button>,
+    secondaryAction: (
+      <Button size="lg" variant="outline">
+        Learn more
+      </Button>
+    ),
     background: "muted",
   },
 };
@@ -110,7 +143,11 @@ export const Mobile: Story = {
     headline: "Mobile CTA",
     subtext: "Responsive layout for all devices.",
     primaryAction: <Button className="w-full">Get started</Button>,
-    secondaryAction: <Button variant="outline" className="w-full">Learn more</Button>,
+    secondaryAction: (
+      <Button variant="outline" className="w-full">
+        Learn more
+      </Button>
+    ),
   },
 };
 

@@ -14,7 +14,7 @@ const orderItems: OrderSummaryItem[] = [
   {
     id: "2",
     name: "Minimalist Leather Watch",
-    price: 149.00,
+    price: 149.0,
     quantity: 1,
     variant: "Brown / 42mm",
     image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop",

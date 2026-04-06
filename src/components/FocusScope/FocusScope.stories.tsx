@@ -29,8 +29,16 @@ export const Trapped: Story = {
               }}
             >
               <p style={{ margin: 0, fontWeight: 600 }}>Focus is trapped here</p>
-              <input type="text" placeholder="First input" style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
-              <input type="text" placeholder="Second input" style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
+              <input
+                type="text"
+                placeholder="First input"
+                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+              />
+              <input
+                type="text"
+                placeholder="Second input"
+                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+              />
               <button onClick={() => setOpen(false)}>Close (releases focus)</button>
             </div>
           </FocusScope>
@@ -45,9 +53,7 @@ export const WithAutoFocus: Story = {
     const [open, setOpen] = React.useState(false);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <button onClick={() => setOpen((v) => !v)}>
-          {open ? "Unmount" : "Mount"} FocusScope
-        </button>
+        <button onClick={() => setOpen((v) => !v)}>{open ? "Unmount" : "Mount"} FocusScope</button>
         {open && (
           <FocusScope
             onMountAutoFocus={(e) => {
@@ -65,8 +71,17 @@ export const WithAutoFocus: Story = {
                 gap: "12px",
               }}
             >
-              <input type="text" placeholder="First" style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }} />
-              <input id="named-input" type="text" placeholder="Auto-focused on mount" style={{ padding: "8px", borderRadius: "4px", border: "1px solid #22c55e" }} />
+              <input
+                type="text"
+                placeholder="First"
+                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+              />
+              <input
+                id="named-input"
+                type="text"
+                placeholder="Auto-focused on mount"
+                style={{ padding: "8px", borderRadius: "4px", border: "1px solid #22c55e" }}
+              />
             </div>
           </FocusScope>
         )}

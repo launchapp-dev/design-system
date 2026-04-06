@@ -69,9 +69,7 @@ const defaultSteps = [
     optional: true,
     content: (
       <div className="space-y-4">
-        <p className="text-sm text-muted-foreground">
-          This step is optional.
-        </p>
+        <p className="text-sm text-muted-foreground">This step is optional.</p>
       </div>
     ),
   },

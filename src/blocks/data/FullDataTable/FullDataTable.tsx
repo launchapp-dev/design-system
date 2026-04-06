@@ -13,14 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/Table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/Table";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { Checkbox } from "@/components/Checkbox";
@@ -72,7 +65,7 @@ function FullDataTableInner<TData>(
     onBulkDelete,
     className,
   }: FullDataTableProps<TData>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -102,8 +95,8 @@ function FullDataTableInner<TData>(
               table.getIsAllPageRowsSelected()
                 ? true
                 : table.getIsSomePageRowsSelected()
-                ? "indeterminate"
-                : false
+                  ? "indeterminate"
+                  : false
             }
             onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
             aria-label="Select all"
@@ -121,7 +114,7 @@ function FullDataTableInner<TData>(
       },
       ...columns,
     ],
-    [columns]
+    [columns],
   );
 
   const table = useReactTable({
@@ -140,15 +133,14 @@ function FullDataTableInner<TData>(
   });
 
   const searchCol =
-    searchColumn ??
-    (columns[0] as ColumnDef<TData> & { accessorKey?: string })?.accessorKey;
+    searchColumn ?? (columns[0] as ColumnDef<TData> & { accessorKey?: string })?.accessorKey;
 
   const selectedRows = table.getFilteredSelectedRowModel().rows;
   const hasSelection = selectedRows.length > 0;
 
   const toggleFilterValue = (value: string) => {
     setActiveFilterValues((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
     );
     setPagination((prev) => ({ ...prev, pageIndex: 0 }));
   };
@@ -165,9 +157,7 @@ function FullDataTableInner<TData>(
           {searchCol && (
             <Input
               placeholder={searchPlaceholder}
-              value={
-                (table.getColumn(String(searchCol))?.getFilterValue() as string) ?? ""
-              }
+              value={(table.getColumn(String(searchCol))?.getFilterValue() as string) ?? ""}
               onChange={(e) => {
                 table.getColumn(String(searchCol))?.setFilterValue(e.target.value);
                 setPagination((prev) => ({ ...prev, pageIndex: 0 }));
@@ -326,8 +316,8 @@ function FullDataTableInner<TData>(
                             {header.column.getIsSorted() === "asc"
                               ? "↑"
                               : header.column.getIsSorted() === "desc"
-                              ? "↓"
-                              : "↕"}
+                                ? "↓"
+                                : "↕"}
                           </span>
                         )}
                       </span>
@@ -340,10 +330,7 @@ function FullDataTableInner<TData>(
           <TableBody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() ? "selected" : undefined}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() ? "selected" : undefined}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -415,9 +402,8 @@ function FullDataTableInner<TData>(
 }
 
 export const FullDataTable = React.forwardRef(FullDataTableInner) as <TData>(
-  props: FullDataTableProps<TData> & { ref?: React.ForwardedRef<HTMLDivElement> }
+  props: FullDataTableProps<TData> & { ref?: React.ForwardedRef<HTMLDivElement> },
 ) => React.ReactElement;
 
-(
-  FullDataTable as React.ForwardRefExoticComponent<FullDataTableProps<unknown>>
-).displayName = "FullDataTable";
+(FullDataTable as React.ForwardRefExoticComponent<FullDataTableProps<unknown>>).displayName =
+  "FullDataTable";

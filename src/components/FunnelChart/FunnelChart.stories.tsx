@@ -302,35 +302,19 @@ export const DifferentGaps: Story = {
     <div className="flex flex-col gap-8">
       <div>
         <h4 className="text-sm font-medium mb-2">No Gap</h4>
-        <FunnelChart
-          data={salesFunnelData}
-          gap={0}
-          aria-label="Funnel chart with no gap"
-        />
+        <FunnelChart data={salesFunnelData} gap={0} aria-label="Funnel chart with no gap" />
       </div>
       <div>
         <h4 className="text-sm font-medium mb-2">Small Gap (4px)</h4>
-        <FunnelChart
-          data={salesFunnelData}
-          gap={4}
-          aria-label="Funnel chart with small gap"
-        />
+        <FunnelChart data={salesFunnelData} gap={4} aria-label="Funnel chart with small gap" />
       </div>
       <div>
         <h4 className="text-sm font-medium mb-2">Medium Gap (8px)</h4>
-        <FunnelChart
-          data={salesFunnelData}
-          gap={8}
-          aria-label="Funnel chart with medium gap"
-        />
+        <FunnelChart data={salesFunnelData} gap={8} aria-label="Funnel chart with medium gap" />
       </div>
       <div>
         <h4 className="text-sm font-medium mb-2">Large Gap (16px)</h4>
-        <FunnelChart
-          data={salesFunnelData}
-          gap={16}
-          aria-label="Funnel chart with large gap"
-        />
+        <FunnelChart data={salesFunnelData} gap={16} aria-label="Funnel chart with large gap" />
       </div>
     </div>
   ),
@@ -415,7 +399,7 @@ export const CustomTooltip: Story = {
       stage: FunnelStage,
       index: number,
       percentage: number,
-      conversionRate: number
+      conversionRate: number,
     ) => (
       <div className="text-xs p-1">
         <div className="font-bold text-primary mb-1">{stage.label}</div>
@@ -436,13 +420,7 @@ export const CustomTooltip: Story = {
       </div>
     );
 
-    return (
-      <FunnelChart
-        {...args}
-        tooltipContent={customTooltip}
-        showConversionRate
-      />
-    );
+    return <FunnelChart {...args} tooltipContent={customTooltip} showConversionRate />;
   },
   args: {
     data: salesFunnelData,
@@ -475,11 +453,7 @@ export const AnimatedDataChange: Story = {
             Next Dataset
           </button>
         </div>
-        <FunnelChart
-          {...args}
-          data={datasets[dataIndex]}
-          key={dataIndex}
-        />
+        <FunnelChart {...args} data={datasets[dataIndex]} key={dataIndex} />
       </div>
     );
   },

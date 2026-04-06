@@ -8,9 +8,17 @@ export { OnboardingStepper, stepperVariants, stepIndicatorVariants } from "./Onb
 export type { Step, OnboardingStepperProps } from "./OnboardingStepper";
 export { OnboardingWizard } from "./OnboardingWizard";
 export type { OnboardingWizardProps, WizardStep as OnboardingWizardStep } from "./OnboardingWizard";
-export { ProgressStepper, stepperVariants as progressStepperVariants, stepIndicatorVariants as progressStepIndicatorVariants } from "./ProgressStepper";
+export {
+  ProgressStepper,
+  stepperVariants as progressStepperVariants,
+  stepIndicatorVariants as progressStepIndicatorVariants,
+} from "./ProgressStepper";
 export type { Step as ProgressStep, ProgressStepperProps } from "./ProgressStepper";
 export { SetupChecklist } from "./SetupChecklist";
 export type { SetupChecklistProps, ChecklistItem as SetupChecklistItem } from "./SetupChecklist";
 export { ProgressChecklist } from "./ProgressChecklist/ProgressChecklist";
-export type { ProgressChecklistProps, ProgressChecklistSection, ProgressChecklistItem } from "./ProgressChecklist/ProgressChecklist";
+export type {
+  ProgressChecklistProps,
+  ProgressChecklistSection,
+  ProgressChecklistItem,
+} from "./ProgressChecklist/ProgressChecklist";

@@ -19,10 +19,7 @@ const githubProvider = {
 export const Disconnected: Story = {
   render: () => (
     <div style={{ maxWidth: 400 }}>
-      <OAuthConnectCard
-        provider={githubProvider}
-        onConnect={() => console.log("Connect GitHub")}
-      />
+      <OAuthConnectCard provider={githubProvider} onConnect={() => console.log("Connect GitHub")} />
     </div>
   ),
 };

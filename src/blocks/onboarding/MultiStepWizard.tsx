@@ -32,7 +32,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [currentStep, setCurrentStep] = React.useState(defaultStep);
 
@@ -76,11 +76,10 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
                         "flex h-9 w-9 items-center justify-center rounded-full border-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                         isCompleted &&
                           "border-primary bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer",
-                        isCurrent &&
-                          "border-primary bg-background text-primary cursor-default",
+                        isCurrent && "border-primary bg-background text-primary cursor-default",
                         !isCompleted &&
                           !isCurrent &&
-                          "border-muted bg-background text-muted-foreground cursor-not-allowed"
+                          "border-muted bg-background text-muted-foreground cursor-not-allowed",
                       )}
                     >
                       {isCompleted ? (
@@ -105,7 +104,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
                     <span
                       className={cn(
                         "hidden text-sm font-medium sm:block",
-                        isCurrent ? "text-foreground" : "text-muted-foreground"
+                        isCurrent ? "text-foreground" : "text-muted-foreground",
                       )}
                     >
                       {step.title}
@@ -116,7 +115,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
                       aria-hidden="true"
                       className={cn(
                         "h-0.5 flex-1 rounded-full transition-colors",
-                        index < currentStep ? "bg-primary" : "bg-muted"
+                        index < currentStep ? "bg-primary" : "bg-muted",
                       )}
                     />
                   )}
@@ -141,11 +140,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
         </div>
 
         <div className="flex items-center justify-between">
-          <Button
-            variant="outline"
-            onClick={handleBack}
-            disabled={currentStep === 0}
-          >
+          <Button variant="outline" onClick={handleBack} disabled={currentStep === 0}>
             {backLabel}
           </Button>
           <span className="text-sm text-muted-foreground">
@@ -157,7 +152,7 @@ const MultiStepWizard = React.forwardRef<HTMLDivElement, MultiStepWizardProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 MultiStepWizard.displayName = "MultiStepWizard";
 

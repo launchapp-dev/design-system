@@ -111,9 +111,7 @@ describe("Changelog", () => {
 
   describe("className merging", () => {
     it("merges custom className with base classes", () => {
-      const { container } = render(
-        <Changelog entries={ENTRIES} className="custom-class" />
-      );
+      const { container } = render(<Changelog entries={ENTRIES} className="custom-class" />);
       expect(container.firstChild).toHaveClass("custom-class");
       expect(container.firstChild).toHaveClass("space-y-8");
     });

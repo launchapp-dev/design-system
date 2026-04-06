@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { KPICard } from "./index";
 
-const sparklineRevenue = [42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000, 79000, 89600];
+const sparklineRevenue = [
+  42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000, 79000, 89600,
+];
 const sparklineChurn = [320, 290, 350, 310, 380, 420, 350, 280, 310, 270, 260, 240];
 const sparklineConversion = [2.8, 3.1, 2.9, 3.4, 3.2, 3.0, 3.3, 3.1, 3.4, 3.2, 3.3, 3.24];
 

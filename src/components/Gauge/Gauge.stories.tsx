@@ -219,12 +219,7 @@ export const HalfValue: Story = {
 
 export const CustomFormat: Story = {
   name: "Custom Format Value",
-  render: (args) => (
-    <Gauge
-      {...args}
-      formatValue={(v) => v.toFixed(1)}
-    />
-  ),
+  render: (args) => <Gauge {...args} formatValue={(v) => v.toFixed(1)} />,
   args: {
     value: 75.6,
     min: 0,
@@ -240,27 +235,9 @@ export const MultipleGauges: Story = {
   name: "Multiple Gauges",
   render: () => (
     <div className="flex flex-wrap gap-8">
-      <Gauge
-        value={25}
-        label="Network"
-        unit="Mbps"
-        showValue
-        showMinMax
-      />
-      <Gauge
-        value={68}
-        label="CPU"
-        unit="%"
-        showValue
-        showMinMax
-      />
-      <Gauge
-        value={82}
-        label="Memory"
-        unit="GB"
-        showValue
-        showMinMax
-      />
+      <Gauge value={25} label="Network" unit="Mbps" showValue showMinMax />
+      <Gauge value={68} label="CPU" unit="%" showValue showMinMax />
+      <Gauge value={82} label="Memory" unit="GB" showValue showMinMax />
     </div>
   ),
 };
@@ -272,12 +249,7 @@ export const Interactive: Story = {
 
     return (
       <div className="flex flex-col items-center gap-4">
-        <Gauge
-          {...args}
-          value={value}
-          showValue
-          showMinMax
-        />
+        <Gauge {...args} value={value} showValue showMinMax />
         <div className="flex gap-2">
           {[25, 50, 75, 100].map((v) => (
             <button
@@ -326,27 +298,9 @@ export const DarkMode: Story = {
   render: () => (
     <div className="p-8 rounded-lg bg-zinc-900">
       <div className="flex flex-wrap gap-8">
-        <Gauge
-          value={35}
-          label="Low"
-          unit="%"
-          showValue
-          showMinMax
-        />
-        <Gauge
-          value={65}
-          label="Medium"
-          unit="%"
-          showValue
-          showMinMax
-        />
-        <Gauge
-          value={85}
-          label="High"
-          unit="%"
-          showValue
-          showMinMax
-        />
+        <Gauge value={35} label="Low" unit="%" showValue showMinMax />
+        <Gauge value={65} label="Medium" unit="%" showValue showMinMax />
+        <Gauge value={85} label="High" unit="%" showValue showMinMax />
       </div>
     </div>
   ),
@@ -359,40 +313,19 @@ export const DashboardLayout: Story = {
       <div className="p-6 rounded-lg border border-border bg-card">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">CPU Usage</h3>
         <div className="flex justify-center">
-          <Gauge
-            value={72}
-            label="Processor"
-            unit="%"
-            showValue
-            showMinMax
-            size="lg"
-          />
+          <Gauge value={72} label="Processor" unit="%" showValue showMinMax size="lg" />
         </div>
       </div>
       <div className="p-6 rounded-lg border border-border bg-card">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">Memory Usage</h3>
         <div className="flex justify-center">
-          <Gauge
-            value={58}
-            label="RAM"
-            unit="GB"
-            showValue
-            showMinMax
-            size="lg"
-          />
+          <Gauge value={58} label="RAM" unit="GB" showValue showMinMax size="lg" />
         </div>
       </div>
       <div className="p-6 rounded-lg border border-border bg-card">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">Disk Usage</h3>
         <div className="flex justify-center">
-          <Gauge
-            value={85}
-            label="Storage"
-            unit="%"
-            showValue
-            showMinMax
-            size="lg"
-          />
+          <Gauge value={85} label="Storage" unit="%" showValue showMinMax size="lg" />
         </div>
       </div>
     </div>

@@ -26,20 +26,14 @@ export function usePluginVariants(componentName: string) {
  * Hook to get merged default variants from plugins
  */
 export function usePluginDefaultVariants(componentName: string) {
-  return useMemo(
-    () => collectPluginDefaultVariants(componentName),
-    [componentName]
-  );
+  return useMemo(() => collectPluginDefaultVariants(componentName), [componentName]);
 }
 
 /**
  * Hook to apply plugins to component props
  * Returns modified props and after-render hooks to apply
  */
-export function useApplyPlugins(
-  componentName: string,
-  props: any
-) {
+export function useApplyPlugins(componentName: string, props: any) {
   return useMemo(() => {
     const plugins = getActivePlugins(componentName);
     return applyPluginHooks(props, plugins);
@@ -49,10 +43,7 @@ export function useApplyPlugins(
 /**
  * Hook to apply after-render hooks to a React element
  */
-export function useApplyAfterRenderHooks(
-  componentName: string,
-  element: React.ReactElement
-) {
+export function useApplyAfterRenderHooks(componentName: string, element: React.ReactElement) {
   return useMemo(() => {
     const plugins = getActivePlugins(componentName);
     return applyAfterRenderHooks(element, plugins);

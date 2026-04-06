@@ -24,7 +24,9 @@ export const Default: Story = {
     return (
       <Button
         variant="outline"
-        onClick={() => showToast({ title: "Notification", description: "Your action was successful." })}
+        onClick={() =>
+          showToast({ title: "Notification", description: "Your action was successful." })
+        }
       >
         Show Toast
       </Button>
@@ -36,7 +38,13 @@ export const Success: Story = {
   render: () => (
     <Button
       variant="outline"
-      onClick={() => toast({ variant: "success", title: "Success!", description: "Your changes have been saved." })}
+      onClick={() =>
+        toast({
+          variant: "success",
+          title: "Success!",
+          description: "Your changes have been saved.",
+        })
+      }
     >
       Show Success Toast
     </Button>
@@ -48,7 +56,11 @@ export const Destructive: Story = {
     <Button
       variant="destructive"
       onClick={() =>
-        toast({ variant: "destructive", title: "Error", description: "Something went wrong. Please try again." })
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+        })
       }
     >
       Show Error Toast
@@ -88,13 +100,17 @@ export const AllVariants: Story = {
       </Button>
       <Button
         variant="outline"
-        onClick={() => toast({ variant: "success", title: "Success", description: "Operation completed." })}
+        onClick={() =>
+          toast({ variant: "success", title: "Success", description: "Operation completed." })
+        }
       >
         Success
       </Button>
       <Button
         variant="outline"
-        onClick={() => toast({ variant: "destructive", title: "Error", description: "Something failed." })}
+        onClick={() =>
+          toast({ variant: "destructive", title: "Error", description: "Something failed." })
+        }
       >
         Destructive
       </Button>

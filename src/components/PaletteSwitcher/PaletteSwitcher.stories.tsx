@@ -30,9 +30,7 @@ export const Default: Story = {
   render: (args) => (
     <div className="p-6 space-y-4">
       <PaletteSwitcher {...args} />
-      <p className="text-sm text-muted-foreground">
-        Select a palette to apply it to the page.
-      </p>
+      <p className="text-sm text-muted-foreground">Select a palette to apply it to the page.</p>
     </div>
   ),
 };
@@ -74,10 +72,7 @@ export const WithUIPreview: Story = {
       <div className="p-6 space-y-6 max-w-md">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Theme</span>
-          <PaletteSwitcher
-            value={palette}
-            onValueChange={(name) => setPalette(name)}
-          />
+          <PaletteSwitcher value={palette} onValueChange={(name) => setPalette(name)} />
         </div>
 
         <Card>
@@ -86,10 +81,18 @@ export const WithUIPreview: Story = {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-2 flex-wrap">
-              <Button variant="default" size="sm">Primary</Button>
-              <Button variant="secondary" size="sm">Secondary</Button>
-              <Button variant="outline" size="sm">Outline</Button>
-              <Button variant="ghost" size="sm">Ghost</Button>
+              <Button variant="default" size="sm">
+                Primary
+              </Button>
+              <Button variant="secondary" size="sm">
+                Secondary
+              </Button>
+              <Button variant="outline" size="sm">
+                Outline
+              </Button>
+              <Button variant="ghost" size="sm">
+                Ghost
+              </Button>
             </div>
             <div className="flex gap-2 flex-wrap">
               <Badge>Default</Badge>
@@ -124,10 +127,7 @@ export const Controlled: Story = {
     const [value, setValue] = React.useState("ocean");
     return (
       <div className="p-6 space-y-4">
-        <PaletteSwitcher
-          value={value}
-          onValueChange={(name) => setValue(name)}
-        />
+        <PaletteSwitcher value={value} onValueChange={(name) => setValue(name)} />
         <p className="text-sm text-muted-foreground">
           Active palette: <strong>{value}</strong>
         </p>

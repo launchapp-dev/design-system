@@ -9,15 +9,61 @@ export default meta;
 type Story = StoryObj<typeof WebhookManager>;
 
 const sampleEndpoints: WebhookEndpoint[] = [
-  { id: "1", name: "Production", url: "https://api.example.com/webhooks/prod", eventTypes: ["user.created", "user.updated", "payment.succeeded"], active: true, createdAt: "2024-01-15" },
-  { id: "2", name: "Analytics", url: "https://analytics.example.com/ingest", eventTypes: ["payment.succeeded", "subscription.cancelled"], active: true, createdAt: "2024-02-20" },
-  { id: "3", name: "Legacy Integration", url: "https://old-api.example.com/hooks", eventTypes: ["user.created"], active: false, createdAt: "2023-11-05" },
+  {
+    id: "1",
+    name: "Production",
+    url: "https://api.example.com/webhooks/prod",
+    eventTypes: ["user.created", "user.updated", "payment.succeeded"],
+    active: true,
+    createdAt: "2024-01-15",
+  },
+  {
+    id: "2",
+    name: "Analytics",
+    url: "https://analytics.example.com/ingest",
+    eventTypes: ["payment.succeeded", "subscription.cancelled"],
+    active: true,
+    createdAt: "2024-02-20",
+  },
+  {
+    id: "3",
+    name: "Legacy Integration",
+    url: "https://old-api.example.com/hooks",
+    eventTypes: ["user.created"],
+    active: false,
+    createdAt: "2023-11-05",
+  },
 ];
 
 const sampleDeliveries: WebhookDelivery[] = [
-  { id: "d1", endpointId: "1", timestamp: "2024-04-05 14:32:11", status: "success", statusCode: 200, durationMs: 145, attempt: 1 },
-  { id: "d2", endpointId: "1", timestamp: "2024-04-05 13:22:05", status: "failed", statusCode: 500, durationMs: 2000, attempt: 1, error: "Internal server error" },
-  { id: "d3", endpointId: "1", timestamp: "2024-04-05 13:22:06", status: "success", statusCode: 200, durationMs: 130, attempt: 2 },
+  {
+    id: "d1",
+    endpointId: "1",
+    timestamp: "2024-04-05 14:32:11",
+    status: "success",
+    statusCode: 200,
+    durationMs: 145,
+    attempt: 1,
+  },
+  {
+    id: "d2",
+    endpointId: "1",
+    timestamp: "2024-04-05 13:22:05",
+    status: "failed",
+    statusCode: 500,
+    durationMs: 2000,
+    attempt: 1,
+    error: "Internal server error",
+  },
+  {
+    id: "d3",
+    endpointId: "1",
+    timestamp: "2024-04-05 13:22:06",
+    status: "success",
+    statusCode: 200,
+    durationMs: 130,
+    attempt: 2,
+  },
   { id: "d4", endpointId: "2", timestamp: "2024-04-05 12:00:00", status: "pending", attempt: 1 },
 ];
 

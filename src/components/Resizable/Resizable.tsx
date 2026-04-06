@@ -11,13 +11,14 @@ import {
 } from "react-resizable-panels";
 import { cn } from "@/lib/utils";
 
-function ResizablePanelGroup({ className, ref, ...props }: GroupProps & { ref?: React.Ref<GroupImperativeHandle> }) {
+function ResizablePanelGroup({
+  className,
+  ref,
+  ...props
+}: GroupProps & { ref?: React.Ref<GroupImperativeHandle> }) {
   return (
     <Group
-      className={cn(
-        "flex h-full w-full data-[orientation=vertical]:flex-col",
-        className
-      )}
+      className={cn("flex h-full w-full data-[orientation=vertical]:flex-col", className)}
       groupRef={ref}
       {...props}
     />
@@ -25,7 +26,10 @@ function ResizablePanelGroup({ className, ref, ...props }: GroupProps & { ref?: 
 }
 ResizablePanelGroup.displayName = "ResizablePanelGroup";
 
-function ResizablePanel({ ref, ...props }: PanelProps & { ref?: React.Ref<PanelImperativeHandle> }) {
+function ResizablePanel({
+  ref,
+  ...props
+}: PanelProps & { ref?: React.Ref<PanelImperativeHandle> }) {
   return <Panel panelRef={ref} {...props} />;
 }
 ResizablePanel.displayName = "ResizablePanel";
@@ -34,13 +38,18 @@ interface ResizableHandleProps extends SeparatorProps {
   withHandle?: boolean;
 }
 
-function ResizableHandle({ withHandle, className, ref, ...props }: ResizableHandleProps & { ref?: React.Ref<HTMLDivElement> }) {
+function ResizableHandle({
+  withHandle,
+  className,
+  ref,
+  ...props
+}: ResizableHandleProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <Separator
       elementRef={ref}
       className={cn(
         "relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 data-[orientation=vertical]:h-px data-[orientation=vertical]:w-full data-[orientation=vertical]:after:left-0 data-[orientation=vertical]:after:h-1 data-[orientation=vertical]:after:w-full data-[orientation=vertical]:after:-translate-y-1/2 data-[orientation=vertical]:after:translate-x-0",
-        className
+        className,
       )}
       {...props}
     >

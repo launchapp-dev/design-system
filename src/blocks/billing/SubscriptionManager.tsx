@@ -52,10 +52,7 @@ function SubscriptionManager({
     <div className={cn("space-y-6", className)} {...props}>
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">{title}</h2>
-        <Select
-          value={billingInterval}
-          onValueChange={(_v: string) => {}}
-        >
+        <Select value={billingInterval} onValueChange={(_v: string) => {}}>
           <SelectTrigger className="w-36">
             <SelectValue />
           </SelectTrigger>
@@ -77,7 +74,7 @@ function SubscriptionManager({
               className={cn(
                 "relative cursor-pointer transition-colors",
                 isSelected && !isCurrent && "border-primary ring-2 ring-primary/20",
-                isCurrent && "border-primary/50"
+                isCurrent && "border-primary/50",
               )}
               onClick={() => {
                 setSelected(plan.id);
@@ -95,7 +92,9 @@ function SubscriptionManager({
                 <CardTitle className="text-base">{plan.name}</CardTitle>
                 <div className="flex items-baseline gap-1">
                   <span className="text-2xl font-bold">{plan.price}</span>
-                  <span className="text-sm text-muted-foreground">/ {billingInterval === "month" ? "mo" : "yr"}</span>
+                  <span className="text-sm text-muted-foreground">
+                    / {billingInterval === "month" ? "mo" : "yr"}
+                  </span>
                 </div>
                 <p className="text-xs text-muted-foreground">{plan.billingCycle}</p>
               </CardHeader>

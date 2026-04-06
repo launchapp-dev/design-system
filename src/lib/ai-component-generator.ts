@@ -68,7 +68,7 @@ If invalid, respond with JSON: {"valid": false, "errors": ["error1", "error2"]}`
 
 export async function generateComponent(
   request: ComponentGenerationRequest,
-  apiKey?: string
+  apiKey?: string,
 ): Promise<ComponentGenerationResponse> {
   const client = new Anthropic({
     apiKey: apiKey || process.env.ANTHROPIC_API_KEY,
@@ -88,8 +88,7 @@ export async function generateComponent(
     ],
   });
 
-  const responseText =
-    message.content[0].type === "text" ? message.content[0].text : "";
+  const responseText = message.content[0].type === "text" ? message.content[0].text : "";
 
   let generatedCode: AIGeneratedCode;
   try {
@@ -102,10 +101,7 @@ export async function generateComponent(
     throw new Error(`Failed to parse Claude response: ${error}`);
   }
 
-  const validation = await validateGeneratedComponent(
-    generatedCode.component,
-    apiKey
-  );
+  const validation = await validateGeneratedComponent(generatedCode.component, apiKey);
 
   return {
     component: generatedCode.component,
@@ -156,7 +152,7 @@ Return the code as a JSON object with keys: component, story, test`;
 
 async function validateGeneratedComponent(
   componentCode: string,
-  apiKey?: string
+  apiKey?: string,
 ): Promise<{ isValid: boolean; errors: string[] }> {
   const client = new Anthropic({
     apiKey: apiKey || process.env.ANTHROPIC_API_KEY,
@@ -173,8 +169,7 @@ async function validateGeneratedComponent(
     ],
   });
 
-  const responseText =
-    message.content[0].type === "text" ? message.content[0].text : "";
+  const responseText = message.content[0].type === "text" ? message.content[0].text : "";
 
   try {
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
@@ -203,7 +198,7 @@ async function validateGeneratedComponent(
 
 export async function generateComponentFromDescription(
   componentDescription: string,
-  apiKey?: string
+  apiKey?: string,
 ): Promise<ComponentGenerationResponse> {
   const nameMatch = componentDescription.match(/^(\w+)\s*[-:]\s*(.+)/);
   const name = nameMatch ? nameMatch[1] : "GeneratedComponent";
@@ -214,6 +209,6 @@ export async function generateComponentFromDescription(
       name,
       description,
     },
-    apiKey
+    apiKey,
   );
 }

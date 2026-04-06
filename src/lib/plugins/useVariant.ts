@@ -15,7 +15,7 @@ import type { CustomVariant } from "./types";
 export function useVariant(
   componentName: string,
   variantName: string,
-  defaultClasses: string = ""
+  defaultClasses: string = "",
 ): string {
   return useMemo(() => {
     const manager = getPluginManager();
@@ -23,7 +23,9 @@ export function useVariant(
 
     if (variant) {
       const variantClasses =
-        typeof variant.classes === "string" ? variant.classes : Object.values(variant.classes).join(" ");
+        typeof variant.classes === "string"
+          ? variant.classes
+          : Object.values(variant.classes).join(" ");
       return cn(defaultClasses, variantClasses);
     }
 
@@ -40,7 +42,7 @@ export function useVariant(
  */
 export function getCustomVariant(
   componentName: string,
-  variantName: string
+  variantName: string,
 ): CustomVariant | undefined {
   const manager = getPluginManager();
   return manager.getRegistry().getVariant(componentName, variantName);

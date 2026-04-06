@@ -24,7 +24,7 @@ const comboboxTriggerVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface ComboboxOption {
@@ -45,100 +45,98 @@ export interface ComboboxProps
 }
 
 function Combobox({
-      className,
-      size,
-      options,
-      value,
-      onValueChange,
-      placeholder = "Select an option...",
-      searchPlaceholder = "Search...",
-      emptyText = "No results found.",
-      disabled, ref,
-      ...props
-    }: ComboboxProps & { ref?: React.Ref<HTMLButtonElement> }) {
-    const [open, setOpen] = React.useState(false);
-    const listboxId = React.useId();
-    const selectedOption = options.find((opt) => opt.value === value);
+  className,
+  size,
+  options,
+  value,
+  onValueChange,
+  placeholder = "Select an option...",
+  searchPlaceholder = "Search...",
+  emptyText = "No results found.",
+  disabled,
+  ref,
+  ...props
+}: ComboboxProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  const [open, setOpen] = React.useState(false);
+  const listboxId = React.useId();
+  const selectedOption = options.find((opt) => opt.value === value);
 
-    return (
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <button
-            ref={ref}
-            role="combobox"
-            aria-expanded={open}
-            aria-haspopup="listbox"
-            aria-controls={listboxId}
-            disabled={disabled}
-            className={cn(comboboxTriggerVariants({ size }), className)}
-            {...props}
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <button
+          ref={ref}
+          role="combobox"
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          aria-controls={listboxId}
+          disabled={disabled}
+          className={cn(comboboxTriggerVariants({ size }), className)}
+          {...props}
+        >
+          <span className={cn(!selectedOption && "text-muted-foreground")}>
+            {selectedOption?.label ?? placeholder}
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="shrink-0 opacity-50"
+            aria-hidden="true"
           >
-            <span className={cn(!selectedOption && "text-muted-foreground")}>
-              {selectedOption?.label ?? placeholder}
-            </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="shrink-0 opacity-50"
-              aria-hidden="true"
-            >
-              <path d="m7 15 5 5 5-5" />
-              <path d="m7 9 5-5 5 5" />
-            </svg>
-          </button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
-          <Command>
-            <CommandInput placeholder={searchPlaceholder} />
-            <CommandList id={listboxId}>
-              <CommandEmpty>{emptyText}</CommandEmpty>
-              <CommandGroup>
-                {options.map((option) => (
-                  <CommandItem
-                    key={option.value}
-                    value={option.label}
-                    disabled={option.disabled}
-                    aria-selected={option.value === value}
-                    onSelect={() => {
-                      onValueChange?.(option.value === value ? "" : option.value);
-                      setOpen(false);
-                    }}
+            <path d="m7 15 5 5 5-5" />
+            <path d="m7 9 5-5 5 5" />
+          </svg>
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+        <Command>
+          <CommandInput placeholder={searchPlaceholder} />
+          <CommandList id={listboxId}>
+            <CommandEmpty>{emptyText}</CommandEmpty>
+            <CommandGroup>
+              {options.map((option) => (
+                <CommandItem
+                  key={option.value}
+                  value={option.label}
+                  disabled={option.disabled}
+                  aria-selected={option.value === value}
+                  onSelect={() => {
+                    onValueChange?.(option.value === value ? "" : option.value);
+                    setOpen(false);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={cn("shrink-0", value === option.value ? "opacity-100" : "opacity-0")}
+                    aria-hidden="true"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className={cn(
-                        "shrink-0",
-                        value === option.value ? "opacity-100" : "opacity-0"
-                      )}
-                      aria-hidden="true"
-                    >
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                    {option.label}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </PopoverContent>
-      </Popover>
-    );
-  }
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  {option.label}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+}
 
 Combobox.displayName = "Combobox";
 

@@ -1,4 +1,7 @@
-export { SearchCommandPalette, useSearchCommandPalette } from "./SearchCommandPalette/SearchCommandPalette";
+export {
+  SearchCommandPalette,
+  useSearchCommandPalette,
+} from "./SearchCommandPalette/SearchCommandPalette";
 export type {
   SearchCommandPaletteProps,
   SearchResult,

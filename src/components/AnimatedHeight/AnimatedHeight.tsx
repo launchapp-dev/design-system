@@ -7,7 +7,15 @@ export interface AnimatedHeightProps extends React.HTMLAttributes<HTMLDivElement
   duration?: number;
 }
 
-function AnimatedHeight({ children, isOpen = true, duration = 250, className, style, ref, ...props }: AnimatedHeightProps & { ref?: React.Ref<HTMLDivElement> }) {
+function AnimatedHeight({
+  children,
+  isOpen = true,
+  duration = 250,
+  className,
+  style,
+  ref,
+  ...props
+}: AnimatedHeightProps & { ref?: React.Ref<HTMLDivElement> }) {
   const prefersReducedMotion = useReducedMotion();
   const innerRef = React.useRef<HTMLDivElement>(null);
   const [height, setHeight] = React.useState<number | "auto">(isOpen ? "auto" : 0);
@@ -57,7 +65,9 @@ function AnimatedHeight({ children, isOpen = true, duration = 250, className, st
       }}
       {...props}
     >
-      <div ref={innerRef} inert={isHidden ? true : undefined}>{children}</div>
+      <div ref={innerRef} inert={isHidden ? true : undefined}>
+        {children}
+      </div>
     </div>
   );
 }

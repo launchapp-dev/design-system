@@ -42,7 +42,12 @@ const NotificationCenter = ({
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const defaultTrigger = (
-    <Button variant="ghost" size="sm" className="relative h-9 w-9 p-0" aria-label={`${title} — ${unreadCount} unread`}>
+    <Button
+      variant="ghost"
+      size="sm"
+      className="relative h-9 w-9 p-0"
+      aria-label={`${title} — ${unreadCount} unread`}
+    >
       <svg
         className="h-5 w-5"
         fill="none"
@@ -70,9 +75,7 @@ const NotificationCenter = ({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        {trigger ?? defaultTrigger}
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>{trigger ?? defaultTrigger}</DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-80 p-0">
         <div className="flex items-center justify-between px-3 py-2">
           <DropdownMenuLabel className="p-0 text-sm font-semibold">
@@ -97,9 +100,7 @@ const NotificationCenter = ({
         <DropdownMenuSeparator className="my-0" />
         <ScrollArea className="max-h-80">
           {notifications.length === 0 ? (
-            <p className="px-3 py-8 text-center text-sm text-muted-foreground">
-              No notifications
-            </p>
+            <p className="px-3 py-8 text-center text-sm text-muted-foreground">No notifications</p>
           ) : (
             <div>
               {notifications.map((notification) => (
@@ -108,15 +109,15 @@ const NotificationCenter = ({
                   onClick={() => !notification.read && onRead?.(notification.id)}
                   className={cn(
                     "flex cursor-pointer items-start gap-3 px-3 py-3 focus:bg-accent",
-                    !notification.read && "bg-primary/5"
+                    !notification.read && "bg-primary/5",
                   )}
                 >
                   <Avatar size="sm" className="mt-0.5 shrink-0">
-                    {notification.avatarSrc && (
-                      <AvatarImage src={notification.avatarSrc} alt="" />
-                    )}
+                    {notification.avatarSrc && <AvatarImage src={notification.avatarSrc} alt="" />}
                     <AvatarFallback>
-                      {notification.avatarInitials ?? notification.type?.slice(0, 2).toUpperCase() ?? "N"}
+                      {notification.avatarInitials ??
+                        notification.type?.slice(0, 2).toUpperCase() ??
+                        "N"}
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0 flex-1 space-y-0.5">
@@ -125,7 +126,10 @@ const NotificationCenter = ({
                         {notification.title}
                       </p>
                       {!notification.read && (
-                        <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" aria-label="Unread" />
+                        <span
+                          className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary"
+                          aria-label="Unread"
+                        />
                       )}
                     </div>
                     {notification.description && (
@@ -133,7 +137,10 @@ const NotificationCenter = ({
                         {notification.description}
                       </p>
                     )}
-                    <time className="text-xs text-muted-foreground" dateTime={notification.timestamp}>
+                    <time
+                      className="text-xs text-muted-foreground"
+                      dateTime={notification.timestamp}
+                    >
                       {notification.timestamp}
                     </time>
                   </div>

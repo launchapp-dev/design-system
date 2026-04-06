@@ -5,7 +5,7 @@ export function useReducedMotion(): boolean {
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 }
 

@@ -1,8 +1,8 @@
-export { 
-  RealtimeTicker, 
-  realtimeTickerVariants, 
-  tickerValueVariants, 
-  tickerChangeVariants 
+export {
+  RealtimeTicker,
+  realtimeTickerVariants,
+  tickerValueVariants,
+  tickerChangeVariants,
 } from "./RealtimeTicker";
 export type { RealtimeTickerProps, TickerItem } from "./RealtimeTicker";
 export type { RealtimeTickerVariants } from "./RealtimeTicker";

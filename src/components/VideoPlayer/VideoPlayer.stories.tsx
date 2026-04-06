@@ -2,8 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { VideoPlayer } from "./index";
 
-const SAMPLE_VIDEO_URL = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-const SAMPLE_POSTER_URL = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg";
+const SAMPLE_VIDEO_URL =
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+const SAMPLE_POSTER_URL =
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg";
 
 const meta: Meta<typeof VideoPlayer> = {
   title: "Components/VideoPlayer",
@@ -182,13 +184,8 @@ export const InteractiveControls: Story = {
 
     return (
       <div className="flex flex-col gap-8">
-        <VideoPlayer
-          ref={playerRef}
-          size="md"
-          src={SAMPLE_VIDEO_URL}
-          poster={SAMPLE_POSTER_URL}
-        />
-        
+        <VideoPlayer ref={playerRef} size="md" src={SAMPLE_VIDEO_URL} poster={SAMPLE_POSTER_URL} />
+
         <div className="flex flex-wrap gap-4 items-center">
           <span className="text-sm font-medium text-foreground">External Controls:</span>
           <button
@@ -229,10 +226,7 @@ export const InteractiveControls: Story = {
 
 export const WithMultipleSources: Story = {
   render: () => (
-    <VideoPlayer
-      size="lg"
-      poster={SAMPLE_POSTER_URL}
-    >
+    <VideoPlayer size="lg" poster={SAMPLE_POSTER_URL}>
       <track kind="captions" label="English" srcLang="en" default />
       <source src={SAMPLE_VIDEO_URL} type="video/mp4" />
       <p className="text-white">

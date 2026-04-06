@@ -69,9 +69,7 @@ function ResetPasswordForm({
       <Card>
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Reset password</CardTitle>
-          <CardDescription>
-            Create a new password for your account.
-          </CardDescription>
+          <CardDescription>Create a new password for your account.</CardDescription>
         </CardHeader>
         <CardContent>
           {success ? (
@@ -83,10 +81,7 @@ function ResetPasswordForm({
             </div>
           ) : (
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4"
-              >
+              <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
                 {error && (
                   <div className="rounded-md bg-[hsl(var(--la-destructive)/0.1)] p-3 text-sm text-[hsl(var(--la-destructive))]">
                     {error}
@@ -130,11 +125,7 @@ function ResetPasswordForm({
                     </FormItem>
                   )}
                 />
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? "Updating password…" : "Update password"}
                 </Button>
               </form>

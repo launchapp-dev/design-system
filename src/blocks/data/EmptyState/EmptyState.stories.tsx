@@ -36,7 +36,8 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     title: "Welcome to your dashboard",
-    description: "You haven't created any reports yet. Start by creating your first report to see your data here.",
+    description:
+      "You haven't created any reports yet. Start by creating your first report to see your data here.",
     icon: emptyStateIcons.box,
     size: "lg",
     primaryAction: {

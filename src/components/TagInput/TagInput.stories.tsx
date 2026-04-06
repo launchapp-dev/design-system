@@ -51,8 +51,7 @@ export const Default: Story = {
             marginBottom: "8px",
           }}
         >
-          Type to search suggestions or create new tags. Press Enter or comma to
-          add.
+          Type to search suggestions or create new tags. Press Enter or comma to add.
         </p>
         <TagInput
           value={tags}
@@ -143,9 +142,7 @@ export const SizeVariants: Story = {
         }}
       >
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
-            Small (sm)
-          </p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Small (sm)</p>
           <TagInput
             value={sm}
             onChange={setSm}
@@ -167,9 +164,7 @@ export const SizeVariants: Story = {
           />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
-            Large (lg)
-          </p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Large (lg)</p>
           <TagInput
             value={lg}
             onChange={setLg}

@@ -116,7 +116,13 @@ export const SequentialVsBalanced: Story = {
       <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
         <div>
           <h3 style={{ marginBottom: "16px", fontWeight: 600 }}>Balanced Distribution (Default)</h3>
-          <p style={{ marginBottom: "12px", fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
+          <p
+            style={{
+              marginBottom: "12px",
+              fontSize: "0.875rem",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
             Items distributed to fill the shortest column first
           </p>
           <Masonry columns={3} gap="md" sequential={false}>
@@ -129,7 +135,13 @@ export const SequentialVsBalanced: Story = {
         </div>
         <div>
           <h3 style={{ marginBottom: "16px", fontWeight: 600 }}>Sequential Distribution</h3>
-          <p style={{ marginBottom: "12px", fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
+          <p
+            style={{
+              marginBottom: "12px",
+              fontSize: "0.875rem",
+              color: "hsl(var(--muted-foreground))",
+            }}
+          >
             Items placed in order: column 1, then 2, then 3, repeat
           </p>
           <Masonry columns={3} gap="md" sequential={true}>
@@ -154,9 +166,19 @@ export const CardVariants: Story = {
           <h3 style={{ marginBottom: "16px", fontWeight: 600 }}>Default Cards</h3>
           <Masonry columns={3} gap="md">
             {items.map((item) => (
-              <MasonryCard variant="default" key={item.id} style={{ minHeight: 120, padding: "16px" }}>
+              <MasonryCard
+                variant="default"
+                key={item.id}
+                style={{ minHeight: 120, padding: "16px" }}
+              >
                 <h4 style={{ fontWeight: 600 }}>{item.title}</h4>
-                <p style={{ fontSize: "0.75rem", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "hsl(var(--muted-foreground))",
+                    marginTop: "8px",
+                  }}
+                >
                   Default bordered card
                 </p>
               </MasonryCard>
@@ -167,9 +189,19 @@ export const CardVariants: Story = {
           <h3 style={{ marginBottom: "16px", fontWeight: 600 }}>Elevated Cards</h3>
           <Masonry columns={3} gap="md">
             {items.map((item) => (
-              <MasonryCard variant="elevated" key={item.id} style={{ minHeight: 120, padding: "16px" }}>
+              <MasonryCard
+                variant="elevated"
+                key={item.id}
+                style={{ minHeight: 120, padding: "16px" }}
+              >
                 <h4 style={{ fontWeight: 600 }}>{item.title}</h4>
-                <p style={{ fontSize: "0.75rem", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "hsl(var(--muted-foreground))",
+                    marginTop: "8px",
+                  }}
+                >
                   Elevated with shadow
                 </p>
               </MasonryCard>
@@ -180,9 +212,19 @@ export const CardVariants: Story = {
           <h3 style={{ marginBottom: "16px", fontWeight: 600 }}>Outlined Cards</h3>
           <Masonry columns={3} gap="md">
             {items.map((item) => (
-              <MasonryCard variant="outlined" key={item.id} style={{ minHeight: 120, padding: "16px" }}>
+              <MasonryCard
+                variant="outlined"
+                key={item.id}
+                style={{ minHeight: 120, padding: "16px" }}
+              >
                 <h4 style={{ fontWeight: 600 }}>{item.title}</h4>
-                <p style={{ fontSize: "0.75rem", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "hsl(var(--muted-foreground))",
+                    marginTop: "8px",
+                  }}
+                >
                   Outlined border style
                 </p>
               </MasonryCard>
@@ -223,7 +265,14 @@ export const PinterestStyle: Story = {
                 background: `linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1))`,
               }}
             >
-              <div style={{ height: pin.height - 60, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div
+                style={{
+                  height: pin.height - 60,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <span style={{ fontSize: "0.75rem", color: "hsl(var(--muted-foreground))" }}>
                   {pin.height}px
                 </span>
@@ -297,7 +346,13 @@ export const DarkMode: Story = {
         {items.map((item) => (
           <MasonryCard key={item.id} style={{ minHeight: item.height, padding: "16px" }}>
             <h4 style={{ fontWeight: 600 }}>{item.title}</h4>
-            <p style={{ fontSize: "0.75rem", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}>
+            <p
+              style={{
+                fontSize: "0.75rem",
+                color: "hsl(var(--muted-foreground))",
+                marginTop: "8px",
+              }}
+            >
               Dark mode styling with proper contrast
             </p>
           </MasonryCard>
@@ -317,7 +372,13 @@ export const SingleColumn: Story = {
           {items.map((item) => (
             <MasonryCard key={item.id} style={{ padding: "16px" }}>
               <h4 style={{ fontWeight: 600 }}>{item.title}</h4>
-              <p style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}>
+              <p
+                style={{
+                  fontSize: "0.875rem",
+                  color: "hsl(var(--muted-foreground))",
+                  marginTop: "8px",
+                }}
+              >
                 Single column layout for mobile or narrow views
               </p>
             </MasonryCard>
@@ -337,17 +398,40 @@ export const WithCustomContent: Story = {
           Track your key performance indicators with real-time data visualization.
         </p>
         <div style={{ marginTop: "16px", display: "flex", gap: "8px" }}>
-          <span style={{ padding: "4px 8px", background: "hsl(var(--primary) / 0.1)", borderRadius: "4px", fontSize: "0.75rem" }}>
+          <span
+            style={{
+              padding: "4px 8px",
+              background: "hsl(var(--primary) / 0.1)",
+              borderRadius: "4px",
+              fontSize: "0.75rem",
+            }}
+          >
             +12%
           </span>
-          <span style={{ padding: "4px 8px", background: "hsl(var(--muted))", borderRadius: "4px", fontSize: "0.75rem" }}>
+          <span
+            style={{
+              padding: "4px 8px",
+              background: "hsl(var(--muted))",
+              borderRadius: "4px",
+              fontSize: "0.75rem",
+            }}
+          >
             Weekly
           </span>
         </div>
       </MasonryCard>
-      
-      <MasonryCard style={{ padding: "20px", minHeight: 280, background: "linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1))" }}>
-        <h3 style={{ fontWeight: 700, fontSize: "1.125rem", marginBottom: "8px" }}>🚀 Quick Start</h3>
+
+      <MasonryCard
+        style={{
+          padding: "20px",
+          minHeight: 280,
+          background:
+            "linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1))",
+        }}
+      >
+        <h3 style={{ fontWeight: 700, fontSize: "1.125rem", marginBottom: "8px" }}>
+          🚀 Quick Start
+        </h3>
         <p style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", lineHeight: 1.6 }}>
           Get up and running in minutes with our comprehensive documentation and starter templates.
         </p>
@@ -366,13 +450,17 @@ export const WithCustomContent: Story = {
           Start Building →
         </button>
       </MasonryCard>
-      
+
       <MasonryCard style={{ padding: "20px", minHeight: 160 }}>
-        <h3 style={{ fontWeight: 700, fontSize: "1.125rem", marginBottom: "8px" }}>⚡ Performance</h3>
+        <h3 style={{ fontWeight: 700, fontSize: "1.125rem", marginBottom: "8px" }}>
+          ⚡ Performance
+        </h3>
         <div style={{ fontSize: "2rem", fontWeight: 700, color: "hsl(var(--primary))" }}>99.9%</div>
-        <p style={{ fontSize: "0.75rem", color: "hsl(var(--muted-foreground))" }}>Uptime guaranteed</p>
+        <p style={{ fontSize: "0.75rem", color: "hsl(var(--muted-foreground))" }}>
+          Uptime guaranteed
+        </p>
       </MasonryCard>
-      
+
       <MasonryCard style={{ padding: "20px", minHeight: 220 }}>
         <h3 style={{ fontWeight: 700, fontSize: "1.125rem", marginBottom: "12px" }}>👥 Team</h3>
         <div style={{ display: "flex", gap: "-8px" }}>
@@ -397,23 +485,36 @@ export const WithCustomContent: Story = {
             </div>
           ))}
         </div>
-        <p style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", marginTop: "12px" }}>
+        <p
+          style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", marginTop: "12px" }}
+        >
           8 team members active
         </p>
       </MasonryCard>
-      
+
       <MasonryCard style={{ padding: "20px", minHeight: 180 }}>
         <h3 style={{ fontWeight: 700, fontSize: "1.125rem", marginBottom: "8px" }}>📦 Resources</h3>
-        <ul style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", listStyle: "none", padding: 0 }}>
+        <ul
+          style={{
+            fontSize: "0.875rem",
+            color: "hsl(var(--muted-foreground))",
+            listStyle: "none",
+            padding: 0,
+          }}
+        >
           <li style={{ padding: "4px 0" }}>→ Documentation</li>
           <li style={{ padding: "4px 0" }}>→ API Reference</li>
           <li style={{ padding: "4px 0" }}>→ Community</li>
         </ul>
       </MasonryCard>
-      
-      <MasonryCard style={{ padding: "20px", minHeight: 140, background: "hsl(var(--accent) / 0.3)" }}>
+
+      <MasonryCard
+        style={{ padding: "20px", minHeight: 140, background: "hsl(var(--accent) / 0.3)" }}
+      >
         <h3 style={{ fontWeight: 700, fontSize: "1rem" }}>💡 Tip of the Day</h3>
-        <p style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}>
+        <p
+          style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}
+        >
           Use keyboard shortcuts to navigate faster!
         </p>
       </MasonryCard>

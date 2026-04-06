@@ -177,9 +177,12 @@ export const EdgeCases: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "360px" }}>
       <Card>
         <CardHeader>
-          <CardTitle>A very long card title that may wrap across multiple lines in a constrained layout</CardTitle>
+          <CardTitle>
+            A very long card title that may wrap across multiple lines in a constrained layout
+          </CardTitle>
           <CardDescription>
-            A description that is also quite long and tests how the card handles multiline text gracefully in the header sub-component.
+            A description that is also quite long and tests how the card handles multiline text
+            gracefully in the header sub-component.
           </CardDescription>
         </CardHeader>
         <CardContent>

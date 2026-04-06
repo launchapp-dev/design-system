@@ -17,7 +17,8 @@ const mockFiles: FileGridItem[] = [
     name: "Dashboard Mockup.png",
     size: 1_200_000,
     type: "image",
-    thumbnailUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=200&h=200&fit=crop",
+    thumbnailUrl:
+      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=200&h=200&fit=crop",
     modifiedAt: "5 hours ago",
     selected: false,
   },
@@ -59,7 +60,8 @@ const mockFiles: FileGridItem[] = [
     name: "Avatar.jpg",
     size: 340_000,
     type: "image",
-    thumbnailUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
+    thumbnailUrl:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
     modifiedAt: "1 week ago",
     selected: false,
   },
@@ -88,9 +90,7 @@ const InteractiveTemplate = (args: React.ComponentProps<typeof FileGrid>) => {
   const [files, setFiles] = React.useState(args.files);
 
   const handleSelect = (id: string, selected: boolean) => {
-    setFiles((prev) =>
-      prev.map((f) => (f.id === id ? { ...f, selected } : f))
-    );
+    setFiles((prev) => prev.map((f) => (f.id === id ? { ...f, selected } : f)));
   };
 
   const handleSelectAll = (selected: boolean) => {
@@ -121,20 +121,16 @@ export const Default: Story = {
 export const WithSelection: Story = {
   render: () => {
     const [files, setFiles] = React.useState<FileGridItem[]>(
-      mockFiles.map((f, i) => ({ ...f, selected: i < 3 }))
+      mockFiles.map((f, i) => ({ ...f, selected: i < 3 })),
     );
 
     return (
       <FileGrid
         files={files}
         onFileSelect={(id, selected) =>
-          setFiles((prev) =>
-            prev.map((f) => (f.id === id ? { ...f, selected } : f))
-          )
+          setFiles((prev) => prev.map((f) => (f.id === id ? { ...f, selected } : f)))
         }
-        onSelectAll={(selected) =>
-          setFiles((prev) => prev.map((f) => ({ ...f, selected })))
-        }
+        onSelectAll={(selected) => setFiles((prev) => prev.map((f) => ({ ...f, selected })))}
         onOpen={(id) => console.log("Open:", id)}
         onDownload={(id) => console.log("Download:", id)}
       />
@@ -208,7 +204,10 @@ export const DarkMode: Story = {
   },
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "hsl(240 10% 3.9%)", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),

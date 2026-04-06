@@ -35,7 +35,9 @@ export const Default: Story = {
 
 export const Multiline: Story = {
   render: () => {
-    const [value, setValue] = React.useState("This is a multiline editable field.\nPress Escape to cancel or click away to save.");
+    const [value, setValue] = React.useState(
+      "This is a multiline editable field.\nPress Escape to cancel or click away to save.",
+    );
     return (
       <div style={{ padding: "40px", maxWidth: "400px" }}>
         <p style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))", marginBottom: "8px" }}>
@@ -72,7 +74,15 @@ export const Sizes: Story = {
     const [md, setMd] = React.useState("Medium text");
     const [lg, setLg] = React.useState("Large text");
     return (
-      <div style={{ padding: "40px", maxWidth: "400px", display: "flex", flexDirection: "column", gap: "12px" }}>
+      <div
+        style={{
+          padding: "40px",
+          maxWidth: "400px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+        }}
+      >
         <InlineEditable value={sm} onChange={setSm} size="sm" />
         <InlineEditable value={md} onChange={setMd} size="md" />
         <InlineEditable value={lg} onChange={setLg} size="lg" />

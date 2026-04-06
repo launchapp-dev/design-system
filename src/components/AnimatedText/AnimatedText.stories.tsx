@@ -92,12 +92,7 @@ export const AllAnimations: Story = {
       </div>
       <div>
         <p className="text-sm text-muted-foreground mb-2">Letter Reveal</p>
-        <AnimatedText
-          text="Letter reveal"
-          animation="letterReveal"
-          size="md"
-          staggerDelay={30}
-        />
+        <AnimatedText text="Letter reveal" animation="letterReveal" size="md" staggerDelay={30} />
       </div>
       <div>
         <p className="text-sm text-muted-foreground mb-2">Word Reveal</p>

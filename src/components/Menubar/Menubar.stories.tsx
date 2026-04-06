@@ -212,7 +212,8 @@ export const Interactive: Story = {
 
         <p style={{ fontSize: "13px", color: "hsl(var(--muted-foreground))" }}>
           {lastAction ? `Last action: ${lastAction} · ` : ""}
-          Bookmarks: {bookmarks ? "on" : "off"} · Full URLs: {fullUrls ? "on" : "off"} · Theme: {theme}
+          Bookmarks: {bookmarks ? "on" : "off"} · Full URLs: {fullUrls ? "on" : "off"} · Theme:{" "}
+          {theme}
         </p>
       </div>
     );
@@ -257,14 +258,18 @@ export const EdgeCases: Story = {
   render: () => (
     <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Inset items</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Inset items
+        </p>
         <MenubarRoot>
           <MenubarMenu>
             <MenubarTrigger>Menu</MenubarTrigger>
             <MenubarContent>
               <MenubarLabel inset>Section</MenubarLabel>
               <MenubarItem inset>Inset Item</MenubarItem>
-              <MenubarItem inset disabled>Inset Disabled</MenubarItem>
+              <MenubarItem inset disabled>
+                Inset Disabled
+              </MenubarItem>
               <MenubarSeparator />
               <MenubarItem inset>Another Item</MenubarItem>
             </MenubarContent>
@@ -272,7 +277,9 @@ export const EdgeCases: Story = {
         </MenubarRoot>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Nested sub-menus</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Nested sub-menus
+        </p>
         <MenubarRoot>
           <MenubarMenu>
             <MenubarTrigger>Options</MenubarTrigger>

@@ -49,7 +49,11 @@ export const Centered: Story = {
       headline="Build faster with our design system"
       subheadline="A comprehensive library of accessible, composable components built for modern web applications."
       primaryAction={<Button size="lg">Get started</Button>}
-      secondaryAction={<Button size="lg" variant="outline">Learn more</Button>}
+      secondaryAction={
+        <Button size="lg" variant="outline">
+          Learn more
+        </Button>
+      }
     />
   ),
 };
@@ -94,7 +98,11 @@ export const Gradient: Story = {
       headline="Build faster with gradient style"
       subheadline="A beautiful gradient background that makes your hero section stand out."
       primaryAction={<Button size="lg">Get started</Button>}
-      secondaryAction={<Button size="lg" variant="outline">Learn more</Button>}
+      secondaryAction={
+        <Button size="lg" variant="outline">
+          Learn more
+        </Button>
+      }
       gradient={{
         from: "from-primary/20",
         to: "to-background",
@@ -192,7 +200,11 @@ export const Mobile: Story = {
       headline="Build faster with our design system"
       subheadline="A comprehensive library of accessible, composable components."
       primaryAction={<Button size="lg">Get started</Button>}
-      secondaryAction={<Button size="lg" variant="outline">Learn more</Button>}
+      secondaryAction={
+        <Button size="lg" variant="outline">
+          Learn more
+        </Button>
+      }
     />
   ),
 };

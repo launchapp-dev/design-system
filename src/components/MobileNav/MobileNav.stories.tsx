@@ -112,8 +112,8 @@ export const MobileOnly: Story = {
       </div>
       <div className="p-4">
         <p className="text-sm text-gray-600">
-          The menu button is only visible on mobile screens (md:hidden breakpoint).
-          Resize your browser to see it appear and disappear.
+          The menu button is only visible on mobile screens (md:hidden breakpoint). Resize your
+          browser to see it appear and disappear.
         </p>
       </div>
     </div>
@@ -162,8 +162,8 @@ export const ExpandableMenus: Story = {
     <div className="space-y-4">
       <h3 className="text-sm font-semibold">Expandable Menu Items</h3>
       <p className="text-sm text-gray-600">
-        Click on menu items with nested content to expand/collapse them. The chevron icon
-        rotates to indicate the expanded state.
+        Click on menu items with nested content to expand/collapse them. The chevron icon rotates to
+        indicate the expanded state.
       </p>
       <MobileNav items={nestedItems} />
     </div>
@@ -208,7 +208,8 @@ export const LongMenuList: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Demonstrates how the mobile nav handles a larger list of menu items with scrolling.",
+        story:
+          "Demonstrates how the mobile nav handles a larger list of menu items with scrolling.",
       },
     },
   },

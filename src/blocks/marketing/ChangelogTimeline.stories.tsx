@@ -125,10 +125,7 @@ export const LimitedEntries: Story = {
 export const NoSubscribeButton: Story = {
   render: () => (
     <div style={{ maxWidth: 720 }}>
-      <ChangelogTimeline
-        entries={ENTRIES.slice(0, 2)}
-        showSubscribe={false}
-      />
+      <ChangelogTimeline entries={ENTRIES.slice(0, 2)} showSubscribe={false} />
     </div>
   ),
 };
@@ -176,10 +173,7 @@ export const Mobile: Story = {
     viewport: { defaultViewport: "mobile1" },
   },
   render: () => (
-    <ChangelogTimeline
-      entries={ENTRIES.slice(0, 2)}
-      onSubscribe={() => console.log("Subscribe")}
-    />
+    <ChangelogTimeline entries={ENTRIES.slice(0, 2)} onSubscribe={() => console.log("Subscribe")} />
   ),
 };
 

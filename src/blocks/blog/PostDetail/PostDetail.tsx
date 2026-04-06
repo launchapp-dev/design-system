@@ -41,7 +41,7 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
       tableOfContents = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     const [readingProgress, setReadingProgress] = React.useState(0);
 
@@ -97,9 +97,7 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
                 </div>
               </header>
 
-              <div className="prose prose-neutral dark:prose-invert max-w-none">
-                {content}
-              </div>
+              <div className="prose prose-neutral dark:prose-invert max-w-none">{content}</div>
 
               {tags.length > 0 && (
                 <div className="mt-10 flex flex-wrap gap-2">
@@ -119,7 +117,11 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
                       {authorAvatarSrc && <AvatarImage src={authorAvatarSrc} alt={author} />}
                       <AvatarFallback>
                         {authorAvatarFallback ??
-                          author.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                          author
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")
+                            .slice(0, 2)}
                       </AvatarFallback>
                     </Avatar>
                     <div>
@@ -149,7 +151,7 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
                             "block text-sm text-muted-foreground hover:text-foreground transition-colors",
                             item.level === 2 && "pl-0",
                             item.level === 3 && "pl-3",
-                            item.level === 4 && "pl-6"
+                            item.level === 4 && "pl-6",
                           )}
                         >
                           {item.title}
@@ -164,7 +166,7 @@ const PostDetail = React.forwardRef<HTMLDivElement, PostDetailProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 PostDetail.displayName = "PostDetail";

@@ -253,7 +253,8 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
   const solarized: CommunityTheme = {
     id: "solarized",
     name: "Solarized",
-    description: "Precision colors for machines and people. A carefully balanced color palette for light and dark modes.",
+    description:
+      "Precision colors for machines and people. A carefully balanced color palette for light and dark modes.",
     author: {
       name: "Ethan Schoonover",
       url: "https://ethanschoonover.com/solarized/",
@@ -371,7 +372,8 @@ export function getCommunityThemeRegistry(): CommunityThemeEntry[] {
   const monokai: CommunityTheme = {
     id: "monokai",
     name: "Monokai",
-    description: "A vibrant dark theme with bright accent colors. Inspired by the popular Monokai color scheme.",
+    description:
+      "A vibrant dark theme with bright accent colors. Inspired by the popular Monokai color scheme.",
     author: {
       name: "Wimer Hazenberg",
       url: "https://monokai.pro/",

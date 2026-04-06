@@ -1,6 +1,12 @@
 import * as React from "react";
 import { cn } from "../../../lib/utils";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../../components/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../../../components/Card";
 import { Badge } from "../../../components/Badge";
 import { Button } from "../../../components/Button";
 
@@ -43,7 +49,7 @@ const PostList = React.forwardRef<HTMLDivElement, PostListProps>(
       onPageChange,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
@@ -122,10 +128,7 @@ const PostList = React.forwardRef<HTMLDivElement, PostListProps>(
           )}
 
           {totalPages > 1 && (
-            <nav
-              className="mt-10 flex items-center justify-center gap-2"
-              aria-label="Pagination"
-            >
+            <nav className="mt-10 flex items-center justify-center gap-2" aria-label="Pagination">
               <Button
                 variant="outline"
                 size="sm"
@@ -133,8 +136,19 @@ const PostList = React.forwardRef<HTMLDivElement, PostListProps>(
                 disabled={currentPage <= 1}
                 aria-label="Previous page"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
                 Previous
               </Button>
@@ -149,8 +163,19 @@ const PostList = React.forwardRef<HTMLDivElement, PostListProps>(
                 aria-label="Next page"
               >
                 Next
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Button>
             </nav>
@@ -158,7 +183,7 @@ const PostList = React.forwardRef<HTMLDivElement, PostListProps>(
         </section>
       </div>
     );
-  }
+  },
 );
 
 PostList.displayName = "PostList";

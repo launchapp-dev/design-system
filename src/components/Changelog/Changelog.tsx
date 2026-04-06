@@ -33,20 +33,15 @@ const changelogTagVariants = cva(
   {
     variants: {
       tag: {
-        breaking:
-          "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
-        feature:
-          "bg-[hsl(var(--la-primary)/0.1)] text-[hsl(var(--la-primary))]",
+        breaking: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+        feature: "bg-[hsl(var(--la-primary)/0.1)] text-[hsl(var(--la-primary))]",
         fix: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-        improvement:
-          "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-        security:
-          "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
-        deprecation:
-          "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))]",
+        improvement: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+        security: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+        deprecation: "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))]",
       },
     },
-  }
+  },
 );
 
 const TAG_LABELS: Record<ChangelogTag, string> = {
@@ -83,26 +78,22 @@ function ChangelogEntryCard({ entry }: { entry: ChangelogEntry }) {
           <span className="inline-flex items-center rounded-md border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] px-2.5 py-0.5 text-xs font-mono font-semibold text-[hsl(var(--la-foreground))]">
             {entry.version}
           </span>
-          <h3 className="text-sm font-semibold text-[hsl(var(--la-foreground))]">
-            {entry.title}
-          </h3>
+          <h3 className="text-sm font-semibold text-[hsl(var(--la-foreground))]">{entry.title}</h3>
         </div>
         {entry.description && (
-          <p className="mb-3 text-sm text-[hsl(var(--la-muted-foreground))]">
-            {entry.description}
-          </p>
+          <p className="mb-3 text-sm text-[hsl(var(--la-muted-foreground))]">{entry.description}</p>
         )}
         <ul className="space-y-1.5">
           {entry.changes.map((change, i) => (
             <li key={i} className="flex items-start gap-2 text-sm">
               {change.tag && (
-                <span className={cn(changelogTagVariants({ tag: change.tag }), "mt-0.5 flex-shrink-0")}>
+                <span
+                  className={cn(changelogTagVariants({ tag: change.tag }), "mt-0.5 flex-shrink-0")}
+                >
                   {TAG_LABELS[change.tag]}
                 </span>
               )}
-              <span className="text-[hsl(var(--la-muted-foreground))]">
-                {change.text}
-              </span>
+              <span className="text-[hsl(var(--la-muted-foreground))]">{change.text}</span>
             </li>
           ))}
         </ul>
@@ -111,21 +102,12 @@ function ChangelogEntryCard({ entry }: { entry: ChangelogEntry }) {
   );
 }
 
-function Changelog({
-  className,
-  entries,
-  title = "Changelog",
-  ...props
-}: ChangelogProps) {
+function Changelog({ className, entries, title = "Changelog", ...props }: ChangelogProps) {
   const grouped = groupByDate(entries);
 
   return (
     <div className={cn("space-y-8", className)} {...props}>
-      {title && (
-        <h2 className="text-2xl font-bold text-[hsl(var(--la-foreground))]">
-          {title}
-        </h2>
-      )}
+      {title && <h2 className="text-2xl font-bold text-[hsl(var(--la-foreground))]">{title}</h2>}
       {Array.from(grouped.entries()).map(([date, dateEntries]) => (
         <section key={date}>
           <div className="flex items-center gap-3 mb-4">

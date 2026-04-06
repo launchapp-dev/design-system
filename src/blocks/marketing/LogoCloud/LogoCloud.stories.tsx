@@ -58,32 +58,17 @@ export const Default: Story = {
 
 export const Simple: Story = {
   args: { variant: "simple" },
-  render: () => (
-    <LogoCloud
-      headline="Our partners"
-      logos={sampleLogos}
-    />
-  ),
+  render: () => <LogoCloud headline="Our partners" logos={sampleLogos} />,
 };
 
 export const Grid: Story = {
   args: { variant: "grid" },
-  render: () => (
-    <LogoCloud
-      headline="Grid layout"
-      logos={sampleLogos}
-    />
-  ),
+  render: () => <LogoCloud headline="Grid layout" logos={sampleLogos} />,
 };
 
 export const Stacked: Story = {
   args: { variant: "stacked" },
-  render: () => (
-    <LogoCloud
-      headline="Stacked layout"
-      logos={sampleLogos.slice(0, 4)}
-    />
-  ),
+  render: () => <LogoCloud headline="Stacked layout" logos={sampleLogos.slice(0, 4)} />,
 };
 
 export const Marquee: Story = {
@@ -155,24 +140,14 @@ export const Mobile: Story = {
   parameters: {
     viewport: { defaultViewport: "mobile1" },
   },
-  render: () => (
-    <LogoCloud
-      headline="Trusted by industry leaders"
-      logos={sampleLogos}
-    />
-  ),
+  render: () => <LogoCloud headline="Trusted by industry leaders" logos={sampleLogos} />,
 };
 
 export const Tablet: Story = {
   parameters: {
     viewport: { defaultViewport: "tablet" },
   },
-  render: () => (
-    <LogoCloud
-      headline="Trusted by industry leaders"
-      logos={sampleLogos}
-    />
-  ),
+  render: () => <LogoCloud headline="Trusted by industry leaders" logos={sampleLogos} />,
 };
 
 export const WithLinks: Story = {
@@ -191,10 +166,5 @@ export const WithLinks: Story = {
 };
 
 export const SixLogos: Story = {
-  render: () => (
-    <LogoCloud
-      headline="Fewer logos"
-      logos={sampleLogos.slice(0, 6)}
-    />
-  ),
+  render: () => <LogoCloud headline="Fewer logos" logos={sampleLogos.slice(0, 6)} />,
 };

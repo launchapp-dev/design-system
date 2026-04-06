@@ -49,13 +49,13 @@ function SystemSettingsPanelInner(
     saving = false,
     className,
   }: SystemSettingsPanelProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const [configValues, setConfigValues] = React.useState<Record<string, string>>(() =>
-    Object.fromEntries(appConfig.map((f) => [f.id, f.value]))
+    Object.fromEntries(appConfig.map((f) => [f.id, f.value])),
   );
   const [flagStates, setFlagStates] = React.useState<Record<string, boolean>>(() =>
-    Object.fromEntries(featureFlags.map((f) => [f.id, f.enabled]))
+    Object.fromEntries(featureFlags.map((f) => [f.id, f.enabled])),
   );
   const [configDirty, setConfigDirty] = React.useState(false);
   const [flagsDirty, setFlagsDirty] = React.useState(false);
@@ -137,11 +137,7 @@ function SystemSettingsPanelInner(
                 Reset
               </Button>
             )}
-            <Button
-              size="sm"
-              onClick={handleSaveConfig}
-              disabled={!configDirty || saving}
-            >
+            <Button size="sm" onClick={handleSaveConfig} disabled={!configDirty || saving}>
               Save Config
             </Button>
           </div>
@@ -154,9 +150,7 @@ function SystemSettingsPanelInner(
           <Card>
             <CardHeader>
               <CardTitle>Feature Flags</CardTitle>
-              <CardDescription>
-                Toggle features on or off for {appName}.
-              </CardDescription>
+              <CardDescription>Toggle features on or off for {appName}.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {featureFlags.map((flag) => (
@@ -184,11 +178,7 @@ function SystemSettingsPanelInner(
                   Reset
                 </Button>
               )}
-              <Button
-                size="sm"
-                onClick={handleSaveFlags}
-                disabled={!flagsDirty || saving}
-              >
+              <Button size="sm" onClick={handleSaveFlags} disabled={!flagsDirty || saving}>
                 Save Flags
               </Button>
             </div>
@@ -200,7 +190,8 @@ function SystemSettingsPanelInner(
 }
 
 export const SystemSettingsPanel = React.forwardRef(SystemSettingsPanelInner) as (
-  props: SystemSettingsPanelProps & { ref?: React.ForwardedRef<HTMLDivElement> }
+  props: SystemSettingsPanelProps & { ref?: React.ForwardedRef<HTMLDivElement> },
 ) => React.ReactElement;
 
-(SystemSettingsPanel as React.ForwardRefExoticComponent<SystemSettingsPanelProps>).displayName = "SystemSettingsPanel";
+(SystemSettingsPanel as React.ForwardRefExoticComponent<SystemSettingsPanelProps>).displayName =
+  "SystemSettingsPanel";

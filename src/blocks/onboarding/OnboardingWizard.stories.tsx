@@ -87,9 +87,7 @@ const defaultSteps = [
     content: (
       <div className="text-center py-8">
         <h3 className="text-lg font-semibold">Ready to go!</h3>
-        <p className="text-muted-foreground mt-2">
-          Click complete to finish your setup.
-        </p>
+        <p className="text-muted-foreground mt-2">Click complete to finish your setup.</p>
       </div>
     ),
   },
@@ -158,9 +156,7 @@ const interactiveSteps = [
     content: (
       <div className="text-center py-8">
         <h3 className="text-lg font-semibold">Welcome to Our App!</h3>
-        <p className="text-muted-foreground mt-2">
-          Let's get you set up in a few quick steps.
-        </p>
+        <p className="text-muted-foreground mt-2">Let's get you set up in a few quick steps.</p>
         <Button className="mt-4">Get Started</Button>
       </div>
     ),
@@ -192,9 +188,7 @@ const interactiveSteps = [
     title: "Invite Team",
     content: (
       <div className="space-y-4">
-        <p className="text-sm text-muted-foreground">
-          Invite your team members to collaborate.
-        </p>
+        <p className="text-sm text-muted-foreground">Invite your team members to collaborate.</p>
         <div className="space-y-2">
           <Input placeholder="Enter email address" />
           <Button>Send Invitation</Button>

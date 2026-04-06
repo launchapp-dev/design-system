@@ -49,16 +49,10 @@ function MobileNav({ items, className, triggerClassName, contentClassName }: Mob
       </SheetTrigger>
       <SheetContent side="left" className={cn("w-[280px] md:hidden", contentClassName)}>
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-        <SheetDescription className="sr-only">
-          Navigate through the application
-        </SheetDescription>
+        <SheetDescription className="sr-only">Navigate through the application</SheetDescription>
         <nav className={cn("flex flex-col gap-1 mt-8", className)}>
           {items.map((item, index) => (
-            <MobileNavItemComponent
-              key={index}
-              item={item}
-              onNavigate={() => setOpen(false)}
-            />
+            <MobileNavItemComponent key={index} item={item} onNavigate={() => setOpen(false)} />
           ))}
         </nav>
       </SheetContent>
@@ -100,7 +94,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
           "hover:bg-accent hover:text-accent-foreground",
           "focus:bg-accent focus:text-accent-foreground focus:outline-none",
           "min-h-[44px]",
-          depth > 0 && "pl-8"
+          depth > 0 && "pl-8",
         )}
       >
         {item.label}
@@ -117,7 +111,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
           "hover:bg-accent hover:text-accent-foreground",
           "focus:bg-accent focus:text-accent-foreground focus:outline-none",
           "min-h-[44px]",
-          depth > 0 && "pl-8"
+          depth > 0 && "pl-8",
         )}
         aria-expanded={hasChildren ? expanded : undefined}
         aria-controls={hasChildren ? contentId : undefined}
@@ -134,10 +128,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className={cn(
-              "transition-transform duration-200",
-              expanded && "rotate-180"
-            )}
+            className={cn("transition-transform duration-200", expanded && "rotate-180")}
             aria-hidden="true"
           >
             <path d="m6 9 6 6 6-6" />

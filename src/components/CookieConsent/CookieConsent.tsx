@@ -68,8 +68,8 @@ function CookieConsent({
   title = "Cookie Preferences",
   description = "We use cookies to enhance your browsing experience and analyse our traffic. Please choose which cookies you are happy for us to use.",
 }: CookieConsentProps) {
-  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(
-    () => Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
+  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(() =>
+    Object.fromEntries(categories.map((c) => [c.id, c.enabled])),
   );
 
   React.useEffect(() => {
@@ -88,9 +88,7 @@ function CookieConsent({
   }
 
   function handleRejectAll() {
-    const required = Object.fromEntries(
-      categories.map((c) => [c.id, c.required === true])
-    );
+    const required = Object.fromEntries(categories.map((c) => [c.id, c.required === true]));
     setPreferences(required);
     onRejectAll?.();
     onOpenChange?.(false);
@@ -108,7 +106,7 @@ function CookieConsent({
           className={cn(
             "fixed inset-0 z-50 bg-black/50",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
-            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           )}
         />
         <DialogPrimitive.Content
@@ -121,7 +119,7 @@ function CookieConsent({
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
             "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
-            "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
+            "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
           )}
         >
           <DialogPrimitive.Title className="text-lg font-semibold text-[hsl(var(--la-foreground))]">
@@ -164,13 +162,13 @@ function CookieConsent({
                     "focus-visible:ring-offset-[hsl(var(--la-background))]",
                     "disabled:cursor-not-allowed disabled:opacity-50",
                     "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                    "data-[state=unchecked]:bg-[hsl(var(--la-input))]"
+                    "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
                   )}
                 >
                   <SwitchPrimitive.Thumb
                     className={cn(
                       "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform",
-                      "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                      "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
                     )}
                   />
                 </SwitchPrimitive.Root>
@@ -193,7 +191,7 @@ function CookieConsent({
               "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-[hsl(var(--la-background))]",
               "transition-opacity hover:opacity-100",
               "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2",
-              "disabled:pointer-events-none"
+              "disabled:pointer-events-none",
             )}
           >
             <svg

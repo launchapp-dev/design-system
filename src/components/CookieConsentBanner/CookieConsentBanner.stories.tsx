@@ -83,9 +83,7 @@ export const Default: Story = {
           onRejectAll={() => {
             args.onRejectAll?.();
             setSaved(
-              Object.fromEntries(
-                BANNER_DEFAULT_CATEGORIES.map((c) => [c.id, c.required === true])
-              )
+              Object.fromEntries(BANNER_DEFAULT_CATEGORIES.map((c) => [c.id, c.required === true])),
             );
           }}
           onCustomize={(prefs) => {

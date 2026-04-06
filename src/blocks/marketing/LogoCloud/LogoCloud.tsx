@@ -52,13 +52,9 @@ function LogoCloud({
         {(headline || subheadline) && (
           <div className="mb-8 text-center space-y-3 px-4">
             {headline && (
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                {headline}
-              </h2>
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">{headline}</h2>
             )}
-            {subheadline && (
-              <p className="text-base text-muted-foreground">{subheadline}</p>
-            )}
+            {subheadline && <p className="text-base text-muted-foreground">{subheadline}</p>}
           </div>
         )}
         <div
@@ -79,10 +75,7 @@ function LogoCloud({
             />
           )}
           <div
-            className={cn(
-              "flex gap-16 w-max",
-              !isMarqueePaused && "animate-marquee-left"
-            )}
+            className={cn("flex gap-16 w-max", !isMarqueePaused && "animate-marquee-left")}
             style={
               {
                 "--marquee-duration": `${marqueeSpeed}s`,
@@ -97,11 +90,7 @@ function LogoCloud({
                 {logo.icon ? (
                   logo.icon
                 ) : logo.src ? (
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-8 w-auto object-contain"
-                  />
+                  <img src={logo.src} alt={logo.name} className="h-8 w-auto object-contain" />
                 ) : (
                   <span className="text-lg font-semibold text-foreground whitespace-nowrap">
                     {logo.name}
@@ -121,13 +110,9 @@ function LogoCloud({
         {(headline || subheadline) && (
           <div className="mb-8 text-center space-y-3 px-4">
             {headline && (
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                {headline}
-              </h2>
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">{headline}</h2>
             )}
-            {subheadline && (
-              <p className="text-base text-muted-foreground">{subheadline}</p>
-            )}
+            {subheadline && <p className="text-base text-muted-foreground">{subheadline}</p>}
           </div>
         )}
         <div className="mx-auto max-w-5xl">
@@ -147,29 +132,17 @@ function LogoCloud({
                     {logo.icon ? (
                       logo.icon
                     ) : logo.src ? (
-                      <img
-                        src={logo.src}
-                        alt={logo.name}
-                        className="h-8 w-auto object-contain"
-                      />
+                      <img src={logo.src} alt={logo.name} className="h-8 w-auto object-contain" />
                     ) : (
-                      <span className="text-base font-semibold text-foreground">
-                        {logo.name}
-                      </span>
+                      <span className="text-base font-semibold text-foreground">{logo.name}</span>
                     )}
                   </a>
                 ) : logo.icon ? (
                   logo.icon
                 ) : logo.src ? (
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-8 w-auto object-contain"
-                  />
+                  <img src={logo.src} alt={logo.name} className="h-8 w-auto object-contain" />
                 ) : (
-                  <span className="text-base font-semibold text-foreground">
-                    {logo.name}
-                  </span>
+                  <span className="text-base font-semibold text-foreground">{logo.name}</span>
                 )}
               </div>
             ))}
@@ -185,13 +158,9 @@ function LogoCloud({
         {(headline || subheadline) && (
           <div className="mb-8 text-center space-y-3 px-4">
             {headline && (
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                {headline}
-              </h2>
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">{headline}</h2>
             )}
-            {subheadline && (
-              <p className="text-base text-muted-foreground">{subheadline}</p>
-            )}
+            {subheadline && <p className="text-base text-muted-foreground">{subheadline}</p>}
           </div>
         )}
         <div className="flex flex-col items-center gap-4">
@@ -203,15 +172,9 @@ function LogoCloud({
               {logo.icon ? (
                 logo.icon
               ) : logo.src ? (
-                <img
-                  src={logo.src}
-                  alt={logo.name}
-                  className="h-8 w-auto object-contain"
-                />
+                <img src={logo.src} alt={logo.name} className="h-8 w-auto object-contain" />
               ) : (
-                <span className="text-base font-semibold text-foreground">
-                  {logo.name}
-                </span>
+                <span className="text-base font-semibold text-foreground">{logo.name}</span>
               )}
             </div>
           ))}
@@ -225,13 +188,9 @@ function LogoCloud({
       {(headline || subheadline) && (
         <div className="mb-8 text-center space-y-3 px-4">
           {headline && (
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              {headline}
-            </h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">{headline}</h2>
           )}
-          {subheadline && (
-            <p className="text-base text-muted-foreground">{subheadline}</p>
-          )}
+          {subheadline && <p className="text-base text-muted-foreground">{subheadline}</p>}
         </div>
       )}
       <div className="flex flex-wrap items-center justify-center gap-8">
@@ -241,20 +200,11 @@ function LogoCloud({
             className="opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
           >
             {logo.href ? (
-              <a
-                href={logo.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={logo.name}
-              >
+              <a href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={logo.name}>
                 {logo.icon ? (
                   logo.icon
                 ) : logo.src ? (
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-8 w-auto object-contain"
-                  />
+                  <img src={logo.src} alt={logo.name} className="h-8 w-auto object-contain" />
                 ) : (
                   <span className="text-base font-semibold text-foreground whitespace-nowrap">
                     {logo.name}
@@ -264,11 +214,7 @@ function LogoCloud({
             ) : logo.icon ? (
               logo.icon
             ) : logo.src ? (
-              <img
-                src={logo.src}
-                alt={logo.name}
-                className="h-8 w-auto object-contain"
-              />
+              <img src={logo.src} alt={logo.name} className="h-8 w-auto object-contain" />
             ) : (
               <span className="text-base font-semibold text-foreground whitespace-nowrap">
                 {logo.name}

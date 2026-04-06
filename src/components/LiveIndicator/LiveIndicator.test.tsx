@@ -31,13 +31,14 @@ describe("LiveIndicator", () => {
   });
 
   describe("status variants", () => {
-    it.each([["online"], ["offline"], ["degraded"]] as const)(
-      "renders without error for status %s",
-      (status) => {
-        render(<LiveIndicator status={status} data-testid="indicator" />);
-        expect(screen.getByTestId("indicator")).toBeInTheDocument();
-      }
-    );
+    it.each([
+      ["online"],
+      ["offline"],
+      ["degraded"],
+    ] as const)("renders without error for status %s", (status) => {
+      render(<LiveIndicator status={status} data-testid="indicator" />);
+      expect(screen.getByTestId("indicator")).toBeInTheDocument();
+    });
 
     it("shows animate-ping when online and pulse is true", () => {
       const { container } = render(<LiveIndicator status="online" pulse />);

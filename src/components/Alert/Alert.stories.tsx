@@ -16,7 +16,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const InfoIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <circle cx="12" cy="12" r="10" />
     <path d="M12 16v-4" />
     <path d="M12 8h.01" />
@@ -24,7 +35,18 @@ const InfoIcon = () => (
 );
 
 const AlertCircleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <circle cx="12" cy="12" r="10" />
     <line x1="12" y1="8" x2="12" y2="12" />
     <line x1="12" y1="16" x2="12.01" y2="16" />
@@ -32,7 +54,18 @@ const AlertCircleIcon = () => (
 );
 
 const TriangleAlertIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
     <path d="M12 9v4" />
     <path d="M12 17h.01" />
@@ -40,7 +73,18 @@ const TriangleAlertIcon = () => (
 );
 
 const CheckCircleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
     <path d="m9 11 3 3L22 4" />
   </svg>
@@ -61,7 +105,9 @@ export const Info: Story = {
     <Alert variant="info">
       <InfoIcon />
       <AlertTitle>Information</AlertTitle>
-      <AlertDescription>This action will update your account settings immediately.</AlertDescription>
+      <AlertDescription>
+        This action will update your account settings immediately.
+      </AlertDescription>
     </Alert>
   ),
 };
@@ -81,7 +127,9 @@ export const Warning: Story = {
     <Alert variant="warning">
       <TriangleAlertIcon />
       <AlertTitle>Warning</AlertTitle>
-      <AlertDescription>Your free storage is almost full. Upgrade your plan to continue.</AlertDescription>
+      <AlertDescription>
+        Your free storage is almost full. Upgrade your plan to continue.
+      </AlertDescription>
     </Alert>
   ),
 };
@@ -107,7 +155,9 @@ export const AllVariants: Story = {
       <Alert variant="info">
         <InfoIcon />
         <AlertTitle>Info</AlertTitle>
-        <AlertDescription>This action will update your account settings immediately.</AlertDescription>
+        <AlertDescription>
+          This action will update your account settings immediately.
+        </AlertDescription>
       </Alert>
       <Alert variant="destructive">
         <AlertCircleIcon />
@@ -117,7 +167,9 @@ export const AllVariants: Story = {
       <Alert variant="warning">
         <TriangleAlertIcon />
         <AlertTitle>Warning</AlertTitle>
-        <AlertDescription>Proceed with caution. This action may have side effects.</AlertDescription>
+        <AlertDescription>
+          Proceed with caution. This action may have side effects.
+        </AlertDescription>
       </Alert>
       <Alert variant="success">
         <CheckCircleIcon />
@@ -145,7 +197,9 @@ export const Interactive: Story = {
     <Alert {...args}>
       <InfoIcon />
       <AlertTitle>Interactive Alert</AlertTitle>
-      <AlertDescription>Use the controls panel to switch variants and see live changes.</AlertDescription>
+      <AlertDescription>
+        Use the controls panel to switch variants and see live changes.
+      </AlertDescription>
     </Alert>
   ),
 };

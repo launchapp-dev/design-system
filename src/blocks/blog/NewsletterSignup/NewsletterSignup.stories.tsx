@@ -102,10 +102,7 @@ export const SuccessState: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col divide-y divide-border">
-      <NewsletterSignup
-        title="Default variant"
-        subtitle="Full-width section with background."
-      />
+      <NewsletterSignup title="Default variant" subtitle="Full-width section with background." />
       <NewsletterSignup
         variant="card"
         title="Card variant"
@@ -147,9 +144,6 @@ export const DarkMode: Story = {
 export const Mobile: Story = {
   parameters: { viewport: { defaultViewport: "mobile1" } },
   render: () => (
-    <NewsletterSignup
-      title="Stay in the loop"
-      subtitle="Get the latest articles in your inbox."
-    />
+    <NewsletterSignup title="Stay in the loop" subtitle="Get the latest articles in your inbox." />
   ),
 };

@@ -18,9 +18,7 @@ export interface APIResponse {
   code?: string;
 }
 
-export async function handleComponentGenerationRequest(
-  request: APIRequest
-): Promise<APIResponse> {
+export async function handleComponentGenerationRequest(request: APIRequest): Promise<APIResponse> {
   try {
     validateAPIRequest(request);
 
@@ -33,19 +31,13 @@ export async function handleComponentGenerationRequest(
     } else if (request.type === "description") {
       const payload = request.payload as string;
       if (typeof payload !== "string" || payload.trim().length === 0) {
-        throw new ValidationError(
-          "Description must be a non-empty string",
-          "INVALID_DESCRIPTION"
-        );
+        throw new ValidationError("Description must be a non-empty string", "INVALID_DESCRIPTION");
       }
-      result = await generateComponentFromDescription(
-        payload,
-        request.apiKey
-      );
+      result = await generateComponentFromDescription(payload, request.apiKey);
     } else {
       throw new ValidationError(
         "Request type must be 'structured' or 'description'",
-        "INVALID_REQUEST_TYPE"
+        "INVALID_REQUEST_TYPE",
       );
     }
 
@@ -62,8 +54,7 @@ export async function handleComponentGenerationRequest(
       };
     }
 
-    const errorMessage =
-      error instanceof Error ? error.message : "Unknown error";
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return {
       success: false,
       error: errorMessage,
@@ -80,28 +71,17 @@ function validateAPIRequest(request: unknown): asserts request is APIRequest {
   const req = request as Record<string, unknown>;
 
   if (!req.type || typeof req.type !== "string") {
-    throw new ValidationError(
-      "Request must include a 'type' field",
-      "MISSING_TYPE"
-    );
+    throw new ValidationError("Request must include a 'type' field", "MISSING_TYPE");
   }
 
   if (req.payload === undefined || req.payload === null) {
-    throw new ValidationError(
-      "Request must include a 'payload' field",
-      "MISSING_PAYLOAD"
-    );
+    throw new ValidationError("Request must include a 'payload' field", "MISSING_PAYLOAD");
   }
 }
 
-function validateComponentRequest(
-  payload: unknown
-): asserts payload is ComponentGenerationRequest {
+function validateComponentRequest(payload: unknown): asserts payload is ComponentGenerationRequest {
   if (!payload || typeof payload !== "object") {
-    throw new ValidationError(
-      "Payload must be an object",
-      "INVALID_PAYLOAD"
-    );
+    throw new ValidationError("Payload must be an object", "INVALID_PAYLOAD");
   }
 
   const req = payload as Record<string, unknown>;
@@ -111,30 +91,24 @@ function validateComponentRequest(
   }
 
   if (!req.description || typeof req.description !== "string") {
-    throw new ValidationError(
-      "Component description is required",
-      "MISSING_DESCRIPTION"
-    );
+    throw new ValidationError("Component description is required", "MISSING_DESCRIPTION");
   }
 
   if (req.name.length > 100) {
-    throw new ValidationError(
-      "Component name must be less than 100 characters",
-      "NAME_TOO_LONG"
-    );
+    throw new ValidationError("Component name must be less than 100 characters", "NAME_TOO_LONG");
   }
 
   if (req.description.length > 2000) {
     throw new ValidationError(
       "Component description must be less than 2000 characters",
-      "DESCRIPTION_TOO_LONG"
+      "DESCRIPTION_TOO_LONG",
     );
   }
 
   if (!isValidComponentName(req.name as string)) {
     throw new ValidationError(
       "Component name must be PascalCase alphanumeric",
-      "INVALID_NAME_FORMAT"
+      "INVALID_NAME_FORMAT",
     );
   }
 }
@@ -146,7 +120,7 @@ function isValidComponentName(name: string): boolean {
 class ValidationError extends Error {
   constructor(
     message: string,
-    public code: string
+    public code: string,
   ) {
     super(message);
     this.name = "ValidationError";

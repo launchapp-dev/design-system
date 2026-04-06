@@ -13,13 +13,15 @@ const colsVariants: Record<2 | 3 | 4, string> = {
   4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
 };
 
-function StatDisplay({ items, cols = 4, className, ref, ...props }: StatDisplayProps & { ref?: React.Ref<HTMLDivElement> }) {
+function StatDisplay({
+  items,
+  cols = 4,
+  className,
+  ref,
+  ...props
+}: StatDisplayProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
-    <div
-      ref={ref}
-      className={cn("grid gap-4", colsVariants[cols], className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("grid gap-4", colsVariants[cols], className)} {...props}>
       {items.map((item, i) => (
         <KPICard key={i} {...item} />
       ))}

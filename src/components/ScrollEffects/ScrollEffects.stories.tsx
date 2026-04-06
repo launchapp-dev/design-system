@@ -56,12 +56,34 @@ export default meta;
 export const StickySectionStory: StoryObj = {
   name: "StickySection",
   render: () => (
-    <div style={{ height: 400, overflow: "auto", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
-      <div style={{ height: 100, background: "hsl(var(--la-muted))", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div
+      style={{
+        height: 400,
+        overflow: "auto",
+        border: "1px solid hsl(var(--la-border))",
+        borderRadius: "var(--la-radius)",
+      }}
+    >
+      <div
+        style={{
+          height: 100,
+          background: "hsl(var(--la-muted))",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         Scroll content
       </div>
       <StickySection offset={0}>
-        <div style={{ padding: 16, background: "hsl(var(--la-primary))", color: "hsl(var(--la-primary-foreground))", textAlign: "center" }}>
+        <div
+          style={{
+            padding: 16,
+            background: "hsl(var(--la-primary))",
+            color: "hsl(var(--la-primary-foreground))",
+            textAlign: "center",
+          }}
+        >
           Sticky Header - Stays at top while scrolling
         </div>
       </StickySection>
@@ -84,11 +106,34 @@ export const StickySectionStory: StoryObj = {
 export const StickyHeaderStory: StoryObj = {
   name: "StickyHeader",
   render: () => (
-    <div style={{ height: 400, overflow: "auto", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+    <div
+      style={{
+        height: 400,
+        overflow: "auto",
+        border: "1px solid hsl(var(--la-border))",
+        borderRadius: "var(--la-radius)",
+      }}
+    >
       <StickyHeader>
-        <div style={{ padding: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div
+          style={{
+            padding: 16,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <span style={{ fontWeight: 600 }}>Sticky Header</span>
-          <button style={{ padding: "4px 12px", background: "hsl(var(--la-primary))", color: "white", border: "none", borderRadius: 4, cursor: "pointer" }}>
+          <button
+            style={{
+              padding: "4px 12px",
+              background: "hsl(var(--la-primary))",
+              color: "white",
+              border: "none",
+              borderRadius: 4,
+              cursor: "pointer",
+            }}
+          >
             Action
           </button>
         </div>
@@ -134,7 +179,16 @@ export const HorizontalScrollStory: StoryObj = {
               <p style={{ fontWeight: 600 }}>Card {i + 1}</p>
               <p style={{ fontSize: 12, opacity: 0.6 }}>Horizontal scroll item</p>
             </div>
-            <button style={{ padding: "6px 12px", background: "hsl(var(--la-primary))", color: "white", border: "none", borderRadius: 4, cursor: "pointer" }}>
+            <button
+              style={{
+                padding: "6px 12px",
+                background: "hsl(var(--la-primary))",
+                color: "white",
+                border: "none",
+                borderRadius: 4,
+                cursor: "pointer",
+              }}
+            >
               View
             </button>
           </div>
@@ -151,7 +205,14 @@ export const ScrollProgressStory: StoryObj = {
       <p style={{ marginBottom: 16, fontSize: 14, opacity: 0.6 }}>
         Scroll to see the progress indicator at the top.
       </p>
-      <ScrollProgress position="top" style={{ height: 300, border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+      <ScrollProgress
+        position="top"
+        style={{
+          height: 300,
+          border: "1px solid hsl(var(--la-border))",
+          borderRadius: "var(--la-radius)",
+        }}
+      >
         <div style={{ padding: 24 }}>
           {Array.from({ length: 15 }).map((_, i) => (
             <div key={i} style={{ padding: 16, borderBottom: "1px solid hsl(var(--la-border))" }}>
@@ -172,7 +233,15 @@ export const ScrollProgressBottom: StoryObj = {
       <p style={{ marginBottom: 16, fontSize: 14, opacity: 0.6 }}>
         Progress indicator at the bottom.
       </p>
-      <ScrollProgress position="bottom" color="hsl(var(--la-accent))" style={{ height: 300, border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+      <ScrollProgress
+        position="bottom"
+        color="hsl(var(--la-accent))"
+        style={{
+          height: 300,
+          border: "1px solid hsl(var(--la-border))",
+          borderRadius: "var(--la-radius)",
+        }}
+      >
         <div style={{ padding: 24 }}>
           {Array.from({ length: 15 }).map((_, i) => (
             <div key={i} style={{ padding: 16, borderBottom: "1px solid hsl(var(--la-border))" }}>
@@ -196,11 +265,29 @@ export const RevealOnScrollStory: StoryObj = {
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         {["up", "down", "left", "right"].map((direction) => (
           <div key={direction}>
-            <p style={{ fontSize: 12, fontWeight: 500, marginBottom: 8, textTransform: "capitalize" }}>Direction: {direction}</p>
+            <p
+              style={{
+                fontSize: 12,
+                fontWeight: 500,
+                marginBottom: 8,
+                textTransform: "capitalize",
+              }}
+            >
+              Direction: {direction}
+            </p>
             <RevealOnScroll direction={direction as "up" | "down" | "left" | "right"}>
-              <div style={{ padding: 20, background: "hsl(var(--la-card))", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+              <div
+                style={{
+                  padding: 20,
+                  background: "hsl(var(--la-card))",
+                  border: "1px solid hsl(var(--la-border))",
+                  borderRadius: "var(--la-radius)",
+                }}
+              >
                 <p style={{ fontWeight: 600 }}>Revealed from {direction}</p>
-                <p style={{ fontSize: 14, opacity: 0.6 }}>This element animates when scrolling into view</p>
+                <p style={{ fontSize: 14, opacity: 0.6 }}>
+                  This element animates when scrolling into view
+                </p>
               </div>
             </RevealOnScroll>
           </div>
@@ -231,7 +318,9 @@ export const ScrollSnapStory: StoryObj = {
               padding: 20,
             }}
           >
-            <p style={{ fontSize: 24, fontWeight: 700, color: "hsl(var(--la-primary))" }}>0{i + 1}</p>
+            <p style={{ fontSize: 24, fontWeight: 700, color: "hsl(var(--la-primary))" }}>
+              0{i + 1}
+            </p>
             <p style={{ fontWeight: 600, marginTop: 8 }}>Snap Section {i + 1}</p>
             <p style={{ fontSize: 14, opacity: 0.6, marginTop: 4 }}>
               Scroll horizontally to see snapping behavior
@@ -250,7 +339,14 @@ export const AllScrollEffects: StoryObj = {
       <section>
         <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>RevealOnScroll</h3>
         <RevealOnScroll>
-          <div style={{ padding: 20, background: "hsl(var(--la-card))", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+          <div
+            style={{
+              padding: 20,
+              background: "hsl(var(--la-card))",
+              border: "1px solid hsl(var(--la-border))",
+              borderRadius: "var(--la-radius)",
+            }}
+          >
             <p style={{ fontWeight: 600 }}>Revealed Content</p>
             <p style={{ fontSize: 14, opacity: 0.6 }}>Animates into view on scroll</p>
           </div>
@@ -281,10 +377,18 @@ export const AllScrollEffects: StoryObj = {
       </section>
       <section>
         <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>ScrollProgress</h3>
-        <ScrollProgress style={{ height: 100, border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+        <ScrollProgress
+          style={{
+            height: 100,
+            border: "1px solid hsl(var(--la-border))",
+            borderRadius: "var(--la-radius)",
+          }}
+        >
           <div style={{ padding: 16 }}>
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} style={{ padding: 8 }}>Scroll item {i + 1}</div>
+              <div key={i} style={{ padding: 8 }}>
+                Scroll item {i + 1}
+              </div>
             ))}
           </div>
         </ScrollProgress>
@@ -302,9 +406,18 @@ export const ReducedMotion: StoryObj = {
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         <RevealOnScroll>
-          <div style={{ padding: 20, background: "hsl(var(--la-card))", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
+          <div
+            style={{
+              padding: 20,
+              background: "hsl(var(--la-card))",
+              border: "1px solid hsl(var(--la-border))",
+              borderRadius: "var(--la-radius)",
+            }}
+          >
             <p style={{ fontWeight: 600 }}>RevealOnScroll (instant)</p>
-            <p style={{ fontSize: 14, opacity: 0.6 }}>No animation when reduced motion is preferred</p>
+            <p style={{ fontSize: 14, opacity: 0.6 }}>
+              No animation when reduced motion is preferred
+            </p>
           </div>
         </RevealOnScroll>
         <HorizontalScroll style={{ height: 100 }}>
@@ -335,19 +448,37 @@ export const ReducedMotion: StoryObj = {
 export const ParallaxSectionStory: StoryObj = {
   name: "ParallaxSection",
   render: () => (
-    <div style={{ height: 500, overflow: "auto", border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)" }}>
-      <div style={{ height: 200, display: "flex", alignItems: "center", justifyContent: "center", background: "hsl(var(--la-muted))" }}>
-        <p>Scroll down to see parallax effect</p>
-      </div>
-      <ParallaxSection speed={0.3} style={{ height: 300 }}>
-        <div style={{ 
-          height: "100%", 
-          background: "linear-gradient(135deg, hsl(var(--la-primary)) 0%, hsl(var(--la-accent)) 100%)",
+    <div
+      style={{
+        height: 500,
+        overflow: "auto",
+        border: "1px solid hsl(var(--la-border))",
+        borderRadius: "var(--la-radius)",
+      }}
+    >
+      <div
+        style={{
+          height: 200,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "hsl(var(--la-primary-foreground))",
-        }}>
+          background: "hsl(var(--la-muted))",
+        }}
+      >
+        <p>Scroll down to see parallax effect</p>
+      </div>
+      <ParallaxSection speed={0.3} style={{ height: 300 }}>
+        <div
+          style={{
+            height: "100%",
+            background:
+              "linear-gradient(135deg, hsl(var(--la-primary)) 0%, hsl(var(--la-accent)) 100%)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "hsl(var(--la-primary-foreground))",
+          }}
+        >
           <div style={{ textAlign: "center" }}>
             <p style={{ fontSize: 24, fontWeight: 700 }}>Parallax Background</p>
             <p style={{ fontSize: 14, opacity: 0.8 }}>Moving at 0.3x scroll speed</p>
@@ -358,13 +489,16 @@ export const ParallaxSectionStory: StoryObj = {
         <p>Content between parallax sections</p>
       </div>
       <ParallaxSection speed={0.5} direction="down" style={{ height: 250 }}>
-        <div style={{ 
-          height: "100%", 
-          background: "linear-gradient(135deg, hsl(var(--la-secondary)) 0%, hsl(var(--la-muted)) 100%)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
+        <div
+          style={{
+            height: "100%",
+            background:
+              "linear-gradient(135deg, hsl(var(--la-secondary)) 0%, hsl(var(--la-muted)) 100%)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div style={{ textAlign: "center" }}>
             <p style={{ fontSize: 24, fontWeight: 700 }}>Reverse Parallax</p>
             <p style={{ fontSize: 14, opacity: 0.6 }}>Moving at 0.5x speed, opposite direction</p>

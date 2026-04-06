@@ -12,7 +12,19 @@ import { Label } from "../../components/Label";
 // ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
 function ShieldIcon({ className }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
   );
@@ -20,7 +32,7 @@ function ShieldIcon({ className }: { className?: string }) {
 
 export type Role = "owner" | "admin" | "member" | "billing";
 
-export interface RoleSelectorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface RoleSelectorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   value?: Role;
   onChange?: (role: Role) => void;
   disabled?: boolean;
@@ -74,15 +86,11 @@ function RoleSelector({
         </Select>
       </div>
 
-      {description && (
-        <p className="text-sm text-muted-foreground">{description}</p>
-      )}
+      {description && <p className="text-sm text-muted-foreground">{description}</p>}
 
       {value && (
         <div className="rounded-lg border p-3">
-          <p className="text-sm">
-            {ROLES.find((r) => r.value === value)?.description}
-          </p>
+          <p className="text-sm">{ROLES.find((r) => r.value === value)?.description}</p>
         </div>
       )}
     </div>

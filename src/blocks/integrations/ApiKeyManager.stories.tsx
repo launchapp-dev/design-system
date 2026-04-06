@@ -60,10 +60,7 @@ export const ReadOnly: Story = {
 export const Empty: Story = {
   render: () => (
     <div style={{ maxWidth: 640 }}>
-      <ApiKeyManager
-        keys={[]}
-        onCreate={() => console.log("Create key")}
-      />
+      <ApiKeyManager keys={[]} onCreate={() => console.log("Create key")} />
     </div>
   ),
 };

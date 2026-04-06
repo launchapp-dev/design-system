@@ -58,15 +58,17 @@ function Controlled() {
         Open Cookie Preferences
       </button>
       {saved && (
-        <pre style={{ marginTop: "16px", fontSize: "12px" }}>
-          {JSON.stringify(saved, null, 2)}
-        </pre>
+        <pre style={{ marginTop: "16px", fontSize: "12px" }}>{JSON.stringify(saved, null, 2)}</pre>
       )}
       <CookieConsent
         open={open}
         onOpenChange={setOpen}
-        onAcceptAll={() => setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, true])))}
-        onRejectAll={() => setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, c.required === true])))}
+        onAcceptAll={() =>
+          setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, true])))
+        }
+        onRejectAll={() =>
+          setSaved(Object.fromEntries(DEFAULT_CATEGORIES.map((c) => [c.id, c.required === true])))
+        }
         onSavePreferences={setSaved}
       />
     </div>
@@ -78,12 +80,7 @@ export const Default: Story = {
 };
 
 export const OpenByDefault: Story = {
-  render: () => (
-    <CookieConsent
-      open={true}
-      onOpenChange={() => undefined}
-    />
-  ),
+  render: () => <CookieConsent open={true} onOpenChange={() => undefined} />,
 };
 
 export const CustomCategories: Story = {

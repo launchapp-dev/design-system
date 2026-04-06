@@ -8,13 +8,20 @@ export interface TypewriterProps extends React.HTMLAttributes<HTMLSpanElement> {
   showCursor?: boolean;
 }
 
-function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...props }: TypewriterProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function Typewriter({
+  text,
+  speed = 50,
+  showCursor = true,
+  className,
+  ref,
+  ...props
+}: TypewriterProps & { ref?: React.Ref<HTMLSpanElement> }) {
   const [displayed, setDisplayed] = React.useState("");
   const prefersReducedMotion = React.useMemo(
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 
   React.useEffect(() => {
@@ -43,11 +50,7 @@ function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...pr
           />
         )}
       </span>
-      <span
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-      >
+      <span aria-live="polite" aria-atomic="true" className="sr-only">
         {text}
       </span>
     </span>
@@ -55,62 +58,60 @@ function Typewriter({ text, speed = 50, showCursor = true, className, ref, ...pr
 }
 Typewriter.displayName = "Typewriter";
 
-const blurInVariants = cva(
-  "inline-block animate-blur-in motion-reduce:animate-none",
-  {
-    variants: {
-      size: {
-        sm: "text-sm",
-        md: "text-base",
-        lg: "text-lg",
-      },
+const blurInVariants = cva("inline-block animate-blur-in motion-reduce:animate-none", {
+  variants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
     },
-    defaultVariants: { size: "md" },
-  }
-);
+  },
+  defaultVariants: { size: "md" },
+});
 
 export interface BlurInProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof blurInVariants> {}
 
-function BlurIn({ className, size, children, ref, ...props }: BlurInProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function BlurIn({
+  className,
+  size,
+  children,
+  ref,
+  ...props
+}: BlurInProps & { ref?: React.Ref<HTMLSpanElement> }) {
   return (
-    <span
-      ref={ref}
-      className={cn(blurInVariants({ size }), className)}
-      {...props}
-    >
+    <span ref={ref} className={cn(blurInVariants({ size }), className)} {...props}>
       {children}
     </span>
   );
 }
 BlurIn.displayName = "BlurIn";
 
-const fadeUpVariants = cva(
-  "inline-block animate-fade-up motion-reduce:animate-none",
-  {
-    variants: {
-      size: {
-        sm: "text-sm",
-        md: "text-base",
-        lg: "text-lg",
-      },
+const fadeUpVariants = cva("inline-block animate-fade-up motion-reduce:animate-none", {
+  variants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
     },
-    defaultVariants: { size: "md" },
-  }
-);
+  },
+  defaultVariants: { size: "md" },
+});
 
 export interface FadeUpProps
   extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof fadeUpVariants> {}
 
-function FadeUp({ className, size, children, ref, ...props }: FadeUpProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function FadeUp({
+  className,
+  size,
+  children,
+  ref,
+  ...props
+}: FadeUpProps & { ref?: React.Ref<HTMLSpanElement> }) {
   return (
-    <span
-      ref={ref}
-      className={cn(fadeUpVariants({ size }), className)}
-      {...props}
-    >
+    <span ref={ref} className={cn(fadeUpVariants({ size }), className)} {...props}>
       {children}
     </span>
   );
@@ -122,14 +123,15 @@ export interface LetterRevealProps extends React.HTMLAttributes<HTMLSpanElement>
   staggerDelay?: number;
 }
 
-function LetterReveal({ text, staggerDelay = 30, className, ref, ...props }: LetterRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
+function LetterReveal({
+  text,
+  staggerDelay = 30,
+  className,
+  ref,
+  ...props
+}: LetterRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
   return (
-    <span
-      ref={ref}
-      className={cn("inline-block", className)}
-      aria-label={text}
-      {...props}
-    >
+    <span ref={ref} className={cn("inline-block", className)} aria-label={text} {...props}>
       {text.split("").map((char, i) => (
         <span
           key={i}
@@ -159,12 +161,7 @@ function WordReveal({
 }: WordRevealProps & { ref?: React.Ref<HTMLSpanElement> }) {
   const words = text.split(" ");
   return (
-    <span
-      ref={ref}
-      className={cn("inline-block", className)}
-      aria-label={text}
-      {...props}
-    >
+    <span ref={ref} className={cn("inline-block", className)} aria-label={text} {...props}>
       {words.map((word, i) => (
         <span key={i} className="inline-block">
           <span
@@ -185,10 +182,14 @@ WordReveal.displayName = "WordReveal";
 const gradientTextVariants = cva("inline-block", {
   variants: {
     variant: {
-      default: "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
-      primary: "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-primary)/0.7)] bg-clip-text text-transparent",
-      rainbow: "bg-gradient-to-r from-[hsl(var(--la-destructive))] via-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
-      sunset: "bg-gradient-to-r from-[#f97316] via-[#ec4899] to-[#8b5cf6] bg-clip-text text-transparent",
+      default:
+        "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+      primary:
+        "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-primary)/0.7)] bg-clip-text text-transparent",
+      rainbow:
+        "bg-gradient-to-r from-[hsl(var(--la-destructive))] via-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+      sunset:
+        "bg-gradient-to-r from-[#f97316] via-[#ec4899] to-[#8b5cf6] bg-clip-text text-transparent",
     },
   },
   defaultVariants: {
@@ -208,11 +209,7 @@ function GradientText({
   ...props
 }: GradientTextProps & { ref?: React.Ref<HTMLSpanElement> }) {
   return (
-    <span
-      ref={ref}
-      className={cn(gradientTextVariants({ variant }), className)}
-      {...props}
-    >
+    <span ref={ref} className={cn(gradientTextVariants({ variant }), className)} {...props}>
       {children}
     </span>
   );

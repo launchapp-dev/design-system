@@ -48,17 +48,12 @@ function AnimatedText({
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 
   if (animation === "letterReveal" || byCharacter) {
     return (
-      <span
-        ref={ref}
-        className={cn("inline-block", className)}
-        aria-label={text}
-        {...props}
-      >
+      <span ref={ref} className={cn("inline-block", className)} aria-label={text} {...props}>
         {text.split("").map((char, i) => (
           <span
             key={i}
@@ -78,12 +73,7 @@ function AnimatedText({
   if (animation === "wordReveal") {
     const words = text.split(" ");
     return (
-      <span
-        ref={ref}
-        className={cn("inline-block", className)}
-        aria-label={text}
-        {...props}
-      >
+      <span ref={ref} className={cn("inline-block", className)} aria-label={text} {...props}>
         {words.map((word, i) => (
           <span key={i} className="inline-block">
             <span

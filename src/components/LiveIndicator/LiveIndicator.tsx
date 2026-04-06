@@ -58,7 +58,7 @@ function LiveIndicator({
           <span
             className={cn(
               "absolute inline-flex animate-ping rounded-full opacity-75",
-              liveDotVariants({ size, status })
+              liveDotVariants({ size, status }),
             )}
           />
         )}

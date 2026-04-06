@@ -1,6 +1,12 @@
 import * as React from "react";
 import { cn } from "../../../lib/utils";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../../components/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../../../components/Card";
 import { Badge } from "../../../components/Badge";
 import { Button } from "../../../components/Button";
 import { Input } from "../../../components/Input";
@@ -40,7 +46,7 @@ const Portfolio = React.forwardRef<HTMLDivElement, PortfolioProps>(
       onContactSubmit,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [formData, setFormData] = React.useState({ name: "", email: "", message: "" });
 
@@ -53,9 +59,7 @@ const Portfolio = React.forwardRef<HTMLDivElement, PortfolioProps>(
       <div ref={ref} className={cn("w-full", className)} {...props}>
         <section className="px-4 py-16 md:py-24 max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
-            {avatar && (
-              <div className="shrink-0">{avatar}</div>
-            )}
+            {avatar && <div className="shrink-0">{avatar}</div>}
             <div>
               <h1 className="text-4xl font-bold tracking-tight text-foreground">{name}</h1>
               <p className="text-xl text-muted-foreground mt-2">{title}</p>
@@ -72,9 +76,7 @@ const Portfolio = React.forwardRef<HTMLDivElement, PortfolioProps>(
                 {projects.map((project, i) => (
                   <Card key={i} className="overflow-hidden group">
                     {project.image && (
-                      <div className="aspect-video overflow-hidden bg-muted">
-                        {project.image}
-                      </div>
+                      <div className="aspect-video overflow-hidden bg-muted">{project.image}</div>
                     )}
                     <CardHeader>
                       <CardTitle className="text-lg">{project.title}</CardTitle>
@@ -98,8 +100,19 @@ const Portfolio = React.forwardRef<HTMLDivElement, PortfolioProps>(
                           className="mt-3 inline-flex items-center text-sm text-primary hover:underline"
                         >
                           View project
-                          <svg className="ml-1 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          <svg
+                            className="ml-1 h-3 w-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
                           </svg>
                         </a>
                       )}
@@ -115,9 +128,7 @@ const Portfolio = React.forwardRef<HTMLDivElement, PortfolioProps>(
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold tracking-tight text-foreground">{contactTitle}</h2>
-              {contactSubtitle && (
-                <p className="mt-4 text-muted-foreground">{contactSubtitle}</p>
-              )}
+              {contactSubtitle && <p className="mt-4 text-muted-foreground">{contactSubtitle}</p>}
             </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -154,13 +165,15 @@ const Portfolio = React.forwardRef<HTMLDivElement, PortfolioProps>(
                   required
                 />
               </div>
-              <Button type="submit" className="w-full">Send message</Button>
+              <Button type="submit" className="w-full">
+                Send message
+              </Button>
             </form>
           </div>
         </section>
       </div>
     );
-  }
+  },
 );
 
 Portfolio.displayName = "Portfolio";

@@ -16,7 +16,7 @@ const badgeVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 export interface BadgeProps
@@ -28,15 +28,14 @@ export interface BadgeProps
  * Pass `role="status"` for live-updating badges (politely announced by screen readers)
  * or `role="alert"` for urgent announcements that require immediate attention.
  */
-function Badge({ className, variant, ref, ...props }: BadgeProps & { ref?: React.Ref<HTMLDivElement> }) {
-    return (
-      <div
-        ref={ref}
-        className={cn(badgeVariants({ variant }), className)}
-        {...props}
-      />
-    );
-  }
+function Badge({
+  className,
+  variant,
+  ref,
+  ...props
+}: BadgeProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return <div ref={ref} className={cn(badgeVariants({ variant }), className)} {...props} />;
+}
 Badge.displayName = "Badge";
 
 export type BadgeVariants = VariantProps<typeof badgeVariants>;

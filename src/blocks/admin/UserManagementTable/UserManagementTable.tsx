@@ -66,7 +66,7 @@ function UserManagementTableInner(
     onAddUser,
     className,
   }: UserManagementTableProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const [deleteTarget, setDeleteTarget] = React.useState<User | null>(null);
 
@@ -89,9 +89,7 @@ function UserManagementTableInner(
         accessorKey: "role",
         header: "Role",
         cell: ({ row }) => (
-          <Badge variant={roleColors[row.original.role]}>
-            {roleLabel[row.original.role]}
-          </Badge>
+          <Badge variant={roleColors[row.original.role]}>{roleLabel[row.original.role]}</Badge>
         ),
       },
       {
@@ -150,7 +148,7 @@ function UserManagementTableInner(
         enableSorting: false,
       },
     ],
-    [onEditUser, onBanUser, onUnbanUser]
+    [onEditUser, onBanUser, onUnbanUser],
   );
 
   return (
@@ -177,7 +175,8 @@ function UserManagementTableInner(
             <DialogTitle>Delete User</DialogTitle>
           </DialogHeader>
           <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
-            Are you sure you want to delete <strong>{deleteTarget?.name}</strong>? This action cannot be undone.
+            Are you sure you want to delete <strong>{deleteTarget?.name}</strong>? This action
+            cannot be undone.
           </p>
           <DialogFooter>
             <Button variant="outline" onClick={() => setDeleteTarget(null)}>
@@ -200,7 +199,8 @@ function UserManagementTableInner(
 }
 
 export const UserManagementTable = React.forwardRef(UserManagementTableInner) as (
-  props: UserManagementTableProps & { ref?: React.ForwardedRef<HTMLDivElement> }
+  props: UserManagementTableProps & { ref?: React.ForwardedRef<HTMLDivElement> },
 ) => React.ReactElement;
 
-(UserManagementTable as React.ForwardRefExoticComponent<UserManagementTableProps>).displayName = "UserManagementTable";
+(UserManagementTable as React.ForwardRefExoticComponent<UserManagementTableProps>).displayName =
+  "UserManagementTable";

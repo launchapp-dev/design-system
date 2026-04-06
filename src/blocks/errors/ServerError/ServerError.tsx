@@ -19,7 +19,15 @@ const defaultIllustration = (
     aria-hidden="true"
   >
     <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="4" />
-    <text x="50%" y="52%" dominantBaseline="middle" textAnchor="middle" fontSize="64" fontWeight="bold" fill="currentColor">
+    <text
+      x="50%"
+      y="52%"
+      dominantBaseline="middle"
+      textAnchor="middle"
+      fontSize="64"
+      fontWeight="bold"
+      fill="currentColor"
+    >
       500
     </text>
   </svg>
@@ -38,14 +46,14 @@ const ServerError = React.forwardRef<HTMLDivElement, ServerErrorProps>(
       illustration,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
         className={cn(
           "flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center",
-          className
+          className,
         )}
         {...props}
       >
@@ -60,7 +68,9 @@ const ServerError = React.forwardRef<HTMLDivElement, ServerErrorProps>(
               </p>
             )}
             {errorDetails && (
-              <p className="mt-1 text-xs font-mono text-muted-foreground break-all">{errorDetails}</p>
+              <p className="mt-1 text-xs font-mono text-muted-foreground break-all">
+                {errorDetails}
+              </p>
             )}
           </div>
         )}
@@ -72,7 +82,7 @@ const ServerError = React.forwardRef<HTMLDivElement, ServerErrorProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 ServerError.displayName = "ServerError";

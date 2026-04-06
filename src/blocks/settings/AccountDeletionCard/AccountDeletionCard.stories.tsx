@@ -20,9 +20,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <AccountDeletionCard onDelete={() => console.log("account deleted")} />
-  ),
+  render: () => <AccountDeletionCard onDelete={() => console.log("account deleted")} />,
 };
 
 export const DarkMode: Story = {
@@ -33,9 +31,7 @@ export const DarkMode: Story = {
       </div>
     ),
   ],
-  render: () => (
-    <AccountDeletionCard onDelete={() => console.log("account deleted")} />
-  ),
+  render: () => <AccountDeletionCard onDelete={() => console.log("account deleted")} />,
 };
 
 export const Mobile: Story = {
@@ -44,7 +40,5 @@ export const Mobile: Story = {
       defaultViewport: "mobile1",
     },
   },
-  render: () => (
-    <AccountDeletionCard onDelete={() => console.log("account deleted")} />
-  ),
+  render: () => <AccountDeletionCard onDelete={() => console.log("account deleted")} />,
 };

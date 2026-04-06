@@ -7,7 +7,7 @@ const generateMatrixData = (
   rows: number,
   cols: number,
   min: number,
-  max: number
+  max: number,
 ): HeatmapCell[][] => {
   return Array.from({ length: rows }, (_, rowIndex) =>
     Array.from({ length: cols }, (_, colIndex) => ({
@@ -15,7 +15,7 @@ const generateMatrixData = (
       label: `R${rowIndex + 1}C${colIndex + 1}`,
       rowLabel: `Row ${rowIndex + 1}`,
       colLabel: `Col ${colIndex + 1}`,
-    }))
+    })),
   );
 };
 
@@ -359,10 +359,7 @@ export const Interactive: Story = {
 
     return (
       <div>
-        <Heatmap
-          {...args}
-          onCellClick={(cell) => setSelected(cell.label || `${cell.value}`)}
-        />
+        <Heatmap {...args} onCellClick={(cell) => setSelected(cell.label || `${cell.value}`)} />
         {selected && (
           <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm">
             Selected: <strong>{selected}</strong>
@@ -388,13 +385,13 @@ export const HoverCallback: Story = {
       <div>
         <Heatmap
           {...args}
-          onCellHover={(cell) =>
-            setHovered(cell ? `${cell.label}: ${cell.value}` : null)
-          }
+          onCellHover={(cell) => setHovered(cell ? `${cell.label}: ${cell.value}` : null)}
         />
         <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm min-h-[2.5rem]">
           {hovered ? (
-            <>Hovering: <strong>{hovered}</strong></>
+            <>
+              Hovering: <strong>{hovered}</strong>
+            </>
           ) : (
             <span className="text-muted-foreground">Hover over a cell</span>
           )}
@@ -412,7 +409,7 @@ export const HoverCallback: Story = {
 export const CustomTooltip: Story = {
   name: "Custom Tooltip Content",
   render: (args) => {
-    const customTooltip = (cell: typeof args.data[0][0]) => (
+    const customTooltip = (cell: (typeof args.data)[0][0]) => (
       <div className="text-xs p-1">
         <div className="font-bold text-primary mb-1">{cell.label}</div>
         <div className="flex items-center gap-2">
@@ -427,12 +424,7 @@ export const CustomTooltip: Story = {
       </div>
     );
 
-    return (
-      <Heatmap
-        {...args}
-        tooltipContent={customTooltip}
-      />
-    );
+    return <Heatmap {...args} tooltipContent={customTooltip} />;
   },
   args: {
     data: salesData,
@@ -490,20 +482,18 @@ export const ColorScaleComparison: Story = {
   name: "Color Scale Comparison",
   render: () => (
     <div className="flex flex-col gap-6">
-      {(["sequential", "diverging", "spectral", "viridis"] as const).map(
-        (scale) => (
-          <div key={scale}>
-            <h4 className="text-sm font-medium mb-2 capitalize">{scale}</h4>
-            <Heatmap
-              data={generateMatrixData(4, 6, 0, 100)}
-              colorScale={scale}
-              cellSize={32}
-              cellGap={2}
-              aria-label={`Heatmap with ${scale} color scale`}
-            />
-          </div>
-        )
-      )}
+      {(["sequential", "diverging", "spectral", "viridis"] as const).map((scale) => (
+        <div key={scale}>
+          <h4 className="text-sm font-medium mb-2 capitalize">{scale}</h4>
+          <Heatmap
+            data={generateMatrixData(4, 6, 0, 100)}
+            colorScale={scale}
+            cellSize={32}
+            cellGap={2}
+            aria-label={`Heatmap with ${scale} color scale`}
+          />
+        </div>
+      ))}
     </div>
   ),
 };

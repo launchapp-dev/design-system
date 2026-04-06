@@ -23,7 +23,7 @@ const gridCols = cva("grid gap-6", {
       "2": "grid-cols-1 sm:grid-cols-2",
       "3": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
       "4": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
-      "auto": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+      auto: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
     },
   },
   defaultVariants: {
@@ -76,7 +76,7 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
       align = "center",
       ...props
     },
-    ref
+    ref,
   ) => {
     const containerClass = maxWidthMap[maxWidth];
     const isCenter = align === "center";
@@ -87,11 +87,7 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
         <div className={cn("mb-12", isCenter ? "text-center" : "text-left", "space-y-3")}>
           {eyebrow && (
             <div className={cn(!isCenter && "-ml-1")}>
-              {typeof eyebrow === "string" ? (
-                <Badge variant="secondary">{eyebrow}</Badge>
-              ) : (
-                eyebrow
-              )}
+              {typeof eyebrow === "string" ? <Badge variant="secondary">{eyebrow}</Badge> : eyebrow}
             </div>
           )}
           {headline && (
@@ -100,12 +96,7 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
             </h2>
           )}
           {subheadline && (
-            <p
-              className={cn(
-                "text-lg text-muted-foreground",
-                isCenter && "max-w-2xl mx-auto"
-              )}
-            >
+            <p className={cn("text-lg text-muted-foreground", isCenter && "max-w-2xl mx-auto")}>
               {subheadline}
             </p>
           )}
@@ -123,7 +114,7 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
           className={cn(
             "group relative transition-all duration-200",
             isFeatured && "ring-2 ring-primary/20 shadow-md",
-            isRich && "hover:shadow-md"
+            isRich && "hover:shadow-md",
           )}
         >
           <CardHeader className={cn("pb-2", isCenter && "text-center")}>
@@ -139,7 +130,7 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
                 className={cn(
                   "mb-4 text-primary",
                   isCenter && "mx-auto",
-                  isRich && "w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center"
+                  isRich && "w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center",
                 )}
               >
                 {isRich ? (
@@ -149,12 +140,7 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
                 )}
               </div>
             )}
-            <CardTitle
-              className={cn(
-                "text-base font-semibold leading-snug",
-                isRich && "text-lg"
-              )}
-            >
+            <CardTitle className={cn("text-base font-semibold leading-snug", isRich && "text-lg")}>
               {feature.title}
             </CardTitle>
           </CardHeader>
@@ -162,17 +148,11 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
             className={cn(
               "pt-0",
               isCenter && "text-center",
-              !isCenter && feature.action && "flex flex-col gap-4"
+              !isCenter && feature.action && "flex flex-col gap-4",
             )}
           >
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {feature.description}
-            </p>
-            {feature.action && (
-              <div className={cn(!isCenter && "mt-auto")}>
-                {feature.action}
-              </div>
-            )}
+            <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+            {feature.action && <div className={cn(!isCenter && "mt-auto")}>{feature.action}</div>}
           </CardContent>
         </Card>
       );
@@ -192,7 +172,7 @@ const FeatureGridBlock = React.forwardRef<HTMLElement, FeatureGridBlockProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 FeatureGridBlock.displayName = "FeatureGridBlock";

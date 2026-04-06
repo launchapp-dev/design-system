@@ -58,9 +58,7 @@ const dave = {
   department: "Platform",
   bio: "PostgreSQL aficionado. Building reliable APIs that handle millions of requests.",
   initials: "DP",
-  socialLinks: [
-    { network: "github" as const, href: "https://github.com" },
-  ],
+  socialLinks: [{ network: "github" as const, href: "https://github.com" }],
   tags: ["Rust", "PostgreSQL", "Redis"],
 };
 
@@ -71,7 +69,13 @@ export const Default: Story = {
 export const Horizontal: Story = {
   args: { ...alice, variant: "horizontal" },
   parameters: { layout: "padded" },
-  decorators: [(S) => <div className="max-w-sm"><S /></div>],
+  decorators: [
+    (S) => (
+      <div className="max-w-sm">
+        <S />
+      </div>
+    ),
+  ],
 };
 
 export const Minimal: Story = {
@@ -122,11 +126,5 @@ export const Grid4Col: StoryObj<typeof GridMeta> = {
 };
 
 export const GridHorizontal: StoryObj<typeof GridMeta> = {
-  render: () => (
-    <TeamGrid
-      members={[alice, bob, carol]}
-      columns={2}
-      variant="horizontal"
-    />
-  ),
+  render: () => <TeamGrid members={[alice, bob, carol]} columns={2} variant="horizontal" />,
 };

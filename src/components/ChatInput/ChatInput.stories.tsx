@@ -95,15 +95,11 @@ export const WithAttachments: Story = {
 };
 
 export const WithCharacterCount: Story = {
-  render: (args) => (
-    <ChatInput {...args} showCharacterCount maxLength={500} />
-  ),
+  render: (args) => <ChatInput {...args} showCharacterCount maxLength={500} />,
 };
 
 export const Disabled: Story = {
-  render: (args) => (
-    <ChatInput {...args} disabled value="This input is disabled" />
-  ),
+  render: (args) => <ChatInput {...args} disabled value="This input is disabled" />,
 };
 
 export const SizeVariants: Story = {
@@ -161,9 +157,9 @@ export const DarkMode: Story = {
 export const InteractiveDemo: Story = {
   render: () => {
     const [message, setMessage] = React.useState("");
-    const [chatHistory, setChatHistory] = React.useState<Array<{ text: string; sender: "user" | "assistant" }>>([
-      { text: "Hello! How can I help you today?", sender: "assistant" },
-    ]);
+    const [chatHistory, setChatHistory] = React.useState<
+      Array<{ text: string; sender: "user" | "assistant" }>
+    >([{ text: "Hello! How can I help you today?", sender: "assistant" }]);
 
     const handleSend = (value: string) => {
       if (value.trim()) {

@@ -133,7 +133,13 @@ const compactItems: TimelineItem[] = [
   { id: "1", date: "09:00 AM", title: "Sprint planning" },
   { id: "2", date: "10:30 AM", title: "Design review", badge: "Done", badgeVariant: "secondary" },
   { id: "3", date: "12:00 PM", title: "Lunch break" },
-  { id: "4", date: "01:00 PM", title: "Engineering sync", badge: "In Progress", badgeVariant: "outline" },
+  {
+    id: "4",
+    date: "01:00 PM",
+    title: "Engineering sync",
+    badge: "In Progress",
+    badgeVariant: "outline",
+  },
   { id: "5", date: "03:00 PM", title: "Client demo", badge: "Upcoming", badgeVariant: "default" },
   { id: "6", date: "04:30 PM", title: "Retrospective" },
 ];

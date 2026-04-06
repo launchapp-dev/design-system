@@ -3,15 +3,7 @@
   "title": "LaunchApp Community Theme",
   "description": "Schema for community-contributed color themes for the LaunchApp design system",
   "type": "object",
-  "required": [
-    "id",
-    "name",
-    "description",
-    "author",
-    "version",
-    "tokens",
-    "license"
-  ],
+  "required": ["id", "name", "description", "author", "version", "tokens", "license"],
   "additionalProperties": false,
   "properties": {
     "id": {

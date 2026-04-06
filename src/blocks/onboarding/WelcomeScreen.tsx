@@ -35,7 +35,7 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => (
     <div
       ref={ref}
@@ -43,9 +43,7 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
       {...props}
     >
       <div className="flex flex-col items-center gap-4">
-        {logoSrc && (
-          <img src={logoSrc} alt={logoAlt} className="h-14 w-auto" />
-        )}
+        {logoSrc && <img src={logoSrc} alt={logoAlt} className="h-14 w-auto" />}
         <div className="space-y-3">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
           <p className="mx-auto max-w-md text-base text-muted-foreground">{description}</p>
@@ -69,7 +67,7 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
             className={cn(
               "grid gap-6",
               features.length === 2 && "sm:grid-cols-2",
-              features.length >= 3 && "sm:grid-cols-2 lg:grid-cols-3"
+              features.length >= 3 && "sm:grid-cols-2 lg:grid-cols-3",
             )}
           >
             {features.map((feature, index) => (
@@ -90,7 +88,7 @@ const WelcomeScreen = React.forwardRef<HTMLDivElement, WelcomeScreenProps>(
         </div>
       )}
     </div>
-  )
+  ),
 );
 WelcomeScreen.displayName = "WelcomeScreen";
 

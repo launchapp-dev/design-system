@@ -67,7 +67,7 @@ export const WithLabel: Story = {
 export const WithContent: Story = {
   render: (args) => {
     const [value, setValue] = React.useState(
-      "<h1>Getting Started with LaunchApp</h1><p>LaunchApp is a modern SaaS starter kit that helps you ship faster. In this guide, we'll explore the key features.</p><h2>Authentication</h2><p>Built-in authentication with Better Auth provides secure session management out of the box.</p><ul><li>Email & password login</li><li>Social OAuth (Google, GitHub)</li><li>Magic link support</li></ul><blockquote>Pro tip: Enable 2FA for production deployments.</blockquote>"
+      "<h1>Getting Started with LaunchApp</h1><p>LaunchApp is a modern SaaS starter kit that helps you ship faster. In this guide, we'll explore the key features.</p><h2>Authentication</h2><p>Built-in authentication with Better Auth provides secure session management out of the box.</p><ul><li>Email & password login</li><li>Social OAuth (Google, GitHub)</li><li>Magic link support</li></ul><blockquote>Pro tip: Enable 2FA for production deployments.</blockquote>",
     );
     return <RichTextEditor {...args} value={value} onChange={setValue} />;
   },
@@ -96,7 +96,7 @@ export const WithError: Story = {
 export const Disabled: Story = {
   render: (args) => {
     const [value] = React.useState(
-      "<p>This editor is read-only. The user cannot modify the content.</p>"
+      "<p>This editor is read-only. The user cannot modify the content.</p>",
     );
     return <RichTextEditor {...args} value={value} disabled />;
   },

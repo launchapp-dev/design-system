@@ -40,7 +40,15 @@ export const AllVariants: Story = {
         <Checkbox disabled />
         <Checkbox checked={true} disabled />
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--muted-foreground)" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          fontSize: "12px",
+          color: "var(--muted-foreground)",
+        }}
+      >
         <span style={{ width: 28, textAlign: "center" }}>off</span>
         <span style={{ width: 28, textAlign: "center" }}>on</span>
         <span style={{ width: 58, textAlign: "center" }}>indet.</span>
@@ -56,7 +64,9 @@ export const AllSizes: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       {(["sm", "md", "lg"] as const).map((size) => (
         <div key={size} style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>{size}</span>
+          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>
+            {size}
+          </span>
           <Checkbox size={size} />
           <Checkbox size={size} checked={true} />
           <Checkbox size={size} checked="indeterminate" />
@@ -72,11 +82,7 @@ export const Interactive: Story = {
     const [checked, setChecked] = React.useState<boolean | "indeterminate">(false);
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Checkbox
-          {...args}
-          checked={checked}
-          onCheckedChange={(val) => setChecked(val)}
-        />
+        <Checkbox {...args} checked={checked} onCheckedChange={(val) => setChecked(val)} />
         <label style={{ fontSize: "14px" }}>
           {checked === "indeterminate" ? "Indeterminate" : checked ? "Checked" : "Unchecked"}
         </label>
@@ -90,7 +96,15 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", gap: "16px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "16px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <Checkbox />
       <Checkbox checked={true} />
       <Checkbox checked="indeterminate" />

@@ -35,7 +35,8 @@ function SectionProgress({
   onToggle: (itemId: string, completed: boolean) => void;
 }) {
   const completedCount = section.items.filter((i) => i.completed).length;
-  const progress = section.items.length > 0 ? Math.round((completedCount / section.items.length) * 100) : 0;
+  const progress =
+    section.items.length > 0 ? Math.round((completedCount / section.items.length) * 100) : 0;
   const allComplete = completedCount === section.items.length;
 
   return (
@@ -58,7 +59,11 @@ function SectionProgress({
             </Badge>
           )}
         </div>
-        <Progress value={progress} aria-label={`${section.title}: ${progress}% complete`} className="mt-3" />
+        <Progress
+          value={progress}
+          aria-label={`${section.title}: ${progress}% complete`}
+          className="mt-3"
+        />
       </CardHeader>
       <CardContent className="space-y-2">
         {section.items.map((item, idx) => (
@@ -66,7 +71,7 @@ function SectionProgress({
             <div
               className={cn(
                 "flex items-start gap-3 rounded-md p-2 transition-colors",
-                item.completed ? "bg-muted/40" : "bg-background"
+                item.completed ? "bg-muted/40" : "bg-background",
               )}
             >
               <Checkbox
@@ -81,7 +86,7 @@ function SectionProgress({
                   htmlFor={`${section.id}-${item.id}`}
                   className={cn(
                     "cursor-pointer text-sm font-medium leading-none",
-                    item.completed && "text-muted-foreground line-through"
+                    item.completed && "text-muted-foreground line-through",
                   )}
                 >
                   {item.href ? (
@@ -119,12 +124,12 @@ const ProgressChecklist = React.forwardRef<HTMLDivElement, ProgressChecklistProp
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const totalItems = sections.reduce((sum, s) => sum + s.items.length, 0);
     const totalCompleted = sections.reduce(
       (sum, s) => sum + s.items.filter((i) => i.completed).length,
-      0
+      0,
     );
     const overallProgress = totalItems > 0 ? Math.round((totalCompleted / totalItems) * 100) : 0;
     const allComplete = totalCompleted === totalItems && totalItems > 0;
@@ -153,7 +158,11 @@ const ProgressChecklist = React.forwardRef<HTMLDivElement, ProgressChecklistProp
                   <span className="text-2xl font-bold tabular-nums">{overallProgress}%</span>
                 )}
               </div>
-              <Progress value={overallProgress} aria-label={`Overall: ${overallProgress}% complete`} className="mt-3" />
+              <Progress
+                value={overallProgress}
+                aria-label={`Overall: ${overallProgress}% complete`}
+                className="mt-3"
+              />
             </CardHeader>
           </Card>
         )}
@@ -169,7 +178,7 @@ const ProgressChecklist = React.forwardRef<HTMLDivElement, ProgressChecklistProp
         </div>
       </div>
     );
-  }
+  },
 );
 ProgressChecklist.displayName = "ProgressChecklist";
 

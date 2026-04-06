@@ -14,7 +14,9 @@ const sampleWidgets: DashboardWidget[] = [
       <div>
         <div className="text-2xl font-bold text-card-foreground">$124,500</div>
         <div className="flex items-center gap-1 mt-1">
-          <Badge variant="secondary" className="text-xs">+12.5%</Badge>
+          <Badge variant="secondary" className="text-xs">
+            +12.5%
+          </Badge>
           <span className="text-xs text-muted-foreground">vs last month</span>
         </div>
         <div className="mt-2">
@@ -36,7 +38,9 @@ const sampleWidgets: DashboardWidget[] = [
       <div>
         <div className="text-2xl font-bold text-card-foreground">8,234</div>
         <div className="flex items-center gap-1 mt-1">
-          <Badge variant="secondary" className="text-xs">+8.3%</Badge>
+          <Badge variant="secondary" className="text-xs">
+            +8.3%
+          </Badge>
           <span className="text-xs text-muted-foreground">vs last week</span>
         </div>
         <div className="mt-2">
@@ -152,18 +156,11 @@ export const Default: Story = {
 export const Editable: Story = {
   render: (args) => {
     const [widgets, setWidgets] = React.useState(args.widgets);
-    
+
     return (
       <div>
-        <p className="text-sm text-muted-foreground mb-4">
-          Drag widgets to reorder them
-        </p>
-        <DashboardGrid
-          {...args}
-          widgets={widgets}
-          editable
-          onReorder={setWidgets}
-        />
+        <p className="text-sm text-muted-foreground mb-4">Drag widgets to reorder them</p>
+        <DashboardGrid {...args} widgets={widgets} editable onReorder={setWidgets} />
       </div>
     );
   },
@@ -191,24 +188,17 @@ export const WithOnReorder: Story = {
   render: (args) => {
     const [widgets, setWidgets] = React.useState(args.widgets);
     const [lastChange, setLastChange] = React.useState<string | null>(null);
-    
+
     const handleReorder = (newWidgets: DashboardWidget[]) => {
       setWidgets(newWidgets);
       setLastChange(`Reordered: ${newWidgets.map((w) => w.title).join(" → ")}`);
     };
-    
+
     return (
       <div>
-        <DashboardGrid
-          {...args}
-          widgets={widgets}
-          editable
-          onReorder={handleReorder}
-        />
+        <DashboardGrid {...args} widgets={widgets} editable onReorder={handleReorder} />
         {lastChange && (
-          <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm">
-            {lastChange}
-          </div>
+          <div className="mt-4 p-3 bg-muted rounded-[--la-radius] text-sm">{lastChange}</div>
         )}
       </div>
     );

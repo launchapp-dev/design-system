@@ -1,6 +1,13 @@
 import type * as React from "react";
 import { cn } from "../../lib/utils";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "../../components/Card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../../components/Card";
 import { Badge } from "../../components/Badge";
 import { Button } from "../../components/Button";
 import { Progress } from "../../components/Progress";
@@ -214,7 +221,7 @@ function BillingCard({
                   <CheckIcon
                     className={cn(
                       "h-4 w-4",
-                      feature.included ? "text-primary" : "text-muted-foreground/30"
+                      feature.included ? "text-primary" : "text-muted-foreground/30",
                     )}
                   />
                   <span className={cn(!feature.included && "text-muted-foreground line-through")}>
@@ -270,7 +277,8 @@ function BillingCard({
         {/* Next billing */}
         {nextBillingDate && status === "active" && (
           <p className="text-sm text-muted-foreground">
-            Next billing date: <span className="font-medium text-foreground">{nextBillingDate}</span>
+            Next billing date:{" "}
+            <span className="font-medium text-foreground">{nextBillingDate}</span>
           </p>
         )}
       </CardContent>

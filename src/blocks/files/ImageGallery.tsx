@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-  DialogRoot,
-  DialogContent,
-  DialogClose,
-  DialogTitle,
-} from "@/components/Dialog";
+import { DialogRoot, DialogContent, DialogClose, DialogTitle } from "@/components/Dialog";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 
@@ -40,7 +35,10 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
           {...props}
         >
           {images.map((image) => (
-            <div key={image.id} className="group relative aspect-square overflow-hidden rounded-lg border bg-muted">
+            <div
+              key={image.id}
+              className="group relative aspect-square overflow-hidden rounded-lg border bg-muted"
+            >
               <img
                 src={image.src}
                 alt={image.alt}
@@ -89,11 +87,12 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
           ))}
         </div>
 
-        <DialogRoot open={lightboxId !== null} onOpenChange={(open) => !open && setLightboxId(null)}>
+        <DialogRoot
+          open={lightboxId !== null}
+          onOpenChange={(open) => !open && setLightboxId(null)}
+        >
           <DialogContent className="max-w-3xl border-0 bg-black/90 p-2 shadow-2xl">
-            <DialogTitle className="sr-only">
-              {lightboxImage?.alt ?? "Image preview"}
-            </DialogTitle>
+            <DialogTitle className="sr-only">{lightboxImage?.alt ?? "Image preview"}</DialogTitle>
             {lightboxImage && (
               <div className="relative flex flex-col items-center gap-2">
                 <img
@@ -120,7 +119,12 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </Button>
             </DialogClose>
@@ -128,7 +132,7 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
         </DialogRoot>
       </>
     );
-  }
+  },
 );
 ImageGallery.displayName = "ImageGallery";
 

@@ -25,7 +25,7 @@ function TextTransition({
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 
   React.useEffect(() => {
@@ -50,12 +50,7 @@ function TextTransition({
   const characters = displayText.split("");
 
   return (
-    <span
-      ref={ref}
-      className={cn("inline-block", className)}
-      aria-label={text}
-      {...props}
-    >
+    <span ref={ref} className={cn("inline-block", className)} aria-label={text} {...props}>
       {characters.map((char, i) => {
         const isExiting = isTransitioning && text !== prevTextRef.current;
         const animationClass =
@@ -74,9 +69,7 @@ function TextTransition({
             className={cn("inline-block", animationClass)}
             style={{
               animationDuration: prefersReducedMotion ? "0ms" : `${duration}ms`,
-              animationDelay: prefersReducedMotion
-                ? "0ms"
-                : `${i * staggerDelay}ms`,
+              animationDelay: prefersReducedMotion ? "0ms" : `${i * staggerDelay}ms`,
             }}
           >
             {char === " " ? "\u00a0" : char}

@@ -90,9 +90,7 @@ export const Trial: Story = {
         status="trialing"
         currentPeriodStart="2026-03-21"
         currentPeriodEnd="2026-04-04"
-        usage={[
-          { id: "1", label: "Storage", used: 1.2, total: 10, unit: "GB" },
-        ]}
+        usage={[{ id: "1", label: "Storage", used: 1.2, total: 10, unit: "GB" }]}
         onUpgrade={() => console.log("Upgrade")}
         onManage={() => console.log("Manage")}
       />
@@ -184,7 +182,14 @@ export const HighUsage: Story = {
         currentPeriodEnd="2026-04-01"
         usage={[
           { id: "1", label: "Storage", used: 9.5, total: 10, unit: "GB", warningThreshold: 80 },
-          { id: "2", label: "API calls", used: 9500, total: 10000, unit: "req/mo", warningThreshold: 90 },
+          {
+            id: "2",
+            label: "API calls",
+            used: 9500,
+            total: 10000,
+            unit: "req/mo",
+            warningThreshold: 90,
+          },
         ]}
         onUpgrade={() => console.log("Upgrade")}
       />
@@ -202,11 +207,7 @@ export const FreePlan: Story = {
           description: "Get started with the basics.",
           price: "$0",
           billingCycle: "forever",
-          features: [
-            "Up to 3 projects",
-            "1GB storage",
-            "Community support",
-          ],
+          features: ["Up to 3 projects", "1GB storage", "Community support"],
         }}
         status="active"
         usage={[

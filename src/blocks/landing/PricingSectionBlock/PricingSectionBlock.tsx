@@ -49,8 +49,7 @@ export interface PricingSectionFAQItem {
   answer: string;
 }
 
-export interface PricingSectionBlockProps
-  extends React.HTMLAttributes<HTMLElement> {
+export interface PricingSectionBlockProps extends React.HTMLAttributes<HTMLElement> {
   headline?: React.ReactNode;
   subheadline?: React.ReactNode;
   tiers: PricingSectionTier[];
@@ -66,10 +65,7 @@ export interface PricingSectionBlockProps
   trustBadges?: React.ReactNode[];
 }
 
-const PricingSectionBlock = React.forwardRef<
-  HTMLElement,
-  PricingSectionBlockProps
->(
+const PricingSectionBlock = React.forwardRef<HTMLElement, PricingSectionBlockProps>(
   (
     {
       className,
@@ -88,7 +84,7 @@ const PricingSectionBlock = React.forwardRef<
       trustBadges,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isAnnual, setIsAnnual] = React.useState(false);
 
@@ -97,9 +93,7 @@ const PricingSectionBlock = React.forwardRef<
         <span
           className={cn(
             "text-sm font-medium transition-colors",
-            !isAnnual
-              ? "text-foreground"
-              : "text-muted-foreground"
+            !isAnnual ? "text-foreground" : "text-muted-foreground",
           )}
         >
           {monthlyLabel}
@@ -113,13 +107,13 @@ const PricingSectionBlock = React.forwardRef<
           <span
             className={cn(
               "flex h-5 w-9 items-center rounded-full bg-muted p-0.5 transition-colors",
-              isAnnual && "bg-primary"
+              isAnnual && "bg-primary",
             )}
           >
             <span
               className={cn(
                 "h-4 w-4 rounded-full bg-background shadow-sm transition-transform",
-                isAnnual && "translate-x-4"
+                isAnnual && "translate-x-4",
               )}
             />
           </span>
@@ -127,7 +121,7 @@ const PricingSectionBlock = React.forwardRef<
         <span
           className={cn(
             "text-sm font-medium transition-colors",
-            isAnnual ? "text-foreground" : "text-muted-foreground"
+            isAnnual ? "text-foreground" : "text-muted-foreground",
           )}
         >
           {annualLabel}
@@ -147,7 +141,7 @@ const PricingSectionBlock = React.forwardRef<
             key={i}
             className={cn(
               "relative flex flex-col",
-              tier.popular && "border-primary shadow-lg ring-2 ring-primary"
+              tier.popular && "border-primary shadow-lg ring-2 ring-primary",
             )}
           >
             {tier.popular && (
@@ -165,21 +159,14 @@ const PricingSectionBlock = React.forwardRef<
                   /{isAnnual ? "year" : "month"}
                 </span>
               </div>
-              {isAnnual && (
-                <p className="text-xs text-muted-foreground">
-                  {billingToggleLabel}
-                </p>
-              )}
+              {isAnnual && <p className="text-xs text-muted-foreground">{billingToggleLabel}</p>}
               <CardDescription>{tier.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
               <Separator className="mb-4" />
               <ul className="space-y-2">
                 {tier.features.map((feature, fi) => (
-                  <li
-                    key={fi}
-                    className="flex items-center gap-2 text-sm text-foreground"
-                  >
+                  <li key={fi} className="flex items-center gap-2 text-sm text-foreground">
                     <span className="text-primary shrink-0" aria-hidden="true">
                       ✓
                     </span>
@@ -207,9 +194,7 @@ const PricingSectionBlock = React.forwardRef<
       return (
         <div className="mt-16">
           {featureComparisonHeader && (
-            <h3 className="text-2xl font-bold text-center mb-8">
-              {featureComparisonHeader}
-            </h3>
+            <h3 className="text-2xl font-bold text-center mb-8">{featureComparisonHeader}</h3>
           )}
           <div className="rounded-lg border overflow-hidden">
             <Table>
@@ -219,10 +204,7 @@ const PricingSectionBlock = React.forwardRef<
                   {tiers.map((tier, i) => (
                     <TableHead
                       key={i}
-                      className={cn(
-                        "text-center",
-                        tier.popular && "text-primary font-semibold"
-                      )}
+                      className={cn("text-center", tier.popular && "text-primary font-semibold")}
                     >
                       {tier.name}
                     </TableHead>
@@ -251,20 +233,14 @@ const PricingSectionBlock = React.forwardRef<
       if (faqItems.length === 0) return null;
       return (
         <div className="mt-16 max-w-3xl mx-auto">
-          {faqHeader && (
-            <h3 className="text-2xl font-bold text-center mb-8">
-              {faqHeader}
-            </h3>
-          )}
+          {faqHeader && <h3 className="text-2xl font-bold text-center mb-8">{faqHeader}</h3>}
           <AccordionRoot type="single" collapsible className="w-full">
             {faqItems.map((item, i) => (
               <AccordionItem key={i} value={`faq-${i}`}>
                 <AccordionTrigger className="text-left font-medium">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {item.answer}
-                </AccordionContent>
+                <AccordionContent className="text-muted-foreground">{item.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </AccordionRoot>
@@ -275,9 +251,7 @@ const PricingSectionBlock = React.forwardRef<
     const renderTrustBadges = () => {
       if (!trustBadges || trustBadges.length === 0) return null;
       return (
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6">
-          {trustBadges}
-        </div>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-6">{trustBadges}</div>
       );
     };
 
@@ -286,13 +260,9 @@ const PricingSectionBlock = React.forwardRef<
         {(headline || subheadline) && (
           <div className="mb-8 text-center space-y-3 max-w-3xl mx-auto">
             {headline && (
-              <h2 className="text-3xl font-bold tracking-tight text-foreground">
-                {headline}
-              </h2>
+              <h2 className="text-3xl font-bold tracking-tight text-foreground">{headline}</h2>
             )}
-            {subheadline && (
-              <p className="text-lg text-muted-foreground">{subheadline}</p>
-            )}
+            {subheadline && <p className="text-lg text-muted-foreground">{subheadline}</p>}
           </div>
         )}
         {renderToggle()}
@@ -302,11 +272,9 @@ const PricingSectionBlock = React.forwardRef<
         {renderTrustBadges()}
       </section>
     );
-  }
+  },
 );
 
 PricingSectionBlock.displayName = "PricingSectionBlock";
 
-export {
-  PricingSectionBlock,
-};
+export { PricingSectionBlock };

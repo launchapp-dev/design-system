@@ -10,9 +10,7 @@ export interface ConsentState {
 
 export function readConsentCookie(): ConsentState | null {
   if (typeof document === "undefined") return null;
-  const match = document.cookie.match(
-    new RegExp(`(?:^|; )${CONSENT_COOKIE_NAME}=([^;]*)`)
-  );
+  const match = document.cookie.match(new RegExp(`(?:^|; )${CONSENT_COOKIE_NAME}=([^;]*)`));
   if (!match) return null;
   try {
     return JSON.parse(decodeURIComponent(match[1])) as ConsentState;
@@ -33,9 +31,7 @@ export function clearConsentCookie(): void {
 }
 
 export function useCookieConsent() {
-  const [state, setState] = React.useState<ConsentState | null>(() =>
-    readConsentCookie()
-  );
+  const [state, setState] = React.useState<ConsentState | null>(() => readConsentCookie());
 
   function saveConsent(preferences: Record<string, boolean>) {
     const next: ConsentState = { decided: true, preferences };

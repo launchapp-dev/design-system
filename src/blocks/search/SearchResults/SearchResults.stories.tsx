@@ -5,7 +5,8 @@ const mockResults: SearchResultItem[] = [
   {
     id: "1",
     title: "Getting Started with LaunchApp",
-    excerpt: "A comprehensive guide to setting up your LaunchApp workspace, inviting team members, and configuring your first project.",
+    excerpt:
+      "A comprehensive guide to setting up your LaunchApp workspace, inviting team members, and configuring your first project.",
     category: "Documentation",
     tags: ["guide", "setup"],
     author: "Sarah Chen",
@@ -16,7 +17,8 @@ const mockResults: SearchResultItem[] = [
   {
     id: "2",
     title: "API Authentication Guide",
-    excerpt: "Learn how to authenticate your API requests using OAuth 2.0, API keys, and JWT tokens.",
+    excerpt:
+      "Learn how to authenticate your API requests using OAuth 2.0, API keys, and JWT tokens.",
     category: "Documentation",
     tags: ["api", "authentication", "security"],
     author: "Marcus Webb",
@@ -27,7 +29,8 @@ const mockResults: SearchResultItem[] = [
   {
     id: "3",
     title: "Billing and Subscription Management",
-    excerpt: "Everything you need to know about managing your subscription, updating payment methods, and understanding invoices.",
+    excerpt:
+      "Everything you need to know about managing your subscription, updating payment methods, and understanding invoices.",
     category: "Settings",
     tags: ["billing", "subscription"],
     author: "Priya Patel",
@@ -38,7 +41,8 @@ const mockResults: SearchResultItem[] = [
   {
     id: "4",
     title: "Building Your First Integration",
-    excerpt: "Step-by-step tutorial for connecting LaunchApp with your existing tools and workflows using webhooks and our REST API.",
+    excerpt:
+      "Step-by-step tutorial for connecting LaunchApp with your existing tools and workflows using webhooks and our REST API.",
     category: "Tutorials",
     tags: ["integrations", "api", "webhooks"],
     author: "Jordan Lee",

@@ -23,11 +23,7 @@ export const Default: Story = {
 export const WithLimits: Story = {
   render: () => (
     <div style={{ maxWidth: 400 }}>
-      <InviteForm
-        onSubmit={(v) => console.log("Invite", v)}
-        maxRecipients={5}
-        sentCount={3}
-      />
+      <InviteForm onSubmit={(v) => console.log("Invite", v)} maxRecipients={5} sentCount={3} />
     </div>
   ),
 };
@@ -35,11 +31,7 @@ export const WithLimits: Story = {
 export const AtLimit: Story = {
   render: () => (
     <div style={{ maxWidth: 400 }}>
-      <InviteForm
-        onSubmit={(v) => console.log("Invite", v)}
-        maxRecipients={5}
-        sentCount={5}
-      />
+      <InviteForm onSubmit={(v) => console.log("Invite", v)} maxRecipients={5} sentCount={5} />
     </div>
   ),
 };
@@ -58,10 +50,7 @@ export const ErrorState: Story = {
 export const Loading: Story = {
   render: () => (
     <div style={{ maxWidth: 400 }}>
-      <InviteForm
-        onSubmit={(v) => console.log("Invite", v)}
-        isLoading
-      />
+      <InviteForm onSubmit={(v) => console.log("Invite", v)} isLoading />
     </div>
   ),
 };
@@ -76,7 +65,10 @@ export const DarkMode: Story = {
   ],
   render: () => (
     <div style={{ maxWidth: 400 }}>
-      <InviteForm onSubmit={(v) => console.log("Invite", v)} onCancel={() => console.log("Cancel")} />
+      <InviteForm
+        onSubmit={(v) => console.log("Invite", v)}
+        onCancel={() => console.log("Cancel")}
+      />
     </div>
   ),
 };

@@ -54,15 +54,9 @@ function SignInForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="you@example.com"
-                    {...field}
-                  />
+                  <Input type="email" placeholder="you@example.com" {...field} />
                 </FormControl>
-                <FormDescription>
-                  We&apos;ll never share your email.
-                </FormDescription>
+                <FormDescription>We&apos;ll never share your email.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -86,9 +80,7 @@ function SignInForm() {
         </form>
       </Form>
       {submitted && (
-        <pre className="rounded-md bg-muted p-4 text-xs">
-          {JSON.stringify(submitted, null, 2)}
-        </pre>
+        <pre className="rounded-md bg-muted p-4 text-xs">{JSON.stringify(submitted, null, 2)}</pre>
       )}
     </div>
   );

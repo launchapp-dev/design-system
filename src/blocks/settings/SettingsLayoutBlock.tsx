@@ -60,10 +60,7 @@ function SettingsLayoutBlock({
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
           <aside className="lg:w-64 lg:flex-shrink-0">
-            <nav
-              aria-label="Settings navigation"
-              className="lg:sticky lg:top-8 space-y-0.5"
-            >
+            <nav aria-label="Settings navigation" className="lg:sticky lg:top-8 space-y-0.5">
               {sections.map((section) => {
                 const isActive = section.id === activeSection;
                 return (
@@ -78,7 +75,7 @@ function SettingsLayoutBlock({
                       isActive
                         ? "bg-primary/10 text-primary"
                         : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                      section.disabled && "cursor-not-allowed opacity-50"
+                      section.disabled && "cursor-not-allowed opacity-50",
                     )}
                   >
                     {section.icon && (
@@ -93,7 +90,7 @@ function SettingsLayoutBlock({
                           "flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-semibold",
                           isActive
                             ? "bg-primary text-primary-foreground"
-                            : "bg-muted text-muted-foreground"
+                            : "bg-muted text-muted-foreground",
                         )}
                       >
                         {section.badge}
@@ -125,7 +122,7 @@ function SettingsLayoutBlock({
                       "flex flex-col items-center gap-1 rounded-lg px-3 py-2 text-xs font-medium transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       isActive
                         ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-muted"
+                        : "text-muted-foreground hover:bg-muted",
                     )}
                   >
                     {section.icon && (

@@ -22,14 +22,26 @@ const plans = [
     name: "Pro",
     price: "$29",
     billingCycle: "per month",
-    features: ["Unlimited projects", "10GB storage", "Priority support", "API access", "Custom domains"],
+    features: [
+      "Unlimited projects",
+      "10GB storage",
+      "Priority support",
+      "API access",
+      "Custom domains",
+    ],
   },
   {
     id: "enterprise",
     name: "Enterprise",
     price: "$99",
     billingCycle: "per month",
-    features: ["Everything in Pro", "Unlimited storage", "Dedicated support", "SSO/SAML", "Audit logs"],
+    features: [
+      "Everything in Pro",
+      "Unlimited storage",
+      "Dedicated support",
+      "SSO/SAML",
+      "Audit logs",
+    ],
   },
 ];
 

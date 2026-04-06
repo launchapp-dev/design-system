@@ -82,17 +82,12 @@ function ChangelogTimelineEntry({ entry, isLast }: { entry: ChangelogEntry; isLa
               <span className="inline-flex items-center rounded-md border bg-background px-2.5 py-0.5 text-xs font-mono font-semibold">
                 {entry.version}
               </span>
-              <time
-                dateTime={entry.date}
-                className="text-xs text-muted-foreground"
-              >
+              <time dateTime={entry.date} className="text-xs text-muted-foreground">
                 {formatDate(entry.date)}
               </time>
             </div>
             <CardTitle className="text-base mt-2">{entry.title}</CardTitle>
-            {entry.description && (
-              <CardDescription>{entry.description}</CardDescription>
-            )}
+            {entry.description && <CardDescription>{entry.description}</CardDescription>}
             {entry.tags && entry.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {entry.tags.map((tag) => (
@@ -149,9 +144,7 @@ function ChangelogTimeline({
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div className="space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
-          {description && (
-            <p className="text-muted-foreground">{description}</p>
-          )}
+          {description && <p className="text-muted-foreground">{description}</p>}
         </div>
         {showSubscribe && (
           <Button variant="outline" onClick={onSubscribe}>

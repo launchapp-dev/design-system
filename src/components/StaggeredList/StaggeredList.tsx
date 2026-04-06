@@ -52,17 +52,15 @@ function StaggeredItem({
   );
 }
 
-function StaggeredList(
-  {
-    children,
-    staggerDelay = 80,
-    duration = 400,
-    initialDelay = 0,
-    className,
-    ref,
-    ...props
-  }: StaggeredListProps & { ref?: React.Ref<HTMLDivElement> }
-) {
+function StaggeredList({
+  children,
+  staggerDelay = 80,
+  duration = 400,
+  initialDelay = 0,
+  className,
+  ref,
+  ...props
+}: StaggeredListProps & { ref?: React.Ref<HTMLDivElement> }) {
   const prefersReducedMotion = useReducedMotion();
 
   return (

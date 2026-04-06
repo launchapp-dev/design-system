@@ -14,7 +14,7 @@ const buildTokens = (
   h: number,
   s: number,
   primaryL: number,
-  darkPrimaryL: number
+  darkPrimaryL: number,
 ): { light: PaletteTokenSet; dark: PaletteTokenSet } => {
   const ss = Math.round(s * 0.12);
   const sr = (n: number) => Math.round(s * n);

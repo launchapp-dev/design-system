@@ -42,13 +42,19 @@ export const WithToggleGroup: Story = {
           <ToolbarButton>Copy</ToolbarButton>
           <ToolbarButton>Paste</ToolbarButton>
           <ToolbarSeparator />
-          <ToolbarToggleGroup type="single" value={alignment} onValueChange={(v) => v && setAlignment(v)}>
+          <ToolbarToggleGroup
+            type="single"
+            value={alignment}
+            onValueChange={(v) => v && setAlignment(v)}
+          >
             <ToolbarToggleItem value="left">Left</ToolbarToggleItem>
             <ToolbarToggleItem value="center">Center</ToolbarToggleItem>
             <ToolbarToggleItem value="right">Right</ToolbarToggleItem>
           </ToolbarToggleGroup>
         </ToolbarRoot>
-        <p style={{ fontSize: "13px", color: "hsl(var(--muted-foreground))" }}>Alignment: {alignment}</p>
+        <p style={{ fontSize: "13px", color: "hsl(var(--muted-foreground))" }}>
+          Alignment: {alignment}
+        </p>
       </div>
     );
   },
@@ -81,38 +87,56 @@ export const AllSizes: Story = {
   render: () => (
     <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "16px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Small</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Small
+        </p>
         <ToolbarRoot>
           <ToolbarButton size="sm">Bold</ToolbarButton>
           <ToolbarButton size="sm">Italic</ToolbarButton>
           <ToolbarSeparator />
           <ToolbarToggleGroup type="single" defaultValue="left">
-            <ToolbarToggleItem size="sm" value="left">Left</ToolbarToggleItem>
-            <ToolbarToggleItem size="sm" value="center">Center</ToolbarToggleItem>
+            <ToolbarToggleItem size="sm" value="left">
+              Left
+            </ToolbarToggleItem>
+            <ToolbarToggleItem size="sm" value="center">
+              Center
+            </ToolbarToggleItem>
           </ToolbarToggleGroup>
         </ToolbarRoot>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Medium (default)</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Medium (default)
+        </p>
         <ToolbarRoot>
           <ToolbarButton size="md">Bold</ToolbarButton>
           <ToolbarButton size="md">Italic</ToolbarButton>
           <ToolbarSeparator />
           <ToolbarToggleGroup type="single" defaultValue="left">
-            <ToolbarToggleItem size="md" value="left">Left</ToolbarToggleItem>
-            <ToolbarToggleItem size="md" value="center">Center</ToolbarToggleItem>
+            <ToolbarToggleItem size="md" value="left">
+              Left
+            </ToolbarToggleItem>
+            <ToolbarToggleItem size="md" value="center">
+              Center
+            </ToolbarToggleItem>
           </ToolbarToggleGroup>
         </ToolbarRoot>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Large</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Large
+        </p>
         <ToolbarRoot>
           <ToolbarButton size="lg">Bold</ToolbarButton>
           <ToolbarButton size="lg">Italic</ToolbarButton>
           <ToolbarSeparator />
           <ToolbarToggleGroup type="single" defaultValue="left">
-            <ToolbarToggleItem size="lg" value="left">Left</ToolbarToggleItem>
-            <ToolbarToggleItem size="lg" value="center">Center</ToolbarToggleItem>
+            <ToolbarToggleItem size="lg" value="left">
+              Left
+            </ToolbarToggleItem>
+            <ToolbarToggleItem size="lg" value="center">
+              Center
+            </ToolbarToggleItem>
           </ToolbarToggleGroup>
         </ToolbarRoot>
       </div>
@@ -124,24 +148,36 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "16px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Default variant</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Default variant
+        </p>
         <ToolbarRoot>
           <ToolbarButton variant="default">Action</ToolbarButton>
-          <ToolbarButton variant="default" disabled>Disabled</ToolbarButton>
+          <ToolbarButton variant="default" disabled>
+            Disabled
+          </ToolbarButton>
         </ToolbarRoot>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Outline variant</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Outline variant
+        </p>
         <ToolbarRoot>
           <ToolbarButton variant="outline">Action</ToolbarButton>
-          <ToolbarButton variant="outline" disabled>Disabled</ToolbarButton>
+          <ToolbarButton variant="outline" disabled>
+            Disabled
+          </ToolbarButton>
         </ToolbarRoot>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Ghost variant</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Ghost variant
+        </p>
         <ToolbarRoot>
           <ToolbarButton variant="ghost">Action</ToolbarButton>
-          <ToolbarButton variant="ghost" disabled>Disabled</ToolbarButton>
+          <ToolbarButton variant="ghost" disabled>
+            Disabled
+          </ToolbarButton>
         </ToolbarRoot>
       </div>
     </div>

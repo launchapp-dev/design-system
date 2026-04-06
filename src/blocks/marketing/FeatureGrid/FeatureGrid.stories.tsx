@@ -51,12 +51,14 @@ const sampleFeatures = [
   {
     icon: <IconShield />,
     title: "Secure by Default",
-    description: "Built with security best practices. Every component is safe to use in production.",
+    description:
+      "Built with security best practices. Every component is safe to use in production.",
   },
   {
     icon: <IconLayers />,
     title: "Composable",
-    description: "Mix and match components to build complex interfaces without writing custom code.",
+    description:
+      "Mix and match components to build complex interfaces without writing custom code.",
   },
   {
     icon: <IconCode />,
@@ -132,12 +134,7 @@ export const WithoutHeader: Story = {
 };
 
 export const ThreeFeatures: Story = {
-  render: () => (
-    <FeatureGrid
-      headline="Core capabilities"
-      features={sampleFeatures.slice(0, 3)}
-    />
-  ),
+  render: () => <FeatureGrid headline="Core capabilities" features={sampleFeatures.slice(0, 3)} />,
 };
 
 export const WithoutIcons: Story = {

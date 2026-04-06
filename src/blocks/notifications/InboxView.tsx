@@ -38,7 +38,7 @@ const InboxView = React.forwardRef<HTMLDivElement, InboxViewProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const unreadCount = items.filter((item) => !item.read).length;
 
@@ -46,9 +46,7 @@ const InboxView = React.forwardRef<HTMLDivElement, InboxViewProps>(
       <Card ref={ref} className={cn("flex flex-col", className)} {...props}>
         <CardHeader className="border-b pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base">
-              {title}
-            </CardTitle>
+            <CardTitle className="text-base">{title}</CardTitle>
             {unreadCount > 0 && (
               <Badge variant="secondary" className="text-xs">
                 {unreadCount} unread
@@ -76,7 +74,7 @@ const InboxView = React.forwardRef<HTMLDivElement, InboxViewProps>(
                       className={cn(
                         "flex w-full items-start gap-3 px-4 py-3 text-left transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                         selectedId === item.id && "bg-muted",
-                        !item.read && "bg-primary/5"
+                        !item.read && "bg-primary/5",
                       )}
                     >
                       <Avatar size="sm" className="mt-0.5 shrink-0">
@@ -92,7 +90,7 @@ const InboxView = React.forwardRef<HTMLDivElement, InboxViewProps>(
                           <span
                             className={cn(
                               "truncate text-sm",
-                              !item.read ? "font-semibold" : "font-medium text-muted-foreground"
+                              !item.read ? "font-semibold" : "font-medium text-muted-foreground",
                             )}
                           >
                             {item.sender}
@@ -107,7 +105,7 @@ const InboxView = React.forwardRef<HTMLDivElement, InboxViewProps>(
                         <p
                           className={cn(
                             "truncate text-sm",
-                            !item.read ? "font-medium" : "text-muted-foreground"
+                            !item.read ? "font-medium" : "text-muted-foreground",
                           )}
                         >
                           {item.subject}
@@ -115,7 +113,10 @@ const InboxView = React.forwardRef<HTMLDivElement, InboxViewProps>(
                         <p className="truncate text-xs text-muted-foreground">{item.preview}</p>
                       </div>
                       {!item.read && (
-                        <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" aria-label="Unread" />
+                        <span
+                          className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+                          aria-label="Unread"
+                        />
                       )}
                     </button>
                     {index < items.length - 1 && <Separator />}
@@ -127,7 +128,7 @@ const InboxView = React.forwardRef<HTMLDivElement, InboxViewProps>(
         </CardContent>
       </Card>
     );
-  }
+  },
 );
 InboxView.displayName = "InboxView";
 

@@ -75,7 +75,9 @@ export const AllVariants: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "32px", width: 420 }}>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Icon Button Trigger</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Icon Button Trigger
+          </p>
           <Collapsible open={open1} onOpenChange={setOpen1}>
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold">Dependencies</h4>
@@ -90,7 +92,10 @@ export const AllVariants: Story = {
             </div>
             <CollapsibleContent className="mt-2 space-y-1">
               {["react", "typescript", "tailwindcss"].map((dep) => (
-                <div key={dep} className="rounded-md border border-border px-3 py-2 font-mono text-sm">
+                <div
+                  key={dep}
+                  className="rounded-md border border-border px-3 py-2 font-mono text-sm"
+                >
                   {dep}
                 </div>
               ))}
@@ -99,7 +104,9 @@ export const AllVariants: Story = {
         </div>
 
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Text Link Trigger (open by default)</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Text Link Trigger (open by default)
+          </p>
           <Collapsible open={open2} onOpenChange={setOpen2}>
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold">Project Details</h4>
@@ -117,7 +124,9 @@ export const AllVariants: Story = {
         </div>
 
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Full-width Header Trigger</p>
+          <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+            Full-width Header Trigger
+          </p>
           <Collapsible open={open3} onOpenChange={setOpen3}>
             <CollapsibleTrigger asChild>
               <button className="flex w-full items-center justify-between rounded-md border border-border px-4 py-3 text-sm font-medium hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">

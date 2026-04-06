@@ -32,9 +32,7 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
     const [detailsTheme, setDetailsTheme] = React.useState<CommunityTheme | null>(null);
 
     const allThemes = themes || listCommunityThemes();
-    const allKeywords = Array.from(
-      new Set(allThemes.flatMap((t) => t.keywords || []))
-    ).sort();
+    const allKeywords = Array.from(new Set(allThemes.flatMap((t) => t.keywords || []))).sort();
 
     const filteredThemes = allThemes.filter((theme) => {
       const matchesSearch =
@@ -113,7 +111,9 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
             <div className="space-y-4">
               <div>
                 <h2 className="text-lg font-semibold">Featured Themes</h2>
-                <p className="text-sm text-muted-foreground">Handpicked themes from our community</p>
+                <p className="text-sm text-muted-foreground">
+                  Handpicked themes from our community
+                </p>
               </div>
               <div className={cn("grid gap-4", colClasses[columns])}>
                 {featuredThemes.map((theme) => (
@@ -131,9 +131,7 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
 
           {otherThemes.length > 0 && (
             <div className="space-y-4">
-              {featuredThemes.length > 0 && (
-                <Separator />
-              )}
+              {featuredThemes.length > 0 && <Separator />}
               <div>
                 <h2 className="text-lg font-semibold">All Themes</h2>
                 <p className="text-sm text-muted-foreground">
@@ -180,9 +178,7 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
               <>
                 <DialogHeader>
                   <DialogTitle>{detailsTheme.name}</DialogTitle>
-                  <DialogDescription>
-                    by {detailsTheme.author.name}
-                  </DialogDescription>
+                  <DialogDescription>by {detailsTheme.author.name}</DialogDescription>
                 </DialogHeader>
 
                 <ScrollArea className="pr-4 space-y-4">
@@ -221,9 +217,7 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
 
                     {detailsTheme.repository && (
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-1">
-                          Repository
-                        </p>
+                        <p className="text-xs font-medium text-muted-foreground mb-1">Repository</p>
                         <a
                           href={detailsTheme.repository}
                           target="_blank"
@@ -237,9 +231,7 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
 
                     {detailsTheme.keywords && detailsTheme.keywords.length > 0 && (
                       <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-2">
-                          Keywords
-                        </p>
+                        <p className="text-xs font-medium text-muted-foreground mb-2">Keywords</p>
                         <div className="flex flex-wrap gap-2">
                           {detailsTheme.keywords.map((keyword) => (
                             <Badge key={keyword} variant="secondary" className="text-xs">
@@ -314,7 +306,7 @@ const CommunityThemesGallery = React.forwardRef<HTMLDivElement, CommunityThemesG
         </DialogRoot>
       </>
     );
-  }
+  },
 );
 
 CommunityThemesGallery.displayName = "CommunityThemesGallery";

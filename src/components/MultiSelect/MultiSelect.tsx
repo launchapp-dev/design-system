@@ -25,7 +25,7 @@ const multiSelectTriggerVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface MultiSelectOption {
@@ -62,7 +62,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [open, setOpen] = React.useState(false);
     const [focusedTagIndex, setFocusedTagIndex] = React.useState<number | null>(null);
@@ -173,7 +173,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                         variant="secondary"
                         className={cn(
                           "flex items-center gap-1 rounded pr-0.5",
-                          focusedTagIndex === index && "ring-2 ring-ring"
+                          focusedTagIndex === index && "ring-2 ring-ring",
                         )}
                         ref={(el) => {
                           tagRefs.current[index] = el;
@@ -261,9 +261,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
                       <div
                         className={cn(
                           "mr-2 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-primary",
-                          isSelected
-                            ? "bg-primary text-primary-foreground"
-                            : "opacity-50"
+                          isSelected ? "bg-primary text-primary-foreground" : "opacity-50",
                         )}
                         aria-hidden="true"
                       >
@@ -294,7 +292,7 @@ const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
         </PopoverContent>
       </Popover>
     );
-  }
+  },
 );
 
 MultiSelect.displayName = "MultiSelect";
