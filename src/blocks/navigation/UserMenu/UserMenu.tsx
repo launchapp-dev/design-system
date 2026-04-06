@@ -96,7 +96,7 @@ function UserMenuInner({
   className,
   ref,
   ...props
-}: UserMenuProps & { ref?: React.Ref<HTMLElement> }) {
+}: UserMenuProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const defaultSections: UserMenuSection[] = sections.length
     ? sections
     : [

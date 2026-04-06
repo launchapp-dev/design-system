@@ -46,7 +46,7 @@ function Timeline({
               compact ? "mt-1.5 h-6 w-6" : "mt-2 h-8 w-8"
             )}>
               {entry.avatarSrc || entry.avatarFallback ? (
-                <Avatar size={compact ? "xs" : "sm"}>
+                <Avatar size="sm">
                   {entry.avatarSrc && <AvatarImage src={entry.avatarSrc} alt="" />}
                   <AvatarFallback className="text-[10px]">
                     {entry.avatarFallback ?? ""}

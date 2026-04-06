@@ -11,5 +11,5 @@ export type {
 } from "./DashboardShell";
 export { Timeline } from "./Timeline";
 export type { TimelineProps, TimelineEntry } from "./Timeline";
-export { ActivityFeed } from "./ActivityFeed";
-export type { ActivityFeedProps, ActivityFeedItem } from "./ActivityFeed";
+export { ActivityFeed } from "./ActivityFeed/index";
+export type { ActivityFeedProps, ActivityFeedItem } from "./ActivityFeed/index";
