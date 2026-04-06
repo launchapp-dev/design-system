@@ -46,7 +46,6 @@ describe("Button", () => {
 const { mockCreate } = vi.hoisted(() => ({ mockCreate: vi.fn() }));
 
 vi.mock("@anthropic-ai/sdk", () => ({
-  // biome-ignore lint/complexity/useArrowFunction: must be function constructor for `new` to work
   default: vi.fn(function () {
     return { messages: { create: mockCreate } };
   }),
