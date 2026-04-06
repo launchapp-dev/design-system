@@ -2837,6 +2837,41 @@
         }
       ],
       "devDependencies": []
+    },
+    {
+      "name": "block-app-shell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/AppShell/AppShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "button",
+        "separator",
+        "collapsible",
+        "avatar",
+        "badge",
+        "sheet",
+        "scroll-area"
+      ]
+    },
+    {
+      "name": "multi-panel-layout",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/MultiPanelLayout/MultiPanelLayout.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/MultiPanelLayout/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
     }
   ]
 }
