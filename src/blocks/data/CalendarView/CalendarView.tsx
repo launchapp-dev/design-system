@@ -1,17 +1,13 @@
 import * as React from "react";
 import {
   format,
-  startOfMonth,
-  endOfMonth,
-  eachDayOfInterval,
   isSameMonth,
   isSameDay,
   addMonths,
   subMonths,
-  startOfWeek,
-  endOfWeek,
   isToday,
 } from "date-fns";
+import type { CalendarDay } from "react-day-picker";
 import { Calendar } from "@/components/Calendar";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/Card";
 import { Button } from "@/components/Button";
@@ -116,27 +112,6 @@ function CalendarViewInner(
 
   const selectedDayEvents = getEventsForDay(effectiveSelectedDate ?? new Date());
 
-  const modifiers = React.useMemo(() => {
-    const eventDates: Record<string, CalendarEvent[]> = {};
-    events.forEach((event) => {
-      const key = format(new Date(event.date), "yyyy-MM-dd");
-      if (!eventDates[key]) eventDates[key] = [];
-      eventDates[key].push(event);
-    });
-    return { eventDates };
-  }, [events]);
-
-  const modifiersStyles = React.useMemo(() => {
-    const styles: Record<string, React.CSSProperties> = {};
-    events.forEach((event) => {
-      const key = format(new Date(event.date), "yyyy-MM-dd");
-      styles[key] = {
-        position: "relative",
-      };
-    });
-    return styles;
-  }, [events]);
-
   return (
     <div ref={ref} className={cn("flex flex-col gap-4 lg:flex-row", className)} {...props}>
       <Card className="flex-1">
@@ -194,10 +169,9 @@ function CalendarViewInner(
             month={currentMonth}
             onMonthChange={handleMonthChange}
             className="w-full"
-            modifiers={modifiers}
-            modifiersStyles={modifiersStyles}
             components={{
-              Day: ({ date, dayNumber, activeModifiers, ...dayProps }) => {
+              Day: ({ day, modifiers: _modifiers, ...dayProps }: { day: CalendarDay; modifiers: Record<string, boolean> } & React.HTMLAttributes<HTMLDivElement>) => {
+                const date = day.date;
                 const dayEvents = getEventsForDay(date);
                 const hasEvents = dayEvents.length > 0;
                 const isCurrentMonth = isSameMonth(date, currentMonth);
@@ -214,7 +188,7 @@ function CalendarViewInner(
                       today && !isSelected && "ring-1 ring-primary text-primary"
                     )}
                   >
-                    <span>{dayNumber}</span>
+                    <span>{date.getDate()}</span>
                     {hasEvents && isCurrentMonth && (
                       <div className="absolute bottom-0.5 left-1/2 flex -translate-x-1/2 gap-0.5">
                         {dayEvents.slice(0, 3).map((event) => (
