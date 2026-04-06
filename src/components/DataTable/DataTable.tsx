@@ -1,9 +1,9 @@
 import * as React from "react";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  PaginationState,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
+  type PaginationState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,

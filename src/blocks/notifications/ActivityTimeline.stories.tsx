@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { ActivityTimeline } from "./ActivityTimeline";
 import type { TimelineEntry } from "./ActivityTimeline";
 

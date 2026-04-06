@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { AccountDeletionCard } from "./AccountDeletionCard";
 
 const meta: Meta<typeof AccountDeletionCard> = {

@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { Button, type ButtonProps } from "@/components/Button";
 import { cn } from "@/lib/utils";
 

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { Sparkline } from "./index";
 
 const generateData = (length: number, min: number, max: number, trend: "up" | "down" | "flat" | "volatile" = "up"): number[] => {

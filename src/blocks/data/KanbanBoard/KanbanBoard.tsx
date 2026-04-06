@@ -1,9 +1,9 @@
 import * as React from "react";
 import {
   DndContext,
-  DragEndEvent,
-  DragOverEvent,
-  DragStartEvent,
+  type DragEndEvent,
+  type DragOverEvent,
+  type DragStartEvent,
   DragOverlay,
   KeyboardSensor,
   PointerSensor,

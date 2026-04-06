@@ -1,24 +1,14 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/Card";
 import { Button } from "../../components/Button";
 import { Badge } from "../../components/Badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../components/DropdownMenu";
-import { Input } from "../../components/Input";
-import {
-  DialogRoot as Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../../components/Dialog";
 
 // ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
 function MoreHorizontalIcon({ className }: { className?: string }) {

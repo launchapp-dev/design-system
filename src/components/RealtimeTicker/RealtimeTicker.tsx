@@ -177,7 +177,7 @@ function AnimatedValue({
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         
-        const eased = 1 - Math.pow(1 - progress, 3);
+        const eased = 1 - (1 - progress) ** 3;
         const current = startValue + (endValue - startValue) * eased;
         
         setDisplayValue(current);
@@ -258,7 +258,7 @@ function RealtimeTicker({
       {live && <LiveIndicator live={live} />}
       
       <div className={cn("flex flex-wrap gap-4", variant === "expanded" && "gap-6")}>
-        {currentItems.map((item, index) => {
+        {currentItems.map((item, _index) => {
           const previousItem = previousItems.find((p) => p.id === item.id);
           const previousValue = item.previousValue ?? previousItem?.value;
           const trend = getTrend(item.value, previousValue);

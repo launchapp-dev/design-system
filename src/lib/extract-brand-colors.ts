@@ -50,7 +50,7 @@ Only return valid JSON, no additional text.`,
   try {
     const colors = JSON.parse(content.text) as ExtractedColor[];
     return colors;
-  } catch (error) {
+  } catch (_error) {
     throw new Error(`Failed to parse color extraction response: ${content.text}`);
   }
 }
@@ -102,7 +102,7 @@ Only return valid JSON, no additional text.`,
   try {
     const colors = JSON.parse(content.text) as ExtractedColor[];
     return colors;
-  } catch (error) {
+  } catch (_error) {
     throw new Error(`Failed to parse color extraction response: ${content.text}`);
   }
 }

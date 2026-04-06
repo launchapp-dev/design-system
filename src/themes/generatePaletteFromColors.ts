@@ -43,7 +43,7 @@ function clamp(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, n));
 }
 
-function categorizeColorByHue(h: number): "dark" | "light" | "neutral" {
+function _categorizeColorByHue(h: number): "dark" | "light" | "neutral" {
   if (h >= 0 && h <= 30) return "light";
   if (h >= 30 && h <= 60) return "light";
   if (h >= 300 && h <= 360) return "light";
@@ -131,7 +131,7 @@ export function generatePaletteFromColors(
       .map(([key, value]) => `  --la-${key}: ${value};`)
       .join("\n");
 
-  const cssString = `:root {\n${tokensToCss(light)}\n}\n\n.dark {\n${tokensToCss(dark)}\n}`;
+  const _cssString = `:root {\n${tokensToCss(light)}\n}\n\n.dark {\n${tokensToCss(dark)}\n}`;
 
   return {
     name: paletteName,

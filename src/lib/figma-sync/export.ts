@@ -3,15 +3,15 @@
  */
 
 import {
-  Palette,
-  TokenSyncExport,
-  SyncMetadata,
-  HSLString,
-  ValidationResult,
+  type Palette,
+  type TokenSyncExport,
+  type SyncMetadata,
+  type HSLString,
+  type ValidationResult,
   isValidHSL,
   hslToRGB,
-  RGBColor,
-  SyncError,
+  type RGBColor,
+  type SyncError,
 } from './types';
 
 /**
@@ -47,7 +47,7 @@ export function validatePaletteForExport(palette: Palette): ValidationResult {
   }
 
   // Validate tokens structure
-  if (!palette.tokens || !palette.tokens.light || !palette.tokens.dark) {
+  if (!palette.tokens?.light || !palette.tokens.dark) {
     errors.push('Palette must have both light and dark token sets');
     return { valid: false, errors, warnings };
   }

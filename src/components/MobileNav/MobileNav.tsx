@@ -146,7 +146,7 @@ function MobileNavItemComponent({ item, onNavigate, depth = 0 }: MobileNavItemCo
       </button>
       {hasChildren && expanded && (
         <div id={contentId} className="mt-1">
-          {item.children!.map((child, index) => (
+          {item.children?.map((child, index) => (
             <MobileNavItemComponent
               key={index}
               item={child}

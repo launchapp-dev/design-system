@@ -48,7 +48,7 @@ function Banner({
   
   const isOpen = controlledOpen !== undefined ? controlledOpen : uncontrolledOpen;
   
-  const handleDismiss = React.useCallback(() => {
+  const _handleDismiss = React.useCallback(() => {
     if (onOpenChange) {
       onOpenChange(false);
     } else {

@@ -100,7 +100,7 @@ function TransitionGroup({
 }: TransitionGroupProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [currentKey, setCurrentKey] = React.useState<React.Key | null>(null);
   const [currentChild, setCurrentChild] = React.useState<React.ReactNode>(null);
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
+  const [_isTransitioning, setIsTransitioning] = React.useState(false);
 
   React.useEffect(() => {
     const arr = React.Children.toArray(children);
@@ -195,8 +195,8 @@ function AnimatePresence({
   ...props
 }: AnimatePresenceProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [childrenState, setChildrenState] = React.useState<React.ReactNode>(children);
-  const [isExiting, setIsExiting] = React.useState(false);
-  const reduced = usePrefersReducedMotion();
+  const [_isExiting, _setIsExiting] = React.useState(false);
+  const _reduced = usePrefersReducedMotion();
 
   React.useEffect(() => {
     setChildrenState(children);

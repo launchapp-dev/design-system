@@ -94,10 +94,10 @@ function NotificationPreferencesCenter({
 
   const [hasChanges, setHasChanges] = React.useState(false);
 
-  const getValue = (categoryId: string, channelId: string) => {
+  const getValue = React.useCallback((categoryId: string, channelId: string) => {
     const key = `${categoryId}_${channelId}`;
     return values?.[key] ?? localValues[key] ?? true;
-  };
+  }, [values, localValues]);
 
   const handleChange = (categoryId: string, channelId: string, enabled: boolean) => {
     const key = `${categoryId}_${channelId}`;
@@ -134,7 +134,7 @@ function NotificationPreferencesCenter({
     return categories.every((cat) =>
       cat.channels.every((ch) => getValue(cat.id, ch.id))
     );
-  }, [categories, localValues, values]);
+  }, [categories, getValue]);
 
   const handleToggleAll = (enabled: boolean) => {
     const newValues: Record<string, boolean> = {};
@@ -192,7 +192,7 @@ function NotificationPreferencesCenter({
       </div>
 
       <div className="space-y-4">
-        {categories.map((category, categoryIndex) => (
+        {categories.map((category, _categoryIndex) => (
           <Card key={category.id}>
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-medium">{category.title}</CardTitle>

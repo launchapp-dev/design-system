@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { KPICard, type KPICardProps } from "../KPICard";
 import { cn } from "../../lib/utils";
 

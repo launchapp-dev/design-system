@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/Input";
-import { Button } from "@/components/Button";
 import { Badge } from "@/components/Badge";
 import { ScrollArea } from "@/components/ScrollArea";
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/Pagination";
@@ -98,7 +97,7 @@ function AuditLogViewerInner(
   const pageCount = Math.ceil(filtered.length / pageSize);
   const paginated = filtered.slice(page * pageSize, (page + 1) * pageSize);
 
-  React.useEffect(() => { setPage(0); }, [search, selectedLevel, selectedAction]);
+  React.useEffect(() => { setPage(0); }, []);
 
   const handleSearch = (value: string) => {
     setSearch(value);

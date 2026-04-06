@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import * as PortalPrimitive from "@radix-ui/react-portal";
 import { cn } from "@/lib/utils";
 

@@ -68,7 +68,8 @@
         "useOptionalChain": "warn",
         "useLiteralKeys": "warn",
         "noUselessSwitchCase": "warn",
-        "noUselessFragments": "warn"
+        "noUselessFragments": "warn",
+        "useArrowFunction": "off"
       }
     }
   },

@@ -133,7 +133,7 @@ function ColorPicker({
 
   const handleRgbChange = (channel: "r" | "g" | "b", raw: string) => {
     const n = parseInt(raw, 10);
-    const next = { ...rgbInput, [channel]: isNaN(n) ? 0 : clamp(n, 0, 255) };
+    const next = { ...rgbInput, [channel]: Number.isNaN(n) ? 0 : clamp(n, 0, 255) };
     setRgbInput(next);
     commit(rgbToHex(next.r, next.g, next.b));
   };
@@ -141,7 +141,7 @@ function ColorPicker({
   const handleHslChange = (channel: "h" | "s" | "l", raw: string) => {
     const n = parseInt(raw, 10);
     const max = channel === "h" ? 360 : 100;
-    const next = { ...hslInput, [channel]: isNaN(n) ? 0 : clamp(n, 0, max) };
+    const next = { ...hslInput, [channel]: Number.isNaN(n) ? 0 : clamp(n, 0, max) };
     setHslInput(next);
     const rgb = hslToRgb(next.h, next.s, next.l);
     commit(rgbToHex(rgb.r, rgb.g, rgb.b));
@@ -221,8 +221,7 @@ function ColorPicker({
               />
             )}
             {mode === "rgb" && (
-              <>
-                {(["r", "g", "b"] as const).map((ch) => (
+              (["r", "g", "b"] as const).map((ch) => (
                   <div key={ch} className="flex flex-col items-center gap-0.5 flex-1">
                     <input
                       aria-label={`RGB ${ch.toUpperCase()} channel`}
@@ -235,12 +234,10 @@ function ColorPicker({
                     />
                     <span className="text-[10px] text-muted-foreground uppercase">{ch}</span>
                   </div>
-                ))}
-              </>
+                ))
             )}
             {mode === "hsl" && (
-              <>
-                {(["h", "s", "l"] as const).map((ch) => (
+              (["h", "s", "l"] as const).map((ch) => (
                   <div key={ch} className="flex flex-col items-center gap-0.5 flex-1">
                     <input
                       aria-label={`HSL ${ch.toUpperCase()} channel`}
@@ -253,8 +250,7 @@ function ColorPicker({
                     />
                     <span className="text-[10px] text-muted-foreground uppercase">{ch}</span>
                   </div>
-                ))}
-              </>
+                ))
             )}
             {eyedropperSupported && (
               <button

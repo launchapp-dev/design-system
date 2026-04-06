@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { KPICard } from "./index";
 
 const sparklineRevenue = [42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000, 79000, 89600];

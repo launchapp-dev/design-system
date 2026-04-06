@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva, } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/Button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/Avatar";
@@ -10,7 +10,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from "@/components/Sheet";
 import {
   Breadcrumb,
@@ -30,7 +29,6 @@ import {
 } from "@/components/DropdownMenu";
 import { NotificationBell, type NotificationItem } from "@/components/NotificationBell";
 import { ScrollArea } from "@/components/ScrollArea";
-import { Separator } from "@/components/Separator";
 
 const sidebarVariants = cva(
   "fixed inset-y-0 left-0 z-40 flex flex-col bg-[hsl(var(--la-background))] border-r border-[hsl(var(--la-border))] transition-all duration-300 ease-in-out",

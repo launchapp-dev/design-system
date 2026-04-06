@@ -95,7 +95,7 @@ export function CommandPalette({
     }
     for (const a of actions) {
       if (!map.has(a.group)) map.set(a.group, []);
-      map.get(a.group)!.push(a);
+      map.get(a.group)?.push(a);
     }
     return map;
   }, [actions, resolvedGroups]);
@@ -219,7 +219,7 @@ export function InlineCommandPalette({
     }
     for (const a of actions) {
       if (!map.has(a.group)) map.set(a.group, []);
-      map.get(a.group)!.push(a);
+      map.get(a.group)?.push(a);
     }
     return map;
   }, [actions, resolvedGroups]);

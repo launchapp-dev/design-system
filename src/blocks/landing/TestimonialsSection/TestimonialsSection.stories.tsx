@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { TestimonialsSection } from "./index";
 import type { TestimonialItem } from "./index";
 

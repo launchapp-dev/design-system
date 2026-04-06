@@ -3,16 +3,16 @@
  */
 
 import {
-  Palette,
-  RGBColor,
-  TokenSet,
-  HSLString,
-  FigmaVariable,
-  ValidationResult,
-  SyncError,
+  type Palette,
+  type RGBColor,
+  type TokenSet,
+  type HSLString,
+  type FigmaVariable,
+  type ValidationResult,
+  type SyncError,
   rgbToHSL,
   isSemanticTokenName,
-  SemanticTokenName,
+  type SemanticTokenName,
   SEMANTIC_TOKEN_NAMES,
 } from './types';
 
@@ -94,7 +94,7 @@ export function validateFigmaVariables(
       });
     }
 
-    const palette = paletteMap.get(parsed.palette)!;
+    const palette = paletteMap.get(parsed.palette) as { light: Set<string>; dark: Set<string> };
     palette[parsed.variant].add(parsed.tokenName);
   }
 
@@ -205,7 +205,7 @@ export function importFigmaVariablesToPalettes(
       });
     }
 
-    const palette = paletteMap.get(parsed.palette)!;
+    const palette = paletteMap.get(parsed.palette) as NonNullable<ReturnType<typeof paletteMap.get>>;
     const modeId = parsed.variant === 'light' ? lightModeId : darkModeId;
     const colorValue = variable.valuesByMode[modeId];
 
@@ -226,7 +226,7 @@ export function importFigmaVariablesToPalettes(
       palette.tokens = { light: {} as unknown as TokenSet, dark: {} as unknown as TokenSet };
     }
 
-    const variantTokens = palette.tokens![parsed.variant];
+    const variantTokens = palette.tokens?.[parsed.variant];
     if (variantTokens) {
       variantTokens[parsed.tokenName] = hsl;
     }
@@ -235,7 +235,7 @@ export function importFigmaVariablesToPalettes(
   // Convert to Palette objects
   const palettes: Palette[] = [];
   for (const [, paletteData] of paletteMap) {
-    if (paletteData.name && paletteData.tokens && paletteData.tokens.light && paletteData.tokens.dark) {
+    if (paletteData.name && paletteData.tokens?.light && paletteData.tokens.dark) {
       palettes.push({
         name: paletteData.name,
         label: paletteData.label || paletteData.name,

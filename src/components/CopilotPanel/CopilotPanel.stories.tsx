@@ -7,7 +7,6 @@ import { ChatBubble, ChatBubbleGroup } from "../ChatBubble";
 import { Input } from "../Input";
 import {
   CopilotPanel,
-  CopilotPanelTrigger,
   CopilotPanelClose,
   CopilotPanelHeader,
   CopilotPanelTitle,

@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   handleComponentGenerationRequest,
   type APIRequest,
-  type APIResponse,
 } from "./ai-component-generator-api";
 import type { ComponentGenerationRequest } from "./ai-component-generator";
 

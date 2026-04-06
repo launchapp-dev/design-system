@@ -1,6 +1,5 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
 import { LiveIndicator } from "./LiveIndicator";
 
 describe("LiveIndicator", () => {

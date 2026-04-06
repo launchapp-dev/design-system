@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
+import type * as React from "react";
 import { MultiPanelLayout } from "./index";
 
-const panelStyle = (label: string, bg = "hsl(var(--muted))"): React.CSSProperties => ({
+const panelStyle = (_label: string, bg = "hsl(var(--muted))"): React.CSSProperties => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

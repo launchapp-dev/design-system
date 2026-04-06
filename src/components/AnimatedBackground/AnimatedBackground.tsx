@@ -236,7 +236,7 @@ function MatrixRain({
 
     const interval = setInterval(() => {
       setDrops((prev) =>
-        prev.map((drop, i) => {
+        prev.map((drop, _i) => {
           const random = Math.random();
           if (random > 0.975) return 0;
           return drop + 1;
@@ -346,7 +346,7 @@ function NoiseTexture({
 
     ctx.putImageData(imageData, 0, 0);
     setNoiseData(canvas.toDataURL());
-  }, [noiseFrequency]);
+  }, []);
 
   return (
     <div

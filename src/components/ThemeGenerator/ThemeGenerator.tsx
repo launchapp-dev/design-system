@@ -15,7 +15,7 @@ const THEME_PREVIEW_TOKENS = [
   { key: "muted", label: "Muted" },
 ];
 
-function hexToRgb(hex: string): string {
+function _hexToRgb(hex: string): string {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return hex;
   const r = parseInt(result[1], 16);

@@ -77,7 +77,7 @@ function layoutSankey(
 ): { layoutNodes: LayoutNode[]; layoutLinks: LayoutLink[] } {
   const nodeMap = new Map<string, LayoutNode>();
   
-  nodes.forEach((node, index) => {
+  nodes.forEach((node, _index) => {
     const incomingValue = links
       .filter((l) => l.target === node.id)
       .reduce((sum, l) => sum + l.value, 0);
@@ -115,7 +115,7 @@ function layoutSankey(
     const queue: { id: string; level: number }[] = startNodes.map((id) => ({ id, level: 0 }));
     
     while (queue.length > 0) {
-      const { id, level } = queue.shift()!;
+      const { id, level } = queue.shift() as { id: string; level: number };
       if (visited.has(id)) continue;
       visited.add(id);
       
@@ -151,7 +151,8 @@ function layoutSankey(
     let currentY = (height - (totalHeight * scale + totalPadding)) / 2;
     
     level.forEach((id) => {
-      const node = nodeMap.get(id)!;
+      const node = nodeMap.get(id);
+      if (!node) return;
       node.x = levelIndex * levelWidth;
       node.y = currentY;
       node.height = node.height * scale;
@@ -159,9 +160,10 @@ function layoutSankey(
     });
   });
 
-  const layoutLinks: LayoutLink[] = links.map((link) => {
-    const sourceNode = nodeMap.get(link.source)!;
-    const targetNode = nodeMap.get(link.target)!;
+  const layoutLinks = links.map((link) => {
+    const sourceNode = nodeMap.get(link.source);
+    const targetNode = nodeMap.get(link.target);
+    if (!sourceNode || !targetNode) return undefined;
     
     const sourceOutgoing = links
       .filter((l) => l.source === link.source)
@@ -185,7 +187,7 @@ function layoutSankey(
       targetY: targetNode.y + targetOffset * targetScale,
       linkHeight: link.value * Math.min(sourceScale, targetScale),
     };
-  });
+  }).filter((l): l is LayoutLink => l !== undefined);
 
   return { layoutNodes: Array.from(nodeMap.values()), layoutLinks };
 }
@@ -250,7 +252,7 @@ function SankeyDiagram({
     return `Sankey diagram with ${nodes.length} nodes and ${links.length} links`;
   }, [ariaLabel, nodes, links]);
 
-  const totalFlow = React.useMemo(() => {
+  const _totalFlow = React.useMemo(() => {
     return links.reduce((sum, l) => sum + l.value, 0);
   }, [links]);
 

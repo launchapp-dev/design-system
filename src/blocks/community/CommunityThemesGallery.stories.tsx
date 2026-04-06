@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CommunityThemesGallery } from "./CommunityThemesGallery";
-import { listCommunityThemes } from "../../themes/community-registry";
 
 const meta: Meta<typeof CommunityThemesGallery> = {
   title: "Blocks/Community/CommunityThemesGallery",

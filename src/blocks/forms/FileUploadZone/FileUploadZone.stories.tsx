@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { FileUploadZone, UploadedFile } from "./FileUploadZone";
+import { FileUploadZone, type UploadedFile } from "./FileUploadZone";
 
 const makeFile = (id: string, name: string, size: number, status: UploadedFile["status"], progress = 0): UploadedFile => ({
   id,

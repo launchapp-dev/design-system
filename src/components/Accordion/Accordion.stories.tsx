@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "./index";
 
 const meta: Meta = {

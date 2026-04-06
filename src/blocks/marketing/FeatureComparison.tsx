@@ -10,7 +10,7 @@ import {
 } from "../../components/Tooltip";
 
 // Inline SVG icons (avoiding lucide-react dependency)
-function CheckIcon({ className }: { className?: string }) {
+function _CheckIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

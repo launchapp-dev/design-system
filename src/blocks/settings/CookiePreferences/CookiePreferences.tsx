@@ -92,7 +92,7 @@ function CookiePreferences({
   const [localValues, setLocalValues] = React.useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
     for (const cat of categories) {
-      initial[cat.id] = cat.required ?? false ? true : false;
+      initial[cat.id] = !!(cat.required ?? false );
     }
     return initial;
   });

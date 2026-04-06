@@ -1,5 +1,4 @@
-import * as React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/Card";
+import type * as React from "react";
 import { Button } from "../../components/Button";
 import { Badge } from "../../components/Badge";
 import { RadioGroup, RadioGroupItem } from "../../components/RadioGroup";

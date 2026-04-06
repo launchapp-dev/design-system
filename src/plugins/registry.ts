@@ -19,7 +19,7 @@ class PluginRegistry {
     const {
       enabled = true,
       override = false,
-      mergeConflicts = true,
+      mergeConflicts: _mergeConflicts = true,
     } = options;
 
     const pluginId = `${plugin.targetComponent}:${plugin.name}`;
@@ -40,7 +40,7 @@ class PluginRegistry {
       this.plugins.set(plugin.targetComponent, []);
     }
 
-    const componentPlugins = this.plugins.get(plugin.targetComponent)!;
+    const componentPlugins = this.plugins.get(plugin.targetComponent) ?? [];
 
     if (override) {
       const index = componentPlugins.findIndex((p) => p.name === plugin.name);

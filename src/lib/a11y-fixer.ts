@@ -30,7 +30,7 @@ export interface A11yFixerOptions {
   model?: string;
 }
 
-const COMMON_A11Y_PATTERNS = {
+const _COMMON_A11Y_PATTERNS = {
   missingAriaLabel: {
     pattern: /\b(Button|IconButton|Tooltip|Popover|Select|Combobox|Menu)\b/,
     violation: "WCAG 4.1.2 - Missing accessible name",
@@ -128,13 +128,6 @@ Return a JSON object with this exact structure:
     ],
   });
 
-  let analysisData: {
-    violations: Array<Omit<A11yViolation, "component">>;
-    fixes: Array<{ violationCode: string; suggestedFix: string; explanation: string }>;
-    wcagLevel: "A" | "AA" | "AAA";
-    improvementScore: number;
-  };
-
   const responseText =
     message.content[0].type === "text" ? message.content[0].text : "";
 
@@ -143,7 +136,12 @@ Return a JSON object with this exact structure:
     throw new Error("Failed to parse accessibility analysis response");
   }
 
-  analysisData = JSON.parse(jsonMatch[0]);
+  const analysisData: {
+    violations: Array<Omit<A11yViolation, "component">>;
+    fixes: Array<{ violationCode: string; suggestedFix: string; explanation: string }>;
+    wcagLevel: "A" | "AA" | "AAA";
+    improvementScore: number;
+  } = JSON.parse(jsonMatch[0]);
 
   const violations: A11yViolation[] = analysisData.violations.map((v) => ({
     ...v,
@@ -169,7 +167,7 @@ Return a JSON object with this exact structure:
 }
 
 export async function generateComponentFix(
-  component: string,
+  _component: string,
   code: string,
   violations: A11yViolation[],
   options: A11yFixerOptions
@@ -299,7 +297,7 @@ export async function verifyWithAxeCore(htmlContent: string): Promise<A11yViolat
 
     // Process axe violations
     results.violations.forEach((violation: any) => {
-      violation.nodes.forEach((node: any, index: number) => {
+      violation.nodes.forEach((_node: any, index: number) => {
         violations.push({
           line: index + 1,
           component: "Component",

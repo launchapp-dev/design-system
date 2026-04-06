@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { CheckCircle, Circle, Clock, Star, Zap } from "lucide-react";
 import { Timeline, type TimelineItem } from "./Timeline";
 

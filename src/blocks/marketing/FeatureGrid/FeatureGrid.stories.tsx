@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { FeatureGrid } from "./index";
 
 const IconZap = () => (

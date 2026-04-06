@@ -1,16 +1,9 @@
 import * as React from "react";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
 import { DataTable } from "@/components/DataTable";
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
-import {
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/Select";
 import {
   DialogRoot,
   DialogContent,
@@ -18,7 +11,6 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/Dialog";
-import { Label } from "@/components/Label";
 
 export interface User {
   id: string;

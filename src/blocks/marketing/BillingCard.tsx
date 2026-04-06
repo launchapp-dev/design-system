@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { cn } from "../../lib/utils";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "../../components/Card";
 import { Badge } from "../../components/Badge";

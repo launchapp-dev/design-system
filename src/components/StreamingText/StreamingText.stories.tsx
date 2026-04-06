@@ -11,7 +11,7 @@ export default meta;
 export const Default: StoryObj = {
   name: "Default",
   render: () => {
-    const [text, setText] = React.useState("Hello, this is streaming text!");
+    const [text, _setText] = React.useState("Hello, this is streaming text!");
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <StreamingText text={text} speed={30} />

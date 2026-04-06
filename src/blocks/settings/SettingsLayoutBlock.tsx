@@ -51,7 +51,7 @@ function SettingsLayoutBlock({
     onSectionChange?.(section);
   };
 
-  const activeIndex = sections.findIndex((s) => s.id === activeSection);
+  const _activeIndex = sections.findIndex((s) => s.id === activeSection);
 
   return (
     <div ref={ref} className={cn("min-h-screen", className)} {...props}>

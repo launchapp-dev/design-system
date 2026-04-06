@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/Card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { Button } from "@/components/Button";

@@ -2,8 +2,8 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import {
   DndContext,
-  DragEndEvent,
-  DragStartEvent,
+  type DragEndEvent,
+  type DragStartEvent,
   DragOverlay,
   KeyboardSensor,
   PointerSensor,

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { PageTransition, TransitionGroup, RouteTransition, MorphTransition } from "./index";
+import { PageTransition, RouteTransition, MorphTransition } from "./index";
 
 const meta: Meta = {
   title: "Components/PageTransition",

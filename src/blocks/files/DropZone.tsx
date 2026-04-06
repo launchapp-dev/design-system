@@ -38,12 +38,14 @@ const DropZone = React.forwardRef<HTMLDivElement, DropZoneProps>(
     const validateAndEmit = (fileList: FileList | null) => {
       if (!fileList) return;
       const files = Array.from(fileList);
-      const invalidSize = maxSize ? files.find((f) => f.size > maxSize) : null;
-      if (invalidSize) {
-        const msg = `"${invalidSize.name}" exceeds the maximum file size of ${formatBytes(maxSize!)}`;
-        setError(msg);
-        onError?.(msg);
-        return;
+      if (maxSize) {
+        const invalidSize = files.find((f) => f.size > maxSize);
+        if (invalidSize) {
+          const msg = `"${invalidSize.name}" exceeds the maximum file size of ${formatBytes(maxSize)}`;
+          setError(msg);
+          onError?.(msg);
+          return;
+        }
       }
       setError(null);
       onFilesSelected?.(files);

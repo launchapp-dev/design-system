@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { MobileNav } from "./index";
 import type { MobileNavItem } from "./MobileNav";
 

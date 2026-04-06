@@ -76,7 +76,7 @@ function distributeItems<T>(
     });
   } else {
     const columnHeights = new Array(columnCount).fill(0);
-    items.forEach((item, index) => {
+    items.forEach((item, _index) => {
       const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
       columns[shortestColumn].push(item);
       columnHeights[shortestColumn] += 1;

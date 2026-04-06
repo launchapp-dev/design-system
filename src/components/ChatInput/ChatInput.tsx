@@ -104,7 +104,11 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
     const isOverLimit = maxLength !== undefined && characterCount > maxLength;
     const canSend = !disabled && characterCount > 0 && !isOverLimit;
 
-    React.useImperativeHandle(ref, () => textareaRef.current!);
+    React.useImperativeHandle(ref, () => {
+      const el = textareaRef.current;
+      if (!el) throw new Error("ChatInput textarea ref not set");
+      return el;
+    });
 
     const adjustHeight = React.useCallback(() => {
       const textarea = textareaRef.current;
@@ -117,7 +121,7 @@ const ChatInput = React.forwardRef<HTMLTextAreaElement, ChatInputProps>(
 
     React.useEffect(() => {
       adjustHeight();
-    }, [controlledValue, adjustHeight]);
+    }, [adjustHeight]);
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const newValue = e.target.value;
