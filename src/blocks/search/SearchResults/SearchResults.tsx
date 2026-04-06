@@ -187,23 +187,36 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
           </div>
         ) : (
           <div className="space-y-4">
-            {searchResults.map((result) => (
-              <article
-                key={result.id}
-                className={cn(
-                  "group cursor-pointer rounded-lg border border-border p-5 transition-colors hover:border-foreground/20 hover:bg-muted/30",
-                  result.url === undefined && "cursor-default"
-                )}
-                onClick={() => (result.onClick ? result.onClick() : onResultClick?.(result))}
-                role={result.url !== undefined ? "link" : undefined}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if ((e.key === "Enter" || e.key === " ") && result.url) {
-                    e.preventDefault();
-                    result.onClick ? result.onClick() : onResultClick?.(result);
+            {searchResults.map((result) => {
+              const isClickable = result.url !== undefined || result.onClick !== undefined;
+              const Wrapper = result.url ? "a" : result.onClick ? "div" : "article";
+              const wrapperProps = result.url
+                ? { href: result.url }
+                : result.onClick
+                  ? { onClick: () => onResultClick?.(result), role: undefined }
+                  : {};
+
+              return (
+                <Wrapper
+                  key={result.id}
+                  className={cn(
+                    "group rounded-lg border border-border p-5 transition-colors hover:border-foreground/20 hover:bg-muted/30",
+                    isClickable && "cursor-pointer block no-underline",
+                    result.url === undefined && result.onClick === undefined && "cursor-default"
+                  )}
+                  tabIndex={isClickable ? 0 : undefined}
+                  onKeyDown={
+                    isClickable
+                      ? (e: React.KeyboardEvent) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            result.onClick ? result.onClick() : onResultClick?.(result);
+                          }
+                        }
+                      : undefined
                   }
-                }}
-              >
+                  {...wrapperProps}
+                >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
@@ -253,8 +266,9 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
                     </svg>
                   )}
                 </div>
-              </article>
-            ))}
+              </Wrapper>
+            );
+            })}
           </div>
         )}
       </div>
