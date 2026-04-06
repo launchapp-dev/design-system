@@ -96,7 +96,7 @@ const FileUploadZone = React.forwardRef<HTMLDivElement, FileUploadZoneProps>(
       }
 
       const oversized = maxSize ? rawFiles.find((f) => f.size > maxSize) : null;
-      if (oversized) {
+      if (oversized && maxSize) {
         const msg = `"${oversized.name}" exceeds the maximum file size of ${formatBytes(maxSize)}.`;
         setError(msg);
         return;

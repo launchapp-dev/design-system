@@ -256,7 +256,7 @@ function WebhookManagerInner(
             </Button>
             <Button
               onClick={handleCreate}
-              disabled={!name.trim() || !url.trim() || creating}
+              disabled={!name.trim() || !url.trim() || _creating}
             >
               Add Endpoint
             </Button>
