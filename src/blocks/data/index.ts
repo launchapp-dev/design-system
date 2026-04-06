@@ -7,3 +7,4 @@ export * from "./MetricGrid";
 export * from "./ActivityFeed";
 export * from "./CalendarView";
 export * from "./EmptyState";
+export * from "./FilterBar";
