@@ -77,7 +77,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     query: "launchapp",
-    results: mockResults,
+    searchResults: mockResults,
     totalCount: 4,
     filters: mockFilters,
     showFilters: true,
@@ -93,7 +93,7 @@ export const Default: Story = {
 export const WithActiveFilter: Story = {
   args: {
     query: "launchapp",
-    results: mockResults.filter((r) => r.category === "Documentation"),
+    searchResults: mockResults.filter((r) => r.category === "Documentation"),
     totalCount: 42,
     filters: mockFilters,
     showFilters: true,
@@ -107,7 +107,7 @@ export const WithActiveFilter: Story = {
 export const EmptyResults: Story = {
   args: {
     query: "nonexistent query xyz123",
-    results: [],
+    searchResults: [],
     totalCount: 0,
     filters: mockFilters,
     showFilters: true,
@@ -119,7 +119,7 @@ export const EmptyResults: Story = {
 export const Loading: Story = {
   args: {
     query: "launchapp",
-    results: [],
+    searchResults: [],
     totalCount: 0,
     filters: mockFilters,
     showFilters: true,
@@ -131,7 +131,7 @@ export const Loading: Story = {
 export const NoFilters: Story = {
   args: {
     query: "launchapp",
-    results: mockResults,
+    searchResults: mockResults,
     totalCount: 4,
     showFilters: false,
     onSearch: (q) => console.log("Search:", q),
@@ -144,7 +144,7 @@ export const DarkMode: Story = {
   },
   args: {
     query: "launchapp",
-    results: mockResults,
+    searchResults: mockResults,
     totalCount: 4,
     filters: mockFilters,
     showFilters: true,
@@ -162,7 +162,7 @@ export const Mobile: Story = {
   },
   args: {
     query: "launchapp",
-    results: mockResults,
+    searchResults: mockResults,
     totalCount: 4,
     filters: mockFilters,
     showFilters: true,

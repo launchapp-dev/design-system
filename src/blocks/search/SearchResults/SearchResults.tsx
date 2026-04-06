@@ -26,7 +26,7 @@ export interface SearchResultItem {
 
 export interface SearchResultsProps extends React.HTMLAttributes<HTMLDivElement> {
   query?: string;
-  results?: SearchResultItem[];
+  searchResults?: SearchResultItem[];
   totalCount?: number;
   onSearch?: (query: string) => void;
   onResultClick?: (item: SearchResultItem) => void;
@@ -45,7 +45,7 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
   (
     {
       query = "",
-      results = [],
+      searchResults = [],
       totalCount,
       onSearch,
       onResultClick,
@@ -164,7 +164,7 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
           </div>
         )}
 
-        {results.length === 0 && !isLoading ? (
+        {searchResults.length === 0 && !isLoading ? (
           <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-16 text-center">
             <svg
               className="mb-4 h-12 w-12 text-muted-foreground/50"
@@ -187,7 +187,7 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
           </div>
         ) : (
           <div className="space-y-4">
-            {results.map((result) => (
+            {searchResults.map((result) => (
               <article
                 key={result.id}
                 className={cn(
