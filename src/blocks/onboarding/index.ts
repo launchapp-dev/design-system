@@ -16,6 +16,12 @@ export {
 export type { Step as ProgressStep, ProgressStepperProps } from "./ProgressStepper";
 export { SetupChecklist } from "./SetupChecklist";
 export type { SetupChecklistProps, ChecklistItem as SetupChecklistItem } from "./SetupChecklist";
+export { WelcomeWizard } from "./WelcomeWizard";
+export type { WelcomeWizardProps, WelcomeWizardStep } from "./WelcomeWizard";
+export { SetupWizard } from "./SetupWizard";
+export type { SetupWizardProps, SetupStep } from "./SetupWizard";
+export { TeamInviteFlow } from "./TeamInviteFlow";
+export type { TeamInviteFlowProps, InviteEntry } from "./TeamInviteFlow";
 export { ProgressChecklist } from "./ProgressChecklist/ProgressChecklist";
 export type {
   ProgressChecklistProps,
