@@ -510,8 +510,8 @@ export { ActivityTimeline } from "./blocks/notifications/ActivityTimeline";
 export type { ActivityTimelineProps, TimelineEntry } from "./blocks/notifications/ActivityTimeline";
 export { InboxView } from "./blocks/notifications/InboxView";
 export type { InboxViewProps, InboxItem } from "./blocks/notifications/InboxView";
-export { NotificationPreferences as NotificationPreferencesCenter } from "./blocks/notifications/NotificationPreferences";
-export type { NotificationPreferencesProps as NotificationCenterPreferencesProps, NotificationCategory, NotificationChannel } from "./blocks/notifications/NotificationPreferences";
+export { NotificationPreferencesCenter } from "./blocks/notifications/NotificationPreferences";
+export type { NotificationPreferencesCenterProps, NotificationCategory, NotificationChannel } from "./blocks/notifications/NotificationPreferences";
 
 export { ThemeSubmissionForm } from "./blocks/community/ThemeSubmissionForm";
 export type { ThemeSubmissionFormProps } from "./blocks/community/ThemeSubmissionForm";

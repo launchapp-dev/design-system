@@ -19,7 +19,7 @@ export interface NotificationCategory {
   channels: NotificationChannel[];
 }
 
-export interface NotificationPreferencesProps {
+export interface NotificationPreferencesCenterProps {
   categories?: NotificationCategory[];
   values?: Record<string, boolean>;
   onChange?: (categoryId: string, channelId: string, enabled: boolean) => void;
@@ -71,7 +71,7 @@ const defaultCategories: NotificationCategory[] = [
   },
 ];
 
-function NotificationPreferences({
+function NotificationPreferencesCenter({
   categories = defaultCategories,
   values,
   onChange,
@@ -80,7 +80,7 @@ function NotificationPreferences({
   saving = false,
   className,
   ref,
-}: NotificationPreferencesProps & { ref?: React.Ref<HTMLDivElement> }) {
+}: NotificationPreferencesCenterProps & { ref?: React.Ref<HTMLDivElement> }) {
   const [localValues, setLocalValues] = React.useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
     categories.forEach((cat) => {
@@ -251,6 +251,6 @@ function NotificationPreferences({
   );
 }
 
-NotificationPreferences.displayName = "NotificationPreferences";
+NotificationPreferencesCenter.displayName = "NotificationPreferencesCenter";
 
-export { NotificationPreferences };
+export { NotificationPreferencesCenter };

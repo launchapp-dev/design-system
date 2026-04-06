@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { NotificationPreferences } from "./NotificationPreferences";
+import { NotificationPreferencesCenter } from "./NotificationPreferencesCenter";
 
-const meta: Meta<typeof NotificationPreferences> = {
-  title: "Blocks/Notifications/NotificationPreferences",
-  component: NotificationPreferences,
+const meta: Meta<typeof NotificationPreferencesCenter> = {
+  title: "Blocks/Notifications/NotificationPreferencesCenter",
+  component: NotificationPreferencesCenter,
   parameters: {
     layout: "padded",
   },
@@ -13,11 +13,11 @@ const meta: Meta<typeof NotificationPreferences> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const InteractiveTemplate = (args: React.ComponentProps<typeof NotificationPreferences>) => {
+const InteractiveTemplate = (args: React.ComponentProps<typeof NotificationPreferencesCenter>) => {
   const [values, setValues] = React.useState<Record<string, boolean>>({});
 
   return (
-    <NotificationPreferences
+    <NotificationPreferencesCenter
       {...args}
       values={values}
       onChange={(categoryId, channelId, enabled) => {
@@ -68,7 +68,7 @@ export const WithCustomCategories: Story = {
     ];
 
     return (
-      <NotificationPreferences
+      <NotificationPreferencesCenter
         categories={categories}
         values={values}
         onChange={(categoryId, channelId, enabled) => {
@@ -86,7 +86,7 @@ export const WithCustomCategories: Story = {
 
 export const AllEnabled: Story = {
   render: () => (
-    <NotificationPreferences
+    <NotificationPreferencesCenter
       values={{
         product_email: true,
         product_push: true,
@@ -106,7 +106,7 @@ export const AllEnabled: Story = {
 
 export const MinimalEnabled: Story = {
   render: () => (
-    <NotificationPreferences
+    <NotificationPreferencesCenter
       values={{
         product_email: false,
         product_push: false,
@@ -129,7 +129,7 @@ export const WithSaveAction: Story = {
     const [saving, setSaving] = React.useState(false);
 
     return (
-      <NotificationPreferences
+      <NotificationPreferencesCenter
         onSave={async (values) => {
           setSaving(true);
           console.log("Saving values:", values);
