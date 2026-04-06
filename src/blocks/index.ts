@@ -15,4 +15,5 @@ export * from "./notifications";
 export * from "./community";
 export * from "./admin";
 export * from "./forms";
+export * from "./search";
 export * from "./app";

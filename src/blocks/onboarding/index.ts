@@ -12,3 +12,5 @@ export { ProgressStepper, stepperVariants as progressStepperVariants, stepIndica
 export type { Step as ProgressStep, ProgressStepperProps } from "./ProgressStepper";
 export { SetupChecklist } from "./SetupChecklist";
 export type { SetupChecklistProps, ChecklistItem as SetupChecklistItem } from "./SetupChecklist";
+export { ProgressChecklist } from "./ProgressChecklist/ProgressChecklist";
+export type { ProgressChecklistProps, ProgressChecklistSection, ProgressChecklistItem } from "./ProgressChecklist/ProgressChecklist";
