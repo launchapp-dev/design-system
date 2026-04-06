@@ -20,3 +20,11 @@ export * from "./app";
 export * from "./billing";
 export * from "./team";
 export * from "./integrations";
+
+// Explicit re-exports to resolve ambiguity from duplicate names across block categories.
+// dashboard is the authoritative source for these shared types.
+export type { BreadcrumbItem } from "./dashboard";
+export { ActivityFeed } from "./dashboard";
+export type { ActivityFeedProps } from "./dashboard";
+export { Timeline } from "./dashboard";
+export type { TimelineProps, TimelineEntry } from "./dashboard";

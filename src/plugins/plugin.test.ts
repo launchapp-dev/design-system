@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
+import type { ComponentPlugin } from "./types";
 import { createRegistry } from "./registry";
 import type { ComponentPlugin } from "./types";
 import {
