@@ -880,3 +880,9 @@ export {
   examplePlugins,
   registerExamplePlugins,
 } from "./plugins/examples";
+
+export { AppShell } from "./blocks/layout/AppShell";
+export type { AppShellProps, AppShellNavItem, AppShellNavSection, AppShellHeaderAction, AppShellUser } from "./blocks/layout/AppShell";
+
+export { MultiPanelLayout } from "./components/MultiPanelLayout";
+export type { MultiPanelLayoutProps, MultiPanelLayoutPanel } from "./components/MultiPanelLayout";
