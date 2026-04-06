@@ -5,16 +5,25 @@ import { Avatar, AvatarFallback } from "../../../components/Avatar";
 const sampleProjects = [
   {
     title: "E-commerce Redesign",
-    description: "Complete redesign of a fashion brand's online store, increasing conversion rate by 32%.",
+    description:
+      "Complete redesign of a fashion brand's online store, increasing conversion rate by 32%.",
     tags: ["React", "TypeScript", "Tailwind CSS"],
-    image: <div className="h-full w-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-muted-foreground text-sm">Project preview</div>,
+    image: (
+      <div className="h-full w-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-muted-foreground text-sm">
+        Project preview
+      </div>
+    ),
     link: "#",
   },
   {
     title: "SaaS Dashboard",
     description: "Analytics dashboard for a B2B SaaS product with real-time data visualization.",
     tags: ["Next.js", "Recharts", "PostgreSQL"],
-    image: <div className="h-full w-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 flex items-center justify-center text-muted-foreground text-sm">Dashboard preview</div>,
+    image: (
+      <div className="h-full w-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 flex items-center justify-center text-muted-foreground text-sm">
+        Dashboard preview
+      </div>
+    ),
   },
   {
     title: "Mobile App",

@@ -88,7 +88,9 @@ export const Default: Story = {
               style={{ minHeight: args.orientation === "vertical" ? "200px" : "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
                 <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
               </div>
             </div>
@@ -113,7 +115,9 @@ export const WithLoop: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
                 <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
               </div>
             </div>
@@ -138,7 +142,9 @@ export const WithAutoplay: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
                 <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
               </div>
             </div>
@@ -164,7 +170,9 @@ export const Vertical: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
                 <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
               </div>
             </div>
@@ -189,7 +197,9 @@ export const WithoutButtons: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
                 <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
               </div>
             </div>
@@ -210,11 +220,7 @@ export const Controlled: Story = {
         <p className="text-center text-sm text-[hsl(var(--la-muted-foreground))]">
           Current slide: <strong>{index + 1}</strong> of {slides.length}
         </p>
-        <Carousel
-          index={index}
-          onIndexChange={setIndex}
-          className="w-full max-w-xl mx-auto"
-        >
+        <Carousel index={index} onIndexChange={setIndex} className="w-full max-w-xl mx-auto">
           <CarouselContent>
             {slides.map((slide) => (
               <CarouselItem key={slide.id}>
@@ -223,7 +229,9 @@ export const Controlled: Story = {
                   style={{ minHeight: "280px" }}
                 >
                   <div className="text-center">
-                    <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                      {slide.title}
+                    </h3>
                     <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
                   </div>
                 </div>
@@ -261,10 +269,10 @@ export const ImageGallery: Story = {
         {[1, 2, 3, 4].map((num) => (
           <CarouselItem key={num}>
             <div className="flex items-center justify-center p-4">
-              <div
-                className="w-full h-64 rounded-lg bg-gradient-to-br from-[hsl(var(--la-primary)/0.3)] to-[hsl(var(--la-accent)/0.3)] flex items-center justify-center"
-              >
-                <span className="text-4xl font-bold text-[hsl(var(--la-foreground))]">Image {num}</span>
+              <div className="w-full h-64 rounded-lg bg-gradient-to-br from-[hsl(var(--la-primary)/0.3)] to-[hsl(var(--la-accent)/0.3)] flex items-center justify-center">
+                <span className="text-4xl font-bold text-[hsl(var(--la-foreground))]">
+                  Image {num}
+                </span>
               </div>
             </div>
           </CarouselItem>
@@ -289,7 +297,9 @@ export const DarkMode: Story = {
                 style={{ minHeight: "280px" }}
               >
                 <div className="text-center">
-                  <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                    {slide.title}
+                  </h3>
                   <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
                 </div>
               </div>
@@ -315,7 +325,9 @@ export const CustomNavigation: Story = {
               style={{ minHeight: "280px" }}
             >
               <div className="text-center">
-                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">{slide.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-[hsl(var(--la-foreground))]">
+                  {slide.title}
+                </h3>
                 <p className="text-[hsl(var(--la-muted-foreground))]">{slide.description}</p>
               </div>
             </div>

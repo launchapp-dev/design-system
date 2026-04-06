@@ -63,7 +63,8 @@ export const DarkMode: Story = {
 export const Interactive: Story = {
   render: () => {
     const [logs, setLogs] = React.useState<string[]>([]);
-    const addLog = (action: string) => setLogs((prev) => [`${new Date().toLocaleTimeString()}: ${action}`, ...prev.slice(0, 4)]);
+    const addLog = (action: string) =>
+      setLogs((prev) => [`${new Date().toLocaleTimeString()}: ${action}`, ...prev.slice(0, 4)]);
     return (
       <div className="flex gap-8">
         <UserMenu
@@ -76,9 +77,7 @@ export const Interactive: Story = {
               ],
             },
             {
-              items: [
-                { label: "Log out", danger: true, onClick: () => addLog("Logout clicked") },
-              ],
+              items: [{ label: "Log out", danger: true, onClick: () => addLog("Logout clicked") }],
             },
           ]}
         />

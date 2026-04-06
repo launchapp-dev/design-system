@@ -1,12 +1,12 @@
-export { 
-  Banner, 
+export {
+  Banner,
   BannerContent,
-  BannerTitle, 
-  BannerDescription, 
+  BannerTitle,
+  BannerDescription,
   BannerAction,
   BannerActions,
   BannerDismiss,
-  bannerVariants 
+  bannerVariants,
 } from "./Banner";
 export type { BannerProps, BannerActionProps } from "./Banner";
 export type { BannerVariants } from "./Banner";

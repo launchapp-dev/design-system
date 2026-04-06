@@ -48,7 +48,7 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
       ctaAction,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
@@ -58,7 +58,9 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
             {headline}
           </h1>
           {subheadline && (
-            <p className="mt-6 text-xl text-muted-foreground max-w-2xl animate-fade-up">{subheadline}</p>
+            <p className="mt-6 text-xl text-muted-foreground max-w-2xl animate-fade-up">
+              {subheadline}
+            </p>
           )}
           {(primaryAction || secondaryAction) && (
             <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -106,7 +108,10 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
               </h2>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {testimonials.map((testimonial, i) => (
-                  <div key={i} className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-card">
+                  <div
+                    key={i}
+                    className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-card"
+                  >
                     <p className="text-muted-foreground leading-relaxed">"{testimonial.quote}"</p>
                     <div className="flex items-center gap-3 mt-auto">
                       <Avatar className="h-9 w-9">
@@ -115,11 +120,17 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
                         )}
                         <AvatarFallback>
                           {testimonial.avatarFallback ??
-                            testimonial.author.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                            testimonial.author
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .slice(0, 2)}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="text-sm font-semibold text-foreground">{testimonial.author}</p>
+                        <p className="text-sm font-semibold text-foreground">
+                          {testimonial.author}
+                        </p>
                         {testimonial.role && (
                           <p className="text-xs text-muted-foreground">{testimonial.role}</p>
                         )}
@@ -138,16 +149,14 @@ const Startup = React.forwardRef<HTMLDivElement, StartupProps>(
               {ctaTitle && (
                 <h2 className="text-4xl font-bold tracking-tight text-foreground">{ctaTitle}</h2>
               )}
-              {ctaSubtitle && (
-                <p className="mt-4 text-lg text-muted-foreground">{ctaSubtitle}</p>
-              )}
+              {ctaSubtitle && <p className="mt-4 text-lg text-muted-foreground">{ctaSubtitle}</p>}
               {ctaAction && <div className="mt-8">{ctaAction}</div>}
             </div>
           </section>
         )}
       </div>
     );
-  }
+  },
 );
 
 Startup.displayName = "Startup";

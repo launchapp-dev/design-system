@@ -17,7 +17,7 @@ const sampleProducts: ProductCardItem[] = [
   {
     id: "2",
     name: "Minimalist Leather Watch",
-    price: 149.00,
+    price: 149.0,
     rating: 4.8,
     reviewCount: 92,
     badge: "New",
@@ -37,7 +37,7 @@ const sampleProducts: ProductCardItem[] = [
   {
     id: "4",
     name: "Mechanical Keyboard",
-    price: 119.00,
+    price: 119.0,
     rating: 4.7,
     reviewCount: 156,
     badge: "Popular",
@@ -132,7 +132,9 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div>
-        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Compact</p>
+        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+          Compact
+        </p>
         <div className="flex flex-wrap gap-4">
           {sampleProducts.slice(0, 2).map((p) => (
             <div key={p.id} className="w-56">
@@ -142,7 +144,9 @@ export const AllVariants: Story = {
         </div>
       </div>
       <div>
-        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Detailed</p>
+        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+          Detailed
+        </p>
         <div className="flex flex-wrap gap-4">
           {sampleProducts.slice(0, 2).map((p) => (
             <div key={p.id} className="w-72">
@@ -152,7 +156,9 @@ export const AllVariants: Story = {
         </div>
       </div>
       <div>
-        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Horizontal</p>
+        <p className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+          Horizontal
+        </p>
         <div className="flex flex-col gap-3 max-w-xl">
           {sampleProducts.slice(0, 2).map((p) => (
             <ProductCard key={p.id} variant="horizontal" product={p} onAddToCart={() => {}} />

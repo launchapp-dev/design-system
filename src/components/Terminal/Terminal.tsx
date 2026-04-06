@@ -8,26 +8,23 @@ export interface TerminalLine {
   timestamp?: number;
 }
 
-const terminalVariants = cva(
-  "relative rounded-lg border font-mono text-sm overflow-hidden",
-  {
-    variants: {
-      theme: {
-        dark: "bg-zinc-950 border-zinc-800 text-zinc-100",
-        light: "bg-zinc-50 border-zinc-200 text-zinc-900",
-      },
-      size: {
-        sm: "p-3 text-xs",
-        md: "p-4 text-sm",
-        lg: "p-6 text-base",
-      },
+const terminalVariants = cva("relative rounded-lg border font-mono text-sm overflow-hidden", {
+  variants: {
+    theme: {
+      dark: "bg-zinc-950 border-zinc-800 text-zinc-100",
+      light: "bg-zinc-50 border-zinc-200 text-zinc-900",
     },
-    defaultVariants: {
-      theme: "dark",
-      size: "md",
+    size: {
+      sm: "p-3 text-xs",
+      md: "p-4 text-sm",
+      lg: "p-6 text-base",
     },
-  }
-);
+  },
+  defaultVariants: {
+    theme: "dark",
+    size: "md",
+  },
+});
 
 export interface TerminalProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -53,14 +50,14 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const prefersReducedMotion = React.useMemo(
       () =>
         typeof window !== "undefined" &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-      []
+      [],
     );
 
     React.useEffect(() => {
@@ -70,11 +67,7 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
     }, []);
 
     return (
-      <div
-        ref={ref}
-        className={cn(terminalVariants({ theme, size }), className)}
-        {...props}
-      >
+      <div ref={ref} className={cn(terminalVariants({ theme, size }), className)} {...props}>
         {header && (
           <div className="border-b border-inherit px-4 py-2 flex items-center justify-between">
             {header}
@@ -92,11 +85,7 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
                 index={index}
                 showLineNumbers={showLineNumbers}
                 typingSpeed={typingSpeed}
-                showCursor={
-                  showCursor &&
-                  index === lines.length - 1 &&
-                  line.type === "input"
-                }
+                showCursor={showCursor && index === lines.length - 1 && line.type === "input"}
                 prefersReducedMotion={prefersReducedMotion}
               />
             ))}
@@ -105,7 +94,7 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 Terminal.displayName = "Terminal";
 
@@ -127,7 +116,7 @@ function TerminalLineComponent({
   prefersReducedMotion,
 }: TerminalLineComponentProps) {
   const [displayedContent, setDisplayedContent] = React.useState(
-    prefersReducedMotion ? line.content : ""
+    prefersReducedMotion ? line.content : "",
   );
   const [isTyping, setIsTyping] = React.useState(!prefersReducedMotion);
 
@@ -153,8 +142,7 @@ function TerminalLineComponent({
     return () => clearInterval(interval);
   }, [line.content, typingSpeed, prefersReducedMotion]);
 
-  const prefix =
-    line.type === "input" ? ">" : line.type === "error" ? "✗" : " ";
+  const prefix = line.type === "input" ? ">" : line.type === "error" ? "✗" : " ";
 
   const prefixClass =
     line.type === "error"
@@ -163,8 +151,7 @@ function TerminalLineComponent({
         ? "text-primary"
         : "text-muted-foreground/50";
 
-  const contentClass =
-    line.type === "error" ? "text-destructive" : "";
+  const contentClass = line.type === "error" ? "text-destructive" : "";
 
   return (
     <div className="flex items-start gap-2 group">
@@ -173,10 +160,7 @@ function TerminalLineComponent({
           {index + 1}
         </span>
       )}
-      <span
-        className={cn("flex-shrink-0 select-none", prefixClass)}
-        aria-hidden="true"
-      >
+      <span className={cn("flex-shrink-0 select-none", prefixClass)} aria-hidden="true">
         {prefix}
       </span>
       <span className={cn("break-all", contentClass)}>
@@ -217,19 +201,15 @@ export interface TerminalHeaderProps
   title?: string;
 }
 
-function TerminalHeader({
-  className,
-  variant,
-  title,
-  ...props
-}: TerminalHeaderProps) {
-  const content = variant === "dots" ? (
-    <div className="flex items-center gap-1.5">
-      <div className="w-3 h-3 rounded-full bg-red-500/80" />
-      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-      <div className="w-3 h-3 rounded-full bg-green-500/80" />
-    </div>
-  ) : null;
+function TerminalHeader({ className, variant, title, ...props }: TerminalHeaderProps) {
+  const content =
+    variant === "dots" ? (
+      <div className="flex items-center gap-1.5">
+        <div className="w-3 h-3 rounded-full bg-red-500/80" />
+        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+        <div className="w-3 h-3 rounded-full bg-green-500/80" />
+      </div>
+    ) : null;
 
   return (
     <div className={cn(terminalHeaderVariants({ variant }), className)} {...props}>

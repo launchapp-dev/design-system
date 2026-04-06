@@ -81,15 +81,13 @@ function OTPInput({ value, onChange, disabled, hasError }: OTPInputProps) {
   }
 
   return (
-    <div
-      className="flex gap-2 justify-center"
-      role="group"
-      aria-label="One-time password input"
-    >
+    <div className="flex gap-2 justify-center" role="group" aria-label="One-time password input">
       {digits.map((digit, i) => (
         <Input
           key={i}
-          ref={(el) => { inputRefs.current[i] = el; }}
+          ref={(el) => {
+            inputRefs.current[i] = el;
+          }}
           type="text"
           inputMode="numeric"
           maxLength={1}
@@ -120,111 +118,100 @@ export interface OTPVerificationProps {
 }
 
 function OTPVerification({
-      onSubmit,
-      onResend,
-      isLoading,
-      error,
-      resendDelay = 60,
-      email,
-      className, ref}: OTPVerificationProps & { ref?: React.Ref<HTMLDivElement> }) {
-    const [countdown, setCountdown] = React.useState(resendDelay);
-    const [resending, setResending] = React.useState(false);
+  onSubmit,
+  onResend,
+  isLoading,
+  error,
+  resendDelay = 60,
+  email,
+  className,
+  ref,
+}: OTPVerificationProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const [countdown, setCountdown] = React.useState(resendDelay);
+  const [resending, setResending] = React.useState(false);
 
-    React.useEffect(() => {
-      if (countdown <= 0) return;
-      const id = setTimeout(() => setCountdown((c) => c - 1), 1000);
-      return () => clearTimeout(id);
-    }, [countdown]);
+  React.useEffect(() => {
+    if (countdown <= 0) return;
+    const id = setTimeout(() => setCountdown((c) => c - 1), 1000);
+    return () => clearTimeout(id);
+  }, [countdown]);
 
-    const form = useForm<OTPValues>({
-      resolver: zodResolver(otpSchema),
-      defaultValues: { otp: "" },
-    });
+  const form = useForm<OTPValues>({
+    resolver: zodResolver(otpSchema),
+    defaultValues: { otp: "" },
+  });
 
-    async function handleSubmit(values: OTPValues) {
-      await onSubmit?.(values.otp);
-    }
-
-    async function handleResend() {
-      setResending(true);
-      await onResend?.();
-      setCountdown(resendDelay);
-      form.reset();
-      setResending(false);
-    }
-
-    return (
-      <div ref={ref} className={cn("w-full max-w-sm", className)}>
-        <Card>
-          <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-2xl">Verify your email</CardTitle>
-            <CardDescription>
-              {email
-                ? `We sent a 6-digit code to ${email}.`
-                : "Enter the 6-digit code we sent to your email."}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-6"
-              >
-                {error && (
-                  <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive text-center">
-                    {error}
-                  </div>
-                )}
-                <FormField
-                  control={form.control}
-                  name="otp"
-                  render={({ field, fieldState }) => (
-                    <FormItem className="flex flex-col items-center space-y-3">
-                      <FormLabel className="sr-only">One-time password</FormLabel>
-                      <FormControl>
-                        <OTPInput
-                          value={field.value}
-                          onChange={field.onChange}
-                          disabled={isLoading}
-                          hasError={!!fieldState.error}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Verifying…" : "Verify"}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-          <CardFooter className="justify-center flex-col space-y-1">
-            <p className="text-sm text-muted-foreground">
-              Didn&apos;t receive a code?
-            </p>
-            <Button
-              variant="link"
-              className="px-0 h-auto text-sm"
-              type="button"
-              disabled={countdown > 0 || resending || isLoading}
-              onClick={handleResend}
-            >
-              {countdown > 0
-                ? `Resend in ${countdown}s`
-                : resending
-                ? "Sending…"
-                : "Resend code"}
-            </Button>
-          </CardFooter>
-        </Card>
-      </div>
-    );
+  async function handleSubmit(values: OTPValues) {
+    await onSubmit?.(values.otp);
   }
+
+  async function handleResend() {
+    setResending(true);
+    await onResend?.();
+    setCountdown(resendDelay);
+    form.reset();
+    setResending(false);
+  }
+
+  return (
+    <div ref={ref} className={cn("w-full max-w-sm", className)}>
+      <Card>
+        <CardHeader className="space-y-1 text-center">
+          <CardTitle className="text-2xl">Verify your email</CardTitle>
+          <CardDescription>
+            {email
+              ? `We sent a 6-digit code to ${email}.`
+              : "Enter the 6-digit code we sent to your email."}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+              {error && (
+                <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive text-center">
+                  {error}
+                </div>
+              )}
+              <FormField
+                control={form.control}
+                name="otp"
+                render={({ field, fieldState }) => (
+                  <FormItem className="flex flex-col items-center space-y-3">
+                    <FormLabel className="sr-only">One-time password</FormLabel>
+                    <FormControl>
+                      <OTPInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        disabled={isLoading}
+                        hasError={!!fieldState.error}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Verifying…" : "Verify"}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter className="justify-center flex-col space-y-1">
+          <p className="text-sm text-muted-foreground">Didn&apos;t receive a code?</p>
+          <Button
+            variant="link"
+            className="px-0 h-auto text-sm"
+            type="button"
+            disabled={countdown > 0 || resending || isLoading}
+            onClick={handleResend}
+          >
+            {countdown > 0 ? `Resend in ${countdown}s` : resending ? "Sending…" : "Resend code"}
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+}
 
 OTPVerification.displayName = "OTPVerification";
 

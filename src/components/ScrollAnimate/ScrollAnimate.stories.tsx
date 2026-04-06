@@ -47,8 +47,7 @@ export const FadeInOnScrollStory: StoryObj = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       <p style={{ fontSize: "12px", color: "gray" }}>
-        Elements fade in as they enter the viewport. Scroll down to see the
-        effect (in canvas mode).
+        Elements fade in as they enter the viewport. Scroll down to see the effect (in canvas mode).
       </p>
       {Array.from({ length: 5 }).map((_, i) => (
         <FadeInOnScroll key={i} delay={i * 100}>
@@ -95,9 +94,7 @@ export const CountUpStory: StoryObj = {
             suffix={suffix}
             className="text-4xl font-bold"
           />
-          <p style={{ fontSize: "14px", color: "gray", marginTop: "8px" }}>
-            {label}
-          </p>
+          <p style={{ fontSize: "14px", color: "gray", marginTop: "8px" }}>{label}</p>
         </div>
       ))}
     </div>
@@ -128,9 +125,7 @@ export const ParallaxStory: StoryObj = {
               display: "inline-block",
             }}
           >
-            <p style={{ fontSize: "24px", fontWeight: "bold" }}>
-              Parallax Element
-            </p>
+            <p style={{ fontSize: "24px", fontWeight: "bold" }}>Parallax Element</p>
             <p style={{ fontSize: "14px", marginTop: "8px", opacity: 0.8 }}>
               Moves at 0.2x scroll speed
             </p>
@@ -146,12 +141,8 @@ export const ParallaxStory: StoryObj = {
                 display: "inline-block",
               }}
             >
-              <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-                Faster Parallax
-              </p>
-              <p style={{ fontSize: "14px", marginTop: "8px" }}>
-                Moves at 0.5x scroll speed
-              </p>
+              <p style={{ fontSize: "20px", fontWeight: "bold" }}>Faster Parallax</p>
+              <p style={{ fontSize: "14px", marginTop: "8px" }}>Moves at 0.5x scroll speed</p>
             </div>
           </Parallax>
         </div>
@@ -179,9 +170,7 @@ export const AllScrollAnimations: StoryObj = {
         </div>
       </section>
       <section>
-        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "16px" }}>
-          CountUp
-        </h3>
+        <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "16px" }}>CountUp</h3>
         <div style={{ display: "flex", gap: "32px" }}>
           <CountUp to={500} suffix="+" className="text-3xl font-bold" />
           <CountUp to={98.5} decimals={1} suffix="%" className="text-3xl font-bold" />

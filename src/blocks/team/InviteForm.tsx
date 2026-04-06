@@ -18,8 +18,21 @@ import { RoleSelector, type Role } from "./RoleSelector";
 // ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
 function MailIcon({ className }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   );
 }
@@ -31,7 +44,7 @@ const inviteSchema = z.object({
 
 type InviteValues = z.infer<typeof inviteSchema>;
 
-export interface InviteFormProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit'> {
+export interface InviteFormProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSubmit"> {
   onSubmit?: (values: { email: string; role: Role }) => void | Promise<void>;
   onCancel?: () => void;
   isLoading?: boolean;
@@ -71,9 +84,7 @@ function InviteForm({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
           {error && (
-            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-              {error}
-            </div>
+            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>
           )}
 
           <FormField
@@ -103,10 +114,7 @@ function InviteForm({
               <FormItem>
                 <FormLabel>Role</FormLabel>
                 <FormControl>
-                  <RoleSelector
-                    value={field.value as Role}
-                    onChange={field.onChange}
-                  />
+                  <RoleSelector value={field.value as Role} onChange={field.onChange} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -114,7 +122,10 @@ function InviteForm({
           />
 
           <div className="flex flex-wrap gap-2">
-            <Button type="submit" disabled={isLoading || (remaining !== undefined && remaining <= 0)}>
+            <Button
+              type="submit"
+              disabled={isLoading || (remaining !== undefined && remaining <= 0)}
+            >
               <MailIcon className="mr-2 h-4 w-4" />
               {isLoading ? "Sending invite…" : "Send invite"}
             </Button>

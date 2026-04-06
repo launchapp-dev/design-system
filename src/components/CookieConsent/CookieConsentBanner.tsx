@@ -7,8 +7,7 @@ export const LAUNCHAPP_CATEGORIES: CookieCategory[] = [
   {
     id: "essential",
     name: "Essential",
-    description:
-      "Required for the website to function correctly. These cannot be disabled.",
+    description: "Required for the website to function correctly. These cannot be disabled.",
     required: true,
     enabled: true,
   },
@@ -23,8 +22,7 @@ export const LAUNCHAPP_CATEGORIES: CookieCategory[] = [
   {
     id: "marketing",
     name: "Marketing",
-    description:
-      "Used to show relevant advertisements and track campaign effectiveness.",
+    description: "Used to show relevant advertisements and track campaign effectiveness.",
     required: false,
     enabled: false,
   },
@@ -46,7 +44,7 @@ function CookieConsentBanner({
   const [visible, setVisible] = React.useState(false);
   const [showCustomize, setShowCustomize] = React.useState(false);
   const [prefs, setPrefs] = React.useState<Record<string, boolean>>(() =>
-    Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
+    Object.fromEntries(categories.map((c) => [c.id, c.enabled])),
   );
 
   React.useEffect(() => {
@@ -69,7 +67,10 @@ function CookieConsentBanner({
   }
 
   function handleSaveCustom() {
-    save({ ...prefs, ...Object.fromEntries(categories.filter((c) => c.required).map((c) => [c.id, true])) });
+    save({
+      ...prefs,
+      ...Object.fromEntries(categories.filter((c) => c.required).map((c) => [c.id, true])),
+    });
   }
 
   if (!visible) return null;
@@ -84,19 +85,16 @@ function CookieConsentBanner({
       <div
         className={cn(
           "mx-auto max-w-2xl rounded-xl p-6",
-          "border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] shadow-2xl"
+          "border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] shadow-2xl",
         )}
       >
         <h2 className="text-base font-semibold text-[hsl(var(--la-foreground))]">
           Cookie Preferences
         </h2>
         <p className="mt-1.5 text-sm text-[hsl(var(--la-muted-foreground))]">
-          We use cookies to enhance your experience and analyse our traffic.
-          Choose which cookies you allow us to use.{" "}
-          <a
-            href={policyHref}
-            className="underline hover:text-[hsl(var(--la-foreground))]"
-          >
+          We use cookies to enhance your experience and analyse our traffic. Choose which cookies
+          you allow us to use.{" "}
+          <a href={policyHref} className="underline hover:text-[hsl(var(--la-foreground))]">
             Cookie Policy
           </a>
         </p>
@@ -108,7 +106,7 @@ function CookieConsentBanner({
                 key={category.id}
                 className={cn(
                   "flex items-start justify-between gap-4 rounded-lg p-3",
-                  "border border-[hsl(var(--la-border))]"
+                  "border border-[hsl(var(--la-border))]",
                 )}
               >
                 <div className="min-w-0 flex-1">
@@ -120,7 +118,7 @@ function CookieConsentBanner({
                       <span
                         className={cn(
                           "rounded-full px-2 py-0.5 text-xs",
-                          "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))]"
+                          "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))]",
                         )}
                       >
                         Required
@@ -133,9 +131,7 @@ function CookieConsentBanner({
                 </div>
                 <SwitchPrimitive.Root
                   checked={prefs[category.id] ?? category.enabled}
-                  onCheckedChange={(checked) =>
-                    setPrefs((p) => ({ ...p, [category.id]: checked }))
-                  }
+                  onCheckedChange={(checked) => setPrefs((p) => ({ ...p, [category.id]: checked }))}
                   disabled={category.required}
                   aria-label={`${category.name} cookies`}
                   className={cn(
@@ -145,13 +141,13 @@ function CookieConsentBanner({
                     "focus-visible:ring-offset-[hsl(var(--la-background))]",
                     "disabled:cursor-not-allowed disabled:opacity-50",
                     "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                    "data-[state=unchecked]:bg-[hsl(var(--la-input))]"
+                    "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
                   )}
                 >
                   <SwitchPrimitive.Thumb
                     className={cn(
                       "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform",
-                      "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                      "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
                     )}
                   />
                 </SwitchPrimitive.Root>
@@ -169,7 +165,7 @@ function CookieConsentBanner({
                 className={cn(
                   "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                   "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]",
-                  "hover:opacity-90"
+                  "hover:opacity-90",
                 )}
               >
                 Save Preferences
@@ -180,7 +176,7 @@ function CookieConsentBanner({
                 className={cn(
                   "rounded-lg border px-4 py-2 text-sm font-medium transition-colors",
                   "border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))]",
-                  "hover:bg-[hsl(var(--la-muted))]"
+                  "hover:bg-[hsl(var(--la-muted))]",
                 )}
               >
                 Accept All
@@ -191,7 +187,7 @@ function CookieConsentBanner({
                 className={cn(
                   "rounded-lg border px-4 py-2 text-sm font-medium transition-colors",
                   "border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))]",
-                  "hover:bg-[hsl(var(--la-muted))]"
+                  "hover:bg-[hsl(var(--la-muted))]",
                 )}
               >
                 Reject All
@@ -205,7 +201,7 @@ function CookieConsentBanner({
                 className={cn(
                   "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                   "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]",
-                  "hover:opacity-90"
+                  "hover:opacity-90",
                 )}
               >
                 Accept All
@@ -216,7 +212,7 @@ function CookieConsentBanner({
                 className={cn(
                   "rounded-lg border px-4 py-2 text-sm font-medium transition-colors",
                   "border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))]",
-                  "hover:bg-[hsl(var(--la-muted))]"
+                  "hover:bg-[hsl(var(--la-muted))]",
                 )}
               >
                 Reject All
@@ -256,7 +252,7 @@ function CookieSettingsButton({
       onClick={onClick}
       className={cn(
         "text-sm text-[hsl(var(--la-muted-foreground))] hover:text-[hsl(var(--la-foreground))] transition-colors",
-        className
+        className,
       )}
     >
       {children}

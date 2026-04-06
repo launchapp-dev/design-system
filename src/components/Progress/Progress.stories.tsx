@@ -67,7 +67,9 @@ export const AllSizes: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "320px" }}>
       {(["sm", "md", "lg"] as const).map((size) => (
         <div key={size} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>{size}</span>
+          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>
+            {size}
+          </span>
           <Progress size={size} value={65} style={{ flex: 1 }} />
         </div>
       ))}
@@ -102,7 +104,17 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px", width: "320px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+        width: "320px",
+      }}
+    >
       <Progress size="sm" value={40} />
       <Progress size="md" value={65} />
       <Progress size="lg" value={80} />

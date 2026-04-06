@@ -1,4 +1,13 @@
-export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid, GradientBackground, AnimatedGradient, ShimmerBackground } from "./AnimatedBackground";
+export {
+  Particles,
+  Stars,
+  MatrixRain,
+  NoiseTexture,
+  AnimatedGrid,
+  GradientBackground,
+  AnimatedGradient,
+  ShimmerBackground,
+} from "./AnimatedBackground";
 export type {
   ParticlesProps,
   StarsProps,

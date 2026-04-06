@@ -12,21 +12,21 @@ const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
 );
 Pagination.displayName = "Pagination";
 
-function PaginationContent({ className, ref, ...props }: React.ComponentPropsWithoutRef<"ul"> & { ref?: React.Ref<HTMLUListElement> }) {
-  return (
-  <ul
-    ref={ref}
-    className={cn("flex flex-row items-center gap-1", className)}
-    {...props}
-  />
-);
+function PaginationContent({
+  className,
+  ref,
+  ...props
+}: React.ComponentPropsWithoutRef<"ul"> & { ref?: React.Ref<HTMLUListElement> }) {
+  return <ul ref={ref} className={cn("flex flex-row items-center gap-1", className)} {...props} />;
 }
 PaginationContent.displayName = "PaginationContent";
 
-function PaginationItem({ className, ref, ...props }: React.ComponentPropsWithoutRef<"li"> & { ref?: React.Ref<HTMLLIElement> }) {
-  return (
-  <li ref={ref} className={cn("", className)} {...props} />
-);
+function PaginationItem({
+  className,
+  ref,
+  ...props
+}: React.ComponentPropsWithoutRef<"li"> & { ref?: React.Ref<HTMLLIElement> }) {
+  return <li ref={ref} className={cn("", className)} {...props} />;
 }
 PaginationItem.displayName = "PaginationItem";
 
@@ -57,7 +57,7 @@ const PaginationLink = ({
       size: "icon",
     }),
     "h-11 w-11 md:h-9 md:w-9 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0",
-    className
+    className,
   );
 
   if (!href) {
@@ -116,10 +116,7 @@ const PaginationPrevious = ({
 );
 PaginationPrevious.displayName = "PaginationPrevious";
 
-const PaginationNext = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof PaginationLink>) => (
+const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
     className={cn("gap-1 pr-2.5 w-auto px-3 min-h-[44px] md:min-h-0", className)}
@@ -145,13 +142,13 @@ const PaginationNext = ({
 );
 PaginationNext.displayName = "PaginationNext";
 
-const PaginationEllipsis = ({
-  className,
-  ...props
-}: React.ComponentProps<"span">) => (
+const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<"span">) => (
   <span
     aria-hidden="true"
-    className={cn("flex h-11 w-11 items-center justify-center md:h-9 md:w-9 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0", className)}
+    className={cn(
+      "flex h-11 w-11 items-center justify-center md:h-9 md:w-9 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0",
+      className,
+    )}
     {...props}
   >
     <svg

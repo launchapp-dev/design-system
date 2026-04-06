@@ -40,8 +40,12 @@ export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}>
       <Badge variant="default">Badge</Badge>
-      <Badge variant="default" style={{ fontSize: "0.625rem" }}>Small text</Badge>
-      <Badge variant="default" style={{ fontSize: "0.875rem", padding: "4px 12px" }}>Large padding</Badge>
+      <Badge variant="default" style={{ fontSize: "0.625rem" }}>
+        Small text
+      </Badge>
+      <Badge variant="default" style={{ fontSize: "0.875rem", padding: "4px 12px" }}>
+        Large padding
+      </Badge>
     </div>
   ),
 };
@@ -75,7 +79,9 @@ export const EdgeCases: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
-        <Badge variant="default">A badge with a very long label that tests overflow behavior in constrained layouts</Badge>
+        <Badge variant="default">
+          A badge with a very long label that tests overflow behavior in constrained layouts
+        </Badge>
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
         <Badge variant="default">{""}</Badge>

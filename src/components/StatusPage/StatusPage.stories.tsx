@@ -10,11 +10,12 @@ const meta: Meta<typeof StatusPage> = {
 export default meta;
 type Story = StoryObj<typeof StatusPage>;
 
-const generateHistory = (days: number, degradedDays: number[] = []): StatusService["uptimeHistory"] => {
+const generateHistory = (
+  days: number,
+  degradedDays: number[] = [],
+): StatusService["uptimeHistory"] => {
   return Array.from({ length: days }, (_, i) => ({
-    date: new Date(Date.now() - (days - 1 - i) * 86400000)
-      .toISOString()
-      .split("T")[0],
+    date: new Date(Date.now() - (days - 1 - i) * 86400000).toISOString().split("T")[0],
     status: degradedDays.includes(i) ? "degraded" : "operational",
   }));
 };

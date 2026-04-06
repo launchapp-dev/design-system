@@ -28,7 +28,7 @@ const tagInputVariants = cva(
       size: "md",
       error: false,
     },
-  }
+  },
 );
 
 const tagVariants = cva(
@@ -36,9 +36,12 @@ const tagVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--la-primary)/0.1)] text-[hsl(var(--la-primary))] hover:bg-[hsl(var(--la-primary)/0.2)]",
-        secondary: "bg-[hsl(var(--la-secondary))] text-[hsl(var(--la-secondary-foreground))] hover:bg-[hsl(var(--la-secondary)/0.8)]",
-        outline: "border border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))] hover:bg-[hsl(var(--la-accent))]",
+        default:
+          "bg-[hsl(var(--la-primary)/0.1)] text-[hsl(var(--la-primary))] hover:bg-[hsl(var(--la-primary)/0.2)]",
+        secondary:
+          "bg-[hsl(var(--la-secondary))] text-[hsl(var(--la-secondary-foreground))] hover:bg-[hsl(var(--la-secondary)/0.8)]",
+        outline:
+          "border border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))] hover:bg-[hsl(var(--la-accent))]",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",
@@ -50,7 +53,7 @@ const tagVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 export interface TagInputProps
@@ -84,7 +87,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [inputValue, setInputValue] = React.useState("");
     const [open, setOpen] = React.useState(false);
@@ -102,9 +105,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     const filteredSuggestions = React.useMemo(() => {
       const q = inputValue.trim().toLowerCase();
       if (!q) return [];
-      return suggestions.filter(
-        (s) => s.toLowerCase().includes(q) && !value.includes(s)
-      );
+      return suggestions.filter((s) => s.toLowerCase().includes(q) && !value.includes(s));
     }, [inputValue, suggestions, value]);
 
     const canCreate =
@@ -173,7 +174,8 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
           const tagToRemove = value[focusedTagIndex];
           if (tagToRemove) {
             removeTag(tagToRemove);
-            const newIndex = focusedTagIndex >= value.length - 1 ? value.length - 2 : focusedTagIndex;
+            const newIndex =
+              focusedTagIndex >= value.length - 1 ? value.length - 2 : focusedTagIndex;
             setFocusedTagIndex(newIndex >= 0 ? newIndex : null);
           }
         }
@@ -282,7 +284,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                 tagInputVariants({ size, error }),
                 "cursor-text",
                 disabled && "pointer-events-none opacity-50",
-                className
+                className,
               )}
             >
               {value.map((tag, index) => (
@@ -297,7 +299,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   onBlur={() => setFocusedTagIndex(null)}
                   className={cn(
                     tagVariants({ variant: tagVariant, size }),
-                    focusedTagIndex === index && "ring-2 ring-[hsl(var(--la-ring))] ring-offset-1"
+                    focusedTagIndex === index && "ring-2 ring-[hsl(var(--la-ring))] ring-offset-1",
                   )}
                   aria-label={`${tag}, press Backspace or Delete to remove`}
                 >
@@ -384,7 +386,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                         "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
                         i === highlightedIndex &&
                           "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
-                        isCreate && "text-[hsl(var(--la-primary))] font-medium"
+                        isCreate && "text-[hsl(var(--la-primary))] font-medium",
                       )}
                     >
                       {item}
@@ -406,7 +408,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 TagInput.displayName = "TagInput";

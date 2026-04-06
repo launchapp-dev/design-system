@@ -12,9 +12,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <div style={{ maxWidth: 400 }}>
-      <RoleSelector
-        onChange={(r) => console.log("Role changed to", r)}
-      />
+      <RoleSelector onChange={(r) => console.log("Role changed to", r)} />
     </div>
   ),
 };
@@ -33,10 +31,7 @@ export const WithDescription: Story = {
 export const Preselected: Story = {
   render: () => (
     <div style={{ maxWidth: 400 }}>
-      <RoleSelector
-        value="admin"
-        onChange={(r) => console.log("Role changed to", r)}
-      />
+      <RoleSelector value="admin" onChange={(r) => console.log("Role changed to", r)} />
     </div>
   ),
 };

@@ -47,16 +47,10 @@ function MetricGrid({
   ref,
   ...props
 }: MetricGridProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const columnClass = responsive
-    ? columnsVariants[columns]
-    : responsiveColumnsVariants[columns];
+  const columnClass = responsive ? columnsVariants[columns] : responsiveColumnsVariants[columns];
 
   return (
-    <div
-      ref={ref}
-      className={cn("grid", columnClass, gapVariants[gap], className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("grid", columnClass, gapVariants[gap], className)} {...props}>
       {metrics.map((metric) => (
         <StatsCard key={metric.id} {...metric.stats} />
       ))}

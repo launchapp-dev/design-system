@@ -16,7 +16,7 @@ const switchVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 const switchThumbVariants = cva(
@@ -32,23 +32,24 @@ const switchThumbVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface SwitchProps
   extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
     VariantProps<typeof switchVariants> {}
 
-function Switch({ className, size, ref, ...props }: SwitchProps & { ref?: React.Ref<React.ComponentRef<typeof SwitchPrimitive.Root>> }) {
+function Switch({
+  className,
+  size,
+  ref,
+  ...props
+}: SwitchProps & { ref?: React.Ref<React.ComponentRef<typeof SwitchPrimitive.Root>> }) {
   return (
-  <SwitchPrimitive.Root
-    ref={ref}
-    className={cn(switchVariants({ size }), className)}
-    {...props}
-  >
-    <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ size }))} />
-  </SwitchPrimitive.Root>
-);
+    <SwitchPrimitive.Root ref={ref} className={cn(switchVariants({ size }), className)} {...props}>
+      <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ size }))} />
+    </SwitchPrimitive.Root>
+  );
 }
 
 Switch.displayName = SwitchPrimitive.Root.displayName;

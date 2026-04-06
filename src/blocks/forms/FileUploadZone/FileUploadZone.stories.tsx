@@ -2,7 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { FileUploadZone, type UploadedFile } from "./FileUploadZone";
 
-const makeFile = (id: string, name: string, size: number, status: UploadedFile["status"], progress = 0): UploadedFile => ({
+const makeFile = (
+  id: string,
+  name: string,
+  size: number,
+  status: UploadedFile["status"],
+  progress = 0,
+): UploadedFile => ({
   id,
   name,
   size,
@@ -73,20 +79,23 @@ const InteractiveTemplate = (args: React.ComponentProps<typeof FileUploadZone>) 
 
     added.forEach((file, idx) => {
       let prog = 0;
-      const interval = setInterval(() => {
-        prog += Math.random() * 30;
-        if (prog >= 100) {
-          prog = 100;
-          clearInterval(interval);
-          setFiles((prev) =>
-            prev.map((f) => f.id === file.id ? { ...f, progress: 100, status: "complete" } : f)
-          );
-        } else {
-          setFiles((prev) =>
-            prev.map((f) => f.id === file.id ? { ...f, progress: Math.round(prog) } : f)
-          );
-        }
-      }, 400 + idx * 200);
+      const interval = setInterval(
+        () => {
+          prog += Math.random() * 30;
+          if (prog >= 100) {
+            prog = 100;
+            clearInterval(interval);
+            setFiles((prev) =>
+              prev.map((f) => (f.id === file.id ? { ...f, progress: 100, status: "complete" } : f)),
+            );
+          } else {
+            setFiles((prev) =>
+              prev.map((f) => (f.id === file.id ? { ...f, progress: Math.round(prog) } : f)),
+            );
+          }
+        },
+        400 + idx * 200,
+      );
     });
   };
 
@@ -98,9 +107,11 @@ const InteractiveTemplate = (args: React.ComponentProps<typeof FileUploadZone>) 
         onFilesSelected={handleFilesSelected}
         onRemove={(id) => setFiles((prev) => prev.filter((f) => f.id !== id))}
         onRetry={(id) => {
-          setFiles((prev) => prev.map((f) =>
-            f.id === id ? { ...f, status: "uploading", progress: 0, errorMessage: undefined } : f
-          ));
+          setFiles((prev) =>
+            prev.map((f) =>
+              f.id === id ? { ...f, status: "uploading", progress: 0, errorMessage: undefined } : f,
+            ),
+          );
         }}
       />
     </div>
@@ -177,9 +188,7 @@ export const Disabled: Story = {
   args: {
     accept: "*/*",
     multiple: true,
-    files: [
-      makeFile("1", "document.pdf", 1.2 * 1024 * 1024, "complete", 100),
-    ],
+    files: [makeFile("1", "document.pdf", 1.2 * 1024 * 1024, "complete", 100)],
     disabled: true,
     title: "Upload (disabled)",
   },

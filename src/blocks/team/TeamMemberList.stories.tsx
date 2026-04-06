@@ -64,9 +64,7 @@ export const Default: Story = {
 export const OwnersOnly: Story = {
   render: () => (
     <div style={{ maxWidth: 600 }}>
-      <TeamMemberList
-        members={defaultMembers.filter((m) => m.role === "owner")}
-      />
+      <TeamMemberList members={defaultMembers.filter((m) => m.role === "owner")} />
     </div>
   ),
 };

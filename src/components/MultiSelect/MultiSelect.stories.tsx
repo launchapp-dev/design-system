@@ -107,16 +107,36 @@ export const WithPreselected: Story = {
 
 export const WithMaxCount: Story = {
   render: () => {
-    const [value2, setValue2] = React.useState<string[]>(["react", "vue", "angular", "svelte", "solid"]);
-    const [value5, setValue5] = React.useState<string[]>(["react", "vue", "angular", "svelte", "solid"]);
+    const [value2, setValue2] = React.useState<string[]>([
+      "react",
+      "vue",
+      "angular",
+      "svelte",
+      "solid",
+    ]);
+    const [value5, setValue5] = React.useState<string[]>([
+      "react",
+      "vue",
+      "angular",
+      "svelte",
+      "solid",
+    ]);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "320px" }}>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>maxCount=2 (shows "+3 more")</p>
+          <p
+            style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}
+          >
+            maxCount=2 (shows "+3 more")
+          </p>
           <MultiSelect options={frameworks} value={value2} onValueChange={setValue2} maxCount={2} />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>maxCount=5 (no overflow)</p>
+          <p
+            style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}
+          >
+            maxCount=5 (no overflow)
+          </p>
           <MultiSelect options={frameworks} value={value5} onValueChange={setValue5} maxCount={5} />
         </div>
       </div>
@@ -132,16 +152,46 @@ export const AllSizes: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "320px" }}>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Small</p>
-          <MultiSelect size="sm" options={frameworks} value={sm} onValueChange={setSm} placeholder="Select..." />
+          <p
+            style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}
+          >
+            Small
+          </p>
+          <MultiSelect
+            size="sm"
+            options={frameworks}
+            value={sm}
+            onValueChange={setSm}
+            placeholder="Select..."
+          />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Medium (default)</p>
-          <MultiSelect size="md" options={frameworks} value={md} onValueChange={setMd} placeholder="Select..." />
+          <p
+            style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}
+          >
+            Medium (default)
+          </p>
+          <MultiSelect
+            size="md"
+            options={frameworks}
+            value={md}
+            onValueChange={setMd}
+            placeholder="Select..."
+          />
         </div>
         <div>
-          <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Large</p>
-          <MultiSelect size="lg" options={frameworks} value={lg} onValueChange={setLg} placeholder="Select..." />
+          <p
+            style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}
+          >
+            Large
+          </p>
+          <MultiSelect
+            size="lg"
+            options={frameworks}
+            value={lg}
+            onValueChange={setLg}
+            placeholder="Select..."
+          />
         </div>
       </div>
     );
@@ -205,7 +255,12 @@ export const WithDisabledOptions: Story = {
     const [value, setValue] = React.useState<string[]>([]);
     return (
       <div className="w-full max-w-sm">
-        <MultiSelect options={options} value={value} onValueChange={setValue} placeholder="Select frameworks..." />
+        <MultiSelect
+          options={options}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Select frameworks..."
+        />
       </div>
     );
   },

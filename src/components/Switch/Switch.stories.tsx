@@ -36,7 +36,15 @@ export const AllVariants: Story = {
         <Switch disabled />
         <Switch checked={true} disabled />
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--muted-foreground)" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          fontSize: "12px",
+          color: "var(--muted-foreground)",
+        }}
+      >
         <span style={{ width: 40, textAlign: "center" }}>off</span>
         <span style={{ width: 40, textAlign: "center" }}>on</span>
         <span style={{ width: 52, textAlign: "center" }}>disabled</span>
@@ -51,7 +59,9 @@ export const AllSizes: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       {(["sm", "md", "lg"] as const).map((size) => (
         <div key={size} style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>{size}</span>
+          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>
+            {size}
+          </span>
           <Switch size={size} />
           <Switch size={size} checked={true} />
           <Switch size={size} disabled />
@@ -66,11 +76,7 @@ export const Interactive: Story = {
     const [checked, setChecked] = React.useState(false);
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Switch
-          {...args}
-          checked={checked}
-          onCheckedChange={setChecked}
-        />
+        <Switch {...args} checked={checked} onCheckedChange={setChecked} />
         <label style={{ fontSize: "14px" }}>{checked ? "On" : "Off"}</label>
       </div>
     );
@@ -82,7 +88,15 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", gap: "16px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "16px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <Switch />
       <Switch checked={true} />
       <Switch disabled />

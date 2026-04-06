@@ -48,7 +48,9 @@ export const DestructiveConfirm: Story = {
     const [confirmed, setConfirmed] = React.useState(false);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
+      <div
+        style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}
+      >
         <AlertDialogRoot>
           <AlertDialogTrigger asChild>
             <Button variant="destructive">Delete Account</Button>

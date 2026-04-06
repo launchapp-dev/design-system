@@ -6,14 +6,16 @@ const sampleNotifications: NotificationItem[] = [
   {
     id: "1",
     title: "New comment on your post",
-    description: "Sarah commented: 'Great article! I especially liked the section about accessibility.'",
+    description:
+      "Sarah commented: 'Great article! I especially liked the section about accessibility.'",
     timestamp: "2024-01-15T10:30:00Z",
     read: false,
   },
   {
     id: "2",
     title: "System update available",
-    description: "A new version of the application is available. Update now to get the latest features.",
+    description:
+      "A new version of the application is available. Update now to get the latest features.",
     timestamp: "2024-01-15T09:15:00Z",
     read: false,
   },
@@ -74,9 +76,7 @@ export const Default: Story = {
     const [notifications, setNotifications] = React.useState(args.notifications);
 
     const handleRead = (id: string) => {
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-      );
+      setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
     };
 
     const handleReadAll = () => {
@@ -99,9 +99,7 @@ export const AllSizes: Story = {
     const [notifications, setNotifications] = React.useState(sampleNotifications);
 
     const handleRead = (id: string) => {
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-      );
+      setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
     };
 
     const handleReadAll = () => {
@@ -111,7 +109,10 @@ export const AllSizes: Story = {
     return (
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
         {(["sm", "md", "lg"] as const).map((size) => (
-          <div key={size} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+          <div
+            key={size}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}
+          >
             <span style={{ fontSize: "12px" }}>{size}</span>
             <NotificationBell
               notifications={notifications}
@@ -131,9 +132,7 @@ export const AllVariants: Story = {
     const [notifications, setNotifications] = React.useState(sampleNotifications);
 
     const handleRead = (id: string) => {
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-      );
+      setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
     };
 
     const handleReadAll = () => {
@@ -175,9 +174,7 @@ export const ManyNotifications: Story = {
     const [notifications, setNotifications] = React.useState(manyNotifications);
 
     const handleRead = (id: string) => {
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-      );
+      setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
     };
 
     const handleReadAll = () => {
@@ -204,12 +201,7 @@ export const HighCount: Story = {
       read: false,
     }));
 
-    return (
-      <NotificationBell
-        notifications={manyUnread}
-        maxVisible={5}
-      />
-    );
+    return <NotificationBell notifications={manyUnread} maxVisible={5} />;
   },
 };
 
@@ -227,9 +219,7 @@ export const ControlledOpen: Story = {
     const [notifications, setNotifications] = React.useState(sampleNotifications);
 
     const handleRead = (id: string) => {
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-      );
+      setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
     };
 
     const handleReadAll = () => {
@@ -237,17 +227,29 @@ export const ControlledOpen: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "16px" }}>
+      <div
+        style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "16px" }}
+      >
         <div style={{ display: "flex", gap: "8px" }}>
           <button
             onClick={() => setOpen(true)}
-            style={{ padding: "8px 16px", border: "1px solid #ccc", borderRadius: "4px", cursor: "pointer" }}
+            style={{
+              padding: "8px 16px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
           >
             Open Notifications
           </button>
           <button
             onClick={() => setOpen(false)}
-            style={{ padding: "8px 16px", border: "1px solid #ccc", borderRadius: "4px", cursor: "pointer" }}
+            style={{
+              padding: "8px 16px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
           >
             Close Notifications
           </button>

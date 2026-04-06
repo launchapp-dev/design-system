@@ -2,20 +2,37 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { PricingSectionBlock } from "./index";
 
 const CheckIcon = () => (
-  <span className="inline-flex items-center justify-center text-primary font-bold" aria-label="Included">
+  <span
+    className="inline-flex items-center justify-center text-primary font-bold"
+    aria-label="Included"
+  >
     ✓
   </span>
 );
 
 const CrossIcon = () => (
-  <span className="inline-flex items-center justify-center text-muted-foreground/40" aria-label="Not included">
+  <span
+    className="inline-flex items-center justify-center text-muted-foreground/40"
+    aria-label="Not included"
+  >
     ✕
   </span>
 );
 
 const ShieldIcon = () => (
   <span className="text-sm text-muted-foreground flex items-center gap-1">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
     Secure checkout
@@ -91,30 +108,48 @@ const sampleFeatureRows = [
   },
   {
     feature: "API access",
-    values: { Starter: <CheckIcon key="s" />, Pro: <CheckIcon key="p" />, Enterprise: <CheckIcon key="e" /> },
+    values: {
+      Starter: <CheckIcon key="s" />,
+      Pro: <CheckIcon key="p" />,
+      Enterprise: <CheckIcon key="e" />,
+    },
   },
   {
     feature: "Custom domain",
-    values: { Starter: <CrossIcon key="s" />, Pro: <CheckIcon key="p" />, Enterprise: <CheckIcon key="e" /> },
+    values: {
+      Starter: <CrossIcon key="s" />,
+      Pro: <CheckIcon key="p" />,
+      Enterprise: <CheckIcon key="e" />,
+    },
   },
   {
     feature: "SSO / SAML",
-    values: { Starter: <CrossIcon key="s" />, Pro: <CrossIcon key="p" />, Enterprise: <CheckIcon key="e" /> },
+    values: {
+      Starter: <CrossIcon key="s" />,
+      Pro: <CrossIcon key="p" />,
+      Enterprise: <CheckIcon key="e" />,
+    },
   },
   {
     feature: "SLA guarantee",
-    values: { Starter: <CrossIcon key="s" />, Pro: <CrossIcon key="p" />, Enterprise: <CheckIcon key="e" /> },
+    values: {
+      Starter: <CrossIcon key="s" />,
+      Pro: <CrossIcon key="p" />,
+      Enterprise: <CheckIcon key="e" />,
+    },
   },
 ];
 
 const sampleFAQItems = [
   {
     question: "Can I switch plans at any time?",
-    answer: "Yes, you can upgrade or downgrade your plan at any time from your account settings. Changes take effect immediately.",
+    answer:
+      "Yes, you can upgrade or downgrade your plan at any time from your account settings. Changes take effect immediately.",
   },
   {
     question: "What payment methods do you accept?",
-    answer: "We accept all major credit cards (Visa, Mastercard, American Express) as well as PayPal. Enterprise customers can pay via invoice.",
+    answer:
+      "We accept all major credit cards (Visa, Mastercard, American Express) as well as PayPal. Enterprise customers can pay via invoice.",
   },
   {
     question: "Is there a free trial?",
@@ -122,7 +157,8 @@ const sampleFAQItems = [
   },
   {
     question: "What happens to my data if I cancel?",
-    answer: "You can export all your data at any time before canceling. After cancellation, your data is retained for 30 days before permanent deletion.",
+    answer:
+      "You can export all your data at any time before canceling. After cancellation, your data is retained for 30 days before permanent deletion.",
   },
   {
     question: "Do you offer refunds?",
@@ -145,8 +181,7 @@ type Story = StoryObj<typeof PricingSectionBlock>;
 export const Default: Story = {
   args: {
     headline: "Simple, transparent pricing",
-    subheadline:
-      "Choose the plan that fits your needs. All plans include a 14-day free trial.",
+    subheadline: "Choose the plan that fits your needs. All plans include a 14-day free trial.",
     tiers: sampleTiers,
     featureComparisonHeader: "Compare plans",
     featureRows: sampleFeatureRows,
@@ -155,7 +190,18 @@ export const Default: Story = {
     trustBadges: [
       <ShieldIcon key="shield" />,
       <span key="cards" className="text-sm text-muted-foreground flex items-center gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
           <rect width="20" height="14" x="2" y="5" rx="2" />
           <line x1="2" x2="22" y1="10" y2="10" />
         </svg>

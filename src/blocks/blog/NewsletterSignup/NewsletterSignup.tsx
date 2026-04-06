@@ -44,7 +44,7 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
       onSubmit,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [email, setEmail] = React.useState("");
     const [loading, setLoading] = React.useState(false);
@@ -69,8 +69,19 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
           <div className="text-center space-y-2">
             <div className="flex justify-center mb-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               </div>
             </div>
@@ -84,16 +95,14 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
                 {title && (
                   <h2 className="text-2xl font-bold tracking-tight text-foreground">{title}</h2>
                 )}
-                {subtitle && (
-                  <p className="mt-2 text-muted-foreground">{subtitle}</p>
-                )}
+                {subtitle && <p className="mt-2 text-muted-foreground">{subtitle}</p>}
               </div>
             )}
             <form
               onSubmit={handleSubmit}
               className={cn(
                 "flex gap-2",
-                variant === "inline" ? "flex-row" : "flex-col sm:flex-row"
+                variant === "inline" ? "flex-row" : "flex-col sm:flex-row",
               )}
             >
               <Input
@@ -132,14 +141,14 @@ const NewsletterSignup = React.forwardRef<HTMLDivElement, NewsletterSignupProps>
         className={cn(
           newsletterSignupVariants({ variant }),
           variant === "default" && "bg-muted/30",
-          className
+          className,
         )}
         {...props}
       >
         <div className="max-w-lg mx-auto">{inner}</div>
       </div>
     );
-  }
+  },
 );
 
 NewsletterSignup.displayName = "NewsletterSignup";

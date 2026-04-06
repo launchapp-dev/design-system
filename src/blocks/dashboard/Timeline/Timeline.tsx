@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/Avatar";
 import { Badge } from "@/components/Badge";
@@ -23,7 +23,14 @@ export interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const DotIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="currentColor" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="8"
+    height="8"
+    viewBox="0 0 8 8"
+    fill="currentColor"
+    aria-hidden="true"
+  >
     <circle cx="4" cy="4" r="4" />
   </svg>
 );
@@ -39,12 +46,14 @@ function Timeline({
     <div ref={null} className={cn("relative", className)} {...props}>
       <div className="absolute left-4 top-0 bottom-0 w-px bg-border" aria-hidden="true" />
       <div className="space-y-0">
-        {entries.map((entry, index) => (
+        {entries.map((entry, _index) => (
           <div key={entry.id} className="relative flex gap-4 pb-6 last:pb-0">
-            <div className={cn(
-              "relative z-10 flex shrink-0 items-center justify-center rounded-full bg-background",
-              compact ? "mt-1.5 h-6 w-6" : "mt-2 h-8 w-8"
-            )}>
+            <div
+              className={cn(
+                "relative z-10 flex shrink-0 items-center justify-center rounded-full bg-background",
+                compact ? "mt-1.5 h-6 w-6" : "mt-2 h-8 w-8",
+              )}
+            >
               {entry.avatarSrc || entry.avatarFallback ? (
                 <Avatar size="sm">
                   {entry.avatarSrc && <AvatarImage src={entry.avatarSrc} alt="" />}
@@ -61,11 +70,18 @@ function Timeline({
             <div className={cn("flex flex-col min-w-0 flex-1", compact ? "pt-0.5" : "pt-1")}>
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0 flex-1">
-                  <p className={cn("font-medium text-foreground", compact ? "text-sm" : "text-base")}>
+                  <p
+                    className={cn("font-medium text-foreground", compact ? "text-sm" : "text-base")}
+                  >
                     {entry.title}
                   </p>
                   {entry.description && (
-                    <p className={cn("mt-0.5 text-muted-foreground", compact ? "text-xs" : "text-sm")}>
+                    <p
+                      className={cn(
+                        "mt-0.5 text-muted-foreground",
+                        compact ? "text-xs" : "text-sm",
+                      )}
+                    >
                       {entry.description}
                     </p>
                   )}

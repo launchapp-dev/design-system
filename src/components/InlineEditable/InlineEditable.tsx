@@ -2,24 +2,20 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
-const inlineEditableVariants = cva(
-  "w-full rounded transition-colors",
-  {
-    variants: {
-      size: {
-        sm: "text-sm",
-        md: "text-base",
-        lg: "text-lg",
-      },
+const inlineEditableVariants = cva("w-full rounded transition-colors", {
+  variants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
     },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
 
-export interface InlineEditableProps
-  extends VariantProps<typeof inlineEditableVariants> {
+export interface InlineEditableProps extends VariantProps<typeof inlineEditableVariants> {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
@@ -98,7 +94,7 @@ function InlineEditable({
     inlineEditableVariants({ size }),
     "bg-background border border-ring px-2 py-1 outline-none",
     "focus:ring-2 focus:ring-ring focus:ring-offset-1",
-    inputClassName
+    inputClassName,
   );
 
   if (editing) {
@@ -143,7 +139,7 @@ function InlineEditable({
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         "disabled:pointer-events-none disabled:opacity-50",
         isPlaceholder && "text-muted-foreground italic",
-        className
+        className,
       )}
     >
       {displayValue}

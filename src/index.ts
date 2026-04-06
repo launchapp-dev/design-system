@@ -17,9 +17,22 @@ export { builtinPalettes } from "./themes/palettes";
 export type { PaletteTokenSet, Palette } from "./themes/palettes";
 export { createTheme } from "./themes/createTheme";
 export type { ThemeTokens, ThemeResult } from "./themes/createTheme";
-export { getCommunityThemeRegistry, getCommunityThemeById, listCommunityThemes, getFeaturedCommunityThemeIds } from "./themes/community-registry";
-export { validateCommunityTheme, validateHslValue, getCommunityThemesCssString } from "./themes/community-themes";
-export type { CommunityTheme, CommunityThemeAuthor, CommunityThemeTokens } from "./themes/community-themes";
+export {
+  getCommunityThemeRegistry,
+  getCommunityThemeById,
+  listCommunityThemes,
+  getFeaturedCommunityThemeIds,
+} from "./themes/community-registry";
+export {
+  validateCommunityTheme,
+  validateHslValue,
+  getCommunityThemesCssString,
+} from "./themes/community-themes";
+export type {
+  CommunityTheme,
+  CommunityThemeAuthor,
+  CommunityThemeTokens,
+} from "./themes/community-themes";
 export { extractBrandColorsFromUrl, extractBrandColorsFromImage } from "./lib/extract-brand-colors";
 export type { ExtractedColor } from "./lib/extract-brand-colors";
 export { generatePaletteFromColors } from "./themes/generatePaletteFromColors";
@@ -31,9 +44,23 @@ export { ThemePreview } from "./components/ThemePreview";
 export type { ThemePreviewProps } from "./components/ThemePreview";
 export { ThemeCard } from "./components/ThemeCard";
 export type { ThemeCardProps } from "./components/ThemeCard";
-export { Typewriter, BlurIn, FadeUp, LetterReveal, WordReveal, GradientText } from "./components/TextAnimate";
+export {
+  Typewriter,
+  BlurIn,
+  FadeUp,
+  LetterReveal,
+  WordReveal,
+  GradientText,
+} from "./components/TextAnimate";
 export { gradientTextVariants } from "./components/TextAnimate";
-export type { TypewriterProps, BlurInProps, FadeUpProps, LetterRevealProps, WordRevealProps, GradientTextProps } from "./components/TextAnimate";
+export type {
+  TypewriterProps,
+  BlurInProps,
+  FadeUpProps,
+  LetterRevealProps,
+  WordRevealProps,
+  GradientTextProps,
+} from "./components/TextAnimate";
 export { FadeInOnScroll, CountUp, Parallax } from "./components/ScrollAnimate";
 export type { FadeInOnScrollProps, CountUpProps, ParallaxProps } from "./components/ScrollAnimate";
 export { StaggeredList } from "./components/StaggeredList";
@@ -50,8 +77,22 @@ export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 export { Label } from "./components/Label";
 export type { LabelProps } from "./components/Label";
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/Card";
-export type { CardProps, CardHeaderProps, CardTitleProps, CardDescriptionProps, CardContentProps, CardFooterProps } from "./components/Card";
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "./components/Card";
+export type {
+  CardProps,
+  CardHeaderProps,
+  CardTitleProps,
+  CardDescriptionProps,
+  CardContentProps,
+  CardFooterProps,
+} from "./components/Card";
 export { Badge, badgeVariants } from "./components/Badge";
 export type { BadgeProps } from "./components/Badge";
 export {
@@ -85,11 +126,31 @@ export type { AvatarProps } from "./components/Avatar";
 export { Separator } from "./components/Separator";
 export type { SeparatorProps } from "./components/Separator";
 export { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "./components/Tooltip";
-export type { TooltipProviderProps, TooltipRootProps, TooltipTriggerProps, TooltipContentProps } from "./components/Tooltip";
+export type {
+  TooltipProviderProps,
+  TooltipRootProps,
+  TooltipTriggerProps,
+  TooltipContentProps,
+} from "./components/Tooltip";
 export { TabsRoot, TabsList, TabsTrigger, TabsContent } from "./components/Tabs";
-export type { TabsRootProps, TabsListProps, TabsTriggerProps, TabsContentProps } from "./components/Tabs";
-export { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "./components/Accordion";
-export type { AccordionRootProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from "./components/Accordion";
+export type {
+  TabsRootProps,
+  TabsListProps,
+  TabsTriggerProps,
+  TabsContentProps,
+} from "./components/Tabs";
+export {
+  AccordionRoot,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./components/Accordion";
+export type {
+  AccordionRootProps,
+  AccordionItemProps,
+  AccordionTriggerProps,
+  AccordionContentProps,
+} from "./components/Accordion";
 export {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -137,7 +198,12 @@ export {
   type ToggleGroupItemProps,
 } from "./components/ToggleGroup";
 export { Progress, type ProgressProps } from "./components/Progress";
-export { RadioGroup, RadioGroupItem, type RadioGroupProps, type RadioGroupItemProps } from "./components/RadioGroup";
+export {
+  RadioGroup,
+  RadioGroupItem,
+  type RadioGroupProps,
+  type RadioGroupItemProps,
+} from "./components/RadioGroup";
 export { Slider, type SliderProps } from "./components/Slider";
 export { Textarea, type TextareaProps } from "./components/Textarea";
 export {
@@ -172,15 +238,15 @@ export {
 } from "./components/Form";
 export { Alert, AlertTitle, AlertDescription, alertVariants } from "./components/Alert";
 export type { AlertProps } from "./components/Alert";
-export { 
-  Banner, 
+export {
+  Banner,
   BannerContent,
-  BannerTitle, 
-  BannerDescription, 
+  BannerTitle,
+  BannerDescription,
   BannerAction,
   BannerActions,
   BannerDismiss,
-  bannerVariants 
+  bannerVariants,
 } from "./components/Banner";
 export type { BannerProps, BannerActionProps } from "./components/Banner";
 export { Toaster as SonnerToaster, toast as sonnerToast } from "./components/Sonner";
@@ -228,7 +294,11 @@ export {
   ResizablePanel,
   ResizableHandle,
 } from "./components/Resizable";
-export type { ResizablePanelGroupProps, ResizablePanelProps, ResizableHandleProps } from "./components/Resizable";
+export type {
+  ResizablePanelGroupProps,
+  ResizablePanelProps,
+  ResizableHandleProps,
+} from "./components/Resizable";
 export {
   Table,
   TableHeader,
@@ -242,7 +312,11 @@ export {
 export { Skeleton } from "./components/Skeleton";
 export type { SkeletonProps } from "./components/Skeleton";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./components/Collapsible";
-export type { CollapsibleProps, CollapsibleTriggerProps, CollapsibleContentProps } from "./components/Collapsible";
+export type {
+  CollapsibleProps,
+  CollapsibleTriggerProps,
+  CollapsibleContentProps,
+} from "./components/Collapsible";
 export { DataTable } from "./components/DataTable";
 export type { DataTableProps } from "./components/DataTable";
 export {
@@ -375,8 +449,28 @@ export { FocusScope } from "./components/FocusScope";
 export type { FocusScopeProps } from "./components/FocusScope";
 export { NotificationBell, notificationBellVariants } from "./components/NotificationBell";
 export type { NotificationBellProps, NotificationItem } from "./components/NotificationBell";
-export { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification, AuthFormBlock } from "./blocks/auth";
-export type { LoginFormProps, LoginValues, SignUpFormProps, SignUpValues, ForgotPasswordFormProps, ForgotPasswordValues, OTPVerificationProps, AuthFormBlockProps, AuthFormVariant, SocialProvider, AuthFormLoginValues, AuthFormRegisterValues, AuthFormForgotPasswordValues } from "./blocks/auth";
+export {
+  LoginForm,
+  SignUpForm,
+  ForgotPasswordForm,
+  OTPVerification,
+  AuthFormBlock,
+} from "./blocks/auth";
+export type {
+  LoginFormProps,
+  LoginValues,
+  SignUpFormProps,
+  SignUpValues,
+  ForgotPasswordFormProps,
+  ForgotPasswordValues,
+  OTPVerificationProps,
+  AuthFormBlockProps,
+  AuthFormVariant,
+  SocialProvider,
+  AuthFormLoginValues,
+  AuthFormRegisterValues,
+  AuthFormForgotPasswordValues,
+} from "./blocks/auth";
 
 export { AppSidebar } from "./blocks/navigation";
 export type { AppSidebarProps, NavItem, NavSection } from "./blocks/navigation";
@@ -393,11 +487,19 @@ export type { ProfileSettingsProps } from "./blocks/settings";
 export { AccountSettings } from "./blocks/settings";
 export type { AccountSettingsProps } from "./blocks/settings";
 export { NotificationPreferences } from "./blocks/settings";
-export type { NotificationPreferencesProps, NotificationGroup, NotificationPreferenceItem } from "./blocks/settings";
+export type {
+  NotificationPreferencesProps,
+  NotificationGroup,
+  NotificationPreferenceItem,
+} from "./blocks/settings";
 export { BillingPage } from "./blocks/settings";
 export type { BillingPageProps, BillingPlan } from "./blocks/settings";
 export { SettingsLayoutBlock } from "./blocks/settings";
-export type { SettingsLayoutBlockProps, SettingsSection, SettingsSectionId } from "./blocks/settings";
+export type {
+  SettingsLayoutBlockProps,
+  SettingsSection,
+  SettingsSectionId,
+} from "./blocks/settings";
 export { DataExportCard } from "./blocks/settings";
 export type { DataExportCardProps } from "./blocks/settings";
 export { AccountDeletionCard } from "./blocks/settings";
@@ -426,7 +528,10 @@ export type { FullDataTableProps, FilterOption } from "./blocks/data/FullDataTab
 export { KanbanBoard } from "./blocks/data/KanbanBoard";
 export type { KanbanBoardProps, KanbanCard, KanbanColumn } from "./blocks/data/KanbanBoard";
 export { SearchableDataTable } from "./blocks/data/SearchableDataTable";
-export type { SearchableDataTableProps, SearchableDataTableFilterOption } from "./blocks/data/SearchableDataTable";
+export type {
+  SearchableDataTableProps,
+  SearchableDataTableFilterOption,
+} from "./blocks/data/SearchableDataTable";
 export { Timeline } from "./blocks/data/Timeline";
 export type { TimelineProps, TimelineItem } from "./blocks/data/Timeline";
 export { StatsCard } from "./blocks/data/StatsCard";
@@ -439,25 +544,50 @@ export { EmptyState, emptyStateIcons } from "./blocks/data/EmptyState";
 export type { EmptyStateProps } from "./blocks/data/EmptyState";
 
 export { ProductCard, productCardVariants, ProductCardGrid } from "./blocks/ecommerce/ProductCard";
-export type { ProductCardProps, ProductCardItem, ProductCardGridProps } from "./blocks/ecommerce/ProductCard";
+export type {
+  ProductCardProps,
+  ProductCardItem,
+  ProductCardGridProps,
+} from "./blocks/ecommerce/ProductCard";
 export { ShoppingCart } from "./blocks/ecommerce/ShoppingCart";
 export type { ShoppingCartProps, CartItem } from "./blocks/ecommerce/ShoppingCart";
 export { CheckoutForm } from "./blocks/ecommerce/CheckoutForm";
-export type { CheckoutFormProps, CheckoutValues, OrderSummaryItem } from "./blocks/ecommerce/CheckoutForm";
+export type {
+  CheckoutFormProps,
+  CheckoutValues,
+  OrderSummaryItem,
+} from "./blocks/ecommerce/CheckoutForm";
 export { SaaSLanding } from "./blocks/landing/SaaSLanding";
 export type { SaaSLandingProps, SaaSFeature, SaaSPricingTier } from "./blocks/landing/SaaSLanding";
 export { Portfolio } from "./blocks/landing/Portfolio";
 export type { PortfolioProps, PortfolioProject } from "./blocks/landing/Portfolio";
 export { Agency } from "./blocks/landing/Agency";
-export type { AgencyProps, AgencyService, AgencyTeamMember, AgencyCaseStudy } from "./blocks/landing/Agency";
+export type {
+  AgencyProps,
+  AgencyService,
+  AgencyTeamMember,
+  AgencyCaseStudy,
+} from "./blocks/landing/Agency";
 export { Startup } from "./blocks/landing/Startup";
 export type { StartupProps, SocialProofMetric, StartupTestimonial } from "./blocks/landing/Startup";
 export { HeroSectionBlock, heroSectionBlockVariants } from "./blocks/landing/HeroSection";
-export type { HeroSectionBlockProps, HeroSectionSocialProofMetric } from "./blocks/landing/HeroSection";
-export { FeatureGridBlock, featureGridBlockVariants, gridCols } from "./blocks/landing/FeatureGridBlock";
+export type {
+  HeroSectionBlockProps,
+  HeroSectionSocialProofMetric,
+} from "./blocks/landing/HeroSection";
+export {
+  FeatureGridBlock,
+  featureGridBlockVariants,
+  gridCols,
+} from "./blocks/landing/FeatureGridBlock";
 export type { FeatureItem, FeatureGridBlockProps } from "./blocks/landing/FeatureGridBlock";
 export { PricingSectionBlock } from "./blocks/landing/PricingSectionBlock";
-export type { PricingSectionBlockProps, PricingSectionTier, PricingSectionFeatureRow, PricingSectionFAQItem } from "./blocks/landing/PricingSectionBlock";
+export type {
+  PricingSectionBlockProps,
+  PricingSectionTier,
+  PricingSectionFeatureRow,
+  PricingSectionFAQItem,
+} from "./blocks/landing/PricingSectionBlock";
 
 export { PostList } from "./blocks/blog/PostList";
 export type { PostListProps, BlogPost } from "./blocks/blog/PostList";
@@ -476,17 +606,37 @@ export type { MaintenanceProps } from "./blocks/errors/Maintenance";
 export { MultiStepWizard } from "./blocks/onboarding/MultiStepWizard";
 export type { MultiStepWizardProps, WizardStep } from "./blocks/onboarding/MultiStepWizard";
 export { OnboardingChecklist } from "./blocks/onboarding/OnboardingChecklist";
-export type { OnboardingChecklistProps, ChecklistItem } from "./blocks/onboarding/OnboardingChecklist";
+export type {
+  OnboardingChecklistProps,
+  ChecklistItem,
+} from "./blocks/onboarding/OnboardingChecklist";
 export { WelcomeScreen } from "./blocks/onboarding/WelcomeScreen";
 export type { WelcomeScreenProps, WelcomeFeature } from "./blocks/onboarding/WelcomeScreen";
-export { OnboardingStepper, stepperVariants, stepIndicatorVariants } from "./blocks/onboarding/OnboardingStepper";
+export {
+  OnboardingStepper,
+  stepperVariants,
+  stepIndicatorVariants,
+} from "./blocks/onboarding/OnboardingStepper";
 export type { Step, OnboardingStepperProps } from "./blocks/onboarding/OnboardingStepper";
 export { OnboardingWizard } from "./blocks/onboarding/OnboardingWizard";
-export type { OnboardingWizardProps, WizardStep as OnboardingWizardStep } from "./blocks/onboarding/OnboardingWizard";
-export { ProgressStepper, stepperVariants as progressStepperVariants, stepIndicatorVariants as progressStepIndicatorVariants } from "./blocks/onboarding/ProgressStepper";
-export type { Step as ProgressStep, ProgressStepperProps } from "./blocks/onboarding/ProgressStepper";
+export type {
+  OnboardingWizardProps,
+  WizardStep as OnboardingWizardStep,
+} from "./blocks/onboarding/OnboardingWizard";
+export {
+  ProgressStepper,
+  stepperVariants as progressStepperVariants,
+  stepIndicatorVariants as progressStepIndicatorVariants,
+} from "./blocks/onboarding/ProgressStepper";
+export type {
+  Step as ProgressStep,
+  ProgressStepperProps,
+} from "./blocks/onboarding/ProgressStepper";
 export { SetupChecklist } from "./blocks/onboarding/SetupChecklist";
-export type { SetupChecklistProps, ChecklistItem as SetupChecklistItem } from "./blocks/onboarding/SetupChecklist";
+export type {
+  SetupChecklistProps,
+  ChecklistItem as SetupChecklistItem,
+} from "./blocks/onboarding/SetupChecklist";
 
 export { DropZone } from "./blocks/files/DropZone";
 export type { DropZoneProps } from "./blocks/files/DropZone";
@@ -505,13 +655,20 @@ export { TypingIndicator } from "./blocks/messaging/TypingIndicator";
 export type { TypingIndicatorProps } from "./blocks/messaging/TypingIndicator";
 
 export { NotificationCenter } from "./blocks/notifications/NotificationCenter";
-export type { NotificationCenterProps, AppNotification } from "./blocks/notifications/NotificationCenter";
+export type {
+  NotificationCenterProps,
+  AppNotification,
+} from "./blocks/notifications/NotificationCenter";
 export { ActivityTimeline } from "./blocks/notifications/ActivityTimeline";
 export type { ActivityTimelineProps, TimelineEntry } from "./blocks/notifications/ActivityTimeline";
 export { InboxView } from "./blocks/notifications/InboxView";
 export type { InboxViewProps, InboxItem } from "./blocks/notifications/InboxView";
 export { NotificationPreferencesCenter } from "./blocks/notifications/NotificationPreferences";
-export type { NotificationPreferencesCenterProps, NotificationCategory, NotificationChannel } from "./blocks/notifications/NotificationPreferences";
+export type {
+  NotificationPreferencesCenterProps,
+  NotificationCategory,
+  NotificationChannel,
+} from "./blocks/notifications/NotificationPreferences";
 
 export { ThemeSubmissionForm } from "./blocks/community/ThemeSubmissionForm";
 export type { ThemeSubmissionFormProps } from "./blocks/community/ThemeSubmissionForm";
@@ -538,10 +695,33 @@ export { LiveIndicator, liveIndicatorVariants, liveDotVariants } from "./compone
 export type { LiveIndicatorProps } from "./components/LiveIndicator";
 
 export { GradientMesh, Aurora, GridPattern, DotPattern } from "./components/Background";
-export type { GradientMeshProps, AuroraProps, GridPatternProps, DotPatternProps } from "./components/Background";
+export type {
+  GradientMeshProps,
+  AuroraProps,
+  GridPatternProps,
+  DotPatternProps,
+} from "./components/Background";
 
-export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid, GradientBackground, AnimatedGradient, ShimmerBackground } from "./components/AnimatedBackground";
-export type { ParticlesProps, StarsProps, MatrixRainProps, NoiseTextureProps, AnimatedGridProps, GradientBackgroundProps, AnimatedGradientProps, ShimmerBackgroundProps } from "./components/AnimatedBackground";
+export {
+  Particles,
+  Stars,
+  MatrixRain,
+  NoiseTexture,
+  AnimatedGrid,
+  GradientBackground,
+  AnimatedGradient,
+  ShimmerBackground,
+} from "./components/AnimatedBackground";
+export type {
+  ParticlesProps,
+  StarsProps,
+  MatrixRainProps,
+  NoiseTextureProps,
+  AnimatedGridProps,
+  GradientBackgroundProps,
+  AnimatedGradientProps,
+  ShimmerBackgroundProps,
+} from "./components/AnimatedBackground";
 
 export { Spotlight } from "./components/Spotlight";
 export type { SpotlightProps } from "./components/Spotlight";
@@ -553,7 +733,11 @@ export {
   chatBubbleVariants,
   chatBubbleContentVariants,
 } from "./components/ChatBubble";
-export type { ChatBubbleProps, ChatBubbleGroupProps, LinkPreviewProps } from "./components/ChatBubble";
+export type {
+  ChatBubbleProps,
+  ChatBubbleGroupProps,
+  LinkPreviewProps,
+} from "./components/ChatBubble";
 
 export {
   TiltCard,
@@ -590,7 +774,10 @@ export type {
 } from "./components/MagicCard";
 
 export { MultiStepWizard as AdvancedMultiStepWizard } from "./components/MultiStepWizard";
-export type { MultiStepWizardProps as AdvancedMultiStepWizardProps, WizardStep as AdvancedWizardStep } from "./components/MultiStepWizard";
+export type {
+  MultiStepWizardProps as AdvancedMultiStepWizardProps,
+  WizardStep as AdvancedWizardStep,
+} from "./components/MultiStepWizard";
 
 export { InlineEditable } from "./components/InlineEditable";
 export type { InlineEditableProps } from "./components/InlineEditable";
@@ -598,7 +785,12 @@ export type { InlineEditableProps } from "./components/InlineEditable";
 export { TagInput, tagInputVariants, tagVariants } from "./components/TagInput";
 export type { TagInputProps } from "./components/TagInput";
 
-export { Marquee, MarqueeItem, marqueeVariants, marqueeContentVariants } from "./components/Marquee";
+export {
+  Marquee,
+  MarqueeItem,
+  marqueeVariants,
+  marqueeContentVariants,
+} from "./components/Marquee";
 export type { MarqueeProps, MarqueeItemProps } from "./components/Marquee";
 
 export {
@@ -655,29 +847,69 @@ export type {
 } from "./components/CopilotPanel";
 
 export { StatusPage, overallStatusVariants } from "./components/StatusPage";
-export type { StatusPageProps, StatusService, ServiceStatus, UptimeEntry } from "./components/StatusPage";
+export type {
+  StatusPageProps,
+  StatusService,
+  ServiceStatus,
+  UptimeEntry,
+} from "./components/StatusPage";
 
 export { Changelog, changelogTagVariants } from "./components/Changelog";
-export type { ChangelogProps, ChangelogEntry, ChangelogChange, ChangelogTag } from "./components/Changelog";
+export type {
+  ChangelogProps,
+  ChangelogEntry,
+  ChangelogChange,
+  ChangelogTag,
+} from "./components/Changelog";
 
 export { CookieConsent, DEFAULT_CATEGORIES } from "./components/CookieConsent";
 export type { CookieConsentProps, CookieCategory } from "./components/CookieConsent";
 export { CookieSettingsButton, LAUNCHAPP_CATEGORIES } from "./components/CookieConsent";
 export type { CookieSettingsButtonProps } from "./components/CookieConsent";
-export { useCookieConsent, readConsentCookie, writeConsentCookie, clearConsentCookie } from "./components/CookieConsent";
+export {
+  useCookieConsent,
+  readConsentCookie,
+  writeConsentCookie,
+  clearConsentCookie,
+} from "./components/CookieConsent";
 export type { ConsentState } from "./components/CookieConsent";
 
-export { CookieConsentBanner, BANNER_DEFAULT_CATEGORIES, cookieConsentBannerVariants } from "./components/CookieConsentBanner";
-export type { CookieConsentBannerProps, CookieConsentBannerCategory } from "./components/CookieConsentBanner";
+export {
+  CookieConsentBanner,
+  BANNER_DEFAULT_CATEGORIES,
+  cookieConsentBannerVariants,
+} from "./components/CookieConsentBanner";
+export type {
+  CookieConsentBannerProps,
+  CookieConsentBannerCategory,
+} from "./components/CookieConsentBanner";
 
-export { CookiePreferencesDialog, PREFERENCES_DEFAULT_CATEGORIES } from "./components/CookiePreferencesDialog";
-export type { CookiePreferencesDialogProps, CookiePreferenceCategory } from "./components/CookiePreferencesDialog";
+export {
+  CookiePreferencesDialog,
+  PREFERENCES_DEFAULT_CATEGORIES,
+} from "./components/CookiePreferencesDialog";
+export type {
+  CookiePreferencesDialogProps,
+  CookiePreferenceCategory,
+} from "./components/CookiePreferencesDialog";
 
-export { ConsentHistoryTable, actionBadgeVariants, ACTION_LABELS } from "./components/ConsentHistoryTable";
-export type { ConsentHistoryTableProps, ConsentHistoryEntry, ConsentAction } from "./components/ConsentHistoryTable";
+export {
+  ConsentHistoryTable,
+  actionBadgeVariants,
+  ACTION_LABELS,
+} from "./components/ConsentHistoryTable";
+export type {
+  ConsentHistoryTableProps,
+  ConsentHistoryEntry,
+  ConsentAction,
+} from "./components/ConsentHistoryTable";
 
 export { PrivacyDashboard } from "./components/PrivacyDashboard";
-export type { PrivacyDashboardProps, DataRequestStatus, DeleteAccountStatus } from "./components/PrivacyDashboard";
+export type {
+  PrivacyDashboardProps,
+  DataRequestStatus,
+  DeleteAccountStatus,
+} from "./components/PrivacyDashboard";
 
 export { TreeMap, treeMapVariants } from "./components/TreeMap";
 export type { TreeMapProps, TreeMapNode } from "./components/TreeMap";
@@ -692,11 +924,16 @@ export {
   RealtimeTicker,
   realtimeTickerVariants,
   tickerValueVariants,
-  tickerChangeVariants
+  tickerChangeVariants,
 } from "./components/RealtimeTicker";
 export type { RealtimeTickerProps, TickerItem } from "./components/RealtimeTicker";
 
-export { Terminal, TerminalHeader, terminalVariants, terminalHeaderVariants } from "./components/Terminal";
+export {
+  Terminal,
+  TerminalHeader,
+  terminalVariants,
+  terminalHeaderVariants,
+} from "./components/Terminal";
 export type { TerminalProps, TerminalHeaderProps, TerminalLine } from "./components/Terminal";
 
 export { AnimatedBorder } from "./components/AnimatedBorder";
@@ -882,7 +1119,13 @@ export {
 } from "./plugins/examples";
 
 export { AppShell } from "./blocks/layout/AppShell";
-export type { AppShellProps, AppShellNavItem, AppShellNavSection, AppShellHeaderAction, AppShellUser } from "./blocks/layout/AppShell";
+export type {
+  AppShellProps,
+  AppShellNavItem,
+  AppShellNavSection,
+  AppShellHeaderAction,
+  AppShellUser,
+} from "./blocks/layout/AppShell";
 
 export { MultiPanelLayout } from "./components/MultiPanelLayout";
 export type { MultiPanelLayoutProps, MultiPanelLayoutPanel } from "./components/MultiPanelLayout";

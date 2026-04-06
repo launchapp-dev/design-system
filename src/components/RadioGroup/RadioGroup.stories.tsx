@@ -116,7 +116,9 @@ export const SingleItemDisabled: Story = {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <RadioGroupItem value="option-2" id="s2" disabled />
-        <Label htmlFor="s2" style={{ opacity: 0.5 }}>Disabled item</Label>
+        <Label htmlFor="s2" style={{ opacity: 0.5 }}>
+          Disabled item
+        </Label>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <RadioGroupItem value="option-3" id="s3" />

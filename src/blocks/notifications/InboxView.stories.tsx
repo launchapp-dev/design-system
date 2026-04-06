@@ -9,7 +9,8 @@ const mockItems: InboxItem[] = [
     sender: "Alice Chen",
     senderInitials: "AC",
     subject: "Re: Design system review",
-    preview: "Looks great! I especially like the new notification blocks. One small note on the timeline...",
+    preview:
+      "Looks great! I especially like the new notification blocks. One small note on the timeline...",
     date: "9:41 AM",
     read: false,
   },
@@ -18,7 +19,8 @@ const mockItems: InboxItem[] = [
     sender: "Bob Martinez",
     senderInitials: "BM",
     subject: "PR #148 is ready for review",
-    preview: "Hey, I've finished the onboarding components. Could you take a look before end of day?",
+    preview:
+      "Hey, I've finished the onboarding components. Could you take a look before end of day?",
     date: "8:30 AM",
     read: false,
   },
@@ -27,7 +29,8 @@ const mockItems: InboxItem[] = [
     sender: "GitHub",
     senderInitials: "GH",
     subject: "Your pull request was merged",
-    preview: "launchapp-dev/design-system: feat(blocks): add chat and file upload blocks [TASK-126]",
+    preview:
+      "launchapp-dev/design-system: feat(blocks): add chat and file upload blocks [TASK-126]",
     date: "Yesterday",
     read: true,
   },
@@ -36,7 +39,8 @@ const mockItems: InboxItem[] = [
     sender: "Carol White",
     senderInitials: "CW",
     subject: "Welcome to the design team!",
-    preview: "Hi! I'm so excited to have you on board. Here are a few resources to help you get started...",
+    preview:
+      "Hi! I'm so excited to have you on board. Here are a few resources to help you get started...",
     date: "Mon",
     read: true,
   },
@@ -135,7 +139,10 @@ export const Empty: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 560 }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 560 }}
+    >
       <InboxView {...args} />
     </div>
   ),

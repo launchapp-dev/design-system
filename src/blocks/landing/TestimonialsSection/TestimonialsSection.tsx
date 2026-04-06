@@ -81,7 +81,7 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
       align = "center",
       ...props
     },
-    ref
+    ref,
   ) => {
     const [current, setCurrent] = React.useState(0);
     const isCenter = align === "center";
@@ -101,11 +101,7 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
         <div className={cn("mb-12", isCenter ? "text-center" : "text-left", "space-y-3")}>
           {eyebrow && (
             <div className={cn(!isCenter && "-ml-1")}>
-              {typeof eyebrow === "string" ? (
-                <Badge variant="secondary">{eyebrow}</Badge>
-              ) : (
-                eyebrow
-              )}
+              {typeof eyebrow === "string" ? <Badge variant="secondary">{eyebrow}</Badge> : eyebrow}
             </div>
           )}
           {headline && (
@@ -125,17 +121,22 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
     const renderAuthor = (author: TestimonialItem["author"], showLogo = false) => (
       <div className="flex items-center gap-3">
         <Avatar className="h-9 w-9 shrink-0">
-          {author.avatarSrc && (
-            <AvatarImage src={author.avatarSrc} alt={author.name} />
-          )}
+          {author.avatarSrc && <AvatarImage src={author.avatarSrc} alt={author.name} />}
           <AvatarFallback className="text-xs">
-            {author.avatarFallback ?? author.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
+            {author.avatarFallback ??
+              author.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")
+                .slice(0, 2)
+                .toUpperCase()}
           </AvatarFallback>
         </Avatar>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-foreground truncate">{author.name}</p>
           <p className="text-xs text-muted-foreground truncate">
-            {author.role}{author.company ? `, ${author.company}` : ""}
+            {author.role}
+            {author.company ? `, ${author.company}` : ""}
           </p>
         </div>
         {showLogo && author.logoSrc && (
@@ -149,13 +150,7 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
     );
 
     const renderCard = (testimonial: TestimonialItem, index: number) => (
-      <Card
-        key={index}
-        className={cn(
-          "break-inside-avoid",
-          displayMode === "masonry" && "mb-6"
-        )}
-      >
+      <Card key={index} className={cn("break-inside-avoid", displayMode === "masonry" && "mb-6")}>
         <CardContent className="px-6 py-6">
           <blockquote className="space-y-4">
             <p className="text-sm leading-relaxed text-foreground">
@@ -167,13 +162,22 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
                   <AvatarImage src={testimonial.author.avatarSrc} alt={testimonial.author.name} />
                 )}
                 <AvatarFallback className="text-xs">
-                  {testimonial.author.avatarFallback ?? testimonial.author.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()}
+                  {testimonial.author.avatarFallback ??
+                    testimonial.author.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-foreground truncate">{testimonial.author.name}</p>
+                <p className="text-sm font-semibold text-foreground truncate">
+                  {testimonial.author.name}
+                </p>
                 <p className="text-xs text-muted-foreground truncate">
-                  {testimonial.author.role}{testimonial.author.company ? `, ${testimonial.author.company}` : ""}
+                  {testimonial.author.role}
+                  {testimonial.author.company ? `, ${testimonial.author.company}` : ""}
                 </p>
               </div>
               {testimonial.author.logoSrc && (
@@ -201,7 +205,11 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
       const showDots = testimonials.length > 1;
 
       return (
-        <section ref={ref} className={cn(testimonialsSectionVariants({ variant }), className)} {...props}>
+        <section
+          ref={ref}
+          className={cn(testimonialsSectionVariants({ variant }), className)}
+          {...props}
+        >
           <div className={cn(containerClass, "mx-auto")}>
             {renderHeader()}
             <div className="mx-auto max-w-2xl">
@@ -211,9 +219,7 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
                     <p className="text-lg leading-relaxed text-foreground">
                       &ldquo;{testimonial.quote}&rdquo;
                     </p>
-                    <footer>
-                      {renderAuthor(testimonial.author)}
-                    </footer>
+                    <footer>{renderAuthor(testimonial.author)}</footer>
                   </blockquote>
                 </CardContent>
               </Card>
@@ -224,7 +230,9 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
                   aria-label="Testimonial navigation"
                 >
                   <button
-                    onClick={() => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length)}
+                    onClick={() =>
+                      setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length)
+                    }
                     className="sr-only"
                     aria-label="Previous testimonial"
                   >
@@ -241,7 +249,7 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
                         "h-2 rounded-full transition-all",
                         i === current
                           ? "w-6 bg-primary"
-                          : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                          : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50",
                       )}
                     />
                   ))}
@@ -261,7 +269,11 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
     }
 
     return (
-      <section ref={ref} className={cn(testimonialsSectionVariants({ variant }), className)} {...props}>
+      <section
+        ref={ref}
+        className={cn(testimonialsSectionVariants({ variant }), className)}
+        {...props}
+      >
         <div className={cn(containerClass, "mx-auto")}>
           {renderHeader()}
           <div className={cn("grid gap-6", gridColsMap[displayMode])}>
@@ -270,7 +282,7 @@ const TestimonialsSection = React.forwardRef<HTMLElement, TestimonialsSectionPro
         </div>
       </section>
     );
-  }
+  },
 );
 
 TestimonialsSection.displayName = "TestimonialsSection";

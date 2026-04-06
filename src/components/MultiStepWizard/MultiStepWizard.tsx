@@ -22,8 +22,7 @@ export interface WizardStep {
   validate?: () => Promise<boolean> | boolean;
 }
 
-export interface MultiStepWizardProps
-  extends VariantProps<typeof multiStepWizardVariants> {
+export interface MultiStepWizardProps extends VariantProps<typeof multiStepWizardVariants> {
   steps: WizardStep[];
   onComplete: () => void;
   onSaveDraft?: (currentStep: number) => void;
@@ -92,9 +91,7 @@ function MultiStepWizard({
           <span className="text-sm font-medium text-foreground">
             Step {currentStep + 1} of {steps.length}
           </span>
-          {step?.title && (
-            <span className="text-sm text-muted-foreground">{step.title}</span>
-          )}
+          {step?.title && <span className="text-sm text-muted-foreground">{step.title}</span>}
         </div>
         <div
           className="w-full bg-muted rounded-full h-2 overflow-hidden"
@@ -115,7 +112,7 @@ function MultiStepWizard({
               key={s.id}
               className={cn(
                 "flex-1 h-1 rounded-full transition-colors duration-200",
-                i <= currentStep ? "bg-primary" : "bg-muted"
+                i <= currentStep ? "bg-primary" : "bg-muted",
               )}
               aria-hidden="true"
             />
@@ -126,7 +123,9 @@ function MultiStepWizard({
       {(step?.title || step?.description) && (
         <div className="mb-6">
           {step.title && (
-            <h3 id={stepTitleId} className="text-lg font-semibold text-foreground">{step.title}</h3>
+            <h3 id={stepTitleId} className="text-lg font-semibold text-foreground">
+              {step.title}
+            </h3>
           )}
           {step.description && (
             <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
@@ -134,7 +133,9 @@ function MultiStepWizard({
         </div>
       )}
 
-      <div className="mb-6" aria-labelledby={step?.title ? stepTitleId : undefined}>{step?.content}</div>
+      <div className="mb-6" aria-labelledby={step?.title ? stepTitleId : undefined}>
+        {step?.content}
+      </div>
 
       <div className="flex items-center justify-between gap-3">
         <div className="flex gap-2">
@@ -148,7 +149,7 @@ function MultiStepWizard({
               "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
               "h-10 px-4 py-2",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              "disabled:pointer-events-none disabled:opacity-50"
+              "disabled:pointer-events-none disabled:opacity-50",
             )}
           >
             {prevLabel}
@@ -162,7 +163,7 @@ function MultiStepWizard({
                 "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
                 "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
                 "h-10 px-4 py-2",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               )}
             >
               {saveDraftLabel}
@@ -173,13 +174,17 @@ function MultiStepWizard({
           type="button"
           onClick={handleNext}
           disabled={validating}
-          aria-label={isLast ? `${completeLabel} wizard` : `Go to next step (Step ${currentStep + 2} of ${steps.length})`}
+          aria-label={
+            isLast
+              ? `${completeLabel} wizard`
+              : `Go to next step (Step ${currentStep + 2} of ${steps.length})`
+          }
           className={cn(
             "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors",
             "bg-primary text-primary-foreground hover:bg-primary/90",
             "h-10 px-4 py-2",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            "disabled:pointer-events-none disabled:opacity-50"
+            "disabled:pointer-events-none disabled:opacity-50",
           )}
         >
           {validating ? "Validating…" : isLast ? completeLabel : nextLabel}

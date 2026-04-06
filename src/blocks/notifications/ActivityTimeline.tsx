@@ -18,12 +18,7 @@ export interface ActivityTimelineProps extends React.HTMLAttributes<HTMLDivEleme
 }
 
 const DefaultIcon = () => (
-  <svg
-    className="h-3 w-3"
-    fill="currentColor"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
+  <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <circle cx="12" cy="12" r="6" />
   </svg>
 );
@@ -50,7 +45,7 @@ const ActivityTimeline = React.forwardRef<HTMLDivElement, ActivityTimelineProps>
               <div
                 className={cn(
                   "relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border bg-background text-muted-foreground",
-                  item.iconClassName
+                  item.iconClassName,
                 )}
               >
                 {item.icon ?? <DefaultIcon />}
@@ -58,7 +53,10 @@ const ActivityTimeline = React.forwardRef<HTMLDivElement, ActivityTimelineProps>
               <div className="min-w-0 flex-1 pb-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
                   <p className="text-sm font-medium">{item.title}</p>
-                  <time className="text-xs text-muted-foreground whitespace-nowrap" dateTime={item.timestamp}>
+                  <time
+                    className="text-xs text-muted-foreground whitespace-nowrap"
+                    dateTime={item.timestamp}
+                  >
                     {item.timestamp}
                   </time>
                 </div>
@@ -71,7 +69,7 @@ const ActivityTimeline = React.forwardRef<HTMLDivElement, ActivityTimelineProps>
         </ol>
       </CardContent>
     </Card>
-  )
+  ),
 );
 ActivityTimeline.displayName = "ActivityTimeline";
 

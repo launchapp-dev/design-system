@@ -101,7 +101,16 @@ export const ChainSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "8px", display: "block" }}>Small</span>
+        <span
+          style={{
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+            marginBottom: "8px",
+            display: "block",
+          }}
+        >
+          Small
+        </span>
         <ThinkingIndicator
           variant="chain"
           size="sm"
@@ -110,7 +119,16 @@ export const ChainSizes: Story = {
         />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "8px", display: "block" }}>Medium</span>
+        <span
+          style={{
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+            marginBottom: "8px",
+            display: "block",
+          }}
+        >
+          Medium
+        </span>
         <ThinkingIndicator
           variant="chain"
           size="md"
@@ -119,7 +137,16 @@ export const ChainSizes: Story = {
         />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "8px", display: "block" }}>Large</span>
+        <span
+          style={{
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+            marginBottom: "8px",
+            display: "block",
+          }}
+        >
+          Large
+        </span>
         <ThinkingIndicator
           variant="chain"
           size="lg"
@@ -149,15 +176,42 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "8px", display: "block" }}>Dots</span>
+        <span
+          style={{
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+            marginBottom: "8px",
+            display: "block",
+          }}
+        >
+          Dots
+        </span>
         <ThinkingIndicator variant="dots" label="Thinking..." />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "8px", display: "block" }}>Brain</span>
+        <span
+          style={{
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+            marginBottom: "8px",
+            display: "block",
+          }}
+        >
+          Brain
+        </span>
         <ThinkingIndicator variant="brain" label="Reasoning..." />
       </div>
       <div>
-        <span style={{ fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "8px", display: "block" }}>Chain</span>
+        <span
+          style={{
+            fontSize: "12px",
+            color: "var(--muted-foreground)",
+            marginBottom: "8px",
+            display: "block",
+          }}
+        >
+          Chain
+        </span>
         <ThinkingIndicator
           variant="chain"
           steps={["Step 1: Analyze...", "Step 2: Process...", "Step 3: Generate..."]}
@@ -173,7 +227,9 @@ export const AllSizes: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       {(["sm", "md", "lg"] as const).map((size) => (
         <div key={size} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>{size}</span>
+          <span style={{ width: 24, fontSize: "12px", color: "var(--muted-foreground)" }}>
+            {size}
+          </span>
           <ThinkingIndicator variant="dots" size={size} />
         </div>
       ))}
@@ -186,7 +242,16 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "24px", padding: "24px", background: "hsl(var(--la-background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        padding: "24px",
+        background: "hsl(var(--la-background))",
+        borderRadius: "8px",
+      }}
+    >
       <ThinkingIndicator variant="dots" size="md" label="Thinking..." />
       <ThinkingIndicator variant="brain" size="md" label="Reasoning..." />
       <ThinkingIndicator
@@ -201,13 +266,34 @@ export const DarkMode: Story = {
 export const InContext: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "400px" }}>
-      <div style={{ padding: "12px 16px", background: "hsl(var(--la-muted))", borderRadius: "12px", alignSelf: "flex-start" }}>
+      <div
+        style={{
+          padding: "12px 16px",
+          background: "hsl(var(--la-muted))",
+          borderRadius: "12px",
+          alignSelf: "flex-start",
+        }}
+      >
         <ThinkingIndicator variant="dots" size="sm" />
       </div>
-      <div style={{ padding: "12px 16px", background: "hsl(var(--la-primary) / 0.1)", borderRadius: "12px", alignSelf: "flex-end" }}>
+      <div
+        style={{
+          padding: "12px 16px",
+          background: "hsl(var(--la-primary) / 0.1)",
+          borderRadius: "12px",
+          alignSelf: "flex-end",
+        }}
+      >
         <p style={{ margin: 0, fontSize: "14px" }}>What is the capital of France?</p>
       </div>
-      <div style={{ padding: "12px 16px", background: "hsl(var(--la-muted))", borderRadius: "12px", alignSelf: "flex-start" }}>
+      <div
+        style={{
+          padding: "12px 16px",
+          background: "hsl(var(--la-muted))",
+          borderRadius: "12px",
+          alignSelf: "flex-start",
+        }}
+      >
         <ThinkingIndicator variant="brain" size="sm" label="Searching..." />
       </div>
     </div>
@@ -216,9 +302,6 @@ export const InContext: Story = {
 
 export const CustomClassName: Story = {
   render: () => (
-    <ThinkingIndicator
-      variant="dots"
-      className="p-4 bg-accent rounded-lg border border-border"
-    />
+    <ThinkingIndicator variant="dots" className="p-4 bg-accent rounded-lg border border-border" />
   ),
 };

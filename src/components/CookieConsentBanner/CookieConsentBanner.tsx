@@ -64,7 +64,7 @@ const cookieConsentBannerVariants = cva(
     defaultVariants: {
       position: "bottom",
     },
-  }
+  },
 );
 
 function CookieConsentBanner({
@@ -79,8 +79,8 @@ function CookieConsentBanner({
   className,
 }: CookieConsentBannerProps) {
   const [showCustomize, setShowCustomize] = React.useState(false);
-  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(
-    () => Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
+  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(() =>
+    Object.fromEntries(categories.map((c) => [c.id, c.enabled])),
   );
 
   React.useEffect(() => {
@@ -100,9 +100,7 @@ function CookieConsentBanner({
   }
 
   function handleRejectAll() {
-    const required = Object.fromEntries(
-      categories.map((c) => [c.id, c.required === true])
-    );
+    const required = Object.fromEntries(categories.map((c) => [c.id, c.required === true]));
     setPreferences(required);
     onRejectAll?.();
   }
@@ -121,19 +119,11 @@ function CookieConsentBanner({
         {!showCustomize ? (
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-[hsl(var(--la-foreground))]">
-                {title}
-              </p>
-              <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">
-                {description}
-              </p>
+              <p className="text-sm font-semibold text-[hsl(var(--la-foreground))]">{title}</p>
+              <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">{description}</p>
             </div>
             <div className="flex shrink-0 flex-wrap items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowCustomize(true)}
-              >
+              <Button variant="ghost" size="sm" onClick={() => setShowCustomize(true)}>
                 Customize
               </Button>
               <Button variant="outline" size="sm" onClick={handleRejectAll}>
@@ -192,13 +182,13 @@ function CookieConsentBanner({
                       "focus-visible:ring-offset-[hsl(var(--la-background))]",
                       "disabled:cursor-not-allowed disabled:opacity-50",
                       "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                      "data-[state=unchecked]:bg-[hsl(var(--la-input))]"
+                      "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
                     )}
                   >
                     <SwitchPrimitive.Thumb
                       className={cn(
                         "pointer-events-none block h-4 w-4 rounded-full bg-white shadow-lg ring-0 transition-transform",
-                        "data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+                        "data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0",
                       )}
                     />
                   </SwitchPrimitive.Root>

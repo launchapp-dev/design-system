@@ -128,7 +128,9 @@ export const Interactive: Story = {
   },
   render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <p style={{ fontSize: "12px", color: "#888" }}>Use the className control to adjust shape and size.</p>
+      <p style={{ fontSize: "12px", color: "#888" }}>
+        Use the className control to adjust shape and size.
+      </p>
       <Skeleton {...args} />
     </div>
   ),

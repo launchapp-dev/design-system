@@ -21,17 +21,7 @@ export interface OnboardingChecklistProps extends React.HTMLAttributes<HTMLDivEl
 }
 
 const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklistProps>(
-  (
-    {
-      items,
-      title = "Getting Started",
-      description,
-      onItemToggle,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ items, title = "Getting Started", description, onItemToggle, className, ...props }, ref) => {
     const completedCount = items.filter((item) => item.completed).length;
     const progress = items.length > 0 ? Math.round((completedCount / items.length) * 100) : 0;
     const allComplete = completedCount === items.length;
@@ -67,15 +57,13 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
                 <div
                   className={cn(
                     "flex items-start gap-3 rounded-md border p-3 transition-colors",
-                    item.completed ? "border-border bg-muted/40" : "border-border bg-background"
+                    item.completed ? "border-border bg-muted/40" : "border-border bg-background",
                   )}
                 >
                   <Checkbox
                     id={`checklist-${item.id}`}
                     checked={item.completed}
-                    onCheckedChange={(checked) =>
-                      onItemToggle?.(item.id, checked === true)
-                    }
+                    onCheckedChange={(checked) => onItemToggle?.(item.id, checked === true)}
                     aria-label={item.title}
                     className="mt-0.5 shrink-0"
                   />
@@ -84,7 +72,7 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
                       htmlFor={`checklist-${item.id}`}
                       className={cn(
                         "cursor-pointer text-sm font-medium leading-none",
-                        item.completed && "text-muted-foreground line-through"
+                        item.completed && "text-muted-foreground line-through",
                       )}
                     >
                       {item.href ? (
@@ -110,7 +98,7 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
         </CardContent>
       </Card>
     );
-  }
+  },
 );
 OnboardingChecklist.displayName = "OnboardingChecklist";
 

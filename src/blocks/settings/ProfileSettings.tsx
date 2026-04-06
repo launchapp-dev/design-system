@@ -38,131 +38,138 @@ export interface ProfileSettingsProps {
   className?: string;
 }
 
-function ProfileSettings({ defaultValues, avatarSrc, avatarFallback = "US", onSave, className, ref}: ProfileSettingsProps & { ref?: React.Ref<HTMLDivElement> }) {
-    const [avatarPreview, setAvatarPreview] = React.useState<string | undefined>(avatarSrc);
-    const [isSaving, setIsSaving] = React.useState(false);
-    const fileInputRef = React.useRef<HTMLInputElement>(null);
+function ProfileSettings({
+  defaultValues,
+  avatarSrc,
+  avatarFallback = "US",
+  onSave,
+  className,
+  ref,
+}: ProfileSettingsProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const [avatarPreview, setAvatarPreview] = React.useState<string | undefined>(avatarSrc);
+  const [isSaving, setIsSaving] = React.useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
-    const form = useForm<ProfileFormValues>({
-      resolver: zodResolver(profileSchema),
-      defaultValues: {
-        name: "",
-        username: "",
-        bio: "",
-        ...defaultValues,
-      },
-    });
+  const form = useForm<ProfileFormValues>({
+    resolver: zodResolver(profileSchema),
+    defaultValues: {
+      name: "",
+      username: "",
+      bio: "",
+      ...defaultValues,
+    },
+  });
 
-    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        setAvatarPreview(url);
-      }
-    };
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setAvatarPreview(url);
+    }
+  };
 
-    const handleSubmit = async (values: ProfileFormValues) => {
-      setIsSaving(true);
-      try {
-        await onSave?.(values);
-      } finally {
-        setIsSaving(false);
-      }
-    };
+  const handleSubmit = async (values: ProfileFormValues) => {
+    setIsSaving(true);
+    try {
+      await onSave?.(values);
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
-    return (
-      <div ref={ref} className={cn("space-y-6", className)}>
-        <div>
-          <h3 className="text-lg font-semibold text-foreground">Profile</h3>
-          <p className="text-sm text-muted-foreground">Manage your public profile information.</p>
+  return (
+    <div ref={ref} className={cn("space-y-6", className)}>
+      <div>
+        <h3 className="text-lg font-semibold text-foreground">Profile</h3>
+        <p className="text-sm text-muted-foreground">Manage your public profile information.</p>
+      </div>
+      <Separator />
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <Avatar size="lg">
+          <AvatarImage src={avatarPreview} alt="Profile avatar" />
+          <AvatarFallback>{avatarFallback}</AvatarFallback>
+        </Avatar>
+        <div className="space-y-1">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="sr-only"
+            onChange={handleAvatarChange}
+            aria-label="Upload avatar image"
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => fileInputRef.current?.click()}
+          >
+            Change avatar
+          </Button>
+          <p className="text-xs text-muted-foreground">JPG, PNG or GIF. Max 2MB.</p>
         </div>
-        <Separator />
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <Avatar size="lg">
-            <AvatarImage src={avatarPreview} alt="Profile avatar" />
-            <AvatarFallback>{avatarFallback}</AvatarFallback>
-          </Avatar>
-          <div className="space-y-1">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              className="sr-only"
-              onChange={handleAvatarChange}
-              aria-label="Upload avatar image"
-            />
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              Change avatar
-            </Button>
-            <p className="text-xs text-muted-foreground">JPG, PNG or GIF. Max 2MB.</p>
-          </div>
-        </div>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Display name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your name" {...field} />
-                    </FormControl>
-                    <FormDescription>Your publicly visible name.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder="username" {...field} />
-                    </FormControl>
-                    <FormDescription>Lowercase letters, numbers, - and _ only.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+      </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
-              name="bio"
+              name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Bio</FormLabel>
+                  <FormLabel>Display name</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Tell us a little about yourself"
-                      className="resize-none"
-                      rows={3}
-                      {...field}
-                    />
+                    <Input placeholder="Your name" {...field} />
                   </FormControl>
-                  <FormDescription>Max 160 characters.</FormDescription>
+                  <FormDescription>Your publicly visible name.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <div className="flex justify-end pt-2">
-              <Button type="submit" disabled={isSaving}>
-                {isSaving ? "Saving\u2026" : "Save changes"}
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </div>
-    );
-  }
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="username" {...field} />
+                  </FormControl>
+                  <FormDescription>Lowercase letters, numbers, - and _ only.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <FormField
+            control={form.control}
+            name="bio"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Bio</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Tell us a little about yourself"
+                    className="resize-none"
+                    rows={3}
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>Max 160 characters.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex justify-end pt-2">
+            <Button type="submit" disabled={isSaving}>
+              {isSaving ? "Saving\u2026" : "Save changes"}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </div>
+  );
+}
 
 ProfileSettings.displayName = "ProfileSettings";
 

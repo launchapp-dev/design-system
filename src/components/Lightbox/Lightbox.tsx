@@ -3,21 +3,18 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
-const lightboxVariants = cva(
-  "fixed inset-0 z-50 flex flex-col",
-  {
-    variants: {
-      variant: {
-        default: "bg-black/95",
-        dark: "bg-black",
-        light: "bg-white/95",
-      },
+const lightboxVariants = cva("fixed inset-0 z-50 flex flex-col", {
+  variants: {
+    variant: {
+      default: "bg-black/95",
+      dark: "bg-black",
+      light: "bg-white/95",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 const lightboxContentVariants = cva(
   "relative flex-1 flex items-center justify-center overflow-hidden",
@@ -32,7 +29,7 @@ const lightboxContentVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 const lightboxImageVariants = cva(
@@ -47,7 +44,7 @@ const lightboxImageVariants = cva(
     defaultVariants: {
       isZoomed: false,
     },
-  }
+  },
 );
 
 const lightboxThumbnailVariants = cva(
@@ -68,7 +65,7 @@ const lightboxThumbnailVariants = cva(
       size: "md",
       isActive: false,
     },
-  }
+  },
 );
 
 export interface LightboxImage {
@@ -194,7 +191,7 @@ function Lightbox({
           break;
       }
     },
-    [open, isZoomed, enableZoom, goToPrevious, goToNext]
+    [open, isZoomed, enableZoom, goToPrevious, goToNext],
   );
 
   React.useEffect(() => {
@@ -204,7 +201,7 @@ function Lightbox({
 
   const handleImageClick = () => {
     if (!enableZoom) return;
-    
+
     if (isZoomed) {
       setIsZoomed(false);
       setZoomLevel(1);
@@ -217,7 +214,7 @@ function Lightbox({
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!enablePan || !isZoomed) return;
-    
+
     setIsPanning(true);
     panStartRef.current = {
       x: e.clientX - panOffset.x,
@@ -227,7 +224,7 @@ function Lightbox({
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isPanning || !isZoomed) return;
-    
+
     setPanOffset({
       x: e.clientX - panStartRef.current.x,
       y: e.clientY - panStartRef.current.y,
@@ -240,7 +237,7 @@ function Lightbox({
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!enableSwipe && !enablePan) return;
-    
+
     const touch = e.touches[0];
     setTouchStart({
       startX: touch.clientX,
@@ -252,7 +249,7 @@ function Lightbox({
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!touchStart) return;
-    
+
     const touch = e.touches[0];
     setTouchStart({
       ...touchStart,
@@ -296,7 +293,7 @@ function Lightbox({
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay
           className={cn(
-            "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out"
+            "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out",
           )}
         />
         <DialogPrimitive.Content
@@ -309,7 +306,7 @@ function Lightbox({
               "absolute right-4 top-4 z-10 rounded-full p-2 transition-colors",
               "bg-black/50 text-white hover:bg-black/70",
               "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
-              "min-h-[44px] min-w-[44px] flex items-center justify-center"
+              "min-h-[44px] min-w-[44px] flex items-center justify-center",
             )}
             aria-label="Close lightbox"
           >
@@ -334,7 +331,7 @@ function Lightbox({
             <div
               className={cn(
                 "absolute left-4 top-4 z-10 rounded-full px-4 py-2 text-sm font-medium",
-                isLightVariant ? "bg-black/10 text-foreground" : "bg-black/50 text-white"
+                isLightVariant ? "bg-black/10 text-foreground" : "bg-black/50 text-white",
               )}
               aria-live="polite"
             >
@@ -352,7 +349,7 @@ function Lightbox({
                     ? "bg-black/10 text-foreground hover:bg-black/20"
                     : "bg-black/50 text-white hover:bg-black/70",
                   "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
-                  "min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  "min-h-[44px] min-w-[44px] flex items-center justify-center",
                 )}
                 aria-label="Previous image"
               >
@@ -379,7 +376,7 @@ function Lightbox({
                     ? "bg-black/10 text-foreground hover:bg-black/20"
                     : "bg-black/50 text-white hover:bg-black/70",
                   "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
-                  "min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  "min-h-[44px] min-w-[44px] flex items-center justify-center",
                 )}
                 aria-label="Next image"
               >
@@ -438,7 +435,7 @@ function Lightbox({
             <div
               className={cn(
                 "flex items-center justify-center gap-2 overflow-x-auto p-4",
-                isLightVariant ? "bg-white/90" : "bg-black/90"
+                isLightVariant ? "bg-white/90" : "bg-black/90",
               )}
               role="tablist"
               aria-label="Image thumbnails"

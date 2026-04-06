@@ -52,10 +52,7 @@ const FileList = React.forwardRef<HTMLDivElement, FileListProps>(
         {title && <h3 className="text-sm font-medium">{title}</h3>}
         <ul role="list" className="space-y-2">
           {files.map((file) => (
-            <li
-              key={file.id}
-              className="rounded-lg border bg-card p-3"
-            >
+            <li key={file.id} className="rounded-lg border bg-card p-3">
               <div className="flex items-start gap-3">
                 <FileIcon />
                 <div className="min-w-0 flex-1 space-y-1.5">
@@ -152,7 +149,7 @@ const FileList = React.forwardRef<HTMLDivElement, FileListProps>(
         </ul>
       </div>
     );
-  }
+  },
 );
 FileList.displayName = "FileList";
 

@@ -26,25 +26,14 @@ describe("Lightbox", () => {
   });
 
   it("should render with images when open", () => {
-    render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={vi.fn()}
-      />
-    );
+    render(<Lightbox images={sampleImages} open={true} onOpenChange={vi.fn()} />);
 
     expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
 
   it("should display image counter when showCounter is true", () => {
     render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={vi.fn()}
-        showCounter={true}
-      />
+      <Lightbox images={sampleImages} open={true} onOpenChange={vi.fn()} showCounter={true} />,
     );
 
     expect(screen.getByText("1 / 3")).toBeInTheDocument();
@@ -52,14 +41,14 @@ describe("Lightbox", () => {
 
   it("should navigate to next image when next button is clicked", () => {
     const onOpenChange = vi.fn();
-    
+
     render(
       <Lightbox
         images={sampleImages}
         open={true}
         onOpenChange={onOpenChange}
         showNavigation={true}
-      />
+      />,
     );
 
     const nextButton = screen.getByLabelText("Next image");
@@ -76,7 +65,7 @@ describe("Lightbox", () => {
         onOpenChange={vi.fn()}
         showNavigation={true}
         initialIndex={1}
-      />
+      />,
     );
 
     expect(screen.getByText("2 / 3")).toBeInTheDocument();
@@ -89,12 +78,7 @@ describe("Lightbox", () => {
 
   it("should navigate to thumbnail image when thumbnail is clicked", () => {
     render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={vi.fn()}
-        showThumbnails={true}
-      />
+      <Lightbox images={sampleImages} open={true} onOpenChange={vi.fn()} showThumbnails={true} />,
     );
 
     const thumbnails = screen.getByRole("tablist").querySelectorAll("button");
@@ -107,14 +91,8 @@ describe("Lightbox", () => {
 
   it("should close when close button is clicked", () => {
     const onOpenChange = vi.fn();
-    
-    render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={onOpenChange}
-      />
-    );
+
+    render(<Lightbox images={sampleImages} open={true} onOpenChange={onOpenChange} />);
 
     const closeButton = screen.getByLabelText("Close lightbox");
     fireEvent.click(closeButton);
@@ -124,7 +102,7 @@ describe("Lightbox", () => {
 
   it("should call onIndexChange when index changes", () => {
     const onIndexChange = vi.fn();
-    
+
     render(
       <Lightbox
         images={sampleImages}
@@ -132,7 +110,7 @@ describe("Lightbox", () => {
         onOpenChange={vi.fn()}
         onIndexChange={onIndexChange}
         showNavigation={true}
-      />
+      />,
     );
 
     const nextButton = screen.getByLabelText("Next image");
@@ -143,12 +121,7 @@ describe("Lightbox", () => {
 
   it("should render without thumbnails when showThumbnails is false", () => {
     render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={vi.fn()}
-        showThumbnails={false}
-      />
+      <Lightbox images={sampleImages} open={true} onOpenChange={vi.fn()} showThumbnails={false} />,
     );
 
     expect(screen.queryByRole("tablist")).not.toBeInTheDocument();
@@ -162,7 +135,7 @@ describe("Lightbox", () => {
         onOpenChange={vi.fn()}
         showNavigation={true}
         initialIndex={2}
-      />
+      />,
     );
 
     expect(screen.getByText("3 / 3")).toBeInTheDocument();
@@ -181,7 +154,7 @@ describe("Lightbox", () => {
         onOpenChange={vi.fn()}
         showNavigation={true}
         initialIndex={0}
-      />
+      />,
     );
 
     expect(screen.getByText("1 / 3")).toBeInTheDocument();
@@ -193,13 +166,7 @@ describe("Lightbox", () => {
   });
 
   it("should have visible image with alt text", () => {
-    render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={vi.fn()}
-      />
-    );
+    render(<Lightbox images={sampleImages} open={true} onOpenChange={vi.fn()} />);
 
     const images = screen.getAllByRole("img");
     expect(images.length).toBeGreaterThan(0);
@@ -208,12 +175,7 @@ describe("Lightbox", () => {
 
   it("should show navigation buttons when showNavigation is true", () => {
     render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={vi.fn()}
-        showNavigation={true}
-      />
+      <Lightbox images={sampleImages} open={true} onOpenChange={vi.fn()} showNavigation={true} />,
     );
 
     expect(screen.getByLabelText("Next image")).toBeInTheDocument();
@@ -222,12 +184,7 @@ describe("Lightbox", () => {
 
   it("should hide navigation buttons when showNavigation is false", () => {
     render(
-      <Lightbox
-        images={sampleImages}
-        open={true}
-        onOpenChange={vi.fn()}
-        showNavigation={false}
-      />
+      <Lightbox images={sampleImages} open={true} onOpenChange={vi.fn()} showNavigation={false} />,
     );
 
     expect(screen.queryByLabelText("Next image")).not.toBeInTheDocument();

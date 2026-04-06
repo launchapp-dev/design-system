@@ -30,7 +30,7 @@ const cellVariants = cva(
     defaultVariants: {
       borderRadius: "sm",
     },
-  }
+  },
 );
 
 export interface HeatmapCell {
@@ -57,7 +57,11 @@ export interface HeatmapProps
   showLabels?: boolean;
   formatValue?: (value: number) => string;
   onCellClick?: (cell: HeatmapCell, rowIndex: number, colIndex: number) => void;
-  onCellHover?: (cell: HeatmapCell | null, rowIndex: number | null, colIndex: number | null) => void;
+  onCellHover?: (
+    cell: HeatmapCell | null,
+    rowIndex: number | null,
+    colIndex: number | null,
+  ) => void;
   showTooltip?: boolean;
   tooltipContent?: (cell: HeatmapCell) => React.ReactNode;
   "aria-label"?: string;
@@ -75,7 +79,7 @@ interface NormalizedData {
 function normalizeData(
   data: HeatmapCell[][],
   explicitMin?: number,
-  explicitMax?: number
+  explicitMax?: number,
 ): NormalizedData {
   const rows = data.length;
   const cols = rows > 0 ? data[0].length : 0;
@@ -91,7 +95,7 @@ function normalizeData(
     row.map((cell) => ({
       ...cell,
       normalizedValue: (cell.value - min) / range,
-    }))
+    })),
   );
 
   return { cells, rows, cols, min, max };
@@ -140,10 +144,10 @@ function getViridisColor(normalized: number): string {
 
 function getCustomColor(
   normalized: number,
-  scale: { min: string; mid?: string; max: string }
+  scale: { min: string; mid?: string; max: string },
 ): string {
   const clamped = Math.max(0, Math.min(1, normalized));
-  
+
   if (scale.mid) {
     if (clamped < 0.5) {
       return scale.min;
@@ -152,7 +156,7 @@ function getCustomColor(
     }
     return scale.mid;
   }
-  
+
   return clamped < 0.5 ? scale.min : scale.max;
 }
 
@@ -160,7 +164,7 @@ function getCellColor(
   normalized: number,
   colorScale: HeatmapProps["colorScale"],
   customColorScale?: { min: string; mid?: string; max: string },
-  cellColor?: string
+  cellColor?: string,
 ): string {
   if (cellColor) return cellColor;
 
@@ -205,7 +209,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
       "aria-label": ariaLabel,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [hoveredCell, setHoveredCell] = React.useState<{
       row: number;
@@ -216,10 +220,8 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
       return normalizeData(data, minValue, maxValue);
     }, [data, minValue, maxValue]);
 
-    const cellWidth =
-      typeof cellSize === "number" ? cellSize : cellSize.width;
-    const cellHeight =
-      typeof cellSize === "number" ? cellSize : cellSize.height;
+    const cellWidth = typeof cellSize === "number" ? cellSize : cellSize.width;
+    const cellHeight = typeof cellSize === "number" ? cellSize : cellSize.height;
 
     const _gridWidth = normalized.cols * cellWidth + (normalized.cols - 1) * cellGap;
     const _gridHeight = normalized.rows * cellHeight + (normalized.rows - 1) * cellGap;
@@ -228,9 +230,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
       <div className="text-xs">
         {cell.label && <div className="font-medium">{cell.label}</div>}
         <div>
-          {cell.rowLabel && cell.colLabel
-            ? `${cell.rowLabel} × ${cell.colLabel}: `
-            : ""}
+          {cell.rowLabel && cell.colLabel ? `${cell.rowLabel} × ${cell.colLabel}: ` : ""}
           {formatValue(cell.value)}
         </div>
       </div>
@@ -252,8 +252,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
 
     const autoAriaLabel = React.useMemo(() => {
       if (ariaLabel) return ariaLabel;
-      if (normalized.rows === 0 || normalized.cols === 0)
-        return "Empty heatmap";
+      if (normalized.rows === 0 || normalized.cols === 0) return "Empty heatmap";
       return `Heatmap with ${normalized.rows} rows and ${normalized.cols} columns, values range from ${normalized.min} to ${normalized.max}`;
     }, [ariaLabel, normalized]);
 
@@ -264,7 +263,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
           className={cn(
             heatmapVariants({ size }),
             "flex items-center justify-center bg-muted/30 rounded-[--la-radius] p-8",
-            className
+            className,
           )}
           role="img"
           aria-label="Empty heatmap"
@@ -278,16 +277,10 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
     const renderCell = (
       cell: HeatmapCell & { normalizedValue: number },
       rowIndex: number,
-      colIndex: number
+      colIndex: number,
     ) => {
-      const isHovered =
-        hoveredCell?.row === rowIndex && hoveredCell?.col === colIndex;
-      const color = getCellColor(
-        cell.normalizedValue,
-        colorScale,
-        customColorScale,
-        cell.color
-      );
+      const isHovered = hoveredCell?.row === rowIndex && hoveredCell?.col === colIndex;
+      const color = getCellColor(cell.normalizedValue, colorScale, customColorScale, cell.color);
 
       const cellElement = (
         <div
@@ -299,7 +292,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
             cellVariants({ borderRadius }),
             "flex items-center justify-center",
             onCellClick && "cursor-pointer",
-            isHovered && "ring-2 ring-ring ring-offset-1"
+            isHovered && "ring-2 ring-ring ring-offset-1",
           )}
           style={{
             width: cellWidth,
@@ -327,17 +320,13 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
       if (showTooltip) {
         return (
           <TooltipPrimitive.Root key={`${rowIndex}-${colIndex}`}>
-            <TooltipPrimitive.Trigger asChild>
-              {cellElement}
-            </TooltipPrimitive.Trigger>
+            <TooltipPrimitive.Trigger asChild>{cellElement}</TooltipPrimitive.Trigger>
             <TooltipPrimitive.Portal>
               <TooltipPrimitive.Content
                 sideOffset={4}
                 className="z-50 overflow-hidden rounded-md border border-border bg-popover px-3 py-1.5 text-xs text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
               >
-                {tooltipContent
-                  ? tooltipContent(cell)
-                  : defaultTooltip(cell)}
+                {tooltipContent ? tooltipContent(cell) : defaultTooltip(cell)}
               </TooltipPrimitive.Content>
             </TooltipPrimitive.Portal>
           </TooltipPrimitive.Root>
@@ -358,11 +347,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
         >
           <div className="flex">
             {showLabels && rowLabels && rowLabels.length > 0 && (
-              <div
-                className="flex flex-col pr-2"
-                style={{ gap: cellGap }}
-                aria-hidden="true"
-              >
+              <div className="flex flex-col pr-2" style={{ gap: cellGap }} aria-hidden="true">
                 {rowLabels.map((label, index) => (
                   <div
                     key={`row-label-${index}`}
@@ -412,9 +397,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
                 }}
               >
                 {normalized.cells.map((row, rowIndex) =>
-                  row.map((cell, colIndex) =>
-                    renderCell(cell, rowIndex, colIndex)
-                  )
+                  row.map((cell, colIndex) => renderCell(cell, rowIndex, colIndex)),
                 )}
               </div>
             </div>
@@ -427,7 +410,7 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
         </div>
       </TooltipPrimitive.Provider>
     );
-  }
+  },
 );
 
 Heatmap.displayName = "Heatmap";

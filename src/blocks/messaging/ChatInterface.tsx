@@ -31,7 +31,7 @@ const ChatInterface = React.forwardRef<HTMLDivElement, ChatInterfaceProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [draft, setDraft] = React.useState("");
     const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -107,12 +107,14 @@ const ChatInterface = React.forwardRef<HTMLDivElement, ChatInterfaceProps>(
                 </svg>
               </Button>
             </div>
-            <p className="mt-1.5 text-xs text-muted-foreground">Press Enter to send, Shift+Enter for new line</p>
+            <p className="mt-1.5 text-xs text-muted-foreground">
+              Press Enter to send, Shift+Enter for new line
+            </p>
           </div>
         </CardContent>
       </Card>
     );
-  }
+  },
 );
 ChatInterface.displayName = "ChatInterface";
 

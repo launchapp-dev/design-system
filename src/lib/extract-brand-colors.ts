@@ -4,9 +4,7 @@ export type ExtractedColor = {
   description: string;
 };
 
-export async function extractBrandColorsFromUrl(
-  url: string
-): Promise<ExtractedColor[]> {
+export async function extractBrandColorsFromUrl(url: string): Promise<ExtractedColor[]> {
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
   const client = new Anthropic();
 
@@ -55,9 +53,7 @@ Only return valid JSON, no additional text.`,
   }
 }
 
-export async function extractBrandColorsFromImage(
-  imageBase64: string
-): Promise<ExtractedColor[]> {
+export async function extractBrandColorsFromImage(imageBase64: string): Promise<ExtractedColor[]> {
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
   const client = new Anthropic();
 

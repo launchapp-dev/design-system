@@ -7,7 +7,9 @@ const kpiItems = [
     value: "$89,600",
     trend: "up" as const,
     trendLabel: "+12.3% vs last month",
-    sparklineData: [42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000, 79000, 89600],
+    sparklineData: [
+      42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000, 79000, 89600,
+    ],
     sparklineColor: "hsl(var(--la-chart-1))",
   },
   {

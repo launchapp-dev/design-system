@@ -99,18 +99,11 @@ export const WithNotificationBadge: Story = {
 };
 
 export const LogoOnly: Story = {
-  render: () => (
-    <TopNav logo={<LogoMark />} />
-  ),
+  render: () => <TopNav logo={<LogoMark />} />,
 };
 
 export const WithUserOnly: Story = {
-  render: () => (
-    <TopNav
-      logo={<LogoMark />}
-      user={sampleUser}
-    />
-  ),
+  render: () => <TopNav logo={<LogoMark />} user={sampleUser} />,
 };
 
 export const FullFeatured: Story = {

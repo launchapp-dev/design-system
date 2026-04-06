@@ -85,7 +85,12 @@ export const CustomColors: StoryObj = {
   name: "Custom Colors",
   render: () => (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 16, padding: 24 }}>
-      <AnimatedBorder variant="gradient-spin" borderColor="#8b5cf6" secondaryColor="#06b6d4" style={{ width: 240 }}>
+      <AnimatedBorder
+        variant="gradient-spin"
+        borderColor="#8b5cf6"
+        secondaryColor="#06b6d4"
+        style={{ width: 240 }}
+      >
         <div style={{ padding: 20 }}>
           <p style={{ fontWeight: 600, color: "#8b5cf6" }}>Purple Cyan</p>
           <p style={{ fontSize: 12, opacity: 0.6 }}>Custom colors</p>
@@ -115,7 +120,9 @@ export const Sizes: StoryObj = {
         <AnimatedBorder key={size} variant="gradient-spin" size={size} style={{ width: 180 }}>
           <div style={{ padding: 16 }}>
             <p style={{ fontWeight: 600 }}>Size: {size}</p>
-            <p style={{ fontSize: 12, opacity: 0.6 }}>{size === "sm" ? "1px" : size === "md" ? "2px" : "3px"} border</p>
+            <p style={{ fontSize: 12, opacity: 0.6 }}>
+              {size === "sm" ? "1px" : size === "md" ? "2px" : "3px"} border
+            </p>
           </div>
         </AnimatedBorder>
       ))}
@@ -128,7 +135,12 @@ export const Durations: StoryObj = {
   render: () => (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 16, padding: 24 }}>
       {[2, 4, 8].map((duration) => (
-        <AnimatedBorder key={duration} variant="gradient-spin" duration={duration} style={{ width: 180 }}>
+        <AnimatedBorder
+          key={duration}
+          variant="gradient-spin"
+          duration={duration}
+          style={{ width: 180 }}
+        >
           <div style={{ padding: 16 }}>
             <p style={{ fontWeight: 600 }}>{duration}s</p>
             <p style={{ fontSize: 12, opacity: 0.6 }}>Animation duration</p>

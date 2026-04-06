@@ -98,7 +98,9 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>With Caption and Footer</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          With Caption and Footer
+        </p>
         <Table>
           <TableCaption>Users with full table structure.</TableCaption>
           <TableHeader>
@@ -126,7 +128,9 @@ export const AllVariants: Story = {
         </Table>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Header and Body Only</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Header and Body Only
+        </p>
         <Table>
           <TableHeader>
             <TableRow>
@@ -194,7 +198,9 @@ export const AllSizes: Story = {
         </Table>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>Compact (reduced padding)</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", fontWeight: 500 }}>
+          Compact (reduced padding)
+        </p>
         <Table>
           <TableHeader>
             <TableRow>

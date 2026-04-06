@@ -10,12 +10,27 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultEvents = [
-  { id: "user.created", name: "User created", description: "Triggered when a new user signs up.", enabled: true },
-  { id: "user.updated", name: "User updated", description: "Triggered when user profile changes.", enabled: true },
+  {
+    id: "user.created",
+    name: "User created",
+    description: "Triggered when a new user signs up.",
+    enabled: true,
+  },
+  {
+    id: "user.updated",
+    name: "User updated",
+    description: "Triggered when user profile changes.",
+    enabled: true,
+  },
   { id: "subscription.created", name: "Subscription created", enabled: true },
   { id: "subscription.canceled", name: "Subscription canceled", enabled: false },
   { id: "payment.succeeded", name: "Payment succeeded", enabled: true },
-  { id: "payment.failed", name: "Payment failed", description: "Triggered when a payment attempt fails.", enabled: false },
+  {
+    id: "payment.failed",
+    name: "Payment failed",
+    description: "Triggered when a payment attempt fails.",
+    enabled: false,
+  },
   { id: "team.member_added", name: "Team member added", enabled: false },
 ];
 

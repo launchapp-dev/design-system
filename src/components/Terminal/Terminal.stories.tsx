@@ -159,12 +159,7 @@ export const WithHeader: Story = {
     showCursor: true,
   },
   render: (args) => (
-    <Terminal
-      {...args}
-      header={
-        <TerminalHeader variant="dots" title="bash - 80×24" />
-      }
-    />
+    <Terminal {...args} header={<TerminalHeader variant="dots" title="bash - 80×24" />} />
   ),
 };
 

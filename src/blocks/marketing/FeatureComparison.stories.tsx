@@ -235,7 +235,7 @@ export const BooleanOnly: Story = {
       (f) =>
         typeof f.values.starter === "boolean" ||
         typeof f.values.pro === "boolean" ||
-        typeof f.values.enterprise === "boolean"
+        typeof f.values.enterprise === "boolean",
     ).map((f) => ({
       ...f,
       values: {

@@ -42,7 +42,7 @@ const BentoGrid = React.forwardRef<HTMLDivElement, BentoGridProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 BentoGrid.displayName = "BentoGrid";
 
@@ -67,7 +67,7 @@ const bentoCardVariants = cva(
       variant: "default",
       hover: "lift",
     },
-  }
+  },
 );
 
 export interface BentoCardProps
@@ -108,7 +108,7 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
@@ -118,7 +118,7 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
           colSpanClasses[colSpan],
           rowSpanClasses[rowSpan],
           "flex flex-col",
-          className
+          className,
         )}
         role="gridcell"
         {...props}
@@ -128,35 +128,22 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
             {icon}
           </div>
         )}
-        {header && (
-          <div className="bento-card-header mb-2">
-            {header}
-          </div>
-        )}
-        <div className="bento-card-body flex-1">
-          {children}
-        </div>
+        {header && <div className="bento-card-header mb-2">{header}</div>}
+        <div className="bento-card-body flex-1">{children}</div>
         {footer && (
-          <div className="bento-card-footer mt-auto pt-4 border-t border-border/50">
-            {footer}
-          </div>
+          <div className="bento-card-footer mt-auto pt-4 border-t border-border/50">{footer}</div>
         )}
       </div>
     );
-  }
+  },
 );
 BentoCard.displayName = "BentoCard";
 
-const BentoCardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("bento-card-header mb-2", className)}
-    {...props}
-  />
-));
+const BentoCardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("bento-card-header mb-2", className)} {...props} />
+  ),
+);
 BentoCardHeader.displayName = "BentoCardHeader";
 
 const BentoCardTitle = React.forwardRef<
@@ -175,36 +162,29 @@ const BentoCardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    className={cn("text-sm text-muted-foreground mt-1", className)}
-    {...props}
-  />
+  <p ref={ref} className={cn("text-sm text-muted-foreground mt-1", className)} {...props} />
 ));
 BentoCardDescription.displayName = "BentoCardDescription";
 
-const BentoCardBody = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("bento-card-body flex-1 p-4", className)}
-    {...props}
-  />
-));
+const BentoCardBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("bento-card-body flex-1 p-4", className)} {...props} />
+  ),
+);
 BentoCardBody.displayName = "BentoCardBody";
 
-const BentoCardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("bento-card-footer mt-auto pt-3 px-4 pb-4 border-t border-border/50", className)}
-    {...props}
-  />
-));
+const BentoCardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "bento-card-footer mt-auto pt-3 px-4 pb-4 border-t border-border/50",
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
 BentoCardFooter.displayName = "BentoCardFooter";
 
 export type BentoGridVariantsProps = VariantProps<typeof bentoGridVariants>;

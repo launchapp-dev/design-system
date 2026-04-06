@@ -24,19 +24,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <DataExportCard
-      lastExportDate="2026-01-15"
-      onExport={() => console.log("export requested")}
-    />
+    <DataExportCard lastExportDate="2026-01-15" onExport={() => console.log("export requested")} />
   ),
 };
 
 export const NoPreviousExport: Story = {
-  render: () => (
-    <DataExportCard
-      onExport={() => console.log("export requested")}
-    />
-  ),
+  render: () => <DataExportCard onExport={() => console.log("export requested")} />,
 };
 
 export const Exporting: Story = {
@@ -58,10 +51,7 @@ export const DarkMode: Story = {
     ),
   ],
   render: () => (
-    <DataExportCard
-      lastExportDate="2026-01-15"
-      onExport={() => console.log("export requested")}
-    />
+    <DataExportCard lastExportDate="2026-01-15" onExport={() => console.log("export requested")} />
   ),
 };
 
@@ -72,9 +62,6 @@ export const Mobile: Story = {
     },
   },
   render: () => (
-    <DataExportCard
-      lastExportDate="2026-01-15"
-      onExport={() => console.log("export requested")}
-    />
+    <DataExportCard lastExportDate="2026-01-15" onExport={() => console.log("export requested")} />
   ),
 };

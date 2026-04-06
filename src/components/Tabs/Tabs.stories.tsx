@@ -22,20 +22,30 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <TabsRoot defaultValue={args.defaultValue as string} orientation={args.orientation as "horizontal" | "vertical"} style={{ width: 400 }}>
+    <TabsRoot
+      defaultValue={args.defaultValue as string}
+      orientation={args.orientation as "horizontal" | "vertical"}
+      style={{ width: 400 }}
+    >
       <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
         <TabsTrigger value="settings">Settings</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Manage your account details and preferences.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Manage your account details and preferences.
+        </p>
       </TabsContent>
       <TabsContent value="password">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Change your password and security settings.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Change your password and security settings.
+        </p>
       </TabsContent>
       <TabsContent value="settings">
-        <p style={{ padding: "16px 0", fontSize: 14 }}>Configure application settings and notifications.</p>
+        <p style={{ padding: "16px 0", fontSize: 14 }}>
+          Configure application settings and notifications.
+        </p>
       </TabsContent>
     </TabsRoot>
   ),
@@ -48,7 +58,9 @@ export const MultipleTabs: Story = {
         <TabsTrigger value="tab1">Overview</TabsTrigger>
         <TabsTrigger value="tab2">Analytics</TabsTrigger>
         <TabsTrigger value="tab3">Reports</TabsTrigger>
-        <TabsTrigger value="tab4" disabled>Billing</TabsTrigger>
+        <TabsTrigger value="tab4" disabled>
+          Billing
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="tab1">
         <p style={{ padding: "16px 0", fontSize: 14 }}>Overview content goes here.</p>
@@ -71,7 +83,9 @@ export const Controlled: Story = {
     const [value, setValue] = React.useState("tab1");
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <p style={{ fontSize: "14px" }}>Active tab: <strong>{value}</strong></p>
+        <p style={{ fontSize: "14px" }}>
+          Active tab: <strong>{value}</strong>
+        </p>
         <TabsRoot value={value} onValueChange={setValue} style={{ width: 400 }}>
           <TabsList>
             <TabsTrigger value="tab1">Tab One</TabsTrigger>

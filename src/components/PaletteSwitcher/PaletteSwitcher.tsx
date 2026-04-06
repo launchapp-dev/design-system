@@ -17,7 +17,7 @@ const paletteSwitcherTriggerVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 export interface PaletteSwitcherProps
@@ -38,23 +38,19 @@ function applyPaletteTokens(palette: Palette, scope: HTMLElement) {
   });
 }
 
-function PaletteSwitcher(
-  {
-    palettes = builtinPalettes,
-    value,
-    defaultValue,
-    onValueChange,
-    scope,
-    size,
-    className,
-    triggerClassName,
-    ref,
-    ...props
-  }: PaletteSwitcherProps & { ref?: React.Ref<HTMLButtonElement> }
-) {
-  const [internalValue, setInternalValue] = React.useState(
-    defaultValue ?? palettes[0]?.name ?? ""
-  );
+function PaletteSwitcher({
+  palettes = builtinPalettes,
+  value,
+  defaultValue,
+  onValueChange,
+  scope,
+  size,
+  className,
+  triggerClassName,
+  ref,
+  ...props
+}: PaletteSwitcherProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  const [internalValue, setInternalValue] = React.useState(defaultValue ?? palettes[0]?.name ?? "");
   const currentValue = value ?? internalValue;
   const currentPalette = palettes.find((p) => p.name === currentValue) ?? palettes[0];
 
@@ -72,92 +68,88 @@ function PaletteSwitcher(
       if (value === undefined) setInternalValue(newValue);
       onValueChange?.(newValue, palette);
     },
-    [palettes, value, onValueChange]
+    [palettes, value, onValueChange],
   );
 
   return (
-    <SelectPrimitive.Root
-      value={currentValue}
-      onValueChange={handleValueChange}
-      {...props}
-    >
+    <SelectPrimitive.Root value={currentValue} onValueChange={handleValueChange} {...props}>
       <SelectPrimitive.Trigger
         ref={ref}
         className={cn(paletteSwitcherTriggerVariants({ size }), triggerClassName)}
         aria-label="Switch color palette"
       >
-          <span className="flex items-center gap-2">
-            <span
-              className="inline-block h-3 w-3 shrink-0 rounded-full border border-black/10"
-              style={{ backgroundColor: currentPalette?.previewColor }}
-              aria-hidden="true"
-            />
-            <SelectPrimitive.Value />
-          </span>
-          <SelectPrimitive.Icon asChild>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="shrink-0 opacity-50"
-              aria-hidden="true"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </SelectPrimitive.Icon>
-        </SelectPrimitive.Trigger>
-
-        <SelectPrimitive.Portal>
-          <SelectPrimitive.Content
-            className={cn(
-              "relative z-50 max-h-72 min-w-[10rem] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-scale-in data-[state=closed]:animate-fade-out data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-              className
-            )}
-            position="popper"
+        <span className="flex items-center gap-2">
+          <span
+            className="inline-block h-3 w-3 shrink-0 rounded-full border border-black/10"
+            style={{ backgroundColor: currentPalette?.previewColor }}
+            aria-hidden="true"
+          />
+          <SelectPrimitive.Value />
+        </span>
+        <SelectPrimitive.Icon asChild>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="shrink-0 opacity-50"
+            aria-hidden="true"
           >
-            <SelectPrimitive.Viewport className="p-1 h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]">
-              {palettes.map((palette) => (
-                <SelectPrimitive.Item
-                  key={palette.name}
-                  value={palette.name}
-                  className="relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 pl-3 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                >
-                  <span
-                    className="inline-block h-3 w-3 shrink-0 rounded-full border border-black/10"
-                    style={{ backgroundColor: palette.previewColor }}
-                    aria-hidden="true"
-                  />
-                  <SelectPrimitive.ItemText>{palette.label}</SelectPrimitive.ItemText>
-                  <span className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
-                    <SelectPrimitive.ItemIndicator>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                    </SelectPrimitive.ItemIndicator>
-                  </span>
-                </SelectPrimitive.Item>
-              ))}
-            </SelectPrimitive.Viewport>
-          </SelectPrimitive.Content>
-        </SelectPrimitive.Portal>
-      </SelectPrimitive.Root>
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </SelectPrimitive.Icon>
+      </SelectPrimitive.Trigger>
+
+      <SelectPrimitive.Portal>
+        <SelectPrimitive.Content
+          className={cn(
+            "relative z-50 max-h-72 min-w-[10rem] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-scale-in data-[state=closed]:animate-fade-out data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+            className,
+          )}
+          position="popper"
+        >
+          <SelectPrimitive.Viewport className="p-1 h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]">
+            {palettes.map((palette) => (
+              <SelectPrimitive.Item
+                key={palette.name}
+                value={palette.name}
+                className="relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 pl-3 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+              >
+                <span
+                  className="inline-block h-3 w-3 shrink-0 rounded-full border border-black/10"
+                  style={{ backgroundColor: palette.previewColor }}
+                  aria-hidden="true"
+                />
+                <SelectPrimitive.ItemText>{palette.label}</SelectPrimitive.ItemText>
+                <span className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
+                  <SelectPrimitive.ItemIndicator>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </SelectPrimitive.ItemIndicator>
+                </span>
+              </SelectPrimitive.Item>
+            ))}
+          </SelectPrimitive.Viewport>
+        </SelectPrimitive.Content>
+      </SelectPrimitive.Portal>
+    </SelectPrimitive.Root>
   );
 }
 

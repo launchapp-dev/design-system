@@ -4,7 +4,8 @@ import type { TestimonialItem } from "./index";
 
 const defaultTestimonials: TestimonialItem[] = [
   {
-    quote: "This design system has completely transformed how our team builds products. We ship features twice as fast now.",
+    quote:
+      "This design system has completely transformed how our team builds products. We ship features twice as fast now.",
     author: {
       name: "Sarah Chen",
       role: "VP of Engineering",
@@ -16,7 +17,8 @@ const defaultTestimonials: TestimonialItem[] = [
     badge: "Verified customer",
   },
   {
-    quote: "The accessibility built into every component means we stopped worrying about compliance and started focusing on our users.",
+    quote:
+      "The accessibility built into every component means we stopped worrying about compliance and started focusing on our users.",
     author: {
       name: "Marcus Johnson",
       role: "Lead Designer",
@@ -27,7 +29,8 @@ const defaultTestimonials: TestimonialItem[] = [
     },
   },
   {
-    quote: "I evaluated five design systems and this one won on TypeScript support and documentation alone. The components are a bonus.",
+    quote:
+      "I evaluated five design systems and this one won on TypeScript support and documentation alone. The components are a bonus.",
     author: {
       name: "Priya Patel",
       role: "Senior Frontend Engineer",
@@ -50,7 +53,8 @@ const defaultTestimonials: TestimonialItem[] = [
     },
   },
   {
-    quote: "The component API is so intuitive. New engineers are productive on day one instead of week two.",
+    quote:
+      "The component API is so intuitive. New engineers are productive on day one instead of week two.",
     author: {
       name: "Emma Wilson",
       role: "Engineering Manager",
@@ -61,7 +65,8 @@ const defaultTestimonials: TestimonialItem[] = [
     },
   },
   {
-    quote: "Finally, a design system that takes accessibility seriously. Our audit scores jumped 40 points in a single sprint.",
+    quote:
+      "Finally, a design system that takes accessibility seriously. Our audit scores jumped 40 points in a single sprint.",
     author: {
       name: "James Lee",
       role: "Product Manager",

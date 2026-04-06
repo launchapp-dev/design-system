@@ -147,7 +147,10 @@ export const DarkMode: Story = {
   render: InteractiveTemplate,
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", borderRadius: "8px" }}>
+      <div
+        className="dark"
+        style={{ background: "hsl(240 10% 3.9%)", padding: "24px", borderRadius: "8px" }}
+      >
         <Story />
       </div>
     ),

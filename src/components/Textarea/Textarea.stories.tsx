@@ -69,7 +69,9 @@ export const ResizeVariants: Story = {
     <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "320px" }}>
       {(["none", "vertical", "horizontal", "both"] as const).map((resize) => (
         <div key={resize} style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-          <Label style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>resize: {resize}</Label>
+          <Label style={{ fontSize: "12px", color: "var(--muted-foreground)" }}>
+            resize: {resize}
+          </Label>
           <Textarea resize={resize} rows={2} placeholder={`resize: ${resize}`} />
         </div>
       ))}
@@ -82,7 +84,17 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ padding: "24px", background: "hsl(var(--background))", borderRadius: "8px", width: "320px", display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div
+      style={{
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+        width: "320px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+      }}
+    >
       <Textarea placeholder="Default textarea..." />
       <Textarea error placeholder="Error state..." />
       <Textarea disabled value="Disabled textarea" />

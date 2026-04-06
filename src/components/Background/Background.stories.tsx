@@ -140,7 +140,16 @@ export const GridPatternStory: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <GridPattern />
     </div>
   ),
@@ -156,7 +165,16 @@ export const GridPatternDashed: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <GridPattern strokeDasharray="4 2" width={32} height={32} />
     </div>
   ),
@@ -172,10 +190,24 @@ export const GridPatternHighlighted: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <GridPattern
         squares={[
-          [1, 1], [2, 3], [4, 2], [3, 5], [6, 1], [5, 4],
+          [1, 1],
+          [2, 3],
+          [4, 2],
+          [3, 5],
+          [6, 1],
+          [5, 4],
         ]}
         x={0}
         y={0}
@@ -194,7 +226,16 @@ export const DotPatternStory: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <DotPattern />
     </div>
   ),
@@ -210,7 +251,16 @@ export const DotPatternDense: StoryObj = {
     },
   },
   render: () => (
-    <div style={{ position: "relative", width: "100%", height: 300, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 300,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: "hsl(var(--la-background))",
+      }}
+    >
       <DotPattern width={8} height={8} cx={1} cy={1} cr={1} />
     </div>
   ),
@@ -239,13 +289,31 @@ export const AllBackgrounds: StoryObj = {
       </div>
       <div>
         <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>GridPattern</p>
-        <div style={{ position: "relative", height: 120, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))", border: "1px solid hsl(var(--la-border))" }}>
+        <div
+          style={{
+            position: "relative",
+            height: 120,
+            borderRadius: 8,
+            overflow: "hidden",
+            background: "hsl(var(--la-background))",
+            border: "1px solid hsl(var(--la-border))",
+          }}
+        >
           <GridPattern />
         </div>
       </div>
       <div>
         <p style={{ marginBottom: 8, fontSize: 12, fontWeight: 500 }}>DotPattern</p>
-        <div style={{ position: "relative", height: 120, borderRadius: 8, overflow: "hidden", background: "hsl(var(--la-background))", border: "1px solid hsl(var(--la-border))" }}>
+        <div
+          style={{
+            position: "relative",
+            height: 120,
+            borderRadius: 8,
+            overflow: "hidden",
+            background: "hsl(var(--la-background))",
+            border: "1px solid hsl(var(--la-border))",
+          }}
+        >
           <DotPattern />
         </div>
       </div>

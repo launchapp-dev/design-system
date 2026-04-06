@@ -62,14 +62,10 @@ interface SortableWidgetProps {
 }
 
 function SortableWidget({ widget, editable }: SortableWidgetProps) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: widget.id, disabled: !editable });
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: widget.id,
+    disabled: !editable,
+  });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -84,7 +80,7 @@ function SortableWidget({ widget, editable }: SortableWidgetProps) {
         "group relative rounded-[--la-radius] border border-border bg-card p-4 transition-shadow",
         widgetSizeClasses[widget.size || "md"],
         isDragging && "opacity-50 shadow-lg z-50",
-        editable && "hover:shadow-md"
+        editable && "hover:shadow-md",
       )}
       {...attributes}
       {...(editable ? listeners : {})}
@@ -93,7 +89,7 @@ function SortableWidget({ widget, editable }: SortableWidgetProps) {
         <div
           className={cn(
             "absolute left-2 top-2 cursor-grab text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity",
-            isDragging && "cursor-grabbing"
+            isDragging && "cursor-grabbing",
           )}
           aria-label="Drag handle"
         >
@@ -131,7 +127,7 @@ function WidgetOverlay({ widget }: { widget: DashboardWidget }) {
     <div
       className={cn(
         "rounded-[--la-radius] border border-primary/50 bg-card/95 p-4 shadow-xl",
-        widgetSizeClasses[widget.size || "md"]
+        widgetSizeClasses[widget.size || "md"],
       )}
     >
       <div className="mb-2">
@@ -166,7 +162,7 @@ function DashboardGrid({
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -202,22 +198,13 @@ function DashboardGrid({
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
-        <SortableContext
-          items={widgets.map((w) => w.id)}
-          strategy={rectSortingStrategy}
-        >
+        <SortableContext items={widgets.map((w) => w.id)} strategy={rectSortingStrategy}>
           {widgets.map((widget) => (
-            <SortableWidget
-              key={widget.id}
-              widget={widget}
-              editable={editable}
-            />
+            <SortableWidget key={widget.id} widget={widget} editable={editable} />
           ))}
         </SortableContext>
 
-        <DragOverlay>
-          {activeWidget && <WidgetOverlay widget={activeWidget} />}
-        </DragOverlay>
+        <DragOverlay>{activeWidget && <WidgetOverlay widget={activeWidget} />}</DragOverlay>
       </DndContext>
     </div>
   );

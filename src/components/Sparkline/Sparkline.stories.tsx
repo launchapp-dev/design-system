@@ -1,11 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Sparkline } from "./index";
 
-const generateData = (length: number, min: number, max: number, trend: "up" | "down" | "flat" | "volatile" = "up"): number[] => {
+const generateData = (
+  length: number,
+  min: number,
+  max: number,
+  trend: "up" | "down" | "flat" | "volatile" = "up",
+): number[] => {
   const data: number[] = [];
   let current = (max + min) / 2;
   const step = (max - min) / length;
-  
+
   for (let i = 0; i < length; i++) {
     if (trend === "up") {
       current += step * (0.5 + Math.random());
@@ -17,7 +22,7 @@ const generateData = (length: number, min: number, max: number, trend: "up" | "d
     current = Math.max(min, Math.min(max, current));
     data.push(parseFloat(current.toFixed(2)));
   }
-  
+
   return data;
 };
 
@@ -31,7 +36,20 @@ const meta: Meta<typeof Sparkline> = {
     },
     colorScheme: {
       control: "select",
-      options: ["primary", "secondary", "destructive", "muted", "accent", "success", "warning", "chart1", "chart2", "chart3", "chart4", "chart5"],
+      options: [
+        "primary",
+        "secondary",
+        "destructive",
+        "muted",
+        "accent",
+        "success",
+        "warning",
+        "chart1",
+        "chart2",
+        "chart3",
+        "chart4",
+        "chart5",
+      ],
     },
     curveType: {
       control: "select",
@@ -232,10 +250,18 @@ export const InlineWithText: Story = {
   render: () => (
     <div style={{ fontSize: "14px", lineHeight: "24px" }}>
       <p>
-        Revenue is up 23% this quarter <Sparkline data={[20, 35, 28, 45, 52, 48, 65, 72, 68, 85, 92, 98]} size="sm" /> compared to last quarter.
+        Revenue is up 23% this quarter{" "}
+        <Sparkline data={[20, 35, 28, 45, 52, 48, 65, 72, 68, 85, 92, 98]} size="sm" /> compared to
+        last quarter.
       </p>
       <p style={{ marginTop: "8px" }}>
-        User engagement dropped <Sparkline data={[80, 75, 72, 68, 65, 60, 58, 52, 48, 45, 42, 38]} size="sm" colorScheme="destructive" /> over the past month.
+        User engagement dropped{" "}
+        <Sparkline
+          data={[80, 75, 72, 68, 65, 60, 58, 52, 48, 45, 42, 38]}
+          size="sm"
+          colorScheme="destructive"
+        />{" "}
+        over the past month.
       </p>
     </div>
   ),
@@ -318,15 +344,21 @@ export const DarkMode: Story = {
     <div style={{ padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>Primary:</span>
+          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>
+            Primary:
+          </span>
           <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="primary" showArea />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>Destructive:</span>
+          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>
+            Destructive:
+          </span>
           <Sparkline data={generateData(12, 10, 100, "down")} colorScheme="destructive" showArea />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>Chart 1:</span>
+          <span style={{ width: "80px", fontSize: "12px", color: "hsl(var(--foreground))" }}>
+            Chart 1:
+          </span>
           <Sparkline data={generateData(12, 10, 100, "up")} colorScheme="chart1" showArea />
         </div>
       </div>

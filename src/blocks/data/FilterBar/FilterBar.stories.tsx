@@ -78,7 +78,15 @@ export const ManyFilters: Story = {
     filters: [
       statusFilter,
       priorityFilter,
-      { column: "assignee", label: "Assignee", options: [{ label: "Alice", value: "alice" }, { label: "Bob", value: "bob" }, { label: "Carol", value: "carol" }] },
+      {
+        column: "assignee",
+        label: "Assignee",
+        options: [
+          { label: "Alice", value: "alice" },
+          { label: "Bob", value: "bob" },
+          { label: "Carol", value: "carol" },
+        ],
+      },
     ],
   },
 };
@@ -112,7 +120,9 @@ export const Interactive: Story = {
           onFiltersChange={setFilters}
         />
         <div className="text-xs text-muted-foreground space-y-1">
-          <p>Search: <strong>{search || "(empty)"}</strong></p>
+          <p>
+            Search: <strong>{search || "(empty)"}</strong>
+          </p>
           <p>Active filters: {Object.keys(filters).length ? JSON.stringify(filters) : "(none)"}</p>
         </div>
       </div>

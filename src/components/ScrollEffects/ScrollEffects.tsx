@@ -14,12 +14,7 @@ function StickySection({
   ...props
 }: StickySectionProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
-    <div
-      ref={ref}
-      className={cn("relative", className)}
-      style={{ paddingTop: offset }}
-      {...props}
-    >
+    <div ref={ref} className={cn("relative", className)} style={{ paddingTop: offset }} {...props}>
       <div
         className="sticky top-[var(--sticky-offset,0px)] z-10"
         style={{ "--sticky-offset": `${offset}px` } as React.CSSProperties}
@@ -47,7 +42,7 @@ function StickyHeader({
       ref={ref}
       className={cn(
         "sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border",
-        className
+        className,
       )}
       style={{ top: `${offset}px` }}
       {...props}
@@ -77,45 +72,55 @@ function HorizontalScroll({
   const [startX, setStartX] = React.useState(0);
   const [scrollLeft, setScrollLeft] = React.useState(0);
 
-  const handleMouseDown = React.useCallback((e: React.MouseEvent) => {
-    if (reduced) return;
-    setIsDragging(true);
-    setStartX(e.pageX - (containerRef.current?.offsetLeft || 0));
-    setScrollLeft(containerRef.current?.scrollLeft || 0);
-  }, [reduced]);
+  const handleMouseDown = React.useCallback(
+    (e: React.MouseEvent) => {
+      if (reduced) return;
+      setIsDragging(true);
+      setStartX(e.pageX - (containerRef.current?.offsetLeft || 0));
+      setScrollLeft(containerRef.current?.scrollLeft || 0);
+    },
+    [reduced],
+  );
 
   const handleMouseUp = React.useCallback(() => {
     setIsDragging(false);
   }, []);
 
-  const handleMouseMove = React.useCallback((e: React.MouseEvent) => {
-    if (!isDragging || reduced) return;
-    e.preventDefault();
-    const x = e.pageX - (containerRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * scrollSpeed * 2;
-    if (containerRef.current) {
-      containerRef.current.scrollLeft = scrollLeft - walk;
-    }
-  }, [isDragging, startX, scrollLeft, scrollSpeed, reduced]);
+  const handleMouseMove = React.useCallback(
+    (e: React.MouseEvent) => {
+      if (!isDragging || reduced) return;
+      e.preventDefault();
+      const x = e.pageX - (containerRef.current?.offsetLeft || 0);
+      const walk = (x - startX) * scrollSpeed * 2;
+      if (containerRef.current) {
+        containerRef.current.scrollLeft = scrollLeft - walk;
+      }
+    },
+    [isDragging, startX, scrollLeft, scrollSpeed, reduced],
+  );
 
-  const handleWheel = React.useCallback((e: React.WheelEvent) => {
-    if (!containerRef.current) return;
-    e.preventDefault();
-    containerRef.current.scrollLeft += e.deltaY * scrollSpeed;
-  }, [scrollSpeed]);
+  const handleWheel = React.useCallback(
+    (e: React.WheelEvent) => {
+      if (!containerRef.current) return;
+      e.preventDefault();
+      containerRef.current.scrollLeft += e.deltaY * scrollSpeed;
+    },
+    [scrollSpeed],
+  );
 
   return (
     <div
       ref={(node) => {
         (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
         if (typeof ref === "function") ref(node);
-        else if (ref) (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        else if (ref)
+          (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
       }}
       className={cn(
         "overflow-x-auto overflow-y-hidden",
         isDragging && "cursor-grabbing select-none",
         reduced ? "" : "scroll-smooth",
-        className
+        className,
       )}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
@@ -172,17 +177,14 @@ function ScrollProgress({
       ref={(node) => {
         (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
         if (typeof ref === "function") ref(node);
-        else if (ref) (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        else if (ref)
+          (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
       }}
       className={cn("overflow-auto", className)}
       {...props}
     >
       {position === "top" && (
-        <div
-          aria-hidden
-          className="sticky top-0 z-10 h-0"
-          style={{ height: `${height}px` }}
-        >
+        <div aria-hidden className="sticky top-0 z-10 h-0" style={{ height: `${height}px` }}>
           <div
             className="h-full transition-all duration-75"
             style={{
@@ -194,11 +196,7 @@ function ScrollProgress({
       )}
       {children}
       {position === "bottom" && (
-        <div
-          aria-hidden
-          className="sticky bottom-0 z-10 h-0"
-          style={{ height: `${height}px` }}
-        >
+        <div aria-hidden className="sticky bottom-0 z-10 h-0" style={{ height: `${height}px` }}>
           <div
             className="h-full transition-all duration-75"
             style={{
@@ -241,10 +239,9 @@ function RevealOnScroll({
     (node: HTMLDivElement | null) => {
       (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
       if (typeof ref === "function") ref(node);
-      else if (ref)
-        (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      else if (ref) (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
     },
-    [ref]
+    [ref],
   );
 
   React.useEffect(() => {
@@ -259,7 +256,7 @@ function RevealOnScroll({
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold },
     );
     if (localRef.current) observer.observe(localRef.current);
     return () => observer.disconnect();
@@ -317,7 +314,7 @@ function ScrollSnapContainer({
         snapType === "x" && "snap-x",
         snapType === "y" && "snap-y",
         snapType === "both" && "snap-both",
-        className
+        className,
       )}
       {...props}
     >
@@ -329,7 +326,7 @@ function ScrollSnapContainer({
           snapType === "both" && "snap-both",
           snapAlign === "start" && (snapType === "x" || snapType === "both" ? "snap-start" : ""),
           snapAlign === "end" && (snapType === "x" || snapType === "both" ? "snap-end" : ""),
-          snapAlign === "center" && (snapType === "x" || snapType === "both" ? "snap-center" : "")
+          snapAlign === "center" && (snapType === "x" || snapType === "both" ? "snap-center" : ""),
         )}
       >
         {children}
@@ -358,7 +355,7 @@ function ScrollSnapItem({
         snapAlign === "start" && "snap-start",
         snapAlign === "end" && "snap-end",
         snapAlign === "center" && "snap-center",
-        className
+        className,
       )}
       {...props}
     >
@@ -386,7 +383,7 @@ const ParallaxSection = React.forwardRef<HTMLDivElement, ParallaxSectionProps>(
         if (typeof ref === "function") ref(node);
         else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
       },
-      [ref]
+      [ref],
     );
 
     React.useEffect(() => {
@@ -432,7 +429,7 @@ const ParallaxSection = React.forwardRef<HTMLDivElement, ParallaxSectionProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 ParallaxSection.displayName = "ParallaxSection";
 
@@ -444,7 +441,18 @@ export interface ProgressIndicatorProps extends React.HTMLAttributes<HTMLDivElem
 }
 
 const ProgressIndicator = React.forwardRef<HTMLDivElement, ProgressIndicatorProps>(
-  ({ className, position = "top", color = "hsl(var(--la-primary))", height = 3, showOnScroll = false, style, ...props }, ref) => {
+  (
+    {
+      className,
+      position = "top",
+      color = "hsl(var(--la-primary))",
+      height = 3,
+      showOnScroll = false,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
     const [progress, setProgress] = React.useState(0);
     const prefersReducedMotion = useReducedMotion();
 
@@ -471,7 +479,7 @@ const ProgressIndicator = React.forwardRef<HTMLDivElement, ProgressIndicatorProp
           position === "top" ? "top-0" : "bottom-0",
           isVisible ? "opacity-100" : "opacity-0",
           prefersReducedMotion ? "" : "transition-opacity duration-200",
-          className
+          className,
         )}
         style={{ height: `${height}px`, ...style }}
         role="progressbar"
@@ -490,7 +498,7 @@ const ProgressIndicator = React.forwardRef<HTMLDivElement, ProgressIndicatorProp
         />
       </div>
     );
-  }
+  },
 );
 ProgressIndicator.displayName = "ProgressIndicator";
 

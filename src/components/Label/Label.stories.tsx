@@ -98,7 +98,9 @@ export const DarkMode: Story = {
 export const EdgeCases: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "400px" }}>
-      <Label>A very long label text that might wrap to multiple lines in a constrained layout scenario</Label>
+      <Label>
+        A very long label text that might wrap to multiple lines in a constrained layout scenario
+      </Label>
       <Label>{""}</Label>
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
         <Label htmlFor="disabled-input">Label with disabled input (peer-disabled styling)</Label>

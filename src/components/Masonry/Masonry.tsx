@@ -63,11 +63,7 @@ const MasonryItem = React.forwardRef<
 ));
 MasonryItem.displayName = "MasonryItem";
 
-function distributeItems<T>(
-  items: T[],
-  columnCount: number,
-  sequential: boolean
-): T[][] {
+function distributeItems<T>(items: T[], columnCount: number, sequential: boolean): T[][] {
   const columns: T[][] = Array.from({ length: columnCount }, () => []);
 
   if (sequential) {
@@ -87,10 +83,7 @@ function distributeItems<T>(
 }
 
 const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
-  (
-    { className, columns = 3, gap = "md", children, sequential = false, ...props },
-    ref
-  ) => {
+  ({ className, columns = 3, gap = "md", children, sequential = false, ...props }, ref) => {
     const items = React.useMemo(() => {
       const childArray = React.Children.toArray(children);
       return childArray.map((child, index) => ({
@@ -102,7 +95,7 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
     const columnCount = typeof columns === "number" ? columns : 3;
     const distributedItems = React.useMemo(
       () => distributeItems(items, columnCount, sequential),
-      [items, columnCount, sequential]
+      [items, columnCount, sequential],
     );
 
     return (
@@ -116,10 +109,7 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
         {distributedItems.map((columnItems, columnIndex) => (
           <div
             key={columnIndex}
-            className={cn(
-              masonryColumnVariants({ gap }),
-              columnCount > 1 ? "" : "w-full"
-            )}
+            className={cn(masonryColumnVariants({ gap }), columnCount > 1 ? "" : "w-full")}
             role="row"
           >
             {columnItems.map(({ child, originalIndex }) => (
@@ -131,7 +121,7 @@ const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 Masonry.displayName = "Masonry";
 
@@ -150,7 +140,7 @@ const MasonryCard = React.forwardRef<
         elevated: "shadow-md",
         outlined: "border-2 border-border bg-transparent",
       }[variant],
-      className
+      className,
     )}
     {...props}
   />
@@ -162,10 +152,4 @@ export type MasonryVariantsProps = VariantProps<typeof masonryVariants>;
 export type MasonryVariants = VariantProps<typeof masonryVariants>;
 export type MasonryColumnVariants = VariantProps<typeof masonryColumnVariants>;
 
-export {
-  Masonry,
-  MasonryCard,
-  MasonryItem,
-  masonryVariants,
-  masonryColumnVariants,
-};
+export { Masonry, MasonryCard, MasonryItem, masonryVariants, masonryColumnVariants };

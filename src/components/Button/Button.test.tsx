@@ -25,7 +25,7 @@ describe("Button", () => {
     render(
       <Button asChild>
         <a href="/test">Link button</a>
-      </Button>
+      </Button>,
     );
     expect(screen.getByRole("link", { name: "Link button" })).toBeInTheDocument();
   });
@@ -54,11 +54,13 @@ describe("Button", () => {
     expect(screen.getByRole("button", { name: variant })).toBeInTheDocument();
   });
 
-  it.each([["sm" as const], ["md" as const], ["lg" as const], ["icon" as const]])(
-    "renders size %s",
-    (size) => {
-      render(<Button size={size}>size</Button>);
-      expect(screen.getByRole("button", { name: "size" })).toBeInTheDocument();
-    }
-  );
+  it.each([
+    ["sm" as const],
+    ["md" as const],
+    ["lg" as const],
+    ["icon" as const],
+  ])("renders size %s", (size) => {
+    render(<Button size={size}>size</Button>);
+    expect(screen.getByRole("button", { name: "size" })).toBeInTheDocument();
+  });
 });

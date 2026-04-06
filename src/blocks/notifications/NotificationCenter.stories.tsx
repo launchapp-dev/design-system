@@ -7,7 +7,7 @@ const mockNotifications: AppNotification[] = [
   {
     id: "1",
     title: "New comment on your post",
-    description: "Alice commented: \"Great work on the new design system!\"",
+    description: 'Alice commented: "Great work on the new design system!"',
     timestamp: "2 minutes ago",
     read: false,
     avatarInitials: "AL",

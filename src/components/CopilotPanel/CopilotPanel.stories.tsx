@@ -165,9 +165,7 @@ const DefaultPanelContent = () => (
         <SparkleIcon />
         AI Assistant
       </CopilotPanelTitle>
-      <CopilotPanelDescription>
-        Ask me anything about your project
-      </CopilotPanelDescription>
+      <CopilotPanelDescription>Ask me anything about your project</CopilotPanelDescription>
     </CopilotPanelHeader>
 
     <CopilotPanelContent>
@@ -177,28 +175,18 @@ const DefaultPanelContent = () => (
           label="Current file"
           value="src/components/Button.tsx"
         />
-        <CopilotPanelContext
-          icon={<UserIcon />}
-          label="Assigned to"
-          value="Sarah Chen"
-        />
+        <CopilotPanelContext icon={<UserIcon />} label="Assigned to" value="Sarah Chen" />
       </CopilotPanelContextList>
 
       <CopilotPanelDivider />
 
       <CopilotPanelSuggestions title="Quick actions">
-        <CopilotPanelSuggestion icon={<WandIcon />}>
-          Generate tests
-        </CopilotPanelSuggestion>
-        <CopilotPanelSuggestion icon={<LightbulbIcon />}>
-          Explain code
-        </CopilotPanelSuggestion>
+        <CopilotPanelSuggestion icon={<WandIcon />}>Generate tests</CopilotPanelSuggestion>
+        <CopilotPanelSuggestion icon={<LightbulbIcon />}>Explain code</CopilotPanelSuggestion>
         <CopilotPanelSuggestion variant="primary" icon={<RefreshIcon />}>
           Refactor
         </CopilotPanelSuggestion>
-        <CopilotPanelSuggestion variant="secondary">
-          Add comments
-        </CopilotPanelSuggestion>
+        <CopilotPanelSuggestion variant="secondary">Add comments</CopilotPanelSuggestion>
       </CopilotPanelSuggestions>
 
       <CopilotPanelDivider />
@@ -275,9 +263,7 @@ export const WithThinkingIndicator: Story = {
               <SparkleIcon />
               AI Assistant
             </CopilotPanelTitle>
-            <CopilotPanelDescription>
-              Processing your request
-            </CopilotPanelDescription>
+            <CopilotPanelDescription>Processing your request</CopilotPanelDescription>
           </CopilotPanelHeader>
 
           <CopilotPanelContent>
@@ -370,15 +356,8 @@ export const ContextDisplay: Story = {
           label="Current file"
           value="src/components/Button/Button.tsx"
         />
-        <CopilotPanelContext
-          icon={<UserIcon />}
-          label="Author"
-          value="John Doe"
-        />
-        <CopilotPanelContext
-          icon={<FileIcon />}
-          label="Related files"
-        >
+        <CopilotPanelContext icon={<UserIcon />} label="Author" value="John Doe" />
+        <CopilotPanelContext icon={<FileIcon />} label="Related files">
           <ul className="mt-1 space-y-0.5 text-xs text-muted-foreground">
             <li>Button.test.tsx</li>
             <li>Button.stories.tsx</li>
@@ -393,7 +372,9 @@ export const ContextDisplay: Story = {
 export const FullExample: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-    const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
+    const [messages, setMessages] = useState<
+      Array<{ role: "user" | "assistant"; content: string }>
+    >([
       {
         role: "assistant",
         content: "I can help you build better components. What would you like assistance with?",
@@ -406,7 +387,8 @@ export const FullExample: Story = {
         { role: "user", content: value },
         {
           role: "assistant",
-          content: "I understand. Let me help you with that. What specific aspect would you like to focus on?",
+          content:
+            "I understand. Let me help you with that. What specific aspect would you like to focus on?",
         },
       ]);
     };
@@ -426,9 +408,7 @@ export const FullExample: Story = {
               <SparkleIcon />
               Code Copilot
             </CopilotPanelTitle>
-            <CopilotPanelDescription>
-              Your AI-powered coding assistant
-            </CopilotPanelDescription>
+            <CopilotPanelDescription>Your AI-powered coding assistant</CopilotPanelDescription>
           </CopilotPanelHeader>
 
           <CopilotPanelContent>
@@ -467,7 +447,10 @@ export const FullExample: Story = {
               >
                 Generate tests
               </CopilotPanelSuggestion>
-              <CopilotPanelSuggestion variant="secondary" onClick={() => handleSend("Create story")}>
+              <CopilotPanelSuggestion
+                variant="secondary"
+                onClick={() => handleSend("Create story")}
+              >
                 Create story
               </CopilotPanelSuggestion>
             </CopilotPanelSuggestions>
@@ -534,7 +517,9 @@ export const DarkMode: Story = {
 export const WithKeyboardNavigation: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-    const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
+    const [messages, setMessages] = useState<
+      Array<{ role: "user" | "assistant"; content: string }>
+    >([
       {
         role: "assistant",
         content:
@@ -560,12 +545,11 @@ export const WithKeyboardNavigation: Story = {
       <div className="relative h-[600px] w-full overflow-hidden rounded-lg border bg-background">
         <div className="flex h-full items-center justify-center gap-4">
           <div className="text-center">
-            <p className="mb-2 text-sm text-muted-foreground">
-              Keyboard Navigation Demo
-            </p>
+            <p className="mb-2 text-sm text-muted-foreground">Keyboard Navigation Demo</p>
             <Button onClick={() => setOpen(true)}>Open Panel</Button>
             <p className="mt-4 text-xs text-muted-foreground max-w-xs">
-              Try: Tab through elements, Space/Enter on suggestions, Ctrl+Enter for new line, Escape to close
+              Try: Tab through elements, Space/Enter on suggestions, Ctrl+Enter for new line, Escape
+              to close
             </p>
           </div>
         </div>
@@ -596,9 +580,7 @@ export const WithKeyboardNavigation: Story = {
               >
                 Add focus management
               </CopilotPanelSuggestion>
-              <CopilotPanelSuggestion
-                onClick={() => handleSuggestionClick("Test accessibility")}
-              >
+              <CopilotPanelSuggestion onClick={() => handleSuggestionClick("Test accessibility")}>
                 Test a11y
               </CopilotPanelSuggestion>
             </CopilotPanelSuggestions>

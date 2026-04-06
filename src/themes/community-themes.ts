@@ -122,11 +122,7 @@ export function validateCommunityTheme(theme: unknown): {
   };
 }
 
-function validateTokenSet(
-  tokenSet: Record<string, unknown>,
-  path: string,
-  errors: string[]
-): void {
+function validateTokenSet(tokenSet: Record<string, unknown>, path: string, errors: string[]): void {
   const requiredTokens = [
     "--la-background",
     "--la-foreground",
@@ -156,7 +152,7 @@ function validateTokenSet(
       errors.push(`${path}.${token} must be a string`);
     } else if (!validateHslValue(tokenSet[token] as string)) {
       errors.push(
-        `${path}.${token} must be a valid HSL value (e.g., "262 83% 58%"), got "${tokenSet[token]}"`
+        `${path}.${token} must be a valid HSL value (e.g., "262 83% 58%"), got "${tokenSet[token]}"`,
       );
     }
   }
@@ -172,6 +168,6 @@ export function getCommunityThemesCssString(theme: CommunityTheme): string {
 
   return `@layer base {\n${renderTokens(
     theme.tokens.light,
-    ":root"
+    ":root",
   )}\n\n${renderTokens(theme.tokens.dark, ".dark")}\n}`;
 }

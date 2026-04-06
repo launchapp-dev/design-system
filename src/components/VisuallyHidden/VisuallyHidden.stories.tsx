@@ -36,8 +36,15 @@ export const InForm: Story = {
   render: () => (
     <form style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       <div>
-        <VisuallyHidden as="label" htmlFor="email">Email address</VisuallyHidden>
-        <input id="email" type="email" placeholder="Enter your email" style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "4px" }} />
+        <VisuallyHidden as="label" htmlFor="email">
+          Email address
+        </VisuallyHidden>
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "4px" }}
+        />
       </div>
     </form>
   ),

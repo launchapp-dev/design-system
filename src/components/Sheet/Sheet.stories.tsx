@@ -28,9 +28,7 @@ export const Default: Story = {
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Sheet Title</SheetTitle>
-          <SheetDescription>
-            This sheet slides in from the right side by default.
-          </SheetDescription>
+          <SheetDescription>This sheet slides in from the right side by default.</SheetDescription>
         </SheetHeader>
         <div style={{ flex: 1, padding: "16px 0" }}>
           <p style={{ fontSize: 14, color: "hsl(var(--muted-foreground))" }}>
@@ -61,9 +59,7 @@ export const AllSides: Story = {
           <SheetContent side={side}>
             <SheetHeader>
               <SheetTitle style={{ textTransform: "capitalize" }}>{side} Sheet</SheetTitle>
-              <SheetDescription>
-                This sheet slides in from the {side}.
-              </SheetDescription>
+              <SheetDescription>This sheet slides in from the {side}.</SheetDescription>
             </SheetHeader>
             <SheetFooter>
               <SheetClose asChild>
@@ -94,9 +90,19 @@ export const WithForm: Story = {
               Make changes to your profile here. Click save when you are done.
             </SheetDescription>
           </SheetHeader>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16, padding: "16px 0", flex: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+              padding: "16px 0",
+              flex: 1,
+            }}
+          >
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              <label style={{ fontSize: 14, fontWeight: 500 }} htmlFor="sheet-name">Name</label>
+              <label style={{ fontSize: 14, fontWeight: 500 }} htmlFor="sheet-name">
+                Name
+              </label>
               <input
                 id="sheet-name"
                 value={name}
@@ -114,7 +120,9 @@ export const WithForm: Story = {
               />
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              <label style={{ fontSize: 14, fontWeight: 500 }} htmlFor="sheet-email">Email</label>
+              <label style={{ fontSize: 14, fontWeight: 500 }} htmlFor="sheet-email">
+                Email
+              </label>
               <input
                 id="sheet-email"
                 type="email"
@@ -156,14 +164,16 @@ export const LongContent: Story = {
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Terms and Conditions</SheetTitle>
-          <SheetDescription>
-            Please read through all the terms before accepting.
-          </SheetDescription>
+          <SheetDescription>Please read through all the terms before accepting.</SheetDescription>
         </SheetHeader>
         <div style={{ flex: 1, overflowY: "auto", padding: "16px 0" }}>
           {Array.from({ length: 20 }, (_, i) => (
-            <p key={i} style={{ fontSize: 14, color: "hsl(var(--muted-foreground))", marginBottom: 12 }}>
-              Section {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p
+              key={i}
+              style={{ fontSize: 14, color: "hsl(var(--muted-foreground))", marginBottom: 12 }}
+            >
+              Section {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           ))}
         </div>

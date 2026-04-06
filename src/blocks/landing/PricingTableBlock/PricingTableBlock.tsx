@@ -125,7 +125,7 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
       onPlanSelect,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isAnnual, setIsAnnual] = React.useState(defaultAnnual);
 
@@ -136,7 +136,7 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
           <span
             className={cn(
               "text-sm font-medium transition-colors",
-              !isAnnual ? "text-foreground" : "text-muted-foreground"
+              !isAnnual ? "text-foreground" : "text-muted-foreground",
             )}
           >
             Monthly
@@ -150,7 +150,7 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
             <span
               className={cn(
                 "text-sm font-medium transition-colors",
-                isAnnual ? "text-foreground" : "text-muted-foreground"
+                isAnnual ? "text-foreground" : "text-muted-foreground",
               )}
             >
               Annual
@@ -165,7 +165,7 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
 
     const renderTierCard = (
       tierKey: "free" | "pro" | "enterprise",
-      tier: NonNullable<PricingTableBlockProps["tiers"]>[typeof tierKey]
+      tier: NonNullable<PricingTableBlockProps["tiers"]>[typeof tierKey],
     ) => {
       const isPopular = tierKey === "pro";
       const displayPrice = isAnnual && tier.annualPrice ? tier.annualPrice : tier.price;
@@ -176,7 +176,7 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
           key={tierKey}
           className={cn(
             "relative flex flex-col transition-shadow hover:shadow-md",
-            isPopular && "border-primary shadow-lg ring-2 ring-primary/20"
+            isPopular && "border-primary shadow-lg ring-2 ring-primary/20",
           )}
         >
           {isPopular && (
@@ -207,14 +207,8 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
             <Separator className="mb-4" />
             <ul className="space-y-2.5" role="list">
               {tier.features.map((feature, fi) => (
-                <li
-                  key={fi}
-                  className="flex items-start gap-2.5 text-sm text-foreground"
-                >
-                  <span
-                    className="mt-0.5 text-primary shrink-0"
-                    aria-hidden="true"
-                  >
+                <li key={fi} className="flex items-start gap-2.5 text-sm text-foreground">
+                  <span className="mt-0.5 text-primary shrink-0" aria-hidden="true">
                     <svg
                       width="14"
                       height="14"
@@ -265,10 +259,7 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
               <div className="text-center font-semibold text-sm">Enterprise</div>
             </div>
             {features.map((feature, fi) => (
-              <div
-                key={fi}
-                className="grid grid-cols-4 gap-4 py-3 border-t border-border/50"
-              >
+              <div key={fi} className="grid grid-cols-4 gap-4 py-3 border-t border-border/50">
                 <div className="text-sm text-muted-foreground">{feature.label}</div>
                 <div className="text-center text-sm">{feature.free}</div>
                 <div className="text-center text-sm">{feature.pro}</div>
@@ -289,19 +280,13 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
         {(headline || subheadline) && (
           <div className="mb-8 text-center space-y-3">
             {headline && (
-              <h2 className="text-3xl font-bold tracking-tight text-foreground">
-                {headline}
-              </h2>
+              <h2 className="text-3xl font-bold tracking-tight text-foreground">{headline}</h2>
             )}
             {subheadline && (
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {subheadline}
-              </p>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{subheadline}</p>
             )}
             {description && (
-              <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-                {description}
-              </p>
+              <p className="text-base text-muted-foreground max-w-2xl mx-auto">{description}</p>
             )}
           </div>
         )}
@@ -317,7 +302,7 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
         {renderFeatureComparison()}
       </section>
     );
-  }
+  },
 );
 
 PricingTableBlock.displayName = "PricingTableBlock";

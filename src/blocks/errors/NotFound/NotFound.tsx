@@ -17,7 +17,15 @@ const defaultIllustration = (
     aria-hidden="true"
   >
     <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="4" />
-    <text x="50%" y="52%" dominantBaseline="middle" textAnchor="middle" fontSize="64" fontWeight="bold" fill="currentColor">
+    <text
+      x="50%"
+      y="52%"
+      dominantBaseline="middle"
+      textAnchor="middle"
+      fontSize="64"
+      fontWeight="bold"
+      fill="currentColor"
+    >
       404
     </text>
   </svg>
@@ -34,14 +42,14 @@ const NotFound = React.forwardRef<HTMLDivElement, NotFoundProps>(
       illustration,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
         className={cn(
           "flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center",
-          className
+          className,
         )}
         {...props}
       >
@@ -56,7 +64,7 @@ const NotFound = React.forwardRef<HTMLDivElement, NotFoundProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 NotFound.displayName = "NotFound";

@@ -33,9 +33,11 @@ const meta: Meta<typeof ImageComparison> = {
     showLabels: true,
     beforeLabel: "Before",
     afterLabel: "After",
-    beforeSrc: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80",
+    beforeSrc:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80",
     beforeAlt: "Mountain landscape before editing",
-    afterSrc: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80&sat=-100",
+    afterSrc:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80&sat=-100",
     afterAlt: "Mountain landscape after editing",
   },
   parameters: {
@@ -57,14 +59,10 @@ export const Default: Story = {
 export const Controlled: Story = {
   render: (args) => {
     const [position, setPosition] = React.useState(50);
-    
+
     return (
       <div className="w-full max-w-2xl space-y-4">
-        <ImageComparison
-          {...args}
-          position={position}
-          onPositionChange={setPosition}
-        />
+        <ImageComparison {...args} position={position} onPositionChange={setPosition} />
         <div className="flex items-center gap-4">
           <input
             type="range"
@@ -83,9 +81,11 @@ export const Controlled: Story = {
 
 export const PhotoEditing: Story = {
   args: {
-    beforeSrc: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80&sat=-100",
+    beforeSrc:
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80&sat=-100",
     beforeAlt: "Original forest photo",
-    afterSrc: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80",
+    afterSrc:
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop&q=80",
     afterAlt: "Enhanced forest photo",
     beforeLabel: "Original",
     afterLabel: "Enhanced",
@@ -100,9 +100,11 @@ export const PhotoEditing: Story = {
 
 export const Renovation: Story = {
   args: {
-    beforeSrc: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&q=80&con=-50",
+    beforeSrc:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&q=80&con=-50",
     beforeAlt: "Room before renovation",
-    afterSrc: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&q=80",
+    afterSrc:
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&q=80",
     afterAlt: "Room after renovation",
     beforeLabel: "Before",
     afterLabel: "After",
@@ -174,9 +176,11 @@ export const CustomLabels: Story = {
   args: {
     beforeLabel: "Day",
     afterLabel: "Night",
-    beforeSrc: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop&q=80",
+    beforeSrc:
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop&q=80",
     beforeAlt: "Landscape during day",
-    afterSrc: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop&q=80",
+    afterSrc:
+      "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop&q=80",
     afterAlt: "Landscape at night",
   },
   render: (args) => (

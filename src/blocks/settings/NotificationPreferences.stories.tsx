@@ -76,9 +76,7 @@ export const Mobile: Story = {
   parameters: {
     viewport: { defaultViewport: "mobile1" },
   },
-  render: () => (
-    <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />
-  ),
+  render: () => <NotificationPreferences onChange={(id, checked) => console.log(id, checked)} />,
 };
 
 export const Tablet: Story = {

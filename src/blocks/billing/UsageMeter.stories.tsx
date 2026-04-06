@@ -19,10 +19,7 @@ const defaultItems = [
 export const Default: Story = {
   render: () => (
     <div style={{ maxWidth: 480 }}>
-      <UsageMeter
-        items={defaultItems}
-        onUpgrade={() => console.log("Upgrade")}
-      />
+      <UsageMeter items={defaultItems} onUpgrade={() => console.log("Upgrade")} />
     </div>
   ),
 };
@@ -33,7 +30,14 @@ export const WarningLevels: Story = {
       <UsageMeter
         items={[
           { id: "1", label: "Storage", used: 9.5, total: 10, unit: "GB", warningThreshold: 80 },
-          { id: "2", label: "API calls", used: 9500, total: 10000, unit: "req/mo", warningThreshold: 90 },
+          {
+            id: "2",
+            label: "API calls",
+            used: 9500,
+            total: 10000,
+            unit: "req/mo",
+            warningThreshold: 90,
+          },
           { id: "3", label: "Team seats", used: 3, total: 10, unit: "seats" },
         ]}
         onUpgrade={() => console.log("Upgrade")}

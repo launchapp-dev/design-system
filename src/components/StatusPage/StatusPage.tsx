@@ -38,56 +38,48 @@ const STATUS_CONFIG: Record<
     label: "Operational",
     dotClass: "bg-green-500",
     barClass: "bg-green-500",
-    badgeClass:
-      "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+    badgeClass: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
   },
   degraded: {
     label: "Degraded Performance",
     dotClass: "bg-yellow-500",
     barClass: "bg-yellow-500",
-    badgeClass:
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
+    badgeClass: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
   },
   partial_outage: {
     label: "Partial Outage",
     dotClass: "bg-orange-500",
     barClass: "bg-orange-500",
-    badgeClass:
-      "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400",
+    badgeClass: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400",
   },
   major_outage: {
     label: "Major Outage",
     dotClass: "bg-red-500",
     barClass: "bg-red-500",
-    badgeClass:
-      "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+    badgeClass: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
   },
   maintenance: {
     label: "Under Maintenance",
     dotClass: "bg-blue-500",
     barClass: "bg-blue-500",
-    badgeClass:
-      "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+    badgeClass: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
   },
 };
 
-const overallStatusVariants = cva(
-  "rounded-lg px-4 py-3 text-sm font-medium",
-  {
-    variants: {
-      status: {
-        operational: "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300",
-        degraded: "bg-yellow-50 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300",
-        partial_outage: "bg-orange-50 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300",
-        major_outage: "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300",
-        maintenance: "bg-blue-50 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300",
-      },
+const overallStatusVariants = cva("rounded-lg px-4 py-3 text-sm font-medium", {
+  variants: {
+    status: {
+      operational: "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300",
+      degraded: "bg-yellow-50 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300",
+      partial_outage: "bg-orange-50 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300",
+      major_outage: "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300",
+      maintenance: "bg-blue-50 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300",
     },
-    defaultVariants: {
-      status: "operational",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    status: "operational",
+  },
+});
 
 function getOverallStatus(services: StatusService[]): ServiceStatus {
   const priority: ServiceStatus[] = [
@@ -123,46 +115,32 @@ function StatusPage({
   return (
     <div className={cn("space-y-6", className)} {...props}>
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-[hsl(var(--la-foreground))]">
-          {title}
-        </h1>
+        <h1 className="text-2xl font-bold text-[hsl(var(--la-foreground))]">{title}</h1>
         {description && (
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
-            {description}
-          </p>
+          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">{description}</p>
         )}
       </div>
 
       <div className={cn(overallStatusVariants({ status: overall }))}>
         <div className="flex items-center gap-2">
-          <span
-            className={cn("h-2.5 w-2.5 rounded-full flex-shrink-0", config.dotClass)}
-          />
+          <span className={cn("h-2.5 w-2.5 rounded-full flex-shrink-0", config.dotClass)} />
           <span>{config.label} — All Systems</span>
         </div>
-        {lastUpdated && (
-          <p className="mt-1 text-xs opacity-70">Last updated: {lastUpdated}</p>
-        )}
+        {lastUpdated && <p className="mt-1 text-xs opacity-70">Last updated: {lastUpdated}</p>}
       </div>
 
       <div className="divide-y divide-[hsl(var(--la-border))] rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-card))]">
         {services.map((service) => {
           const sConfig = STATUS_CONFIG[service.status];
           const history = service.uptimeHistory ?? [];
-          const uptime =
-            service.uptimePercentage ?? computeUptime(history);
+          const uptime = service.uptimePercentage ?? computeUptime(history);
 
           return (
             <div key={service.id} className="px-4 py-4 sm:px-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span
-                      className={cn(
-                        "h-2 w-2 rounded-full flex-shrink-0",
-                        sConfig.dotClass
-                      )}
-                    />
+                    <span className={cn("h-2 w-2 rounded-full flex-shrink-0", sConfig.dotClass)} />
                     <span className="font-medium text-sm text-[hsl(var(--la-card-foreground))]">
                       {service.name}
                     </span>
@@ -176,7 +154,7 @@ function StatusPage({
                 <span
                   className={cn(
                     "flex-shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold",
-                    sConfig.badgeClass
+                    sConfig.badgeClass,
                   )}
                 >
                   {sConfig.label}
@@ -191,7 +169,7 @@ function StatusPage({
                         key={i}
                         className={cn(
                           "h-7 w-1.5 rounded-sm flex-shrink-0",
-                          STATUS_CONFIG[entry.status].barClass
+                          STATUS_CONFIG[entry.status].barClass,
                         )}
                         title={`${entry.date}: ${STATUS_CONFIG[entry.status].label}`}
                       />

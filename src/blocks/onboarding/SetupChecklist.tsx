@@ -39,7 +39,7 @@ const SetupChecklist = React.forwardRef<HTMLDivElement, SetupChecklistProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const completedCount = items.filter((item) => item.completed).length;
     const progress = items.length > 0 ? Math.round((completedCount / items.length) * 100) : 0;
@@ -83,30 +83,26 @@ const SetupChecklist = React.forwardRef<HTMLDivElement, SetupChecklistProps>(
                   className={cn(
                     "flex items-start gap-3 rounded-md border p-3 transition-colors",
                     item.completed ? "border-border bg-muted/40" : "border-border bg-background",
-                    compact && "p-2"
+                    compact && "p-2",
                   )}
                 >
                   <Checkbox
                     id={`checklist-${item.id}`}
                     checked={item.completed}
-                    onCheckedChange={(checked) =>
-                      onItemToggle?.(item.id, checked === true)
-                    }
+                    onCheckedChange={(checked) => onItemToggle?.(item.id, checked === true)}
                     aria-label={item.title}
                     className="mt-0.5 shrink-0"
                   />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       {item.icon && (
-                        <span className="shrink-0 text-muted-foreground">
-                          {item.icon}
-                        </span>
+                        <span className="shrink-0 text-muted-foreground">{item.icon}</span>
                       )}
                       <label
                         htmlFor={`checklist-${item.id}`}
                         className={cn(
                           "cursor-pointer text-sm font-medium leading-none",
-                          item.completed && "text-muted-foreground line-through"
+                          item.completed && "text-muted-foreground line-through",
                         )}
                       >
                         {item.href ? (
@@ -123,7 +119,12 @@ const SetupChecklist = React.forwardRef<HTMLDivElement, SetupChecklistProps>(
                       </label>
                     </div>
                     {item.description && (
-                      <p className={cn("mt-1 text-xs text-muted-foreground", compact && "text-[10px]")}>
+                      <p
+                        className={cn(
+                          "mt-1 text-xs text-muted-foreground",
+                          compact && "text-[10px]",
+                        )}
+                      >
                         {item.description}
                       </p>
                     )}
@@ -144,9 +145,8 @@ const SetupChecklist = React.forwardRef<HTMLDivElement, SetupChecklistProps>(
         </CardContent>
       </Card>
     );
-  }
+  },
 );
 SetupChecklist.displayName = "SetupChecklist";
 
 export { SetupChecklist };
-

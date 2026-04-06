@@ -4,14 +4,14 @@ export const touchTargetSize = "min-h-[44px] min-w-[44px]";
 
 export const responsiveContainer = cn(
   "w-full overflow-x-auto",
-  "scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent"
+  "scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent",
 );
 
 export const hideScrollbar = cn(
   "scrollbar-none",
   "[-ms-overflow-style:'none']",
   "[scrollbar-width:'none']",
-  "[&::-webkit-scrollbar]:hidden"
+  "[&::-webkit-scrollbar]:hidden",
 );
 
 export const safeAreaInsets = {
@@ -23,7 +23,7 @@ export const safeAreaInsets = {
     "pt-[env(safe-area-inset-top)]",
     "pb-[env(safe-area-inset-bottom)]",
     "pl-[env(safe-area-inset-left)]",
-    "pr-[env(safe-area-inset-right)]"
+    "pr-[env(safe-area-inset-right)]",
   ),
 };
 

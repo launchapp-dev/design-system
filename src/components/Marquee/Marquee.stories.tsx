@@ -93,8 +93,14 @@ export const Directions: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div>
-        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">Left (default)</p>
-        <Marquee direction="left" speed="fast" className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]">
+        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">
+          Left (default)
+        </p>
+        <Marquee
+          direction="left"
+          speed="fast"
+          className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]"
+        >
           <LogoItem name="Left 1" />
           <LogoItem name="Left 2" />
           <LogoItem name="Left 3" />
@@ -103,7 +109,11 @@ export const Directions: Story = {
       </div>
       <div>
         <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">Right</p>
-        <Marquee direction="right" speed="fast" className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]">
+        <Marquee
+          direction="right"
+          speed="fast"
+          className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]"
+        >
           <LogoItem name="Right 1" />
           <LogoItem name="Right 2" />
           <LogoItem name="Right 3" />
@@ -115,27 +125,43 @@ export const Directions: Story = {
           <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">Up</p>
           <Marquee direction="up" speed="fast" className="h-48 rounded-lg bg-[hsl(var(--la-card))]">
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Up 1</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Up 1
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Up 2</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Up 2
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Up 3</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Up 3
+              </div>
             </MarqueeItem>
           </Marquee>
         </div>
         <div className="flex-1">
           <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">Down</p>
-          <Marquee direction="down" speed="fast" className="h-48 rounded-lg bg-[hsl(var(--la-card))]">
+          <Marquee
+            direction="down"
+            speed="fast"
+            className="h-48 rounded-lg bg-[hsl(var(--la-card))]"
+          >
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Down 1</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Down 1
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Down 2</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Down 2
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Down 3</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Down 3
+              </div>
             </MarqueeItem>
           </Marquee>
         </div>
@@ -148,24 +174,42 @@ export const Speeds: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div>
-        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">Slow (60s)</p>
-        <Marquee direction="left" speed="slow" className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]">
+        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">
+          Slow (60s)
+        </p>
+        <Marquee
+          direction="left"
+          speed="slow"
+          className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]"
+        >
           <LogoItem name="Slow" />
           <LogoItem name="Steady" />
           <LogoItem name="Calm" />
         </Marquee>
       </div>
       <div>
-        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">Normal (30s)</p>
-        <Marquee direction="left" speed="normal" className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]">
+        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">
+          Normal (30s)
+        </p>
+        <Marquee
+          direction="left"
+          speed="normal"
+          className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]"
+        >
           <LogoItem name="Normal" />
           <LogoItem name="Standard" />
           <LogoItem name="Default" />
         </Marquee>
       </div>
       <div>
-        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">Fast (15s)</p>
-        <Marquee direction="left" speed="fast" className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]">
+        <p className="mb-2 text-sm font-medium text-[hsl(var(--la-muted-foreground))]">
+          Fast (15s)
+        </p>
+        <Marquee
+          direction="left"
+          speed="fast"
+          className="w-full py-4 rounded-lg bg-[hsl(var(--la-card))]"
+        >
           <LogoItem name="Fast" />
           <LogoItem name="Quick" />
           <LogoItem name="Rapid" />
@@ -234,16 +278,24 @@ export const GradientFade: Story = {
             className="h-48 rounded-lg bg-[hsl(var(--la-card))]"
           >
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Item 1</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Item 1
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Item 2</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Item 2
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Item 3</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Item 3
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">Item 4</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-muted))] flex items-center justify-center">
+                Item 4
+              </div>
             </MarqueeItem>
           </Marquee>
         </div>
@@ -260,13 +312,19 @@ export const GradientFade: Story = {
             className="h-48 rounded-lg bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]"
           >
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-primary)/0.3)] flex items-center justify-center">Item 1</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-primary)/0.3)] flex items-center justify-center">
+                Item 1
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-primary)/0.3)] flex items-center justify-center">Item 2</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-primary)/0.3)] flex items-center justify-center">
+                Item 2
+              </div>
             </MarqueeItem>
             <MarqueeItem className="flex items-center justify-center py-4">
-              <div className="h-12 w-24 rounded bg-[hsl(var(--la-primary)/0.3)] flex items-center justify-center">Item 3</div>
+              <div className="h-12 w-24 rounded bg-[hsl(var(--la-primary)/0.3)] flex items-center justify-center">
+                Item 3
+              </div>
             </MarqueeItem>
           </Marquee>
         </div>
@@ -278,9 +336,7 @@ export const GradientFade: Story = {
 export const LogoCarousel: Story = {
   render: () => (
     <div className="rounded-lg border border-[hsl(var(--la-border))] p-6">
-      <h3 className="mb-4 text-center text-lg font-semibold">
-        Trusted by leading companies
-      </h3>
+      <h3 className="mb-4 text-center text-lg font-semibold">Trusted by leading companies</h3>
       <Marquee
         direction="left"
         speed="slow"
@@ -314,13 +370,7 @@ export const LogoCarousel: Story = {
 
 export const Testimonials: Story = {
   render: () => (
-    <Marquee
-      direction="left"
-      speed="slow"
-      pauseOnHover
-      showGradient
-      className="w-full py-4"
-    >
+    <Marquee direction="left" speed="slow" pauseOnHover showGradient className="w-full py-4">
       {[
         { quote: "Amazing product!", author: "John D." },
         { quote: "Changed our workflow", author: "Sarah M." },
@@ -368,7 +418,8 @@ export const AllFeatures: Story = {
           Reduced Motion Support
         </h3>
         <p className="text-xs text-[hsl(var(--la-muted-foreground))]">
-          Enable "prefers-reduced-motion: reduce" in your browser/OS settings to see static content instead.
+          Enable "prefers-reduced-motion: reduce" in your browser/OS settings to see static content
+          instead.
         </p>
       </section>
     </div>

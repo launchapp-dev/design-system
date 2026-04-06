@@ -27,9 +27,7 @@ const ThemeCard = React.forwardRef<HTMLDivElement, ThemeCardProps>(
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
               <CardTitle className="truncate">{theme.name}</CardTitle>
-              <CardDescription className="text-xs mt-1">
-                by {theme.author.name}
-              </CardDescription>
+              <CardDescription className="text-xs mt-1">by {theme.author.name}</CardDescription>
             </div>
             <div
               className="h-12 w-12 rounded-md border border-border flex-shrink-0"
@@ -75,18 +73,14 @@ const ThemeCard = React.forwardRef<HTMLDivElement, ThemeCardProps>(
             </Button>
           )}
           {onUseTheme && (
-            <Button
-              size="sm"
-              className="flex-1"
-              onClick={() => onUseTheme(theme.id)}
-            >
+            <Button size="sm" className="flex-1" onClick={() => onUseTheme(theme.id)}>
               Use Theme
             </Button>
           )}
         </CardFooter>
       </Card>
     );
-  }
+  },
 );
 
 ThemeCard.displayName = "ThemeCard";

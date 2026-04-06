@@ -53,16 +53,14 @@ function _categorizeColorByHue(h: number): "dark" | "light" | "neutral" {
 
 export function generatePaletteFromColors(
   colors: ExtractedColor[],
-  paletteName: string = "generated"
+  paletteName: string = "generated",
 ): Palette {
   const hslColors = colors.map((c) => ({
     ...c,
     hsl: hexToHsl(c.hex),
   }));
 
-  const sortedBySaturation = [...hslColors].sort(
-    (a, b) => b.hsl.s - a.hsl.s
-  );
+  const sortedBySaturation = [...hslColors].sort((a, b) => b.hsl.s - a.hsl.s);
   const [primaryColor, ...otherColors] = sortedBySaturation;
 
   const h = primaryColor.hsl.h;
@@ -87,9 +85,10 @@ export function generatePaletteFromColors(
     "secondary-foreground": tok(h, sf(0.25), 10),
     muted: tok(h, Math.max(ss - 2, 0), 96),
     "muted-foreground": tok(h, Math.max(ss - 2, 0), 46),
-    accent: otherColors.length > 0
-      ? tok(otherColors[0].hsl.h, otherColors[0].hsl.s, clamp(otherColors[0].hsl.l, 40, 70))
-      : tok(h, ss, 96),
+    accent:
+      otherColors.length > 0
+        ? tok(otherColors[0].hsl.h, otherColors[0].hsl.s, clamp(otherColors[0].hsl.l, 40, 70))
+        : tok(h, ss, 96),
     "accent-foreground": tok(0, 0, 98),
     destructive: tok(0, 84, 60),
     "destructive-foreground": tok(0, 0, 98),
@@ -111,13 +110,14 @@ export function generatePaletteFromColors(
     "secondary-foreground": tok(0, 0, 98),
     muted: tok(h, Math.max(ss - 4, 0), 16),
     "muted-foreground": tok(h, Math.max(ss - 4, 0), 65),
-    accent: otherColors.length > 0
-      ? tok(
-          otherColors[0].hsl.h,
-          Math.round(otherColors[0].hsl.s * 0.85),
-          clamp(otherColors[0].hsl.l + 15, 40, 75)
-        )
-      : tok(h, Math.max(ss - 2, 0), 16),
+    accent:
+      otherColors.length > 0
+        ? tok(
+            otherColors[0].hsl.h,
+            Math.round(otherColors[0].hsl.s * 0.85),
+            clamp(otherColors[0].hsl.l + 15, 40, 75),
+          )
+        : tok(h, Math.max(ss - 2, 0), 16),
     "accent-foreground": tok(0, 0, 98),
     destructive: tok(0, 63, 31),
     "destructive-foreground": tok(0, 0, 98),

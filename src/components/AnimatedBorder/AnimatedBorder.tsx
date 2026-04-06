@@ -6,7 +6,7 @@ function usePrefersReducedMotion() {
     () =>
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    []
+    [],
   );
 }
 
@@ -105,9 +105,7 @@ function AnimatedBorder({
       {variant === "beam" && renderBeamBorder()}
       {variant === "gradient-spin" && renderGradientSpinBorder()}
       {variant === "dashed" && renderDashedBorder()}
-      <div className="relative z-10 bg-card text-card-foreground">
-        {children}
-      </div>
+      <div className="relative z-10 bg-card text-card-foreground">{children}</div>
       <style>{`
         @keyframes beam-slide {
           0% { background-position: 200% 0; }

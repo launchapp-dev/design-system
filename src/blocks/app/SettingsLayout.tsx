@@ -3,13 +3,7 @@ import { cn } from "../../lib/utils";
 import { Button } from "../../components/Button";
 import { Separator } from "../../components/Separator";
 import { Badge } from "../../components/Badge";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../components/Sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../../components/Sheet";
 
 // Inline SVG icons (avoiding lucide-react dependency)
 function MenuIcon({ className }: { className?: string }) {
@@ -75,9 +69,7 @@ function SettingsLayout({
 }: SettingsLayoutProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const activeItem = sections
-    .flatMap((s) => s.items)
-    .find((item) => item.id === activeItemId);
+  const activeItem = sections.flatMap((s) => s.items).find((item) => item.id === activeItemId);
 
   const handleItemClick = (item: SettingsNavItem) => {
     if (!item.disabled) {
@@ -109,7 +101,7 @@ function SettingsLayout({
                     isActive
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    item.disabled && "cursor-not-allowed opacity-50"
+                    item.disabled && "cursor-not-allowed opacity-50",
                   )}
                 >
                   {item.icon && (
@@ -162,13 +154,9 @@ function SettingsLayout({
             </SheetContent>
           </Sheet>
           <div>
-            <h1 className="text-lg font-semibold">
-              {activeItem?.label || title}
-            </h1>
+            <h1 className="text-lg font-semibold">{activeItem?.label || title}</h1>
             {activeItem?.description && (
-              <p className="text-sm text-muted-foreground">
-                {activeItem.description}
-              </p>
+              <p className="text-sm text-muted-foreground">{activeItem.description}</p>
             )}
           </div>
         </div>
@@ -181,9 +169,7 @@ function SettingsLayout({
                 <div className="mb-6">
                   <h1 className="text-xl font-semibold">{title}</h1>
                   {description && (
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {description}
-                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">{description}</p>
                   )}
                 </div>
               )}
@@ -201,13 +187,9 @@ function SettingsLayout({
           <main className="min-w-0 flex-1">
             {/* Desktop page header */}
             <div className="mb-6 hidden lg:block">
-              <h2 className="text-2xl font-bold tracking-tight">
-                {activeItem?.label || title}
-              </h2>
+              <h2 className="text-2xl font-bold tracking-tight">{activeItem?.label || title}</h2>
               {activeItem?.description && (
-                <p className="mt-1 text-muted-foreground">
-                  {activeItem.description}
-                </p>
+                <p className="mt-1 text-muted-foreground">{activeItem.description}</p>
               )}
             </div>
             <div className="space-y-6">{children}</div>

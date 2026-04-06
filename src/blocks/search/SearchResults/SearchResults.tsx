@@ -61,7 +61,7 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [localQuery, setLocalQuery] = React.useState(query);
 
@@ -110,12 +110,15 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
                 "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium transition-colors",
                 !activeFilter
                   ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-background text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                  : "border-border bg-background text-muted-foreground hover:border-foreground/30 hover:text-foreground",
               )}
             >
               All
               {totalCount !== undefined && (
-                <Badge variant="secondary" className="ml-1 h-5 w-5 items-center justify-center p-0 text-xs">
+                <Badge
+                  variant="secondary"
+                  className="ml-1 h-5 w-5 items-center justify-center p-0 text-xs"
+                >
                   {totalCount}
                 </Badge>
               )}
@@ -129,11 +132,14 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
                   "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium transition-colors",
                   filter.label === activeFilter
                     ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-background text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                    : "border-border bg-background text-muted-foreground hover:border-foreground/30 hover:text-foreground",
                 )}
               >
                 {filter.label}
-                <Badge variant="secondary" className="ml-1 h-5 w-5 items-center justify-center p-0 text-xs">
+                <Badge
+                  variant="secondary"
+                  className="ml-1 h-5 w-5 items-center justify-center p-0 text-xs"
+                >
                   {filter.count}
                 </Badge>
               </button>
@@ -145,7 +151,12 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
           <div className="flex items-center justify-between">
             <p className="text-sm text-muted-foreground">
               {totalCount !== undefined ? `${totalCount} result${totalCount !== 1 ? "s" : ""}` : ""}
-              {query && <span> for <strong>&ldquo;{query}&rdquo;</strong></span>}
+              {query && (
+                <span>
+                  {" "}
+                  for <strong>&ldquo;{query}&rdquo;</strong>
+                </span>
+              )}
             </p>
             {sortOptions.length > 0 && (
               <SelectRoot value={activeSort} onValueChange={onSortChange}>
@@ -202,7 +213,7 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
                   className={cn(
                     "group rounded-lg border border-border p-5 transition-colors hover:border-foreground/20 hover:bg-muted/30",
                     isClickable && "cursor-pointer block no-underline",
-                    result.url === undefined && result.onClick === undefined && "cursor-default"
+                    result.url === undefined && result.onClick === undefined && "cursor-default",
                   )}
                   tabIndex={isClickable ? 0 : undefined}
                   onKeyDown={
@@ -217,63 +228,63 @@ const SearchResultsInner = React.forwardRef<HTMLDivElement, SearchResultsProps>(
                   }
                   {...wrapperProps}
                 >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-base font-semibold group-hover:text-primary">
-                        {result.title}
-                      </h3>
-                      {result.category && (
-                        <Badge variant="secondary" className="text-xs">
-                          {result.category}
-                        </Badge>
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-base font-semibold group-hover:text-primary">
+                          {result.title}
+                        </h3>
+                        {result.category && (
+                          <Badge variant="secondary" className="text-xs">
+                            {result.category}
+                          </Badge>
+                        )}
+                      </div>
+                      {result.excerpt && (
+                        <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
+                          {result.excerpt}
+                        </p>
                       )}
+                      <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                        {result.author && <span>By {result.author}</span>}
+                        {result.date && <span>{result.date}</span>}
+                        {result.readingTime && <span>{result.readingTime}</span>}
+                        {result.tags && result.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1">
+                            {result.tags.map((tag) => (
+                              <Badge key={tag} variant="outline" className="text-[10px]">
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    {result.excerpt && (
-                      <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
-                        {result.excerpt}
-                      </p>
+                    {result.url && (
+                      <svg
+                        className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
                     )}
-                    <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                      {result.author && <span>By {result.author}</span>}
-                      {result.date && <span>{result.date}</span>}
-                      {result.readingTime && <span>{result.readingTime}</span>}
-                      {result.tags && result.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1">
-                          {result.tags.map((tag) => (
-                            <Badge key={tag} variant="outline" className="text-[10px]">
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      )}
-                    </div>
                   </div>
-                  {result.url && (
-                    <svg
-                      className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  )}
-                </div>
-              </Wrapper>
-            );
+                </Wrapper>
+              );
             })}
           </div>
         )}
       </div>
     );
-  }
+  },
 );
 SearchResultsInner.displayName = "SearchResults";
 

@@ -30,8 +30,7 @@ const testimonials: Testimonial[] = [
     badge: "Top reviewer",
   },
   {
-    quote:
-      "Dark mode support out of the box. That sold our whole team. No more 2am CSS overrides.",
+    quote: "Dark mode support out of the box. That sold our whole team. No more 2am CSS overrides.",
     name: "Alex Rivera",
     role: "CTO",
     company: "DevShop",
@@ -92,17 +91,12 @@ export const Default: Story = {
 };
 
 export const WithoutHeader: Story = {
-  render: () => (
-    <TestimonialCarousel testimonials={testimonials} />
-  ),
+  render: () => <TestimonialCarousel testimonials={testimonials} />,
 };
 
 export const SingleTestimonial: Story = {
   render: () => (
-    <TestimonialCarousel
-      headline="Customer spotlight"
-      testimonials={[testimonials[0]]}
-    />
+    <TestimonialCarousel headline="Customer spotlight" testimonials={[testimonials[0]]} />
   ),
 };
 
@@ -161,10 +155,7 @@ export const Mobile: Story = {
     viewport: { defaultViewport: "mobile1" },
   },
   render: () => (
-    <TestimonialCarousel
-      headline="What our customers say"
-      testimonials={testimonials}
-    />
+    <TestimonialCarousel headline="What our customers say" testimonials={testimonials} />
   ),
 };
 

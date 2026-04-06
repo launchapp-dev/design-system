@@ -20,10 +20,8 @@ const stepIndicatorVariants = cva(
   {
     variants: {
       status: {
-        pending:
-          "border-muted-foreground/30 bg-background text-muted-foreground",
-        current:
-          "border-primary bg-background text-primary ring-2 ring-primary/20",
+        pending: "border-muted-foreground/30 bg-background text-muted-foreground",
+        current: "border-primary bg-background text-primary ring-2 ring-primary/20",
         completed: "border-primary bg-primary text-primary-foreground",
       },
       size: {
@@ -36,7 +34,7 @@ const stepIndicatorVariants = cva(
       status: "pending",
       size: "md",
     },
-  }
+  },
 );
 
 export interface Step {
@@ -86,7 +84,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
       connectorClassName,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [currentStep, setCurrentStep] = React.useState(initialStep);
     const [validating, setValidating] = React.useState(false);
@@ -195,12 +193,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
         <div className="relative">
           <div className="absolute inset-0 animate-ping rounded-full bg-primary/20" />
           <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            <svg
-              className="h-10 w-10"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -213,9 +206,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
         </div>
         <div className="space-y-2">
           <h3 className="text-2xl font-bold">All done!</h3>
-          <p className="text-muted-foreground">
-            You&apos;ve completed all the steps.
-          </p>
+          <p className="text-muted-foreground">You&apos;ve completed all the steps.</p>
         </div>
       </div>
     );
@@ -246,16 +237,11 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
           className={cn(
             stepIndicatorVariants({ status, size }),
             clickable && "cursor-pointer hover:scale-105",
-            !clickable && status !== "current" && "cursor-default"
+            !clickable && status !== "current" && "cursor-default",
           )}
         >
           {status === "completed" ? (
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -288,22 +274,16 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
                       <div
                         className={cn(
                           "text-sm font-medium",
-                          status === "current"
-                            ? "text-foreground"
-                            : "text-muted-foreground"
+                          status === "current" ? "text-foreground" : "text-muted-foreground",
                         )}
                       >
                         {step.title}
                       </div>
                       {step.description && (
-                        <div className="text-xs text-muted-foreground">
-                          {step.description}
-                        </div>
+                        <div className="text-xs text-muted-foreground">{step.description}</div>
                       )}
                       {step.optional && (
-                        <div className="text-xs text-muted-foreground">
-                          Optional
-                        </div>
+                        <div className="text-xs text-muted-foreground">Optional</div>
                       )}
                     </div>
                   </div>
@@ -312,7 +292,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
                       className={cn(
                         "mx-4 h-0.5 flex-1 transition-colors duration-300",
                         index < currentStep ? "bg-primary" : "bg-muted",
-                        connectorClassName
+                        connectorClassName,
                       )}
                       aria-hidden="true"
                     />
@@ -331,9 +311,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
           <div className="mb-6">
             <h3 className="text-lg font-semibold">{currentStepData?.title}</h3>
             {currentStepData?.description && (
-              <p className="mt-1 text-sm text-muted-foreground">
-                {currentStepData.description}
-              </p>
+              <p className="mt-1 text-sm text-muted-foreground">{currentStepData.description}</p>
             )}
           </div>
 
@@ -351,11 +329,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
 
             <div className="flex gap-3">
               {allowSkip && currentStepData?.optional && (
-                <Button
-                  variant="ghost"
-                  onClick={handleSkip}
-                  aria-label="Skip this step"
-                >
+                <Button variant="ghost" onClick={handleSkip} aria-label="Skip this step">
                   {skipLabel}
                 </Button>
               )}
@@ -396,18 +370,17 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
                     "flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors",
                     status === "current" && "bg-accent",
                     clickable && "hover:bg-accent/50 cursor-pointer",
-                    !clickable && status !== "current" && "cursor-default opacity-60"
+                    !clickable && status !== "current" && "cursor-default opacity-60",
                   )}
                 >
                   <div
                     className={cn(
                       "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-medium",
-                      status === "completed" &&
-                        "border-primary bg-primary text-primary-foreground",
+                      status === "completed" && "border-primary bg-primary text-primary-foreground",
                       status === "current" &&
                         "border-primary bg-background text-primary ring-2 ring-primary/20",
                       status === "pending" &&
-                        "border-muted-foreground/30 bg-background text-muted-foreground"
+                        "border-muted-foreground/30 bg-background text-muted-foreground",
                     )}
                   >
                     {status === "completed" ? (
@@ -432,16 +405,12 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
                     <div
                       className={cn(
                         "truncate text-sm font-medium",
-                        status === "current"
-                          ? "text-foreground"
-                          : "text-muted-foreground"
+                        status === "current" ? "text-foreground" : "text-muted-foreground",
                       )}
                     >
                       {step.title}
                     </div>
-                    {step.optional && (
-                      <div className="text-xs text-muted-foreground">Optional</div>
-                    )}
+                    {step.optional && <div className="text-xs text-muted-foreground">Optional</div>}
                   </div>
                 </button>
               );
@@ -456,13 +425,9 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
         >
           <div className="rounded-lg border bg-card p-6">
             <div className="mb-6">
-              <h3 className="text-lg font-semibold">
-                {currentStepData?.title}
-              </h3>
+              <h3 className="text-lg font-semibold">{currentStepData?.title}</h3>
               {currentStepData?.description && (
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {currentStepData.description}
-                </p>
+                <p className="mt-1 text-sm text-muted-foreground">{currentStepData.description}</p>
               )}
             </div>
 
@@ -480,26 +445,16 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
 
               <div className="flex gap-3">
                 {allowSkip && currentStepData?.optional && (
-                  <Button
-                    variant="ghost"
-                    onClick={handleSkip}
-                    aria-label="Skip this step"
-                  >
+                  <Button variant="ghost" onClick={handleSkip} aria-label="Skip this step">
                     {skipLabel}
                   </Button>
                 )}
                 <Button
                   onClick={handleNext}
                   disabled={validating}
-                  aria-label={
-                    isLast ? "Complete onboarding" : "Go to next step"
-                  }
+                  aria-label={isLast ? "Complete onboarding" : "Go to next step"}
                 >
-                  {validating
-                    ? "Validating…"
-                    : isLast
-                      ? completeLabel
-                      : nextLabel}
+                  {validating ? "Validating…" : isLast ? completeLabel : nextLabel}
                 </Button>
               </div>
             </div>
@@ -509,11 +464,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
     );
 
     return (
-      <div
-        ref={ref}
-        className={cn(stepperVariants({ orientation }), className)}
-        {...props}
-      >
+      <div ref={ref} className={cn(stepperVariants({ orientation }), className)} {...props}>
         {completed ? (
           <CompletionAnimation />
         ) : orientation === "horizontal" ? (
@@ -523,7 +474,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
         )}
       </div>
     );
-  }
+  },
 );
 
 OnboardingStepper.displayName = "OnboardingStepper";

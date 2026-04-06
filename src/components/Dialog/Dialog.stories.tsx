@@ -62,7 +62,9 @@ export const WithForm: Story = {
           </DialogHeader>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "16px 0" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "14px", fontWeight: 500 }} htmlFor="name">Name</label>
+              <label style={{ fontSize: "14px", fontWeight: 500 }} htmlFor="name">
+                Name
+              </label>
               <input
                 id="name"
                 value={name}
@@ -80,7 +82,9 @@ export const WithForm: Story = {
               />
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <label style={{ fontSize: "14px", fontWeight: 500 }} htmlFor="email">Email</label>
+              <label style={{ fontSize: "14px", fontWeight: 500 }} htmlFor="email">
+                Email
+              </label>
               <input
                 id="email"
                 type="email"

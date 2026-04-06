@@ -70,8 +70,8 @@ export const Default: Story = {
         >
           <p style={{ fontWeight: "600", marginBottom: "8px" }}>Collapsible content</p>
           <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>
-            This content smoothly animates its height when shown or hidden. Toggle
-            the isOpen control to see the transition.
+            This content smoothly animates its height when shown or hidden. Toggle the isOpen
+            control to see the transition.
           </p>
         </div>
       </AnimatedHeight>
@@ -116,9 +116,15 @@ export const Interactive: Story = {
             }}
           >
             <p style={{ fontWeight: "600", marginBottom: "8px" }}>Details section</p>
-            <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))", marginBottom: "8px" }}>
-              This panel expands and collapses with a smooth height animation. It's
-              useful for FAQ sections, collapsible sidebars, and accordion-like UI patterns.
+            <p
+              style={{
+                fontSize: "14px",
+                color: "hsl(var(--la-muted-foreground))",
+                marginBottom: "8px",
+              }}
+            >
+              This panel expands and collapses with a smooth height animation. It's useful for FAQ
+              sections, collapsible sidebars, and accordion-like UI patterns.
             </p>
             <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>
               The height transitions smoothly from 0 to auto and back, without janky reflows.
@@ -141,14 +147,30 @@ export const MultipleItems: Story = {
   render: () => {
     const [openIndex, setOpenIndex] = React.useState<number | null>(0);
     const items = [
-      { title: "What is a design system?", body: "A design system is a collection of reusable components, guided by clear standards, that can be assembled to build any number of applications." },
-      { title: "How do I use this library?", body: "Install the package, import the components you need, and wrap your app with the theme provider. All components are accessible out of the box." },
-      { title: "Does it support dark mode?", body: "Yes. Dark mode is supported via the 'dark' class strategy. Add the 'dark' class to your root element to activate it." },
+      {
+        title: "What is a design system?",
+        body: "A design system is a collection of reusable components, guided by clear standards, that can be assembled to build any number of applications.",
+      },
+      {
+        title: "How do I use this library?",
+        body: "Install the package, import the components you need, and wrap your app with the theme provider. All components are accessible out of the box.",
+      },
+      {
+        title: "Does it support dark mode?",
+        body: "Yes. Dark mode is supported via the 'dark' class strategy. Add the 'dark' class to your root element to activate it.",
+      },
     ];
     return (
       <div style={{ width: "480px", display: "flex", flexDirection: "column", gap: "4px" }}>
         {items.map((item, i) => (
-          <div key={i} style={{ border: "1px solid hsl(var(--la-border))", borderRadius: "var(--la-radius)", overflow: "hidden" }}>
+          <div
+            key={i}
+            style={{
+              border: "1px solid hsl(var(--la-border))",
+              borderRadius: "var(--la-radius)",
+              overflow: "hidden",
+            }}
+          >
             <button
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
               style={{
@@ -166,10 +188,25 @@ export const MultipleItems: Story = {
               }}
             >
               {item.title}
-              <span style={{ transform: openIndex === i ? "rotate(180deg)" : "none", transition: "transform 250ms", display: "inline-block" }}>▾</span>
+              <span
+                style={{
+                  transform: openIndex === i ? "rotate(180deg)" : "none",
+                  transition: "transform 250ms",
+                  display: "inline-block",
+                }}
+              >
+                ▾
+              </span>
             </button>
             <AnimatedHeight isOpen={openIndex === i}>
-              <div style={{ padding: "12px 16px", fontSize: "14px", color: "hsl(var(--la-muted-foreground))", borderTop: "1px solid hsl(var(--la-border))" }}>
+              <div
+                style={{
+                  padding: "12px 16px",
+                  fontSize: "14px",
+                  color: "hsl(var(--la-muted-foreground))",
+                  borderTop: "1px solid hsl(var(--la-border))",
+                }}
+              >
                 {item.body}
               </div>
             </AnimatedHeight>

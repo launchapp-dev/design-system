@@ -55,11 +55,11 @@ const InteractiveTemplate = (args: React.ComponentProps<typeof ProgressChecklist
           ? {
               ...section,
               items: section.items.map((item) =>
-                item.id === itemId ? { ...item, completed } : item
+                item.id === itemId ? { ...item, completed } : item,
               ),
             }
-          : section
-      )
+          : section,
+      ),
     );
   };
   return <ProgressChecklist {...args} sections={sections} onItemToggle={handleToggle} />;

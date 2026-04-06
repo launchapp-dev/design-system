@@ -9,5 +9,10 @@ export * from "./FeatureComparison";
 export type { ChangelogTimelineProps, ChangelogEntry, ChangelogTag } from "./ChangelogTimeline";
 export type { LogoCloudProps, LogoItem } from "./LogoCloud";
 export type { BillingCardProps, BillingFeature, BillingUsage, BillingStatus } from "./BillingCard";
-export type { FeatureComparisonProps, ComparisonPricingTier, ComparisonFeature, ComparisonFeatureValue } from "./FeatureComparison";
+export type {
+  FeatureComparisonProps,
+  ComparisonPricingTier,
+  ComparisonFeature,
+  ComparisonFeatureValue,
+} from "./FeatureComparison";
 export * from "./PricingComparisonTable";

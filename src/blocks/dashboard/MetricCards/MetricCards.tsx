@@ -1,7 +1,6 @@
-import * as React from "react";
+import type * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
 import { Badge } from "@/components/Badge";
-import { Button } from "@/components/Button";
 import { cn } from "@/lib/utils";
 
 export interface MetricCardItem {
@@ -24,13 +23,35 @@ export interface MetricCardsProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const upArrowIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <polyline points="18 15 12 9 6 15" />
   </svg>
 );
 
 const downArrowIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <polyline points="6 9 12 15 18 9" />
   </svg>
 );
@@ -56,7 +77,7 @@ function MetricCards({
           key={item.id}
           className={cn(
             "transition-shadow hover:shadow-md",
-            (item.href || item.onClick) && "cursor-pointer"
+            (item.href || item.onClick) && "cursor-pointer",
           )}
           onClick={item.href ? undefined : item.onClick}
         >
@@ -83,9 +104,11 @@ function MetricCards({
                       variant="secondary"
                       className={cn(
                         "gap-1 text-xs font-medium",
-                        item.changeType === "up" && "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
-                        item.changeType === "down" && "text-destructive bg-red-50 dark:bg-red-950/30",
-                        item.changeType === "neutral" && "text-muted-foreground"
+                        item.changeType === "up" &&
+                          "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
+                        item.changeType === "down" &&
+                          "text-destructive bg-red-50 dark:bg-red-950/30",
+                        item.changeType === "neutral" && "text-muted-foreground",
                       )}
                     >
                       {item.changeType === "up" && upArrowIcon}
@@ -122,9 +145,11 @@ function MetricCards({
                       variant="secondary"
                       className={cn(
                         "gap-1 text-xs font-medium",
-                        item.changeType === "up" && "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
-                        item.changeType === "down" && "text-destructive bg-red-50 dark:bg-red-950/30",
-                        item.changeType === "neutral" && "text-muted-foreground"
+                        item.changeType === "up" &&
+                          "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
+                        item.changeType === "down" &&
+                          "text-destructive bg-red-50 dark:bg-red-950/30",
+                        item.changeType === "neutral" && "text-muted-foreground",
                       )}
                     >
                       {item.changeType === "up" && upArrowIcon}

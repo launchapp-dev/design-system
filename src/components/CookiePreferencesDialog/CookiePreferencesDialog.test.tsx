@@ -21,7 +21,7 @@ describe("CookiePreferencesDialog", () => {
 
   it("renders custom title", () => {
     render(
-      <CookiePreferencesDialog open onOpenChange={() => undefined} title="My Cookie Settings" />
+      <CookiePreferencesDialog open onOpenChange={() => undefined} title="My Cookie Settings" />,
     );
     expect(screen.getByText("My Cookie Settings")).toBeInTheDocument();
   });
@@ -36,22 +36,14 @@ describe("CookiePreferencesDialog", () => {
 
   it("renders switch for first (active) category", () => {
     render(<CookiePreferencesDialog open onOpenChange={() => undefined} />);
-    expect(
-      screen.getByRole("switch", { name: /Essential cookies/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("switch", { name: /Essential cookies/i })).toBeInTheDocument();
   });
 
   it("calls onAcceptAll and closes when Accept All clicked", async () => {
     const user = userEvent.setup();
     const onAcceptAll = vi.fn();
     const onOpenChange = vi.fn();
-    render(
-      <CookiePreferencesDialog
-        open
-        onOpenChange={onOpenChange}
-        onAcceptAll={onAcceptAll}
-      />
-    );
+    render(<CookiePreferencesDialog open onOpenChange={onOpenChange} onAcceptAll={onAcceptAll} />);
     await user.click(screen.getByRole("button", { name: "Accept All" }));
     expect(onAcceptAll).toHaveBeenCalledOnce();
     expect(onOpenChange).toHaveBeenCalledWith(false);
@@ -61,13 +53,7 @@ describe("CookiePreferencesDialog", () => {
     const user = userEvent.setup();
     const onRejectAll = vi.fn();
     const onOpenChange = vi.fn();
-    render(
-      <CookiePreferencesDialog
-        open
-        onOpenChange={onOpenChange}
-        onRejectAll={onRejectAll}
-      />
-    );
+    render(<CookiePreferencesDialog open onOpenChange={onOpenChange} onRejectAll={onRejectAll} />);
     await user.click(screen.getByRole("button", { name: "Reject All" }));
     expect(onRejectAll).toHaveBeenCalledOnce();
     expect(onOpenChange).toHaveBeenCalledWith(false);
@@ -77,9 +63,7 @@ describe("CookiePreferencesDialog", () => {
     const user = userEvent.setup();
     const onSave = vi.fn();
     const onOpenChange = vi.fn();
-    render(
-      <CookiePreferencesDialog open onOpenChange={onOpenChange} onSave={onSave} />
-    );
+    render(<CookiePreferencesDialog open onOpenChange={onOpenChange} onSave={onSave} />);
     await user.click(screen.getByRole("button", { name: "Save Preferences" }));
     expect(onSave).toHaveBeenCalledOnce();
     expect(onOpenChange).toHaveBeenCalledWith(false);
@@ -91,7 +75,7 @@ describe("CookiePreferencesDialog", () => {
         open
         onOpenChange={() => undefined}
         privacyPolicyUrl="https://example.com/privacy"
-      />
+      />,
     );
     const link = screen.getByRole("link", { name: /Privacy Policy/i });
     expect(link).toBeInTheDocument();
@@ -100,9 +84,7 @@ describe("CookiePreferencesDialog", () => {
 
   it("essential switch is disabled", () => {
     render(<CookiePreferencesDialog open onOpenChange={() => undefined} />);
-    expect(
-      screen.getByRole("switch", { name: /Essential cookies/i })
-    ).toBeDisabled();
+    expect(screen.getByRole("switch", { name: /Essential cookies/i })).toBeDisabled();
   });
 
   it("Escape key closes dialog", async () => {

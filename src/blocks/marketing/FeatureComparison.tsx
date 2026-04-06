@@ -215,7 +215,7 @@ function FeatureComparison({
                           onClick={handleToggle}
                           className={cn(
                             "text-xs font-medium transition-colors",
-                            !isAnnual ? "text-foreground" : "text-muted-foreground"
+                            !isAnnual ? "text-foreground" : "text-muted-foreground",
                           )}
                         >
                           Monthly
@@ -225,14 +225,14 @@ function FeatureComparison({
                           onClick={handleToggle}
                           className={cn(
                             "relative inline-flex h-5 w-9 items-center rounded-full transition-colors",
-                            isAnnual ? "bg-primary" : "bg-muted"
+                            isAnnual ? "bg-primary" : "bg-muted",
                           )}
                           aria-label="Toggle annual billing"
                         >
                           <span
                             className={cn(
                               "inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform",
-                              isAnnual ? "translate-x-5" : "translate-x-1"
+                              isAnnual ? "translate-x-5" : "translate-x-1",
                             )}
                           />
                         </button>
@@ -241,7 +241,7 @@ function FeatureComparison({
                           onClick={handleToggle}
                           className={cn(
                             "text-xs font-medium transition-colors",
-                            isAnnual ? "text-foreground" : "text-muted-foreground"
+                            isAnnual ? "text-foreground" : "text-muted-foreground",
                           )}
                         >
                           Annual
@@ -259,7 +259,7 @@ function FeatureComparison({
                       key={tier.id}
                       className={cn(
                         "min-w-[180px] p-4 text-center align-bottom",
-                        tier.popular && "relative bg-primary/5 dark:bg-primary/10"
+                        tier.popular && "relative bg-primary/5 dark:bg-primary/10",
                       )}
                     >
                       {tier.popular && (
@@ -276,13 +276,11 @@ function FeatureComparison({
                           <span className="text-2xl font-bold text-foreground">
                             {formatPrice(
                               isAnnual ? tier.price.annually : tier.price.monthly,
-                              tier.currency || "$"
+                              tier.currency || "$",
                             )}
                           </span>
                           {typeof (isAnnual ? tier.price.annually : tier.price.monthly) ===
-                            "number" && (
-                            <span className="text-sm text-muted-foreground">/mo</span>
-                          )}
+                            "number" && <span className="text-sm text-muted-foreground">/mo</span>}
                         </div>
                       </div>
                     </th>
@@ -296,7 +294,7 @@ function FeatureComparison({
                       key={tier.id}
                       className={cn(
                         "border-t border-border p-4",
-                        tier.popular && "bg-primary/5 dark:bg-primary/10"
+                        tier.popular && "bg-primary/5 dark:bg-primary/10",
                       )}
                     >
                       <Button
@@ -328,7 +326,7 @@ function FeatureComparison({
                         index % 2 === 0 && "bg-muted/30",
                         highlightDifferences &&
                           new Set(Object.values(feature.values)).size > 1 &&
-                          "bg-amber-50/30 dark:bg-amber-950/10"
+                          "bg-amber-50/30 dark:bg-amber-950/10",
                       )}
                     >
                       <td className="sticky left-0 z-10 border-t border-border p-4">
@@ -337,7 +335,10 @@ function FeatureComparison({
                           {hasDescription && (
                             <TooltipRoot>
                               <TooltipTrigger asChild>
-                                <button type="button" className="text-muted-foreground hover:text-foreground">
+                                <button
+                                  type="button"
+                                  className="text-muted-foreground hover:text-foreground"
+                                >
                                   <HelpCircleIcon className="h-4 w-4" />
                                 </button>
                               </TooltipTrigger>
@@ -353,13 +354,10 @@ function FeatureComparison({
                           key={tier.id}
                           className={cn(
                             "border-t border-border p-4 text-center",
-                            tier.popular && "bg-primary/5 dark:bg-primary/10"
+                            tier.popular && "bg-primary/5 dark:bg-primary/10",
                           )}
                         >
-                          <FeatureValueCell
-                            value={feature.values[tier.id]}
-                            tier={tier}
-                          />
+                          <FeatureValueCell value={feature.values[tier.id]} tier={tier} />
                         </td>
                       ))}
                     </tr>
@@ -376,7 +374,7 @@ function FeatureComparison({
                       key={tier.id}
                       className={cn(
                         "border-t border-border p-4",
-                        tier.popular && "bg-primary/5 dark:bg-primary/10"
+                        tier.popular && "bg-primary/5 dark:bg-primary/10",
                       )}
                     >
                       <Button

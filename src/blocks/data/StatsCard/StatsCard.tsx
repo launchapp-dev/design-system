@@ -101,14 +101,12 @@ function StatsCard({
         "transition-shadow hover:shadow-md",
         variant === "highlight" && "border-primary/50 bg-primary/5",
         variant === "subtle" && "border-transparent bg-muted/50",
-        className
+        className,
       )}
       {...props}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          {title}
-        </CardTitle>
+        <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
         {icon && (
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-muted text-muted-foreground">
             {icon}
@@ -118,9 +116,7 @@ function StatsCard({
       <CardContent>
         <div className="space-y-1.5">
           <div className="text-2xl font-bold tracking-tight">{value}</div>
-          {description && (
-            <p className="text-xs text-muted-foreground">{description}</p>
-          )}
+          {description && <p className="text-xs text-muted-foreground">{description}</p>}
           {trend && (
             <div className="flex items-center gap-2 pt-1">
               <Badge
@@ -128,23 +124,17 @@ function StatsCard({
                 className={cn(
                   "gap-1 px-1.5 py-0.5 font-medium",
                   trendBg[trend.direction],
-                  trendColors[trend.direction]
+                  trendColors[trend.direction],
                 )}
               >
                 {trendIcons[trend.direction]}
                 {trend.value}
               </Badge>
-              {trend.label && (
-                <span className="text-xs text-muted-foreground">
-                  {trend.label}
-                </span>
-              )}
+              {trend.label && <span className="text-xs text-muted-foreground">{trend.label}</span>}
             </div>
           )}
         </div>
-        {footer && (
-          <div className="mt-4 border-t border-border/50 pt-3">{footer}</div>
-        )}
+        {footer && <div className="mt-4 border-t border-border/50 pt-3">{footer}</div>}
       </CardContent>
     </Card>
   );

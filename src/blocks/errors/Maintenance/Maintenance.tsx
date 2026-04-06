@@ -54,14 +54,14 @@ const Maintenance = React.forwardRef<HTMLDivElement, MaintenanceProps>(
       updates = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
         className={cn(
           "flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center",
-          className
+          className,
         )}
         {...props}
       >
@@ -96,7 +96,7 @@ const Maintenance = React.forwardRef<HTMLDivElement, MaintenanceProps>(
                     className={cn(
                       update.status === "done" && "text-muted-foreground line-through",
                       update.status === "in-progress" && "text-foreground font-medium",
-                      update.status === "pending" && "text-muted-foreground"
+                      update.status === "pending" && "text-muted-foreground",
                     )}
                   >
                     {update.label}
@@ -117,7 +117,7 @@ const Maintenance = React.forwardRef<HTMLDivElement, MaintenanceProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Maintenance.displayName = "Maintenance";

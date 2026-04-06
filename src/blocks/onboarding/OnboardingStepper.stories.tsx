@@ -12,7 +12,8 @@ const meta: Meta<typeof OnboardingStepper> = {
     layout: "padded",
     docs: {
       description: {
-        component: "Multi-step onboarding wizard with progress indicator, step validation, and keyboard navigation.",
+        component:
+          "Multi-step onboarding wizard with progress indicator, step validation, and keyboard navigation.",
       },
     },
   },
@@ -114,8 +115,18 @@ const BasicSteps = [
     content: (
       <div className="flex flex-col items-center gap-4 py-4 text-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-          <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg
+            className="h-8 w-8 text-primary"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
         </div>
         <div>
@@ -194,8 +205,10 @@ export const WithValidation: Story = {
           </div>
         ),
         validate: () => {
-          const firstName = (document.getElementById("first-name-required") as HTMLInputElement)?.value;
-          const lastName = (document.getElementById("last-name-required") as HTMLInputElement)?.value;
+          const firstName = (document.getElementById("first-name-required") as HTMLInputElement)
+            ?.value;
+          const lastName = (document.getElementById("last-name-required") as HTMLInputElement)
+            ?.value;
           if (!firstName || !lastName) {
             alert("Please fill in both fields");
             return false;

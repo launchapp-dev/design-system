@@ -78,8 +78,8 @@ function CookiePreferencesDialog({
   privacyPolicyUrl,
   className,
 }: CookiePreferencesDialogProps) {
-  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(
-    () => Object.fromEntries(categories.map((c) => [c.id, c.enabled]))
+  const [preferences, setPreferences] = React.useState<Record<string, boolean>>(() =>
+    Object.fromEntries(categories.map((c) => [c.id, c.enabled])),
   );
   const [activeTab, setActiveTab] = React.useState(categories[0]?.id ?? "");
 
@@ -99,9 +99,7 @@ function CookiePreferencesDialog({
   }
 
   function handleRejectAll() {
-    const required = Object.fromEntries(
-      categories.map((c) => [c.id, c.required === true])
-    );
+    const required = Object.fromEntries(categories.map((c) => [c.id, c.required === true]));
     setPreferences(required);
     onRejectAll?.();
     onOpenChange?.(false);
@@ -121,7 +119,7 @@ function CookiePreferencesDialog({
           className={cn(
             "fixed inset-0 z-50 bg-black/50",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
-            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           )}
         />
         <DialogPrimitive.Content
@@ -134,7 +132,7 @@ function CookiePreferencesDialog({
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
             "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
             "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
-            className
+            className,
           )}
         >
           {/* Header */}
@@ -165,7 +163,7 @@ function CookiePreferencesDialog({
                 "ml-4 shrink-0 rounded-sm opacity-70 ring-offset-[hsl(var(--la-background))]",
                 "transition-opacity hover:opacity-100",
                 "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2",
-                "disabled:pointer-events-none"
+                "disabled:pointer-events-none",
               )}
             >
               <svg
@@ -209,7 +207,7 @@ function CookiePreferencesDialog({
                       "transition-colors",
                       "hover:bg-[hsl(var(--la-muted))]",
                       "data-[state=active]:bg-[hsl(var(--la-muted))] data-[state=active]:font-medium",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]"
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
                     )}
                   >
                     <span className="truncate text-[hsl(var(--la-foreground))]">
@@ -243,9 +241,7 @@ function CookiePreferencesDialog({
                       </div>
                       <SwitchPrimitive.Root
                         checked={preferences[category.id] ?? category.enabled}
-                        onCheckedChange={(checked) =>
-                          handleToggle(category.id, checked)
-                        }
+                        onCheckedChange={(checked) => handleToggle(category.id, checked)}
                         disabled={category.required}
                         aria-label={`${category.name} cookies`}
                         className={cn(
@@ -255,13 +251,13 @@ function CookiePreferencesDialog({
                           "focus-visible:ring-offset-[hsl(var(--la-background))]",
                           "disabled:cursor-not-allowed disabled:opacity-50",
                           "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                          "data-[state=unchecked]:bg-[hsl(var(--la-input))]"
+                          "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
                         )}
                       >
                         <SwitchPrimitive.Thumb
                           className={cn(
                             "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform",
-                            "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                            "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
                           )}
                         />
                       </SwitchPrimitive.Root>
@@ -269,8 +265,8 @@ function CookiePreferencesDialog({
 
                     {category.required && (
                       <div className="rounded-md bg-[hsl(var(--la-muted))] px-4 py-3 text-sm text-[hsl(var(--la-muted-foreground))]">
-                        These cookies are always active as they are required for the
-                        site to function.
+                        These cookies are always active as they are required for the site to
+                        function.
                       </div>
                     )}
 
@@ -305,7 +301,4 @@ function CookiePreferencesDialog({
 
 CookiePreferencesDialog.displayName = "CookiePreferencesDialog";
 
-export {
-  CookiePreferencesDialog,
-  PREFERENCES_DEFAULT_CATEGORIES,
-};
+export { CookiePreferencesDialog, PREFERENCES_DEFAULT_CATEGORIES };

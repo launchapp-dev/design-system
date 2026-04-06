@@ -49,7 +49,7 @@ function APIKeyManagerInner(
     creating = false,
     className,
   }: APIKeyManagerProps,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [name, setName] = React.useState("");
@@ -58,7 +58,7 @@ function APIKeyManagerInner(
 
   const togglePerm = (perm: string) => {
     setSelectedPerms((prev) =>
-      prev.includes(perm) ? prev.filter((p) => p !== perm) : [...prev, perm]
+      prev.includes(perm) ? prev.filter((p) => p !== perm) : [...prev, perm],
     );
   };
 
@@ -103,7 +103,12 @@ function APIKeyManagerInner(
         <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-[hsl(var(--la-border))] py-12 text-center">
           <p className="text-sm text-[hsl(var(--la-muted-foreground))]">No API keys yet.</p>
           {onCreateKey && (
-            <Button variant="outline" size="sm" className="mt-3" onClick={() => setDialogOpen(true)}>
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-3"
+              onClick={() => setDialogOpen(true)}
+            >
               Create your first key
             </Button>
           )}
@@ -133,7 +138,9 @@ function APIKeyManagerInner(
                 {key.permissions && key.permissions.length > 0 && (
                   <div className="flex flex-wrap gap-1 pt-1">
                     {key.permissions.map((p) => (
-                      <Badge key={p} variant="outline" className="text-[10px]">{p}</Badge>
+                      <Badge key={p} variant="outline" className="text-[10px]">
+                        {p}
+                      </Badge>
                     ))}
                   </div>
                 )}
@@ -167,9 +174,7 @@ function APIKeyManagerInner(
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Create API Key</DialogTitle>
-            <DialogDescription>
-              Give your key a name and select permissions.
-            </DialogDescription>
+            <DialogDescription>Give your key a name and select permissions.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div>
@@ -202,10 +207,7 @@ function APIKeyManagerInner(
             <Button variant="outline" onClick={() => setDialogOpen(false)}>
               Cancel
             </Button>
-            <Button
-              onClick={handleCreate}
-              disabled={!name.trim() || creating}
-            >
+            <Button onClick={handleCreate} disabled={!name.trim() || creating}>
               Create Key
             </Button>
           </DialogFooter>
@@ -216,7 +218,8 @@ function APIKeyManagerInner(
 }
 
 export const APIKeyManager = React.forwardRef(APIKeyManagerInner) as (
-  props: APIKeyManagerProps & { ref?: React.ForwardedRef<HTMLDivElement> }
+  props: APIKeyManagerProps & { ref?: React.ForwardedRef<HTMLDivElement> },
 ) => React.ReactElement;
 
-(APIKeyManager as React.ForwardRefExoticComponent<APIKeyManagerProps>).displayName = "APIKeyManager";
+(APIKeyManager as React.ForwardRefExoticComponent<APIKeyManagerProps>).displayName =
+  "APIKeyManager";

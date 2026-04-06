@@ -90,7 +90,7 @@ function ListItem({
           href={href}
           className={cn(
             "block select-none space-y-1 rounded-[--la-radius] p-3 leading-none no-underline outline-none transition-colors hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus:bg-[hsl(var(--la-accent))] focus:text-[hsl(var(--la-accent-foreground))]",
-            className
+            className,
           )}
           {...props}
         >
@@ -119,9 +119,7 @@ export const Default: Story = {
                       href="#"
                       className="flex h-full w-full select-none flex-col justify-end rounded-[--la-radius] bg-gradient-to-b from-[hsl(var(--la-muted)/0.5)] to-[hsl(var(--la-muted))] p-6 no-underline outline-none focus:shadow-md"
                     >
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        LaunchApp DS
-                      </div>
+                      <div className="mb-2 mt-4 text-lg font-medium">LaunchApp DS</div>
                       <p className="text-sm leading-tight text-[hsl(var(--la-muted-foreground))]">
                         Beautifully designed components built with Radix UI and Tailwind CSS.
                       </p>
@@ -146,11 +144,7 @@ export const Default: Story = {
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {components.map((component) => (
-                  <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
-                  >
+                  <ListItem key={component.title} title={component.title} href={component.href}>
                     {component.description}
                   </ListItem>
                 ))}
@@ -159,10 +153,7 @@ export const Default: Story = {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <NavigationMenuLink
-              href="#"
-              className={navigationMenuTriggerStyle()}
-            >
+            <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
               Documentation
             </NavigationMenuLink>
           </NavigationMenuItem>
@@ -179,10 +170,7 @@ export const SimpleLinks: Story = {
         <NavigationMenuList>
           {["Home", "About", "Blog", "Contact"].map((item) => (
             <NavigationMenuItem key={item}>
-              <NavigationMenuLink
-                href="#"
-                className={navigationMenuTriggerStyle()}
-              >
+              <NavigationMenuLink href="#" className={navigationMenuTriggerStyle()}>
                 {item}
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -221,9 +209,7 @@ export const DarkMode: Story = {
                       href="#"
                       className="flex h-full w-full select-none flex-col justify-end rounded-[--la-radius] bg-gradient-to-b from-[hsl(var(--la-muted)/0.5)] to-[hsl(var(--la-muted))] p-6 no-underline outline-none focus:shadow-md"
                     >
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        LaunchApp DS
-                      </div>
+                      <div className="mb-2 mt-4 text-lg font-medium">LaunchApp DS</div>
                       <p className="text-sm leading-tight text-[hsl(var(--la-muted-foreground))]">
                         Beautifully designed components built with Radix UI and Tailwind CSS.
                       </p>

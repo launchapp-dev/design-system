@@ -71,13 +71,20 @@ const steps = [
     content: (
       <div className="flex flex-col items-center gap-4 py-6 text-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-          <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="h-8 w-8 text-primary"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
         <div>
           <h3 className="text-lg font-semibold">Everything is set up!</h3>
-          <p className="text-sm text-muted-foreground">Your workspace is ready. Click Complete to get started.</p>
+          <p className="text-sm text-muted-foreground">
+            Your workspace is ready. Click Complete to get started.
+          </p>
         </div>
       </div>
     ),
@@ -139,7 +146,10 @@ export const TwoSteps: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 600 }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 600 }}
+    >
       <MultiStepWizard {...args} />
     </div>
   ),

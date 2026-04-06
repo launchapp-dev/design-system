@@ -80,8 +80,7 @@ export const loadingStatePlugin: ComponentPlugin = {
   name: "loading-state",
   version: "1.0.0",
   targetComponent: "Button",
-  description:
-    "Adds loading state support with automatic disabled state and label changes",
+  description: "Adds loading state support with automatic disabled state and label changes",
   author: "Design System Team",
 
   beforeRender: (props) => {
@@ -130,14 +129,11 @@ export const statusBadgePlugin: ComponentPlugin = {
 
   variants: {
     status: {
-      active:
-        "bg-green-100 text-green-800 border-green-300 dark:bg-green-900 dark:text-green-200",
-      inactive:
-        "bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-200",
+      active: "bg-green-100 text-green-800 border-green-300 dark:bg-green-900 dark:text-green-200",
+      inactive: "bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-200",
       pending:
         "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900 dark:text-yellow-200",
-      error:
-        "bg-red-100 text-red-800 border-red-300 dark:bg-red-900 dark:text-red-200",
+      error: "bg-red-100 text-red-800 border-red-300 dark:bg-red-900 dark:text-red-200",
     },
   },
 };

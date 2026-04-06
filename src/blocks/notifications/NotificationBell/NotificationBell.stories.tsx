@@ -14,10 +14,35 @@ export default meta;
 type Story = StoryObj<typeof NotificationBell>;
 
 const sampleNotifications = [
-  { id: "1", title: "New customer signed up", description: "Acme Corp created an account", timestamp: "2 min ago", read: false, avatarInitials: "AC" },
-  { id: "2", title: "Payment received", description: "$2,500 from TechStart Inc", timestamp: "1 hour ago", read: false },
-  { id: "3", title: "New feature released", description: "Check out the analytics dashboard", timestamp: "3 hours ago", read: true },
-  { id: "4", title: "Team invitation", description: "You were invited to join Design System project", timestamp: "5 hours ago", read: false },
+  {
+    id: "1",
+    title: "New customer signed up",
+    description: "Acme Corp created an account",
+    timestamp: "2 min ago",
+    read: false,
+    avatarInitials: "AC",
+  },
+  {
+    id: "2",
+    title: "Payment received",
+    description: "$2,500 from TechStart Inc",
+    timestamp: "1 hour ago",
+    read: false,
+  },
+  {
+    id: "3",
+    title: "New feature released",
+    description: "Check out the analytics dashboard",
+    timestamp: "3 hours ago",
+    read: true,
+  },
+  {
+    id: "4",
+    title: "Team invitation",
+    description: "You were invited to join Design System project",
+    timestamp: "5 hours ago",
+    read: false,
+  },
 ];
 
 export const Default: Story = {
@@ -102,7 +127,9 @@ export const Interactive: Story = {
       <div className="flex gap-8 items-start">
         <NotificationBell
           notifications={notifications}
-          onRead={(id) => setNotifications((prev) => prev.map((n) => n.id === id ? { ...n, read: true } : n))}
+          onRead={(id) =>
+            setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)))
+          }
           onReadAll={() => setNotifications((prev) => prev.map((n) => ({ ...n, read: true })))}
         />
         <div className="space-y-2 text-sm">

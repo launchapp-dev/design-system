@@ -7,14 +7,39 @@ import { Separator } from "../../components/Separator";
 // ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
 function CreditCardIcon({ className }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <rect width="20" height="14" x="2" y="5" rx="2" /><line x1="2" y1="10" x2="22" y2="10" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect width="20" height="14" x="2" y="5" rx="2" />
+      <line x1="2" y1="10" x2="22" y2="10" />
     </svg>
   );
 }
 function CheckIcon({ className }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
       <polyline points="20 6 9 17 4 12" />
     </svg>
   );
@@ -34,7 +59,8 @@ export interface PaymentMethod {
   name?: string;
 }
 
-export interface PaymentMethodCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface PaymentMethodCardProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect"> {
   methods: PaymentMethod[];
   selectedId?: string;
   onSelect?: (method: PaymentMethod) => void;
@@ -73,8 +99,8 @@ function PaymentMethodCard({
           const label = method.brand
             ? `${method.brand} •••• ${method.last4}`
             : method.type === "paypal"
-            ? "PayPal"
-            : `Account •••• ${method.last4}`;
+              ? "PayPal"
+              : `Account •••• ${method.last4}`;
 
           return (
             <div key={method.id}>
@@ -86,7 +112,7 @@ function PaymentMethodCard({
                   "hover:border-primary/50",
                   isRadio && !isSelected && "border-input",
                   isRadio && isSelected && "border-primary bg-primary/5",
-                  !isRadio && "border-input cursor-default"
+                  !isRadio && "border-input cursor-default",
                 )}
               >
                 <div className="flex items-center gap-3">
@@ -107,9 +133,7 @@ function PaymentMethodCard({
                         Expires {method.expiryMonth.toString().padStart(2, "0")}/{method.expiryYear}
                       </p>
                     )}
-                    {method.name && (
-                      <p className="text-xs text-muted-foreground">{method.name}</p>
-                    )}
+                    {method.name && <p className="text-xs text-muted-foreground">{method.name}</p>}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -149,11 +173,7 @@ function PaymentMethodCard({
       {onAddNew && (
         <>
           <Separator />
-          <Button
-            variant="outline"
-            onClick={onAddNew}
-            className="w-full"
-          >
+          <Button variant="outline" onClick={onAddNew} className="w-full">
             <CreditCardIcon className="mr-2 h-4 w-4" />
             Add payment method
           </Button>

@@ -43,10 +43,7 @@ export const Default: Story = {
 export const WithoutToggle: Story = {
   render: () => (
     <div className="min-h-screen bg-background">
-      <PricingTableBlock
-        headline="Choose your plan"
-        showToggle={false}
-      />
+      <PricingTableBlock headline="Choose your plan" showToggle={false} />
     </div>
   ),
 };

@@ -101,24 +101,13 @@ function GridPattern({
       aria-hidden="true"
       className={cn(
         "pointer-events-none absolute inset-0 h-full w-full fill-none stroke-[hsl(var(--la-border))]",
-        className
+        className,
       )}
       {...props}
     >
       <defs>
-        <pattern
-          id={id}
-          width={width}
-          height={height}
-          patternUnits="userSpaceOnUse"
-          x={x}
-          y={y}
-        >
-          <path
-            d={`M.5 ${height}V.5H${width}`}
-            fill="none"
-            strokeDasharray={strokeDasharray}
-          />
+        <pattern id={id} width={width} height={height} patternUnits="userSpaceOnUse" x={x} y={y}>
+          <path d={`M.5 ${height}V.5H${width}`} fill="none" strokeDasharray={strokeDasharray} />
         </pattern>
       </defs>
       <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />
@@ -150,7 +139,16 @@ export interface DotPatternProps extends React.SVGAttributes<SVGSVGElement> {
   cr?: number;
 }
 
-function DotPattern({ className, width = 16, height = 16, cx = 1, cy = 1, cr = 1, ref, ...props }: DotPatternProps & { ref?: React.Ref<SVGSVGElement> }) {
+function DotPattern({
+  className,
+  width = 16,
+  height = 16,
+  cx = 1,
+  cy = 1,
+  cr = 1,
+  ref,
+  ...props
+}: DotPatternProps & { ref?: React.Ref<SVGSVGElement> }) {
   const id = React.useId();
   return (
     <svg
@@ -158,7 +156,7 @@ function DotPattern({ className, width = 16, height = 16, cx = 1, cy = 1, cr = 1
       aria-hidden="true"
       className={cn(
         "pointer-events-none absolute inset-0 h-full w-full fill-[hsl(var(--la-border))]",
-        className
+        className,
       )}
       {...props}
     >

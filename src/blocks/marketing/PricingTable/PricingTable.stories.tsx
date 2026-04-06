@@ -21,12 +21,7 @@ const defaultTiers = [
       monthly: 0,
       annually: 0,
     },
-    features: [
-      "Up to 3 projects",
-      "500 API requests/day",
-      "Community support",
-      "Basic analytics",
-    ],
+    features: ["Up to 3 projects", "500 API requests/day", "Community support", "Basic analytics"],
     cta: {
       label: "Get started",
       href: "/auth/register",

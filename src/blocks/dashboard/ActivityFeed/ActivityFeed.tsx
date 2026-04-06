@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/Avatar";
 import { Badge } from "@/components/Badge";
@@ -28,33 +28,99 @@ export interface ActivityFeedProps extends React.HTMLAttributes<HTMLDivElement> 
 
 const typeIcons: Record<ActivityFeedItem["type"], React.ReactNode> = {
   comment: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
   ),
   update: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
     </svg>
   ),
   create: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M12 5v14M5 12h14" />
     </svg>
   ),
   delete: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
     </svg>
   ),
   mention: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="12" cy="12" r="4" />
       <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" />
     </svg>
   ),
   status: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="12" cy="12" r="10" />
       <polyline points="12 6 12 12 16 14" />
     </svg>
@@ -81,9 +147,7 @@ function ActivityFeed({
 }: ActivityFeedProps) {
   return (
     <div ref={null} className={cn("space-y-3", className)} {...props}>
-      {title && (
-        <h3 className="text-sm font-semibold text-foreground px-1">{title}</h3>
-      )}
+      {title && <h3 className="text-sm font-semibold text-foreground px-1">{title}</h3>}
       <div className="space-y-2">
         {items.map((item) => (
           <button
@@ -91,7 +155,7 @@ function ActivityFeed({
             onClick={() => onItemClick?.(item)}
             className={cn(
               "w-full flex items-start gap-3 rounded-[--la-radius] p-3 text-left transition-colors hover:bg-[hsl(var(--la-accent))]",
-              item.href && "cursor-pointer"
+              item.href && "cursor-pointer",
             )}
           >
             <div className="relative shrink-0">
@@ -101,10 +165,12 @@ function ActivityFeed({
                   <AvatarFallback className="text-xs">{item.avatarFallback ?? ""}</AvatarFallback>
                 </Avatar>
               ) : null}
-              <div className={cn(
-                "absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-background",
-                typeColors[item.type]
-              )}>
+              <div
+                className={cn(
+                  "absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-background",
+                  typeColors[item.type],
+                )}
+              >
                 {typeIcons[item.type]}
               </div>
             </div>
@@ -113,7 +179,9 @@ function ActivityFeed({
                 <div className="min-w-0">
                   <p className="text-sm font-medium text-foreground leading-tight">{item.title}</p>
                   {item.description && (
-                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{item.description}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                      {item.description}
+                    </p>
                   )}
                 </div>
                 <div className="flex flex-col items-end gap-1 shrink-0">
@@ -122,7 +190,9 @@ function ActivityFeed({
                       {item.badge}
                     </Badge>
                   )}
-                  <time className="text-xs text-muted-foreground whitespace-nowrap">{item.timestamp}</time>
+                  <time className="text-xs text-muted-foreground whitespace-nowrap">
+                    {item.timestamp}
+                  </time>
                 </div>
               </div>
             </div>

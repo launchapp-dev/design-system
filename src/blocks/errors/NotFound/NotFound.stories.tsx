@@ -50,12 +50,7 @@ export const CustomMessage: Story = {
 };
 
 export const WithoutActions: Story = {
-  render: () => (
-    <NotFound
-      title="Nothing here"
-      description="This page hasn't been created yet."
-    />
-  ),
+  render: () => <NotFound title="Nothing here" description="This page hasn't been created yet." />,
 };
 
 export const CustomIllustration: Story = {

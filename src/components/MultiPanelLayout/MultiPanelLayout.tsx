@@ -1,11 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  ResizablePanelGroup,
-  ResizablePanel,
-  ResizableHandle,
-} from "@/components/Resizable";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/Resizable";
 import { cn } from "@/lib/utils";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -31,8 +27,7 @@ export interface MultiPanelLayoutPanel {
   contentClassName?: string;
 }
 
-export interface MultiPanelLayoutProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface MultiPanelLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Array of panel definitions */
   panels: MultiPanelLayoutPanel[];
   /** Layout direction: "horizontal" (side-by-side) or "vertical" (stacked) */
@@ -61,7 +56,7 @@ const MultiPanelLayout = React.forwardRef<HTMLDivElement, MultiPanelLayoutProps>
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     const isHorizontal = direction === "horizontal";
     const groupDirection = isHorizontal ? ("horizontal" as const) : ("vertical" as const);
@@ -84,7 +79,7 @@ const MultiPanelLayout = React.forwardRef<HTMLDivElement, MultiPanelLayoutProps>
                   {panel.header && (
                     <div
                       className={cn(
-                        "flex shrink-0 items-center gap-2 border-b border-border bg-background px-3 py-2 text-sm font-medium"
+                        "flex shrink-0 items-center gap-2 border-b border-border bg-background px-3 py-2 text-sm font-medium",
                       )}
                     >
                       {panel.header}
@@ -112,7 +107,7 @@ const MultiPanelLayout = React.forwardRef<HTMLDivElement, MultiPanelLayoutProps>
         </ResizablePanelGroup>
       </div>
     );
-  }
+  },
 );
 MultiPanelLayout.displayName = "MultiPanelLayout";
 

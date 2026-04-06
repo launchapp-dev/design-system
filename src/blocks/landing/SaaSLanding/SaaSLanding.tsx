@@ -1,6 +1,13 @@
 import * as React from "react";
 import { cn } from "../../../lib/utils";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "../../../components/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+} from "../../../components/Card";
 
 export interface SaaSFeature {
   icon?: React.ReactNode;
@@ -57,7 +64,7 @@ const SaaSLanding = React.forwardRef<HTMLDivElement, SaaSLandingProps>(
       ctaAction,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
@@ -75,16 +82,16 @@ const SaaSLanding = React.forwardRef<HTMLDivElement, SaaSLandingProps>(
               {secondaryAction}
             </div>
           )}
-          {heroMedia && (
-            <div className="mt-16 w-full max-w-5xl">{heroMedia}</div>
-          )}
+          {heroMedia && <div className="mt-16 w-full max-w-5xl">{heroMedia}</div>}
         </section>
 
         {features.length > 0 && (
           <section className="px-4 py-16 md:py-24 bg-muted/30">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight text-foreground">{featuresTitle}</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                  {featuresTitle}
+                </h2>
                 {featuresSubtitle && (
                   <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">{featuresSubtitle}</p>
                 )}
@@ -110,7 +117,9 @@ const SaaSLanding = React.forwardRef<HTMLDivElement, SaaSLandingProps>(
           <section className="px-4 py-16 md:py-24">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight text-foreground">{pricingTitle}</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                  {pricingTitle}
+                </h2>
                 {pricingSubtitle && (
                   <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">{pricingSubtitle}</p>
                 )}
@@ -119,7 +128,9 @@ const SaaSLanding = React.forwardRef<HTMLDivElement, SaaSLandingProps>(
                 {pricingTiers.map((tier, i) => (
                   <Card
                     key={i}
-                    className={cn(tier.highlighted && "border-primary shadow-lg ring-1 ring-primary")}
+                    className={cn(
+                      tier.highlighted && "border-primary shadow-lg ring-1 ring-primary",
+                    )}
                   >
                     <CardHeader>
                       <CardTitle>{tier.name}</CardTitle>
@@ -134,7 +145,10 @@ const SaaSLanding = React.forwardRef<HTMLDivElement, SaaSLandingProps>(
                     <CardContent>
                       <ul className="space-y-2">
                         {tier.features.map((f, j) => (
-                          <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <li
+                            key={j}
+                            className="flex items-center gap-2 text-sm text-muted-foreground"
+                          >
                             <svg
                               className="h-4 w-4 text-primary shrink-0"
                               fill="none"
@@ -142,7 +156,12 @@ const SaaSLanding = React.forwardRef<HTMLDivElement, SaaSLandingProps>(
                               stroke="currentColor"
                               aria-hidden="true"
                             >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
                             </svg>
                             {f}
                           </li>
@@ -160,19 +179,15 @@ const SaaSLanding = React.forwardRef<HTMLDivElement, SaaSLandingProps>(
         {(ctaTitle || ctaAction) && (
           <section className="px-4 py-16 md:py-24 bg-primary text-primary-foreground">
             <div className="max-w-3xl mx-auto text-center">
-              {ctaTitle && (
-                <h2 className="text-3xl font-bold tracking-tight">{ctaTitle}</h2>
-              )}
-              {ctaSubtitle && (
-                <p className="mt-4 text-primary-foreground/80">{ctaSubtitle}</p>
-              )}
+              {ctaTitle && <h2 className="text-3xl font-bold tracking-tight">{ctaTitle}</h2>}
+              {ctaSubtitle && <p className="mt-4 text-primary-foreground/80">{ctaSubtitle}</p>}
               {ctaAction && <div className="mt-8">{ctaAction}</div>}
             </div>
           </section>
         )}
       </div>
     );
-  }
+  },
 );
 
 SaaSLanding.displayName = "SaaSLanding";

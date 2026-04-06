@@ -35,7 +35,7 @@ const TypingIndicator = React.forwardRef<HTMLDivElement, TypingIndicatorProps>(
         }
       `}</style>
     </div>
-  )
+  ),
 );
 TypingIndicator.displayName = "TypingIndicator";
 

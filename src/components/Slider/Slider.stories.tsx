@@ -74,13 +74,7 @@ export const RangeSlider: Story = {
     const [values, setValues] = React.useState([25, 75]);
     return (
       <div style={{ width: "300px", padding: "16px 0" }}>
-        <Slider
-          min={0}
-          max={100}
-          step={1}
-          value={values}
-          onValueChange={setValues}
-        />
+        <Slider min={0} max={100} step={1} value={values} onValueChange={setValues} />
         <div style={{ marginTop: "8px", fontSize: "12px", color: "var(--muted-foreground)" }}>
           Range: {values[0]} – {values[1]}
         </div>
@@ -112,13 +106,7 @@ export const WithSteps: Story = {
     const [value, setValue] = React.useState([0]);
     return (
       <div style={{ width: "300px", padding: "16px 0" }}>
-        <Slider
-          min={0}
-          max={100}
-          step={10}
-          value={value}
-          onValueChange={setValue}
-        />
+        <Slider min={0} max={100} step={10} value={value} onValueChange={setValue} />
         <div style={{ marginTop: "8px", fontSize: "12px", color: "var(--muted-foreground)" }}>
           Value: {value[0]}
         </div>
@@ -132,7 +120,14 @@ export const DarkMode: Story = {
     globals: { theme: "dark" },
   },
   render: () => (
-    <div style={{ width: "300px", padding: "24px", background: "hsl(var(--background))", borderRadius: "8px" }}>
+    <div
+      style={{
+        width: "300px",
+        padding: "24px",
+        background: "hsl(var(--background))",
+        borderRadius: "8px",
+      }}
+    >
       <Slider defaultValue={[60]} />
     </div>
   ),

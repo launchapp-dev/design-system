@@ -27,11 +27,7 @@ describe("CookieConsent", () => {
 
     it("renders custom description", () => {
       render(
-        <CookieConsent
-          open
-          onOpenChange={() => undefined}
-          description="Control your data."
-        />
+        <CookieConsent open onOpenChange={() => undefined} description="Control your data." />,
       );
       expect(screen.getByText("Control your data.")).toBeInTheDocument();
     });
@@ -67,7 +63,7 @@ describe("CookieConsent", () => {
               enabled: false,
             },
           ]}
-        />
+        />,
       );
       expect(screen.getByText("Essential")).toBeInTheDocument();
       expect(screen.getByText("Advertising")).toBeInTheDocument();
@@ -77,29 +73,19 @@ describe("CookieConsent", () => {
   describe("ARIA attributes", () => {
     it("renders switches with aria-labels", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
-      expect(
-        screen.getByRole("switch", { name: /Necessary cookies/i })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("switch", { name: /Analytics cookies/i })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("switch", { name: /Marketing cookies/i })
-      ).toBeInTheDocument();
+      expect(screen.getByRole("switch", { name: /Necessary cookies/i })).toBeInTheDocument();
+      expect(screen.getByRole("switch", { name: /Analytics cookies/i })).toBeInTheDocument();
+      expect(screen.getByRole("switch", { name: /Marketing cookies/i })).toBeInTheDocument();
     });
 
     it("disables switch for required category", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
-      expect(
-        screen.getByRole("switch", { name: /Necessary cookies/i })
-      ).toBeDisabled();
+      expect(screen.getByRole("switch", { name: /Necessary cookies/i })).toBeDisabled();
     });
 
     it("enables switch for non-required categories", () => {
       render(<CookieConsent open onOpenChange={() => undefined} />);
-      expect(
-        screen.getByRole("switch", { name: /Analytics cookies/i })
-      ).not.toBeDisabled();
+      expect(screen.getByRole("switch", { name: /Analytics cookies/i })).not.toBeDisabled();
     });
   });
 
@@ -108,9 +94,7 @@ describe("CookieConsent", () => {
       const user = userEvent.setup();
       const onAcceptAll = vi.fn();
       const onOpenChange = vi.fn();
-      render(
-        <CookieConsent open onOpenChange={onOpenChange} onAcceptAll={onAcceptAll} />
-      );
+      render(<CookieConsent open onOpenChange={onOpenChange} onAcceptAll={onAcceptAll} />);
       await user.click(screen.getByRole("button", { name: "Accept All" }));
       expect(onAcceptAll).toHaveBeenCalledOnce();
       expect(onOpenChange).toHaveBeenCalledWith(false);
@@ -120,9 +104,7 @@ describe("CookieConsent", () => {
       const user = userEvent.setup();
       const onRejectAll = vi.fn();
       const onOpenChange = vi.fn();
-      render(
-        <CookieConsent open onOpenChange={onOpenChange} onRejectAll={onRejectAll} />
-      );
+      render(<CookieConsent open onOpenChange={onOpenChange} onRejectAll={onRejectAll} />);
       await user.click(screen.getByRole("button", { name: "Reject All" }));
       expect(onRejectAll).toHaveBeenCalledOnce();
       expect(onOpenChange).toHaveBeenCalledWith(false);
@@ -133,11 +115,7 @@ describe("CookieConsent", () => {
       const onSavePreferences = vi.fn();
       const onOpenChange = vi.fn();
       render(
-        <CookieConsent
-          open
-          onOpenChange={onOpenChange}
-          onSavePreferences={onSavePreferences}
-        />
+        <CookieConsent open onOpenChange={onOpenChange} onSavePreferences={onSavePreferences} />,
       );
       await user.click(screen.getByRole("button", { name: "Save Preferences" }));
       expect(onSavePreferences).toHaveBeenCalledOnce();
@@ -174,15 +152,9 @@ describe("CookieConsent", () => {
       const user = userEvent.setup();
       const onSavePreferences = vi.fn();
       render(
-        <CookieConsent
-          open
-          onOpenChange={() => undefined}
-          onSavePreferences={onSavePreferences}
-        />
+        <CookieConsent open onOpenChange={() => undefined} onSavePreferences={onSavePreferences} />,
       );
-      await user.click(
-        screen.getByRole("switch", { name: /Analytics cookies/i })
-      );
+      await user.click(screen.getByRole("switch", { name: /Analytics cookies/i }));
       await user.click(screen.getByRole("button", { name: "Save Preferences" }));
       const prefs = onSavePreferences.mock.calls[0][0] as Record<string, boolean>;
       expect(prefs.analytics).toBe(true);

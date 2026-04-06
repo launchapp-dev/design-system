@@ -122,11 +122,7 @@ function InteractivePaginator() {
           </PaginationItem>
 
           <PaginationItem>
-            <PaginationLink
-              href="#"
-              isActive={currentPage === 1}
-              onClick={(e) => handlePage(e, 1)}
-            >
+            <PaginationLink href="#" isActive={currentPage === 1} onClick={(e) => handlePage(e, 1)}>
               1
             </PaginationLink>
           </PaginationItem>
@@ -190,14 +186,12 @@ export const FirstPage: Story = {
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious
-            href="#"
-            aria-disabled
-            className="pointer-events-none opacity-50"
-          />
+          <PaginationPrevious href="#" aria-disabled className="pointer-events-none opacity-50" />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>1</PaginationLink>
+          <PaginationLink href="#" isActive>
+            1
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#">2</PaginationLink>
@@ -263,14 +257,12 @@ export const LastPage: Story = {
           <PaginationLink href="#">9</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>10</PaginationLink>
+          <PaginationLink href="#" isActive>
+            10
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext
-            href="#"
-            aria-disabled
-            className="pointer-events-none opacity-50"
-          />
+          <PaginationNext href="#" aria-disabled className="pointer-events-none opacity-50" />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
@@ -307,7 +299,9 @@ export const DarkMode: Story = {
           <PaginationLink href="#">4</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>5</PaginationLink>
+          <PaginationLink href="#" isActive>
+            5
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#">6</PaginationLink>

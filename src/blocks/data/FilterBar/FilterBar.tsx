@@ -2,7 +2,6 @@ import * as React from "react";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Badge } from "@/components/Badge";
-import { SelectRoot, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/Select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover";
 import { Checkbox } from "@/components/Checkbox";
 import { Label } from "@/components/Label";
@@ -29,13 +28,35 @@ export interface FilterBarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const FilterIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
   </svg>
 );
 
 const ColumnsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
     <line x1="8" y1="6" x2="21" y2="6" />
     <line x1="8" y1="12" x2="21" y2="12" />
     <line x1="8" y1="18" x2="21" y2="18" />
@@ -77,9 +98,7 @@ function FilterBar({
 
   const toggleFilter = (column: string, value: string) => {
     const current = activeFilters[column] ?? [];
-    const next = current.includes(value)
-      ? current.filter((v) => v !== value)
-      : [...current, value];
+    const next = current.includes(value) ? current.filter((v) => v !== value) : [...current, value];
     onFiltersChange?.({ ...activeFilters, [column]: next });
   };
 
@@ -98,7 +117,12 @@ function FilterBar({
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
           <Input
             value={localSearch}
@@ -119,7 +143,10 @@ function FilterBar({
                 <FilterIcon />
                 {filter.label}
                 {active.length > 0 && (
-                  <Badge variant="secondary" className="ml-1 h-5 w-5 items-center justify-center p-0 text-xs">
+                  <Badge
+                    variant="secondary"
+                    className="ml-1 h-5 w-5 items-center justify-center p-0 text-xs"
+                  >
                     {active.length}
                   </Badge>
                 )}
@@ -144,7 +171,12 @@ function FilterBar({
                 ))}
               </div>
               {active.length > 0 && (
-                <Button variant="ghost" size="sm" className="mt-2 w-full text-xs" onClick={() => toggleFilter(filter.column, active[0])}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="mt-2 w-full text-xs"
+                  onClick={() => toggleFilter(filter.column, active[0])}
+                >
                   Clear
                 </Button>
               )}
@@ -154,7 +186,12 @@ function FilterBar({
       })}
 
       {totalActiveFilters > 0 && (
-        <Button variant="ghost" size="sm" onClick={clearFilters} className="h-9 text-xs text-muted-foreground">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={clearFilters}
+          className="h-9 text-xs text-muted-foreground"
+        >
           Clear all ({totalActiveFilters})
         </Button>
       )}

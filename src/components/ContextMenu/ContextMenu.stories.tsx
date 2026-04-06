@@ -78,15 +78,21 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>With Checkbox Items</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          With Checkbox Items
+        </p>
         <CheckboxExample />
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>With Radio Items</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          With Radio Items
+        </p>
         <RadioExample />
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>With Sub Menu</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          With Sub Menu
+        </p>
         <SubMenuExample />
       </div>
     </div>
@@ -245,7 +251,9 @@ export const EdgeCases: Story = {
   render: () => (
     <div style={{ padding: "32px", display: "flex", flexDirection: "column", gap: "24px" }}>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Inset labels</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Inset labels
+        </p>
         <ContextMenu>
           <ContextMenuTrigger asChild>
             <TriggerArea>Right-click (inset items)</TriggerArea>
@@ -253,14 +261,18 @@ export const EdgeCases: Story = {
           <ContextMenuContent className="w-56">
             <ContextMenuLabel inset>Section</ContextMenuLabel>
             <ContextMenuItem inset>Item with inset</ContextMenuItem>
-            <ContextMenuItem inset disabled>Disabled inset</ContextMenuItem>
+            <ContextMenuItem inset disabled>
+              Disabled inset
+            </ContextMenuItem>
             <ContextMenuSeparator />
             <ContextMenuItem inset>Another item</ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
       </div>
       <div>
-        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>Many items</p>
+        <p style={{ fontSize: "12px", marginBottom: "8px", color: "hsl(var(--muted-foreground))" }}>
+          Many items
+        </p>
         <ContextMenu>
           <ContextMenuTrigger asChild>
             <TriggerArea>Right-click (many items)</TriggerArea>

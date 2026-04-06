@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  ChatBubble,
-  ChatBubbleGroup,
-  ChatBubbleLinkPreview,
-} from "./index";
+import { ChatBubble, ChatBubbleGroup, ChatBubbleLinkPreview } from "./index";
 
 const meta = {
   title: "Components/ChatBubble",
@@ -23,11 +19,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => (
-    <ChatBubble {...args}>
-      Hello! How can I help you today?
-    </ChatBubble>
-  ),
+  render: (args) => <ChatBubble {...args}>Hello! How can I help you today?</ChatBubble>,
   args: {
     variant: "assistant",
     showAvatar: true,
@@ -36,11 +28,7 @@ export const Default: Story = {
 };
 
 export const UserMessage: Story = {
-  render: (args) => (
-    <ChatBubble {...args}>
-      Can you help me write a React component?
-    </ChatBubble>
-  ),
+  render: (args) => <ChatBubble {...args}>Can you help me write a React component?</ChatBubble>,
   args: {
     variant: "user",
     showAvatar: true,
@@ -52,7 +40,8 @@ export const UserMessage: Story = {
 export const AssistantMessage: Story = {
   render: (args) => (
     <ChatBubble {...args}>
-      Of course! I'd be happy to help you write a React component. What kind of component are you looking to create?
+      Of course! I'd be happy to help you write a React component. What kind of component are you
+      looking to create?
     </ChatBubble>
   ),
   args: {
@@ -65,9 +54,7 @@ export const AssistantMessage: Story = {
 
 export const SystemMessage: Story = {
   render: (args) => (
-    <ChatBubble {...args}>
-      This conversation is being monitored for quality assurance.
-    </ChatBubble>
+    <ChatBubble {...args}>This conversation is being monitored for quality assurance.</ChatBubble>
   ),
   args: {
     variant: "system",
@@ -227,11 +214,7 @@ export const DarkMode: Story = {
 };
 
 export const WithoutAvatar: Story = {
-  render: (args) => (
-    <ChatBubble {...args}>
-      This message has no avatar displayed.
-    </ChatBubble>
-  ),
+  render: (args) => <ChatBubble {...args}>This message has no avatar displayed.</ChatBubble>,
   args: {
     variant: "assistant",
     showAvatar: false,

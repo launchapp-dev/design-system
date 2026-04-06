@@ -129,9 +129,7 @@ export const WithFooter: Story = {
     footer: (
       <div className="flex items-center justify-between text-xs">
         <span className="text-muted-foreground">Upgrade available</span>
-        <button className="font-medium text-primary hover:underline">
-          View plans
-        </button>
+        <button className="font-medium text-primary hover:underline">View plans</button>
       </div>
     ),
   },

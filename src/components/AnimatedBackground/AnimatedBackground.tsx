@@ -32,15 +32,17 @@ function Particles({
   ...props
 }: ParticlesProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
-  const [particles, setParticles] = React.useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    speedX: number;
-    speedY: number;
-    opacity: number;
-  }>>([]);
+  const [particles, setParticles] = React.useState<
+    Array<{
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
+    }>
+  >([]);
 
   React.useEffect(() => {
     if (reduced) return;
@@ -75,7 +77,7 @@ function Particles({
             if (newY < 0) newY = 100;
             if (newY > 100) newY = 0;
             return { ...p, x: newX, y: newY };
-          })
+          }),
         );
       }
       animationId = requestAnimationFrame(animate);
@@ -86,11 +88,7 @@ function Particles({
   }, [particles.length, reduced]);
 
   return (
-    <div
-      ref={ref}
-      className={cn("relative overflow-hidden", className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("relative overflow-hidden", className)} {...props}>
       <div aria-hidden className="absolute inset-0">
         {reduced
           ? Array.from({ length: Math.min(count, 20) }, (_, i) => (
@@ -148,14 +146,16 @@ function Stars({
   ...props
 }: StarsProps & { ref?: React.Ref<HTMLDivElement> }) {
   const reduced = usePrefersReducedMotion();
-  const [stars, setStars] = React.useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    opacity: number;
-    twinkleSpeed: number;
-  }>>([]);
+  const [stars, setStars] = React.useState<
+    Array<{
+      id: number;
+      x: number;
+      y: number;
+      size: number;
+      opacity: number;
+      twinkleSpeed: number;
+    }>
+  >([]);
 
   React.useEffect(() => {
     const newStars = Array.from({ length: count }, (_, i) => ({
@@ -187,9 +187,7 @@ function Stars({
               height: star.size,
               backgroundColor: starColor,
               opacity: reduced ? star.opacity : star.opacity,
-              animation: reduced
-                ? "none"
-                : `twinkle ${star.twinkleSpeed}s ease-in-out infinite`,
+              animation: reduced ? "none" : `twinkle ${star.twinkleSpeed}s ease-in-out infinite`,
             }}
           />
         ))}
@@ -240,7 +238,7 @@ function MatrixRain({
           const random = Math.random();
           if (random > 0.975) return 0;
           return drop + 1;
-        })
+        }),
       );
     }, speed);
 
@@ -349,11 +347,7 @@ function NoiseTexture({
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className={cn("relative overflow-hidden", className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("relative overflow-hidden", className)} {...props}>
       <canvas
         ref={canvasRef}
         width={256}
@@ -398,11 +392,7 @@ function AnimatedGrid({
   const id = React.useId();
 
   return (
-    <div
-      ref={ref}
-      className={cn("relative overflow-hidden", className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("relative overflow-hidden", className)} {...props}>
       <svg
         aria-hidden
         className="absolute inset-0 h-full w-full"
@@ -412,12 +402,7 @@ function AnimatedGrid({
         }}
       >
         <defs>
-          <pattern
-            id={id}
-            width={cellSize}
-            height={cellSize}
-            patternUnits="userSpaceOnUse"
-          >
+          <pattern id={id} width={cellSize} height={cellSize} patternUnits="userSpaceOnUse">
             <path
               d={`M ${cellSize} 0 L 0 0 0 ${cellSize}`}
               fill="none"
@@ -530,11 +515,7 @@ function AnimatedGradient({
   const reduced = usePrefersReducedMotion();
 
   return (
-    <div
-      ref={ref}
-      className={cn("relative overflow-hidden", className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("relative overflow-hidden", className)} {...props}>
       <div
         aria-hidden
         className="absolute inset-0"
@@ -577,11 +558,7 @@ function ShimmerBackground({
   const reduced = usePrefersReducedMotion();
 
   return (
-    <div
-      ref={ref}
-      className={cn("relative overflow-hidden", className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("relative overflow-hidden", className)} {...props}>
       <div
         aria-hidden
         className="absolute inset-0"
@@ -604,4 +581,13 @@ function ShimmerBackground({
 }
 ShimmerBackground.displayName = "ShimmerBackground";
 
-export { Particles, Stars, MatrixRain, NoiseTexture, AnimatedGrid, GradientBackground, AnimatedGradient, ShimmerBackground };
+export {
+  Particles,
+  Stars,
+  MatrixRain,
+  NoiseTexture,
+  AnimatedGrid,
+  GradientBackground,
+  AnimatedGradient,
+  ShimmerBackground,
+};

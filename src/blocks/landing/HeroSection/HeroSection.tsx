@@ -6,8 +6,7 @@ import { Badge } from "../../../components/Badge";
 const heroSectionBlockVariants = cva("w-full", {
   variants: {
     variant: {
-      centered:
-        "flex flex-col items-center text-center px-4 py-20 md:py-28 lg:py-36",
+      centered: "flex flex-col items-center text-center px-4 py-20 md:py-28 lg:py-36",
       split:
         "grid grid-cols-1 md:grid-cols-2 gap-12 px-4 py-16 md:py-24 lg:py-32 items-center max-w-7xl mx-auto",
       gradient:
@@ -58,15 +57,11 @@ const HeroSectionBlock = React.forwardRef<HTMLElement, HeroSectionBlockProps>(
       logoBarLabel,
       ...props
     },
-    ref
+    ref,
   ) => {
     const renderEyebrow = () => {
       if (!eyebrow) return null;
-      return typeof eyebrow === "string" ? (
-        <Badge variant="secondary">{eyebrow}</Badge>
-      ) : (
-        eyebrow
-      );
+      return typeof eyebrow === "string" ? <Badge variant="secondary">{eyebrow}</Badge> : eyebrow;
     };
 
     const renderContent = () => (
@@ -114,9 +109,7 @@ const HeroSectionBlock = React.forwardRef<HTMLElement, HeroSectionBlockProps>(
                   <span className="text-3xl font-bold tracking-tight text-foreground">
                     {metric.value}
                   </span>
-                  <span className="text-sm text-muted-foreground mt-1">
-                    {metric.label}
-                  </span>
+                  <span className="text-sm text-muted-foreground mt-1">{metric.label}</span>
                 </div>
               ))}
             </div>
@@ -124,16 +117,11 @@ const HeroSectionBlock = React.forwardRef<HTMLElement, HeroSectionBlockProps>(
           {logoBar.length > 0 && (
             <div className="max-w-5xl mx-auto">
               {logoBarLabel && (
-                <p className="text-center text-sm text-muted-foreground mb-6">
-                  {logoBarLabel}
-                </p>
+                <p className="text-center text-sm text-muted-foreground mb-6">{logoBarLabel}</p>
               )}
               <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
                 {logoBar.map((logo, i) => (
-                  <div
-                    key={i}
-                    className="opacity-60 hover:opacity-100 transition-opacity"
-                  >
+                  <div key={i} className="opacity-60 hover:opacity-100 transition-opacity">
                     {logo}
                   </div>
                 ))}
@@ -152,9 +140,7 @@ const HeroSectionBlock = React.forwardRef<HTMLElement, HeroSectionBlockProps>(
           {...props}
         >
           <div className="flex flex-col gap-6">
-            {eyebrow && (
-              <div>{renderEyebrow()}</div>
-            )}
+            {eyebrow && <div>{renderEyebrow()}</div>}
             <h1 className="text-4xl font-bold tracking-tight text-foreground lg:text-5xl xl:text-6xl">
               {headline}
             </h1>
@@ -224,7 +210,7 @@ const HeroSectionBlock = React.forwardRef<HTMLElement, HeroSectionBlockProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 HeroSectionBlock.displayName = "HeroSectionBlock";

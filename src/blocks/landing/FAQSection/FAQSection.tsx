@@ -67,7 +67,7 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
       accordionType = "single",
       ...props
     },
-    ref
+    ref,
   ) => {
     const containerClass = maxWidthMap[maxWidth];
     const isCenter = align === "center";
@@ -79,7 +79,7 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
       return items.filter(
         (item) =>
           item.question.toLowerCase().includes(q) ||
-          (typeof item.answer === "string" && item.answer.toLowerCase().includes(q))
+          (typeof item.answer === "string" && item.answer.toLowerCase().includes(q)),
       );
     }, [items, search]);
 
@@ -129,7 +129,12 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
-                  <path d="m21 21-4.35-4.35" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+                  <path
+                    d="m21 21-4.35-4.35"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                  />
                 </svg>
                 <Input
                   placeholder={searchPlaceholder}
@@ -168,12 +173,7 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
           {enableSearch && search.trim() && filteredItems.length === 0 && (
             <div className="text-center py-8">
               <p className="text-muted-foreground">No questions match your search.</p>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSearch("")}
-                className="mt-2"
-              >
+              <Button variant="ghost" size="sm" onClick={() => setSearch("")} className="mt-2">
                 Clear search
               </Button>
             </div>
@@ -181,7 +181,7 @@ const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 FAQSection.displayName = "FAQSection";

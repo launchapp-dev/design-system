@@ -75,10 +75,7 @@ export const WithCustomApiKey: Story = {
 
     return (
       <div className="space-y-8">
-        <SmartThemingGenerator
-          apiKey="sk-test-key-here"
-          onThemeGenerated={setColors}
-        />
+        <SmartThemingGenerator apiKey="sk-test-key-here" onThemeGenerated={setColors} />
         <ThemePreview colors={colors} />
       </div>
     );
@@ -101,11 +98,6 @@ export const PreviewOnly: Story = {
 
 export const DisabledState: Story = {
   render: function Render() {
-    return (
-      <SmartThemingGenerator
-        apiKey=""
-        disabled={true}
-      />
-    );
+    return <SmartThemingGenerator apiKey="" disabled={true} />;
   },
 };

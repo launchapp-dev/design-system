@@ -11,14 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/Table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/Table";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { Badge } from "@/components/Badge";
@@ -60,7 +53,7 @@ function SearchableDataTableInner<TData>(
     pageSize = 10,
     className,
   }: SearchableDataTableProps<TData>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -73,13 +66,12 @@ function SearchableDataTableInner<TData>(
   const effectiveData = React.useMemo(() => {
     if (!filterColumn || !activeFilter) return data;
     return data.filter(
-      (row) => String((row as Record<string, unknown>)[filterColumn] ?? "") === activeFilter
+      (row) => String((row as Record<string, unknown>)[filterColumn] ?? "") === activeFilter,
     );
   }, [data, filterColumn, activeFilter]);
 
   const searchCol =
-    searchColumn ??
-    (columns[0] as ColumnDef<TData> & { accessorKey?: string })?.accessorKey;
+    searchColumn ?? (columns[0] as ColumnDef<TData> & { accessorKey?: string })?.accessorKey;
 
   const table = useReactTable({
     data: effectiveData,
@@ -110,19 +102,14 @@ function SearchableDataTableInner<TData>(
         {searchCol && (
           <Input
             placeholder={searchPlaceholder}
-            value={
-              (table.getColumn(String(searchCol))?.getFilterValue() as string) ?? ""
-            }
+            value={(table.getColumn(String(searchCol))?.getFilterValue() as string) ?? ""}
             onChange={handleSearchChange}
             className="max-w-xs"
           />
         )}
         {filterColumn && filterOptions && filterOptions.length > 0 && (
           <div className="flex items-center gap-2">
-            <SelectRoot
-              value={activeFilter || "__all__"}
-              onValueChange={handleFilterChange}
-            >
+            <SelectRoot value={activeFilter || "__all__"} onValueChange={handleFilterChange}>
               <SelectTrigger className="w-44">
                 <SelectValue placeholder={filterLabel} />
               </SelectTrigger>
@@ -190,8 +177,8 @@ function SearchableDataTableInner<TData>(
                             {header.column.getIsSorted() === "asc"
                               ? "↑"
                               : header.column.getIsSorted() === "desc"
-                              ? "↓"
-                              : "↕"}
+                                ? "↓"
+                                : "↕"}
                           </span>
                         )}
                       </span>
@@ -228,8 +215,7 @@ function SearchableDataTableInner<TData>(
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-muted-foreground">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {Math.max(1, table.getPageCount())}
+          Page {table.getState().pagination.pageIndex + 1} of {Math.max(1, table.getPageCount())}
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -273,7 +259,7 @@ function SearchableDataTableInner<TData>(
 }
 
 export const SearchableDataTable = React.forwardRef(SearchableDataTableInner) as <TData>(
-  props: SearchableDataTableProps<TData> & { ref?: React.ForwardedRef<HTMLDivElement> }
+  props: SearchableDataTableProps<TData> & { ref?: React.ForwardedRef<HTMLDivElement> },
 ) => React.ReactElement;
 
 (

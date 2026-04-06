@@ -94,7 +94,10 @@ export const AllUploading: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div className="dark" style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 520 }}>
+    <div
+      className="dark"
+      style={{ background: "hsl(240 10% 3.9%)", padding: "24px", maxWidth: 520 }}
+    >
       <FileList {...args} />
     </div>
   ),
