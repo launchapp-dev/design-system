@@ -5,4 +5,5 @@ export * from "./Timeline";
 export * from "./StatsCard";
 export * from "./MetricGrid";
 export * from "./ActivityFeed";
+export * from "./CalendarView";
 export * from "./EmptyState";
