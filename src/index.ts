@@ -494,6 +494,8 @@ export { FileList } from "./blocks/files/FileList";
 export type { FileListProps, UploadFile, UploadStatus } from "./blocks/files/FileList";
 export { ImageGallery } from "./blocks/files/ImageGallery";
 export type { ImageGalleryProps, GalleryImage } from "./blocks/files/ImageGallery";
+export { FileGrid } from "./blocks/files/FileGrid/FileGrid";
+export type { FileGridProps, FileGridItem, FileItemType } from "./blocks/files/FileGrid/FileGrid";
 
 export { ChatInterface } from "./blocks/messaging/ChatInterface";
 export type { ChatInterfaceProps, ChatMessage } from "./blocks/messaging/ChatInterface";
@@ -508,6 +510,8 @@ export { ActivityTimeline } from "./blocks/notifications/ActivityTimeline";
 export type { ActivityTimelineProps, TimelineEntry } from "./blocks/notifications/ActivityTimeline";
 export { InboxView } from "./blocks/notifications/InboxView";
 export type { InboxViewProps, InboxItem } from "./blocks/notifications/InboxView";
+export { NotificationPreferencesCenter } from "./blocks/notifications/NotificationPreferences";
+export type { NotificationPreferencesCenterProps, NotificationCategory, NotificationChannel } from "./blocks/notifications/NotificationPreferences";
 
 export { ThemeSubmissionForm } from "./blocks/community/ThemeSubmissionForm";
 export type { ThemeSubmissionFormProps } from "./blocks/community/ThemeSubmissionForm";

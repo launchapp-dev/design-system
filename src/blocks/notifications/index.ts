@@ -4,3 +4,5 @@ export { ActivityTimeline } from "./ActivityTimeline";
 export type { ActivityTimelineProps, TimelineEntry } from "./ActivityTimeline";
 export { InboxView } from "./InboxView";
 export type { InboxViewProps, InboxItem } from "./InboxView";
+export { NotificationPreferencesCenter } from "./NotificationPreferences";
+export type { NotificationPreferencesCenterProps, NotificationCategory, NotificationChannel } from "./NotificationPreferences";
