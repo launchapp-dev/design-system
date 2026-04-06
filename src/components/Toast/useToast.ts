@@ -28,7 +28,9 @@ const listeners = new Set<Listener>();
 
 function dispatch(next: ToastData[]) {
   memoryToasts = next;
-  listeners.forEach((l) => l(memoryToasts));
+  for (const listener of listeners) {
+    listener(memoryToasts);
+  }
 }
 
 function toast(input: ToastInput) {

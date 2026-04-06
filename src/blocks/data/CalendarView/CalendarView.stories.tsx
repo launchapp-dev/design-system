@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { addDays, setHours, setMinutes, startOfToday } from "date-fns";
-import { CalendarView, CalendarEvent } from "./CalendarView";
+import { addDays, startOfToday } from "date-fns";
+import { CalendarView, type CalendarEvent } from "./CalendarView";
 
 const today = startOfToday();
 

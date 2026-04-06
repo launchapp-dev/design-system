@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { Separator } from "../../../components/Separator";
 import { DataExportCard } from "../DataExportCard";
 import { AccountDeletionCard } from "../AccountDeletionCard";

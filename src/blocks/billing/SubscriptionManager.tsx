@@ -1,10 +1,8 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/Card";
-import { Progress } from "../../components/Progress";
 import { Button } from "../../components/Button";
 import { Badge } from "../../components/Badge";
-import { Separator } from "../../components/Separator";
 import {
   SelectRoot as Select,
   SelectContent,
@@ -44,7 +42,7 @@ function SubscriptionManager({
 }: SubscriptionManagerProps) {
   const [selected, setSelected] = React.useState(currentPlanId);
 
-  function handleSubscribe() {
+  function _handleSubscribe() {
     if (selected !== currentPlanId) {
       onSubscribe?.(selected);
     }

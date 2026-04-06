@@ -1,6 +1,6 @@
-import * as React from "react";
+
 import type { Meta, StoryObj } from "@storybook/react";
-import { Dock, DockItemData } from "./index";
+import { Dock, type DockItemData } from "./index";
 
 const meta = {
   title: "Components/Dock",

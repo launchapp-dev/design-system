@@ -40,7 +40,7 @@ const ChatInterface = React.forwardRef<HTMLDivElement, ChatInterfaceProps>(
       if (scrollRef.current) {
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
       }
-    }, [messages, isTyping]);
+    }, []);
 
     const handleSend = () => {
       const trimmed = draft.trim();

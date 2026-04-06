@@ -75,7 +75,7 @@ function renderMarkdown(
   const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
 
   let lastIndex = 0;
-  let result;
+  let result: RegExpExecArray | null;
 
   const processText = (str: string): React.ReactNode[] => {
     const elements: React.ReactNode[] = [];
@@ -151,7 +151,8 @@ function renderMarkdown(
     return elements;
   };
 
-  while ((result = codeBlockRegex.exec(text)) !== null) {
+  result = codeBlockRegex.exec(text);
+  while (result !== null) {
     if (result.index > lastIndex) {
       const beforeText = text.slice(lastIndex, result.index);
       parts.push(...processText(beforeText).map((el, i) =>
@@ -187,6 +188,7 @@ function renderMarkdown(
     );
 
     lastIndex = result.index + result[0].length;
+    result = codeBlockRegex.exec(text);
   }
 
   if (lastIndex < text.length) {

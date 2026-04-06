@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import * as VisuallyHiddenPrimitive from "@radix-ui/react-visually-hidden";
 import { cn } from "@/lib/utils";
 

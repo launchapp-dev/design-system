@@ -3,7 +3,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../../lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../components/Card";
 import { Badge } from "../../../components/Badge";
-import { Button } from "../../../components/Button";
 
 const featureGridBlockVariants = cva("w-full", {
   variants: {

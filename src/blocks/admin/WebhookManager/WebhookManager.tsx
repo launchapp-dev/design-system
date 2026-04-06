@@ -13,13 +13,6 @@ import {
   DialogFooter,
   DialogDescription,
 } from "@/components/Dialog";
-import {
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/Select";
 
 export type WebhookDeliveryStatus = "pending" | "success" | "failed";
 
@@ -69,9 +62,9 @@ function WebhookManagerInner(
     onCreateEndpoint,
     onDeleteEndpoint,
     onToggleEndpoint,
-    onDeliveriesExpanded,
+    onDeliveriesExpanded: _onDeliveriesExpanded,
     availableEventTypes = ["user.created", "user.updated", "user.deleted", "payment.succeeded", "payment.failed", "subscription.created", "subscription.cancelled"],
-    creating = false,
+    creating: _creating = false,
     className,
   }: WebhookManagerProps,
   ref: React.ForwardedRef<HTMLDivElement>
@@ -81,7 +74,6 @@ function WebhookManagerInner(
   const [url, setUrl] = React.useState("");
   const [selectedEvents, setSelectedEvents] = React.useState<string[]>([]);
   const [expandedEndpoint, setExpandedEndpoint] = React.useState<string | null>(null);
-  const [toggleDeleteTarget, setToggleDeleteTarget] = React.useState<WebhookEndpoint | null>(null);
 
   const toggleEvent = (event: string) => {
     setSelectedEvents((prev) =>

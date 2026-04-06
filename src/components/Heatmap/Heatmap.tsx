@@ -175,7 +175,6 @@ function getCellColor(
       return customColorScale
         ? getCustomColor(normalized, customColorScale)
         : getSequentialColor(normalized);
-    case "sequential":
     default:
       return getSequentialColor(normalized);
   }
@@ -222,8 +221,8 @@ const Heatmap = React.forwardRef<HTMLDivElement, HeatmapProps>(
     const cellHeight =
       typeof cellSize === "number" ? cellSize : cellSize.height;
 
-    const gridWidth = normalized.cols * cellWidth + (normalized.cols - 1) * cellGap;
-    const gridHeight = normalized.rows * cellHeight + (normalized.rows - 1) * cellGap;
+    const _gridWidth = normalized.cols * cellWidth + (normalized.cols - 1) * cellGap;
+    const _gridHeight = normalized.rows * cellHeight + (normalized.rows - 1) * cellGap;
 
     const defaultTooltip = (cell: HeatmapCell): React.ReactNode => (
       <div className="text-xs">

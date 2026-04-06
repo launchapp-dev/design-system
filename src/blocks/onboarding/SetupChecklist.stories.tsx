@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "storybook";
 import { SetupChecklist } from "./SetupChecklist";
-import { cn } from "@/lib/utils";
 
 const meta = {
   title: "Blocks/Onboarding/SetupChecklist",

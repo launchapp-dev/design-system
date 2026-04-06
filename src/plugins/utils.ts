@@ -1,4 +1,4 @@
-import type { VariantProps } from "class-variance-authority";
+
 import type { PluginMetadata, PluginVariants } from "./types";
 import defaultRegistry from "./registry";
 

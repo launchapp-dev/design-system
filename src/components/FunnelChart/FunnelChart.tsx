@@ -112,7 +112,6 @@ function getStageColor(
       return getDivergingColor(index, total);
     case "gradient":
       return getGradientColor(index, total);
-    case "sequential":
     default:
       return getSequentialColor(index, total);
   }
@@ -233,8 +232,8 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
     }
 
     if (orientation === "horizontal") {
-      const totalWidth = 100;
-      const barHeight = stageHeight;
+      const _totalWidth = 100;
+      const _barHeight = stageHeight;
 
       return (
         <TooltipPrimitive.Provider>

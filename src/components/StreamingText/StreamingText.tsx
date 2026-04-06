@@ -34,9 +34,10 @@ function parseMarkdownToTokens(text: string): Array<{ type: "text" | "code" | "b
   const tokens: Array<{ type: "text" | "code" | "bold" | "italic" | "codeBlock"; content: string }> = [];
   const regex = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|```[\s\S]*?```)/g;
   let lastIndex = 0;
-  let match;
+  let match: RegExpExecArray | null;
 
-  while ((match = regex.exec(text)) !== null) {
+  match = regex.exec(text);
+  while (match !== null) {
     if (match.index > lastIndex) {
       tokens.push({ type: "text", content: text.slice(lastIndex, match.index) });
     }
@@ -53,6 +54,7 @@ function parseMarkdownToTokens(text: string): Array<{ type: "text" | "code" | "b
     }
 
     lastIndex = regex.lastIndex;
+    match = regex.exec(text);
   }
 
   if (lastIndex < text.length) {

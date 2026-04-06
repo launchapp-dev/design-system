@@ -156,7 +156,7 @@ export function PricingComparisonTable({
     for (const f of features) {
       const cat = f.category ?? "Features";
       if (!map.has(cat)) map.set(cat, []);
-      map.get(cat)!.push(f);
+      map.get(cat)?.push(f);
     }
     return map;
   }, [features]);

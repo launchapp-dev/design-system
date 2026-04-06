@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as React from "react";
+import type * as React from "react";
 import { CookieConsentBanner, CookieSettingsButton, LAUNCHAPP_CATEGORIES } from "./CookieConsentBanner";
 
 describe("LAUNCHAPP_CATEGORIES", () => {

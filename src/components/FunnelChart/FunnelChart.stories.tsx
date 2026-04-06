@@ -460,7 +460,7 @@ export const AnimatedDataChange: Story = {
         setDataIndex((prev) => (prev + 1) % datasets.length);
       }, 3000);
       return () => clearInterval(interval);
-    }, []);
+    }, [datasets.length]);
 
     return (
       <div>

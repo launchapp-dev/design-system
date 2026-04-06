@@ -171,7 +171,7 @@ function CalendarViewInner(
             onMonthChange={handleMonthChange}
             className="w-full"
             components={{
-              Day: ({ day, modifiers: _modifiers, ...dayProps }: { day: CalendarDay; modifiers: Record<string, boolean> } & React.HTMLAttributes<HTMLDivElement>) => {
+              Day: ({ day }: { day: CalendarDay }) => {
                 const date = day.date;
                 const dayEvents = getEventsForDay(date);
                 const hasEvents = dayEvents.length > 0;

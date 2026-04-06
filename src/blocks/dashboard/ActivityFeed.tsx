@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/Avatar";
 import { Badge } from "@/components/Badge";
 import { ScrollArea } from "@/components/ScrollArea";

@@ -65,7 +65,7 @@ interface VideoPlayerRef {
 const PLAYBACK_SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
 
 function formatTime(seconds: number): string {
-  if (isNaN(seconds) || seconds < 0) return "0:00";
+  if (Number.isNaN(seconds) || seconds < 0) return "0:00";
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs.toString().padStart(2, "0")}`;

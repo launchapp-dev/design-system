@@ -112,7 +112,7 @@ function CookiePreferencesDialog({
     onOpenChange?.(false);
   }
 
-  const activeCategory = categories.find((c) => c.id === activeTab);
+  const _activeCategory = categories.find((c) => c.id === activeTab);
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>

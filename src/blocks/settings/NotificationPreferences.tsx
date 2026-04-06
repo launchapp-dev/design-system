@@ -59,9 +59,11 @@ const defaultGroups: NotificationGroup[] = [
 function NotificationPreferences({ groups = defaultGroups, values, onChange, className, ref}: NotificationPreferencesProps & { ref?: React.Ref<HTMLDivElement> }) {
     const [localValues, setLocalValues] = React.useState<Record<string, boolean>>(() => {
       const initial: Record<string, boolean> = {};
-      groups.forEach((g) => g.items.forEach((item) => {
-        initial[item.id] = item.defaultChecked ?? false;
-      }));
+      for (const g of groups) {
+        for (const item of g.items) {
+          initial[item.id] = item.defaultChecked ?? false;
+        }
+      }
       return initial;
     });
 

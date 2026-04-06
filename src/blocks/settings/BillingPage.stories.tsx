@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { BillingPage } from "./BillingPage";
 
 const meta: Meta<typeof BillingPage> = {

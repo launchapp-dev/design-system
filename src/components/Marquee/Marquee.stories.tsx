@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { Marquee, MarqueeItem } from "./index";
 
 const meta: Meta<typeof Marquee> = {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { ColumnDef } from "@tanstack/react-table";
-import { FullDataTable, FilterOption } from "./FullDataTable";
+import type { ColumnDef } from "@tanstack/react-table";
+import { FullDataTable, type FilterOption } from "./FullDataTable";
 import { Badge } from "@/components/Badge";
 
 type Task = {

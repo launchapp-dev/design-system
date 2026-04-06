@@ -67,7 +67,7 @@ const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
       if (containerRef.current) {
         containerRef.current.scrollTop = containerRef.current.scrollHeight;
       }
-    }, [lines]);
+    }, []);
 
     return (
       <div

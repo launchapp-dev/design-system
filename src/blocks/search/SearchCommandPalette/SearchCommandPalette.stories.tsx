@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
+import type * as React from "react";
 import { SearchCommandPalette, useSearchCommandPalette, type SearchResult, type SearchFilter, type RecentSearch } from "./SearchCommandPalette";
 import { Button } from "@/components/Button";
 

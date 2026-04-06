@@ -5,7 +5,7 @@ import { Badge } from "../Badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../Card";
 import { Switch } from "../Switch";
 import { Label } from "../Label";
-import { createTheme, type ThemeTokens } from "@/themes/createTheme";
+import { createTheme, } from "@/themes/createTheme";
 import type { VisionColorMap } from "@/lib/vision";
 
 export interface ThemePreviewProps {
@@ -19,7 +19,7 @@ interface ColorSwatchProps {
   hexValue?: string;
 }
 
-function hexToHsl(hex: string): string {
+function _hexToHsl(hex: string): string {
   const clean = hex.replace("#", "");
   const r = parseInt(clean.substring(0, 2), 16) / 255;
   const g = parseInt(clean.substring(2, 4), 16) / 255;

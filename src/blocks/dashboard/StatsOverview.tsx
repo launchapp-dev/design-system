@@ -1,6 +1,6 @@
-import * as React from "react";
+import type * as React from "react";
 import { StatDisplay } from "@/components/StatDisplay";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/Card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/Card";
 import { ChartContainer, AreaChart, Area, XAxis, CartesianGrid, ChartTooltip } from "@/components/Chart";
 import { cn } from "@/lib/utils";
 import type { KPICardProps } from "@/components/KPICard";

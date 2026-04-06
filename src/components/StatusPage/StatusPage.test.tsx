@@ -1,6 +1,5 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import * as React from "react";
 import { StatusPage } from "./StatusPage";
 import type { StatusService } from "./StatusPage";
 

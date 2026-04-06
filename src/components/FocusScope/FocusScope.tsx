@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import * as FocusScopePrimitive from "@radix-ui/react-focus-scope";
 import { cn } from "@/lib/utils";
 

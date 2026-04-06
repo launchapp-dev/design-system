@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { NotificationPreferences } from "./NotificationPreferences";
 
 const meta: Meta<typeof NotificationPreferences> = {

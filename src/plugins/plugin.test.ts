@@ -4,8 +4,6 @@ import type { ComponentPlugin } from "./types";
 import {
   mergeVariants,
   mergeDefaultVariants,
-  collectPluginVariants,
-  collectPluginDefaultVariants,
 } from "./utils";
 
 describe("Plugin Registry", () => {
@@ -129,7 +127,7 @@ describe("Plugin Registry", () => {
     expect(stats.enabledPlugins).toBe(1);
     expect(stats.disabledPlugins).toBe(1);
     expect(stats.totalComponents).toBe(1);
-    expect(stats.pluginsByComponent["Button"]).toBe(2);
+    expect(stats.pluginsByComponent.Button).toBe(2);
   });
 });
 

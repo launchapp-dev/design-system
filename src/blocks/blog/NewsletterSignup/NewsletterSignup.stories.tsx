@@ -83,7 +83,7 @@ export const Inline: Story = {
 
 export const SuccessState: Story = {
   render: () => {
-    const [success, setSuccess] = React.useState(false);
+    const [_success, setSuccess] = React.useState(false);
     return (
       <NewsletterSignup
         title="Stay in the loop"

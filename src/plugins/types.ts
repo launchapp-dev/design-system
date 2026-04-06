@@ -1,4 +1,4 @@
-import type { VariantProps } from "class-variance-authority";
+
 
 /**
  * Represents a single variant value's style configuration

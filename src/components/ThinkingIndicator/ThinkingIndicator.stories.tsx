@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { ThinkingIndicator } from "./index";
 
 const meta: Meta<typeof ThinkingIndicator> = {

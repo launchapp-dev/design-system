@@ -1,11 +1,11 @@
 import * as React from "react";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  PaginationState,
-  VisibilityState,
-  RowSelectionState,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
+  type PaginationState,
+  type VisibilityState,
+  type RowSelectionState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,

@@ -143,7 +143,7 @@ function Lightbox({
       setZoomLevel(1);
       setPanOffset({ x: 0, y: 0 });
     }
-  }, [open, currentIndex]);
+  }, [open]);
 
   React.useEffect(() => {
     onIndexChange?.(currentIndex);

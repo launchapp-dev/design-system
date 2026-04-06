@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { KanbanBoard, KanbanColumn } from "./KanbanBoard";
+import { KanbanBoard, type KanbanColumn } from "./KanbanBoard";
 
 const initialColumns: KanbanColumn[] = [
   {

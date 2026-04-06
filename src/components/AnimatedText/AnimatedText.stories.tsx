@@ -122,7 +122,7 @@ export const TextTransitionStory: Story = {
         setCount((prev) => (prev + 1) % texts.length);
       }, 2000);
       return () => clearInterval(timer);
-    }, []);
+    }, [texts.length]);
 
     return (
       <div className="space-y-4">

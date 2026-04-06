@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "../../../lib/utils";
 import {
-  Command,
   CommandDialog,
   CommandInput,
   CommandList,
@@ -80,7 +79,7 @@ export function SearchCommandPalette({
   placeholder = "Search…",
   emptyText = "No results found.",
   maxRecentSearches = 5,
-  className,
+  className: _className,
 }: SearchCommandPaletteProps) {
   const [query, setQuery] = React.useState("");
 

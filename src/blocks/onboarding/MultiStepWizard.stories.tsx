@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { MultiStepWizard } from "./MultiStepWizard";
 import { Input } from "@/components/Input";
 import { Label } from "@/components/Label";

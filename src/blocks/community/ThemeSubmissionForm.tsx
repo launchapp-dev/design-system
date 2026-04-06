@@ -15,17 +15,23 @@ import {
 import { Input } from "../../components/Input";
 import { Textarea } from "../../components/Textarea";
 import { Button } from "../../components/Button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../../components/Card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, } from "../../components/Card";
 import { TabsRoot, TabsContent, TabsList, TabsTrigger } from "../../components/Tabs";
-import { Label } from "../../components/Label";
 import { ThemePreview } from "../../components/ThemePreview";
 import { validateCommunityTheme, validateHslValue, type CommunityTheme, type CommunityThemeTokens } from "../../themes/community-themes";
 import type { VisionColorMap } from "../../lib/vision";
 
-const tokenSchema = z.record(
+const _tokenSchema = z.record(
   z.string().regex(/^--la-/, "Token name must start with --la-"),
   z.string().refine((val) => validateHslValue(val), "Must be valid HSL value (e.g., '262 83% 58%')")
 );
+
+function adjustHue(hex: string, amount: number): string {
+  const clean = hex.replace("#", "");
+  let h = parseInt(clean.substring(0, 2), 16);
+  h = Math.min(255, Math.max(0, h + amount));
+  return "#" + h.toString(16).padStart(2, "0") + clean.substring(2);
+}
 
 const themeSubmissionSchema = z.object({
   id: z
@@ -126,13 +132,6 @@ function ThemeSubmissionForm(
     });
     return () => subscription.unsubscribe();
   }, [form]);
-
-  function adjustHue(hex: string, amount: number): string {
-    const clean = hex.replace("#", "");
-    let h = parseInt(clean.substring(0, 2), 16);
-    h = Math.min(255, Math.max(0, h + amount));
-    return "#" + h.toString(16).padStart(2, "0") + clean.substring(2);
-  }
 
   async function handleSubmit(values: ThemeSubmissionValues) {
     const lightTokens = generateTokens(values.primaryColor, values.secondaryColor, "light");
@@ -537,7 +536,7 @@ function generateTokens(
 ): CommunityThemeTokens {
   const primaryHsl = hexToHsl(primaryHex);
   const secondaryHsl = hexToHsl(secondaryHex);
-  const lightness = mode === "light" ? 50 : 30;
+  const _lightness = mode === "light" ? 50 : 30;
 
   return {
     "--la-background": mode === "light" ? "0 0% 100%" : `${primaryHsl.split(" ")[0]} 15% 18%`,

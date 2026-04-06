@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { StatsCard, type StatsCardProps } from "../StatsCard";
 import { cn } from "@/lib/utils";
 

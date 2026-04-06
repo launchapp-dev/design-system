@@ -170,7 +170,7 @@ const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
           {defaultZones.map((zone, index) => {
             const zoneStartAngle = valueToAngle(zone.from, min, max, startAngle, endAngle);
             const zoneEndAngle = valueToAngle(zone.to, min, max, startAngle, endAngle);
-            const pathId = `zone-${index}`;
+            const _pathId = `zone-${index}`;
 
             return (
               <path

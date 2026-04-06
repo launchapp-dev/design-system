@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { OAuthConnectCard } from "./OAuthConnectCard";
 
 const meta: Meta<typeof OAuthConnectCard> = {

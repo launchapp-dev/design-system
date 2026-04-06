@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { FileGrid, FileGridItem } from "./FileGrid";
+import { FileGrid, type FileGridItem } from "./FileGrid";
 
 const mockFiles: FileGridItem[] = [
   {

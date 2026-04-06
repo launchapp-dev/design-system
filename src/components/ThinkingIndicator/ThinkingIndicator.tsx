@@ -203,7 +203,6 @@ function ThinkingIndicator({
             reducedMotion={reducedMotion}
           />
         );
-      case "dots":
       default:
         return (
           <DotsIndicator

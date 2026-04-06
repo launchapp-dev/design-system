@@ -59,7 +59,7 @@ class PluginManagerImpl implements PluginManager {
         if (!this.hooks.has(hookName)) {
           this.hooks.set(hookName, []);
         }
-        this.hooks.get(hookName)!.push(callback);
+        this.hooks.get(hookName)?.push(callback);
       },
       getRegistry: () => this.registry,
       getLoadedPlugins: () => Array.from(this.plugins.values()),
@@ -79,7 +79,7 @@ class PluginManagerImpl implements PluginManager {
         if (!this.hooks.has(hookName as HookName)) {
           this.hooks.set(hookName as HookName, []);
         }
-        this.hooks.get(hookName as HookName)!.push(...hookCallbacks);
+        this.hooks.get(hookName as HookName)?.push(...hookCallbacks);
       }
     }
 

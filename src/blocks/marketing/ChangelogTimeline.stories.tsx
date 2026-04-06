@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { ChangelogTimeline } from "./ChangelogTimeline";
 import type { ChangelogEntry } from "./ChangelogTimeline";
 
