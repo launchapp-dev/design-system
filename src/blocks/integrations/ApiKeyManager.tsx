@@ -12,14 +12,64 @@ import {
 } from "../../components/DropdownMenu";
 import { Input } from "../../components/Input";
 import {
-  Dialog,
+  DialogRoot as Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "../../components/Dialog";
-import { MoreHorizontal, Eye, EyeOff, Copy, Trash2, RefreshCw, Key } from "lucide-react";
+
+// ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
+function MoreHorizontalIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="1.5" /><circle cx="19" cy="12" r="1.5" /><circle cx="5" cy="12" r="1.5" />
+    </svg>
+  );
+}
+function EyeIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+function EyeOffIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" /><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" /><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" /><line x1="2" y1="2" x2="22" y2="22" />
+    </svg>
+  );
+}
+function CopyIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+    </svg>
+  );
+}
+function Trash2Icon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /><line x1="10" y1="11" x2="10" y2="17" /><line x1="14" y1="11" x2="14" y2="17" />
+    </svg>
+  );
+}
+function RefreshCwIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" />
+    </svg>
+  );
+}
+function KeyIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <circle cx="7.5" cy="15.5" r="5.5" /><path d="m21 2-9.6 9.6" /><path d="m15.5 7.5 3 3L22 7l-3-3" />
+    </svg>
+  );
+}
 
 export interface ApiKey {
   id: string;
@@ -31,7 +81,7 @@ export interface ApiKey {
   scopes?: string[];
 }
 
-export interface ApiKeyManagerProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ApiKeyManagerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onCopy'> {
   keys: ApiKey[];
   onCreate?: () => void;
   onRevoke?: (key: ApiKey) => void;
@@ -51,6 +101,7 @@ function ApiKeyManager({
   onCreate,
   onRevoke,
   onRotate,
+  onCopy: onCopyProp,
   canManage = true,
   title = "API Keys",
   description = "Manage your API keys for programmatic access.",
@@ -93,7 +144,7 @@ function ApiKeyManager({
         </div>
         {onCreate && canManage && (
           <Button onClick={onCreate}>
-            <Key className="mr-2 h-4 w-4" />
+            <KeyIcon className="mr-2 h-4 w-4" />
             Create key
           </Button>
         )}
@@ -147,12 +198,12 @@ function ApiKeyManager({
                     >
                       {isRevealed ? (
                         <>
-                          <EyeOff className="mr-2 h-4 w-4" />
+                          <EyeOffIcon className="mr-2 h-4 w-4" />
                           Hide
                         </>
                       ) : (
                         <>
-                          <Eye className="mr-2 h-4 w-4" />
+                          <EyeIcon className="mr-2 h-4 w-4" />
                           Reveal
                         </>
                       )}
@@ -162,20 +213,20 @@ function ApiKeyManager({
                       size="sm"
                       onClick={() => copyKey(key)}
                     >
-                      <Copy className="mr-2 h-4 w-4" />
+                      <CopyIcon className="mr-2 h-4 w-4" />
                       {wasCopied ? "Copied" : "Copy"}
                     </Button>
                     {canManage && (onRevoke || onRotate) && (
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" size="icon" className="h-9 w-9">
-                            <MoreHorizontal className="h-4 w-4" />
+                            <MoreHorizontalIcon className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           {onRotate && (
                             <DropdownMenuItem onClick={() => onRotate(key)}>
-                              <RefreshCw className="mr-2 h-4 w-4" />
+                              <RefreshCwIcon className="mr-2 h-4 w-4" />
                               Rotate key
                             </DropdownMenuItem>
                           )}
@@ -184,7 +235,7 @@ function ApiKeyManager({
                               onClick={() => onRevoke(key)}
                               className="text-destructive focus:text-destructive"
                             >
-                              <Trash2 className="mr-2 h-4 w-4" />
+                              <Trash2Icon className="mr-2 h-4 w-4" />
                               Revoke key
                             </DropdownMenuItem>
                           )}
@@ -205,4 +256,3 @@ function ApiKeyManager({
 ApiKeyManager.displayName = "ApiKeyManager";
 
 export { ApiKeyManager };
-export type { ApiKeyManagerProps, ApiKey };

@@ -100,4 +100,3 @@ function UsageMeter({
 UsageMeter.displayName = "UsageMeter";
 
 export { UsageMeter };
-export type { UsageMeterProps, UsageMeterItem };

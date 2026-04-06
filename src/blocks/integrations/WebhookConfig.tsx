@@ -2,27 +2,25 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/Card";
 import { Button } from "../../components/Button";
-import { Badge } from "../../components/Badge";
 import { Input } from "../../components/Input";
 import { Switch } from "../../components/Switch";
 import { Label } from "../../components/Label";
-import { Separator } from "../../components/Separator";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/Select";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../../components/Dialog";
-import { Plus, Trash2, Webhook, Bell, AlertTriangle } from "lucide-react";
+
+// ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
+function WebhookIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2" /><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06" /><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8" />
+    </svg>
+  );
+}
+function BellIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" />
+    </svg>
+  );
+}
 
 export interface WebhookEvent {
   id: string;
@@ -54,6 +52,7 @@ function WebhookConfig({
   onSave,
   onTest,
   onDisconnect,
+  onAddSecret,
   isLoading,
   title = "Webhook Configuration",
   className,
@@ -70,7 +69,7 @@ function WebhookConfig({
     <div className={cn("space-y-6", className)} {...props}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Webhook className="h-5 w-5 text-muted-foreground" />
+          <WebhookIcon className="h-5 w-5 text-muted-foreground" />
           <h3 className="text-base font-semibold">{title}</h3>
         </div>
         {onDisconnect && (
@@ -162,7 +161,7 @@ function WebhookConfig({
         )}
         {onTest && (
           <Button variant="outline" onClick={onTest} disabled={isLoading || !urlInput}>
-            <Bell className="mr-2 h-4 w-4" />
+            <BellIcon className="mr-2 h-4 w-4" />
             Send test event
           </Button>
         )}
@@ -174,4 +173,3 @@ function WebhookConfig({
 WebhookConfig.displayName = "WebhookConfig";
 
 export { WebhookConfig };
-export type { WebhookConfigProps, WebhookEvent };

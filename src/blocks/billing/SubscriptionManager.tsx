@@ -6,7 +6,7 @@ import { Button } from "../../components/Button";
 import { Badge } from "../../components/Badge";
 import { Separator } from "../../components/Separator";
 import {
-  Select,
+  SelectRoot as Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -56,7 +56,7 @@ function SubscriptionManager({
         <h2 className="text-lg font-semibold">{title}</h2>
         <Select
           value={billingInterval}
-          onValueChange={(v) => v}
+          onValueChange={(_v: string) => {}}
         >
           <SelectTrigger className="w-36">
             <SelectValue />
@@ -143,4 +143,3 @@ function SubscriptionManager({
 SubscriptionManager.displayName = "SubscriptionManager";
 
 export { SubscriptionManager };
-export type { SubscriptionManagerProps, SubscriptionManagerPlan };

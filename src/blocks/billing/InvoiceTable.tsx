@@ -11,7 +11,28 @@ import {
 import { Badge } from "../../components/Badge";
 import { Button } from "../../components/Button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../components/DropdownMenu";
-import { MoreHorizontal, Download, Eye } from "lucide-react";
+// ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
+function MoreHorizontalIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="1.5" /><circle cx="19" cy="12" r="1.5" /><circle cx="5" cy="12" r="1.5" />
+    </svg>
+  );
+}
+function DownloadIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  );
+}
+function EyeIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
 import { cn } from "../../lib/utils";
 
 export type InvoiceStatus = "paid" | "pending" | "failed" | "refunded";
@@ -97,19 +118,19 @@ function InvoiceTable({
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="h-4 w-4" />
+                      <MoreHorizontalIcon className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     {onView && (
                       <DropdownMenuItem onClick={() => onView(invoice)}>
-                        <Eye className="mr-2 h-4 w-4" />
+                        <EyeIcon className="mr-2 h-4 w-4" />
                         View invoice
                       </DropdownMenuItem>
                     )}
                     {onDownload && (
                       <DropdownMenuItem onClick={() => onDownload(invoice)}>
-                        <Download className="mr-2 h-4 w-4" />
+                        <DownloadIcon className="mr-2 h-4 w-4" />
                         Download PDF
                       </DropdownMenuItem>
                     )}
@@ -130,4 +151,3 @@ function InvoiceTable({
 InvoiceTable.displayName = "InvoiceTable";
 
 export { InvoiceTable };
-export type { InvoiceTableProps, Invoice, InvoiceStatus };

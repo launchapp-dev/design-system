@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { cn } from "../../lib/utils";
@@ -14,7 +14,15 @@ import {
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { RoleSelector, type Role } from "./RoleSelector";
-import { Mail } from "lucide-react";
+
+// ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
+function MailIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
 
 const inviteSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -23,12 +31,12 @@ const inviteSchema = z.object({
 
 type InviteValues = z.infer<typeof inviteSchema>;
 
-export interface InviteFormProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface InviteFormProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit'> {
   onSubmit?: (values: { email: string; role: Role }) => void | Promise<void>;
   onCancel?: () => void;
   isLoading?: boolean;
   error?: string;
-  defaultRole?: Role;
+  defaultRole?: "admin" | "member" | "billing";
   maxRecipients?: number;
   sentCount?: number;
 }
@@ -45,8 +53,8 @@ function InviteForm({
   ...props
 }: InviteFormProps) {
   const remaining = maxRecipients ? maxRecipients - sentCount : undefined;
-  const form = useForm<InviteValues>({
-    resolver: zodResolver(inviteSchema),
+  const form = useForm<InviteValues, unknown, InviteValues>({
+    resolver: zodResolver(inviteSchema) as Resolver<InviteValues, unknown, InviteValues>,
     defaultValues: {
       email: "",
       role: defaultRole,
@@ -107,7 +115,7 @@ function InviteForm({
 
           <div className="flex flex-wrap gap-2">
             <Button type="submit" disabled={isLoading || (remaining !== undefined && remaining <= 0)}>
-              <Mail className="mr-2 h-4 w-4" />
+              <MailIcon className="mr-2 h-4 w-4" />
               {isLoading ? "Sending invite…" : "Send invite"}
             </Button>
             {onCancel && (
@@ -133,4 +141,3 @@ function InviteForm({
 InviteForm.displayName = "InviteForm";
 
 export { InviteForm };
-export type { InviteFormProps };

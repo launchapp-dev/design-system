@@ -1,24 +1,26 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 import {
-  Select,
+  SelectRoot as Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "../../components/Select";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormDescription,
-} from "../../components/Form";
-import { Shield } from "lucide-react";
+import { Label } from "../../components/Label";
+
+// ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
+function ShieldIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  );
+}
 
 export type Role = "owner" | "admin" | "member" | "billing";
 
-export interface RoleSelectorProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface RoleSelectorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   value?: Role;
   onChange?: (role: Role) => void;
   disabled?: boolean;
@@ -53,31 +55,27 @@ function RoleSelector({
 }: RoleSelectorProps) {
   return (
     <div className={cn("space-y-3", className)} {...props}>
-      <Select value={value} onValueChange={onChange} disabled={disabled}>
-        <FormField name="role">
-          <FormItem>
-            <FormLabel>Role</FormLabel>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a role" />
-            </SelectTrigger>
-            <SelectContent>
-              {ROLES.map((role) => (
-                <SelectItem key={role.value} value={role.value}>
-                  <div className="flex items-center gap-2">
-                    <Shield className="h-4 w-4 text-muted-foreground" />
-                    <span>{role.label}</span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </FormItem>
-        </FormField>
-      </Select>
+      <div className="space-y-2">
+        <Label htmlFor="role-select">Role</Label>
+        <Select value={value} onValueChange={onChange as (v: string) => void} disabled={disabled}>
+          <SelectTrigger id="role-select">
+            <SelectValue placeholder="Select a role" />
+          </SelectTrigger>
+          <SelectContent>
+            {ROLES.map((role) => (
+              <SelectItem key={role.value} value={role.value}>
+                <div className="flex items-center gap-2">
+                  <ShieldIcon className="h-4 w-4 text-muted-foreground" />
+                  <span>{role.label}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
       {description && (
-        <FormField name="role-description">
-          <FormDescription>{description}</FormDescription>
-        </FormField>
+        <p className="text-sm text-muted-foreground">{description}</p>
       )}
 
       {value && (
@@ -94,4 +92,3 @@ function RoleSelector({
 RoleSelector.displayName = "RoleSelector";
 
 export { RoleSelector };
-export type { RoleSelectorProps, Role };

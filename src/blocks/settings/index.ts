@@ -5,7 +5,7 @@ export type { AccountSettingsProps } from "./AccountSettings";
 export { NotificationPreferences } from "./NotificationPreferences";
 export type { NotificationPreferencesProps, NotificationGroup, NotificationPreferenceItem } from "./NotificationPreferences";
 export { BillingPage } from "./BillingPage";
-export type { BillingPageProps, BillingPlan, UsageMeter, PaymentMethod, Invoice } from "./BillingPage";
+export type { BillingPageProps, BillingPlan } from "./BillingPage";
 export { SettingsLayoutBlock } from "./SettingsLayoutBlock";
 export type { SettingsLayoutBlockProps, SettingsSection, SettingsSectionId } from "./SettingsLayoutBlock";
 export { DataExportCard } from "./DataExportCard";
