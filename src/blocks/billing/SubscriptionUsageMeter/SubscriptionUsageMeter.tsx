@@ -5,7 +5,7 @@ import { Progress } from "@/components/Progress";
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import {
-  Tooltip,
+  TooltipRoot,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/Tooltip";
@@ -70,7 +70,7 @@ function MetricRow({
             </Badge>
           )}
           {isWarning && (
-            <Tooltip>
+            <TooltipRoot>
               <TooltipTrigger asChild>
                 <svg
                   className="h-4 w-4 shrink-0 text-orange-500"
@@ -90,10 +90,10 @@ function MetricRow({
               <TooltipContent>
                 Near usage limit — consider upgrading.
               </TooltipContent>
-            </Tooltip>
+            </TooltipRoot>
           )}
           {isOver && (
-            <Tooltip>
+            <TooltipRoot>
               <TooltipTrigger asChild>
                 <svg
                   className="h-4 w-4 shrink-0 text-destructive"
@@ -111,7 +111,7 @@ function MetricRow({
                 </svg>
               </TooltipTrigger>
               <TooltipContent>Usage limit reached.</TooltipContent>
-            </Tooltip>
+            </TooltipRoot>
           )}
         </div>
         <div className="flex items-center gap-1.5">
@@ -220,5 +220,3 @@ export function SubscriptionUsageMeter({
 }
 
 SubscriptionUsageMeter.displayName = "SubscriptionUsageMeter";
-
-export { SubscriptionUsageMeter };

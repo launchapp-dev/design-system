@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import {
-  Dialog,
+  DialogRoot,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -148,7 +148,7 @@ function InviteMemberDialog({
   const validRecipients = recipients.filter((r) => r.email.trim());
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <DialogRoot open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
@@ -289,11 +289,10 @@ function InviteMemberDialog({
           </DialogFooter>
         </form>
       </DialogContent>
-    </Dialog>
+    </DialogRoot>
   );
 }
 
 InviteMemberDialog.displayName = "InviteMemberDialog";
 
 export { InviteMemberDialog };
-export type { InviteMemberDialogProps, InviteRecipient, InviteRole };

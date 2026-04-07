@@ -26,7 +26,7 @@ export interface FeedbackSubmission {
   email?: string;
 }
 
-export interface FeedbackWidgetProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
+export interface FeedbackWidgetProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "onSubmit"> {
   onSubmit: (feedback: FeedbackSubmission) => void;
   isLoading?: boolean;
   variant?: "popover" | "inline" | "compact";
@@ -347,6 +347,3 @@ export function FeedbackWidget({
 }
 
 FeedbackWidget.displayName = "FeedbackWidget";
-
-export { FeedbackWidget };
-export type { FeedbackWidgetProps, FeedbackSubmission, FeedbackRating, FeedbackCategory };

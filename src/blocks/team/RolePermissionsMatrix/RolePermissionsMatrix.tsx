@@ -282,6 +282,3 @@ export function RolePermissionsMatrix({
 }
 
 RolePermissionsMatrix.displayName = "RolePermissionsMatrix";
-
-export { RolePermissionsMatrix };
-export type { RolePermissionsMatrixProps, RoleSummary, PermissionEntry, PermissionLevel };
