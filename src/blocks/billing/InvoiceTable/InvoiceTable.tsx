@@ -7,16 +7,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/Table";
-import { Badge } from "../../components/Badge";
-import { Button } from "../../components/Button";
+} from "../../../components/Table";
+import { Badge } from "../../../components/Badge";
+import { Button } from "../../../components/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../../components/DropdownMenu";
-// ── Icons (inline SVG to avoid lucide-react dep in block layer) ──────────────
+} from "../../../components/DropdownMenu";
+import { cn } from "../../../lib/utils";
+
 function MoreHorizontalIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -75,7 +76,6 @@ function EyeIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-import { cn } from "../../lib/utils";
 
 export type InvoiceStatus = "paid" | "pending" | "failed" | "refunded";
 
