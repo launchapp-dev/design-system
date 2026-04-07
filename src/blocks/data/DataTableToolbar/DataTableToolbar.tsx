@@ -1,8 +1,14 @@
-import * as React from "react";
+import type * as React from "react";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/DropdownMenu";
-import { SelectRoot as Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/Select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuCheckboxItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/DropdownMenu";
 import { Badge } from "@/components/Badge";
 import { TooltipRoot as Tooltip, TooltipContent, TooltipTrigger } from "@/components/Tooltip";
 import { cn } from "@/lib/utils";
@@ -34,7 +40,6 @@ export interface DataTableToolbarProps extends React.HTMLAttributes<HTMLDivEleme
   bulkActions?: ToolbarAction[];
   selectedCount?: number;
   onClearSelection?: () => void;
-  onSelectAll?: () => void;
   filters?: React.ReactNode;
   showFilters?: boolean;
   filterCount?: number;
@@ -66,10 +71,7 @@ function DataTableToolbar({
 
   return (
     <div
-      className={cn(
-        "flex flex-wrap items-center gap-2 p-3 rounded-lg border bg-card",
-        className,
-      )}
+      className={cn("flex flex-wrap items-center gap-2 p-3 rounded-lg border bg-card", className)}
       {...props}
     >
       {isSelecting ? (
@@ -91,12 +93,7 @@ function DataTableToolbar({
             </Button>
           ))}
           {onClearSelection && (
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={onClearSelection}
-              className="shrink-0"
-            >
+            <Button size="sm" variant="ghost" onClick={onClearSelection} className="shrink-0">
               Clear
             </Button>
           )}
