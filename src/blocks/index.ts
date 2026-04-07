@@ -36,3 +36,12 @@ export { Timeline } from "./dashboard";
 export type { TimelineProps, TimelineEntry } from "./dashboard";
 // team is the authoritative source for TeamMember (also exported by settings).
 export type { TeamMember } from "./team";
+// files is the authoritative source for FileUploadZone (also in forms).
+export { FileUploadZone } from "./files";
+export type { FileUploadZoneProps } from "./files";
+// admin is the authoritative source for AuditLogViewer (also in activity).
+export { AuditLogViewer } from "./admin";
+export type { AuditLogViewerProps, AuditLogEntry, AuditLogLevel } from "./admin";
+// community is the authoritative source for UserProfileCard (also in profile).
+export { UserProfileCard } from "./community";
+export type { UserProfileCardProps, SocialLink } from "./community";
