@@ -1,5 +1,0 @@
-{
-  "framework": "nextjs",
-  "installCommand": "cd ../.. && corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm install --no-frozen-lockfile",
-  "buildCommand": "cd ../.. && pnpm generate-registry && cp registry.json apps/docs/public/registry.json && cd apps/docs && next build"
-}
