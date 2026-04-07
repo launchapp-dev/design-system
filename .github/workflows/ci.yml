@@ -38,3 +38,11 @@ jobs:
 
       - name: Test
         run: pnpm test --run
+
+      - name: Check registry is up to date
+        run: |
+          node scripts/generate-registry.mjs
+          if ! git diff --exit-code registry.json; then
+            echo "registry.json is out of date. Run 'node scripts/generate-registry.mjs' and commit the result."
+            exit 1
+          fi

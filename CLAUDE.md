@@ -92,3 +92,21 @@ Accordion, Alert, AlertDialog, AnimatedBackground, AnimatedBorder, AnimatedHeigh
 - Compose over Radix primitives — never reimplement accessibility
 - Do not add comments in code unless requested
 - Do not add yourself as author or co-author in commits
+
+## CRITICAL: Registry Must Be Regenerated After Adding Blocks
+
+After adding or modifying any files in `src/blocks/`, you MUST run:
+
+```bash
+node scripts/generate-registry.mjs
+```
+
+Then include `registry.json` in your commit. Failing to do this means the blocks will be invisible on design.launchapp.dev (the docs site reads from registry.json).
+
+CI will fail if `registry.json` is stale — the `Check registry is up to date` step in CI regenerates it and diffs the result.
+
+**Checklist for any block task:**
+1. Add/modify files in `src/blocks/`
+2. Run `node scripts/generate-registry.mjs`
+3. `git add src/blocks/ registry.json`
+4. Commit both together
