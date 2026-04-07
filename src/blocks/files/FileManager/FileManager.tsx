@@ -200,12 +200,24 @@ function FileManager({
       result = result.filter((f) => f.name.toLowerCase().includes(searchQuery.toLowerCase()));
     }
     result.sort((a, b) => {
-      const aVal = a.name.toLowerCase();
-      const bVal = b.name.toLowerCase();
-      return sortOrder === "asc" ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+      let aVal: string | number;
+      let bVal: string | number;
+      if (sortBy === "size") {
+        aVal = a.size;
+        bVal = b.size;
+      } else if (sortBy === "modifiedAt") {
+        aVal = a.modifiedAt ?? "";
+        bVal = b.modifiedAt ?? "";
+      } else {
+        aVal = a.name.toLowerCase();
+        bVal = b.name.toLowerCase();
+      }
+      if (aVal < bVal) return sortOrder === "asc" ? -1 : 1;
+      if (aVal > bVal) return sortOrder === "asc" ? 1 : -1;
+      return 0;
     });
     return result;
-  }, [files, searchQuery, sortOrder]);
+  }, [files, searchQuery, sortBy, sortOrder]);
 
   const currentFolderData = folders.find((f) => f.path === currentFolder) ?? folders[0];
   const breadcrumbParts = currentFolder.split("/").filter(Boolean);
