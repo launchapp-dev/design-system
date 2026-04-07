@@ -1,3 +1,4 @@
+import type * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { DataTableToolbar } from "./DataTableToolbar";
 
@@ -42,6 +43,15 @@ export const WithFilters: Story = {
     allColumns: columns,
     showFilters: true,
     filterCount: 2,
+    filters: React.createElement(
+      "div",
+      { className: "flex gap-2 flex-wrap p-3 border-t" },
+      React.createElement(
+        "span",
+        { className: "text-sm text-muted-foreground" },
+        "Role: Admin, Status: Active",
+      ),
+    ),
     actions: [
       { id: "add", label: "Add", onClick: () => console.log("Add") },
       { id: "export", label: "Export", variant: "outline", onClick: () => console.log("Export") },
@@ -55,7 +65,12 @@ export const BulkSelection: Story = {
     showSearch: false,
     selectedCount: 12,
     bulkActions: [
-      { id: "delete", label: "Delete", variant: "destructive", onClick: () => console.log("Delete") },
+      {
+        id: "delete",
+        label: "Delete",
+        variant: "destructive",
+        onClick: () => console.log("Delete"),
+      },
       { id: "archive", label: "Archive", onClick: () => console.log("Archive") },
     ],
   },
@@ -66,9 +81,7 @@ export const Loading: Story = {
     showSearch: true,
     allColumns: columns,
     loading: true,
-    actions: [
-      { id: "add", label: "Add", onClick: () => console.log("Add") },
-    ],
+    actions: [{ id: "add", label: "Add", onClick: () => console.log("Add") }],
   },
 };
 
@@ -85,8 +98,5 @@ export const DarkMode: Story = {
     allColumns: columns,
     showFilters: true,
     filterCount: 1,
-    actions: [
-      { id: "add", label: "Add", onClick: () => console.log("Add") },
-    ],
   },
 };
