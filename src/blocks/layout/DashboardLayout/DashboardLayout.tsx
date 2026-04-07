@@ -17,8 +17,8 @@ export interface DashboardLayoutProps extends React.HTMLAttributes<HTMLDivElemen
   header?: React.ReactNode;
   /**
    * Left / secondary panel (columns 2 & 3).
-   * In `2`-column mode this is the right panel.
-   * In `3`-column mode this is the left panel.
+   * In `2`-column mode this is the left panel.
+   * In `3`-column mode this is the left panel; `rightPanel` is the third column.
    */
   leftPanel?: React.ReactNode;
   /** Right panel (columns=3 only) */
