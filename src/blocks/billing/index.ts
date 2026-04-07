@@ -8,3 +8,5 @@ export { UsageMeter } from "./UsageMeter";
 export type { UsageMeterProps, UsageMeterItem } from "./UsageMeter";
 export { QuotaUsageBar } from "./QuotaUsageBar";
 export type { QuotaUsageBarProps, QuotaItem } from "./QuotaUsageBar";
+export { BillingHistory } from "./BillingHistory";
+export type { BillingHistoryProps, BillingInvoice, BillingHistoryStatus } from "./BillingHistory";

@@ -6,3 +6,5 @@ export { WebhookConfig } from "./WebhookConfig";
 export type { WebhookConfigProps, WebhookEvent } from "./WebhookConfig";
 export { IntegrationMarketplace } from "./IntegrationMarketplace";
 export type { IntegrationMarketplaceProps, Integration, IntegrationStatus, IntegrationCategory } from "./IntegrationMarketplace";
+export { WebhooksList } from "./WebhooksList";
+export type { WebhooksListProps, WebhookItem, WebhookStatus } from "./WebhooksList";

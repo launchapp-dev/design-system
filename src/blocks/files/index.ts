@@ -8,3 +8,5 @@ export { FileGrid } from "./FileGrid/FileGrid";
 export type { FileGridProps, FileGridItem, FileItemType } from "./FileGrid/FileGrid";
 export { FileManager } from "./FileManager";
 export type { FileManagerProps, FileManagerFolder, FileManagerViewMode } from "./FileManager";
+export { FileUploadZone } from "./FileUploadZone";
+export type { FileUploadZoneProps } from "./FileUploadZone";
