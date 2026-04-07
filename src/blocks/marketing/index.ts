@@ -16,3 +16,5 @@ export type {
   ComparisonFeatureValue,
 } from "./FeatureComparison";
 export * from "./PricingComparisonTable";
+export { ChangelogFeed } from "./ChangelogFeed";
+export type { ChangelogFeedProps, ChangelogEntry as ChangelogFeedEntry, ChangelogEntryType } from "./ChangelogFeed";
