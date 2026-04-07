@@ -13,3 +13,5 @@ export { Timeline } from "./Timeline";
 export type { TimelineProps, TimelineEntry } from "./Timeline";
 export { ActivityFeed } from "./ActivityFeed/index";
 export type { ActivityFeedProps, ActivityFeedItem } from "./ActivityFeed/index";
+export { StatusPageDashboard } from "./StatusPageDashboard";
+export type { StatusPageDashboardProps, ServiceComponent, StatusIncident, UptimeRecord, StatusPageServiceStatus, StatusPageIncidentSeverity } from "./StatusPageDashboard";
