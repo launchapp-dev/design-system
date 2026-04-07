@@ -1129,3 +1129,29 @@ export type {
 
 export { MultiPanelLayout } from "./components/MultiPanelLayout";
 export type { MultiPanelLayoutProps, MultiPanelLayoutPanel } from "./components/MultiPanelLayout";
+
+export { IconOnlySidebarShell } from "./blocks/layout/IconOnlySidebarShell";
+export type {
+  IconOnlySidebarShellProps,
+  IconOnlyNavItem,
+  IconOnlyNavSection,
+} from "./blocks/layout/IconOnlySidebarShell";
+
+export { DualPanelSidebarShell } from "./blocks/layout/DualPanelSidebarShell";
+export type {
+  DualPanelSidebarShellProps,
+  DualPanelNavItem,
+} from "./blocks/layout/DualPanelSidebarShell";
+
+export { DashboardLayout } from "./blocks/layout/DashboardLayout";
+export type {
+  DashboardLayoutProps,
+  DashboardLayoutColumns,
+} from "./blocks/layout/DashboardLayout";
+
+export { MobileNavDrawerShell } from "./blocks/layout/MobileNavDrawerShell";
+export type {
+  MobileNavDrawerShellProps,
+  MobileNavDrawerShellNavItem,
+  MobileNavDrawerShellNavSection,
+} from "./blocks/layout/MobileNavDrawerShell";
