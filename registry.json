@@ -1032,6 +1032,21 @@
       "devDependencies": []
     },
     {
+      "name": "multi-panel-layout",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/MultiPanelLayout/MultiPanelLayout.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/MultiPanelLayout/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "multi-select",
       "type": "registry:ui",
       "files": [
@@ -1927,6 +1942,163 @@
       "devDependencies": []
     },
     {
+      "name": "block-activity-stream",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/activity/ActivityStream/ActivityStream.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-api-key-manager",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/admin/APIKeyManager/APIKeyManager.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-audit-log-viewer",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/admin/AuditLogViewer/AuditLogViewer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-feature-flag-panel",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/admin/FeatureFlagPanel.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-status-page",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/admin/StatusPage.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-system-settings-panel",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/admin/SystemSettingsPanel/SystemSettingsPanel.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-user-management-table",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/admin/UserManagementTable/UserManagementTable.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-webhook-manager",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/admin/WebhookManager/WebhookManager.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-app-shell-minimal",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/app/AppShellMinimal/AppShellMinimal.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-collapsible-sidebar",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/app/CollapsibleSidebar/CollapsibleSidebar.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-compact-sidebar",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/app/CompactSidebar/CompactSidebar.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-dashboard-header",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/app/DashboardHeader/DashboardHeader.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-page-container",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/app/PageContainer/PageContainer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-settings-layout",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/app/SettingsLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-auth-form-block",
       "type": "registry:block",
       "files": [
@@ -1986,28 +2158,6 @@
       ]
     },
     {
-      "name": "block-reset-password-form",
-      "type": "registry:block",
-      "files": [
-        {
-          "path": "src/blocks/auth/ResetPasswordForm.tsx",
-          "type": "registry:block"
-        }
-      ],
-      "dependencies": [
-        "react-hook-form",
-        "@hookform/resolvers/zod",
-        "zod"
-      ],
-      "devDependencies": [],
-      "registryDependencies": [
-        "form",
-        "input",
-        "button",
-        "card"
-      ]
-    },
-    {
       "name": "block-otp-verification",
       "type": "registry:block",
       "files": [
@@ -2027,6 +2177,21 @@
         "button",
         "card"
       ]
+    },
+    {
+      "name": "block-reset-password-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/auth/ResetPasswordForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "react-hook-form",
+        "zod"
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-sign-up-form",
@@ -2050,6 +2215,61 @@
         "label",
         "card"
       ]
+    },
+    {
+      "name": "block-invoice-table",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/billing/InvoiceTable/InvoiceTable.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-payment-method-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/billing/PaymentMethodCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-quota-usage-bar",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/billing/QuotaUsageBar.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-subscription-manager",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/billing/SubscriptionManager.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-usage-meter",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/billing/UsageMeter.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-newsletter-signup",
@@ -2099,6 +2319,20 @@
       "devDependencies": []
     },
     {
+      "name": "block-team-member-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/community/TeamMemberCard/TeamMemberCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-theme-submission-form",
       "type": "registry:block",
       "files": [
@@ -2114,22 +2348,29 @@
       "devDependencies": []
     },
     {
+      "name": "block-user-profile-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/community/UserProfileCard/UserProfileCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-activity-feed",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/dashboard/ActivityFeed.tsx",
+          "path": "src/blocks/dashboard/ActivityFeed/ActivityFeed.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": [
-        "avatar",
-        "badge",
-        "scroll-area",
-        "separator",
-        "card"
-      ]
+      "devDependencies": []
     },
     {
       "name": "block-dashboard-shell",
@@ -2143,33 +2384,18 @@
       "dependencies": [
         "class-variance-authority"
       ],
-      "devDependencies": [],
-      "registryDependencies": [
-        "button",
-        "avatar",
-        "collapsible",
-        "sheet",
-        "breadcrumb",
-        "dropdown-menu",
-        "notification-bell",
-        "scroll-area",
-        "separator"
-      ]
+      "devDependencies": []
     },
     {
       "name": "block-metric-cards",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/dashboard/MetricCards.tsx",
+          "path": "src/blocks/dashboard/MetricCards/MetricCards.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": [
-        "card",
-        "chart"
-      ]
+      "devDependencies": []
     },
     {
       "name": "block-stats-overview",
@@ -2188,6 +2414,178 @@
       ]
     },
     {
+      "name": "block-timeline",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/dashboard/Timeline/Timeline.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-activity-feed",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/ActivityFeed/ActivityFeed.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-calendar-view",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/CalendarView/CalendarView.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-calendar-widget",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/CalendarWidget/CalendarWidget.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-chart-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/ChartCard/ChartCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-checkout-funnel",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/CheckoutFunnel/CheckoutFunnel.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-column-filters",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/ColumnFilters/ColumnFilters.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-comparison-table",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/ComparisonTable/ComparisonTable.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-data-export-wizard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/DataExportWizard/DataExportWizard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-data-table-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/DataTableCard/DataTableCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-data-table-toolbar",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/DataTableToolbar/DataTableToolbar.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-data-trend",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/DataTrend/DataTrend.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-empty-state",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/EmptyState/EmptyState.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-empty-state-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/EmptyStateCard/EmptyStateCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-filter-bar",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/FilterBar/FilterBar.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-full-data-table",
       "type": "registry:block",
       "files": [
@@ -2202,11 +2600,71 @@
       "devDependencies": []
     },
     {
+      "name": "block-funnel-chart-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/FunnelChartCard/FunnelChartCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-gauge-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/GaugeCard/GaugeCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-kpi-comparison-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/KPIComparisonCard/KPIComparisonCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-kanban-board",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/data/KanbanBoard/KanbanBoard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-metric-grid",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/MetricGrid/MetricGrid.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-project-board",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/ProjectBoard/ProjectBoard.tsx",
           "type": "registry:block"
         }
       ],
@@ -2232,6 +2690,28 @@
       "devDependencies": []
     },
     {
+      "name": "block-sparkline-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/SparklineCard/SparklineCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-stats-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/StatsCard/StatsCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-timeline",
       "type": "registry:block",
       "files": [
@@ -2242,6 +2722,17 @@
       ],
       "dependencies": [
         "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-cart-drawer",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/CartDrawer/CartDrawer.tsx",
+          "type": "registry:block"
+        }
       ],
       "devDependencies": []
     },
@@ -2261,6 +2752,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-order-summary",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/OrderSummary/OrderSummary.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-product-card",
       "type": "registry:block",
       "files": [
@@ -2275,11 +2777,44 @@
       "devDependencies": []
     },
     {
+      "name": "block-product-grid",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/ProductGrid/ProductGrid.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-reviews-list",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/ReviewsList/ReviewsList.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-shopping-cart",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/ecommerce/ShoppingCart/ShoppingCart.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-wishlist-grid",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/ecommerce/WishlistGrid/WishlistGrid.tsx",
           "type": "registry:block"
         }
       ],
@@ -2330,11 +2865,33 @@
       "devDependencies": []
     },
     {
+      "name": "block-file-grid",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/files/FileGrid/FileGrid.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-file-list",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/files/FileList.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-file-manager",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/files/FileManager/FileManager.tsx",
           "type": "registry:block"
         }
       ],
@@ -2352,6 +2909,94 @@
       "devDependencies": []
     },
     {
+      "name": "block-file-upload-zone",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/forms/FileUploadZone/FileUploadZone.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-rich-text-editor",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/forms/RichTextEditor/RichTextEditor.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-support-ticket-form",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/forms/SupportTicketForm.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-inbox-manager",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/inbox/InboxManager/InboxManager.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-api-key-manager",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/integrations/ApiKeyManager.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-integration-marketplace",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/integrations/IntegrationMarketplace.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-o-auth-connect-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/integrations/OAuthConnectCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-webhook-config",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/integrations/WebhookConfig.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-agency",
       "type": "registry:block",
       "files": [
@@ -2359,6 +3004,34 @@
           "path": "src/blocks/landing/Agency/Agency.tsx",
           "type": "registry:block"
         }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-cta-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/CTASection/CTASection.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-faq-section",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/landing/FAQSection/FAQSection.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
       ],
       "devDependencies": []
     },
@@ -2463,11 +3136,154 @@
       "devDependencies": []
     },
     {
+      "name": "block-app-shell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/AppShell/AppShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-command-palette-shell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/CommandPaletteShell/CommandPaletteShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-dashboard-layout",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/DashboardLayout/DashboardLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-dual-panel-sidebar-shell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/DualPanelSidebarShell/DualPanelSidebarShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-empty-state",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/EmptyState.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-icon-only-sidebar-shell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/IconOnlySidebarShell/IconOnlySidebarShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-mobile-nav-drawer-shell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/MobileNavDrawerShell/MobileNavDrawerShell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-multi-panel-layout",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/MultiPanelLayout/MultiPanelLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-sidebar-layout",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/SidebarLayout/SidebarLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-split-pane-layout",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/layout/SplitPaneLayout/SplitPaneLayout.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-billing-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/BillingCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-changelog-feed",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/ChangelogFeed.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-changelog-timeline",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/marketing/ChangelogTimeline.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-feature-comparison",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/FeatureComparison.tsx",
           "type": "registry:block"
         }
       ],
@@ -2499,6 +3315,31 @@
       "devDependencies": []
     },
     {
+      "name": "block-logo-cloud",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/LogoCloud/LogoCloud.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-pricing-comparison-table",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/marketing/PricingComparisonTable/PricingComparisonTable.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-pricing-table",
       "type": "registry:block",
       "files": [
@@ -2520,20 +3361,6 @@
           "path": "src/blocks/marketing/TestimonialCarousel/TestimonialCarousel.tsx",
           "type": "registry:block"
         }
-      ],
-      "devDependencies": []
-    },
-    {
-      "name": "block-logo-cloud",
-      "type": "registry:block",
-      "files": [
-        {
-          "path": "src/blocks/marketing/LogoCloud/LogoCloud.tsx",
-          "type": "registry:block"
-        }
-      ],
-      "dependencies": [
-        "class-variance-authority"
       ],
       "devDependencies": []
     },
@@ -2571,6 +3398,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-metrics-dashboard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/metrics/MetricsDashboard/MetricsDashboard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-app-sidebar",
       "type": "registry:block",
       "files": [
@@ -2586,6 +3424,28 @@
         "collapsible",
         "avatar"
       ]
+    },
+    {
+      "name": "block-breadcrumb-nav",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/navigation/BreadcrumbNav/BreadcrumbNav.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-command-palette",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/navigation/CommandPalette/CommandPalette.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-mobile-nav-drawer",
@@ -2623,6 +3483,17 @@
       ]
     },
     {
+      "name": "block-user-menu",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/navigation/UserMenu/UserMenu.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-activity-timeline",
       "type": "registry:block",
       "files": [
@@ -2645,11 +3516,55 @@
       "devDependencies": []
     },
     {
+      "name": "block-notification-bell",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/notifications/NotificationBell/NotificationBell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-notification-center",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/notifications/NotificationCenter.tsx",
+          "path": "src/blocks/notifications/NotificationCenter/NotificationCenter.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-notification-preferences",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/notifications/NotificationPreferences.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-checklist-with-links",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/ChecklistWithLinks/ChecklistWithLinks.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-goal-setup-wizard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/GoalSetupWizard/GoalSetupWizard.tsx",
           "type": "registry:block"
         }
       ],
@@ -2678,6 +3593,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-onboarding-flow",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/OnboardingFlow/OnboardingFlow.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-onboarding-stepper",
       "type": "registry:block",
       "files": [
@@ -2688,6 +3614,75 @@
       ],
       "dependencies": [
         "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-onboarding-wizard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/OnboardingWizard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-progress-checklist",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/ProgressChecklist/ProgressChecklist.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-progress-stepper",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/ProgressStepper.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-setup-checklist",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/SetupChecklist.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-setup-wizard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/SetupWizard/SetupWizard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-team-invite-flow",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/TeamInviteFlow/TeamInviteFlow.tsx",
+          "type": "registry:block"
+        }
       ],
       "devDependencies": []
     },
@@ -2703,11 +3698,88 @@
       "devDependencies": []
     },
     {
+      "name": "block-welcome-wizard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/WelcomeWizard/WelcomeWizard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-user-profile-header",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/profile/UserProfileHeader/UserProfileHeader.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-project-kanban",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/project/ProjectKanban/ProjectKanban.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-command-palette",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/search/CommandPalette/CommandPalette.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-search-command-palette",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/search/SearchCommandPalette/SearchCommandPalette.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-search-results",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/search/SearchResults/SearchResults.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-account-deletion-card",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/settings/AccountDeletionCard/AccountDeletionCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-account-overview",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/AccountOverview/AccountOverview.tsx",
           "type": "registry:block"
         }
       ],
@@ -2734,6 +3806,17 @@
         "alert",
         "form"
       ]
+    },
+    {
+      "name": "block-appearance-settings",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/AppearanceSettings/AppearanceSettings.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-billing-overview",
@@ -2766,11 +3849,44 @@
       ]
     },
     {
+      "name": "block-connected-accounts",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/ConnectedAccounts/ConnectedAccounts.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-cookie-preferences",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/CookiePreferences/CookiePreferences.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-data-export-card",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/settings/DataExportCard/DataExportCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-language-settings",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/LanguageSettings/LanguageSettings.tsx",
           "type": "registry:block"
         }
       ],
@@ -2792,6 +3908,28 @@
         "separator",
         "card"
       ]
+    },
+    {
+      "name": "block-notification-settings-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/NotificationSettingsCard/NotificationSettingsCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-privacy-settings",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/PrivacySettings/PrivacySettings.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-privacy-settings-layout",
@@ -2828,6 +3966,17 @@
       ]
     },
     {
+      "name": "block-security-settings",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/SecuritySettings/SecuritySettings.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-settings-layout-block",
       "type": "registry:block",
       "files": [
@@ -2839,120 +3988,107 @@
       "devDependencies": []
     },
     {
-      "name": "block-app-shell",
+      "name": "block-tabbed-settings",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/layout/AppShell/AppShell.tsx",
+          "path": "src/blocks/settings/TabbedSettings/TabbedSettings.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": [
-        "button",
-        "separator",
-        "collapsible",
-        "avatar",
-        "badge",
-        "sheet",
-        "scroll-area"
-      ]
+      "devDependencies": []
     },
     {
-      "name": "block-metrics-dashboard",
+      "name": "block-team-settings",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/metrics/MetricsDashboard/MetricsDashboard.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/metrics/MetricsDashboard/index.ts",
+          "path": "src/blocks/settings/TeamSettings/TeamSettings.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": ["card", "badge", "button", "avatar", "progress"]
+      "devDependencies": []
     },
     {
-      "name": "block-search-command-palette",
+      "name": "block-invite-form",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/search/CommandPalette/CommandPalette.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/search/CommandPalette/index.ts",
+          "path": "src/blocks/team/InviteForm.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": ["command", "badge", "scroll-area"]
+      "dependencies": [
+        "react-hook-form",
+        "zod"
+      ],
+      "devDependencies": []
     },
     {
-      "name": "block-activity-stream",
+      "name": "block-role-permission-matrix",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/activity/ActivityStream/ActivityStream.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/activity/ActivityStream/index.ts",
+          "path": "src/blocks/team/RolePermissionMatrix/RolePermissionMatrix.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": ["card", "avatar", "badge", "button"]
+      "devDependencies": []
     },
     {
-      "name": "block-profile-user-profile-header",
+      "name": "block-role-selector",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/profile/UserProfileHeader/UserProfileHeader.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/profile/UserProfileHeader/index.ts",
+          "path": "src/blocks/team/RoleSelector.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": ["avatar", "badge", "button", "card", "separator"]
+      "devDependencies": []
     },
     {
-      "name": "block-project-kanban",
+      "name": "block-team-member-grid",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/project/ProjectKanban/ProjectKanban.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/project/ProjectKanban/index.ts",
+          "path": "src/blocks/team/TeamMemberGrid.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": ["card", "badge", "button", "input", "scroll-area"]
+      "devDependencies": []
     },
     {
-      "name": "block-onboarding-flow",
+      "name": "block-team-member-list",
       "type": "registry:block",
       "files": [
         {
-          "path": "src/blocks/onboarding/OnboardingFlow/OnboardingFlow.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/onboarding/OnboardingFlow/index.ts",
+          "path": "src/blocks/team/TeamMemberList.tsx",
           "type": "registry:block"
         }
       ],
-      "devDependencies": [],
-      "registryDependencies": ["button", "card", "progress"]
+      "devDependencies": []
+    },
+    {
+      "name": "block-team-roster",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/team/TeamRoster/TeamRoster.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-workspace-switcher",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/team/WorkspaceSwitcher.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-timeline-view",
@@ -2961,42 +4097,6 @@
         {
           "path": "src/blocks/timeline/TimelineView/TimelineView.tsx",
           "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/timeline/TimelineView/index.ts",
-          "type": "registry:block"
-        }
-      ],
-      "devDependencies": [],
-      "registryDependencies": ["card", "avatar", "badge"]
-    },
-    {
-      "name": "block-inbox-manager",
-      "type": "registry:block",
-      "files": [
-        {
-          "path": "src/blocks/inbox/InboxManager/InboxManager.tsx",
-          "type": "registry:block"
-        },
-        {
-          "path": "src/blocks/inbox/InboxManager/index.ts",
-          "type": "registry:block"
-        }
-      ],
-      "devDependencies": [],
-      "registryDependencies": ["card", "avatar", "badge", "button", "scroll-area", "separator"]
-    },
-    {
-      "name": "multi-panel-layout",
-      "type": "registry:ui",
-      "files": [
-        {
-          "path": "src/components/MultiPanelLayout/MultiPanelLayout.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "src/components/MultiPanelLayout/index.ts",
-          "type": "registry:ui"
         }
       ],
       "devDependencies": []
