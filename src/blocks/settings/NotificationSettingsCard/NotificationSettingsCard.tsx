@@ -76,7 +76,7 @@ function NotificationSettingsCard({
       <CardContent className="space-y-6">
         {groups.map((group, groupIndex) => {
           const allEnabled = group.channels.every((c) => c.enabled);
-          const someEnabled = group.channels.some((c) => c.enabled);
+          const _someEnabled = group.channels.some((c) => c.enabled);
 
           return (
             <div key={group.id}>

@@ -20,6 +20,12 @@ export * from "./app";
 export * from "./billing";
 export * from "./team";
 export * from "./integrations";
+export * from "./metrics";
+export * from "./activity";
+export * from "./profile";
+export * from "./project";
+export * from "./timeline";
+export * from "./inbox";
 
 // Explicit re-exports to resolve ambiguity from duplicate names across block categories.
 // dashboard is the authoritative source for these shared types.

@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { Badge } from "@/components/Badge";
-import { Switch } from "@/components/Switch";
 
 export interface ConnectedAccount {
   id: string;
