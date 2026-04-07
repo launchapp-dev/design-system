@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { NotificationPreferencesCenter } from "./NotificationPreferencesCenter";
+import { NotificationPreferencesCenter } from "./NotificationPreferences";
 
 const meta: Meta<typeof NotificationPreferencesCenter> = {
   title: "Blocks/Notifications/NotificationPreferencesCenter",
