@@ -105,4 +105,3 @@ function TimelineView({
 TimelineView.displayName = "TimelineView";
 
 export { TimelineView };
-export type { TimelineEvent, TimelineViewProps };

@@ -116,7 +116,7 @@ function InboxManager({
           </div>
         </CardHeader>
 
-        <ScrollArea style={{ maxHeight }}>
+        <ScrollArea style={{ maxHeight: maxListHeight }}>
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" aria-hidden="true">
@@ -180,4 +180,3 @@ function InboxManager({
 InboxManager.displayName = "InboxManager";
 
 export { InboxManager };
-export type { InboxMessage, InboxFolder, InboxManagerProps };

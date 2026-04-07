@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/Card";
 import { Separator } from "@/components/Separator";
 import { cn } from "@/lib/utils";
 
-export interface ProfileStat {
+export interface UserProfileStat {
   label: string;
   value: string | number;
 }
@@ -31,7 +31,7 @@ export interface UserProfileHeaderProps extends React.HTMLAttributes<HTMLDivElem
     joinedDate?: string;
     isVerified?: boolean;
   };
-  stats?: ProfileStat[];
+  stats?: UserProfileStat[];
   actions?: ProfileAction[];
   coverImage?: string;
   isFollowing?: boolean;
@@ -161,4 +161,3 @@ function UserProfileHeader({
 UserProfileHeader.displayName = "UserProfileHeader";
 
 export { UserProfileHeader };
-export type { ProfileStat, ProfileAction, UserProfileHeaderProps };

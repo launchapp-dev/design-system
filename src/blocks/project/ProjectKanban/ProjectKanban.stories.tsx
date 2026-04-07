@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ProjectKanban, type ProjectColumn, type ProjectCard } from "./ProjectKanban";
+import { ProjectKanban, type ProjectKanbanColumn, type ProjectCard } from "./ProjectKanban";
 
 const sampleCards: Record<string, ProjectCard[]> = {
   todo: [
@@ -44,7 +44,7 @@ const sampleCards: Record<string, ProjectCard[]> = {
   ],
 };
 
-const columns: ProjectColumn[] = [
+const columns: ProjectKanbanColumn[] = [
   { id: "todo", title: "To Do", color: "#94a3b8", cards: sampleCards.todo },
   { id: "inprogress", title: "In Progress", color: "#3b82f6", cards: sampleCards.inprogress },
   { id: "done", title: "Done", color: "#22c55e", cards: sampleCards.done },

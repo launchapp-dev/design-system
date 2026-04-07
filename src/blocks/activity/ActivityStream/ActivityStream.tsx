@@ -132,4 +132,3 @@ function ActivityStream({
 ActivityStream.displayName = "ActivityStream";
 
 export { ActivityStream };
-export type { StreamEvent, ActivityStreamProps };

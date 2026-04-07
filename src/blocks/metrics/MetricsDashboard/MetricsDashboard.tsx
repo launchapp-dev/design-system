@@ -136,4 +136,3 @@ function MetricsDashboard({
 MetricsDashboard.displayName = "MetricsDashboard";
 
 export { MetricsDashboard };
-export type { DashboardMetric, MetricsDashboardProps };

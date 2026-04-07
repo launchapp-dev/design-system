@@ -19,7 +19,7 @@ export interface ProjectCard {
   commentCount?: number;
 }
 
-export interface ProjectColumn {
+export interface ProjectKanbanColumn {
   id: string;
   title: string;
   color?: string;
@@ -28,9 +28,9 @@ export interface ProjectColumn {
 }
 
 export interface ProjectKanbanProps extends React.HTMLAttributes<HTMLDivElement> {
-  columns: ProjectColumn[];
+  columns: ProjectKanbanColumn[];
   onCardClick?: (card: ProjectCard) => void;
-  onColumnUpdate?: (column: ProjectColumn) => void;
+  onColumnUpdate?: (column: ProjectKanbanColumn) => void;
   onAddCard?: (columnId: string) => void;
 }
 
@@ -149,4 +149,3 @@ function ProjectKanban({
 ProjectKanban.displayName = "ProjectKanban";
 
 export { ProjectKanban };
-export type { ProjectCard, ProjectColumn, ProjectKanbanProps };

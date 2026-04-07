@@ -117,4 +117,3 @@ function OnboardingFlow({
 OnboardingFlow.displayName = "OnboardingFlow";
 
 export { OnboardingFlow };
-export type { OnboardingStep, OnboardingFlowProps };

@@ -1,2 +1,2 @@
 export { UserProfileHeader } from "./UserProfileHeader";
-export type { ProfileStat, ProfileAction, UserProfileHeaderProps } from "./UserProfileHeader";
+export type { UserProfileStat, ProfileAction, UserProfileHeaderProps } from "./UserProfileHeader";
