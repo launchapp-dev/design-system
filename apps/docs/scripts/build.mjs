@@ -32,8 +32,9 @@ mkdirSync(resolve(docsDir, "public"), { recursive: true });
 copyFileSync(registrySrc, registryDest);
 
 // Step 3: next build (CWD must be docs dir so Next.js finds its config)
+// Use `pnpm exec` to reliably resolve the next binary regardless of PATH
 console.log("[build] running next build...");
-execSync("next build", {
+execSync("pnpm exec next build", {
   cwd: docsDir,
   stdio: "inherit",
   env: { ...process.env },
