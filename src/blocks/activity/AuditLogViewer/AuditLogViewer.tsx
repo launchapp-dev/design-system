@@ -1,16 +1,16 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "../../components/Card";
-import { Badge } from "../../components/Badge";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
+import { cn } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
+import { Badge } from "@/components/Badge";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
 import {
   SelectRoot as Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../components/Select";
+} from "@/components/Select";
 import {
   Table,
   TableBody,
@@ -18,7 +18,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/Table";
+} from "@/components/Table";
 
 function FilterIcon({ className }: { className?: string }) {
   return (

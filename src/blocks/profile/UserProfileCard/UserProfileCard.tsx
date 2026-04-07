@@ -1,10 +1,10 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
-import { Card, CardContent, CardHeader } from "../../components/Card";
-import { Avatar, AvatarImage, AvatarFallback } from "../../components/Avatar";
-import { Badge } from "../../components/Badge";
-import { Button } from "../../components/Button";
-import { Separator } from "../../components/Separator";
+import { cn } from "@/lib/utils";
+import { Card, CardContent, CardHeader } from "@/components/Card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/Avatar";
+import { Badge } from "@/components/Badge";
+import { Button } from "@/components/Button";
+import { Separator } from "@/components/Separator";
 
 function MapPinIcon({ className }: { className?: string }) {
   return (

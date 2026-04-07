@@ -1,9 +1,9 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
-import { Card } from "../../components/Card";
-import { Button } from "../../components/Button";
-import { Progress } from "../../components/Progress";
-import { Badge } from "../../components/Badge";
+import { cn } from "@/lib/utils";
+import { Card } from "@/components/Card";
+import { Button } from "@/components/Button";
+import { Progress } from "@/components/Progress";
+import { Badge } from "@/components/Badge";
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/Table";
+} from "@/components/Table";
 
 function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -202,7 +202,7 @@ const FileUploadZone = React.forwardRef<HTMLDivElement, FileUploadZoneProps>(
                 .filter(Boolean).join(" · ")}
             </p>
           </div>
-          <Button type="button" variant="outline" size="sm" disabled={disabled} onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }}>
+          <Button type="button" variant="outline" size="sm" disabled={disabled} onClick={(e: React.MouseEvent<HTMLButtonElement>) => { e.stopPropagation(); inputRef.current?.click(); }}>
             Browse files
           </Button>
         </div>
@@ -277,4 +277,3 @@ const FileUploadZone = React.forwardRef<HTMLDivElement, FileUploadZoneProps>(
 FileUploadZone.displayName = "FileUploadZone";
 
 export { FileUploadZone };
-export type { FileUploadZoneProps, UploadFile, UploadStatus };

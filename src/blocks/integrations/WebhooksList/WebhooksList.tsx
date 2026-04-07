@@ -1,26 +1,26 @@
 import * as React from "react";
-import { cn } from "../../lib/utils";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/Card";
-import { Button } from "../../components/Button";
-import { Badge } from "../../components/Badge";
-import { Input } from "../../components/Input";
-import { Switch } from "../../components/Switch";
-import { Label } from "../../components/Label";
-import { Progress } from "../../components/Progress";
+import { cn } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/Card";
+import { Button } from "@/components/Button";
+import { Badge } from "@/components/Badge";
+import { Input } from "@/components/Input";
+import { Switch } from "@/components/Switch";
+import { Label } from "@/components/Label";
+import { Progress } from "@/components/Progress";
 import {
-  Dialog,
+  DialogRoot as Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "../../components/Dialog";
+} from "@/components/Dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../components/DropdownMenu";
+} from "@/components/DropdownMenu";
 
 function PlusIcon({ className }: { className?: string }) {
   return (
@@ -95,7 +95,7 @@ export interface WebhookItem {
   secret?: string;
 }
 
-export interface WebhooksListProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface WebhooksListProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onToggle"> {
   webhooks: WebhookItem[];
   onAdd?: (data: { name: string; url: string; events: string[] }) => void;
   onEdit?: (webhook: WebhookItem) => void;
@@ -327,7 +327,7 @@ function WebhooksList({
       </Dialog>
 
       {/* Edit Dialog */}
-      <Dialog open={!!editingWebhook} onOpenChange={(o) => !o && setEditingWebhook(null)}>
+      <Dialog open={!!editingWebhook} onOpenChange={(o: boolean) => !o && setEditingWebhook(null)}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Edit Webhook</DialogTitle>
