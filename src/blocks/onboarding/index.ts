@@ -28,3 +28,11 @@ export type {
   ProgressChecklistSection,
   ProgressChecklistItem,
 } from "./ProgressChecklist/ProgressChecklist";
+export { GoalSetupWizard } from "./GoalSetupWizard";
+export type { GoalSetupWizardProps, GoalStep, GoalOption } from "./GoalSetupWizard";
+export { ChecklistWithLinks } from "./ChecklistWithLinks";
+export type {
+  ChecklistWithLinksProps,
+  ChecklistLinkItem,
+  ChecklistSection,
+} from "./ChecklistWithLinks";

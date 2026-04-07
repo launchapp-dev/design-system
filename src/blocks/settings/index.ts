@@ -32,3 +32,19 @@ export { PrivacySettings } from "./PrivacySettings";
 export type { PrivacySettingsProps, PrivacyToggle } from "./PrivacySettings";
 export { CookiePreferences, COOKIE_PREFERENCES_DEFAULT_CATEGORIES } from "./CookiePreferences";
 export type { CookiePreferencesProps, CookieCategory, CookieCategoryId } from "./CookiePreferences";
+export { TabbedSettings } from "./TabbedSettings";
+export type { TabbedSettingsProps, TabbedSettingsTab } from "./TabbedSettings";
+export { AccountOverview } from "./AccountOverview";
+export type { AccountOverviewProps, AccountOverviewUser, AccountOverviewPlan } from "./AccountOverview";
+export { ConnectedAccounts } from "./ConnectedAccounts";
+export type { ConnectedAccountsProps, ConnectedAccount } from "./ConnectedAccounts";
+export { AppearanceSettings } from "./AppearanceSettings";
+export type { AppearanceSettingsProps, AppearanceTheme, AppearanceFont } from "./AppearanceSettings";
+export { LanguageSettings } from "./LanguageSettings";
+export type { LanguageSettingsProps, Language } from "./LanguageSettings";
+export { NotificationSettingsCard } from "./NotificationSettingsCard";
+export type {
+  NotificationSettingsCardProps,
+  NotificationGroupSetting,
+  NotificationChannelSetting,
+} from "./NotificationSettingsCard";
