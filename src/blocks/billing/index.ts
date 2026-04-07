@@ -6,3 +6,5 @@ export { SubscriptionManager } from "./SubscriptionManager";
 export type { SubscriptionManagerProps, SubscriptionManagerPlan } from "./SubscriptionManager";
 export { UsageMeter } from "./UsageMeter";
 export type { UsageMeterProps, UsageMeterItem } from "./UsageMeter";
+export { QuotaUsageBar } from "./QuotaUsageBar";
+export type { QuotaUsageBarProps, QuotaItem } from "./QuotaUsageBar";

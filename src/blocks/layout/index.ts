@@ -15,3 +15,5 @@ export { DashboardLayout } from "./DashboardLayout";
 export type { DashboardLayoutProps, DashboardLayoutColumns } from "./DashboardLayout";
 export { MobileNavDrawerShell } from "./MobileNavDrawerShell";
 export type { MobileNavDrawerShellProps, MobileNavDrawerShellNavItem, MobileNavDrawerShellNavSection } from "./MobileNavDrawerShell";
+export { EmptyState } from "./EmptyState";
+export type { EmptyStateProps, EmptyStateVariant } from "./EmptyState";
