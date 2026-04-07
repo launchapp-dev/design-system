@@ -1,0 +1,5 @@
+{
+  "framework": "nextjs",
+  "installCommand": "cd ../.. && pnpm install",
+  "buildCommand": "cd ../.. && pnpm generate-registry && cp registry.json apps/docs/public/registry.json && cd apps/docs && next build"
+}
