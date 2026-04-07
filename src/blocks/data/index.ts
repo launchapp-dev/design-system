@@ -16,6 +16,8 @@ export * from "./GaugeCard";
 export * from "./DataTableCard";
 export * from "./KPIComparisonCard";
 export * from "./EmptyStateCard";
+export * from "./DataTableToolbar";
+export * from "./ColumnFilters";
 
 // FilterOption is defined identically in both FullDataTable and FilterBar.
 // Explicit re-export resolves the ambiguity; FullDataTable's definition is canonical.
