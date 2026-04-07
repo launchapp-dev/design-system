@@ -2859,6 +2859,134 @@
       ]
     },
     {
+      "name": "block-metrics-dashboard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/metrics/MetricsDashboard/MetricsDashboard.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/metrics/MetricsDashboard/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["card", "badge", "button", "avatar", "progress"]
+    },
+    {
+      "name": "block-search-command-palette",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/search/CommandPalette/CommandPalette.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/search/CommandPalette/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["command", "badge", "scroll-area"]
+    },
+    {
+      "name": "block-activity-stream",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/activity/ActivityStream/ActivityStream.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/activity/ActivityStream/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["card", "avatar", "badge", "button"]
+    },
+    {
+      "name": "block-profile-user-profile-header",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/profile/UserProfileHeader/UserProfileHeader.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/profile/UserProfileHeader/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["avatar", "badge", "button", "card", "separator"]
+    },
+    {
+      "name": "block-project-kanban",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/project/ProjectKanban/ProjectKanban.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/project/ProjectKanban/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["card", "badge", "button", "input", "scroll-area"]
+    },
+    {
+      "name": "block-onboarding-flow",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/onboarding/OnboardingFlow/OnboardingFlow.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/onboarding/OnboardingFlow/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["button", "card", "progress"]
+    },
+    {
+      "name": "block-timeline-view",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/timeline/TimelineView/TimelineView.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/timeline/TimelineView/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["card", "avatar", "badge"]
+    },
+    {
+      "name": "block-inbox-manager",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/inbox/InboxManager/InboxManager.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/blocks/inbox/InboxManager/index.ts",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": [],
+      "registryDependencies": ["card", "avatar", "badge", "button", "scroll-area", "separator"]
+    },
+    {
       "name": "multi-panel-layout",
       "type": "registry:ui",
       "files": [
