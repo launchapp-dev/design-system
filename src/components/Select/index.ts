@@ -9,6 +9,7 @@ export {
   SelectSeparator,
   SelectScrollUpButton,
   SelectScrollDownButton,
+  SelectRoot as Select,
 } from "./Select";
 export type {
   SelectRootProps,

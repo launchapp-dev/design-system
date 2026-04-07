@@ -74,7 +74,7 @@ export const PasswordMismatch: Story = {
     onLoginClick: () => {},
   },
   play: async ({ canvas }) => {
-    const { expect } = await import("@storybook/test");
+    const { expect } = await import("storybook/test");
     const password = canvas.getByPlaceholderText("••••••••", { exact: false });
     await expect(password).toBeVisible();
   },
