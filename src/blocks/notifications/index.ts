@@ -12,3 +12,5 @@ export type {
 } from "./NotificationPreferences";
 export { NotificationBell } from "./NotificationBell";
 export type { NotificationBellProps, NotificationBellNotification } from "./NotificationBell";
+export { FeedbackWidget } from "./FeedbackWidget";
+export type { FeedbackWidgetProps, FeedbackSubmission, FeedbackRating, FeedbackCategory } from "./FeedbackWidget";
