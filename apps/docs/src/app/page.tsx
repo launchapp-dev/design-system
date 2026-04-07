@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { components, ALL_CATEGORIES, CATEGORY_LABELS, type ComponentCategory } from "@/lib/registry";
-import { blocks } from "@/lib/blocks-registry";
+import { blocks, ALL_BLOCK_CATEGORIES } from "@/lib/blocks-registry";
 
 function CategorySection({
   category,
@@ -65,7 +65,7 @@ export default function HomePage() {
             Browse Components
           </Link>
           <Link
-            href="/blocks/auth"
+            href={`/blocks/${ALL_BLOCK_CATEGORIES[0]}`}
             className="inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
           >
             Browse Blocks
