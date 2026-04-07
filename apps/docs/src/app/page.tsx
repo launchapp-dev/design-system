@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { components, ALL_CATEGORIES, CATEGORY_LABELS, type ComponentCategory } from "@/lib/registry";
+import { blocks } from "@/lib/blocks-registry";
 
 function CategorySection({
   category,
@@ -45,7 +46,7 @@ export default function HomePage() {
     <div className="max-w-5xl mx-auto px-6 py-10">
       <div className="mb-10">
         <div className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground mb-4">
-          v0.1.0 · {components.length} components
+          v0.2.1 · {components.length} components · {blocks.length}+ blocks
         </div>
         <h1 className="text-4xl font-bold tracking-tight mb-4">
           LaunchApp Design System
@@ -64,6 +65,12 @@ export default function HomePage() {
             Browse Components
           </Link>
           <Link
+            href="/blocks/auth"
+            className="inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Browse Blocks
+          </Link>
+          <Link
             href="/tokens"
             className="inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
           >
@@ -72,16 +79,20 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-10 p-4 rounded-xl border bg-muted/30">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10 p-4 rounded-xl border bg-muted/30">
         <div className="text-center p-3">
           <div className="text-3xl font-bold text-primary">{components.length}</div>
           <div className="text-sm text-muted-foreground mt-1">Components</div>
         </div>
-        <div className="text-center p-3 border-x">
+        <div className="text-center p-3 sm:border-l">
+          <div className="text-3xl font-bold text-primary">{blocks.length}+</div>
+          <div className="text-sm text-muted-foreground mt-1">Blocks</div>
+        </div>
+        <div className="text-center p-3 border-t sm:border-t-0 sm:border-l">
           <div className="text-3xl font-bold text-primary">{ALL_CATEGORIES.length}</div>
           <div className="text-sm text-muted-foreground mt-1">Categories</div>
         </div>
-        <div className="text-center p-3">
+        <div className="text-center p-3 border-t sm:border-t-0 sm:border-l">
           <div className="text-3xl font-bold text-primary">100%</div>
           <div className="text-sm text-muted-foreground mt-1">Accessible</div>
         </div>

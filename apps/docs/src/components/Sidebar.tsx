@@ -16,7 +16,50 @@ import {
   BLOCK_CATEGORY_LABELS,
 } from "@/lib/blocks-registry";
 
-export function Sidebar() {
+function MenuIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  );
+}
+
+function SidebarContent({
+  onNavClick,
+}: {
+  onNavClick?: () => void;
+}) {
   const pathname = usePathname();
   const [search, setSearch] = React.useState("");
 
@@ -40,9 +83,13 @@ export function Sidebar() {
   );
 
   return (
-    <aside className="fixed inset-y-0 left-0 w-64 flex flex-col border-r bg-sidebar z-30">
+    <>
       <div className="flex h-14 items-center border-b px-4 shrink-0">
-        <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-semibold text-foreground"
+          onClick={onNavClick}
+        >
           <div className="h-6 w-6 rounded bg-primary flex items-center justify-center">
             <span className="text-primary-foreground text-xs font-bold">AG</span>
           </div>
@@ -64,6 +111,7 @@ export function Sidebar() {
         <div className="mb-2">
           <Link
             href="/"
+            onClick={onNavClick}
             className={cn(
               "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
               pathname === "/"
@@ -75,6 +123,7 @@ export function Sidebar() {
           </Link>
           <Link
             href="/templates"
+            onClick={onNavClick}
             className={cn(
               "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
               pathname === "/templates" || pathname.startsWith("/templates/")
@@ -86,6 +135,7 @@ export function Sidebar() {
           </Link>
           <Link
             href="/tokens"
+            onClick={onNavClick}
             className={cn(
               "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
               pathname === "/tokens"
@@ -97,6 +147,7 @@ export function Sidebar() {
           </Link>
           <Link
             href="/palettes"
+            onClick={onNavClick}
             className={cn(
               "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
               pathname === "/palettes"
@@ -120,6 +171,7 @@ export function Sidebar() {
                 <Link
                   key={cat}
                   href={href}
+                  onClick={onNavClick}
                   className={cn(
                     "flex items-center rounded-md px-2 py-1.5 text-sm transition-colors",
                     active
@@ -150,6 +202,7 @@ export function Sidebar() {
                     <Link
                       key={component.slug}
                       href={href}
+                      onClick={onNavClick}
                       className={cn(
                         "flex items-center rounded-md px-2 py-1.5 text-sm transition-colors",
                         active
@@ -166,6 +219,57 @@ export function Sidebar() {
           );
         })}
       </nav>
-    </aside>
+    </>
+  );
+}
+
+export function Sidebar() {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  return (
+    <>
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-64 flex-col border-r bg-sidebar z-30">
+        <SidebarContent />
+      </aside>
+
+      {/* Mobile: hamburger trigger rendered into the header via portal-like sibling layout */}
+      <div className="lg:hidden fixed top-0 left-0 z-40 flex h-14 items-center px-4">
+        <button
+          type="button"
+          aria-label="Open navigation"
+          onClick={() => setMobileOpen(true)}
+          className="inline-flex items-center justify-center h-9 w-9 rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+        >
+          <MenuIcon />
+        </button>
+      </div>
+
+      {/* Mobile sidebar overlay */}
+      {mobileOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+            aria-hidden="true"
+            onClick={() => setMobileOpen(false)}
+          />
+          {/* Drawer */}
+          <aside className="relative z-50 flex w-72 flex-col border-r bg-sidebar shadow-xl">
+            <div className="absolute top-3 right-3">
+              <button
+                type="button"
+                aria-label="Close navigation"
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex items-center justify-center h-8 w-8 rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                <XIcon />
+              </button>
+            </div>
+            <SidebarContent onNavClick={() => setMobileOpen(false)} />
+          </aside>
+        </div>
+      )}
+    </>
   );
 }
