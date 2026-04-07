@@ -27,12 +27,13 @@ export interface OrderSummaryProps extends React.HTMLAttributes<HTMLDivElement> 
   taxLabel?: string;
   discount?: { code: string; amount: number; description?: string };
   discountInput?: boolean;
-  onApplyDiscount?: (code: string) => void;
+  onApplyDiscount?: (code: string) => Promise<number | undefined> | undefined;
   onRemoveDiscount?: () => void;
   totalLabel?: string;
   checkoutLabel?: string;
   secureCheckoutLabel?: string;
   showSecureBadge?: boolean;
+  onCheckout?: () => void;
   loading?: boolean;
   itemLabel?: string;
   itemsLabel?: string;
@@ -56,6 +57,7 @@ function OrderSummary({
   checkoutLabel = "Proceed to checkout",
   secureCheckoutLabel = "Secure checkout",
   showSecureBadge = true,
+  onCheckout,
   loading = false,
   itemLabel = "item",
   itemsLabel = "items",
@@ -269,7 +271,7 @@ function OrderSummary({
         <Button
           className="w-full"
           size="lg"
-          onClick={() => {}}
+          onClick={onCheckout}
           disabled={loading}
         >
           {loading ? "Loading…" : checkoutLabel}

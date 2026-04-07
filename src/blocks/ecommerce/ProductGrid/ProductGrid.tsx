@@ -1,10 +1,10 @@
 import * as React from "react";
-import { cn } from "../../../lib/utils";
-import { Card, CardContent, CardFooter } from "../../../components/Card";
-import { Button } from "../../../components/Button";
-import { Badge } from "../../../components/Badge";
-import { SelectRoot as Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/Select";
-import { Input } from "../../../components/Input";
+import { cn } from "@/lib/utils";
+import { Card, CardContent, CardFooter } from "@/components/Card";
+import { Button } from "@/components/Button";
+import { Badge } from "@/components/Badge";
+import { SelectRoot as Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/Select";
+import { Input } from "@/components/Input";
 
 export interface GridProduct {
   id: string;
@@ -219,7 +219,6 @@ function ProductGrid({
           return (b.rating ?? 0) - (a.rating ?? 0);
         case "name":
           return a.name.localeCompare(b.name);
-        case "newest":
         default:
           return 0;
       }

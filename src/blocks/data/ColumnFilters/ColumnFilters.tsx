@@ -104,7 +104,11 @@ function ColumnPopover({
             <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
           </svg>
           {config.label}
-          {isActive && <Badge variant="secondary" className="ml-1 h-4 px-1 text-xs">1</Badge>}
+          {isActive && (
+            <Badge variant="secondary" className="ml-1 h-4 px-1 text-xs">
+              {config.type === "multiselect" ? filter?.value.split(",").filter(Boolean).length : 1}
+            </Badge>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-64 p-3 space-y-3" align="start">
@@ -139,7 +143,7 @@ function ColumnPopover({
                 <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
                   <Checkbox
                     checked={selected}
-                    onCheckedChange={(checked) => {
+                    onCheckedChange={(_checked) => {
                       const vals = selected
                         ? (local?.value ?? "").split(",").filter((v) => v !== opt.value)
                         : [...(local?.value ?? "").split(",").filter(Boolean), opt.value];
