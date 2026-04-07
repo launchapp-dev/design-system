@@ -122,7 +122,7 @@ function ProjectTaskCardDisplay({
             </span>
           )}
           {task.assignee && (
-            <Avatar size="xs" className="h-5 w-5">
+            <Avatar size="sm" className="h-5 w-5">
               {task.assignee.avatarUrl && (
                 <AvatarImage src={task.assignee.avatarUrl} alt={task.assignee.name} />
               )}
