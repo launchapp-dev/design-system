@@ -6,3 +6,5 @@ export { ImageGallery } from "./ImageGallery";
 export type { ImageGalleryProps, GalleryImage } from "./ImageGallery";
 export { FileGrid } from "./FileGrid/FileGrid";
 export type { FileGridProps, FileGridItem, FileItemType } from "./FileGrid/FileGrid";
+export { FileManager } from "./FileManager";
+export type { FileManagerProps, FileManagerFolder, FileManagerViewMode } from "./FileManager";

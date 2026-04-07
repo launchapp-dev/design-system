@@ -6,6 +6,7 @@ export * from "./StatsCard";
 export * from "./MetricGrid";
 export * from "./ActivityFeed";
 export * from "./CalendarView";
+export * from "./CalendarWidget";
 export * from "./EmptyState";
 export * from "./FilterBar";
 export * from "./ChartCard";
