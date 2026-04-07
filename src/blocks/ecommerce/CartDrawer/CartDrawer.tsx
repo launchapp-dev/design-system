@@ -4,7 +4,6 @@ import { Button } from "@/components/Button";
 import { Badge } from "@/components/Badge";
 import { Input } from "@/components/Input";
 import { Separator } from "@/components/Separator";
-import { cn } from "@/lib/utils";
 
 export interface DrawerCartItem {
   id: string;
@@ -54,7 +53,7 @@ function CartDrawerItem({
 
   const handleChange = (val: string) => {
     const parsed = parseInt(val, 10);
-    if (!isNaN(parsed) && parsed >= 0 && parsed <= maxQty) {
+    if (!Number.isNaN(parsed) && parsed >= 0 && parsed <= maxQty) {
       setQty(parsed);
       onUpdateQuantity?.(item.id, parsed);
     }

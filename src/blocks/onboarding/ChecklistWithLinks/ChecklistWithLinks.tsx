@@ -49,7 +49,7 @@ function ChecklistWithLinks({
     : 0;
   const allComplete = completedCount === allItems.length;
 
-  const handleClick = (item: ChecklistLinkItem, e: React.MouseEvent) => {
+  const handleClick = (item: ChecklistLinkItem, _e: React.MouseEvent) => {
     if (item.href) {
       onItemClick?.(item);
     }

@@ -1,10 +1,7 @@
 import type * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
 import { Badge } from "@/components/Badge";
-import { Button } from "@/components/Button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { Progress } from "@/components/Progress";
-import { Separator } from "@/components/Separator";
 import { cn } from "@/lib/utils";
 
 export interface DashboardMetric {

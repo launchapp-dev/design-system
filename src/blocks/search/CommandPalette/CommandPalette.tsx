@@ -9,10 +9,9 @@ import {
   CommandSeparator,
 } from "@/components/Command";
 import { Badge } from "@/components/Badge";
-import { ScrollArea } from "@/components/ScrollArea";
 import { cn } from "@/lib/utils";
 
-export interface CommandItem {
+export interface CommandPaletteItem {
   id: string;
   label: string;
   description?: string;
@@ -24,17 +23,17 @@ export interface CommandItem {
   disabled?: boolean;
 }
 
-export interface CommandGroup {
+export interface CommandPaletteGroup {
   id: string;
   label: string;
-  items: CommandItem[];
+  items: CommandPaletteItem[];
 }
 
 export interface CommandPaletteProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  groups?: CommandGroup[];
-  recentItems?: CommandItem[];
+  groups?: CommandPaletteGroup[];
+  recentItems?: CommandPaletteItem[];
   placeholder?: string;
   emptyText?: string;
   maxRecent?: number;
@@ -110,4 +109,4 @@ function CommandPalette({
 CommandPalette.displayName = "CommandPalette";
 
 export { CommandPalette };
-export type { CommandItem, CommandGroup, CommandPaletteProps };
+export type { CommandPaletteItem, CommandPaletteGroup, CommandPaletteProps };

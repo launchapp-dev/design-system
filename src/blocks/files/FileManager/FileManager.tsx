@@ -109,7 +109,7 @@ function formatBytes(bytes: number): string {
   return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)} GB`;
 }
 
-const sampleFiles: FileGridItem[] = [
+const _sampleFiles: FileGridItem[] = [
   {
     id: "1",
     name: "project Brief.pdf",

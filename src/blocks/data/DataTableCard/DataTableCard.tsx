@@ -1,7 +1,6 @@
 import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/Card";
-import { Button } from "@/components/Button";
 import {
   Table,
   TableBody,

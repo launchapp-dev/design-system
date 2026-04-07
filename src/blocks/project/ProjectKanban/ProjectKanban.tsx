@@ -2,8 +2,6 @@ import type * as React from "react";
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
-import { Input } from "@/components/Input";
-import { ScrollArea } from "@/components/ScrollArea";
 import { cn } from "@/lib/utils";
 
 export interface ProjectCard {

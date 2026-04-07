@@ -1,6 +1,6 @@
 import type * as React from "react";
 import { cn } from "@/lib/utils";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/Card";
+import { Card, CardHeader, CardDescription, CardContent } from "@/components/Card";
 import { Badge } from "@/components/Badge";
 
 export interface KPIComparisonCardProps extends React.HTMLAttributes<HTMLDivElement> {

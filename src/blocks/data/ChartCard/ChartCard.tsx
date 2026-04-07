@@ -7,7 +7,6 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
 } from "@/components/DropdownMenu";
 
 export interface ChartCardProps extends React.HTMLAttributes<HTMLDivElement> {

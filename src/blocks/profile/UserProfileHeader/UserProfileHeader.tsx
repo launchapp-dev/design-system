@@ -1,6 +1,5 @@
 import type * as React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
-import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Card, CardContent, CardHeader } from "@/components/Card";
 import { Separator } from "@/components/Separator";

@@ -1,5 +1,5 @@
 import type * as React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
+import { CardHeader, CardTitle } from "@/components/Card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";

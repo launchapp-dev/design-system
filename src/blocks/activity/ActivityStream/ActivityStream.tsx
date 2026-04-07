@@ -2,7 +2,7 @@ import type * as React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/Card";
+import { CardHeader, CardTitle } from "@/components/Card";
 import { cn } from "@/lib/utils";
 
 export interface StreamEvent {
@@ -38,7 +38,7 @@ const typeActionLabel: Record<NonNullable<StreamEvent["type"]>, string> = {
   publish: "published",
 };
 
-const typeColors: Record<NonNullable<StreamEvent["type"]>, string> = {
+const _typeColors: Record<NonNullable<StreamEvent["type"]>, string> = {
   create: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
   update: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30",
   delete: "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30",
@@ -77,7 +77,7 @@ function ActivityStream({
       <div className={cn("relative", !title && "pt-2")}>
         <div className="absolute left-4 top-0 bottom-0 w-px bg-border" aria-hidden="true" />
         <div className="space-y-4">
-          {events.map((event, index) => (
+          {events.map((event, _index) => (
             <div key={event.id} className="relative flex gap-3 pl-8">
               <div
                 className={cn(

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { UserProfileHeader, type ProfileStat, type ProfileAction } from "./UserProfileHeader";
+import { UserProfileHeader, type ProfileStat, } from "./UserProfileHeader";
 
 const stats: ProfileStat[] = [
   { label: "Followers", value: "12.4k" },
