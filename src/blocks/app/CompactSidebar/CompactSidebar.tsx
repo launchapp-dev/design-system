@@ -2,7 +2,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/Button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/Avatar";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/Tooltip";
+import { TooltipRoot, TooltipContent, TooltipTrigger } from "@/components/Tooltip";
 import { ScrollArea } from "@/components/ScrollArea";
 import {
   DropdownMenu,
@@ -120,12 +120,12 @@ function CompactSidebar({
 
             if (!isActive) {
               return (
-                <Tooltip key={item.id} delayDuration={0}>
+                <TooltipRoot key={item.id} delayDuration={0}>
                   <TooltipTrigger asChild>{button}</TooltipTrigger>
                   <TooltipContent side="right" className="ml-2">
                     {item.label}
                   </TooltipContent>
-                </Tooltip>
+                </TooltipRoot>
               );
             }
             return <React.Fragment key={item.id}>{button}</React.Fragment>;
@@ -134,7 +134,7 @@ function CompactSidebar({
       </ScrollArea>
 
       <div className="border-t border-border p-2">
-        <Tooltip delayDuration={0}>
+        <TooltipRoot delayDuration={0}>
           <TooltipTrigger asChild>
             <button
               type="button"
@@ -148,7 +148,7 @@ function CompactSidebar({
           <TooltipContent side="right" className="ml-2">
             Settings
           </TooltipContent>
-        </Tooltip>
+        </TooltipRoot>
 
         {user && (
           <DropdownMenu>
