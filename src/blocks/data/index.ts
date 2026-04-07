@@ -8,6 +8,14 @@ export * from "./ActivityFeed";
 export * from "./CalendarView";
 export * from "./EmptyState";
 export * from "./FilterBar";
+export * from "./ChartCard";
+export * from "./DataTrend";
+export * from "./SparklineCard";
+export * from "./FunnelChartCard";
+export * from "./GaugeCard";
+export * from "./DataTableCard";
+export * from "./KPIComparisonCard";
+export * from "./EmptyStateCard";
 
 // FilterOption is defined identically in both FullDataTable and FilterBar.
 // Explicit re-export resolves the ambiguity; FullDataTable's definition is canonical.
