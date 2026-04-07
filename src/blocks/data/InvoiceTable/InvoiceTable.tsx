@@ -1,4 +1,4 @@
-import type * as React from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/Card";
 import { Badge } from "@/components/Badge";
@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
 } from "@/components/DropdownMenu";
 import {
-  Select,
+  SelectRoot,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -261,7 +261,7 @@ function InvoiceTable({
             className="pl-9"
           />
         </div>
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
+        <SelectRoot value={statusFilter} onValueChange={setStatusFilter}>
           <SelectTrigger className="w-[160px]">
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
@@ -272,7 +272,7 @@ function InvoiceTable({
             <SelectItem value="overdue">Overdue</SelectItem>
             <SelectItem value="draft">Draft</SelectItem>
           </SelectContent>
-        </Select>
+        </SelectRoot>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

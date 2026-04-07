@@ -12,14 +12,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/DropdownMenu";
 import {
-  Select,
+  SelectRoot,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/Select";
 import type { FileGridItem } from "../FileGrid/FileGrid";
-import type { UploadFile } from "../DropZone/DropZone";
+import type { UploadFile } from "../FileList";
 
 export type FileManagerViewMode = "grid" | "list";
 
@@ -228,7 +228,7 @@ function FileManager({
             onChange={(e) => setSearchQuery(e.target.value)}
             className="h-9 w-[200px]"
           />
-          <Select value={sortBy} onValueChange={setSortBy}>
+          <SelectRoot value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger className="h-9 w-[130px]">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
@@ -237,7 +237,7 @@ function FileManager({
               <SelectItem value="size">Size</SelectItem>
               <SelectItem value="modifiedAt">Modified</SelectItem>
             </SelectContent>
-          </Select>
+          </SelectRoot>
           <Button
             variant="ghost"
             size="icon"
