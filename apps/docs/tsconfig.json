@@ -53,6 +53,9 @@
       ],
       "@ds/blocks/marketing": [
         "../../src/blocks/marketing/index.ts"
+      ],
+      "@ds/blocks/layout": [
+        "../../src/blocks/layout/index.ts"
       ]
     }
   },

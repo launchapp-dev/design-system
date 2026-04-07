@@ -21,8 +21,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans antialiased">
         <Sidebar />
-        <div className="pl-64">
-          <header className="sticky top-0 z-20 flex h-14 items-center justify-end border-b bg-background/95 backdrop-blur px-6 gap-2">
+        <div className="lg:pl-64">
+          <header className="sticky top-0 z-20 flex h-14 items-center justify-end border-b bg-background/95 backdrop-blur px-6 gap-2 pl-16 lg:pl-6">
             <a
               href="https://github.com/launchapp-dev"
               target="_blank"

@@ -5,7 +5,8 @@ export type BlockCategory =
   | "navigation"
   | "data"
   | "ecommerce"
-  | "marketing";
+  | "marketing"
+  | "app-shells";
 
 export const BLOCK_CATEGORY_LABELS: Record<BlockCategory, string> = {
   auth: "Authentication",
@@ -15,6 +16,7 @@ export const BLOCK_CATEGORY_LABELS: Record<BlockCategory, string> = {
   data: "Data",
   ecommerce: "E-commerce",
   marketing: "Marketing",
+  "app-shells": "App Shells",
 };
 
 export const BLOCK_CATEGORY_DESCRIPTIONS: Record<BlockCategory, string> = {
@@ -25,6 +27,7 @@ export const BLOCK_CATEGORY_DESCRIPTIONS: Record<BlockCategory, string> = {
   data: "Data tables, Kanban boards, searchable tables, and timeline components.",
   ecommerce: "Product cards, shopping cart, and checkout form components.",
   marketing: "Hero sections, feature grids, pricing tables, and testimonial carousels.",
+  "app-shells": "Full application shell layouts — collapsible sidebars, dashboard shells, split panes, and command palette wrappers.",
 };
 
 export interface BlockEntry {
@@ -44,6 +47,7 @@ export const ALL_BLOCK_CATEGORIES: BlockCategory[] = [
   "data",
   "ecommerce",
   "marketing",
+  "app-shells",
 ];
 
 export const blocks: BlockEntry[] = [
@@ -743,6 +747,209 @@ const testimonials = [
 
 export default function Page() {
   return <TestimonialCarousel testimonials={testimonials} />;
+}`,
+  },
+  {
+    id: "app-shell",
+    name: "App Shell",
+    description: "Full application shell with collapsible sidebar, header actions, mobile drawer, and nested navigation sections.",
+    category: "app-shells",
+    sourcePath: "layout/AppShell/AppShell.tsx",
+    code: `import { AppShell } from "@launchapp/design-system/blocks/layout";
+
+const navSections = [
+  {
+    title: "Main",
+    items: [
+      { label: "Dashboard", href: "/dashboard", isActive: true },
+      { label: "Analytics", href: "/analytics" },
+      { label: "Projects", href: "/projects", badge: "3" },
+    ],
+  },
+  {
+    title: "Settings",
+    items: [
+      { label: "Profile", href: "/settings/profile" },
+      { label: "Billing", href: "/settings/billing" },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <AppShell
+      navSections={navSections}
+      user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+      collapsible
+    >
+      <div className="p-6">Page content goes here</div>
+    </AppShell>
+  );
+}`,
+  },
+  {
+    id: "sidebar-layout",
+    name: "Sidebar Layout",
+    description: "Flexible sidebar layout wrapper supporting app, docs, and minimal variants with optional collapsible and mobile drawer.",
+    category: "app-shells",
+    sourcePath: "layout/SidebarLayout/SidebarLayout.tsx",
+    code: `import { SidebarLayout } from "@launchapp/design-system/blocks/layout";
+
+export default function Page() {
+  return (
+    <SidebarLayout
+      sidebar={<nav className="p-4">Sidebar content</nav>}
+      header={<div className="px-6 py-3 border-b font-semibold">My App</div>}
+    >
+      <div className="p-6">Main content</div>
+    </SidebarLayout>
+  );
+}`,
+  },
+  {
+    id: "dashboard-layout",
+    name: "Dashboard Layout",
+    description: "Dashboard layout with optional sticky header and 1–3 column arrangements for side panels and main content.",
+    category: "app-shells",
+    sourcePath: "layout/DashboardLayout/DashboardLayout.tsx",
+    code: `import { DashboardLayout } from "@launchapp/design-system/blocks/layout";
+
+export default function Page() {
+  return (
+    <DashboardLayout
+      columns={2}
+      header={<div className="px-6 py-3 border-b">Header</div>}
+      leftPanel={<aside className="p-4 border-r">Side panel</aside>}
+    >
+      <div className="p-6">Main content</div>
+    </DashboardLayout>
+  );
+}`,
+  },
+  {
+    id: "collapsible-sidebar",
+    name: "Collapsible Sidebar",
+    description: "Standalone collapsible sidebar with icon-only collapsed state, nested sections, badge support, and user footer.",
+    category: "app-shells",
+    sourcePath: "app/CollapsibleSidebar/CollapsibleSidebar.tsx",
+    code: `import { CollapsibleSidebar } from "@launchapp/design-system/blocks/app";
+
+const sections = [
+  {
+    title: "Main",
+    items: [
+      { label: "Dashboard", href: "#", icon: "grid" as const, isActive: true },
+      { label: "Analytics", href: "#", icon: "chart" as const },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <CollapsibleSidebar
+      sections={sections}
+      user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+    />
+  );
+}`,
+  },
+  {
+    id: "icon-only-sidebar-shell",
+    name: "Icon-Only Sidebar Shell",
+    description: "Full-page shell with an icon-only sidebar, tooltips on hover, and grouped navigation sections.",
+    category: "app-shells",
+    sourcePath: "layout/IconOnlySidebarShell/IconOnlySidebarShell.tsx",
+    code: `import { IconOnlySidebarShell } from "@launchapp/design-system/blocks/layout";
+
+const sections = [
+  {
+    items: [
+      { id: "dashboard", label: "Dashboard", href: "#", icon: <span>⊞</span>, isActive: true },
+      { id: "analytics", label: "Analytics", href: "#", icon: <span>📈</span> },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <IconOnlySidebarShell sections={sections}>
+      <div className="p-6">Page content</div>
+    </IconOnlySidebarShell>
+  );
+}`,
+  },
+  {
+    id: "dual-panel-sidebar-shell",
+    name: "Dual Panel Sidebar Shell",
+    description: "Two-level sidebar shell with a primary icon rail and secondary expandable panel, ideal for complex navigation trees.",
+    category: "app-shells",
+    sourcePath: "layout/DualPanelSidebarShell/DualPanelSidebarShell.tsx",
+    code: `import { DualPanelSidebarShell } from "@launchapp/design-system/blocks/layout";
+
+const sections = [
+  {
+    id: "main",
+    label: "Main",
+    icon: <span>⊞</span>,
+    items: [
+      { id: "dash", label: "Dashboard", href: "#", isActive: true },
+      { id: "analytics", label: "Analytics", href: "#" },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <DualPanelSidebarShell sections={sections} title="My App">
+      <div className="p-6">Page content</div>
+    </DualPanelSidebarShell>
+  );
+}`,
+  },
+  {
+    id: "command-palette-shell",
+    name: "Command Palette Shell",
+    description: "App shell with a built-in ⌘K command palette for quick navigation, actions, and search.",
+    category: "app-shells",
+    sourcePath: "layout/CommandPaletteShell/CommandPaletteShell.tsx",
+    code: `import { CommandPaletteShell } from "@launchapp/design-system/blocks/layout";
+
+const groups = [
+  {
+    id: "navigation",
+    label: "Navigation",
+    actions: [
+      { id: "dashboard", label: "Dashboard", href: "#", shortcut: "D" },
+      { id: "settings", label: "Settings", href: "#", shortcut: "S" },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <CommandPaletteShell groups={groups} triggerShortcut="k">
+      <div className="p-6">Press ⌘K to open palette</div>
+    </CommandPaletteShell>
+  );
+}`,
+  },
+  {
+    id: "split-pane-layout",
+    name: "Split Pane Layout",
+    description: "Resizable split-pane layout supporting horizontal and vertical orientations, with configurable panel sizes.",
+    category: "app-shells",
+    sourcePath: "layout/SplitPaneLayout/SplitPaneLayout.tsx",
+    code: `import { SplitPaneLayout } from "@launchapp/design-system/blocks/layout";
+
+export default function Page() {
+  return (
+    <SplitPaneLayout
+      orientation="horizontal"
+      primaryPanel={<div className="p-4 h-full bg-muted/30">Primary panel</div>}
+      secondaryPanel={<div className="p-4 h-full">Secondary panel</div>}
+      defaultSplit={60}
+    />
+  );
 }`,
   },
 ];

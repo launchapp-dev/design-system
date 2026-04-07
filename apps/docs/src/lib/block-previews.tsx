@@ -23,6 +23,15 @@ import {
 } from "@ds/blocks/data";
 import { ProductCardGrid, ShoppingCart, CheckoutForm } from "@ds/blocks/ecommerce";
 import { HeroSection, FeatureGrid, PricingTable, TestimonialCarousel } from "@ds/blocks/marketing";
+import {
+  AppShell,
+  SidebarLayout,
+  DashboardLayout,
+  IconOnlySidebarShell,
+  DualPanelSidebarShell,
+  CommandPaletteShell,
+  SplitPaneLayout,
+} from "@ds/blocks/layout";
 import type { ColumnDef } from "@tanstack/react-table";
 
 export type BlockPreviewFn = () => React.ReactElement;
@@ -445,5 +454,223 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       headline="Loved by developers"
       displayMode="grid"
     />
+  ),
+  "app-shell": () => (
+    <div className="h-[540px] overflow-hidden rounded-lg border">
+      <AppShell
+        navSections={[
+          {
+            title: "Main",
+            items: [
+              { label: "Dashboard", href: "#", isActive: true },
+              { label: "Analytics", href: "#" },
+              { label: "Projects", href: "#", badge: "3" },
+            ],
+          },
+          {
+            title: "Settings",
+            items: [
+              { label: "Profile", href: "#" },
+              { label: "Billing", href: "#" },
+            ],
+          },
+        ]}
+        user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+        collapsible
+      >
+        <div className="p-6">
+          <h2 className="text-lg font-semibold mb-2">Dashboard</h2>
+          <p className="text-sm text-muted-foreground">Welcome back, Alice. Here's what's happening.</p>
+        </div>
+      </AppShell>
+    </div>
+  ),
+  "sidebar-layout": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <SidebarLayout
+        sidebar={
+          <nav className="flex flex-col gap-1 p-3">
+            <div className="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Navigation</div>
+            {["Overview", "Components", "Blocks", "Tokens"].map((item, i) => (
+              <div key={item} className={`rounded-md px-2 py-1.5 text-sm ${i === 0 ? "bg-accent font-medium" : "text-muted-foreground hover:bg-accent"}`}>{item}</div>
+            ))}
+          </nav>
+        }
+        header={
+          <div className="flex items-center justify-between px-4 py-2 border-b text-sm font-semibold">
+            <span>My App</span>
+          </div>
+        }
+      >
+        <div className="p-6">
+          <p className="text-sm text-muted-foreground">Main content area.</p>
+        </div>
+      </SidebarLayout>
+    </div>
+  ),
+  "dashboard-layout": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <DashboardLayout
+        columns={2}
+        header={
+          <div className="flex items-center px-4 h-10 border-b text-sm font-semibold bg-background">
+            Dashboard
+          </div>
+        }
+        leftPanel={
+          <aside className="p-4 h-full space-y-3">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Side Panel</div>
+            {["Total Revenue", "Active Users", "Conversion"].map((label) => (
+              <div key={label} className="rounded-md border p-2 text-xs">{label}</div>
+            ))}
+          </aside>
+        }
+      >
+        <div className="p-6">
+          <h2 className="text-base font-semibold mb-2">Main Content</h2>
+          <p className="text-sm text-muted-foreground">Charts and data tables go here.</p>
+        </div>
+      </DashboardLayout>
+    </div>
+  ),
+  "collapsible-sidebar": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border flex">
+      <div className="flex-1 relative">
+        <p className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground p-4 text-center">
+          CollapsibleSidebar — use within a SidebarLayout or as a standalone sidebar
+        </p>
+      </div>
+    </div>
+  ),
+  "icon-only-sidebar-shell": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <IconOnlySidebarShell
+        navSections={[
+          {
+            items: [
+              {
+                label: "Dashboard",
+                href: "#",
+                isActive: true,
+                icon: (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                ),
+              },
+              {
+                label: "Analytics",
+                href: "#",
+                icon: (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                ),
+              },
+              {
+                label: "Settings",
+                href: "#",
+                icon: (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                ),
+              },
+            ],
+          },
+        ]}
+      >
+        <div className="p-6">
+          <h2 className="text-base font-semibold mb-2">Icon-Only Sidebar</h2>
+          <p className="text-sm text-muted-foreground">Hover over the icons for labels.</p>
+        </div>
+      </IconOnlySidebarShell>
+    </div>
+  ),
+  "dual-panel-sidebar-shell": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <DualPanelSidebarShell
+        primaryNavItems={[
+          {
+            label: "Main",
+            icon: (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            ),
+            isActive: true,
+          },
+          {
+            label: "Analytics",
+            icon: (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            ),
+          },
+        ]}
+        secondaryPanelOpen
+        secondaryPanel={
+          <nav className="p-3 space-y-1">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground px-2 pb-1">Main</div>
+            {["Dashboard", "Analytics", "Projects"].map((item, i) => (
+              <div key={item} className={`rounded-md px-2 py-1.5 text-sm ${i === 0 ? "bg-accent font-medium" : "text-muted-foreground"}`}>{item}</div>
+            ))}
+          </nav>
+        }
+        secondaryPanelTitle="Main"
+      >
+        <div className="p-6">
+          <h2 className="text-base font-semibold mb-2">Dual Panel Shell</h2>
+          <p className="text-sm text-muted-foreground">Icon rail + contextual secondary panel.</p>
+        </div>
+      </DualPanelSidebarShell>
+    </div>
+  ),
+  "command-palette-shell": () => {
+    const CommandPaletteDemo = () => {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <div className="h-[420px] overflow-hidden rounded-lg border flex flex-col items-center justify-center gap-4 p-6">
+          <p className="text-sm text-muted-foreground text-center">
+            Command Palette Shell wraps your app with a ⌘K accessible command palette.
+          </p>
+          <button
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Palette
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+          <CommandPaletteShell
+            open={open}
+            onOpenChange={setOpen}
+            groups={[
+              {
+                label: "Navigation",
+                actions: [
+                  { id: "dashboard", label: "Dashboard", onSelect: () => setOpen(false) },
+                  { id: "analytics", label: "Analytics", onSelect: () => setOpen(false) },
+                  { id: "settings", label: "Settings", onSelect: () => setOpen(false) },
+                ],
+              },
+            ]}
+          />
+        </div>
+      );
+    };
+    return <CommandPaletteDemo />;
+  },
+  "split-pane-layout": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <SplitPaneLayout
+        orientation="vertical"
+        leftPane={
+          <div className="p-4 h-full bg-muted/30">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Left Panel</div>
+            <p className="text-sm text-muted-foreground">File tree, navigation, or secondary content.</p>
+          </div>
+        }
+        rightPane={
+          <div className="p-4 h-full">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Main Panel</div>
+            <p className="text-sm text-muted-foreground">Primary content, editor, or detail view.</p>
+          </div>
+        }
+        leftPaneSize="40%"
+      />
+    </div>
   ),
 };
