@@ -1953,6 +1953,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-audit-log-viewer",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/activity/AuditLogViewer/AuditLogViewer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-api-key-manager",
       "type": "registry:block",
       "files": [
@@ -2217,6 +2228,17 @@
       ]
     },
     {
+      "name": "block-billing-history",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/billing/BillingHistory/BillingHistory.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-invoice-table",
       "type": "registry:block",
       "files": [
@@ -2412,6 +2434,17 @@
         "card",
         "chart"
       ]
+    },
+    {
+      "name": "block-status-page-dashboard",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/dashboard/StatusPageDashboard/StatusPageDashboard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
     },
     {
       "name": "block-timeline",
@@ -2898,6 +2931,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-file-upload-zone",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/files/FileUploadZone/FileUploadZone.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-image-gallery",
       "type": "registry:block",
       "files": [
@@ -2964,6 +3008,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-integration-card-grid",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/integrations/IntegrationCardGrid/IntegrationCardGrid.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-integration-marketplace",
       "type": "registry:block",
       "files": [
@@ -2991,6 +3046,17 @@
       "files": [
         {
           "path": "src/blocks/integrations/WebhookConfig.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-webhooks-list",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/integrations/WebhooksList/WebhooksList.tsx",
           "type": "registry:block"
         }
       ],
@@ -3709,6 +3775,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-user-profile-card",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/profile/UserProfileCard/UserProfileCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-user-profile-header",
       "type": "registry:block",
       "files": [
@@ -3876,6 +3953,17 @@
       "files": [
         {
           "path": "src/blocks/settings/DataExportCard/DataExportCard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-data-export-panel",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/settings/DataExportPanel/DataExportPanel.tsx",
           "type": "registry:block"
         }
       ],

@@ -8,3 +8,5 @@ export { IntegrationMarketplace } from "./IntegrationMarketplace";
 export type { IntegrationMarketplaceProps, Integration, IntegrationStatus, IntegrationCategory } from "./IntegrationMarketplace";
 export { WebhooksList } from "./WebhooksList";
 export type { WebhooksListProps, WebhookItem, WebhookStatus } from "./WebhooksList";
+export { IntegrationCardGrid } from "./IntegrationCardGrid";
+export type { IntegrationCardGridProps, IntegrationCard, IntegrationCardStatus, IntegrationCardCategory } from "./IntegrationCardGrid";
