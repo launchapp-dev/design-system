@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "buildCommand": "pnpm generate-registry && cp registry.json apps/docs/public/registry.json && pnpm --filter @launchapp/docs build",
+  "outputDirectory": "apps/docs/.next",
+  "installCommand": "pnpm install"
+}
