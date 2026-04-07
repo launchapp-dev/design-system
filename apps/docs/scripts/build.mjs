@@ -6,7 +6,7 @@
  * intermittent failures caused by CWD-switching in Vercel's build environment.
  */
 import { execSync } from "node:child_process";
-import { copyFileSync, mkdirSync } from "node:fs";
+import { copyFileSync, cpSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -39,3 +39,13 @@ execSync("pnpm exec next build", {
   stdio: "inherit",
   env: { ...process.env },
 });
+
+// Step 4 (Vercel only): copy public/ to repo root so @vercel/next serves
+// static assets (registry.json, theme-template.json) at the correct URLs.
+// distDir is set to ../../.next on Vercel, so both .next and public/ land
+// at the project root where the framework adapter expects them.
+if (process.env.VERCEL) {
+  console.log("[build] copying apps/docs/public/ → repo root public/");
+  mkdirSync(resolve(repoRoot, "public"), { recursive: true });
+  cpSync(resolve(docsDir, "public"), resolve(repoRoot, "public"), { recursive: true });
+}
