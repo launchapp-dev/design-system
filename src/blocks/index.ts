@@ -30,6 +30,3 @@ export { Timeline } from "./dashboard";
 export type { TimelineProps, TimelineEntry } from "./dashboard";
 // team is the authoritative source for TeamMember (also exported by settings).
 export type { TeamMember } from "./team";
-// billing is the authoritative source for InvoiceTable/Invoice (also exported by data).
-export { InvoiceTable } from "./billing";
-export type { InvoiceTableProps, Invoice, InvoiceStatus } from "./billing";
