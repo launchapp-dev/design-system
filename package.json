@@ -34,6 +34,7 @@
     "build:storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
     "generate-registry": "node scripts/generate-registry.mjs",
+    "check-registry": "node scripts/generate-registry.mjs && git diff --exit-code registry.json || (echo 'registry.json is out of date — run pnpm generate-registry and commit the result' && exit 1)",
     "generate-vscode-snippets": "node scripts/generate-vscode-snippets.mjs",
     "fix-a11y": "node scripts/fix-a11y.mjs",
     "fix-a11y:approve": "node scripts/fix-a11y.mjs --interactive",
