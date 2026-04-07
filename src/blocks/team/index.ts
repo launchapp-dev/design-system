@@ -9,4 +9,4 @@ export type { WorkspaceSwitcherProps, Workspace } from "./WorkspaceSwitcher";
 export { TeamRoster } from "./TeamRoster";
 export type { TeamRosterProps, TeamRosterMember } from "./TeamRoster";
 export { RolePermissionMatrix } from "./RolePermissionMatrix";
-export type { RolePermissionMatrixProps, Role, Permission, PermissionCategory } from "./RolePermissionMatrix";
+export type { RolePermissionMatrixProps, Role as RoleDefinition, Permission, PermissionCategory } from "./RolePermissionMatrix";
