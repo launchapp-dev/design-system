@@ -15,3 +15,9 @@ export type { CheckoutFormProps, CheckoutValues, OrderSummaryItem } from "./Chec
 
 export { OrderSummary } from "./OrderSummary";
 export type { OrderSummaryProps, SummaryItem } from "./OrderSummary";
+
+export { WishlistGrid } from "./WishlistGrid";
+export type { WishlistGridProps, WishlistItem } from "./WishlistGrid";
+
+export { ReviewsList } from "./ReviewsList";
+export type { ReviewsListProps, Review, RatingDistribution } from "./ReviewsList";

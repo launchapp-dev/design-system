@@ -6,3 +6,5 @@ export { InviteForm } from "./InviteForm";
 export type { InviteFormProps } from "./InviteForm";
 export { WorkspaceSwitcher } from "./WorkspaceSwitcher";
 export type { WorkspaceSwitcherProps, Workspace } from "./WorkspaceSwitcher";
+export { TeamRoster } from "./TeamRoster";
+export type { TeamRosterProps, TeamRosterMember } from "./TeamRoster";
