@@ -63,7 +63,7 @@ export default async function BlockCategoryPage({ params }: PageProps) {
           Home
         </Link>
         <span>/</span>
-        <Link href="/blocks/auth" className="hover:text-foreground transition-colors">
+        <Link href={`/blocks/${ALL_BLOCK_CATEGORIES[0]}`} className="hover:text-foreground transition-colors">
           Blocks
         </Link>
         <span>/</span>

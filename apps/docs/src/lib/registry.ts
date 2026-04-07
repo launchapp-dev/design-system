@@ -1596,6 +1596,1245 @@ React.useEffect(() => {
       },
     ],
   },
+
+  // Animation & Visual Effects
+  {
+    slug: "animated-background",
+    name: "Animated Background",
+    description: "Animated gradient or particle background for hero sections and landing pages.",
+    category: "display",
+    importStatement: `import { AnimatedBackground } from "@launchapp/design-system";`,
+    props: [
+      { name: "variant", type: '"gradient" | "particles" | "noise"', defaultValue: '"gradient"', description: "Visual style of the animation." },
+      { name: "className", type: "string", description: "Additional CSS classes." },
+    ],
+    examples: [
+      {
+        title: "Gradient background",
+        code: `<div className="relative h-64 rounded-xl overflow-hidden">
+  <AnimatedBackground variant="gradient" />
+  <div className="relative z-10 flex h-full items-center justify-center">
+    <h1 className="text-3xl font-bold text-white">Hero Title</h1>
+  </div>
+</div>`,
+      },
+    ],
+  },
+  {
+    slug: "animated-border",
+    name: "Animated Border",
+    description: "Component with an animated gradient border effect for highlighting cards or CTAs.",
+    category: "display",
+    importStatement: `import { AnimatedBorder } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Content inside the border." },
+      { name: "className", type: "string", description: "Additional CSS classes." },
+    ],
+    examples: [
+      {
+        title: "Animated border card",
+        code: `<AnimatedBorder>
+  <div className="rounded-xl bg-background p-6">
+    <h3 className="font-semibold">Featured</h3>
+    <p className="text-sm text-muted-foreground">Highlighted with an animated border.</p>
+  </div>
+</AnimatedBorder>`,
+      },
+    ],
+  },
+  {
+    slug: "animated-height",
+    name: "Animated Height",
+    description: "Wrapper that animates height changes smoothly for expand/collapse transitions.",
+    category: "layout",
+    importStatement: `import { AnimatedHeight } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Content whose height is animated." },
+      { name: "visible", type: "boolean", defaultValue: "true", description: "When false, collapses the height to 0." },
+    ],
+    examples: [
+      {
+        title: "Expand/collapse",
+        code: `const [open, setOpen] = React.useState(false);
+return (
+  <>
+    <button type="button" onClick={() => setOpen(!open)}>Toggle</button>
+    <AnimatedHeight visible={open}>
+      <div className="p-4 bg-muted rounded-md mt-2">
+        <p>Hidden content revealed with smooth animation.</p>
+      </div>
+    </AnimatedHeight>
+  </>
+);`,
+      },
+    ],
+  },
+  {
+    slug: "animated-text",
+    name: "Animated Text",
+    description: "Text with typewriter, fade-in, or word-reveal animation effects.",
+    category: "display",
+    importStatement: `import { AnimatedText } from "@launchapp/design-system";`,
+    props: [
+      { name: "text", type: "string", required: true, description: "Text content to animate." },
+      { name: "variant", type: '"typewriter" | "fade" | "word-reveal"', defaultValue: '"typewriter"', description: "Animation style." },
+      { name: "delay", type: "number", description: "Start delay in milliseconds." },
+    ],
+    examples: [
+      {
+        title: "Typewriter effect",
+        code: `<AnimatedText text="Building great products starts here." variant="typewriter" />`,
+      },
+    ],
+  },
+  {
+    slug: "background",
+    name: "Background",
+    description: "Static decorative background with grid, dots, or gradient patterns.",
+    category: "display",
+    importStatement: `import { Background } from "@launchapp/design-system";`,
+    props: [
+      { name: "variant", type: '"grid" | "dots" | "gradient" | "noise"', defaultValue: '"grid"', description: "Pattern style." },
+      { name: "className", type: "string", description: "Additional CSS classes." },
+    ],
+    examples: [
+      {
+        title: "Grid background",
+        code: `<div className="relative h-48 rounded-xl overflow-hidden">
+  <Background variant="grid" />
+</div>`,
+      },
+    ],
+  },
+  {
+    slug: "banner",
+    name: "Banner",
+    description: "Top-of-page announcement banner with dismiss action and optional CTA.",
+    category: "feedback",
+    importStatement: `import { Banner } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Banner message content." },
+      { name: "variant", type: '"info" | "success" | "warning" | "error"', defaultValue: '"info"', description: "Color scheme." },
+      { name: "dismissible", type: "boolean", defaultValue: "true", description: "Show dismiss button." },
+      { name: "onDismiss", type: "() => void", description: "Called when dismissed." },
+    ],
+    examples: [
+      {
+        title: "Info banner",
+        code: `<Banner variant="info" onDismiss={() => console.log("dismissed")}>
+  🎉 New features available — <a href="/changelog">See what's new</a>
+</Banner>`,
+      },
+    ],
+  },
+  {
+    slug: "bento-grid",
+    name: "Bento Grid",
+    description: "CSS Grid layout for bento-style feature showcases with variable-size cards.",
+    category: "layout",
+    importStatement: `import { BentoGrid, BentoGridItem } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "BentoGridItem children." },
+      { name: "className", type: "string", description: "Additional CSS classes on the grid." },
+    ],
+    examples: [
+      {
+        title: "Feature bento grid",
+        code: `<BentoGrid>
+  <BentoGridItem className="col-span-2" title="Fast" description="Built for speed.">
+    <div className="h-32 bg-muted rounded-md" />
+  </BentoGridItem>
+  <BentoGridItem title="Secure" description="Enterprise-grade.">
+    <div className="h-32 bg-muted rounded-md" />
+  </BentoGridItem>
+</BentoGrid>`,
+      },
+    ],
+  },
+  {
+    slug: "carousel",
+    name: "Carousel",
+    description: "Touch-friendly carousel with navigation arrows, dot indicators, and auto-play.",
+    category: "display",
+    importStatement: `import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@launchapp/design-system";`,
+    props: [
+      { name: "opts", type: "EmblaOptionsType", description: "Embla carousel options." },
+      { name: "orientation", type: '"horizontal" | "vertical"', defaultValue: '"horizontal"', description: "Scroll direction." },
+    ],
+    examples: [
+      {
+        title: "Basic carousel",
+        code: `<Carousel>
+  <CarouselContent>
+    <CarouselItem><div className="p-4 bg-muted rounded-xl h-48 flex items-center justify-center">Slide 1</div></CarouselItem>
+    <CarouselItem><div className="p-4 bg-muted rounded-xl h-48 flex items-center justify-center">Slide 2</div></CarouselItem>
+    <CarouselItem><div className="p-4 bg-muted rounded-xl h-48 flex items-center justify-center">Slide 3</div></CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`,
+      },
+    ],
+  },
+  {
+    slug: "changelog",
+    name: "Changelog",
+    description: "Vertical timeline of product changelog entries grouped by version.",
+    category: "display",
+    importStatement: `import { Changelog } from "@launchapp/design-system";`,
+    props: [
+      { name: "entries", type: "ChangelogEntry[]", required: true, description: "Array of changelog entries." },
+    ],
+    examples: [
+      {
+        title: "Changelog timeline",
+        code: `<Changelog entries={[
+  { version: "2.0.0", date: "2024-03-01", title: "Major release", changes: ["New component library", "Dark mode support"] },
+  { version: "1.5.0", date: "2024-02-01", title: "Feature update", changes: ["Added Carousel", "Improved performance"] },
+]} />`,
+      },
+    ],
+  },
+  {
+    slug: "chat-bubble",
+    name: "Chat Bubble",
+    description: "Individual chat message bubble with avatar, timestamp, and own/other variants.",
+    category: "display",
+    importStatement: `import { ChatBubble } from "@launchapp/design-system";`,
+    props: [
+      { name: "message", type: "string", required: true, description: "Message text content." },
+      { name: "isOwn", type: "boolean", defaultValue: "false", description: "Style as sent message when true." },
+      { name: "timestamp", type: "string", description: "Timestamp string displayed below the bubble." },
+      { name: "avatar", type: "React.ReactNode", description: "Avatar element for the sender." },
+    ],
+    examples: [
+      {
+        title: "Received message",
+        code: `<ChatBubble message="Hey! How's it going?" timestamp="10:00 AM" />`,
+      },
+      {
+        title: "Sent message",
+        code: `<ChatBubble message="Great, thanks!" isOwn timestamp="10:01 AM" />`,
+      },
+    ],
+  },
+  {
+    slug: "chat-input",
+    name: "Chat Input",
+    description: "Message input bar with send button, emoji picker, and attachment support.",
+    category: "inputs",
+    importStatement: `import { ChatInput } from "@launchapp/design-system";`,
+    props: [
+      { name: "onSend", type: "(message: string) => void", description: "Called when the message is sent." },
+      { name: "placeholder", type: "string", defaultValue: '"Type a message..."', description: "Input placeholder text." },
+      { name: "disabled", type: "boolean", defaultValue: "false", description: "Disables the input and send button." },
+    ],
+    examples: [
+      {
+        title: "Basic chat input",
+        code: `<ChatInput
+  placeholder="Message #general"
+  onSend={(msg) => console.log("sent:", msg)}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "color-picker",
+    name: "Color Picker",
+    description: "Color selection input with hex input, opacity slider, and recent colors.",
+    category: "inputs",
+    importStatement: `import { ColorPicker } from "@launchapp/design-system";`,
+    props: [
+      { name: "value", type: "string", description: "Controlled hex color value." },
+      { name: "onChange", type: "(color: string) => void", description: "Called when the color changes." },
+      { name: "presets", type: "string[]", description: "Preset color swatches." },
+    ],
+    examples: [
+      {
+        title: "Color picker",
+        code: `const [color, setColor] = React.useState("#3b82f6");
+return <ColorPicker value={color} onChange={setColor} />;`,
+      },
+    ],
+  },
+  {
+    slug: "consent-history-table",
+    name: "Consent History Table",
+    description: "Table showing user consent history with timestamps, types, and status.",
+    category: "data",
+    importStatement: `import { ConsentHistoryTable } from "@launchapp/design-system";`,
+    props: [
+      { name: "entries", type: "ConsentEntry[]", required: true, description: "Array of consent history records." },
+    ],
+    examples: [
+      {
+        title: "Consent history",
+        code: `<ConsentHistoryTable entries={[
+  { id: "1", type: "analytics", granted: true, timestamp: "2024-01-01T10:00:00Z", version: "1.0" },
+  { id: "2", type: "marketing", granted: false, timestamp: "2024-01-02T11:00:00Z", version: "1.0" },
+]} />`,
+      },
+    ],
+  },
+  {
+    slug: "cookie-consent",
+    name: "Cookie Consent",
+    description: "GDPR-compliant cookie consent manager with categories and preferences.",
+    category: "feedback",
+    importStatement: `import { CookieConsent } from "@launchapp/design-system";`,
+    props: [
+      { name: "onAccept", type: "(preferences: CookiePreferences) => void", description: "Called when user saves preferences." },
+      { name: "onDeny", type: "() => void", description: "Called when user denies all." },
+    ],
+    examples: [
+      {
+        title: "Cookie consent banner",
+        code: `<CookieConsent
+  onAccept={(prefs) => console.log("accepted:", prefs)}
+  onDeny={() => console.log("denied")}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "cookie-consent-banner",
+    name: "Cookie Consent Banner",
+    description: "Slim bottom banner for cookie consent with accept and customize options.",
+    category: "feedback",
+    importStatement: `import { CookieConsentBanner } from "@launchapp/design-system";`,
+    props: [
+      { name: "onAccept", type: "() => void", description: "Called when accepting all cookies." },
+      { name: "onCustomize", type: "() => void", description: "Called when user clicks to customize." },
+    ],
+    examples: [
+      {
+        title: "Slim banner",
+        code: `<CookieConsentBanner
+  onAccept={() => console.log("accepted")}
+  onCustomize={() => console.log("customize")}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "cookie-preferences-dialog",
+    name: "Cookie Preferences Dialog",
+    description: "Dialog for granular cookie preference management with category toggles.",
+    category: "overlays",
+    importStatement: `import { CookiePreferencesDialog } from "@launchapp/design-system";`,
+    props: [
+      { name: "open", type: "boolean", description: "Controls dialog open state." },
+      { name: "onOpenChange", type: "(open: boolean) => void", description: "Called when open state changes." },
+      { name: "onSave", type: "(prefs: CookiePreferences) => void", description: "Called with saved preferences." },
+    ],
+    examples: [
+      {
+        title: "Preferences dialog",
+        code: `const [open, setOpen] = React.useState(false);
+return (
+  <>
+    <button type="button" onClick={() => setOpen(true)}>Cookie Preferences</button>
+    <CookiePreferencesDialog
+      open={open}
+      onOpenChange={setOpen}
+      onSave={(prefs) => { console.log(prefs); setOpen(false); }}
+    />
+  </>
+);`,
+      },
+    ],
+  },
+  {
+    slug: "copilot-panel",
+    name: "Copilot Panel",
+    description: "Sliding AI copilot panel with chat interface and suggested prompts.",
+    category: "overlays",
+    importStatement: `import { CopilotPanel } from "@launchapp/design-system";`,
+    props: [
+      { name: "open", type: "boolean", description: "Controls panel visibility." },
+      { name: "onOpenChange", type: "(open: boolean) => void", description: "Called when open state changes." },
+      { name: "onSend", type: "(message: string) => Promise<string>", description: "Handles sending a message and returning AI response." },
+    ],
+    examples: [
+      {
+        title: "AI copilot panel",
+        code: `const [open, setOpen] = React.useState(false);
+return (
+  <>
+    <button type="button" onClick={() => setOpen(true)}>Open Copilot</button>
+    <CopilotPanel
+      open={open}
+      onOpenChange={setOpen}
+      onSend={async (msg) => "AI response to: " + msg}
+    />
+  </>
+);`,
+      },
+    ],
+  },
+  {
+    slug: "dashboard-grid",
+    name: "Dashboard Grid",
+    description: "Draggable and resizable dashboard widget grid layout.",
+    category: "layout",
+    importStatement: `import { DashboardGrid, DashboardGridItem } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "DashboardGridItem widgets." },
+      { name: "cols", type: "number", defaultValue: "12", description: "Number of grid columns." },
+    ],
+    examples: [
+      {
+        title: "Dashboard widget grid",
+        code: `<DashboardGrid>
+  <DashboardGridItem id="revenue" x={0} y={0} w={4} h={2}>
+    <div className="h-full bg-muted rounded-lg p-4">Revenue</div>
+  </DashboardGridItem>
+  <DashboardGridItem id="users" x={4} y={0} w={4} h={2}>
+    <div className="h-full bg-muted rounded-lg p-4">Users</div>
+  </DashboardGridItem>
+</DashboardGrid>`,
+      },
+    ],
+  },
+  {
+    slug: "dock",
+    name: "Dock",
+    description: "macOS-style magnifying dock with icon zoom effect on hover.",
+    category: "navigation",
+    importStatement: `import { Dock, DockIcon } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "DockIcon items." },
+      { name: "direction", type: '"top" | "bottom" | "left" | "right"', defaultValue: '"bottom"', description: "Dock position." },
+      { name: "magnification", type: "number", defaultValue: "60", description: "Maximum icon size at hover peak." },
+    ],
+    examples: [
+      {
+        title: "Bottom dock",
+        code: `<Dock>
+  <DockIcon><span className="text-2xl">🏠</span></DockIcon>
+  <DockIcon><span className="text-2xl">📁</span></DockIcon>
+  <DockIcon><span className="text-2xl">⚙️</span></DockIcon>
+</Dock>`,
+      },
+    ],
+  },
+  {
+    slug: "funnel-chart",
+    name: "Funnel Chart",
+    description: "Visual funnel chart for conversion and pipeline data visualization.",
+    category: "data",
+    importStatement: `import { FunnelChart } from "@launchapp/design-system";`,
+    props: [
+      { name: "data", type: "FunnelChartItem[]", required: true, description: "Array of funnel stages with label and value." },
+    ],
+    examples: [
+      {
+        title: "Conversion funnel",
+        code: `<FunnelChart data={[
+  { label: "Visitors", value: 10000 },
+  { label: "Sign-ups", value: 3500 },
+  { label: "Activated", value: 1200 },
+  { label: "Paid", value: 420 },
+]} />`,
+      },
+    ],
+  },
+  {
+    slug: "gauge",
+    name: "Gauge",
+    description: "Circular gauge meter for displaying a single metric as a percentage.",
+    category: "data",
+    importStatement: `import { Gauge } from "@launchapp/design-system";`,
+    props: [
+      { name: "value", type: "number", required: true, description: "Current value (0-100)." },
+      { name: "label", type: "string", description: "Label displayed below the value." },
+      { name: "size", type: '"sm" | "md" | "lg"', defaultValue: '"md"', description: "Gauge size." },
+    ],
+    examples: [
+      {
+        title: "Performance gauge",
+        code: `<Gauge value={72} label="Performance" />`,
+      },
+    ],
+  },
+  {
+    slug: "heatmap",
+    name: "Heatmap",
+    description: "Calendar-style heatmap for visualizing activity over time (GitHub-style).",
+    category: "data",
+    importStatement: `import { Heatmap } from "@launchapp/design-system";`,
+    props: [
+      { name: "data", type: "HeatmapEntry[]", required: true, description: "Array of { date, value } entries." },
+      { name: "colorScale", type: "string[]", description: "CSS color values from low to high intensity." },
+    ],
+    examples: [
+      {
+        title: "Activity heatmap",
+        code: `<Heatmap data={[
+  { date: "2024-01-01", value: 3 },
+  { date: "2024-01-02", value: 7 },
+  { date: "2024-01-03", value: 1 },
+]} />`,
+      },
+    ],
+  },
+  {
+    slug: "image-comparison",
+    name: "Image Comparison",
+    description: "Side-by-side image comparison slider with drag handle.",
+    category: "display",
+    importStatement: `import { ImageComparison } from "@launchapp/design-system";`,
+    props: [
+      { name: "before", type: "{ src: string; alt: string }", required: true, description: "Before image." },
+      { name: "after", type: "{ src: string; alt: string }", required: true, description: "After image." },
+      { name: "defaultPosition", type: "number", defaultValue: "50", description: "Initial slider position (0-100)." },
+    ],
+    examples: [
+      {
+        title: "Before/after comparison",
+        code: `<ImageComparison
+  before={{ src: "/before.jpg", alt: "Before" }}
+  after={{ src: "/after.jpg", alt: "After" }}
+  defaultPosition={40}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "inline-editable",
+    name: "Inline Editable",
+    description: "Click-to-edit text field that toggles between display and input modes.",
+    category: "inputs",
+    importStatement: `import { InlineEditable } from "@launchapp/design-system";`,
+    props: [
+      { name: "value", type: "string", required: true, description: "Current text value." },
+      { name: "onSave", type: "(value: string) => void", description: "Called when edits are saved." },
+      { name: "placeholder", type: "string", description: "Placeholder shown in edit mode." },
+    ],
+    examples: [
+      {
+        title: "Inline edit",
+        code: `const [name, setName] = React.useState("My Project");
+return (
+  <InlineEditable
+    value={name}
+    onSave={setName}
+    placeholder="Enter project name"
+  />
+);`,
+      },
+    ],
+  },
+  {
+    slug: "lightbox",
+    name: "Lightbox",
+    description: "Full-screen image viewer with navigation, zoom, and keyboard controls.",
+    category: "overlays",
+    importStatement: `import { Lightbox } from "@launchapp/design-system";`,
+    props: [
+      { name: "images", type: "LightboxImage[]", required: true, description: "Array of images with src, alt, and optional caption." },
+      { name: "open", type: "boolean", description: "Controls lightbox visibility." },
+      { name: "initialIndex", type: "number", defaultValue: "0", description: "Starting image index." },
+      { name: "onClose", type: "() => void", description: "Called when lightbox closes." },
+    ],
+    examples: [
+      {
+        title: "Image lightbox",
+        code: `const [open, setOpen] = React.useState(false);
+return (
+  <>
+    <button type="button" onClick={() => setOpen(true)}>View Gallery</button>
+    <Lightbox
+      open={open}
+      onClose={() => setOpen(false)}
+      images={[
+        { src: "/photo1.jpg", alt: "Photo 1" },
+        { src: "/photo2.jpg", alt: "Photo 2" },
+      ]}
+    />
+  </>
+);`,
+      },
+    ],
+  },
+  {
+    slug: "live-indicator",
+    name: "Live Indicator",
+    description: "Pulsing dot indicator for showing real-time or live status.",
+    category: "feedback",
+    importStatement: `import { LiveIndicator } from "@launchapp/design-system";`,
+    props: [
+      { name: "label", type: "string", defaultValue: '"Live"', description: "Text label next to the pulse dot." },
+      { name: "variant", type: '"red" | "green" | "yellow"', defaultValue: '"red"', description: "Pulse color." },
+    ],
+    examples: [
+      {
+        title: "Live broadcast indicator",
+        code: `<LiveIndicator label="Live" variant="red" />`,
+      },
+    ],
+  },
+  {
+    slug: "magic-card",
+    name: "Magic Card",
+    description: "Card with mouse-tracking gradient spotlight effect.",
+    category: "display",
+    importStatement: `import { MagicCard } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Card content." },
+      { name: "gradientColor", type: "string", defaultValue: '"#262626"', description: "Spotlight gradient color." },
+    ],
+    examples: [
+      {
+        title: "Interactive spotlight card",
+        code: `<MagicCard gradientColor="#3b82f6">
+  <div className="p-8">
+    <h3 className="text-xl font-bold">Magic Card</h3>
+    <p className="text-muted-foreground mt-2">Hover to see the spotlight effect.</p>
+  </div>
+</MagicCard>`,
+      },
+    ],
+  },
+  {
+    slug: "marquee",
+    name: "Marquee",
+    description: "Infinite horizontal or vertical scrolling marquee for logos, testimonials, etc.",
+    category: "display",
+    importStatement: `import { Marquee } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Items to scroll." },
+      { name: "direction", type: '"left" | "right" | "up" | "down"', defaultValue: '"left"', description: "Scroll direction." },
+      { name: "speed", type: "number", defaultValue: "30", description: "Animation duration in seconds." },
+      { name: "pauseOnHover", type: "boolean", defaultValue: "true", description: "Pause scrolling on hover." },
+    ],
+    examples: [
+      {
+        title: "Logo marquee",
+        code: `<Marquee pauseOnHover>
+  {["Acme", "Globex", "Initech", "Umbrella", "Stark Industries"].map((name) => (
+    <div key={name} className="mx-8 text-sm font-semibold text-muted-foreground">{name}</div>
+  ))}
+</Marquee>`,
+      },
+    ],
+  },
+  {
+    slug: "masonry",
+    name: "Masonry",
+    description: "CSS masonry layout for variable-height items like photos or cards.",
+    category: "layout",
+    importStatement: `import { Masonry } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Items to arrange in masonry layout." },
+      { name: "columns", type: "number | Record<string, number>", defaultValue: "3", description: "Number of columns (or responsive breakpoint map)." },
+      { name: "gap", type: "number", defaultValue: "4", description: "Gap between items in Tailwind units." },
+    ],
+    examples: [
+      {
+        title: "Photo masonry grid",
+        code: `<Masonry columns={3} gap={4}>
+  {photos.map((photo) => (
+    <img key={photo.id} src={photo.src} alt={photo.alt} className="rounded-lg w-full" />
+  ))}
+</Masonry>`,
+      },
+    ],
+  },
+  {
+    slug: "mobile-nav",
+    name: "Mobile Nav",
+    description: "Bottom navigation bar optimized for mobile with icon and label items.",
+    category: "navigation",
+    importStatement: `import { MobileNav, MobileNavItem } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "MobileNavItem elements." },
+    ],
+    examples: [
+      {
+        title: "Mobile bottom nav",
+        code: `<MobileNav>
+  <MobileNavItem href="/" icon={<HomeIcon />} label="Home" isActive />
+  <MobileNavItem href="/explore" icon={<SearchIcon />} label="Explore" />
+  <MobileNavItem href="/profile" icon={<UserIcon />} label="Profile" />
+</MobileNav>`,
+      },
+    ],
+  },
+  {
+    slug: "multi-panel-layout",
+    name: "Multi Panel Layout",
+    description: "Configurable multi-panel layout with primary, secondary, and tertiary panes.",
+    category: "layout",
+    importStatement: `import { MultiPanelLayout } from "@launchapp/design-system";`,
+    props: [
+      { name: "primary", type: "React.ReactNode", required: true, description: "Main content panel." },
+      { name: "secondary", type: "React.ReactNode", description: "Secondary sidebar or detail panel." },
+      { name: "tertiary", type: "React.ReactNode", description: "Tertiary panel (e.g., inspector)." },
+    ],
+    examples: [
+      {
+        title: "Three-column layout",
+        code: `<MultiPanelLayout
+  primary={<div className="p-4">Main content</div>}
+  secondary={<div className="p-4 bg-muted/30">Sidebar</div>}
+  tertiary={<div className="p-4 bg-muted/20">Inspector</div>}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "multi-step-wizard",
+    name: "Multi Step Wizard",
+    description: "Configurable step-by-step wizard with validation and progress indicator.",
+    category: "layout",
+    importStatement: `import { MultiStepWizard } from "@launchapp/design-system";`,
+    props: [
+      { name: "steps", type: "WizardStep[]", required: true, description: "Array of step objects with id, title, and content." },
+      { name: "onComplete", type: "() => void", description: "Called when all steps are completed." },
+    ],
+    examples: [
+      {
+        title: "Setup wizard",
+        code: `<MultiStepWizard
+  steps={[
+    { id: "info", title: "Basic Info", content: <div>Step 1 form</div> },
+    { id: "config", title: "Configuration", content: <div>Step 2 form</div> },
+    { id: "review", title: "Review", content: <div>Summary</div> },
+  ]}
+  onComplete={() => console.log("done")}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "notification-bell",
+    name: "Notification Bell",
+    description: "Bell icon with unread count badge that opens a notification dropdown.",
+    category: "feedback",
+    importStatement: `import { NotificationBell } from "@launchapp/design-system";`,
+    props: [
+      { name: "count", type: "number", defaultValue: "0", description: "Unread notification count." },
+      { name: "onClick", type: "() => void", description: "Called when bell is clicked." },
+      { name: "maxCount", type: "number", defaultValue: "99", description: "Maximum displayed count before showing '+'." },
+    ],
+    examples: [
+      {
+        title: "Notification bell with badge",
+        code: `<NotificationBell count={5} onClick={() => console.log("open notifications")} />`,
+      },
+    ],
+  },
+  {
+    slug: "page-transition",
+    name: "Page Transition",
+    description: "Wrapper for animating page-to-page transitions with fade, slide, or scale effects.",
+    category: "utilities",
+    importStatement: `import { PageTransition } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Page content to animate." },
+      { name: "variant", type: '"fade" | "slide-up" | "scale"', defaultValue: '"fade"', description: "Transition animation style." },
+    ],
+    examples: [
+      {
+        title: "Fade transition",
+        code: `<PageTransition variant="fade">
+  <div>Page content</div>
+</PageTransition>`,
+      },
+    ],
+  },
+  {
+    slug: "palette-switcher",
+    name: "Palette Switcher",
+    description: "Color palette switcher for dynamically changing the app's theme palette.",
+    category: "utilities",
+    importStatement: `import { PaletteSwitcher } from "@launchapp/design-system";`,
+    props: [
+      { name: "palettes", type: "Palette[]", required: true, description: "Available color palettes." },
+      { name: "value", type: "string", description: "Currently active palette id." },
+      { name: "onChange", type: "(id: string) => void", description: "Called when palette is selected." },
+    ],
+    examples: [
+      {
+        title: "Palette selector",
+        code: `<PaletteSwitcher
+  palettes={[
+    { id: "blue", name: "Ocean Blue", primary: "#3b82f6" },
+    { id: "green", name: "Forest Green", primary: "#16a34a" },
+    { id: "purple", name: "Royal Purple", primary: "#9333ea" },
+  ]}
+  value="blue"
+  onChange={(id) => console.log("palette:", id)}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "privacy-dashboard",
+    name: "Privacy Dashboard",
+    description: "User-facing privacy dashboard for managing data, consents, and downloads.",
+    category: "display",
+    importStatement: `import { PrivacyDashboard } from "@launchapp/design-system";`,
+    props: [
+      { name: "consents", type: "ConsentEntry[]", required: true, description: "Current consent records." },
+      { name: "onDownloadData", type: "() => void", description: "Called when user requests data export." },
+      { name: "onDeleteAccount", type: "() => void", description: "Called when user requests account deletion." },
+    ],
+    examples: [
+      {
+        title: "Privacy control center",
+        code: `<PrivacyDashboard
+  consents={[
+    { id: "1", type: "analytics", granted: true, timestamp: "2024-01-01T10:00:00Z", version: "1.0" },
+  ]}
+  onDownloadData={() => console.log("download")}
+  onDeleteAccount={() => console.log("delete account")}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "realtime-ticker",
+    name: "Realtime Ticker",
+    description: "Live-updating metric ticker that streams values with directional change indicators.",
+    category: "data",
+    importStatement: `import { RealtimeTicker } from "@launchapp/design-system";`,
+    props: [
+      { name: "items", type: "TickerItem[]", required: true, description: "Array of ticker items with symbol, value, and change." },
+      { name: "interval", type: "number", defaultValue: "2000", description: "Update interval in milliseconds." },
+    ],
+    examples: [
+      {
+        title: "Stock ticker",
+        code: `<RealtimeTicker items={[
+  { symbol: "ACME", value: 142.50, change: +2.3 },
+  { symbol: "GLOB", value: 87.20, change: -1.1 },
+]} />`,
+      },
+    ],
+  },
+  {
+    slug: "sankey-diagram",
+    name: "Sankey Diagram",
+    description: "Flow diagram showing proportional relationships between categories.",
+    category: "data",
+    importStatement: `import { SankeyDiagram } from "@launchapp/design-system";`,
+    props: [
+      { name: "nodes", type: "SankeyNode[]", required: true, description: "Array of nodes with id and label." },
+      { name: "links", type: "SankeyLink[]", required: true, description: "Array of links with source, target, and value." },
+    ],
+    examples: [
+      {
+        title: "Traffic flow sankey",
+        code: `<SankeyDiagram
+  nodes={[{ id: "organic" }, { id: "paid" }, { id: "signup" }, { id: "purchase" }]}
+  links={[
+    { source: "organic", target: "signup", value: 400 },
+    { source: "paid", target: "signup", value: 200 },
+    { source: "signup", target: "purchase", value: 350 },
+  ]}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "scroll-animate",
+    name: "Scroll Animate",
+    description: "Wrapper that triggers entrance animations when elements scroll into view.",
+    category: "utilities",
+    importStatement: `import { ScrollAnimate } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Content to animate on scroll." },
+      { name: "animation", type: '"fade-up" | "fade-in" | "slide-left" | "slide-right"', defaultValue: '"fade-up"', description: "Animation type." },
+      { name: "delay", type: "number", defaultValue: "0", description: "Animation delay in milliseconds." },
+    ],
+    examples: [
+      {
+        title: "Fade-up on scroll",
+        code: `<ScrollAnimate animation="fade-up">
+  <div className="p-6 rounded-xl bg-muted">
+    <h2 className="text-xl font-bold">Animated section</h2>
+    <p className="mt-2 text-muted-foreground">Appears as you scroll down.</p>
+  </div>
+</ScrollAnimate>`,
+      },
+    ],
+  },
+  {
+    slug: "scroll-effects",
+    name: "Scroll Effects",
+    description: "Parallax and scroll-driven animation effects for immersive layouts.",
+    category: "utilities",
+    importStatement: `import { ScrollEffects } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Content to apply scroll effects to." },
+      { name: "effect", type: '"parallax" | "sticky" | "fade-out"', defaultValue: '"parallax"', description: "Scroll-driven effect type." },
+      { name: "speed", type: "number", defaultValue: "0.5", description: "Effect intensity multiplier." },
+    ],
+    examples: [
+      {
+        title: "Parallax hero",
+        code: `<ScrollEffects effect="parallax" speed={0.3}>
+  <div className="h-screen bg-gradient-to-b from-primary/10 to-background flex items-center justify-center">
+    <h1 className="text-5xl font-bold">Hero Title</h1>
+  </div>
+</ScrollEffects>`,
+      },
+    ],
+  },
+  {
+    slug: "smart-theming-generator",
+    name: "Smart Theming Generator",
+    description: "AI-powered theme generator that creates a full design token set from a base color.",
+    category: "utilities",
+    importStatement: `import { SmartThemingGenerator } from "@launchapp/design-system";`,
+    props: [
+      { name: "onGenerate", type: "(theme: ThemeTokens) => void", description: "Called with generated theme tokens." },
+      { name: "defaultColor", type: "string", description: "Starting brand color hex value." },
+    ],
+    examples: [
+      {
+        title: "Generate theme from brand color",
+        code: `<SmartThemingGenerator
+  defaultColor="#3b82f6"
+  onGenerate={(tokens) => console.log("generated tokens:", tokens)}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "sparkline",
+    name: "Sparkline",
+    description: "Miniature inline chart for showing trends within a small space.",
+    category: "data",
+    importStatement: `import { Sparkline } from "@launchapp/design-system";`,
+    props: [
+      { name: "data", type: "number[]", required: true, description: "Array of numeric values to plot." },
+      { name: "type", type: '"line" | "bar" | "area"', defaultValue: '"line"', description: "Chart type." },
+      { name: "width", type: "number", defaultValue: "100", description: "Chart width in pixels." },
+      { name: "height", type: "number", defaultValue: "32", description: "Chart height in pixels." },
+    ],
+    examples: [
+      {
+        title: "Revenue trend sparkline",
+        code: `<Sparkline data={[30, 45, 28, 60, 72, 55, 80, 95]} type="area" />`,
+      },
+    ],
+  },
+  {
+    slug: "spotlight",
+    name: "Spotlight",
+    description: "Mouse-tracking spotlight overlay effect for dark backgrounds.",
+    category: "display",
+    importStatement: `import { Spotlight } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "Content over the spotlight background." },
+      { name: "fill", type: "string", defaultValue: '"white"', description: "Spotlight color." },
+    ],
+    examples: [
+      {
+        title: "Spotlight hero",
+        code: `<div className="relative min-h-[300px] bg-black rounded-xl overflow-hidden">
+  <Spotlight fill="rgba(100, 200, 255, 0.3)" />
+  <div className="relative z-10 flex items-center justify-center h-64 text-white text-2xl font-bold">
+    Move your cursor over me
+  </div>
+</div>`,
+      },
+    ],
+  },
+  {
+    slug: "staggered-list",
+    name: "Staggered List",
+    description: "List where items animate in with a sequential stagger delay.",
+    category: "display",
+    importStatement: `import { StaggeredList } from "@launchapp/design-system";`,
+    props: [
+      { name: "children", type: "React.ReactNode", required: true, description: "List items to stagger." },
+      { name: "staggerDelay", type: "number", defaultValue: "50", description: "Delay between each item in milliseconds." },
+    ],
+    examples: [
+      {
+        title: "Staggered menu items",
+        code: `<StaggeredList staggerDelay={75}>
+  {["Dashboard", "Projects", "Team", "Settings"].map((item) => (
+    <div key={item} className="py-2 px-4 rounded-md hover:bg-muted">{item}</div>
+  ))}
+</StaggeredList>`,
+      },
+    ],
+  },
+  {
+    slug: "status-page",
+    name: "Status Page",
+    description: "Public status page showing system health, incidents, and uptime metrics.",
+    category: "display",
+    importStatement: `import { StatusPage } from "@launchapp/design-system";`,
+    props: [
+      { name: "services", type: "ServiceStatus[]", required: true, description: "Array of services with name and status." },
+      { name: "incidents", type: "Incident[]", description: "Recent and ongoing incidents." },
+      { name: "overallStatus", type: '"operational" | "degraded" | "partial" | "outage"', description: "Overall system status." },
+    ],
+    examples: [
+      {
+        title: "System status page",
+        code: `<StatusPage
+  overallStatus="operational"
+  services={[
+    { id: "api", name: "API", status: "operational" },
+    { id: "db", name: "Database", status: "operational" },
+    { id: "cdn", name: "CDN", status: "degraded" },
+  ]}
+  incidents={[
+    { id: "1", title: "CDN latency increase", status: "investigating", startedAt: "2024-01-15T10:00:00Z" },
+  ]}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "streaming-text",
+    name: "Streaming Text",
+    description: "Character-by-character streaming text display for AI response simulation.",
+    category: "display",
+    importStatement: `import { StreamingText } from "@launchapp/design-system";`,
+    props: [
+      { name: "text", type: "string", required: true, description: "Full text to stream." },
+      { name: "speed", type: "number", defaultValue: "30", description: "Characters per second." },
+      { name: "onComplete", type: "() => void", description: "Called when streaming completes." },
+    ],
+    examples: [
+      {
+        title: "AI response stream",
+        code: `<StreamingText
+  text="Here is the analysis you requested. The data shows a 23% increase in user engagement over the past month..."
+  speed={40}
+  onComplete={() => console.log("done")}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "tab-content-crossfade",
+    name: "Tab Content Crossfade",
+    description: "Tabs with animated crossfade transition between content panels.",
+    category: "display",
+    importStatement: `import { TabContentCrossfade } from "@launchapp/design-system";`,
+    props: [
+      { name: "tabs", type: "Array<{ id: string; label: string; content: React.ReactNode }>", required: true, description: "Tab definitions." },
+      { name: "defaultTab", type: "string", description: "Initially active tab id." },
+    ],
+    examples: [
+      {
+        title: "Animated tab switcher",
+        code: `<TabContentCrossfade
+  tabs={[
+    { id: "overview", label: "Overview", content: <div>Overview content</div> },
+    { id: "details", label: "Details", content: <div>Details content</div> },
+    { id: "history", label: "History", content: <div>History content</div> },
+  ]}
+  defaultTab="overview"
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "tag-input",
+    name: "Tag Input",
+    description: "Multi-value tag input that creates removable tags on Enter or comma.",
+    category: "inputs",
+    importStatement: `import { TagInput } from "@launchapp/design-system";`,
+    props: [
+      { name: "value", type: "string[]", description: "Controlled array of tags." },
+      { name: "onChange", type: "(tags: string[]) => void", description: "Called when tags change." },
+      { name: "placeholder", type: "string", defaultValue: '"Add tag..."', description: "Input placeholder." },
+      { name: "maxTags", type: "number", description: "Maximum number of tags allowed." },
+    ],
+    examples: [
+      {
+        title: "Skills tag input",
+        code: `const [tags, setTags] = React.useState(["React", "TypeScript"]);
+return (
+  <TagInput
+    value={tags}
+    onChange={setTags}
+    placeholder="Add skill..."
+  />
+);`,
+      },
+    ],
+  },
+  {
+    slug: "terminal",
+    name: "Terminal",
+    description: "Styled terminal emulator for displaying command output and code execution.",
+    category: "display",
+    importStatement: `import { Terminal } from "@launchapp/design-system";`,
+    props: [
+      { name: "lines", type: "TerminalLine[]", required: true, description: "Array of terminal output lines." },
+      { name: "title", type: "string", defaultValue: '"Terminal"', description: "Window title bar text." },
+      { name: "animate", type: "boolean", defaultValue: "true", description: "Enable typewriter animation." },
+    ],
+    examples: [
+      {
+        title: "Install command",
+        code: `<Terminal
+  title="Getting Started"
+  lines={[
+    { type: "command", content: "npm install @launchapp/design-system" },
+    { type: "output", content: "added 42 packages in 3.2s" },
+    { type: "command", content: "npm run dev" },
+    { type: "output", content: "⚡ Server ready on http://localhost:3000" },
+  ]}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "text-animate",
+    name: "Text Animate",
+    description: "Advanced text animation with letter-by-letter, word, or line reveal variants.",
+    category: "display",
+    importStatement: `import { TextAnimate } from "@launchapp/design-system";`,
+    props: [
+      { name: "text", type: "string", required: true, description: "Text to animate." },
+      { name: "by", type: '"letter" | "word" | "line"', defaultValue: '"letter"', description: "Animation granularity." },
+      { name: "animation", type: '"fadeIn" | "slideUp" | "blurIn" | "popIn"', defaultValue: '"fadeIn"', description: "Animation style." },
+    ],
+    examples: [
+      {
+        title: "Word-by-word reveal",
+        code: `<TextAnimate text="Ship products faster than ever." by="word" animation="slideUp" />`,
+      },
+    ],
+  },
+  {
+    slug: "theme-card",
+    name: "Theme Card",
+    description: "Preview card for displaying a color theme with swatches and name.",
+    category: "display",
+    importStatement: `import { ThemeCard } from "@launchapp/design-system";`,
+    props: [
+      { name: "name", type: "string", required: true, description: "Theme name." },
+      { name: "colors", type: "string[]", required: true, description: "Array of hex color swatches." },
+      { name: "isActive", type: "boolean", description: "Highlights the card as the active theme." },
+      { name: "onSelect", type: "() => void", description: "Called when the card is selected." },
+    ],
+    examples: [
+      {
+        title: "Theme selection card",
+        code: `<ThemeCard
+  name="Ocean Blue"
+  colors={["#0f172a", "#1e40af", "#3b82f6", "#bfdbfe"]}
+  isActive={false}
+  onSelect={() => console.log("selected")}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "theme-generator",
+    name: "Theme Generator",
+    description: "Interactive tool for generating a complete design token theme from a brand color.",
+    category: "utilities",
+    importStatement: `import { ThemeGenerator } from "@launchapp/design-system";`,
+    props: [
+      { name: "onApply", type: "(tokens: ThemeTokens) => void", description: "Called when generated theme is applied." },
+    ],
+    examples: [
+      {
+        title: "Theme generator tool",
+        code: `<ThemeGenerator onApply={(tokens) => console.log("apply theme:", tokens)} />`,
+      },
+    ],
+  },
+  {
+    slug: "theme-preview",
+    name: "Theme Preview",
+    description: "Live preview of a design theme applied to common UI patterns.",
+    category: "display",
+    importStatement: `import { ThemePreview } from "@launchapp/design-system";`,
+    props: [
+      { name: "tokens", type: "ThemeTokens", required: true, description: "Design tokens to preview." },
+    ],
+    examples: [
+      {
+        title: "Theme preview pane",
+        code: `<ThemePreview tokens={{ primary: "#3b82f6", secondary: "#6b7280", background: "#ffffff" }} />`,
+      },
+    ],
+  },
+  {
+    slug: "thinking-indicator",
+    name: "Thinking Indicator",
+    description: "Animated indicator for AI 'thinking' state with bouncing dots or spinner.",
+    category: "feedback",
+    importStatement: `import { ThinkingIndicator } from "@launchapp/design-system";`,
+    props: [
+      { name: "label", type: "string", defaultValue: '"Thinking..."', description: "Text label next to the indicator." },
+      { name: "variant", type: '"dots" | "pulse" | "spinner"', defaultValue: '"dots"', description: "Animation style." },
+    ],
+    examples: [
+      {
+        title: "AI thinking state",
+        code: `<ThinkingIndicator label="AI is thinking..." variant="dots" />`,
+      },
+    ],
+  },
+  {
+    slug: "tree-map",
+    name: "Tree Map",
+    description: "Hierarchical tree map visualization for proportional data analysis.",
+    category: "data",
+    importStatement: `import { TreeMap } from "@launchapp/design-system";`,
+    props: [
+      { name: "data", type: "TreeMapNode", required: true, description: "Hierarchical tree map data with name and children." },
+      { name: "width", type: "number", description: "Chart width in pixels." },
+      { name: "height", type: "number", defaultValue: "400", description: "Chart height in pixels." },
+    ],
+    examples: [
+      {
+        title: "Budget breakdown",
+        code: `<TreeMap
+  data={{
+    name: "Budget",
+    children: [
+      { name: "Engineering", value: 400000 },
+      { name: "Marketing", value: 200000 },
+      { name: "Design", value: 100000 },
+      { name: "Operations", value: 80000 },
+    ],
+  }}
+  height={300}
+/>`,
+      },
+    ],
+  },
+  {
+    slug: "video-player",
+    name: "Video Player",
+    description: "Custom video player with playback controls, progress bar, and fullscreen.",
+    category: "display",
+    importStatement: `import { VideoPlayer } from "@launchapp/design-system";`,
+    props: [
+      { name: "src", type: "string", required: true, description: "Video source URL." },
+      { name: "poster", type: "string", description: "Poster image shown before playback." },
+      { name: "autoPlay", type: "boolean", defaultValue: "false", description: "Start playback automatically." },
+      { name: "muted", type: "boolean", defaultValue: "false", description: "Start muted." },
+    ],
+    examples: [
+      {
+        title: "Product demo video",
+        code: `<VideoPlayer
+  src="https://example.com/demo.mp4"
+  poster="https://example.com/thumb.jpg"
+  muted
+/>`,
+      },
+    ],
+  },
 ];
 
 export function getComponent(slug: string): ComponentEntry | undefined {

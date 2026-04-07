@@ -32,6 +32,15 @@ import {
   CommandPaletteShell,
   SplitPaneLayout,
 } from "@ds/blocks/layout";
+import { APIKeyManager, AuditLogViewer, UserManagementTable } from "@ds/blocks/admin";
+import { SubscriptionManager, PaymentMethodCard } from "@ds/blocks/billing";
+import { PostList } from "@ds/blocks/blog";
+import { UserProfileCard } from "@ds/blocks/community";
+import { NotFound } from "@ds/blocks/errors";
+import { ChatInterface } from "@ds/blocks/messaging";
+import { NotificationCenter, ActivityTimeline } from "@ds/blocks/notifications";
+import { OnboardingWizard, OnboardingChecklist, ProgressChecklist } from "@ds/blocks/onboarding";
+import { TeamMemberList } from "@ds/blocks/team";
 import type { ColumnDef } from "@tanstack/react-table";
 
 export type BlockPreviewFn = () => React.ReactElement;
@@ -672,5 +681,190 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         leftPaneSize="40%"
       />
     </div>
+  ),
+
+  // admin
+  "api-key-manager": () => (
+    <APIKeyManager
+      keys={[
+        { id: "1", name: "Production Key", key: "sk-prod-xxxxxxxxxxxx", createdAt: "2024-01-01", active: true, permissions: ["read", "write"] },
+        { id: "2", name: "Read-only Key", key: "sk-ro-xxxxxxxxxxxx", createdAt: "2024-02-01", active: true, permissions: ["read"] },
+      ]}
+      availablePermissions={["read", "write", "admin"]}
+      onCreateKey={(d: Parameters<NonNullable<Parameters<typeof APIKeyManager>[0]["onCreateKey"]>>[0]) => console.log("create", d)}
+      onRevokeKey={(id: string) => console.log("revoke", id)}
+      onCopyKey={(k: string) => console.log("copy", k)}
+    />
+  ),
+  "audit-log-viewer": () => (
+    <AuditLogViewer
+      logs={[
+        { id: "1", actor: "Alice Johnson", action: "create" as const, level: "info" as const, timestamp: "2024-01-01T10:00:00Z", description: "Created user bob@example.com" },
+        { id: "2", actor: "Bob Smith", action: "api_call" as const, level: "warning" as const, timestamp: "2024-01-02T11:00:00Z", description: "Revoked API key sk-xxx" },
+        { id: "3", actor: "System", action: "login" as const, level: "error" as const, timestamp: "2024-01-03T09:30:00Z", description: "Failed login attempt from 192.168.1.1", ipAddress: "192.168.1.1" },
+      ]}
+      pageSize={10}
+    />
+  ),
+  "user-management-table": () => (
+    <UserManagementTable
+      users={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const, createdAt: "2024-01-01", lastActiveAt: "2024-01-15" },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "editor" as const, status: "active" as const, createdAt: "2024-02-01", lastActiveAt: "2024-02-10" },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "viewer" as const, status: "pending" as const, createdAt: "2024-03-01", lastActiveAt: "2024-03-01" },
+      ]}
+      onBanUser={(id: string) => console.log("ban", id)}
+      onUnbanUser={(id: string) => console.log("unban", id)}
+      onDeleteUser={(id: string) => console.log("delete", id)}
+      onAddUser={() => console.log("add user")}
+    />
+  ),
+
+  // billing
+  "subscription-manager": () => (
+    <SubscriptionManager
+      plans={[
+        { id: "starter", name: "Starter", price: "$9/mo", billingCycle: "month", features: ["5 projects", "10GB storage", "Community support"] },
+        { id: "pro", name: "Pro", price: "$29/mo", billingCycle: "month", features: ["Unlimited projects", "100GB storage", "Priority support"] },
+        { id: "enterprise", name: "Enterprise", price: "$99/mo", billingCycle: "month", features: ["Everything in Pro", "SSO", "Dedicated support"] },
+      ]}
+      currentPlanId="starter"
+      onChangePlan={(id: string) => console.log("change to", id)}
+    />
+  ),
+  "payment-method-card": () => (
+    <PaymentMethodCard
+      methods={[
+        { id: "1", type: "card" as const, brand: "Visa", last4: "4242", expiryMonth: 12, expiryYear: 2026, isDefault: true },
+        { id: "2", type: "card" as const, brand: "Mastercard", last4: "5353", expiryMonth: 8, expiryYear: 2027, isDefault: false },
+      ]}
+      selectedId="1"
+    />
+  ),
+
+  // blog
+  "post-list": () => (
+    <PostList
+      title="From the blog"
+      posts={[
+        { id: "1", title: "Getting Started with LaunchApp", excerpt: "A quick intro to the design system.", category: "Tutorial", date: "2024-01-01", author: "Alice Johnson" },
+        { id: "2", title: "Advanced Component Patterns", excerpt: "Deep dive into composition patterns.", category: "Guide", date: "2024-02-01", author: "Bob Smith" },
+        { id: "3", title: "What's New in v2.0", excerpt: "All the new features and improvements.", category: "Release", date: "2024-03-01", author: "Carol White" },
+      ]}
+      categories={["Tutorial", "Guide", "Release"]}
+    />
+  ),
+
+  // community
+  "user-profile-card": () => (
+    <UserProfileCard
+      user={{ name: "Alice Johnson", username: "alice", bio: "Full-stack developer passionate about great UX.", location: "San Francisco, CA", joinedDate: "January 2023", isVerified: true }}
+      stats={[{ label: "Posts", value: 42 }, { label: "Followers", value: 128 }, { label: "Following", value: 64 }]}
+    />
+  ),
+
+  // errors
+  "not-found-page": () => (
+    <NotFound
+      homeAction={<button type="button" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Go home</button>}
+      backAction={<button type="button" className="rounded-md border px-4 py-2 text-sm font-medium">Go back</button>}
+    />
+  ),
+
+  // messaging
+  "chat-interface": () => (
+    <ChatInterface
+      messages={[
+        { id: "1", content: "Hey! How's the new design system coming along?", sender: "received" as const, senderName: "Alice", timestamp: "10:00 AM" },
+        { id: "2", content: "Really well! Just finished the new block previews.", sender: "sent" as const, timestamp: "10:01 AM" },
+        { id: "3", content: "That's awesome! Can't wait to see it.", sender: "received" as const, senderName: "Alice", timestamp: "10:02 AM" },
+      ]}
+      title="Alice"
+      isTyping={false}
+      onSend={(msg: string) => console.log("send", msg)}
+      maxHeight={360}
+    />
+  ),
+
+  // notifications
+  "notification-center": () => (
+    <NotificationCenter
+      notifications={[
+        { id: "1", title: "New comment", description: "Alice commented on your post.", timestamp: "5m ago", read: false, avatarInitials: "AJ" },
+        { id: "2", title: "Payment received", description: "$49 payment processed successfully.", timestamp: "1h ago", read: false, avatarInitials: "ST" },
+        { id: "3", title: "Team invite accepted", description: "Bob joined your workspace.", timestamp: "2h ago", read: true, avatarInitials: "BS" },
+      ]}
+      onRead={(id: string) => console.log("read", id)}
+      onReadAll={() => console.log("read all")}
+    />
+  ),
+  "activity-timeline-block": () => (
+    <ActivityTimeline
+      items={[
+        { id: "1", title: "Project created", description: "You created 'LaunchApp v2'", timestamp: "2024-01-01T10:00:00Z" },
+        { id: "2", title: "Member added", description: "Alice joined the team", timestamp: "2024-01-02T09:00:00Z" },
+        { id: "3", title: "PR merged", description: "feat(docs): update component library", timestamp: "2024-01-03T14:30:00Z" },
+      ]}
+      title="Recent Activity"
+    />
+  ),
+
+  // onboarding
+  "onboarding-wizard": () => (
+    <OnboardingWizard
+      steps={[
+        { id: "profile", title: "Set up profile", description: "Tell us about yourself.", content: <div className="p-4 text-sm text-muted-foreground">Profile form placeholder</div> },
+        { id: "team", title: "Invite team", description: "Add your teammates.", content: <div className="p-4 text-sm text-muted-foreground">Team invite form placeholder</div> },
+        { id: "done", title: "All done!", description: "You're ready to go.", content: <div className="p-4 text-sm text-muted-foreground">Setup complete!</div> },
+      ]}
+      onComplete={() => console.log("complete")}
+      allowSkip
+    />
+  ),
+  "onboarding-checklist": () => (
+    <OnboardingChecklist
+      items={[
+        { id: "profile", title: "Complete your profile", completed: true, href: "#" },
+        { id: "team", title: "Invite teammates", completed: true, href: "#" },
+        { id: "billing", title: "Set up billing", completed: false, href: "#" },
+        { id: "integration", title: "Connect an integration", completed: false, href: "#" },
+      ]}
+      onItemToggle={(id: string, completed: boolean) => console.log("toggle", id, completed)}
+    />
+  ),
+  "progress-checklist": () => (
+    <ProgressChecklist
+      sections={[
+        {
+          id: "basics",
+          title: "Getting started",
+          items: [
+            { id: "1", title: "Create account", completed: true },
+            { id: "2", title: "Verify email", completed: true },
+            { id: "3", title: "Set up workspace", completed: false },
+          ],
+        },
+        {
+          id: "advanced",
+          title: "Next steps",
+          items: [
+            { id: "4", title: "Invite team members", completed: false },
+            { id: "5", title: "Connect first integration", completed: false },
+          ],
+        },
+      ]}
+    />
+  ),
+
+  // team
+  "team-member-list": () => (
+    <TeamMemberList
+      members={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "member" as const, status: "active" as const },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const, status: "pending" as const },
+      ]}
+      onRemove={(member) => console.log("remove", member.id)}
+    />
   ),
 };

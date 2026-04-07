@@ -56,6 +56,51 @@
       ],
       "@ds/blocks/layout": [
         "../../src/blocks/layout/index.ts"
+      ],
+      "@ds/blocks/admin": [
+        "../../src/blocks/admin/index.ts"
+      ],
+      "@ds/blocks/app": [
+        "../../src/blocks/app/index.ts"
+      ],
+      "@ds/blocks/billing": [
+        "../../src/blocks/billing/index.ts"
+      ],
+      "@ds/blocks/blog": [
+        "../../src/blocks/blog/index.ts"
+      ],
+      "@ds/blocks/community": [
+        "../../src/blocks/community/index.ts"
+      ],
+      "@ds/blocks/errors": [
+        "../../src/blocks/errors/index.ts"
+      ],
+      "@ds/blocks/files": [
+        "../../src/blocks/files/index.ts"
+      ],
+      "@ds/blocks/forms": [
+        "../../src/blocks/forms/index.ts"
+      ],
+      "@ds/blocks/integrations": [
+        "../../src/blocks/integrations/index.ts"
+      ],
+      "@ds/blocks/landing": [
+        "../../src/blocks/landing/index.ts"
+      ],
+      "@ds/blocks/messaging": [
+        "../../src/blocks/messaging/index.ts"
+      ],
+      "@ds/blocks/notifications": [
+        "../../src/blocks/notifications/index.ts"
+      ],
+      "@ds/blocks/onboarding": [
+        "../../src/blocks/onboarding/index.ts"
+      ],
+      "@ds/blocks/search": [
+        "../../src/blocks/search/index.ts"
+      ],
+      "@ds/blocks/team": [
+        "../../src/blocks/team/index.ts"
       ]
     }
   },

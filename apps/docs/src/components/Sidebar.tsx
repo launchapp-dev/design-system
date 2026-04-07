@@ -14,6 +14,7 @@ import {
 import {
   ALL_BLOCK_CATEGORIES,
   BLOCK_CATEGORY_LABELS,
+  blocks,
 } from "@/lib/blocks-registry";
 
 function MenuIcon() {
@@ -63,18 +64,29 @@ function SidebarContent({
   const pathname = usePathname();
   const [search, setSearch] = React.useState("");
 
-  const filtered = search
+  const q = search.toLowerCase();
+
+  const filteredComponents = search
     ? components.filter(
         (c) =>
-          c.name.toLowerCase().includes(search.toLowerCase()) ||
-          c.description.toLowerCase().includes(search.toLowerCase())
+          c.name.toLowerCase().includes(q) ||
+          c.description.toLowerCase().includes(q)
+      )
+    : null;
+
+  const filteredBlocks = search
+    ? blocks.filter(
+        (b) =>
+          b.name.toLowerCase().includes(q) ||
+          b.description.toLowerCase().includes(q) ||
+          b.category.includes(q)
       )
     : null;
 
   const grouped = ALL_CATEGORIES.reduce(
     (acc, cat) => {
-      const items = filtered
-        ? filtered.filter((c) => c.category === cat)
+      const items = filteredComponents
+        ? filteredComponents.filter((c) => c.category === cat)
         : components.filter((c) => c.category === cat);
       if (items.length > 0) acc[cat] = items;
       return acc;
@@ -100,7 +112,7 @@ function SidebarContent({
       <div className="px-3 pt-3 shrink-0">
         <Command shouldFilter={false} className="rounded-md border border-input bg-background">
           <CommandInput
-            placeholder="Search components..."
+            placeholder="Search components & blocks..."
             value={search}
             onValueChange={setSearch}
           />
@@ -164,25 +176,56 @@ function SidebarContent({
             Blocks
           </div>
           <div className="mt-1 space-y-0.5">
-            {ALL_BLOCK_CATEGORIES.map((cat) => {
-              const href = `/blocks/${cat}`;
-              const active = pathname === href;
-              return (
-                <Link
-                  key={cat}
-                  href={href}
-                  onClick={onNavClick}
-                  className={cn(
-                    "flex items-center rounded-md px-2 py-1.5 text-sm transition-colors",
-                    active
-                      ? "bg-accent text-accent-foreground font-medium"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                  )}
-                >
-                  {BLOCK_CATEGORY_LABELS[cat]}
-                </Link>
-              );
-            })}
+            {filteredBlocks
+              ? (() => {
+                  const matchedCats = [...new Set(filteredBlocks.map((b) => b.category))];
+                  if (matchedCats.length === 0) {
+                    return (
+                      <p className="px-2 py-2 text-xs text-muted-foreground">No blocks found.</p>
+                    );
+                  }
+                  return matchedCats.map((cat) => {
+                    const catBlocks = filteredBlocks.filter((b) => b.category === cat);
+                    const href = `/blocks/${cat}`;
+                    const active = pathname.startsWith(href);
+                    return (
+                      <div key={cat}>
+                        <Link
+                          href={href}
+                          onClick={onNavClick}
+                          className={cn(
+                            "flex items-center rounded-md px-2 py-1.5 text-sm transition-colors",
+                            active
+                              ? "bg-accent text-accent-foreground font-medium"
+                              : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                          )}
+                        >
+                          {BLOCK_CATEGORY_LABELS[cat]}
+                          <span className="ml-auto text-xs text-muted-foreground">{catBlocks.length}</span>
+                        </Link>
+                      </div>
+                    );
+                  });
+                })()
+              : ALL_BLOCK_CATEGORIES.map((cat) => {
+                  const href = `/blocks/${cat}`;
+                  const active = pathname === href;
+                  return (
+                    <Link
+                      key={cat}
+                      href={href}
+                      onClick={onNavClick}
+                      className={cn(
+                        "flex items-center rounded-md px-2 py-1.5 text-sm transition-colors",
+                        active
+                          ? "bg-accent text-accent-foreground font-medium"
+                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                      )}
+                    >
+                      {BLOCK_CATEGORY_LABELS[cat]}
+                    </Link>
+                  );
+                })}
           </div>
         </div>
 
