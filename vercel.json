@@ -1,6 +1,5 @@
 {
   "framework": "nextjs",
   "installCommand": "pnpm install",
-  "buildCommand": "node apps/docs/scripts/build.mjs",
-  "outputDirectory": "apps/docs/.next"
+  "buildCommand": "node apps/docs/scripts/build.mjs"
 }
