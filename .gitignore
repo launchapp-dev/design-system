@@ -4,3 +4,4 @@ dist/
 *.tsbuildinfo
 storybook-static/
 .DS_Store
+apps/docs/public/registry.json
