@@ -3,3 +3,5 @@ export type { ThemeSubmissionFormProps } from "./ThemeSubmissionForm";
 export { CommunityThemesGallery } from "./CommunityThemesGallery";
 export type { CommunityThemesGalleryProps } from "./CommunityThemesGallery";
 export * from "./TeamMemberCard";
+export { UserProfileCard, profileCardVariants } from "./UserProfileCard";
+export type { UserProfileCardProps, ProfileStat, ProfileBadge } from "./UserProfileCard";
