@@ -4,6 +4,8 @@ export { PaymentMethodCard } from "./PaymentMethodCard";
 export type { PaymentMethodCardProps, PaymentMethod, PaymentMethodType } from "./PaymentMethodCard";
 export { SubscriptionManager } from "./SubscriptionManager";
 export type { SubscriptionManagerProps, SubscriptionManagerPlan } from "./SubscriptionManager";
+export { SubscriptionUsageMeter } from "./SubscriptionUsageMeter";
+export type { SubscriptionUsageMeterProps, UsageMetric, UsagePeriod } from "./SubscriptionUsageMeter";
 export { UsageMeter } from "./UsageMeter";
 export type { UsageMeterProps, UsageMeterItem } from "./UsageMeter";
 export { QuotaUsageBar } from "./QuotaUsageBar";

@@ -2283,6 +2283,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-subscription-usage-meter",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/billing/SubscriptionUsageMeter/SubscriptionUsageMeter.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-usage-meter",
       "type": "registry:block",
       "files": [
@@ -3571,6 +3582,17 @@
       "devDependencies": []
     },
     {
+      "name": "block-feedback-widget",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/notifications/FeedbackWidget/FeedbackWidget.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-inbox-view",
       "type": "registry:block",
       "files": [
@@ -4113,11 +4135,33 @@
       "devDependencies": []
     },
     {
+      "name": "block-invite-member-dialog",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/team/InviteMemberDialog/InviteMemberDialog.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-role-permission-matrix",
       "type": "registry:block",
       "files": [
         {
           "path": "src/blocks/team/RolePermissionMatrix/RolePermissionMatrix.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "block-role-permissions-matrix",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/team/RolePermissionsMatrix/RolePermissionsMatrix.tsx",
           "type": "registry:block"
         }
       ],
