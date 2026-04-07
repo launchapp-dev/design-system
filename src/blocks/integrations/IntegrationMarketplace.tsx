@@ -1,4 +1,4 @@
-import type * as React from "react";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Badge } from "../../components/Badge";
 import { Button } from "../../components/Button";
@@ -129,7 +129,7 @@ export interface Integration {
   installedAt?: string;
 }
 
-export interface IntegrationMarketplaceProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IntegrationMarketplaceProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onToggle"> {
   integrations: Integration[];
   onInstall: (integration: Integration) => void;
   onConfigure: (integration: Integration) => void;
@@ -282,12 +282,6 @@ function IntegrationMarketplace({
                         <SettingsIcon className="mr-2 h-4 w-4" />
                         Configure
                       </Button>
-                      {integration.status === "update_available" && onUpdate && (
-                        <Button size="sm" onClick={() => onUpdate(integration)}>
-                          <DownloadIcon className="mr-2 h-4 w-4" />
-                          Update
-                        </Button>
-                      )}
                     </>
                   ) : integration.status === "update_available" && onUpdate ? (
                     <>

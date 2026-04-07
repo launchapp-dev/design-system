@@ -4,7 +4,7 @@ import { Badge } from "../../components/Badge";
 import { Button } from "../../components/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/Card";
 import { Progress } from "../../components/Progress";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/Tooltip";
+import { TooltipRoot as Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/Tooltip";
 
 // ── Icons (inline SVG to avoid lucide-react dep) ─────────────────────────────
 function GaugeIcon({ className }: { className?: string }) {

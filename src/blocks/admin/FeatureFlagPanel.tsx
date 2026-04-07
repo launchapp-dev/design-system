@@ -1,4 +1,4 @@
-import type * as React from "react";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Badge } from "../../components/Badge";
 import { Button } from "../../components/Button";
@@ -6,14 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../..
 import { Input } from "../../components/Input";
 import { Switch } from "../../components/Switch";
 import {
-  Select,
+  SelectRoot as Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "../../components/Select";
 import {
-  Dialog,
+  DialogRoot as Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -144,7 +144,7 @@ export interface FeatureFlag {
   owner?: string;
 }
 
-export interface FeatureFlagPanelProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface FeatureFlagPanelProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onToggle"> {
   flags: FeatureFlag[];
   onToggle: (flag: FeatureFlag, environment: FeatureFlagEnvironment, enabled: boolean) => void;
   onCreate?: (flag: Omit<FeatureFlag, "id" | "createdAt" | "updatedAt">) => void;
@@ -300,7 +300,7 @@ function FeatureFlagPanel({
             className="pl-9"
           />
         </div>
-        <Select value={selectedEnv} onValueChange={(v) => setSelectedEnv(v as FeatureFlagEnvironment | "all")}>
+        <Select value={selectedEnv} onValueChange={(v: string) => setSelectedEnv(v as FeatureFlagEnvironment | "all")}>
           <SelectTrigger className="w-full sm:w-40">
             <SelectValue placeholder="Filter by env" />
           </SelectTrigger>

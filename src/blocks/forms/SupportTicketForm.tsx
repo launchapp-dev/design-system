@@ -1,4 +1,4 @@
-import type * as React from "react";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Button } from "../../components/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/Card";
@@ -6,7 +6,7 @@ import { Input } from "../../components/Input";
 import { Label } from "../../components/Label";
 import { Textarea } from "../../components/Textarea";
 import {
-  Select,
+  SelectRoot as Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -106,7 +106,7 @@ function PaperclipIcon({ className }: { className?: string }) {
 export type TicketPriority = "low" | "medium" | "high" | "urgent";
 export type TicketCategory = "general" | "billing" | "technical" | "feature" | "bug" | "account";
 
-export interface SupportTicketFormProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SupportTicketFormProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSubmit"> {
   onSubmit: (data: {
     subject: string;
     description: string;
@@ -203,7 +203,7 @@ function SupportTicketForm({
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="category">Category</Label>
-              <Select value={category} onValueChange={(v) => setCategory(v as TicketCategory)}>
+              <Select value={category} onValueChange={(v: string) => setCategory(v as TicketCategory)}>
                 <SelectTrigger id="category">
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
@@ -218,7 +218,7 @@ function SupportTicketForm({
             </div>
             <div className="space-y-2">
               <Label htmlFor="priority">Priority</Label>
-              <Select value={priority} onValueChange={(v) => setPriority(v as TicketPriority)}>
+              <Select value={priority} onValueChange={(v: string) => setPriority(v as TicketPriority)}>
                 <SelectTrigger id="priority">
                   <SelectValue placeholder="Select priority" />
                 </SelectTrigger>

@@ -1,11 +1,11 @@
-import type * as React from "react";
+import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Badge } from "../../components/Badge";
 import { Button } from "../../components/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/Card";
 import { Input } from "../../components/Input";
 import {
-  Select,
+  SelectRoot as Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -217,7 +217,7 @@ function ChangelogFeed({
               </div>
             )}
             {showFilters && (
-              <Select value={selectedType} onValueChange={(v) => setSelectedType(v as ChangelogEntryType | "all")}>
+              <Select value={selectedType} onValueChange={(v: string) => setSelectedType(v as ChangelogEntryType | "all")}>
                 <SelectTrigger className="w-full sm:w-40">
                   <SelectValue placeholder="Filter by type" />
                 </SelectTrigger>
