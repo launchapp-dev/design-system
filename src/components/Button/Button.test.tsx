@@ -35,6 +35,31 @@ describe("Button", () => {
     expect(screen.getByRole("button", { name: "Disabled" })).toBeDisabled();
   });
 
+  it("is disabled and shows spinner when loading is true", () => {
+    const { container } = render(<Button loading>Save</Button>);
+    const btn = screen.getByRole("button");
+    expect(btn).toBeDisabled();
+    expect(container.querySelector("svg")).toBeInTheDocument();
+    expect(screen.getByText("Save")).toBeInTheDocument();
+  });
+
+  it("does not fire onClick when loading", async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
+    render(<Button loading onClick={handleClick}>Save</Button>);
+    await user.click(screen.getByRole("button"));
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it("does not show spinner when asChild and loading", () => {
+    const { container } = render(
+      <Button asChild loading>
+        <a href="/test">Link</a>
+      </Button>,
+    );
+    expect(container.querySelector("svg")).not.toBeInTheDocument();
+  });
+
   it("calls onClick when clicked", async () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();
