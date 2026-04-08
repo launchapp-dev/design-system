@@ -38,6 +38,8 @@ export type SemanticTokenName =
   | "accent-foreground"
   | "destructive"
   | "destructive-foreground"
+  | "success"
+  | "success-foreground"
   | "border"
   | "input"
   | "ring";
@@ -185,6 +187,8 @@ export const SEMANTIC_TOKEN_NAMES: SemanticTokenName[] = [
   "accent-foreground",
   "destructive",
   "destructive-foreground",
+  "success",
+  "success-foreground",
   "border",
   "input",
   "ring",

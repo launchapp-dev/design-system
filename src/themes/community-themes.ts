@@ -21,6 +21,8 @@ export type CommunityThemeTokens = {
   "--la-accent-foreground": string;
   "--la-destructive": string;
   "--la-destructive-foreground": string;
+  "--la-success"?: string;
+  "--la-success-foreground"?: string;
   "--la-border": string;
   "--la-input": string;
   "--la-ring": string;

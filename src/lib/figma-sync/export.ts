@@ -70,6 +70,8 @@ export function validatePaletteForExport(palette: Palette): ValidationResult {
     'accent-foreground',
     'destructive',
     'destructive-foreground',
+    'success',
+    'success-foreground',
     'border',
     'input',
     'ring',
