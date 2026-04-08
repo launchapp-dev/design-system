@@ -14,11 +14,13 @@ const meta: Meta<typeof Button> = {
       options: ["sm", "md", "lg", "icon"],
     },
     disabled: { control: "boolean" },
+    loading: { control: "boolean" },
   },
   args: {
     variant: "default",
     size: "md",
     disabled: false,
+    loading: false,
   },
 };
 
@@ -162,6 +164,27 @@ export const IconSize: Story = {
           <path d="M12 5v14" />
         </svg>
       </Button>
+    </div>
+  ),
+};
+
+export const Loading: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      {(["default", "secondary", "outline", "ghost", "destructive"] as const).map((variant) => (
+        <div key={variant} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <span style={{ width: 80, fontSize: "12px" }}>{variant}</span>
+          <Button variant={variant} loading>
+            Loading
+          </Button>
+          <Button variant={variant} loading size="sm">
+            Loading
+          </Button>
+          <Button variant={variant} loading size="lg">
+            Loading
+          </Button>
+        </div>
+      ))}
     </div>
   ),
 };
