@@ -7,7 +7,8 @@
     "build": "node scripts/build.mjs",
     "start": "next start --port 3001",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate-previews": "node scripts/capture-block-previews.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.3",
@@ -21,11 +22,13 @@
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@tailwindcss/postcss": "^4.2.2",
     "autoprefixer": "^10.4.27",
+    "playwright": "^1.59.1",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3"
