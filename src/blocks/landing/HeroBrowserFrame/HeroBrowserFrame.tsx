@@ -35,6 +35,7 @@ const defaultTableRows: TableRow[] = [
 
 const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>(
   ({ className, url = "app.launchapp.dev", stats = defaultStats, tableRows = defaultTableRows, ...props }, ref) => {
+    const gradientId = React.useId();
     return (
       <div ref={ref} className={cn("relative w-full max-w-[900px] mx-auto", className)} {...props}>
         {/* Glow backdrop */}
@@ -91,7 +92,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
           </div>
 
           {/* Dashboard content */}
-          <div className="flex" style={{ background: "var(--la-background)", height: "320px" }}>
+          <div className="flex" style={{ background: "var(--la-background)", height: "320px" }} aria-hidden="true">
             {/* Sidebar */}
             <aside
               className="w-40 shrink-0 flex flex-col gap-5 p-4 border-r"
@@ -110,7 +111,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
               </div>
 
               {/* Nav items */}
-              <nav className="flex flex-col gap-0.5 flex-1">
+              <nav className="flex flex-col gap-0.5 flex-1" aria-hidden="true">
                 {[
                   { label: "Dashboard", short: true, active: true },
                   { label: "Analytics", short: false, active: false },
@@ -231,20 +232,20 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
                   <div className="flex-1 min-h-0">
                     <svg viewBox="0 0 200 80" preserveAspectRatio="none" className="w-full h-full">
                       <defs>
-                        <linearGradient id="dsBarGrad" x1="0" y1="0" x2="0" y2="1">
+                        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="var(--la-primary)" stopOpacity="0.9" />
                           <stop offset="100%" stopColor="var(--la-primary)" stopOpacity="0.3" />
                         </linearGradient>
                       </defs>
-                      <rect x="8" y="50" width="14" height="30" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="28" y="30" width="14" height="50" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="48" y="40" width="14" height="40" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="68" y="15" width="14" height="65" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="88" y="35" width="14" height="45" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="108" y="20" width="14" height="60" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="128" y="10" width="14" height="70" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="148" y="25" width="14" height="55" rx="2" fill="url(#dsBarGrad)" />
-                      <rect x="168" y="5" width="14" height="75" rx="2" fill="url(#dsBarGrad)" />
+                      <rect x="8" y="50" width="14" height="30" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="28" y="30" width="14" height="50" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="48" y="40" width="14" height="40" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="68" y="15" width="14" height="65" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="88" y="35" width="14" height="45" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="108" y="20" width="14" height="60" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="128" y="10" width="14" height="70" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="148" y="25" width="14" height="55" rx="2" fill={`url(#${gradientId})`} />
+                      <rect x="168" y="5" width="14" height="75" rx="2" fill={`url(#${gradientId})`} />
                     </svg>
                   </div>
                 </div>
