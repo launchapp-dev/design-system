@@ -1,3 +1,13 @@
+## 0.3.0
+
+### Minor Changes
+
+- Add `loading` prop to Button component with animated spinner and auto-disabled state
+
+### Patch Changes
+
+- ad78be8: Alpha pre-release testing for npm publishing pipeline
+
 ## 0.2.1-alpha.0
 
 ### Patch Changes
