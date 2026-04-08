@@ -15,6 +15,8 @@
   --la-accent-foreground: 0 0% 98%;
   --la-destructive: 0 84.2% 60.2%;
   --la-destructive-foreground: 0 0% 98%;
+  --la-success: 142 71% 45%;
+  --la-success-foreground: 0 0% 98%;
   --la-border: 40 30% 86%;
   --la-input: 40 30% 86%;
   --la-ring: 38 92% 48%;
@@ -38,6 +40,8 @@
   --la-accent-foreground: 30 30% 5%;
   --la-destructive: 0 62.8% 30.6%;
   --la-destructive-foreground: 0 0% 98%;
+  --la-success: 142 69% 58%;
+  --la-success-foreground: 0 0% 98%;
   --la-border: 35 25% 15%;
   --la-input: 35 25% 15%;
   --la-ring: 38 90% 60%;

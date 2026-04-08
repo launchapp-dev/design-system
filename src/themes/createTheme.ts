@@ -15,6 +15,8 @@ export type ThemeTokens = {
   "accent-foreground": string;
   destructive: string;
   "destructive-foreground": string;
+  success: string;
+  "success-foreground": string;
   border: string;
   input: string;
   ring: string;
@@ -108,6 +110,8 @@ export function createTheme(brandColor: string): ThemeResult {
     "accent-foreground": tok(h, sf(0.25), 10),
     destructive: tok(0, 84, 60),
     "destructive-foreground": tok(0, 0, 98),
+    success: tok(142, 71, 45),
+    "success-foreground": tok(0, 0, 98),
     border: tok(h, Math.max(ss - 2, 0), 90),
     input: tok(h, Math.max(ss - 2, 0), 90),
     ring: tok(h, s, primaryL),
@@ -130,6 +134,8 @@ export function createTheme(brandColor: string): ThemeResult {
     "accent-foreground": tok(0, 0, 98),
     destructive: tok(0, 63, 31),
     "destructive-foreground": tok(0, 0, 98),
+    success: tok(142, 69, 58),
+    "success-foreground": tok(0, 0, 98),
     border: tok(h, Math.max(ss - 4, 0), 16),
     input: tok(h, Math.max(ss - 4, 0), 16),
     ring: tok(h, Math.round(s * 0.85), darkPrimaryL),
