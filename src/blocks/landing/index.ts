@@ -8,6 +8,7 @@ export type {
   StartupTestimonial,
 } from "./Startup";
 export * from "./HeroSection";
+export * from "./HeroBrowserFrame";
 export * from "./PricingTableBlock";
 export * from "./FeatureGridBlock";
 export * from "./PricingSectionBlock";
