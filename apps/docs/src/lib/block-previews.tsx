@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { TooltipProvider } from "@launchapp/design-system";
 
 import { LoginForm, SignUpForm, ForgotPasswordForm, OTPVerification } from "@ds/blocks/auth";
 import { MetricCards, StatsOverview } from "@ds/blocks/dashboard";
@@ -41,6 +42,121 @@ import { ChatInterface } from "@ds/blocks/messaging";
 import { NotificationCenter, ActivityTimeline } from "@ds/blocks/notifications";
 import { OnboardingWizard, OnboardingChecklist, ProgressChecklist } from "@ds/blocks/onboarding";
 import { TeamMemberList } from "@ds/blocks/team";
+import { AuthFormBlock, ResetPasswordForm } from "@ds/blocks/auth";
+import {
+  DashboardShell,
+  Timeline as DashboardTimeline,
+  StatusPageDashboard,
+} from "@ds/blocks/dashboard";
+import {
+  SettingsLayoutBlock,
+  DataExportCard,
+  AccountDeletionCard,
+  PrivacySettingsLayout,
+  BillingOverview,
+  SecuritySettings,
+  TeamSettings,
+  AppearanceSettings,
+  NotificationSettingsCard,
+  AccountOverview,
+  LanguageSettings,
+  PrivacySettings,
+  ConnectedAccounts,
+  CookiePreferences,
+  TabbedSettings,
+} from "@ds/blocks/settings";
+import { BreadcrumbNav, CommandPalette, UserMenu } from "@ds/blocks/navigation";
+import {
+  CalendarView,
+  ChartCard,
+  DataTrend,
+  EmptyStateCard,
+  FilterBar,
+  SparklineCard,
+  FunnelChartCard,
+  GaugeCard,
+  DataTableCard,
+  KPIComparisonCard,
+  DataTableToolbar,
+  ColumnFilters,
+  ComparisonTable,
+  CheckoutFunnel,
+  DataExportWizard,
+} from "@ds/blocks/data";
+import { ProductGrid, CartDrawer, OrderSummary } from "@ds/blocks/ecommerce";
+import {
+  LogoCloud,
+  ChangelogTimeline,
+  BillingCard,
+  FeatureComparison,
+  PricingComparisonTable,
+} from "@ds/blocks/marketing";
+import { MultiPanelLayout, MobileNavDrawerShell } from "@ds/blocks/layout";
+import { SystemSettingsPanel, WebhookManager } from "@ds/blocks/admin";
+import {
+  AppShellMinimal,
+  CollapsibleSidebar,
+  CompactSidebar,
+  DashboardHeader,
+  PageContainer,
+  SettingsLayout as AppSettingsLayout,
+} from "@ds/blocks/app";
+import {
+  InvoiceTable,
+  UsageMeter,
+  SubscriptionUsageMeter,
+  QuotaUsageBar,
+  BillingHistory,
+} from "@ds/blocks/billing";
+import { PostDetail, NewsletterSignup } from "@ds/blocks/blog";
+import {
+  CommunityThemesGallery,
+  ThemeSubmissionForm,
+  TeamMemberCard,
+} from "@ds/blocks/community";
+import { ServerError, Maintenance } from "@ds/blocks/errors";
+import {
+  DropZone,
+  FileList,
+  ImageGallery,
+  FileGrid,
+  FileUploadZone,
+} from "@ds/blocks/files";
+import { RichTextEditor } from "@ds/blocks/forms";
+import { OAuthConnectCard, ApiKeyManager, WebhookConfig } from "@ds/blocks/integrations";
+import {
+  SaaSLanding,
+  Portfolio,
+  Agency,
+  Startup,
+  HeroSectionBlock,
+  PricingTableBlock,
+  FeatureGridBlock,
+  PricingSectionBlock,
+  TestimonialsSection,
+  FAQSection,
+  CTASection,
+} from "@ds/blocks/landing";
+import { MessageBubbles, TypingIndicator } from "@ds/blocks/messaging";
+import {
+  InboxView,
+  NotificationBell,
+  NotificationPreferencesCenter,
+} from "@ds/blocks/notifications";
+import {
+  MultiStepWizard,
+  WelcomeScreen,
+  OnboardingStepper,
+  ProgressStepper,
+  SetupChecklist,
+  WelcomeWizard,
+  SetupWizard,
+  TeamInviteFlow,
+  GoalSetupWizard,
+  ChecklistWithLinks,
+} from "@ds/blocks/onboarding";
+import { SearchCommandPalette, SearchResults } from "@ds/blocks/search";
+import { RoleSelector, InviteForm, WorkspaceSwitcher } from "@ds/blocks/team";
 import type { ColumnDef } from "@tanstack/react-table";
 
 export type BlockPreviewFn = () => React.ReactElement;
@@ -865,6 +981,1287 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const, status: "pending" as const },
       ]}
       onRemove={(member) => console.log("remove", member.id)}
+    />
+  ),
+
+  // auth (additional)
+  "auth-form-block": () => <AuthFormBlock variant="login" />,
+  "reset-password-form": () => <ResetPasswordForm />,
+
+  // dashboard (additional)
+  "dashboard-shell": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <DashboardShell
+        navigation={[
+          { id: "dashboard", label: "Dashboard", href: "#", active: true },
+          { id: "analytics", label: "Analytics", href: "#" },
+          { id: "projects", label: "Projects", href: "#" },
+        ]}
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6">
+          <h2 className="text-lg font-semibold mb-2">Dashboard</h2>
+          <p className="text-sm text-muted-foreground">Welcome back, Alice.</p>
+        </div>
+      </DashboardShell>
+    </div>
+  ),
+  "dashboard-timeline": () => (
+    <DashboardTimeline
+      entries={[
+        { id: "1", title: "Project created", timestamp: "2024-01-01T10:00:00Z", description: "Repository initialized." },
+        { id: "2", title: "First PR merged", timestamp: "2024-01-05T14:00:00Z", description: "feat(auth): initial auth setup" },
+        { id: "3", title: "v1.0 released", timestamp: "2024-02-01T09:00:00Z", description: "Public launch." },
+      ]}
+    />
+  ),
+  "data-activity-feed": () => (
+    <ActivityFeed
+      activities={[
+        { id: "1", title: "Created a project", type: "create" as const, timestamp: "2 min ago", user: { name: "Alice Johnson" } },
+        { id: "2", title: "Merged pull request #42", type: "update" as const, timestamp: "1 hour ago", user: { name: "Bob Smith" } },
+        { id: "3", title: "Commented on issue #18", type: "comment" as const, timestamp: "3 hours ago", user: { name: "Carol White" } },
+      ]}
+      title="Recent Activity"
+    />
+  ),
+
+  // settings (additional)
+  "account-overview": () => (
+    <AccountOverview
+      user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      plan={{ name: "Pro", status: "active", renewsAt: "2025-03-01" }}
+      onEditProfile={() => console.log("edit profile")}
+      onManageBilling={() => console.log("manage billing")}
+    />
+  ),
+  "appearance-settings": () => (
+    <AppearanceSettings
+      onThemeChange={(id: string) => console.log("theme", id)}
+      onFontChange={(id: string) => console.log("font", id)}
+    />
+  ),
+  "billing-overview": () => (
+    <BillingOverview
+      plan={{ id: "pro", name: "Pro", price: "$29/mo", billingCycle: "monthly", description: "Best for growing teams." }}
+      status="active"
+      onUpgrade={() => console.log("upgrade")}
+      onManage={() => console.log("manage")}
+    />
+  ),
+  "connected-accounts": () => (
+    <ConnectedAccounts
+      accounts={[
+        { id: "github", provider: "github", connected: true, accountName: "alice-dev" },
+        { id: "google", provider: "google", connected: false },
+      ]}
+      onConnectionToggle={(id: string) => console.log("toggle", id)}
+    />
+  ),
+  "settings-cookie-preferences": () => (
+    <CookiePreferences onSave={(prefs: Record<string, boolean>) => console.log("save prefs", prefs)} />
+  ),
+  "data-export-card": () => (
+    <DataExportCard
+      lastExportDate="2024-01-01"
+      onExport={() => console.log("export")}
+    />
+  ),
+  "language-settings": () => (
+    <LanguageSettings />
+  ),
+  "notification-settings-card": () => (
+    <NotificationSettingsCard
+      groups={[
+        {
+          id: "comments",
+          label: "Comments",
+          channels: [
+            { id: "email", channel: "email", label: "Email", enabled: true },
+            { id: "push", channel: "push", label: "Push", enabled: false },
+          ],
+        },
+        {
+          id: "mentions",
+          label: "Mentions",
+          channels: [
+            { id: "email", channel: "email", label: "Email", enabled: true },
+            { id: "push", channel: "push", label: "Push", enabled: true },
+          ],
+        },
+      ]}
+      onChannelToggle={(groupId: string, channelId: string, enabled: boolean) => console.log("toggle", groupId, channelId, enabled)}
+    />
+  ),
+  "privacy-settings": () => (
+    <PrivacySettings
+      onExportData={() => console.log("export data")}
+      onDeleteAccount={() => console.log("delete account")}
+    />
+  ),
+  "privacy-settings-layout": () => (
+    <PrivacySettingsLayout
+      onExport={() => console.log("export")}
+      onDeleteAccount={() => console.log("delete")}
+    />
+  ),
+  "security-settings": () => (
+    <SecuritySettings
+      onPasswordChange={() => console.log("change password")}
+      onEnable2FA={() => console.log("enable 2fa")}
+      onRevokeSessions={() => console.log("revoke sessions")}
+    />
+  ),
+  "settings-layout": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <SettingsLayoutBlock
+        sections={[
+          { id: "profile" as const, label: "Profile" },
+          { id: "billing" as const, label: "Billing" },
+          { id: "notifications" as const, label: "Notifications" },
+          { id: "security" as const, label: "Security" },
+        ]}
+        defaultSection="profile"
+        onSectionChange={(id: string) => console.log("section", id)}
+      >
+        <div className="p-6 text-sm text-muted-foreground">Settings content for selected section.</div>
+      </SettingsLayoutBlock>
+    </div>
+  ),
+  "settings-layout-block": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <AppSettingsLayout
+        sections={[
+          {
+            items: [
+              { id: "profile", label: "Profile", href: "/settings/profile" },
+              { id: "billing", label: "Billing", href: "/settings/billing" },
+              { id: "security", label: "Security", href: "/settings/security" },
+            ],
+          },
+        ]}
+        activeItemId="profile"
+      >
+        <div className="p-6 text-sm text-muted-foreground">Profile settings content.</div>
+      </AppSettingsLayout>
+    </div>
+  ),
+  "tabbed-settings": () => (
+    <TabbedSettings
+      tabs={[
+        { id: "profile", label: "Profile", children: <div className="p-4 text-sm text-muted-foreground">Profile settings</div> },
+        { id: "account", label: "Account", children: <div className="p-4 text-sm text-muted-foreground">Account settings</div> },
+        { id: "notifications", label: "Notifications", children: <div className="p-4 text-sm text-muted-foreground">Notification settings</div> },
+      ]}
+    />
+  ),
+  "team-settings": () => (
+    <TeamSettings
+      members={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "owner" as const },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "admin" as const },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const },
+      ]}
+      onInvite={(email: string, role: string) => console.log("invite", email, role)}
+      onRemove={(id: string) => console.log("remove", id)}
+      onChangeRole={(id: string, role: string) => console.log("change role", id, role)}
+    />
+  ),
+  "account-deletion-card": () => (
+    <AccountDeletionCard
+      onDelete={() => console.log("delete account")}
+    />
+  ),
+
+  // navigation (additional)
+  "breadcrumb-nav": () => (
+    <BreadcrumbNav
+      items={[
+        { label: "Home", href: "/" },
+        { label: "Projects", href: "/projects" },
+        { label: "LaunchApp v2" },
+      ]}
+    />
+  ),
+  "command-palette-nav": () => {
+    const CommandPaletteDemo = () => {
+      const [open, setOpen] = React.useState(true);
+      return (
+        <div className="h-[340px] overflow-hidden rounded-lg border flex flex-col items-center justify-center gap-4 p-6">
+          <p className="text-sm text-muted-foreground text-center">
+            ⌘K command palette with search, keyboard navigation, and grouped actions.
+          </p>
+          <button
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Command Palette
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+          <CommandPalette
+            open={open}
+            onOpenChange={setOpen}
+            actions={[
+              { id: "dashboard", label: "Dashboard", group: "pages", onSelect: () => console.log("navigate to dashboard") },
+              { id: "settings", label: "Settings", group: "pages", onSelect: () => console.log("navigate to settings") },
+              { id: "analytics", label: "Analytics", group: "pages", onSelect: () => console.log("navigate to analytics") },
+            ]}
+            groups={[{ id: "pages", label: "Pages" }]}
+          />
+        </div>
+      );
+    };
+    return <CommandPaletteDemo />;
+  },
+  "user-menu-block": () => (
+    <div className="flex justify-center p-4">
+      <UserMenu
+        user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+        sections={[
+          { items: [{ label: "Settings", href: "/settings" }, { label: "Billing", href: "/billing" }] },
+          { items: [{ label: "Sign out", onClick: () => console.log("sign out"), danger: true }] },
+        ]}
+      />
+    </div>
+  ),
+
+  // app shells (additional)
+  "app-shell-minimal": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <AppShellMinimal
+        navItems={[
+          { id: "dashboard", label: "Dashboard", href: "#" },
+          { id: "analytics", label: "Analytics", href: "#" },
+          { id: "settings", label: "Settings", href: "#" },
+        ]}
+        activeItemId="dashboard"
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6">
+          <h2 className="text-base font-semibold mb-2">Dashboard</h2>
+          <p className="text-sm text-muted-foreground">Minimal app shell with clean navigation.</p>
+        </div>
+      </AppShellMinimal>
+    </div>
+  ),
+  "collapsible-sidebar-block": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border flex">
+      <CollapsibleSidebar
+        items={[
+          { id: "home", label: "Home", href: "/" },
+          { id: "analytics", label: "Analytics", href: "/analytics" },
+          { id: "settings", label: "Settings", href: "/settings" },
+        ]}
+        activeItemId="home"
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6 text-sm text-muted-foreground">Main content area.</div>
+      </CollapsibleSidebar>
+    </div>
+  ),
+  "compact-sidebar": () => (
+    <TooltipProvider>
+      <div className="h-[420px] overflow-hidden rounded-lg border flex">
+        <CompactSidebar
+          items={[
+            { id: "dashboard", label: "Dashboard", href: "/" },
+            { id: "analytics", label: "Analytics", href: "/analytics" },
+            { id: "projects", label: "Projects", href: "/projects" },
+          ]}
+          activeItemId="dashboard"
+          user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+        >
+          <div className="p-6 text-sm text-muted-foreground">Compact sidebar layout.</div>
+        </CompactSidebar>
+      </div>
+    </TooltipProvider>
+  ),
+  "dashboard-header": () => (
+    <DashboardHeader
+      title="Dashboard"
+      breadcrumbs={[{ label: "Home", href: "/" }, { label: "Dashboard" }]}
+      user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+    />
+  ),
+  "page-container": () => (
+    <PageContainer title="My Page" description="Page description here." maxWidth="lg">
+      <div className="rounded-lg border p-6 text-sm text-muted-foreground">Content goes here</div>
+    </PageContainer>
+  ),
+  "multi-panel-layout-shell": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <MultiPanelLayout
+        leftPanel={<div className="p-4 h-full bg-muted/30 text-sm text-muted-foreground">Left Panel</div>}
+        centerPanel={<div className="p-4 h-full text-sm text-muted-foreground">Center Panel</div>}
+        rightPanel={<div className="p-4 h-full bg-muted/20 text-sm text-muted-foreground">Right Panel</div>}
+      />
+    </div>
+  ),
+  "mobile-nav-drawer-shell": () => {
+    const MobileNavDemo = () => {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <div className="h-[420px] overflow-hidden rounded-lg border">
+          <MobileNavDrawerShell
+            drawerOpen={open}
+            onDrawerOpenChange={setOpen}
+            navSections={[
+              {
+                items: [
+                  { label: "Home", href: "#" },
+                  { label: "Analytics", href: "#" },
+                  { label: "Settings", href: "#" },
+                ],
+              },
+            ]}
+            user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+          >
+            <div className="p-6">
+              <button
+                onClick={() => setOpen(true)}
+                className="rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+              >
+                Open Mobile Nav
+              </button>
+              <p className="mt-3 text-sm text-muted-foreground">Tap the button to open the mobile navigation drawer.</p>
+            </div>
+          </MobileNavDrawerShell>
+        </div>
+      );
+    };
+    return <MobileNavDemo />;
+  },
+
+  // data (additional)
+  "calendar-view": () => (
+    <CalendarView
+      events={[
+        { id: "1", date: new Date(2024, 0, 15), title: "Team standup", color: "primary" },
+        { id: "2", date: new Date(2024, 0, 20), title: "Product launch", color: "secondary" },
+        { id: "3", date: new Date(2024, 0, 25), title: "Sprint review", color: "destructive" },
+      ]}
+      onDateSelect={(date: Date) => console.log("selected", date)}
+    />
+  ),
+  "chart-card": () => (
+    <ChartCard
+      title="Revenue Over Time"
+      description="Monthly revenue for the past 6 months"
+      periods={["1W", "1M", "3M", "6M", "1Y"]}
+    >
+      <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">
+        Chart visualization goes here
+      </div>
+    </ChartCard>
+  ),
+  "data-trend": () => (
+    <DataTrend
+      label="Monthly Active Users"
+      value={12450}
+      change={15.3}
+      direction="up"
+    />
+  ),
+  "empty-state-block": () => (
+    <EmptyState
+      title="No projects yet"
+      description="Get started by creating your first project."
+      primaryAction={{ label: "Create project", onClick: () => console.log("create") }}
+    />
+  ),
+  "empty-state-card": () => (
+    <EmptyStateCard
+      title="No results found"
+      description="Try adjusting your search or filters."
+      action={{ label: "Clear filters", onClick: () => console.log("clear") }}
+    />
+  ),
+  "filter-bar": () => (
+    <FilterBar
+      filters={[
+        {
+          column: "status",
+          label: "Status",
+          options: [
+            { label: "Active", value: "active" },
+            { label: "Inactive", value: "inactive" },
+            { label: "Pending", value: "pending" },
+          ],
+        },
+        {
+          column: "role",
+          label: "Role",
+          options: [
+            { label: "Admin", value: "admin" },
+            { label: "Member", value: "member" },
+            { label: "Viewer", value: "viewer" },
+          ],
+        },
+      ]}
+      onFiltersChange={(filters: Record<string, string[]>) => console.log("filters", filters)}
+    />
+  ),
+  "sparkline-card": () => (
+    <SparklineCard
+      title="Revenue"
+      value="$45,231"
+      data={[30, 40, 35, 50, 49, 60, 70, 65, 80]}
+      trend="up"
+      trendValue="+20.1%"
+      description="vs last month"
+    />
+  ),
+  "funnel-chart-card": () => (
+    <FunnelChartCard
+      title="Checkout Funnel"
+      stages={[
+        { label: "Visitors", value: 10000 },
+        { label: "Sign Ups", value: 4200 },
+        { label: "Trial", value: 1800 },
+        { label: "Paid", value: 620 },
+      ]}
+      description="Conversion funnel for this month"
+    />
+  ),
+  "gauge-card": () => (
+    <GaugeCard
+      title="CPU Usage"
+      value={68}
+      max={100}
+      unit="%"
+      description="Current server load"
+      thresholds={[
+        { label: "Normal", value: 60 },
+        { label: "Warning", value: 80 },
+      ]}
+    />
+  ),
+  "data-table-card": () => (
+    <DataTableCard
+      title="Recent Users"
+      description="Latest registered users"
+      columns={[
+        { key: "name", header: "Name" },
+        { key: "email", header: "Email" },
+        { key: "role", header: "Role" },
+      ]}
+      data={[
+        { name: "Alice Johnson", email: "alice@example.com", role: "Admin" },
+        { name: "Bob Smith", email: "bob@example.com", role: "Member" },
+        { name: "Carol White", email: "carol@example.com", role: "Viewer" },
+      ]}
+      keyField="email"
+    />
+  ),
+  "kpi-comparison-card": () => (
+    <KPIComparisonCard
+      title="Monthly Revenue"
+      currentValue="$45,231"
+      previousValue="$37,890"
+      change={19.6}
+      changeDirection="up"
+      changeLabel="vs last month"
+      description="Total recurring revenue"
+    />
+  ),
+  "data-table-toolbar": () => (
+    <TooltipProvider>
+      <DataTableToolbar
+        searchPlaceholder="Search users..."
+        showSearch
+        actions={[
+          { id: "export", label: "Export", onClick: () => console.log("export") },
+          { id: "import", label: "Import", onClick: () => console.log("import") },
+        ]}
+      />
+    </TooltipProvider>
+  ),
+  "column-filters": () => (
+    <ColumnFilters
+      columns={[
+        { id: "status", label: "Status", type: "select", options: [{ value: "active", label: "Active" }, { value: "inactive", label: "Inactive" }] },
+        { id: "name", label: "Name", type: "text" },
+        { id: "role", label: "Role", type: "select", options: [{ value: "admin", label: "Admin" }, { value: "member", label: "Member" }] },
+      ]}
+      filters={[]}
+      onFiltersChange={(filters: unknown[]) => console.log("filters changed", filters)}
+    />
+  ),
+  "feature-comparison": () => (
+    <FeatureComparison
+      tiers={[
+        { id: "free", name: "Free", price: { monthly: 0, annually: 0 }, cta: { label: "Get started" } },
+        { id: "pro", name: "Pro", price: { monthly: 29, annually: 290 }, popular: true, cta: { label: "Start trial" } },
+        { id: "enterprise", name: "Enterprise", price: { monthly: "Custom", annually: "Custom" }, cta: { label: "Contact sales" } },
+      ]}
+      features={[
+        { id: "projects", name: "Projects", values: { free: "5", pro: "Unlimited", enterprise: "Unlimited" } },
+        { id: "storage", name: "Storage", values: { free: "5GB", pro: "100GB", enterprise: "Custom" } },
+        { id: "support", name: "Support", values: { free: false, pro: true, enterprise: true } },
+        { id: "sso", name: "SSO", values: { free: false, pro: false, enterprise: true } },
+      ]}
+      headline="Compare plans"
+      subheadline="Choose the right plan for your team."
+    />
+  ),
+
+  // ecommerce (additional)
+  "product-grid": () => (
+    <ProductGrid
+      products={[
+        { id: "1", name: "Wireless Headphones", price: 99.99, originalPrice: 149.99, rating: 4.5, reviewCount: 128, badge: "Sale" },
+        { id: "2", name: "Smart Watch", price: 299.99, rating: 4.8, reviewCount: 89, badge: "New" },
+        { id: "3", name: "Bluetooth Speaker", price: 59.99, rating: 4.3, reviewCount: 54 },
+        { id: "4", name: "Laptop Stand", price: 39.99, rating: 4.6, reviewCount: 203 },
+      ]}
+      columns={2}
+      onAddToCart={(product: { id: string }) => console.log("add to cart", product.id)}
+    />
+  ),
+  "cart-drawer": () => {
+    const CartDrawerDemo = () => {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <div className="flex flex-col items-center gap-4 p-6">
+          <button
+            onClick={() => setOpen(true)}
+            className="rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Cart
+          </button>
+          <p className="text-sm text-muted-foreground">Slide-out cart drawer with item list and checkout.</p>
+          <CartDrawer
+            open={open}
+            onOpenChange={setOpen}
+            items={[
+              { id: "1", name: "Wireless Headphones", price: 99.99, quantity: 1 },
+              { id: "2", name: "Smart Watch", price: 299.99, quantity: 2 },
+            ]}
+            taxRate={0.08}
+            shippingCost={9.99}
+            onCheckout={() => console.log("checkout")}
+          />
+        </div>
+      );
+    };
+    return <CartDrawerDemo />;
+  },
+  "order-summary": () => (
+    <OrderSummary
+      items={[
+        { id: "1", name: "Premium Plan", quantity: 1, price: 290 },
+        { id: "2", name: "Extra Storage", quantity: 1, price: 49 },
+      ]}
+      taxRate={0.08}
+      shippingCost={0}
+      onCheckout={() => console.log("checkout")}
+    />
+  ),
+
+  // marketing (additional)
+  "logo-cloud": () => (
+    <LogoCloud
+      logos={[
+        { name: "Acme Corp" },
+        { name: "Globex" },
+        { name: "Initech" },
+        { name: "Umbrella" },
+        { name: "Hooli" },
+      ]}
+      headline="Trusted by leading teams"
+      variant="simple"
+    />
+  ),
+  "changelog-timeline": () => (
+    <ChangelogTimeline
+      title="Changelog"
+      description="Latest updates and improvements."
+      entries={[
+        { id: "1", version: "2.0.0", date: "March 2024", title: "Design System v2", description: "268 components, dark mode, and more.", tags: ["breaking"] },
+        { id: "2", version: "1.5.0", date: "January 2024", title: "New Components", description: "Added Carousel, Timeline, and Heatmap.", tags: ["feature"] },
+        { id: "3", version: "1.4.2", date: "December 2023", title: "Bug Fixes", description: "Resolved accessibility issues in Combobox.", tags: ["fix"] },
+      ]}
+    />
+  ),
+  "billing-card": () => (
+    <BillingCard
+      planName="Pro"
+      price="$29"
+      billingPeriod="month"
+      status="active"
+      features={[
+        { name: "Unlimited projects", included: true },
+        { name: "100 GB storage", included: true },
+        { name: "Priority support", included: true },
+      ]}
+      nextBillingDate="April 1, 2025"
+      onUpgrade={() => console.log("upgrade")}
+      onManage={() => console.log("manage")}
+    />
+  ),
+  "pricing-comparison-table": () => (
+    <PricingComparisonTable
+      headline="Compare plans"
+      subheadline="Find the right plan for your team."
+      plans={[
+        { id: "free", name: "Free", price: { monthly: 0, annually: 0 }, cta: { label: "Get started" } },
+        { id: "pro", name: "Pro", price: { monthly: 29, annually: 290 }, popular: true, cta: { label: "Start trial" } },
+        { id: "enterprise", name: "Enterprise", price: { monthly: "Custom", annually: "Custom" }, cta: { label: "Contact sales" } },
+      ]}
+      features={[
+        { name: "Projects", category: "Core", values: { free: "5", pro: "Unlimited", enterprise: "Unlimited" } },
+        { name: "Storage", category: "Core", values: { free: "5 GB", pro: "100 GB", enterprise: "Custom" } },
+        { name: "Priority Support", category: "Support", values: { free: false, pro: true, enterprise: true } },
+        { name: "SSO", category: "Security", values: { free: false, pro: false, enterprise: true } },
+      ]}
+    />
+  ),
+
+  // admin (additional)
+  "system-settings-panel": () => (
+    <SystemSettingsPanel
+      appName="LaunchApp"
+      appConfig={[
+        { id: "max_upload", label: "Max Upload Size (MB)", type: "number", value: "50" },
+        { id: "session_timeout", label: "Session Timeout (minutes)", type: "number", value: "60" },
+      ]}
+      featureFlags={[
+        { id: "new_dashboard", name: "New Dashboard", description: "Enable the redesigned dashboard layout.", enabled: true },
+        { id: "ai_assistant", name: "AI Assistant", description: "Enable AI-powered suggestions.", enabled: false },
+        { id: "maintenance", name: "Maintenance Mode", description: "Take the site offline for maintenance.", enabled: false },
+      ]}
+      onFlagToggle={(id: string, enabled: boolean) => console.log("toggle flag", id, enabled)}
+      onSaveConfig={() => console.log("save config")}
+    />
+  ),
+  "webhook-manager": () => (
+    <WebhookManager
+      endpoints={[
+        { id: "1", name: "Production Webhook", url: "https://api.example.com/hooks", eventTypes: ["user.created", "payment.success"], active: true, createdAt: "2024-01-01" },
+        { id: "2", name: "Staging Webhook", url: "https://staging.example.com/hooks", eventTypes: ["user.created"], active: false, createdAt: "2024-02-01" },
+      ]}
+      availableEventTypes={["user.created", "user.deleted", "payment.success", "payment.failed", "subscription.updated"]}
+      onCreateEndpoint={(data: unknown) => console.log("create", data)}
+      onDeleteEndpoint={(id: string) => console.log("delete", id)}
+      onToggleEndpoint={(id: string, active: boolean) => console.log("toggle", id, active)}
+    />
+  ),
+
+  // billing (additional)
+  "invoice-table": () => (
+    <InvoiceTable
+      invoices={[
+        { id: "INV-001", number: "INV-001", date: "2024-01-01", amount: "49", status: "paid" as const, description: "Pro Plan - January 2024", downloadUrl: "#" },
+        { id: "INV-002", number: "INV-002", date: "2024-02-01", amount: "49", status: "paid" as const, description: "Pro Plan - February 2024", downloadUrl: "#" },
+        { id: "INV-003", number: "INV-003", date: "2024-03-01", amount: "49", status: "pending" as const, description: "Pro Plan - March 2024" },
+      ]}
+      onDownload={(invoice: { id: string }) => console.log("download", invoice.id)}
+    />
+  ),
+  "usage-meter": () => (
+    <UsageMeter
+      title="Plan Usage"
+      items={[
+        { id: "storage", label: "Storage", used: 3.2, total: 10, unit: "GB", warningThreshold: 80 },
+        { id: "api_calls", label: "API Calls", used: 7500, total: 10000, unit: "calls", warningThreshold: 75 },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+
+  // blog (additional)
+  "post-detail": () => (
+    <PostDetail
+      title="Getting Started with LaunchApp Design System"
+      content={
+        <div className="prose prose-sm max-w-none">
+          <p>The LaunchApp Design System provides a comprehensive set of components built on Radix UI primitives and styled with Tailwind CSS 4.</p>
+          <h2>Installation</h2>
+          <p>Install the package via npm and import the styles to get started quickly.</p>
+          <h2>Usage</h2>
+          <p>Import components directly and customize them using design tokens.</p>
+        </div>
+      }
+      author="Alice Johnson"
+      publishedAt="January 15, 2025"
+      readingTime="5 min read"
+      category="Tutorial"
+      tags={["Design System", "React", "TypeScript"]}
+    />
+  ),
+  "newsletter-signup": () => (
+    <NewsletterSignup
+      variant="card"
+      title="Stay up to date"
+      subtitle="Get the latest updates and releases directly to your inbox."
+      onSubmit={async (email: string) => console.log("subscribe", email)}
+    />
+  ),
+
+  // community (additional)
+  "community-themes-gallery": () => (
+    <CommunityThemesGallery columns={3} />
+  ),
+  "theme-submission-form": () => (
+    <ThemeSubmissionForm
+      onSubmit={(theme: unknown) => console.log("submit theme", theme)}
+      onCancel={() => console.log("cancel")}
+    />
+  ),
+  "team-member-card": () => (
+    <TeamMemberCard
+      name="Alice Johnson"
+      role="Senior Frontend Engineer"
+      department="Engineering"
+      bio="Passionate about building accessible, beautiful user interfaces."
+      initials="AJ"
+      socialLinks={[
+        { network: "github" as const, href: "#", label: "GitHub" },
+        { network: "linkedin" as const, href: "#", label: "LinkedIn" },
+      ]}
+      tags={["React", "TypeScript", "Design Systems"]}
+    />
+  ),
+
+  // errors (additional)
+  "server-error-page": () => (
+    <ServerError
+      retryAction={<button type="button" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Try again</button>}
+      homeAction={<button type="button" className="rounded-md border px-4 py-2 text-sm font-medium">Go home</button>}
+    />
+  ),
+  "maintenance-page": () => (
+    <Maintenance
+      title="We'll be back soon"
+      description="We're performing scheduled maintenance. This should only take a few minutes."
+      estimatedTime="30 minutes"
+      updates={[
+        { label: "Database migration", status: "done" as const },
+        { label: "Service restart", status: "in-progress" as const },
+        { label: "Cache warm-up", status: "pending" as const },
+      ]}
+    />
+  ),
+
+  // files
+  "file-grid": () => (
+    <FileGrid
+      files={[
+        { id: "1", name: "report.pdf", type: "document" as const, size: 2457600, modifiedAt: "2024-01-01" },
+        { id: "2", name: "photo.jpg", type: "image" as const, size: 1153434, modifiedAt: "2024-01-02" },
+        { id: "3", name: "spreadsheet.xlsx", type: "document" as const, size: 552960, modifiedAt: "2024-01-03" },
+        { id: "4", name: "archive.zip", type: "archive" as const, size: 983040, modifiedAt: "2024-01-04" },
+      ]}
+      columns={4}
+      onOpen={(id: string) => console.log("open", id)}
+      onDownload={(id: string) => console.log("download", id)}
+    />
+  ),
+  "file-list": () => (
+    <FileList
+      files={[
+        { id: "1", name: "document.pdf", size: 2457600, status: "complete" as const },
+        { id: "2", name: "photo.jpg", size: 1153434, status: "complete" as const },
+        { id: "3", name: "video.mp4", size: 52428800, status: "uploading" as const },
+      ]}
+      onRemove={(id: string) => console.log("remove", id)}
+      title="Uploaded Files"
+    />
+  ),
+  "image-gallery": () => (
+    <ImageGallery
+      images={[
+        { id: "1", src: "/placeholder-image.jpg", alt: "Photo 1" },
+        { id: "2", src: "/placeholder-image.jpg", alt: "Photo 2" },
+        { id: "3", src: "/placeholder-image.jpg", alt: "Photo 3" },
+        { id: "4", src: "/placeholder-image.jpg", alt: "Photo 4" },
+        { id: "5", src: "/placeholder-image.jpg", alt: "Photo 5" },
+        { id: "6", src: "/placeholder-image.jpg", alt: "Photo 6" },
+      ]}
+      columns={3}
+    />
+  ),
+  "drop-zone": () => (
+    <DropZone
+      accept="image/*,application/pdf"
+      multiple
+      onFilesSelected={(files: File[]) => console.log("files selected", files.map(f => f.name))}
+    />
+  ),
+  "file-upload-zone": () => (
+    <FileUploadZone
+      accept="image/*,application/pdf"
+      maxFiles={5}
+      maxSize={10 * 1024 * 1024}
+    />
+  ),
+
+  // forms
+  "rich-text-editor": () => (
+    <RichTextEditor
+      label="Description"
+      placeholder="Write your content here..."
+      minHeight={200}
+      showWordCount
+      onChange={(html: string) => console.log("change", html.slice(0, 50))}
+    />
+  ),
+
+  // integrations
+  "oauth-connect-card": () => (
+    <OAuthConnectCard
+      provider={{ id: "github", name: "GitHub", description: "Connect your GitHub account to sync repositories.", scopes: ["repo", "user"] }}
+      isConnected={false}
+      onConnect={() => console.log("connect github")}
+    />
+  ),
+  "integrations-api-key-manager": () => (
+    <ApiKeyManager
+      keys={[
+        { id: "1", name: "Production Key", prefix: "sk-prod", createdAt: "2024-01-01" },
+        { id: "2", name: "Staging Key", prefix: "sk-stage", createdAt: "2024-02-01" },
+      ]}
+      onCreate={() => console.log("create key")}
+      onRevoke={(key: { id: string }) => console.log("revoke", key.id)}
+      title="API Keys"
+      description="Manage your API access keys."
+    />
+  ),
+  "webhook-config": () => (
+    <WebhookConfig
+      url="https://api.example.com/webhooks"
+      events={[
+        { id: "user.created", name: "User Created", enabled: true },
+        { id: "payment.success", name: "Payment Success", enabled: true },
+        { id: "subscription.updated", name: "Subscription Updated", enabled: false },
+      ]}
+      onUrlChange={(url: string) => console.log("url changed", url)}
+      onToggleEvent={(event) => console.log("toggle event", event.id, event.enabled)}
+      onSave={() => console.log("save webhook")}
+      onTest={() => console.log("test webhook")}
+    />
+  ),
+
+  // landing
+  "landing-hero-section": () => (
+    <HeroSectionBlock
+      variant="centered"
+      eyebrow="New — v2.0 released"
+      headline="Build faster with LaunchApp"
+      subheadline="A complete design system built on Radix UI and Tailwind CSS. Ship production-ready UIs in hours, not weeks."
+      primaryAction={<button type="button" className="rounded-md bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground">Get started</button>}
+      secondaryAction={<button type="button" className="rounded-md border px-6 py-2.5 text-sm font-medium">View docs</button>}
+    />
+  ),
+  "landing-feature-grid": () => (
+    <FeatureGridBlock
+      variant="default"
+      cols="3"
+      eyebrow="Features"
+      headline="Everything you need to ship"
+      subheadline="Production-ready UI components built for modern applications."
+      features={[
+        { title: "Accessible", description: "Built on Radix UI primitives for full keyboard and screen reader support.", icon: <span aria-hidden className="text-2xl">♿</span> },
+        { title: "Customizable", description: "CSS custom properties and Tailwind for effortless theming.", icon: <span aria-hidden className="text-2xl">🎨</span> },
+        { title: "TypeScript", description: "Fully typed APIs with IntelliSense for a great DX.", icon: <span aria-hidden className="text-2xl">📘</span> },
+        { title: "Dark Mode", description: "First-class dark mode support out of the box.", icon: <span aria-hidden className="text-2xl">🌙</span> },
+        { title: "Production Ready", description: "Battle-tested components shipped in production apps.", icon: <span aria-hidden className="text-2xl">🚀</span> },
+        { title: "Open Source", description: "MIT licensed and open for contributions.", icon: <span aria-hidden className="text-2xl">🔓</span> },
+      ]}
+    />
+  ),
+  "landing-pricing-table": () => (
+    <PricingTableBlock
+      headline="Simple, transparent pricing"
+      subheadline="No hidden fees. Cancel anytime."
+    />
+  ),
+  "landing-pricing-section": () => (
+    <PricingSectionBlock
+      headline="Choose your plan"
+      subheadline="Scale as your team grows."
+      tiers={[
+        { name: "Free", monthlyPrice: "0", annualPrice: "0", description: "Perfect for individuals.", features: ["5 projects", "10 GB storage", "Community support"], ctaLabel: "Get started" },
+        { name: "Pro", monthlyPrice: "29", annualPrice: "290", description: "Best for growing teams.", features: ["Unlimited projects", "100 GB storage", "Priority support", "Analytics"], ctaLabel: "Start free trial", popular: true },
+        { name: "Enterprise", monthlyPrice: "99", annualPrice: "990", description: "For large organizations.", features: ["Everything in Pro", "SSO", "Dedicated support", "SLA"], ctaLabel: "Contact sales" },
+      ]}
+    />
+  ),
+  "landing-testimonials": () => (
+    <TestimonialsSection
+      variant="default"
+      displayMode="grid"
+      eyebrow="Testimonials"
+      headline="Loved by developers"
+      testimonials={[
+        { quote: "LaunchApp cut our dev time in half.", author: { name: "Alice Johnson", role: "CTO", company: "Startup Inc." } },
+        { quote: "Best component library we've used.", author: { name: "Bob Smith", role: "Lead Engineer", company: "Startup Co." } },
+        { quote: "The theming support is incredible.", author: { name: "Carol White", role: "Frontend Lead", company: "TechCorp" } },
+      ]}
+    />
+  ),
+  "landing-faq-section": () => (
+    <FAQSection
+      variant="default"
+      eyebrow="FAQ"
+      headline="Frequently asked questions"
+      items={[
+        { question: "How do I get started?", answer: "Sign up for free and follow the quickstart guide in our documentation." },
+        { question: "Is there a free plan?", answer: "Yes, we have a generous free tier with 5 projects and 10 GB storage." },
+        { question: "Can I cancel anytime?", answer: "Absolutely. Cancel your subscription at any time with no questions asked." },
+        { question: "Do you offer team pricing?", answer: "Yes, our Pro and Enterprise plans support unlimited team members." },
+      ]}
+    />
+  ),
+  "landing-cta-section": () => (
+    <CTASection
+      variant="default"
+      background="primary"
+      headline="Ready to ship faster?"
+      subtext="Join thousands of developers building with LaunchApp."
+      primaryAction={<button type="button" className="rounded-md bg-white px-6 py-2.5 text-sm font-semibold text-primary">Get started free</button>}
+      secondaryAction={<button type="button" className="rounded-md border border-white/30 px-6 py-2.5 text-sm font-medium text-white">View docs</button>}
+      align="center"
+    />
+  ),
+  "landing-saas": () => (
+    <SaaSLanding
+      badge="New — v2.0 released"
+      headline="Build faster with LaunchApp"
+      subheadline="A complete design system built on Radix UI and Tailwind CSS."
+      primaryAction={<button type="button" className="rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">Get started</button>}
+      secondaryAction={<button type="button" className="rounded-md border px-6 py-2.5 text-sm font-medium">View docs</button>}
+      featuresTitle="Everything you need"
+      features={[
+        { title: "Fast", description: "Optimized for performance.", icon: <span>⚡</span> },
+        { title: "Secure", description: "Enterprise-grade security.", icon: <span>🔒</span> },
+        { title: "Scalable", description: "Grows with your business.", icon: <span>📈</span> },
+      ]}
+    />
+  ),
+  "landing-startup": () => (
+    <Startup
+      badge="YC-backed"
+      headline="The fastest way to build your startup"
+      subheadline="From idea to launch in days, not months."
+      primaryAction={<button type="button" className="rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">Start building</button>}
+      socialProof={[
+        { metric: "500+", label: "Startups" },
+        { metric: "$50M+", label: "Raised" },
+        { metric: "10k+", label: "Users" },
+      ]}
+      testimonials={[
+        { quote: "Shipped our MVP in 2 weeks using LaunchApp.", author: "Sarah Chen", role: "Founder at Acme" },
+      ]}
+    />
+  ),
+  "landing-agency": () => (
+    <Agency
+      badge="Award-winning studio"
+      headline="We craft digital experiences that convert"
+      subheadline="Strategy, design, and engineering for forward-thinking brands."
+      primaryAction={<button type="button" className="rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">Start a project</button>}
+      services={[
+        { title: "Strategy", description: "Brand positioning and go-to-market planning.", icon: <span>📊</span> },
+        { title: "Design", description: "UI/UX design systems and prototyping.", icon: <span>🎨</span> },
+        { title: "Engineering", description: "Full-stack development and DevOps.", icon: <span>⚙️</span> },
+      ]}
+    />
+  ),
+  "landing-portfolio": () => (
+    <Portfolio
+      name="Alice Johnson"
+      title="Full-Stack Engineer & Designer"
+      bio={<p>I build beautiful, performant web applications with a focus on user experience and accessibility.</p>}
+      projects={[
+        { title: "LaunchApp", description: "A complete SaaS design system.", tags: ["React", "TypeScript"], link: "#" },
+        { title: "DataViz", description: "Real-time analytics dashboard.", tags: ["Next.js", "D3.js"], link: "#" },
+        { title: "Commerce", description: "E-commerce platform with AR.", tags: ["Remix", "Three.js"], link: "#" },
+      ]}
+    />
+  ),
+
+  // messaging (additional)
+  "message-bubbles": () => (
+    <MessageBubbles
+      messages={[
+        { id: "1", content: "Hey! How's the new design system coming along?", sender: "received" as const, senderName: "Alice", timestamp: "10:00 AM", avatarInitials: "AJ" },
+        { id: "2", content: "Really well! Just finished the new block previews.", sender: "sent" as const, timestamp: "10:01 AM" },
+        { id: "3", content: "That's awesome! Can't wait to see it.", sender: "received" as const, senderName: "Alice", timestamp: "10:02 AM", avatarInitials: "AJ" },
+        { id: "4", content: "It should be ready for review later today.", sender: "sent" as const, timestamp: "10:03 AM" },
+      ]}
+    />
+  ),
+  "typing-indicator": () => (
+    <div className="p-4 space-y-3">
+      <TypingIndicator label="Alice is typing..." />
+      <p className="text-xs text-muted-foreground">Shows when someone is composing a message.</p>
+    </div>
+  ),
+
+  // notifications (additional)
+  "inbox-view": () => (
+    <InboxView
+      title="Inbox"
+      items={[
+        { id: "1", sender: "Alice Johnson", subject: "New comment on your post", preview: "Left a review on the design tokens RFC...", date: "5m ago", read: false, senderInitials: "AJ" },
+        { id: "2", sender: "Bob Smith", subject: "PR #42 merged", preview: "feat(auth): add OAuth providers", date: "1h ago", read: false, senderInitials: "BS" },
+        { id: "3", sender: "Carol White", subject: "Team invite accepted", preview: "Carol joined your workspace", date: "2h ago", read: true, senderInitials: "CW" },
+      ]}
+      onSelect={(id: string) => console.log("select", id)}
+      onMarkRead={(id: string) => console.log("mark read", id)}
+    />
+  ),
+  "notification-bell-block": () => (
+    <div className="flex justify-center p-4">
+      <NotificationBell
+        notifications={[
+          { id: "1", title: "New comment", timestamp: "5m ago", read: false, description: "Alice commented on your post." },
+          { id: "2", title: "Payment received", timestamp: "1h ago", read: false, description: "$49 payment processed." },
+          { id: "3", title: "Team invite", timestamp: "2h ago", read: true, description: "Bob joined your workspace." },
+        ]}
+        onRead={(id: string) => console.log("read", id)}
+        onReadAll={() => console.log("read all")}
+        badgeCount={2}
+      />
+    </div>
+  ),
+  "notification-preferences-block": () => (
+    <NotificationPreferencesCenter
+      onChange={(categoryId: string, channelId: string, enabled: boolean) => console.log("change", categoryId, channelId, enabled)}
+      onSave={() => console.log("save preferences")}
+    />
+  ),
+
+  // onboarding (additional)
+  "multi-step-wizard-block": () => (
+    <MultiStepWizard
+      steps={[
+        { id: "basics", title: "Basic Info", description: "Tell us about yourself.", content: <div className="p-4 text-sm text-muted-foreground">Name and email form goes here</div> },
+        { id: "plan", title: "Choose Plan", description: "Select the right plan for you.", content: <div className="p-4 text-sm text-muted-foreground">Plan selection goes here</div> },
+        { id: "payment", title: "Payment", description: "Enter payment details.", content: <div className="p-4 text-sm text-muted-foreground">Payment form goes here</div> },
+      ]}
+      onComplete={() => console.log("wizard complete")}
+    />
+  ),
+  "onboarding-stepper": () => (
+    <OnboardingStepper
+      steps={[
+        { id: "profile", title: "Profile", content: <div className="p-4 text-sm text-muted-foreground">Profile setup</div> },
+        { id: "team", title: "Team", content: <div className="p-4 text-sm text-muted-foreground">Team setup</div> },
+        { id: "billing", title: "Billing", content: <div className="p-4 text-sm text-muted-foreground">Billing setup</div> },
+        { id: "done", title: "Done", content: <div className="p-4 text-sm text-muted-foreground">All done!</div> },
+      ]}
+      onComplete={() => console.log("complete")}
+    />
+  ),
+  "progress-stepper": () => (
+    <ProgressStepper
+      steps={[
+        { id: "profile", title: "Profile", content: <div className="p-4 text-sm text-muted-foreground">Profile step</div> },
+        { id: "billing", title: "Billing", content: <div className="p-4 text-sm text-muted-foreground">Billing step</div> },
+        { id: "review", title: "Review", content: <div className="p-4 text-sm text-muted-foreground">Review step</div> },
+        { id: "launch", title: "Launch", content: <div className="p-4 text-sm text-muted-foreground">Launch step</div> },
+      ]}
+      initialStep={2}
+      onComplete={() => console.log("complete")}
+    />
+  ),
+  "setup-checklist": () => (
+    <SetupChecklist
+      title="Complete setup"
+      items={[
+        { id: "verify", title: "Verify your email", completed: true, href: "#" },
+        { id: "profile", title: "Complete your profile", completed: true, href: "/settings/profile" },
+        { id: "invite", title: "Invite your team", completed: false, href: "/team/invite" },
+        { id: "integrate", title: "Set up an integration", completed: false, href: "/integrations" },
+      ]}
+      showProgress
+    />
+  ),
+  "setup-wizard": () => (
+    <SetupWizard
+      steps={[
+        { id: "profile", label: "Profile", completed: true },
+        { id: "team", label: "Team", completed: true },
+        { id: "billing", label: "Billing", completed: false },
+        { id: "launch", label: "Launch", completed: false },
+      ]}
+      currentStepId="billing"
+      onComplete={() => console.log("setup complete")}
+    />
+  ),
+  "welcome-screen": () => (
+    <WelcomeScreen
+      title="Welcome to LaunchApp"
+      description="Everything you need to build and ship your SaaS product."
+      features={[
+        { icon: <span aria-hidden>🚀</span>, title: "Ship faster", description: "Production-ready components out of the box." },
+        { icon: <span aria-hidden>🎨</span>, title: "Beautiful by default", description: "Thoughtfully designed with dark mode support." },
+        { icon: <span aria-hidden>♿</span>, title: "Fully accessible", description: "Built on Radix UI for WCAG compliance." },
+      ]}
+      ctaLabel="Get started"
+      onCta={() => console.log("get started")}
+    />
+  ),
+  "welcome-wizard": () => (
+    <WelcomeWizard
+      steps={[
+        { id: "welcome", title: "Welcome!", description: "Let's get you set up.", content: <div className="p-4 text-sm text-muted-foreground">Welcome content</div> },
+        { id: "profile", title: "Your profile", description: "Tell us about yourself.", content: <div className="p-4 text-sm text-muted-foreground">Profile setup content</div> },
+        { id: "done", title: "You're all set!", description: "Start using the app.", content: <div className="p-4 text-sm text-muted-foreground">Completion screen</div> },
+      ]}
+      onComplete={() => console.log("wizard complete")}
+    />
+  ),
+  "team-invite-flow": () => (
+    <TeamInviteFlow
+      onSendInvites={(emails: string[]) => console.log("invite", emails)}
+      onSkip={() => console.log("skip")}
+      maxInvites={5}
+    />
+  ),
+  "goal-setup-wizard": () => (
+    <GoalSetupWizard
+      steps={[
+        {
+          id: "goals",
+          title: "What are you trying to accomplish?",
+          description: "Select all that apply.",
+          options: [
+            { id: "launch", label: "Launch my product", description: "Ship a new product or feature", icon: <span>🚀</span> },
+            { id: "grow", label: "Grow my team", description: "Scale engineering capacity", icon: <span>👥</span> },
+            { id: "automate", label: "Automate workflows", description: "Reduce manual processes", icon: <span>⚙️</span> },
+          ],
+          multiSelect: true,
+        },
+      ]}
+      onComplete={(selections: Record<string, string[]>) => console.log("goals", selections)}
+    />
+  ),
+  "checklist-with-links": () => (
+    <ChecklistWithLinks
+      title="Setup checklist"
+      items={[
+        { id: "verify", title: "Verify your email", completed: true, href: "#" },
+        { id: "profile", title: "Complete your profile", completed: true, href: "/settings/profile" },
+        { id: "billing", title: "Add payment method", completed: false, href: "/billing" },
+        { id: "invite", title: "Invite teammates", completed: false, href: "/team/invite" },
+      ]}
+    />
+  ),
+
+  // search
+  "search-command-palette": () => {
+    const SearchPaletteDemo = () => {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <div className="flex flex-col items-center gap-4 p-6 min-h-[300px]">
+          <button
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Search
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+          <p className="text-sm text-muted-foreground text-center">Searchable command palette with keyboard navigation.</p>
+          <SearchCommandPalette
+            open={open}
+            onOpenChange={setOpen}
+            results={[
+              { id: "1", title: "Dashboard", url: "/dashboard" },
+              { id: "2", title: "Settings", url: "/settings" },
+              { id: "3", title: "Getting Started Guide", url: "/docs/getting-started" },
+            ]}
+          />
+        </div>
+      );
+    };
+    return <SearchPaletteDemo />;
+  },
+  "search-results-page": () => (
+    <SearchResults
+      query="design system"
+      searchResults={[
+        { id: "1", title: "Getting Started Guide", excerpt: "Learn how to use LaunchApp.", url: "/docs/getting-started" },
+        { id: "2", title: "Dashboard", excerpt: "Main dashboard", url: "/dashboard" },
+        { id: "3", title: "API Reference", excerpt: "Complete API documentation.", url: "/docs/api" },
+        { id: "4", title: "Settings", excerpt: "Account settings", url: "/settings" },
+      ]}
+      totalCount={4}
+      onSearch={(q: string) => console.log("search", q)}
+      onResultClick={(result: { id: string }) => console.log("click", result.id)}
+    />
+  ),
+
+  // team (additional)
+  "role-selector": () => (
+    <div className="flex flex-col gap-3 p-4">
+      <p className="text-sm font-medium">Select a role</p>
+      <RoleSelector
+        value="member"
+        onChange={(role: string) => console.log("role changed to", role)}
+      />
+    </div>
+  ),
+  "team-invite-form": () => (
+    <InviteForm
+      onSubmit={({ email, role }: { email: string; role: string }) => console.log("invite", email, role)}
+      onCancel={() => console.log("cancel")}
+    />
+  ),
+  "workspace-switcher": () => (
+    <div className="flex justify-center p-4">
+      <WorkspaceSwitcher
+        workspaces={[
+          { id: "1", name: "Acme Corp", slug: "acme", role: "owner" },
+          { id: "2", name: "Personal", slug: "personal", role: "owner" },
+          { id: "3", name: "Globex", slug: "globex", role: "member" },
+        ]}
+        currentId="1"
+        onChange={(ws: { id: string; name: string }) => console.log("switched to", ws.name)}
+        onCreate={() => console.log("create workspace")}
+      />
+    </div>
+  ),
+
+  // additional billing
+  "subscription-usage-meter": () => (
+    <TooltipProvider>
+      <SubscriptionUsageMeter
+        planName="Pro"
+        metrics={[
+          { id: "storage", label: "Storage", used: 32, limit: 100, unit: "GB", warningThreshold: 80 },
+          { id: "api_calls", label: "API Calls", used: 75000, limit: 100000, unit: "calls", warningThreshold: 75 },
+          { id: "members", label: "Team Members", used: 8, limit: 15 },
+        ]}
+      />
+    </TooltipProvider>
+  ),
+  "quota-usage-bar": () => (
+    <QuotaUsageBar
+      title="Storage Quota"
+      description="Your current storage usage by type."
+      quotas={[
+        { id: "files", name: "Files", used: 3.2, limit: 10, unit: "GB" },
+        { id: "media", name: "Media", used: 1.8, limit: 5, unit: "GB" },
+        { id: "backups", name: "Backups", used: 0.5, limit: 2, unit: "GB" },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+  "billing-history": () => (
+    <BillingHistory
+      invoices={[
+        { id: "INV-001", number: "INV-001", date: "2024-01-01", amount: "2900", status: "paid" as const },
+        { id: "INV-002", number: "INV-002", date: "2024-02-01", amount: "2900", status: "paid" as const },
+        { id: "INV-003", number: "INV-003", date: "2024-03-01", amount: "2900", status: "pending" as const },
+      ]}
+      onDownload={(invoice: { id: string }) => console.log("download", invoice.id)}
     />
   ),
 };
