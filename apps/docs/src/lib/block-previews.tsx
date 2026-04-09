@@ -51,6 +51,7 @@ import {
 import {
   SettingsLayoutBlock,
   DataExportCard,
+  DataExportPanel,
   AccountDeletionCard,
   PrivacySettingsLayout,
   BillingOverview,
@@ -83,7 +84,7 @@ import {
   CheckoutFunnel,
   DataExportWizard,
 } from "@ds/blocks/data";
-import { ProductGrid, CartDrawer, OrderSummary } from "@ds/blocks/ecommerce";
+import { ProductGrid, CartDrawer, OrderSummary, ReviewsList, WishlistGrid } from "@ds/blocks/ecommerce";
 import {
   LogoCloud,
   ChangelogTimeline,
@@ -123,7 +124,7 @@ import {
   FileUploadZone,
 } from "@ds/blocks/files";
 import { RichTextEditor } from "@ds/blocks/forms";
-import { OAuthConnectCard, ApiKeyManager, WebhookConfig } from "@ds/blocks/integrations";
+import { OAuthConnectCard, ApiKeyManager, WebhookConfig, IntegrationCardGrid, IntegrationMarketplace } from "@ds/blocks/integrations";
 import {
   SaaSLanding,
   Portfolio,
@@ -142,6 +143,7 @@ import {
   InboxView,
   NotificationBell,
   NotificationPreferencesCenter,
+  FeedbackWidget,
 } from "@ds/blocks/notifications";
 import {
   MultiStepWizard,
@@ -156,7 +158,7 @@ import {
   ChecklistWithLinks,
 } from "@ds/blocks/onboarding";
 import { SearchCommandPalette, SearchResults } from "@ds/blocks/search";
-import { RoleSelector, InviteForm, WorkspaceSwitcher } from "@ds/blocks/team";
+import { RoleSelector, InviteForm, WorkspaceSwitcher, TeamMemberGrid, TeamRoster } from "@ds/blocks/team";
 import type { ColumnDef } from "@tanstack/react-table";
 
 export type BlockPreviewFn = () => React.ReactElement;
@@ -2262,6 +2264,208 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         { id: "INV-003", number: "INV-003", date: "2024-03-01", amount: "2900", status: "pending" as const },
       ]}
       onDownload={(invoice: { id: string }) => console.log("download", invoice.id)}
+    />
+  ),
+
+  // dashboard (batch-1)
+  "status-page-dashboard": () => (
+    <StatusPageDashboard
+      title="System Status"
+      organizationName="LaunchApp"
+      overallStatus="operational"
+      lastChecked="2024-01-15T10:00:00Z"
+      components={[
+        { id: "api", name: "API", status: "operational" as const, description: "REST and GraphQL APIs" },
+        { id: "web", name: "Web App", status: "operational" as const, description: "Main web application" },
+        { id: "db", name: "Database", status: "degraded" as const, description: "Primary database cluster" },
+        { id: "cdn", name: "CDN", status: "operational" as const, description: "Content delivery network" },
+      ]}
+      incidents={[
+        {
+          id: "inc-1",
+          title: "Database latency spike",
+          status: "monitoring" as const,
+          severity: "medium" as const,
+          createdAt: "2024-01-15T08:00:00Z",
+          updatedAt: "2024-01-15T09:30:00Z",
+          affectedComponents: ["db"],
+        },
+      ]}
+    />
+  ),
+
+  // settings (batch-1)
+  "data-export-panel": () => (
+    <DataExportPanel
+      title="Export Your Data"
+      description="Download a copy of your data in various formats."
+      history={[
+        { id: "1", format: "json" as const, scope: "all" as const, status: "ready" as const, requestedAt: "2024-01-01T10:00:00Z", completedAt: "2024-01-01T10:02:00Z", downloadUrl: "#", sizeBytes: 1024000 },
+        { id: "2", format: "csv" as const, scope: "account" as const, status: "ready" as const, requestedAt: "2024-01-05T14:00:00Z", completedAt: "2024-01-05T14:01:30Z", downloadUrl: "#", sizeBytes: 204800 },
+      ]}
+      onRequestExport={(format, scope) => console.log("export", format, scope)}
+      onDownload={(item) => console.log("download", item.id)}
+    />
+  ),
+
+  // data (batch-1)
+  "checkout-funnel": () => {
+    const CF = CheckoutFunnel as React.ComponentType<{ steps: { id: string; label: string; count: number }[]; showDropoff?: boolean; showValues?: boolean }>;
+    return (
+      <CF
+        steps={[
+          { id: "visitors", label: "Visitors", count: 10000 },
+          { id: "signups", label: "Sign Ups", count: 4200 },
+          { id: "trial", label: "Trial Started", count: 1800 },
+          { id: "paid", label: "Paid", count: 620 },
+        ]}
+        showDropoff
+        showValues
+      />
+    );
+  },
+  "data-export-wizard": () => (
+    <DataExportWizard
+      title="Export Data"
+      availableDataTypes={[
+        { id: "users", label: "Users", count: 1250 },
+        { id: "orders", label: "Orders", count: 8430 },
+        { id: "products", label: "Products", count: 340 },
+      ]}
+      availableFields={[
+        { id: "name", label: "Name", category: "User" },
+        { id: "email", label: "Email", category: "User" },
+        { id: "created_at", label: "Created At", category: "User" },
+        { id: "order_id", label: "Order ID", category: "Order" },
+        { id: "total", label: "Total", category: "Order" },
+      ]}
+      onExport={(options) => console.log("export", options)}
+    />
+  ),
+
+  // ecommerce (batch-1)
+  "reviews-list": () => {
+    const RL = ReviewsList as React.ComponentType<{ reviews: { id: string; author: string; rating: number; title?: string; content: string; date: string; verified?: boolean; helpful?: number }[]; overallRating?: number; totalCount?: number; ratingDistribution?: Record<number, number>; showDistribution?: boolean; showHelpful?: boolean; showVerified?: boolean; onHelpful?: (r: { id: string }) => void; onReport?: (r: { id: string }) => void }>;
+    return (
+      <RL
+        overallRating={4.3}
+        totalCount={128}
+        showDistribution
+        showHelpful
+        showVerified
+        ratingDistribution={{ 5: 68, 4: 32, 3: 14, 2: 8, 1: 6 }}
+        reviews={[
+          { id: "1", author: "Alice Johnson", rating: 5, title: "Excellent product!", content: "Exactly what I was looking for. Great quality and fast shipping.", date: "2024-01-15", verified: true, helpful: 12 },
+          { id: "2", author: "Bob Smith", rating: 4, title: "Good but could be better", content: "Overall satisfied with the purchase. Minor issue with packaging.", date: "2024-01-10", verified: true, helpful: 7 },
+          { id: "3", author: "Carol White", rating: 3, title: "Average", content: "Meets expectations but nothing special.", date: "2024-01-05", verified: false, helpful: 2 },
+        ]}
+        onHelpful={(review) => console.log("helpful", review.id)}
+        onReport={(review) => console.log("report", review.id)}
+      />
+    );
+  },
+  "wishlist-grid": () => {
+    const WG = WishlistGrid as React.ComponentType<{ items: { id: string; name: string; price: number; originalPrice?: number }[]; columns?: number; onRemove?: (item: { id: string }) => void; onAddToCart?: (item: { id: string }) => void }>;
+    return (
+      <WG
+        columns={3}
+        items={[
+          { id: "1", name: "Wireless Headphones", price: 99.99, originalPrice: 149.99 },
+          { id: "2", name: "Smart Watch", price: 299.99 },
+          { id: "3", name: "Bluetooth Speaker", price: 59.99 },
+          { id: "4", name: "Laptop Stand", price: 39.99 },
+        ]}
+        onRemove={(item) => console.log("remove", item.id)}
+        onAddToCart={(item) => console.log("add to cart", item.id)}
+      />
+    );
+  },
+
+  // integrations (batch-1)
+  "integration-card-grid": () => (
+    <IntegrationCardGrid
+      title="Integrations"
+      description="Connect your favorite tools and services."
+      searchable
+      integrations={[
+        { id: "github", name: "GitHub", description: "Sync repositories and pull requests.", category: "other" as const, status: "connected" as const },
+        { id: "slack", name: "Slack", description: "Send notifications to Slack channels.", category: "communication" as const, status: "disconnected" as const },
+        { id: "stripe", name: "Stripe", description: "Process payments and subscriptions.", category: "payments" as const, status: "connected" as const },
+        { id: "hubspot", name: "HubSpot", description: "Sync leads and customer data.", category: "crm" as const, status: "disconnected" as const },
+        { id: "google-analytics", name: "Google Analytics", description: "Track user behavior.", category: "analytics" as const, status: "disconnected" as const },
+        { id: "zapier", name: "Zapier", description: "Automate workflows between apps.", category: "other" as const, status: "disconnected" as const },
+      ]}
+      onConnect={(integration) => console.log("connect", integration.id)}
+      onDisconnect={(integration) => console.log("disconnect", integration.id)}
+      onConfigure={(integration) => console.log("configure", integration.id)}
+    />
+  ),
+  "integration-marketplace": () => (
+    <IntegrationMarketplace
+      title="Integration Marketplace"
+      description="Discover and install integrations to extend your workflow."
+      showSearch
+      showCategories
+      integrations={[
+        { id: "github", name: "GitHub", description: "Version control and collaboration.", category: "developer" as const, status: "installed" as const, version: "2.1.0", isEnabled: true },
+        { id: "slack", name: "Slack", description: "Team messaging and notifications.", category: "communication" as const, status: "not_installed" as const, version: "1.3.0", isEnabled: false },
+        { id: "stripe", name: "Stripe", description: "Payment processing platform.", category: "payment" as const, status: "installed" as const, version: "3.0.1", isEnabled: true },
+        { id: "zapier", name: "Zapier", description: "Workflow automation tool.", category: "developer" as const, status: "not_installed" as const, version: "1.0.0", isEnabled: false },
+      ]}
+      onInstall={(integration) => console.log("install", integration.id)}
+      onConfigure={(integration) => console.log("configure", integration.id)}
+      onUninstall={(integration) => console.log("uninstall", integration.id)}
+      onToggle={(integration, enabled) => console.log("toggle", integration.id, enabled)}
+    />
+  ),
+
+  // team (batch-1)
+  "team-member-grid": () => (
+    <TeamMemberGrid
+      title="Team Members"
+      description="Manage your team and their permissions."
+      columns={2}
+      showInviteButton
+      members={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "owner" as const, status: "active" as const, joinedAt: "2023-01-01" },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "admin" as const, status: "active" as const, joinedAt: "2023-02-01" },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const, status: "active" as const, joinedAt: "2023-03-01" },
+        { id: "4", name: "Dave Brown", email: "dave@example.com", role: "member" as const, status: "pending" as const, joinedAt: "2024-01-01" },
+      ]}
+      currentUserId="1"
+      onRemove={(member) => console.log("remove", member.id)}
+      onChangeRole={(member, role) => console.log("change role", member.id, role)}
+      onInvite={() => console.log("invite")}
+    />
+  ),
+  "team-roster": () => {
+    const TR = TeamRoster as React.ComponentType<{ members: { id: string; name: string; email: string; role: string; title?: string; department?: string; availability?: string; skills?: string[] }[]; view?: "grid" | "list"; showSkills?: boolean; showContact?: boolean; showDepartment?: boolean; onMemberClick?: (m: { id: string }) => void; onMessage?: (m: { id: string }) => void }>;
+    return (
+      <TR
+        view="grid"
+        showSkills
+        showContact
+        showDepartment
+        members={[
+          { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "member", title: "Engineering Lead", department: "Engineering", availability: "available", skills: ["React", "TypeScript", "Node.js"] },
+          { id: "2", name: "Bob Smith", email: "bob@example.com", role: "member", title: "Senior Designer", department: "Design", availability: "busy", skills: ["Figma", "UX Research", "Tailwind"] },
+          { id: "3", name: "Carol White", email: "carol@example.com", role: "member", title: "Product Manager", department: "Product", availability: "away", skills: ["Roadmapping", "Scrum", "Analytics"] },
+        ]}
+        onMemberClick={(member) => console.log("click", member.id)}
+        onMessage={(member) => console.log("message", member.id)}
+      />
+    );
+  },
+
+  // notifications (batch-1)
+  "feedback-widget": () => (
+    <FeedbackWidget
+      variant="inline"
+      title="How are we doing?"
+      placeholder="Share your thoughts..."
+      showEmail
+      categories={["bug", "feature", "ui", "performance", "other"]}
+      onSubmit={(feedback) => console.log("feedback submitted", feedback)}
     />
   ),
 };

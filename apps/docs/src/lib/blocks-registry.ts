@@ -3392,6 +3392,381 @@ export default function Page() {
   );
 }`,
   },
+
+  // batch-1 additions: dashboard
+  {
+    id: "status-page-dashboard",
+    name: "Status Page Dashboard",
+    description: "Public status page with service health, incidents, and uptime history.",
+    category: "dashboard",
+    sourcePath: "dashboard/StatusPageDashboard/StatusPageDashboard.tsx",
+    code: `import { StatusPageDashboard } from "@launchapp/design-system/blocks/dashboard";
+
+const components = [
+  { id: "api", name: "API", status: "operational" },
+  { id: "web", name: "Web App", status: "operational" },
+  { id: "db", name: "Database", status: "degraded" },
+];
+
+export default function Page() {
+  return (
+    <StatusPageDashboard
+      title="System Status"
+      organizationName="MyApp"
+      overallStatus="degraded"
+      components={components}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: settings
+  {
+    id: "data-export-panel",
+    name: "Data Export Panel",
+    description: "Settings panel for requesting and downloading data exports in multiple formats.",
+    category: "settings",
+    sourcePath: "settings/DataExportPanel/DataExportPanel.tsx",
+    code: `import { DataExportPanel } from "@launchapp/design-system/blocks/settings";
+
+export default function Page() {
+  return (
+    <DataExportPanel
+      title="Export Your Data"
+      onRequestExport={(format, scope) => console.log("export", format, scope)}
+      onDownload={(item) => console.log("download", item.id)}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: data
+  {
+    id: "checkout-funnel",
+    name: "Checkout Funnel",
+    description: "Funnel chart visualization showing step-by-step conversion rates through checkout.",
+    category: "data",
+    sourcePath: "data/CheckoutFunnel/CheckoutFunnel.tsx",
+    code: `import { CheckoutFunnel } from "@launchapp/design-system/blocks/data";
+
+const steps = [
+  { id: "visitors", label: "Visitors", value: 10000 },
+  { id: "signups", label: "Sign Ups", value: 4200 },
+  { id: "trial", label: "Trial", value: 1800 },
+  { id: "paid", label: "Paid", value: 620 },
+];
+
+export default function Page() {
+  return (
+    <CheckoutFunnel
+      steps={steps}
+      showDropoff
+      showValues
+    />
+  );
+}`,
+  },
+  {
+    id: "data-export-wizard",
+    name: "Data Export Wizard",
+    description: "Multi-step wizard for selecting data types, fields, and export format before downloading.",
+    category: "data",
+    sourcePath: "data/DataExportWizard/DataExportWizard.tsx",
+    code: `import { DataExportWizard } from "@launchapp/design-system/blocks/data";
+
+const dataTypes = [
+  { id: "users", label: "Users", count: 1250 },
+  { id: "orders", label: "Orders", count: 8430 },
+];
+
+export default function Page() {
+  return (
+    <DataExportWizard
+      availableDataTypes={dataTypes}
+      onExport={(options) => console.log("export", options)}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: ecommerce
+  {
+    id: "reviews-list",
+    name: "Reviews List",
+    description: "Product review list with rating distribution, verified badge, and helpful votes.",
+    category: "ecommerce",
+    sourcePath: "ecommerce/ReviewsList/ReviewsList.tsx",
+    code: `import { ReviewsList } from "@launchapp/design-system/blocks/ecommerce";
+
+const reviews = [
+  { id: "1", author: "Alice J.", rating: 5, title: "Excellent!", body: "Exactly what I needed.", date: "2024-01-15", verified: true, helpfulCount: 12 },
+  { id: "2", author: "Bob S.", rating: 4, title: "Good purchase", body: "Happy with the quality.", date: "2024-01-10", verified: true, helpfulCount: 5 },
+];
+
+export default function Page() {
+  return (
+    <ReviewsList
+      reviews={reviews}
+      overallRating={4.5}
+      totalCount={128}
+      showDistribution
+      showVerified
+    />
+  );
+}`,
+  },
+  {
+    id: "wishlist-grid",
+    name: "Wishlist Grid",
+    description: "Grid of saved wishlist items with add-to-cart and remove actions.",
+    category: "ecommerce",
+    sourcePath: "ecommerce/WishlistGrid/WishlistGrid.tsx",
+    code: `import { WishlistGrid } from "@launchapp/design-system/blocks/ecommerce";
+
+const items = [
+  { id: "1", name: "Wireless Headphones", price: 99.99, originalPrice: 149.99, inStock: true },
+  { id: "2", name: "Smart Watch", price: 299.99, inStock: true },
+  { id: "3", name: "Bluetooth Speaker", price: 59.99, inStock: false },
+];
+
+export default function Page() {
+  return (
+    <WishlistGrid
+      items={items}
+      columns={3}
+      onAddToCart={(item) => console.log("add to cart", item.id)}
+      onRemove={(item) => console.log("remove", item.id)}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: billing
+  {
+    id: "billing-history",
+    name: "Billing History",
+    description: "Invoice history table with status, amounts, and download links.",
+    category: "billing",
+    sourcePath: "billing/BillingHistory/BillingHistory.tsx",
+    code: `import { BillingHistory } from "@launchapp/design-system/blocks/billing";
+
+const invoices = [
+  { id: "1", number: "INV-001", date: "2024-01-01", amount: "2900", status: "paid" },
+  { id: "2", number: "INV-002", date: "2024-02-01", amount: "2900", status: "paid" },
+  { id: "3", number: "INV-003", date: "2024-03-01", amount: "2900", status: "pending" },
+];
+
+export default function Page() {
+  return (
+    <BillingHistory
+      invoices={invoices}
+      onDownload={(invoice) => console.log("download", invoice.id)}
+    />
+  );
+}`,
+  },
+  {
+    id: "quota-usage-bar",
+    name: "Quota Usage Bar",
+    description: "Segmented usage bar showing quota consumption across multiple resource types.",
+    category: "billing",
+    sourcePath: "billing/QuotaUsageBar.tsx",
+    code: `import { QuotaUsageBar } from "@launchapp/design-system/blocks/billing";
+
+const quotas = [
+  { id: "files", name: "Files", used: 3.2, limit: 10, unit: "GB" },
+  { id: "media", name: "Media", used: 1.8, limit: 5, unit: "GB" },
+  { id: "backups", name: "Backups", used: 0.5, limit: 2, unit: "GB" },
+];
+
+export default function Page() {
+  return (
+    <QuotaUsageBar
+      title="Storage Quota"
+      quotas={quotas}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  );
+}`,
+  },
+  {
+    id: "subscription-usage-meter",
+    name: "Subscription Usage Meter",
+    description: "Multi-metric usage meter showing plan limits with visual progress bars.",
+    category: "billing",
+    sourcePath: "billing/SubscriptionUsageMeter/SubscriptionUsageMeter.tsx",
+    code: `import { SubscriptionUsageMeter } from "@launchapp/design-system/blocks/billing";
+
+const metrics = [
+  { id: "storage", label: "Storage", used: 32, limit: 100, unit: "GB" },
+  { id: "api", label: "API Calls", used: 75000, limit: 100000, unit: "calls" },
+  { id: "members", label: "Team Members", used: 8, limit: 15 },
+];
+
+export default function Page() {
+  return (
+    <SubscriptionUsageMeter
+      planName="Pro"
+      metrics={metrics}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: integrations
+  {
+    id: "integration-card-grid",
+    name: "Integration Card Grid",
+    description: "Searchable grid of integration cards with connect/disconnect/configure actions.",
+    category: "integrations",
+    sourcePath: "integrations/IntegrationCardGrid/IntegrationCardGrid.tsx",
+    code: `import { IntegrationCardGrid } from "@launchapp/design-system/blocks/integrations";
+
+const integrations = [
+  { id: "github", name: "GitHub", description: "Sync repositories.", category: "developer", status: "connected" },
+  { id: "slack", name: "Slack", description: "Team notifications.", category: "communication", status: "disconnected" },
+  { id: "stripe", name: "Stripe", description: "Payment processing.", category: "payments", status: "connected" },
+];
+
+export default function Page() {
+  return (
+    <IntegrationCardGrid
+      integrations={integrations}
+      searchable
+      onConnect={(i) => console.log("connect", i.id)}
+      onDisconnect={(i) => console.log("disconnect", i.id)}
+      onConfigure={(i) => console.log("configure", i.id)}
+    />
+  );
+}`,
+  },
+  {
+    id: "integration-marketplace",
+    name: "Integration Marketplace",
+    description: "App marketplace with search, categories, install/uninstall, and toggle controls.",
+    category: "integrations",
+    sourcePath: "integrations/IntegrationMarketplace.tsx",
+    code: `import { IntegrationMarketplace } from "@launchapp/design-system/blocks/integrations";
+
+const integrations = [
+  { id: "github", name: "GitHub", description: "Version control.", category: "developer", status: "installed", version: "2.1.0", enabled: true, isOfficial: true },
+  { id: "slack", name: "Slack", description: "Messaging.", category: "communication", status: "available", version: "1.3.0", enabled: false, isOfficial: true },
+];
+
+export default function Page() {
+  return (
+    <IntegrationMarketplace
+      integrations={integrations}
+      showSearch
+      showCategories
+      onInstall={(i) => console.log("install", i.id)}
+      onConfigure={(i) => console.log("configure", i.id)}
+      onUninstall={(i) => console.log("uninstall", i.id)}
+      onToggle={(i, enabled) => console.log("toggle", i.id, enabled)}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: team
+  {
+    id: "team-member-grid",
+    name: "Team Member Grid",
+    description: "Card grid of team members with role management, invite, and remove actions.",
+    category: "team",
+    sourcePath: "team/TeamMemberGrid.tsx",
+    code: `import { TeamMemberGrid } from "@launchapp/design-system/blocks/team";
+
+const members = [
+  { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "owner", status: "active", joinedAt: "2023-01-01", initials: "AJ" },
+  { id: "2", name: "Bob Smith", email: "bob@example.com", role: "admin", status: "active", joinedAt: "2023-02-01", initials: "BS" },
+  { id: "3", name: "Carol White", email: "carol@example.com", role: "member", status: "pending", joinedAt: "2024-01-01", initials: "CW" },
+];
+
+export default function Page() {
+  return (
+    <TeamMemberGrid
+      members={members}
+      currentUserId="1"
+      columns={3}
+      showInviteButton
+      onInvite={() => console.log("invite")}
+      onRemove={(m) => console.log("remove", m.id)}
+      onChangeRole={(m, role) => console.log("role", m.id, role)}
+    />
+  );
+}`,
+  },
+  {
+    id: "team-roster",
+    name: "Team Roster",
+    description: "Team directory with grid/list views, availability status, skills, and contact actions.",
+    category: "team",
+    sourcePath: "team/TeamRoster/TeamRoster.tsx",
+    code: `import { TeamRoster } from "@launchapp/design-system/blocks/team";
+
+const members = [
+  { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Engineering Lead", department: "Engineering", availability: "available", skills: ["React", "TypeScript"], initials: "AJ" },
+  { id: "2", name: "Bob Smith", email: "bob@example.com", role: "Senior Designer", department: "Design", availability: "busy", skills: ["Figma", "UX"], initials: "BS" },
+];
+
+export default function Page() {
+  return (
+    <TeamRoster
+      members={members}
+      view="grid"
+      showSkills
+      showDepartment
+      onMessage={(m) => console.log("message", m.id)}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: notifications
+  {
+    id: "feedback-widget",
+    name: "Feedback Widget",
+    description: "In-app feedback form with rating, categories, and optional email capture.",
+    category: "notifications",
+    sourcePath: "notifications/FeedbackWidget/FeedbackWidget.tsx",
+    code: `import { FeedbackWidget } from "@launchapp/design-system/blocks/notifications";
+
+export default function Page() {
+  return (
+    <FeedbackWidget
+      variant="inline"
+      title="How are we doing?"
+      categories={[
+        { id: "bug", label: "Bug Report" },
+        { id: "feature", label: "Feature Request" },
+        { id: "general", label: "General" },
+      ]}
+      onSubmit={(feedback) => console.log("feedback", feedback)}
+    />
+  );
+}`,
+  },
+
+  // batch-1 additions: data (empty-state is a data block)
+  {
+    id: "empty-state",
+    name: "Empty State",
+    description: "Centered empty state with icon, title, description, and optional action button.",
+    category: "data",
+    sourcePath: "data/EmptyState/EmptyState.tsx",
+    code: `import { EmptyState } from "@launchapp/design-system/blocks/data";
+
+export default function Page() {
+  return (
+    <EmptyState
+      title="No projects yet"
+      description="Create your first project to get started."
+      primaryAction={{ label: "Create project", onClick: () => console.log("create") }}
+    />
+  );
+}`,
+  },
 ];
 
 export function getBlocksByCategory(category: BlockCategory): BlockEntry[] {
