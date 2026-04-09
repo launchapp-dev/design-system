@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@launchapp/design-system?label=%40launchapp%2Fdesign-system)](https://www.npmjs.com/package/@launchapp/design-system)
 [![Chromatic](https://img.shields.io/badge/Chromatic-visual%20tests-4a48f5?logo=chromatic)](https://www.chromatic.com/library?appId=your-app-id)
 
-A React + TypeScript component library built on Radix UI primitives, styled with Tailwind CSS 4. Ships **108+ components** and **191+ pre-built blocks** across 30 categories.
+A React + TypeScript component library built on Radix UI primitives, styled with Tailwind CSS 4. Ships **108 UI components**, **191 pre-built blocks**, and **1 utility lib** — **300 components total** — across 29 categories.
 
 Live previews: [design.launchapp.dev](https://design.launchapp.dev)
 
@@ -140,7 +140,7 @@ Available slugs match component names in lowercase-hyphenated form (e.g. `kpi-ca
 
 ## Blocks
 
-191 pre-built page sections and UI patterns across 30 categories:
+191 pre-built page sections and UI patterns across 29 categories:
 
 `activity` · `admin` · `app` · `auth` · `billing` · `blog` · `community` · `dashboard` · `data` · `ecommerce` · `errors` · `files` · `forms` · `inbox` · `integrations` · `landing` · `layout` · `marketing` · `messaging` · `metrics` · `navigation` · `notifications` · `onboarding` · `profile` · `project` · `search` · `settings` · `team` · `timeline`
 
@@ -281,13 +281,13 @@ const props: ButtonProps = {
 
 ## Component reference
 
-108 components available. All import from `@launchapp/design-system`.
+108 UI components available. All import from `@launchapp/design-system`.
 
 **Form**
 `Button` · `Checkbox` · `ColorPicker` · `Combobox` · `DatePicker` · `Form` · `Input` · `Label` · `MultiSelect` · `RadioGroup` · `Select` · `Slider` · `Switch` · `TagInput` · `Textarea` · `Toggle` · `ToggleGroup`
 
 **Layout**
-`Accordion` · `AspectRatio` · `Card` · `Collapsible` · `DashboardGrid` · `Masonry` · `Resizable` · `ScrollArea` · `Separator` · `Sheet` · `Tabs`
+`Accordion` · `AspectRatio` · `Card` · `Collapsible` · `DashboardGrid` · `FocusScope` · `Masonry` · `MultiPanelLayout` · `Resizable` · `ScrollArea` · `Separator` · `Sheet` · `TabContentCrossfade` · `Tabs`
 
 **Overlay**
 `AlertDialog` · `ContextMenu` · `Dialog` · `DropdownMenu` · `Menubar` · `NavigationMenu` · `Popover` · `Tooltip`
@@ -311,7 +311,7 @@ const props: ButtonProps = {
 `ChatBubble` · `ChatInput` · `CopilotPanel` · `StreamingText` · `ThinkingIndicator`
 
 **Misc**
-`Background` · `Calendar` · `Changelog` · `Command` · `CookieConsent` · `ImageComparison` · `InlineEditable` · `Lightbox` · `LiveIndicator` · `MultiStepWizard` · `NotificationBell` · `Portal` · `RealtimeTicker` · `SankeyDiagram` · `Spotlight` · `StatusPage` · `Terminal` · `VideoPlayer` · `VisuallyHidden`
+`Background` · `Calendar` · `Changelog` · `Command` · `ConsentHistoryTable` · `CookieConsent` · `CookieConsentBanner` · `CookiePreferencesDialog` · `ImageComparison` · `InlineEditable` · `Lightbox` · `LiveIndicator` · `MultiStepWizard` · `NotificationBell` · `Portal` · `PrivacyDashboard` · `RealtimeTicker` · `SankeyDiagram` · `Spotlight` · `StatusPage` · `Terminal` · `VideoPlayer` · `VisuallyHidden`
 
 Full documentation and live examples: [design.launchapp.dev/components](https://design.launchapp.dev/components)
 
