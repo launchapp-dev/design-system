@@ -2133,6 +2133,28 @@ export default function Page() {
 }`,
   },
 
+  // layout empty state
+  {
+    id: "layout-empty-state",
+    name: "Layout Empty State",
+    description: "Centered empty state with variant presets (default, search, error, inbox, folder), icon, title, description, and action buttons.",
+    category: "app-shells",
+    sourcePath: "layout/EmptyState.tsx",
+    code: `import { EmptyState } from "@launchapp/design-system/blocks/layout";
+
+export default function Page() {
+  return (
+    <EmptyState
+      variant="folder"
+      title="No files yet"
+      description="Upload your first file to get started."
+      action={{ label: "Upload file", onClick: () => console.log("upload") }}
+      secondaryAction={{ label: "Learn more", onClick: () => console.log("learn") }}
+    />
+  );
+}`,
+  },
+
   // app
   {
     id: "app-shell-minimal",
@@ -3304,6 +3326,59 @@ export default function Page() {
 }`,
   },
 
+  // search (additional)
+  {
+    id: "command-palette-block",
+    name: "Command Palette",
+    description: "Keyboard-accessible command palette with grouped actions, recent items, and shortcuts.",
+    category: "search",
+    sourcePath: "search/CommandPalette/CommandPalette.tsx",
+    code: `import { CommandPalette } from "@launchapp/design-system/blocks/search";
+import * as React from "react";
+
+const groups = [
+  {
+    id: "pages",
+    label: "Pages",
+    items: [
+      { id: "dashboard", label: "Dashboard", shortcut: "G D" },
+      { id: "settings", label: "Settings", shortcut: "G S" },
+      { id: "team", label: "Team", shortcut: "G T" },
+    ],
+  },
+  {
+    id: "actions",
+    label: "Actions",
+    items: [
+      { id: "invite", label: "Invite teammate" },
+      { id: "new-project", label: "New project" },
+    ],
+  },
+];
+
+export default function Page() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div className="flex flex-col items-center gap-4 p-6">
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium"
+      >
+        Open palette
+        <kbd className="rounded border bg-muted px-1.5 font-mono text-[10px]">⌘K</kbd>
+      </button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        groups={groups}
+        placeholder="Search commands..."
+      />
+    </div>
+  );
+}`,
+  },
+
   // team
   {
     id: "team-member-list",
@@ -4007,6 +4082,27 @@ export default function Page() {
       onFileDownload={(id) => console.log("download", id)}
       onFileDelete={(id) => console.log("delete", id)}
       onUpload={(files) => console.log("upload", files.map(f => f.name))}
+    />
+  );
+}`,
+  },
+
+  {
+    id: "files-upload-zone",
+    name: "File Upload Zone (with Progress)",
+    description: "Drag-and-drop file upload zone with progress tracking, file list, and status badges.",
+    category: "files",
+    sourcePath: "files/FileUploadZone/FileUploadZone.tsx",
+    code: `import { FileUploadZone } from "@launchapp/design-system/blocks/files";
+
+export default function Page() {
+  return (
+    <FileUploadZone
+      accept="image/*,.pdf"
+      maxSize={10 * 1024 * 1024}
+      maxFiles={5}
+      onUpload={(files) => console.log("upload", files.map((f) => f.id))}
+      onRemove={(id) => console.log("remove", id)}
     />
   );
 }`,
