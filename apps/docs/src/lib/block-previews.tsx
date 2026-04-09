@@ -3036,13 +3036,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       />
     </div>
   ),
-  "o-auth-connect-card": () => (
-    <OAuthConnectCard
-      provider={{ id: "github", name: "GitHub", description: "Connect your GitHub account to sync repositories.", scopes: ["repo", "user"] }}
-      isConnected={false}
-      onConnect={() => console.log("connect github")}
-    />
-  ),
   "portfolio": () => (
     <Portfolio
       name="Alice Johnson"
@@ -3072,7 +3065,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       subheadline="No hidden fees. Cancel anytime."
     />
   ),
-  "saa-s-landing": () => (
+  "saas-landing": () => (
     <SaaSLanding
       badge="New — v2.0 released"
       headline="Build faster with LaunchApp"
