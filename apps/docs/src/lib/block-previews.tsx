@@ -166,10 +166,10 @@ import {
 import { SearchCommandPalette, SearchResults } from "@ds/blocks/search";
 import { RoleSelector, InviteForm, WorkspaceSwitcher, TeamMemberGrid, TeamRoster, InviteMemberDialog, RolePermissionMatrix, RolePermissionsMatrix } from "@ds/blocks/team";
 import type { ColumnDef } from "@tanstack/react-table";
-import { ActivityStream } from "@ds/blocks/activity";
+import { ActivityStream, AuditLogViewer as ActivityAuditLogViewer } from "@ds/blocks/activity";
 import { InboxManager } from "@ds/blocks/inbox";
 import { MetricsDashboard } from "@ds/blocks/metrics";
-import { UserProfileHeader } from "@ds/blocks/profile";
+import { UserProfileHeader, UserProfileCard as ProfileCard } from "@ds/blocks/profile";
 import { ProjectKanban } from "@ds/blocks/project";
 import { TimelineView } from "@ds/blocks/timeline";
 
@@ -2496,6 +2496,20 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     />
   ),
 
+  "activity-audit-log-viewer": () => (
+    <ActivityAuditLogViewer
+      title="Audit Log"
+      logs={[
+        { id: "1", timestamp: "2025-01-15T10:23:00Z", action: "user.login", actor: "Alice Johnson", actorEmail: "alice@example.com", resource: "auth", level: "info", severity: "low", description: "User signed in successfully." },
+        { id: "2", timestamp: "2025-01-15T10:45:00Z", action: "api_key.created", actor: "Bob Smith", actorEmail: "bob@example.com", resource: "api_keys", resourceId: "key_abc123", level: "info", severity: "medium", description: "New API key created with read/write scope." },
+        { id: "3", timestamp: "2025-01-15T11:00:00Z", action: "user.deleted", actor: "Carol White", actorEmail: "carol@example.com", resource: "users", resourceId: "usr_xyz", level: "warning", severity: "high", description: "User account deleted by admin." },
+        { id: "4", timestamp: "2025-01-15T11:30:00Z", action: "billing.payment_failed", actor: "system", resource: "billing", level: "error", severity: "critical", description: "Payment processing failed for subscription renewal." },
+        { id: "5", timestamp: "2025-01-15T12:00:00Z", action: "settings.updated", actor: "Dan Lee", actorEmail: "dan@example.com", resource: "settings", level: "success", severity: "low", description: "Security settings updated." },
+      ]}
+      onExport={() => console.log("export")}
+    />
+  ),
+
   // admin (batch-2)
   "feature-flag-panel": () => {
     const FFP = FeatureFlagPanel as unknown as React.ComponentType<any>;
@@ -2724,6 +2738,25 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         { label: "Message", onClick: () => console.log("message"), variant: "outline" },
       ]}
       onFollow={() => console.log("follow")}
+    />
+  ),
+
+  "profile-card": () => (
+    <ProfileCard
+      name="Alice Johnson"
+      role="Senior Frontend Engineer"
+      email="alice@example.com"
+      bio="Passionate about building accessible, beautiful user interfaces. Open source contributor and design systems enthusiast."
+      location="San Francisco, CA"
+      website="https://alice.dev"
+      tags={["React", "TypeScript", "Design Systems", "a11y"]}
+      socialLinks={[
+        { platform: "twitter", url: "https://twitter.com/alice", label: "Twitter" },
+        { platform: "github", url: "https://github.com/alice", label: "GitHub" },
+        { platform: "linkedin", url: "https://linkedin.com/in/alice", label: "LinkedIn" },
+      ]}
+      onMessage={() => console.log("message")}
+      onEdit={() => console.log("edit")}
     />
   ),
 
