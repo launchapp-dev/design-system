@@ -74,6 +74,33 @@
   --animate-ripple: ripple 0.6s ease-out;
   --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
   --animate-neon-pulse: neon-pulse 1.5s ease-in-out infinite;
+
+  /* Motion token animations — entrance */
+  --animate-enter-fade: la-enter-fade var(--la-duration-normal) var(--la-ease-out) both;
+  --animate-enter-slide-up: la-enter-slide-up var(--la-duration-normal) var(--la-ease-out) both;
+  --animate-enter-scale: la-enter-scale var(--la-duration-fast) var(--la-ease-spring) both;
+  --animate-enter-blur: la-enter-blur var(--la-duration-slow) var(--la-ease-out) both;
+
+  /* Motion token animations — exit */
+  --animate-exit-fade: la-exit-fade var(--la-duration-fast) var(--la-ease-in) both;
+  --animate-exit-slide-down: la-exit-slide-down var(--la-duration-fast) var(--la-ease-in) both;
+  --animate-exit-scale: la-exit-scale var(--la-duration-fast) var(--la-ease-in) both;
+
+  /* Motion token animations — loading */
+  --animate-skeleton: la-skeleton 1.5s var(--la-ease-in-out) infinite;
+  --animate-spinner: la-spinner var(--la-duration-slower) linear infinite;
+  --animate-pulse-soft: la-pulse-soft 2s var(--la-ease-in-out) infinite;
+
+  /* Duration tokens */
+  --transition-duration-fast: var(--la-duration-fast);
+  --transition-duration-normal: var(--la-duration-normal);
+  --transition-duration-slow: var(--la-duration-slow);
+  --transition-duration-slower: var(--la-duration-slower);
+
+  /* Easing tokens */
+  --ease-in-out: var(--la-ease-in-out);
+  --ease-spring: var(--la-ease-spring);
+  --ease-bounce: var(--la-ease-bounce);
 }
 
 @keyframes accordion-down {
@@ -377,6 +404,112 @@
   }
 }
 
+/* Motion token keyframes — entrance */
+@keyframes la-enter-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes la-enter-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes la-enter-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes la-enter-blur {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* Motion token keyframes — exit */
+@keyframes la-exit-fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes la-exit-slide-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes la-exit-scale {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+/* Motion token keyframes — loading */
+@keyframes la-skeleton {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes la-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes la-pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 @layer utilities {
   .animate-marquee-left {
     animation: marquee-left var(--marquee-duration, 30s) linear infinite;
@@ -435,6 +568,19 @@
     --la-chart-3: 150 60% 45%;
     --la-chart-4: 30 90% 55%;
     --la-chart-5: 350 80% 55%;
+
+    /* Motion tokens — durations */
+    --la-duration-fast: 150ms;
+    --la-duration-normal: 250ms;
+    --la-duration-slow: 400ms;
+    --la-duration-slower: 600ms;
+
+    /* Motion tokens — easing curves */
+    --la-ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --la-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --la-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --la-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --la-ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
   }
 
   .dark {
