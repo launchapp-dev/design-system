@@ -83,6 +83,8 @@ import {
   ComparisonTable,
   CheckoutFunnel,
   DataExportWizard,
+  CalendarWidget,
+  ProjectBoard,
 } from "@ds/blocks/data";
 import { ProductGrid, CartDrawer, OrderSummary, ReviewsList, WishlistGrid } from "@ds/blocks/ecommerce";
 import {
@@ -91,9 +93,10 @@ import {
   BillingCard,
   FeatureComparison,
   PricingComparisonTable,
+  ChangelogFeed,
 } from "@ds/blocks/marketing";
 import { MultiPanelLayout, MobileNavDrawerShell } from "@ds/blocks/layout";
-import { SystemSettingsPanel, WebhookManager } from "@ds/blocks/admin";
+import { SystemSettingsPanel, WebhookManager, FeatureFlagPanel, StatusPage } from "@ds/blocks/admin";
 import {
   AppShellMinimal,
   CollapsibleSidebar,
@@ -122,9 +125,10 @@ import {
   ImageGallery,
   FileGrid,
   FileUploadZone,
+  FileManager,
 } from "@ds/blocks/files";
-import { RichTextEditor } from "@ds/blocks/forms";
-import { OAuthConnectCard, ApiKeyManager, WebhookConfig, IntegrationCardGrid, IntegrationMarketplace } from "@ds/blocks/integrations";
+import { RichTextEditor, SupportTicketForm } from "@ds/blocks/forms";
+import { OAuthConnectCard, ApiKeyManager, WebhookConfig, IntegrationCardGrid, IntegrationMarketplace, WebhooksList } from "@ds/blocks/integrations";
 import {
   SaaSLanding,
   Portfolio,
@@ -137,6 +141,7 @@ import {
   TestimonialsSection,
   FAQSection,
   CTASection,
+  HeroBrowserFrame,
 } from "@ds/blocks/landing";
 import { MessageBubbles, TypingIndicator } from "@ds/blocks/messaging";
 import {
@@ -156,10 +161,17 @@ import {
   TeamInviteFlow,
   GoalSetupWizard,
   ChecklistWithLinks,
+  OnboardingFlow,
 } from "@ds/blocks/onboarding";
 import { SearchCommandPalette, SearchResults } from "@ds/blocks/search";
-import { RoleSelector, InviteForm, WorkspaceSwitcher, TeamMemberGrid, TeamRoster } from "@ds/blocks/team";
+import { RoleSelector, InviteForm, WorkspaceSwitcher, TeamMemberGrid, TeamRoster, InviteMemberDialog, RolePermissionMatrix, RolePermissionsMatrix } from "@ds/blocks/team";
 import type { ColumnDef } from "@tanstack/react-table";
+import { ActivityStream } from "@ds/blocks/activity";
+import { InboxManager } from "@ds/blocks/inbox";
+import { MetricsDashboard } from "@ds/blocks/metrics";
+import { UserProfileHeader } from "@ds/blocks/profile";
+import { ProjectKanban } from "@ds/blocks/project";
+import { TimelineView } from "@ds/blocks/timeline";
 
 export type BlockPreviewFn = () => React.ReactElement;
 
@@ -2466,6 +2478,354 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       showEmail
       categories={["bug", "feature", "ui", "performance", "other"]}
       onSubmit={(feedback) => console.log("feedback submitted", feedback)}
+    />
+  ),
+
+  // activity
+  "activity-stream": () => (
+    <ActivityStream
+      title="Recent Activity"
+      showLoadMore
+      events={[
+        { id: "1", actor: { name: "Alice Johnson", initials: "AJ" }, action: "created", target: "Q3 Roadmap", timestamp: "2 min ago", type: "create" },
+        { id: "2", actor: { name: "Bob Smith", initials: "BS" }, action: "commented on", target: "Design Review", timestamp: "15 min ago", type: "comment" },
+        { id: "3", actor: { name: "Carol White", initials: "CW" }, action: "published", target: "API Documentation", timestamp: "1 hour ago", type: "publish" },
+        { id: "4", actor: { name: "Dan Lee", initials: "DL" }, action: "updated", target: "Sprint Goals", timestamp: "3 hours ago", type: "update" },
+        { id: "5", actor: { name: "Eve Chen", initials: "EC" }, action: "shared", target: "Analytics Report", timestamp: "Yesterday", type: "share" },
+      ]}
+    />
+  ),
+
+  // admin (batch-2)
+  "feature-flag-panel": () => {
+    const FFP = FeatureFlagPanel as unknown as React.ComponentType<any>;
+    return (
+      <FFP
+        flags={[
+          { id: "1", key: "new-dashboard", name: "new-dashboard", description: "Redesigned dashboard UI", environments: { development: true, staging: true, production: false }, createdAt: "2024-01-01", updatedAt: "2024-01-10" },
+          { id: "2", key: "ai-suggestions", name: "ai-suggestions", description: "AI-powered content suggestions", environments: { development: true, staging: false, production: false }, createdAt: "2024-01-05", updatedAt: "2024-01-05" },
+          { id: "3", key: "advanced-export", name: "advanced-export", description: "Export data to multiple formats", environments: { development: true, staging: true, production: true }, createdAt: "2023-12-15", updatedAt: "2024-01-12" },
+        ]}
+        onToggle={(flag: { id: string }, env: string, enabled: boolean) => console.log("toggle", flag.id, env, enabled)}
+      />
+    );
+  },
+
+  "status-page": () => {
+    const SP = StatusPage as React.ComponentType<{ services: { id: string; name: string; status: "operational" | "degraded" | "outage" | "maintenance"; uptime?: number; latency?: number; description?: string }[]; overallStatus?: "operational" | "degraded" | "outage" | "maintenance"; title?: string }>;
+    return (
+      <SP
+        title="System Status"
+        overallStatus="operational"
+        services={[
+          { id: "1", name: "API Gateway", status: "operational", uptime: 99.98, latency: 42 },
+          { id: "2", name: "Web App", status: "operational", uptime: 99.95, latency: 120 },
+          { id: "3", name: "Database", status: "degraded", uptime: 99.5, latency: 85, description: "Elevated query times" },
+          { id: "4", name: "Email Service", status: "operational", uptime: 100, latency: 250 },
+        ]}
+      />
+    );
+  },
+
+  // data (batch-2)
+  "calendar-widget": () => {
+    const CW = CalendarWidget as React.ComponentType<{ events?: { id: string; title: string; date: Date; color?: string; allDay?: boolean }[]; onDateSelect?: (date: Date) => void }>;
+    return (
+      <CW
+        events={[
+          { id: "1", title: "Team Standup", date: new Date(), color: "#6366f1" },
+          { id: "2", title: "Product Review", date: new Date(Date.now() + 86400000 * 2), color: "#f59e0b" },
+          { id: "3", title: "Sprint Planning", date: new Date(Date.now() + 86400000 * 5), color: "#10b981" },
+        ]}
+        onDateSelect={(date) => console.log("selected", date)}
+      />
+    );
+  },
+
+  "project-board": () => (
+    <ProjectBoard
+      initialColumns={[
+        { id: "planning", title: "To Do", status: "planning", tasks: [
+          { id: "1", title: "Design onboarding flow", priority: "high", tags: ["design"] },
+          { id: "2", title: "Write API docs", priority: "medium", tags: ["docs"] },
+        ]},
+        { id: "in-progress", title: "In Progress", status: "in-progress", tasks: [
+          { id: "3", title: "Implement auth", priority: "high", assignee: { name: "Bob Smith" }, tags: ["auth"] },
+        ]},
+        { id: "review", title: "Review", status: "review", tasks: [] },
+        { id: "completed", title: "Done", status: "completed", tasks: [
+          { id: "4", title: "Setup CI/CD", priority: "medium", assignee: { name: "Carol White" } },
+        ]},
+      ]}
+    />
+  ),
+
+  // files (batch-2)
+  "file-manager": () => {
+    const FM = FileManager as React.ComponentType<{ files: { id: string; name: string; size: number; type: string; mimeType?: string; modifiedAt: string; thumbnail?: string }[]; folders?: { id: string; name: string; itemCount?: number }[]; onFileOpen?: (f: { id: string }) => void; onFileDownload?: (f: { id: string }) => void }>;
+    return (
+      <FM
+        folders={[
+          { id: "f1", name: "Documents", itemCount: 12 },
+          { id: "f2", name: "Images", itemCount: 34 },
+          { id: "f3", name: "Reports", itemCount: 8 },
+        ]}
+        files={[
+          { id: "1", name: "Q3 Report.pdf", size: 2400000, type: "pdf", mimeType: "application/pdf", modifiedAt: "2024-01-15" },
+          { id: "2", name: "Logo.svg", size: 45000, type: "svg", mimeType: "image/svg+xml", modifiedAt: "2024-01-10" },
+          { id: "3", name: "Budget 2024.xlsx", size: 890000, type: "xlsx", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", modifiedAt: "2024-01-08" },
+          { id: "4", name: "Presentation.pptx", size: 5200000, type: "pptx", mimeType: "application/vnd.ms-powerpoint", modifiedAt: "2024-01-05" },
+        ]}
+        onFileOpen={(f) => console.log("open", f.id)}
+        onFileDownload={(f) => console.log("download", f.id)}
+      />
+    );
+  },
+
+  // forms (batch-2)
+  "support-ticket-form": () => (
+    <SupportTicketForm
+      onSubmit={(data) => console.log("ticket submitted", data)}
+      categories={[
+        { value: "bug", label: "Bug Report" },
+        { value: "feature", label: "Feature Request" },
+        { value: "account", label: "Account Issue" },
+        { value: "billing", label: "Billing" },
+        { value: "general", label: "General" },
+      ]}
+    />
+  ),
+
+  // inbox
+  "inbox-manager": () => {
+    const IM = InboxManager as unknown as React.ComponentType<any>;
+    return (
+      <IM
+        folders={[
+          { id: "inbox", label: "Inbox", count: 3 },
+          { id: "starred", label: "Starred", count: 1 },
+          { id: "sent", label: "Sent" },
+          { id: "trash", label: "Trash" },
+        ]}
+        messages={[
+          { id: "1", subject: "Welcome to LaunchApp!", sender: { name: "LaunchApp Team", initials: "LT" }, preview: "Thanks for signing up. Here's how to get started...", timestamp: "10:30 AM", read: false, starred: true },
+          { id: "2", subject: "Your invoice is ready", sender: { name: "Billing", initials: "BI" }, preview: "Your invoice for January 2024 is now available...", timestamp: "Yesterday", read: true },
+          { id: "3", subject: "New team member joined", sender: { name: "Alice Johnson", initials: "AJ" }, preview: "Bob Smith has accepted your invitation and joined...", timestamp: "Mon", read: true },
+        ]}
+        onMessageSelect={(m: { id: string }) => console.log("selected", m.id)}
+      />
+    );
+  },
+
+  // integrations (batch-2)
+  "webhooks-list": () => (
+    <WebhooksList
+      webhooks={[
+        { id: "1", name: "Production Webhook", url: "https://api.example.com/webhooks/prod", status: "active", events: ["user.created", "payment.succeeded"], createdAt: "2024-01-01", lastTriggeredAt: "2024-01-15", successRate: 98 },
+        { id: "2", name: "Staging Webhook", url: "https://staging.example.com/webhooks", status: "inactive", events: ["user.updated", "subscription.changed"], createdAt: "2024-01-05", successRate: 75 },
+        { id: "3", name: "Analytics Sink", url: "https://ingest.analytics.io/hook", status: "failing", events: ["page.viewed", "button.clicked"], createdAt: "2023-12-15", lastTriggeredAt: "2024-01-14", successRate: 42 },
+      ]}
+      onAdd={(data) => console.log("add", data)}
+      onToggle={(w) => console.log("toggle", w.id)}
+      onDelete={(w) => console.log("delete", w.id)}
+    />
+  ),
+
+  // landing (batch-2)
+  "hero-browser-frame": () => {
+    const HBF = HeroBrowserFrame as React.ComponentType<{ url?: string; stats?: { label: string; value: string }[]; tableRows?: { name: string; status: string; value: string }[] }>;
+    return (
+      <HBF
+        url="app.launchapp.dev/dashboard"
+        stats={[
+          { label: "MRR", value: "$24,500" },
+          { label: "Users", value: "1,234" },
+          { label: "Uptime", value: "99.9%" },
+        ]}
+        tableRows={[
+          { name: "Stripe Integration", status: "Active", value: "$12,400" },
+          { name: "Polar.sh", status: "Active", value: "$8,200" },
+          { name: "Lemon Squeezy", status: "Pending", value: "$3,900" },
+        ]}
+      />
+    );
+  },
+
+  // marketing (batch-2)
+  "changelog-feed": () => {
+    const CF = ChangelogFeed as React.ComponentType<{ entries: { id: string; version?: string; date: string; title: string; description?: string; type?: "feature" | "fix" | "improvement" | "breaking"; tags?: string[] }[]; title?: string; showFilters?: boolean; showSearch?: boolean }>;
+    return (
+      <CF
+        title="Changelog"
+        showFilters
+        showSearch
+        entries={[
+          { id: "1", version: "v2.4.0", date: "2024-01-15", title: "AI-powered suggestions", description: "Introduced AI suggestions across the dashboard to help you make better decisions faster.", type: "feature", tags: ["AI", "Dashboard"] },
+          { id: "2", version: "v2.3.2", date: "2024-01-08", title: "Fix export CSV encoding", description: "Fixed an issue where special characters in exports caused garbled output.", type: "fix", tags: ["Export"] },
+          { id: "3", version: "v2.3.0", date: "2024-01-01", title: "Improved dark mode support", description: "Overhauled theming for better dark mode consistency across all pages.", type: "improvement", tags: ["UI", "Theme"] },
+        ]}
+      />
+    );
+  },
+
+  // metrics
+  "metrics-dashboard": () => (
+    <MetricsDashboard
+      title="Key Metrics"
+      columns={3}
+      showChange
+      metrics={[
+        { id: "mrr", label: "MRR", value: "$24,500", change: "+12%", changeType: "up" },
+        { id: "users", label: "Active Users", value: "1,234", change: "+8%", changeType: "up" },
+        { id: "churn", label: "Churn Rate", value: "2.1%", change: "-0.3%", changeType: "down" },
+        { id: "arr", label: "ARR", value: "$294,000", change: "+15%", changeType: "up" },
+        { id: "nps", label: "NPS Score", value: "72", change: "+4", changeType: "up" },
+        { id: "tickets", label: "Open Tickets", value: "18", change: "+3", changeType: "neutral" },
+      ]}
+    />
+  ),
+
+  // onboarding (batch-2)
+  "onboarding-flow": () => (
+    <OnboardingFlow
+      showProgress
+      allowSkip
+      steps={[
+        { id: "welcome", title: "Welcome", description: "Let's get you set up in just a few steps.", content: <div className="py-4 text-sm text-muted-foreground">Welcome to LaunchApp! We'll guide you through setup.</div> },
+        { id: "profile", title: "Your Profile", description: "Tell us a bit about yourself.", content: <div className="py-4 text-sm text-muted-foreground">Profile setup goes here.</div> },
+        { id: "workspace", title: "Workspace", description: "Configure your workspace settings.", content: <div className="py-4 text-sm text-muted-foreground">Workspace configuration goes here.</div> },
+        { id: "done", title: "All Set!", description: "You're ready to go.", content: <div className="py-4 text-sm text-muted-foreground">Everything is configured. Let's launch!</div> },
+      ]}
+      onComplete={() => console.log("onboarding complete")}
+    />
+  ),
+
+  // profile
+  "user-profile-header": () => (
+    <UserProfileHeader
+      user={{
+        name: "Alice Johnson",
+        username: "alice_j",
+        role: "Engineering Lead",
+        bio: "Building great products at the intersection of design and engineering. Open source enthusiast.",
+        location: "San Francisco, CA",
+        website: "alicejohnson.dev",
+        joinedDate: "January 2022",
+        isVerified: true,
+        initials: "AJ",
+      }}
+      stats={[
+        { label: "Projects", value: 24 },
+        { label: "Followers", value: "1.2k" },
+        { label: "Following", value: 89 },
+      ]}
+      actions={[
+        { label: "Follow", onClick: () => console.log("follow"), variant: "default" },
+        { label: "Message", onClick: () => console.log("message"), variant: "outline" },
+      ]}
+      onFollow={() => console.log("follow")}
+    />
+  ),
+
+  // project
+  "project-kanban": () => {
+    const PK = ProjectKanban as React.ComponentType<{ columns: { id: string; title: string; color?: string; cards: { id: string; title: string; description?: string; priority?: "low" | "medium" | "high" | "urgent"; labels?: string[]; assignees?: { name: string; avatar?: string; initials?: string }[]; dueDate?: string; commentCount?: number }[] }[]; onCardClick?: (card: { id: string }) => void; onAddCard?: (columnId: string) => void }>;
+    return (
+      <PK
+        columns={[
+          { id: "backlog", title: "Backlog", color: "#94a3b8", cards: [
+            { id: "c1", title: "Update dependencies", priority: "low", labels: ["maintenance"] },
+            { id: "c2", title: "Write unit tests", priority: "medium", labels: ["testing"] },
+          ]},
+          { id: "in-progress", title: "In Progress", color: "#f59e0b", cards: [
+            { id: "c3", title: "Implement OAuth flow", priority: "high", labels: ["auth"], assignees: [{ name: "Alice", initials: "AJ" }], dueDate: "Jan 20", commentCount: 3 },
+          ]},
+          { id: "review", title: "Review", color: "#6366f1", cards: [
+            { id: "c4", title: "Design system update", priority: "medium", labels: ["design"], assignees: [{ name: "Bob", initials: "BS" }], commentCount: 5 },
+          ]},
+          { id: "done", title: "Done", color: "#10b981", cards: [
+            { id: "c5", title: "Setup CI/CD pipeline", priority: "high", labels: ["devops"], assignees: [{ name: "Carol", initials: "CW" }] },
+          ]},
+        ]}
+        onCardClick={(card) => console.log("card click", card.id)}
+        onAddCard={(colId) => console.log("add card to", colId)}
+      />
+    );
+  },
+
+  // team (batch-2)
+  "invite-member-dialog": () => (
+    <InviteMemberDialog
+      open={true}
+      onOpenChange={() => {}}
+      defaultRole="member"
+      onInvite={(data) => console.log("invite", data)}
+    />
+  ),
+
+  "role-permission-matrix": () => {
+    const RPM = RolePermissionMatrix as unknown as React.ComponentType<any>;
+    return (
+      <RPM
+        title="Role Permissions"
+        canManage
+        roles={[
+          { id: "owner", name: "Owner", description: "Full access to all resources", color: "#6366f1", permissions: { Content: ["read", "write", "delete", "admin"], Users: ["read", "write", "admin"], Billing: ["read", "write", "admin"] }, isSystem: true },
+          { id: "admin", name: "Admin", description: "Manage settings and members", color: "#f59e0b", permissions: { Content: ["read", "write", "delete"], Users: ["read", "write"], Billing: ["read"] } },
+          { id: "member", name: "Member", description: "Standard access", color: "#10b981", permissions: { Content: ["read", "write"], Users: ["read"], Billing: [] } },
+          { id: "viewer", name: "Viewer", description: "Read-only access", color: "#94a3b8", permissions: { Content: ["read"], Users: [], Billing: [] } },
+        ]}
+        permissionCategories={["Content", "Users", "Billing"]}
+        permissionMap={{
+          owner: ["content.view", "content.create", "content.edit", "content.delete", "users.view", "users.invite", "users.manage", "billing.view", "billing.manage"],
+          admin: ["content.view", "content.create", "content.edit", "content.delete", "users.view", "users.invite", "billing.view"],
+          member: ["content.view", "content.create", "content.edit", "users.view"],
+          viewer: ["content.view", "users.view"],
+        }}
+        onPermissionChange={(roleId: string, permId: string, granted: boolean) => console.log("permission change", roleId, permId, granted)}
+      />
+    );
+  },
+
+  "role-permissions-matrix": () => {
+    const RPM2 = RolePermissionsMatrix as unknown as React.ComponentType<any>;
+    return (
+      <RPM2
+        title="Permissions Overview"
+        showDescriptions
+        roles={[
+          { id: "owner", name: "Owner", color: "#6366f1", permissionCount: 9, categoryBreakdown: { Content: 4, Users: 3, Billing: 2 }, highestPermission: "full" },
+          { id: "admin", name: "Admin", color: "#f59e0b", permissionCount: 7, categoryBreakdown: { Content: 4, Users: 2, Billing: 1 }, highestPermission: "full" },
+          { id: "member", name: "Member", color: "#10b981", permissionCount: 4, categoryBreakdown: { Content: 3, Users: 1, Billing: 0 }, highestPermission: "limited" },
+          { id: "viewer", name: "Viewer", color: "#94a3b8", permissionCount: 2, categoryBreakdown: { Content: 1, Users: 1, Billing: 0 }, highestPermission: "limited" },
+        ]}
+        permissions={[
+          { permissionId: "content.view", label: "View Content", category: "Content", level: "full" },
+          { permissionId: "content.create", label: "Create Content", category: "Content", level: "full" },
+          { permissionId: "content.edit", label: "Edit Content", category: "Content", level: "limited" },
+          { permissionId: "content.delete", label: "Delete Content", category: "Content", level: "none" },
+          { permissionId: "users.view", label: "View Users", category: "Users", level: "full" },
+          { permissionId: "users.invite", label: "Invite Users", category: "Users", level: "limited" },
+          { permissionId: "billing.view", label: "View Billing", category: "Billing", level: "none" },
+        ]}
+        onExport={(format: string) => console.log("export", format)}
+        onRoleClick={(id: string) => console.log("role click", id)}
+      />
+    );
+  },
+
+  // timeline
+  "timeline-view": () => (
+    <TimelineView
+      title="Project Timeline"
+      events={[
+        { id: "1", date: "Jan 2024", title: "Project Kickoff", description: "Initial planning and team alignment completed.", badge: "Milestone", badgeVariant: "default" },
+        { id: "2", date: "Feb 2024", title: "Design Phase", description: "UI/UX designs reviewed and approved.", badge: "Design", badgeVariant: "secondary" },
+        { id: "3", date: "Mar 2024", title: "Alpha Release", description: "First internal release shipped to early testers.", badge: "Release", badgeVariant: "outline" },
+        { id: "4", date: "Apr 2024", title: "Beta Launch", description: "Public beta opened to 500 users.", badge: "Launch", badgeVariant: "default" },
+        { id: "5", date: "May 2024", title: "v1.0 GA", description: "General availability release.", badge: "GA", badgeVariant: "default" },
+      ]}
+      onEventClick={(e) => console.log("event click", e.id)}
     />
   ),
 };

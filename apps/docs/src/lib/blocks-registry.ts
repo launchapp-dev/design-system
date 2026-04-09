@@ -3767,6 +3767,597 @@ export default function Page() {
   );
 }`,
   },
+
+  // activity
+  {
+    id: "activity-stream",
+    name: "Activity Stream",
+    description: "Real-time activity stream with actor avatars, action types, and timestamps.",
+    category: "dashboard",
+    sourcePath: "activity/ActivityStream/ActivityStream.tsx",
+    code: `import { ActivityStream } from "@launchapp/design-system/blocks/activity";
+
+const events = [
+  { id: "1", actor: { name: "Alice Johnson", initials: "AJ" }, action: "created", target: "LaunchApp v2", timestamp: "2024-01-01T10:00:00Z", type: "create" },
+  { id: "2", actor: { name: "Bob Smith", initials: "BS" }, action: "merged", target: "PR #42", timestamp: "2024-01-02T09:00:00Z", type: "update" },
+  { id: "3", actor: { name: "Carol White", initials: "CW" }, action: "commented on", target: "Issue #18", timestamp: "2024-01-03T14:30:00Z", type: "comment" },
+];
+
+export default function Page() {
+  return <ActivityStream events={events} title="Activity Stream" showLoadMore />;
+}`,
+  },
+
+  // admin (additional)
+  {
+    id: "feature-flag-panel",
+    name: "Feature Flag Panel",
+    description: "Manage feature flags across development, staging, and production environments.",
+    category: "admin",
+    sourcePath: "admin/FeatureFlagPanel.tsx",
+    code: `import { FeatureFlagPanel } from "@launchapp/design-system/blocks/admin";
+
+const flags = [
+  {
+    id: "1",
+    key: "new_dashboard",
+    name: "New Dashboard",
+    description: "Enable the redesigned dashboard layout.",
+    environments: { development: true, staging: true, production: false },
+    createdAt: "2024-01-01",
+    updatedAt: "2024-01-15",
+  },
+  {
+    id: "2",
+    key: "ai_assistant",
+    name: "AI Assistant",
+    description: "Enable AI-powered suggestions.",
+    environments: { development: true, staging: false, production: false },
+    createdAt: "2024-02-01",
+    updatedAt: "2024-02-01",
+  },
+];
+
+export default function Page() {
+  return (
+    <FeatureFlagPanel
+      flags={flags}
+      onToggle={(flag, env, enabled) => console.log("toggle", flag.key, env, enabled)}
+    />
+  );
+}`,
+  },
+  {
+    id: "status-page",
+    name: "Status Page",
+    description: "Public-facing service status page with uptime, incidents, and overall health.",
+    category: "admin",
+    sourcePath: "admin/StatusPage.tsx",
+    code: `import { StatusPage } from "@launchapp/design-system/blocks/admin";
+
+const services = [
+  { id: "api", name: "API", description: "REST and GraphQL APIs", status: "operational", uptime: 99.98 },
+  { id: "web", name: "Web App", description: "Main web application", status: "operational", uptime: 99.95 },
+  { id: "db", name: "Database", description: "Primary database cluster", status: "degraded", uptime: 99.82 },
+];
+
+export default function Page() {
+  return (
+    <StatusPage
+      services={services}
+      overallStatus="degraded"
+      title="System Status"
+    />
+  );
+}`,
+  },
+
+  // data (additional)
+  {
+    id: "calendar-widget",
+    name: "Calendar Widget",
+    description: "Mini calendar widget with event dots and date selection.",
+    category: "data",
+    sourcePath: "data/CalendarWidget/CalendarWidget.tsx",
+    code: `import { CalendarWidget } from "@launchapp/design-system/blocks/data";
+
+const events = [
+  { id: "1", title: "Team standup", date: new Date(), color: "primary" },
+  { id: "2", title: "Product launch", date: new Date(Date.now() + 5 * 86400000), color: "secondary" },
+];
+
+export default function Page() {
+  return (
+    <CalendarWidget
+      events={events}
+      onDateSelect={(date) => console.log("selected", date)}
+      onEventClick={(event) => console.log("event", event.id)}
+    />
+  );
+}`,
+  },
+  {
+    id: "comparison-table",
+    name: "Comparison Table",
+    description: "Side-by-side product comparison table with attributes, ratings, and add-to-cart.",
+    category: "data",
+    sourcePath: "data/ComparisonTable/ComparisonTable.tsx",
+    code: `import { ComparisonTable } from "@launchapp/design-system/blocks/data";
+
+const products = [
+  { id: "1", name: "Starter Plan", price: 9, badge: "Popular", rating: 4.5, pros: ["Easy setup", "Good support"], cons: ["Limited features"] },
+  { id: "2", name: "Pro Plan", price: 29, badge: "Best Value", rating: 4.8, pros: ["All features", "Priority support"], cons: ["Higher cost"] },
+  { id: "3", name: "Enterprise", price: 99, rating: 4.9, pros: ["Unlimited everything", "Dedicated support"], cons: [] },
+];
+
+const attributes = [
+  { key: "price", label: "Price" },
+  { key: "rating", label: "Rating" },
+];
+
+export default function Page() {
+  return (
+    <ComparisonTable
+      products={products}
+      attributes={attributes}
+      onAddToCart={(p) => console.log("add", p.id)}
+    />
+  );
+}`,
+  },
+  {
+    id: "project-board",
+    name: "Project Board",
+    description: "Kanban-style project board with task cards, priorities, and column management.",
+    category: "data",
+    sourcePath: "data/ProjectBoard/ProjectBoard.tsx",
+    code: `import { ProjectBoard } from "@launchapp/design-system/blocks/data";
+
+const columns = [
+  {
+    id: "backlog",
+    title: "Backlog",
+    status: "backlog",
+    tasks: [
+      { id: "1", title: "Research competitors", priority: "low" },
+      { id: "2", title: "Design new onboarding", priority: "medium" },
+    ],
+  },
+  {
+    id: "in-progress",
+    title: "In Progress",
+    status: "in_progress",
+    tasks: [
+      { id: "3", title: "Build API endpoints", priority: "high", assignee: { name: "Alice", initials: "AJ" } },
+    ],
+  },
+  {
+    id: "done",
+    title: "Done",
+    status: "done",
+    tasks: [
+      { id: "4", title: "Project kickoff", priority: "low" },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <ProjectBoard
+      initialColumns={columns}
+      onCardClick={(card) => console.log("card", card.id)}
+    />
+  );
+}`,
+  },
+
+  // files (additional)
+  {
+    id: "file-manager",
+    name: "File Manager",
+    description: "Full file manager with folder tree, grid/list view, upload, and file actions.",
+    category: "files",
+    sourcePath: "files/FileManager/FileManager.tsx",
+    code: `import { FileManager } from "@launchapp/design-system/blocks/files";
+
+const files = [
+  { id: "1", name: "report.pdf", type: "document", size: 2457600, modifiedAt: "2024-01-01" },
+  { id: "2", name: "photo.jpg", type: "image", size: 1153434, modifiedAt: "2024-01-02" },
+  { id: "3", name: "archive.zip", type: "archive", size: 983040, modifiedAt: "2024-01-03" },
+];
+
+const folders = [
+  { id: "docs", name: "Documents", parentId: null },
+  { id: "images", name: "Images", parentId: null },
+];
+
+export default function Page() {
+  return (
+    <FileManager
+      files={files}
+      folders={folders}
+      onFileOpen={(id) => console.log("open", id)}
+      onFileDownload={(id) => console.log("download", id)}
+      onFileDelete={(id) => console.log("delete", id)}
+      onUpload={(files) => console.log("upload", files.map(f => f.name))}
+    />
+  );
+}`,
+  },
+
+  // forms (additional)
+  {
+    id: "support-ticket-form",
+    name: "Support Ticket Form",
+    description: "Customer support ticket form with subject, priority, category, and attachment upload.",
+    category: "forms",
+    sourcePath: "forms/SupportTicketForm.tsx",
+    code: `import { SupportTicketForm } from "@launchapp/design-system/blocks/forms";
+
+export default function Page() {
+  return (
+    <SupportTicketForm
+      onSubmit={(data) => console.log("submit", data)}
+      title="Contact Support"
+      description="Describe your issue and we'll get back to you shortly."
+    />
+  );
+}`,
+  },
+
+  // notifications (inbox)
+  {
+    id: "inbox-manager",
+    name: "Inbox Manager",
+    description: "Full inbox layout with folder tree, message list, and message detail panel.",
+    category: "notifications",
+    sourcePath: "inbox/InboxManager/InboxManager.tsx",
+    code: `import { InboxManager } from "@launchapp/design-system/blocks/inbox";
+
+const messages = [
+  { id: "1", subject: "New comment on your post", from: { name: "Alice Johnson", email: "alice@example.com", initials: "AJ" }, preview: "Left a review on the design tokens RFC...", date: "2024-01-15T10:00:00Z", read: false, starred: false, labels: ["design"] },
+  { id: "2", subject: "PR #42 merged", from: { name: "Bob Smith", email: "bob@example.com", initials: "BS" }, preview: "feat(auth): add OAuth providers", date: "2024-01-14T09:00:00Z", read: true, starred: true, labels: ["engineering"] },
+];
+
+export default function Page() {
+  return (
+    <InboxManager
+      messages={messages}
+      onMessageSelect={(msg) => console.log("select", msg.id)}
+      onMessageArchive={(id) => console.log("archive", id)}
+      onMarkAllRead={() => console.log("mark all read")}
+    />
+  );
+}`,
+  },
+
+  // integrations (additional)
+  {
+    id: "webhooks-list",
+    name: "Webhooks List",
+    description: "Manage outbound webhooks with status, event subscriptions, and test functionality.",
+    category: "integrations",
+    sourcePath: "integrations/WebhooksList/WebhooksList.tsx",
+    code: `import { WebhooksList } from "@launchapp/design-system/blocks/integrations";
+
+const webhooks = [
+  { id: "1", name: "Production Webhook", url: "https://api.example.com/hooks", status: "active", events: ["user.created", "payment.success"], createdAt: "2024-01-01", successRate: 98.5 },
+  { id: "2", name: "Staging Webhook", url: "https://staging.example.com/hooks", status: "inactive", events: ["user.created"], createdAt: "2024-02-01" },
+];
+
+export default function Page() {
+  return (
+    <WebhooksList
+      webhooks={webhooks}
+      canManage
+      onAdd={(data) => console.log("add", data)}
+      onEdit={(wh) => console.log("edit", wh.id)}
+      onDelete={(wh) => console.log("delete", wh.id)}
+      onToggle={(wh) => console.log("toggle", wh.id)}
+      onTest={(wh) => console.log("test", wh.id)}
+    />
+  );
+}`,
+  },
+
+  // landing (additional)
+  {
+    id: "hero-browser-frame",
+    name: "Hero Browser Frame",
+    description: "Browser-chrome mockup framing a live dashboard preview for hero sections.",
+    category: "landing",
+    sourcePath: "landing/HeroBrowserFrame/HeroBrowserFrame.tsx",
+    code: `import { HeroBrowserFrame } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <HeroBrowserFrame
+      url="app.yourproduct.com"
+      stats={[
+        { label: "Monthly Revenue", value: "$12.4k", trend: "up" },
+        { label: "Active Users", value: "2,847", trend: "up" },
+        { label: "Conversion", value: "3.24%", trend: "down" },
+      ]}
+    />
+  );
+}`,
+  },
+
+  // marketing (additional)
+  {
+    id: "changelog-feed",
+    name: "Changelog Feed",
+    description: "Filterable changelog feed with entry types, tags, and search.",
+    category: "marketing",
+    sourcePath: "marketing/ChangelogFeed.tsx",
+    code: `import { ChangelogFeed } from "@launchapp/design-system/blocks/marketing";
+
+const entries = [
+  { id: "1", version: "2.0.0", date: "2024-03-01", title: "Design System v2", summary: "268 components, dark mode, and complete token refresh.", type: "feature", tags: ["components", "theming"] },
+  { id: "2", version: "1.5.0", date: "2024-01-15", title: "New Block Library", summary: "40+ new application blocks across 12 categories.", type: "feature", tags: ["blocks"] },
+  { id: "3", version: "1.4.2", date: "2023-12-01", title: "Accessibility Fixes", summary: "Resolved WCAG 2.1 AA issues in Combobox and Dialog.", type: "fix", tags: ["a11y"] },
+];
+
+export default function Page() {
+  return (
+    <ChangelogFeed
+      entries={entries}
+      title="Changelog"
+      showFilters
+      showSearch
+    />
+  );
+}`,
+  },
+
+  // dashboard (metrics)
+  {
+    id: "metrics-dashboard",
+    name: "Metrics Dashboard",
+    description: "Responsive grid of metric cards with trend indicators and progress bars.",
+    category: "dashboard",
+    sourcePath: "metrics/MetricsDashboard/MetricsDashboard.tsx",
+    code: `import { MetricsDashboard } from "@launchapp/design-system/blocks/metrics";
+
+const metrics = [
+  { id: "revenue", label: "Total Revenue", value: "$45,231", change: "+20.1%", changeType: "up", changeLabel: "vs last month" },
+  { id: "users", label: "Active Users", value: "2,350", change: "+15.3%", changeType: "up", changeLabel: "vs last month" },
+  { id: "churn", label: "Churn Rate", value: "3.2%", change: "-1.1%", changeType: "down", changeLabel: "vs last month" },
+  { id: "nps", label: "NPS Score", value: "72", change: "+4", changeType: "up", changeLabel: "vs last quarter", progress: 72 },
+];
+
+export default function Page() {
+  return (
+    <MetricsDashboard
+      metrics={metrics}
+      columns={4}
+      showChange
+      showProgress
+    />
+  );
+}`,
+  },
+
+  // onboarding (additional)
+  {
+    id: "onboarding-flow",
+    name: "Onboarding Flow",
+    description: "Linear onboarding flow with step cards, progress tracking, and back/next navigation.",
+    category: "onboarding",
+    sourcePath: "onboarding/OnboardingFlow/OnboardingFlow.tsx",
+    code: `import { OnboardingFlow } from "@launchapp/design-system/blocks/onboarding";
+
+const steps = [
+  { id: "welcome", title: "Welcome to LaunchApp", description: "Let's get you set up in just a few steps.", content: <div className="p-4">Welcome content</div> },
+  { id: "profile", title: "Set up your profile", description: "Tell us a bit about yourself.", content: <div className="p-4">Profile form</div> },
+  { id: "team", title: "Invite your team", description: "Collaborate with your colleagues.", content: <div className="p-4">Team invite form</div> },
+  { id: "done", title: "You're all set!", description: "Start building something amazing.", content: <div className="p-4">Completion screen</div> },
+];
+
+export default function Page() {
+  return (
+    <OnboardingFlow
+      steps={steps}
+      onComplete={() => console.log("onboarding complete")}
+      showProgress
+      allowSkip
+    />
+  );
+}`,
+  },
+
+  // community (profile)
+  {
+    id: "user-profile-header",
+    name: "User Profile Header",
+    description: "Profile header with cover image, avatar, bio, stats, and follow/action buttons.",
+    category: "community",
+    sourcePath: "profile/UserProfileHeader/UserProfileHeader.tsx",
+    code: `import { UserProfileHeader } from "@launchapp/design-system/blocks/profile";
+
+export default function Page() {
+  return (
+    <UserProfileHeader
+      user={{
+        name: "Alice Johnson",
+        username: "alice",
+        role: "Senior Frontend Engineer",
+        bio: "Passionate about building accessible, beautiful user interfaces.",
+        location: "San Francisco, CA",
+        website: "alice.dev",
+        joinedDate: "January 2023",
+        isVerified: true,
+        initials: "AJ",
+      }}
+      stats={[
+        { label: "Projects", value: 42 },
+        { label: "Followers", value: 1280 },
+        { label: "Following", value: 96 },
+      ]}
+      onFollow={() => console.log("follow")}
+    />
+  );
+}`,
+  },
+
+  // data (project)
+  {
+    id: "project-kanban",
+    name: "Project Kanban",
+    description: "Kanban board for project management with priority badges, assignees, and due dates.",
+    category: "data",
+    sourcePath: "project/ProjectKanban/ProjectKanban.tsx",
+    code: `import { ProjectKanban } from "@launchapp/design-system/blocks/project";
+
+const columns = [
+  {
+    id: "todo",
+    title: "To Do",
+    color: "bg-slate-500",
+    cards: [
+      { id: "1", title: "Research competitors", priority: "low", labels: ["Research"] },
+      { id: "2", title: "Design wireframes", priority: "medium", labels: ["Design"] },
+    ],
+  },
+  {
+    id: "in-progress",
+    title: "In Progress",
+    color: "bg-blue-500",
+    cards: [
+      { id: "3", title: "Build API endpoints", priority: "high", assignee: { name: "Alice Johnson", initials: "AJ" }, dueDate: "2024-02-15" },
+    ],
+  },
+  {
+    id: "done",
+    title: "Done",
+    color: "bg-emerald-500",
+    cards: [
+      { id: "4", title: "Project kickoff", priority: "low", labels: ["Planning"] },
+    ],
+  },
+];
+
+export default function Page() {
+  return (
+    <ProjectKanban
+      columns={columns}
+      onCardClick={(card) => console.log("card", card.id)}
+      onAddCard={(colId) => console.log("add to", colId)}
+    />
+  );
+}`,
+  },
+
+  // team (additional)
+  {
+    id: "invite-member-dialog",
+    name: "Invite Member Dialog",
+    description: "Modal dialog for inviting multiple team members with role assignment.",
+    category: "team",
+    sourcePath: "team/InviteMemberDialog/InviteMemberDialog.tsx",
+    code: `import { InviteMemberDialog } from "@launchapp/design-system/blocks/team";
+
+export default function Page() {
+  return (
+    <InviteMemberDialog
+      open={true}
+      onOpenChange={(open) => console.log("open change", open)}
+      defaultRole="member"
+      onInvite={(recipients) => console.log("invite", recipients)}
+    />
+  );
+}`,
+  },
+  {
+    id: "role-permission-matrix",
+    name: "Role Permission Matrix",
+    description: "Matrix view of role permissions across resource categories with toggle controls.",
+    category: "team",
+    sourcePath: "team/RolePermissionMatrix/RolePermissionMatrix.tsx",
+    code: `import { RolePermissionMatrix } from "@launchapp/design-system/blocks/team";
+
+const roles = [
+  { id: "admin", name: "Admin", description: "Full access to all resources", color: "bg-red-500", permissions: { "content": ["view", "create", "edit", "delete"], "users": ["view", "invite", "manage"] } },
+  { id: "member", name: "Member", description: "Can view and edit assigned projects", color: "bg-blue-500", permissions: { "content": ["view", "create", "edit"], "users": ["view"] } },
+  { id: "viewer", name: "Viewer", description: "Read-only access", color: "bg-slate-500", permissions: { "content": ["view"], "users": ["view"] } },
+];
+
+const categories = [
+  { id: "content", label: "Content", permissions: [{ id: "content.view", label: "View" }, { id: "content.create", label: "Create" }, { id: "content.edit", label: "Edit" }, { id: "content.delete", label: "Delete" }] },
+  { id: "users", label: "Users", permissions: [{ id: "users.view", label: "View" }, { id: "users.invite", label: "Invite" }, { id: "users.manage", label: "Manage" }] },
+];
+
+export default function Page() {
+  return (
+    <RolePermissionMatrix
+      roles={roles}
+      permissionCategories={categories}
+      permissionMap={{ admin: ["content.view", "content.create", "content.edit", "content.delete", "users.view", "users.invite", "users.manage"], member: ["content.view", "content.create", "content.edit", "users.view"], viewer: ["content.view", "users.view"] }}
+      canManage
+      onPermissionChange={(roleId, permId, granted) => console.log("change", roleId, permId, granted)}
+    />
+  );
+}`,
+  },
+  {
+    id: "role-permissions-matrix",
+    name: "Role Permissions Matrix (Summary)",
+    description: "Read-only summary matrix showing permission coverage across roles with export.",
+    category: "team",
+    sourcePath: "team/RolePermissionsMatrix/RolePermissionsMatrix.tsx",
+    code: `import { RolePermissionsMatrix } from "@launchapp/design-system/blocks/team";
+
+const roles = [
+  { id: "admin", name: "Admin", color: "bg-red-500", permissionCount: 12, categoryBreakdown: { content: 4, users: 4, billing: 2, integrations: 2 }, highestPermission: "full" },
+  { id: "member", name: "Member", color: "bg-blue-500", permissionCount: 6, categoryBreakdown: { content: 3, users: 2, billing: 0, integrations: 1 }, highestPermission: "limited" },
+  { id: "viewer", name: "Viewer", color: "bg-slate-500", permissionCount: 3, categoryBreakdown: { content: 1, users: 1, billing: 1, integrations: 0 }, highestPermission: "limited" },
+];
+
+const permissions = [
+  { permissionId: "content.view", label: "View Content", category: "Content", level: "full" },
+  { permissionId: "content.edit", label: "Edit Content", category: "Content", level: "limited" },
+  { permissionId: "users.manage", label: "Manage Users", category: "Users", level: "full" },
+  { permissionId: "billing.view", label: "View Billing", category: "Billing", level: "limited" },
+];
+
+export default function Page() {
+  return (
+    <RolePermissionsMatrix
+      roles={roles}
+      permissions={permissions}
+      onExport={(format) => console.log("export", format)}
+      onRoleClick={(roleId) => console.log("role", roleId)}
+    />
+  );
+}`,
+  },
+
+  // timeline
+  {
+    id: "timeline-view",
+    name: "Timeline View",
+    description: "Vertical timeline with event entries, avatars, badges, and click handlers.",
+    category: "data",
+    sourcePath: "timeline/TimelineView/TimelineView.tsx",
+    code: `import { TimelineView } from "@launchapp/design-system/blocks/timeline";
+
+const events = [
+  { id: "1", date: "Jan 15, 2025", title: "Project kicked off", description: "Initial planning meeting with all stakeholders.", badge: "Completed", badgeVariant: "secondary", avatarFallback: "AJ" },
+  { id: "2", date: "Feb 1, 2025", title: "Design phase complete", description: "Wireframes and design tokens finalized.", badge: "Completed", badgeVariant: "secondary", avatarFallback: "BS" },
+  { id: "3", date: "Mar 10, 2025", title: "Development sprint", description: "Building core features and API integration.", badge: "In Progress", badgeVariant: "default", avatarFallback: "CW" },
+  { id: "4", date: "Apr 1, 2025", title: "Public launch", description: "Go-live and marketing campaign.", badge: "Upcoming", badgeVariant: "outline" },
+];
+
+export default function Page() {
+  return (
+    <TimelineView
+      events={events}
+      title="Project Timeline"
+      onEventClick={(event) => console.log("event", event.id)}
+    />
+  );
+}`,
+  },
 ];
 
 export function getBlocksByCategory(category: BlockCategory): BlockEntry[] {

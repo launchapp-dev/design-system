@@ -101,6 +101,24 @@
       ],
       "@ds/blocks/team": [
         "../../src/blocks/team/index.ts"
+      ],
+      "@ds/blocks/activity": [
+        "../../src/blocks/activity/index.ts"
+      ],
+      "@ds/blocks/metrics": [
+        "../../src/blocks/metrics/index.ts"
+      ],
+      "@ds/blocks/profile": [
+        "../../src/blocks/profile/index.ts"
+      ],
+      "@ds/blocks/project": [
+        "../../src/blocks/project/index.ts"
+      ],
+      "@ds/blocks/timeline": [
+        "../../src/blocks/timeline/index.ts"
+      ],
+      "@ds/blocks/inbox": [
+        "../../src/blocks/inbox/index.ts"
       ]
     }
   },
