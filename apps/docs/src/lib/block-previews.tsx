@@ -3546,4 +3546,714 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     };
     return <CommandPaletteDemo />;
   },
+
+  // batch-8: alias/data-item IDs from blocks-registry code snippets
+  "account": () => <AccountSettings />,
+
+  "acme": () => (
+    <div className="flex justify-center p-4">
+      <WorkspaceSwitcher
+        workspaces={[
+          { id: "acme", name: "Acme Corp", slug: "acme", role: "owner" },
+          { id: "personal", name: "Personal", slug: "personal", role: "owner" },
+        ]}
+        currentId="acme"
+        onChange={(ws: { id: string; name: string }) => console.log("switched to", ws.name)}
+        onCreate={() => console.log("create workspace")}
+      />
+    </div>
+  ),
+
+  "admin": () => (
+    <UserManagementTable
+      users={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const, createdAt: "2024-01-01", lastActiveAt: "2024-01-15" },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "admin" as const, status: "active" as const, createdAt: "2024-02-01", lastActiveAt: "2024-02-10" },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "editor" as const, status: "active" as const, createdAt: "2024-03-01", lastActiveAt: "2024-03-01" },
+      ]}
+      onBanUser={(id: string) => console.log("ban", id)}
+      onUnbanUser={(id: string) => console.log("unban", id)}
+      onDeleteUser={(id: string) => console.log("delete", id)}
+      onAddUser={() => console.log("add user")}
+    />
+  ),
+
+  "api": () => {
+    const SP = StatusPage as React.ComponentType<{ services: { id: string; name: string; status: "operational" | "degraded" | "outage" | "maintenance"; uptime?: number; latency?: number; description?: string }[]; overallStatus?: "operational" | "degraded" | "outage" | "maintenance"; title?: string }>;
+    return (
+      <SP
+        title="API Status"
+        overallStatus="operational"
+        services={[
+          { id: "api", name: "API Gateway", status: "operational", uptime: 99.98, latency: 42 },
+          { id: "graphql", name: "GraphQL API", status: "operational", uptime: 99.95, latency: 38 },
+          { id: "webhooks", name: "Webhooks", status: "operational", uptime: 99.9, latency: 120 },
+        ]}
+      />
+    );
+  },
+
+  "automate": () => (
+    <GoalSetupWizard
+      steps={[
+        {
+          id: "automate",
+          title: "What do you want to automate?",
+          description: "Select all that apply.",
+          options: [
+            { id: "workflows", label: "Automate workflows", description: "Reduce manual processes with triggers", icon: <span>⚙️</span> },
+            { id: "emails", label: "Automate emails", description: "Send emails based on user actions", icon: <span>📧</span> },
+            { id: "reports", label: "Automate reports", description: "Schedule and deliver reports automatically", icon: <span>📊</span> },
+          ],
+          multiSelect: true,
+        },
+      ]}
+      onComplete={(selections: Record<string, string[]>) => console.log("automate goals", selections)}
+    />
+  ),
+
+  "backlog": () => (
+    <ProjectBoard
+      initialColumns={[
+        { id: "backlog", title: "Backlog", status: "planning", tasks: [
+          { id: "1", title: "Research competitors", priority: "low", tags: ["research"] },
+          { id: "2", title: "Design new onboarding", priority: "medium", tags: ["design"] },
+          { id: "3", title: "Write API docs", priority: "medium", tags: ["docs"] },
+          { id: "4", title: "Fix mobile navigation", priority: "high", tags: ["bug"] },
+        ]},
+        { id: "in-progress", title: "In Progress", status: "in-progress", tasks: [] },
+        { id: "done", title: "Done", status: "completed", tasks: [] },
+      ]}
+    />
+  ),
+
+  "backups": () => (
+    <QuotaUsageBar
+      title="Backup Storage"
+      description="Automated backup storage usage."
+      quotas={[
+        { id: "daily", name: "Daily Backups", used: 1.2, limit: 5, unit: "GB" },
+        { id: "weekly", name: "Weekly Backups", used: 3.8, limit: 10, unit: "GB" },
+        { id: "monthly", name: "Monthly Archives", used: 0.5, limit: 2, unit: "GB" },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+
+  "basics": () => (
+    <MultiStepWizard
+      steps={[
+        { id: "basics", title: "Basic Info", description: "Tell us the basics.", content: <div className="p-4 space-y-3"><div className="text-sm font-medium">Name</div><div className="rounded-md border px-3 py-2 text-sm text-muted-foreground">Alice Johnson</div><div className="text-sm font-medium mt-2">Email</div><div className="rounded-md border px-3 py-2 text-sm text-muted-foreground">alice@example.com</div></div> },
+        { id: "plan", title: "Choose Plan", description: "Pick the right plan.", content: <div className="p-4 text-sm text-muted-foreground">Plan selection</div> },
+        { id: "done", title: "Done", description: "You're all set!", content: <div className="p-4 text-sm text-muted-foreground">Setup complete!</div> },
+      ]}
+      onComplete={() => console.log("complete")}
+    />
+  ),
+
+  "bug": () => (
+    <SupportTicketForm
+      onSubmit={(data) => console.log("bug report", data)}
+      categories={[
+        { value: "bug", label: "Bug Report" },
+        { value: "feature", label: "Feature Request" },
+        { value: "account", label: "Account Issue" },
+        { value: "billing", label: "Billing" },
+        { value: "general", label: "General" },
+      ]}
+    />
+  ),
+
+  "churn": () => (
+    <MetricsDashboard
+      title="Churn Analytics"
+      columns={3}
+      showChange
+      metrics={[
+        { id: "churn", label: "Churn Rate", value: "3.2%", change: "-1.1%", changeType: "down" },
+        { id: "mrr-lost", label: "MRR Lost", value: "$1,240", change: "-8%", changeType: "down" },
+        { id: "at-risk", label: "At-Risk Accounts", value: "14", change: "+2", changeType: "neutral" },
+      ]}
+    />
+  ),
+
+  "content": () => (
+    <RichTextEditor
+      label="Content"
+      placeholder="Write your content here..."
+      minHeight={200}
+      showWordCount
+      onChange={(html: string) => console.log("change", html.slice(0, 50))}
+    />
+  ),
+
+  "conversion": () => (
+    <MetricGrid
+      columns={2}
+      metrics={[
+        { id: "conversion", stats: { title: "Conversion Rate", value: "3.24%", trend: { direction: "up", value: "+0.4%" } } },
+        { id: "trials", stats: { title: "Trial Conversions", value: "62%", trend: { direction: "up", value: "+5.2%" } } },
+        { id: "leads", stats: { title: "Lead Conversion", value: "18.7%", trend: { direction: "down", value: "-1.3%" } } },
+        { id: "checkout", stats: { title: "Checkout Completion", value: "78.4%", trend: { direction: "up", value: "+2.1%" } } },
+      ]}
+    />
+  ),
+
+  "dash": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <DashboardShell
+        navigation={[
+          { id: "dash", label: "Dashboard", href: "#", active: true },
+          { id: "analytics", label: "Analytics", href: "#" },
+          { id: "team", label: "Team", href: "#" },
+          { id: "settings", label: "Settings", href: "#" },
+        ]}
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6">
+          <h1 className="text-2xl font-semibold">Dashboard</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Your business at a glance.</p>
+        </div>
+      </DashboardShell>
+    </div>
+  ),
+
+  "db": () => {
+    const SP = StatusPage as React.ComponentType<{ services: { id: string; name: string; status: "operational" | "degraded" | "outage" | "maintenance"; uptime?: number; latency?: number; description?: string }[]; overallStatus?: "operational" | "degraded" | "outage" | "maintenance"; title?: string }>;
+    return (
+      <SP
+        title="Database Status"
+        overallStatus="degraded"
+        services={[
+          { id: "primary", name: "Primary DB", status: "degraded", uptime: 99.5, latency: 85, description: "Elevated query times" },
+          { id: "replica", name: "Read Replica", status: "operational", uptime: 99.9, latency: 28 },
+          { id: "cache", name: "Redis Cache", status: "operational", uptime: 100, latency: 2 },
+        ]}
+      />
+    );
+  },
+
+  "docs": () => {
+    const FM = FileManager as React.ComponentType<{ files: { id: string; name: string; size: number; type: string; mimeType?: string; modifiedAt: string }[]; folders?: { id: string; name: string; itemCount?: number }[]; onFileOpen?: (f: { id: string }) => void; onFileDownload?: (f: { id: string }) => void }>;
+    return (
+      <FM
+        folders={[
+          { id: "docs", name: "Documentation", itemCount: 8 },
+          { id: "api", name: "API Reference", itemCount: 12 },
+          { id: "guides", name: "Guides", itemCount: 5 },
+        ]}
+        files={[
+          { id: "1", name: "getting-started.md", size: 24576, type: "md", mimeType: "text/markdown", modifiedAt: "2024-01-15" },
+          { id: "2", name: "api-reference.pdf", size: 2400000, type: "pdf", mimeType: "application/pdf", modifiedAt: "2024-01-10" },
+          { id: "3", name: "architecture.md", size: 18432, type: "md", mimeType: "text/markdown", modifiedAt: "2024-01-08" },
+        ]}
+        onFileOpen={(f) => console.log("open", f.id)}
+        onFileDownload={(f) => console.log("download", f.id)}
+      />
+    );
+  },
+
+  "done": () => (
+    <KanbanBoard
+      initialColumns={[
+        { id: "todo", title: "To Do", cards: [] },
+        { id: "in-progress", title: "In Progress", cards: [] },
+        { id: "done", title: "Done", cards: [
+          { id: "1", title: "Setup CI/CD pipeline", badge: "DevOps", badgeVariant: "secondary" as const },
+          { id: "2", title: "Design system audit", badge: "Design", badgeVariant: "outline" as const },
+          { id: "3", title: "Auth integration", badge: "Engineering", badgeVariant: "default" as const },
+          { id: "4", title: "User research sessions", badge: "Research", badgeVariant: "secondary" as const },
+        ]},
+      ]}
+    />
+  ),
+
+  "enterprise": () => (
+    <FeatureComparison
+      tiers={[
+        { id: "starter", name: "Starter", price: { monthly: 9, annually: 7 }, cta: { label: "Get started" } },
+        { id: "pro", name: "Pro", price: { monthly: 29, annually: 24 }, popular: true, cta: { label: "Start trial" } },
+        { id: "enterprise", name: "Enterprise", price: { monthly: "Custom", annually: "Custom" }, cta: { label: "Contact sales" } },
+      ]}
+      features={[
+        { id: "projects", name: "Projects", values: { starter: "5", pro: "Unlimited", enterprise: "Unlimited" } },
+        { id: "storage", name: "Storage", values: { starter: "5GB", pro: "100GB", enterprise: "Custom" } },
+        { id: "support", name: "Priority Support", values: { starter: false, pro: true, enterprise: true } },
+        { id: "sso", name: "SSO / SAML", values: { starter: false, pro: false, enterprise: true } },
+        { id: "sla", name: "SLA Guarantee", values: { starter: false, pro: false, enterprise: true } },
+      ]}
+      headline="Enterprise — everything your org needs"
+      subheadline="Dedicated support, custom integrations, and enterprise-grade security."
+    />
+  ),
+
+  "feature": () => (
+    <SupportTicketForm
+      onSubmit={(data) => console.log("feature request", data)}
+      categories={[
+        { value: "bug", label: "Bug Report" },
+        { value: "feature", label: "Feature Request" },
+        { value: "account", label: "Account Issue" },
+        { value: "billing", label: "Billing" },
+        { value: "general", label: "General" },
+      ]}
+    />
+  ),
+
+  "free": () => (
+    <FeatureComparison
+      tiers={[
+        { id: "free", name: "Free", price: { monthly: 0, annually: 0 }, cta: { label: "Get started" } },
+        { id: "pro", name: "Pro", price: { monthly: 29, annually: 24 }, popular: true, cta: { label: "Start trial" } },
+        { id: "enterprise", name: "Enterprise", price: { monthly: "Custom", annually: "Custom" }, cta: { label: "Contact sales" } },
+      ]}
+      features={[
+        { id: "projects", name: "Projects", values: { free: "5", pro: "Unlimited", enterprise: "Unlimited" } },
+        { id: "storage", name: "Storage", values: { free: "5 GB", pro: "100 GB", enterprise: "Custom" } },
+        { id: "support", name: "Priority Support", values: { free: false, pro: true, enterprise: true } },
+        { id: "sso", name: "SSO", values: { free: false, pro: false, enterprise: true } },
+      ]}
+      headline="Start free, scale as you grow"
+      subheadline="No credit card required on the free plan."
+    />
+  ),
+
+  "general": () => (
+    <SupportTicketForm
+      onSubmit={(data) => console.log("general ticket", data)}
+      categories={[
+        { value: "bug", label: "Bug Report" },
+        { value: "feature", label: "Feature Request" },
+        { value: "account", label: "Account Issue" },
+        { value: "billing", label: "Billing" },
+        { value: "general", label: "General" },
+      ]}
+    />
+  ),
+
+  "github": () => (
+    <ConnectedAccounts
+      accounts={[
+        { id: "github", provider: "github", connected: true, accountName: "alice-dev" },
+        { id: "google", provider: "google", connected: false },
+        { id: "slack", provider: "slack", connected: false },
+      ]}
+      onConnectionToggle={(id: string) => console.log("toggle", id)}
+    />
+  ),
+
+  "google": () => (
+    <ConnectedAccounts
+      accounts={[
+        { id: "github", provider: "github", connected: true, accountName: "alice-dev" },
+        { id: "google", provider: "google", connected: true, accountName: "alice@gmail.com" },
+        { id: "slack", provider: "slack", connected: false },
+      ]}
+      onConnectionToggle={(id: string) => console.log("toggle", id)}
+    />
+  ),
+
+  "grow": () => (
+    <GoalSetupWizard
+      steps={[
+        {
+          id: "grow",
+          title: "How do you want to grow your team?",
+          description: "Select all that apply.",
+          options: [
+            { id: "hire", label: "Hire engineers", description: "Expand your engineering capacity", icon: <span>👷</span> },
+            { id: "contractors", label: "Add contractors", description: "Bring in specialists for projects", icon: <span>🤝</span> },
+            { id: "onboard", label: "Onboard faster", description: "Reduce time to productivity for new hires", icon: <span>🚀</span> },
+          ],
+          multiSelect: true,
+        },
+      ]}
+      onComplete={(selections: Record<string, string[]>) => console.log("grow goals", selections)}
+    />
+  ),
+
+  "in-progress": () => (
+    <KanbanBoard
+      initialColumns={[
+        { id: "todo", title: "To Do", cards: [
+          { id: "1", title: "Write documentation", badge: "Docs", badgeVariant: "outline" as const },
+        ]},
+        { id: "in-progress", title: "In Progress", cards: [
+          { id: "2", title: "Implement OAuth flow", badge: "Auth", badgeVariant: "default" as const },
+          { id: "3", title: "Design dashboard v2", badge: "Design", badgeVariant: "secondary" as const },
+          { id: "4", title: "Fix mobile nav bug", badge: "Bug", badgeVariant: "default" as const },
+        ]},
+        { id: "done", title: "Done", cards: [] },
+      ]}
+    />
+  ),
+
+  "integrate": () => (
+    <SetupChecklist
+      title="Connect your tools"
+      items={[
+        { id: "verify", title: "Verify your email", completed: true, href: "#" },
+        { id: "profile", title: "Complete your profile", completed: true, href: "/settings/profile" },
+        { id: "billing", title: "Set up billing", completed: true, href: "/billing" },
+        { id: "integrate", title: "Connect your first integration", completed: false, href: "/integrations" },
+        { id: "invite", title: "Invite your team", completed: false, href: "/team/invite" },
+      ]}
+      showProgress
+    />
+  ),
+
+  "launch": () => (
+    <GoalSetupWizard
+      steps={[
+        {
+          id: "launch",
+          title: "What are you trying to launch?",
+          description: "Select all that apply.",
+          options: [
+            { id: "product", label: "Launch a new product", description: "Ship a brand new app or feature", icon: <span>🚀</span> },
+            { id: "feature", label: "Launch a feature", description: "Release a specific new capability", icon: <span>⭐</span> },
+            { id: "marketing", label: "Launch a marketing campaign", description: "Drive awareness and signups", icon: <span>📣</span> },
+          ],
+          multiSelect: true,
+        },
+      ]}
+      onComplete={(selections: Record<string, string[]>) => console.log("launch goals", selections)}
+    />
+  ),
+
+  "main": () => (
+    <div className="h-[500px] relative overflow-hidden border rounded-lg">
+      <AppSidebar
+        sections={[
+          {
+            title: "Main",
+            items: [
+              { label: "Dashboard", href: "#", isActive: true },
+              { label: "Analytics", href: "#" },
+              { label: "Projects", href: "#" },
+              { label: "Inbox", href: "#" },
+            ],
+          },
+          {
+            title: "Settings",
+            items: [
+              { label: "Profile", href: "#" },
+              { label: "Billing", href: "#" },
+              { label: "Team", href: "#" },
+            ],
+          },
+        ]}
+        user={navUser}
+      />
+    </div>
+  ),
+
+  "marketing": () => (
+    <NotificationPreferences
+    />
+  ),
+
+  "media": () => (
+    <QuotaUsageBar
+      title="Media Storage"
+      description="Media file storage usage by type."
+      quotas={[
+        { id: "images", name: "Images", used: 2.4, limit: 5, unit: "GB" },
+        { id: "videos", name: "Videos", used: 8.1, limit: 10, unit: "GB" },
+        { id: "audio", name: "Audio", used: 0.3, limit: 2, unit: "GB" },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+
+  "member": () => (
+    <TeamMemberList
+      members={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "member" as const, status: "active" as const },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const, status: "active" as const },
+        { id: "4", name: "Dave Brown", email: "dave@example.com", role: "member" as const, status: "pending" as const },
+      ]}
+      onRemove={(member) => console.log("remove", member.id)}
+    />
+  ),
+
+  "name": () => (
+    <TooltipProvider>
+      <ColumnFilters
+        columns={[
+          { id: "name", label: "Name", type: "text" },
+          { id: "status", label: "Status", type: "select", options: [{ value: "active", label: "Active" }, { value: "inactive", label: "Inactive" }] },
+          { id: "role", label: "Role", type: "select", options: [{ value: "admin", label: "Admin" }, { value: "member", label: "Member" }] },
+        ]}
+        filters={[]}
+        onFiltersChange={(filters: unknown[]) => console.log("filters", filters)}
+      />
+    </TooltipProvider>
+  ),
+
+  "nps": () => (
+    <MetricsDashboard
+      title="NPS & Satisfaction"
+      columns={3}
+      showChange
+      metrics={[
+        { id: "nps", label: "NPS Score", value: "72", change: "+4", changeType: "up" },
+        { id: "csat", label: "CSAT", value: "4.6 / 5", change: "+0.2", changeType: "up" },
+        { id: "promoters", label: "Promoters", value: "68%", change: "+3%", changeType: "up" },
+        { id: "detractors", label: "Detractors", value: "8%", change: "-2%", changeType: "down" },
+        { id: "responses", label: "Responses", value: "1,240", change: "+180", changeType: "up" },
+        { id: "response-rate", label: "Response Rate", value: "34%", change: "+5%", changeType: "up" },
+      ]}
+    />
+  ),
+
+  "pages": () => {
+    const CommandPalettePagesDemo = () => {
+      const [open, setOpen] = React.useState(true);
+      return (
+        <div className="h-[340px] overflow-hidden rounded-lg border flex flex-col items-center justify-center gap-4 p-6">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Pages Palette
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+          <CommandPalette
+            open={open}
+            onOpenChange={setOpen}
+            actions={[
+              { id: "dashboard", label: "Dashboard", group: "pages", onSelect: () => console.log("dashboard") },
+              { id: "analytics", label: "Analytics", group: "pages", onSelect: () => console.log("analytics") },
+              { id: "settings", label: "Settings", group: "pages", onSelect: () => console.log("settings") },
+              { id: "team", label: "Team", group: "pages", onSelect: () => console.log("team") },
+              { id: "billing", label: "Billing", group: "pages", onSelect: () => console.log("billing") },
+            ]}
+            groups={[{ id: "pages", label: "Pages" }]}
+          />
+        </div>
+      );
+    };
+    return <CommandPalettePagesDemo />;
+  },
+
+  "paid": () => (
+    <FunnelChartCard
+      title="Paid Conversion Funnel"
+      stages={[
+        { label: "Visitors", value: 10000 },
+        { label: "Sign Ups", value: 4200 },
+        { label: "Trial", value: 1800 },
+        { label: "Paid", value: 620 },
+      ]}
+      description="Funnel from visitor to paying customer"
+    />
+  ),
+
+  "personal": () => (
+    <div className="flex justify-center p-4">
+      <WorkspaceSwitcher
+        workspaces={[
+          { id: "personal", name: "Personal", slug: "personal", role: "owner" },
+          { id: "acme", name: "Acme Corp", slug: "acme", role: "member" },
+        ]}
+        currentId="personal"
+        onChange={(ws: { id: string; name: string }) => console.log("switched to", ws.name)}
+        onCreate={() => console.log("create workspace")}
+      />
+    </div>
+  ),
+
+  "plan": () => (
+    <SetupWizard
+      steps={[
+        { id: "profile", label: "Profile", completed: true },
+        { id: "plan", label: "Choose Plan", completed: false },
+        { id: "payment", label: "Payment", completed: false },
+        { id: "launch", label: "Launch", completed: false },
+      ]}
+      currentStepId="plan"
+      onComplete={() => console.log("plan selected")}
+    />
+  ),
+
+  "pro": () => (
+    <BillingOverview
+      plan={{ id: "pro", name: "Pro", price: "$29/mo", billingCycle: "monthly", description: "Best for growing teams and businesses." }}
+      status="active"
+      onUpgrade={() => console.log("upgrade")}
+      onManage={() => console.log("manage")}
+    />
+  ),
+
+  "signups": () => (
+    <FunnelChartCard
+      title="Signup Conversion"
+      stages={[
+        { label: "Visitors", value: 10000 },
+        { label: "Sign Ups", value: 4200 },
+        { label: "Verified", value: 3100 },
+        { label: "Active", value: 2400 },
+      ]}
+      description="Visitor to active user conversion"
+    />
+  ),
+
+  "slack": () => (
+    <IntegrationCardGrid
+      title="Slack Integration"
+      description="Connect Slack to receive notifications in your channels."
+      searchable={false}
+      integrations={[
+        { id: "slack", name: "Slack", description: "Send notifications to Slack channels.", category: "communication" as const, status: "connected" as const },
+        { id: "slack-bot", name: "Slack Bot", description: "Interactive bot for team commands.", category: "communication" as const, status: "disconnected" as const },
+      ]}
+      onConnect={(integration) => console.log("connect", integration.id)}
+      onDisconnect={(integration) => console.log("disconnect", integration.id)}
+      onConfigure={(integration) => console.log("configure", integration.id)}
+    />
+  ),
+
+  "starter": () => (
+    <SubscriptionManager
+      plans={[
+        { id: "starter", name: "Starter", price: "$9/mo", billingCycle: "month", features: ["5 projects", "10GB storage", "Community support"] },
+        { id: "pro", name: "Pro", price: "$29/mo", billingCycle: "month", features: ["Unlimited projects", "100GB storage", "Priority support"] },
+        { id: "enterprise", name: "Enterprise", price: "$99/mo", billingCycle: "month", features: ["Everything in Pro", "SSO", "Dedicated support"] },
+      ]}
+      currentPlanId="starter"
+      onChangePlan={(id: string) => console.log("change to", id)}
+    />
+  ),
+
+  "stripe": () => (
+    <IntegrationCardGrid
+      title="Stripe Integration"
+      description="Process payments and manage subscriptions."
+      searchable={false}
+      integrations={[
+        { id: "stripe", name: "Stripe", description: "Payment processing and subscription management.", category: "payments" as const, status: "connected" as const },
+        { id: "stripe-radar", name: "Stripe Radar", description: "Fraud detection and prevention.", category: "payments" as const, status: "disconnected" as const },
+      ]}
+      onConnect={(integration) => console.log("connect", integration.id)}
+      onDisconnect={(integration) => console.log("disconnect", integration.id)}
+      onConfigure={(integration) => console.log("configure", integration.id)}
+    />
+  ),
+
+  "todo": () => (
+    <KanbanBoard
+      initialColumns={[
+        { id: "todo", title: "To Do", cards: [
+          { id: "1", title: "Research competitors", badge: "Research", badgeVariant: "secondary" as const },
+          { id: "2", title: "Design wireframes", badge: "Design", badgeVariant: "outline" as const },
+          { id: "3", title: "Write user stories", badge: "Planning", badgeVariant: "secondary" as const },
+          { id: "4", title: "Set up analytics", badge: "Engineering", badgeVariant: "default" as const },
+        ]},
+        { id: "in-progress", title: "In Progress", cards: [] },
+        { id: "done", title: "Done", cards: [] },
+      ]}
+    />
+  ),
+
+  "trial": () => (
+    <FunnelChartCard
+      title="Trial Conversion Funnel"
+      stages={[
+        { label: "Sign Ups", value: 4200 },
+        { label: "Trial Started", value: 1800 },
+        { label: "Feature Used", value: 1200 },
+        { label: "Paid", value: 620 },
+      ]}
+      description="Trial to paid conversion funnel"
+    />
+  ),
+
+  "user1": () => (
+    <ChatInterface
+      messages={[
+        { id: "1", content: "Hey! How's it going?", sender: "received" as const, senderName: "Alice", timestamp: "10:00 AM" },
+        { id: "2", content: "Great! Just shipped the new feature.", sender: "sent" as const, timestamp: "10:01 AM" },
+        { id: "3", content: "Nice! The team will love it.", sender: "received" as const, senderName: "Alice", timestamp: "10:02 AM" },
+        { id: "4", content: "Hoping so! Let me know what you think.", sender: "sent" as const, timestamp: "10:03 AM" },
+      ]}
+      title="Alice"
+      isTyping={false}
+      onSend={(msg: string) => console.log("send", msg)}
+      maxHeight={360}
+    />
+  ),
+
+  "verify": () => (
+    <SetupChecklist
+      title="Account setup"
+      items={[
+        { id: "verify", title: "Verify your email", completed: true, href: "#" },
+        { id: "profile", title: "Complete your profile", completed: false, href: "/settings/profile" },
+        { id: "billing", title: "Set up billing", completed: false, href: "/billing" },
+        { id: "invite", title: "Invite teammates", completed: false, href: "/team/invite" },
+      ]}
+      showProgress
+    />
+  ),
+
+  "viewer": () => (
+    <UserManagementTable
+      users={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const, createdAt: "2024-01-01", lastActiveAt: "2024-01-15" },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "editor" as const, status: "active" as const, createdAt: "2024-02-01", lastActiveAt: "2024-02-10" },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "viewer" as const, status: "active" as const, createdAt: "2024-03-01", lastActiveAt: "2024-03-05" },
+        { id: "4", name: "Dave Brown", email: "dave@example.com", role: "viewer" as const, status: "pending" as const, createdAt: "2024-04-01", lastActiveAt: "2024-04-01" },
+      ]}
+      onBanUser={(id: string) => console.log("ban", id)}
+      onUnbanUser={(id: string) => console.log("unban", id)}
+      onDeleteUser={(id: string) => console.log("delete", id)}
+      onAddUser={() => console.log("add user")}
+    />
+  ),
+
+  "visitors": () => (
+    <FunnelChartCard
+      title="Visitor Funnel"
+      stages={[
+        { label: "Visitors", value: 10000 },
+        { label: "Sign Ups", value: 4200 },
+        { label: "Trial", value: 1800 },
+        { label: "Paid", value: 620 },
+      ]}
+      description="Visitor to paid conversion"
+    />
+  ),
+
+  "web": () => {
+    const SP = StatusPage as React.ComponentType<{ services: { id: string; name: string; status: "operational" | "degraded" | "outage" | "maintenance"; uptime?: number; latency?: number; description?: string }[]; overallStatus?: "operational" | "degraded" | "outage" | "maintenance"; title?: string }>;
+    return (
+      <SP
+        title="Web App Status"
+        overallStatus="operational"
+        services={[
+          { id: "web", name: "Web App", status: "operational", uptime: 99.95, latency: 120 },
+          { id: "cdn", name: "CDN", status: "operational", uptime: 100, latency: 18 },
+          { id: "assets", name: "Static Assets", status: "operational", uptime: 100, latency: 12 },
+        ]}
+      />
+    );
+  },
+
+  "workspace": () => (
+    <SetupWizard
+      steps={[
+        { id: "profile", label: "Profile", completed: true },
+        { id: "workspace", label: "Workspace", completed: false },
+        { id: "invite", label: "Invite Team", completed: false },
+        { id: "done", label: "Done", completed: false },
+      ]}
+      currentStepId="workspace"
+      onComplete={() => console.log("workspace setup")}
+    />
+  ),
 };
