@@ -3564,6 +3564,37 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     </div>
   ),
 
+  "actions": () => {
+    const CommandPaletteActionsDemo = () => {
+      const [open, setOpen] = React.useState(true);
+      return (
+        <div className="h-[340px] overflow-hidden rounded-lg border flex flex-col items-center justify-center gap-4 p-6">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Actions Palette
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+          <CommandPalette
+            open={open}
+            onOpenChange={setOpen}
+            actions={[
+              { id: "invite", label: "Invite teammate", group: "actions", onSelect: () => console.log("invite") },
+              { id: "new-project", label: "New project", group: "actions", onSelect: () => console.log("new-project") },
+              { id: "import", label: "Import data", group: "actions", onSelect: () => console.log("import") },
+            ]}
+            groups={[{ id: "actions", label: "Actions" }]}
+          />
+        </div>
+      );
+    };
+    return <CommandPaletteActionsDemo />;
+  },
+
   "admin": () => (
     <UserManagementTable
       users={[
@@ -3990,6 +4021,46 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         onFiltersChange={(filters: unknown[]) => console.log("filters", filters)}
       />
     </TooltipProvider>
+  ),
+
+  "new-project": () => (
+    <MultiStepWizard
+      steps={[
+        {
+          id: "new-project",
+          title: "New Project",
+          description: "Give your project a name and description.",
+          content: (
+            <div className="p-4 space-y-4">
+              <div>
+                <div className="text-sm font-medium mb-1">Project name</div>
+                <div className="rounded-md border px-3 py-2 text-sm text-muted-foreground">My New Project</div>
+              </div>
+              <div>
+                <div className="text-sm font-medium mb-1">Description</div>
+                <div className="rounded-md border px-3 py-2 text-sm text-muted-foreground h-16">A short description of the project.</div>
+              </div>
+            </div>
+          ),
+        },
+        {
+          id: "template",
+          title: "Choose Template",
+          description: "Start from a template or blank project.",
+          content: <div className="p-4 text-sm text-muted-foreground">Template selection</div>,
+        },
+        {
+          id: "invite",
+          title: "Invite Team",
+          description: "Invite collaborators to your project.",
+          content: <div className="p-4 text-sm text-muted-foreground">Invite teammates</div>,
+        },
+      ]}
+      currentStepIndex={0}
+      onNext={() => console.log("next")}
+      onBack={() => console.log("back")}
+      onComplete={() => console.log("project created")}
+    />
   ),
 
   "nps": () => (
