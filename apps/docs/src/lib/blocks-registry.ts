@@ -192,7 +192,7 @@ export default function Page() {
     name: "Metric Cards",
     description: "Grid of KPI metric cards with trend indicators and sparkline charts.",
     category: "dashboard",
-    sourcePath: "dashboard/MetricCards.tsx",
+    sourcePath: "dashboard/MetricCards/MetricCards.tsx",
     code: `import { MetricCards } from "@launchapp/design-system/blocks/dashboard";
 
 const items = [
@@ -248,7 +248,7 @@ export default function Page() {
     name: "Activity Feed",
     description: "Chronological activity feed with avatar, action badge, and timestamp.",
     category: "dashboard",
-    sourcePath: "dashboard/ActivityFeed.tsx",
+    sourcePath: "dashboard/ActivityFeed/ActivityFeed.tsx",
     code: `import { ActivityFeed } from "@launchapp/design-system/blocks/dashboard";
 
 const items = [
@@ -2257,7 +2257,7 @@ export default function Page() {
     name: "Invoice Table",
     description: "Table of billing invoices with status badges and download actions.",
     category: "billing",
-    sourcePath: "billing/InvoiceTable.tsx",
+    sourcePath: "billing/InvoiceTable/InvoiceTable.tsx",
     code: `import { InvoiceTable } from "@launchapp/design-system/blocks/billing";
 
 const invoices = [
@@ -2962,7 +2962,7 @@ export default function Page() {
     name: "Notification Center",
     description: "Dropdown notification center with unread count and mark-all-read action.",
     category: "notifications",
-    sourcePath: "notifications/NotificationCenter.tsx",
+    sourcePath: "notifications/NotificationCenter/NotificationCenter.tsx",
     code: `import { NotificationCenter } from "@launchapp/design-system/blocks/notifications";
 
 const notifications = [
@@ -3852,6 +3852,33 @@ export default function Page() {
 }`,
   },
 
+  // admin (activity)
+  {
+    id: "activity-audit-log-viewer",
+    name: "Activity Audit Log Viewer",
+    description: "Detailed audit log with severity levels, sortable columns, search, and export.",
+    category: "admin",
+    sourcePath: "activity/AuditLogViewer/AuditLogViewer.tsx",
+    code: `import { AuditLogViewer } from "@launchapp/design-system/blocks/activity";
+
+const logs = [
+  { id: "1", timestamp: "2025-01-15T10:23:00Z", action: "user.login", actor: "Alice Johnson", actorEmail: "alice@example.com", resource: "auth", level: "info", severity: "low", description: "User signed in successfully." },
+  { id: "2", timestamp: "2025-01-15T10:45:00Z", action: "api_key.created", actor: "Bob Smith", actorEmail: "bob@example.com", resource: "api_keys", resourceId: "key_abc123", level: "info", severity: "medium", description: "New API key created with read/write scope." },
+  { id: "3", timestamp: "2025-01-15T11:00:00Z", action: "user.deleted", actor: "Carol White", actorEmail: "carol@example.com", resource: "users", resourceId: "usr_xyz", level: "warning", severity: "high", description: "User account deleted." },
+  { id: "4", timestamp: "2025-01-15T11:30:00Z", action: "billing.payment_failed", actor: "system", resource: "billing", level: "error", severity: "critical", description: "Payment processing failed." },
+];
+
+export default function Page() {
+  return (
+    <AuditLogViewer
+      logs={logs}
+      title="Audit Log"
+      onExport={() => console.log("export")}
+    />
+  );
+}`,
+  },
+
   // data (additional)
   {
     id: "calendar-widget",
@@ -4195,6 +4222,37 @@ export default function Page() {
         { label: "Following", value: 96 },
       ]}
       onFollow={() => console.log("follow")}
+    />
+  );
+}`,
+  },
+
+  // community (profile card)
+  {
+    id: "profile-card",
+    name: "Profile Card",
+    description: "Compact profile card with social links, tags, and edit/message actions.",
+    category: "community",
+    sourcePath: "profile/UserProfileCard/UserProfileCard.tsx",
+    code: `import { UserProfileCard } from "@launchapp/design-system/blocks/profile";
+
+export default function Page() {
+  return (
+    <UserProfileCard
+      name="Alice Johnson"
+      role="Senior Frontend Engineer"
+      email="alice@example.com"
+      bio="Passionate about building accessible, beautiful user interfaces. Open source contributor and design systems enthusiast."
+      location="San Francisco, CA"
+      website="https://alice.dev"
+      tags={["React", "TypeScript", "Design Systems", "a11y"]}
+      socialLinks={[
+        { platform: "twitter", url: "https://twitter.com/alice", label: "Twitter" },
+        { platform: "github", url: "https://github.com/alice", label: "GitHub" },
+        { platform: "linkedin", url: "https://linkedin.com/in/alice", label: "LinkedIn" },
+      ]}
+      onMessage={() => console.log("message")}
+      onEdit={() => console.log("edit")}
     />
   );
 }`,
