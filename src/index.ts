@@ -1,6 +1,27 @@
 export { cn } from "./lib/utils";
 export { useReducedMotion, duration, easing, motionSafe, motionReduce } from "./lib/animation";
 export {
+  motionDuration,
+  motionDurationMs,
+  motionEasing,
+  motionEasingValues,
+  motionTokens,
+  entranceAnimation,
+  exitAnimation,
+  loadingAnimation,
+  buildTransitionStyle,
+  buildAnimationStyle,
+  useMotionSafe,
+} from "./lib/motion";
+export type {
+  MotionDuration,
+  MotionEasing,
+  EntrancePreset,
+  ExitPreset,
+  LoadingPreset,
+  MotionStyleProps,
+} from "./lib/motion";
+export {
   generateComponent,
   generateComponentFromDescription,
   type ComponentGenerationRequest,

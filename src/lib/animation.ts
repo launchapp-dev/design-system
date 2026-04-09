@@ -11,6 +11,7 @@ export function useReducedMotion(): boolean {
 
 export const duration = {
   fast: 150,
+  normal: 250,
   base: 250,
   slow: 400,
   slower: 600,
@@ -21,6 +22,7 @@ export const easing = {
   easeIn: "cubic-bezier(0.4, 0, 1, 1)",
   easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
   spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  bounce: "cubic-bezier(0.68, -0.55, 0.27, 1.55)",
 } as const;
 
 export function motionSafe(className: string): string {
