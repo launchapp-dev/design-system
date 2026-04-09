@@ -36,3 +36,5 @@ export type {
   ChecklistLinkItem,
   ChecklistSection,
 } from "./ChecklistWithLinks";
+export { OnboardingFlow } from "./OnboardingFlow";
+export type { OnboardingFlowProps, OnboardingStep as OnboardingFlowStep } from "./OnboardingFlow";
