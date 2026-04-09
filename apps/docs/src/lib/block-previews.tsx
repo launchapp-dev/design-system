@@ -2828,4 +2828,290 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       onEventClick={(e) => console.log("event click", e.id)}
     />
   ),
+
+  // batch-3: registry-aligned keys (aliases + new previews)
+  "activity-timeline": () => (
+    <ActivityTimeline
+      items={[
+        { id: "1", title: "Project created", description: "You created 'LaunchApp v2'", timestamp: "2024-01-01T10:00:00Z" },
+        { id: "2", title: "Member added", description: "Alice joined the team", timestamp: "2024-01-02T09:00:00Z" },
+        { id: "3", title: "PR merged", description: "feat(docs): update component library", timestamp: "2024-01-03T14:30:00Z" },
+      ]}
+      title="Recent Activity"
+    />
+  ),
+  "agency": () => (
+    <Agency
+      badge="Award-winning studio"
+      headline="We craft digital experiences that convert"
+      subheadline="Strategy, design, and engineering for forward-thinking brands."
+      primaryAction={<button type="button" className="rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">Start a project</button>}
+      services={[
+        { title: "Strategy", description: "Brand positioning and go-to-market planning.", icon: <span>📊</span> },
+        { title: "Design", description: "UI/UX design systems and prototyping.", icon: <span>🎨</span> },
+        { title: "Engineering", description: "Full-stack development and DevOps.", icon: <span>⚙️</span> },
+      ]}
+    />
+  ),
+  "command-palette": () => {
+    const CommandPaletteDemo2 = () => {
+      const [open, setOpen] = React.useState(true);
+      return (
+        <div className="h-[340px] overflow-hidden rounded-lg border flex flex-col items-center justify-center gap-4 p-6">
+          <button
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Command Palette
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+          <CommandPalette
+            open={open}
+            onOpenChange={setOpen}
+            actions={[
+              { id: "dashboard", label: "Dashboard", group: "pages", onSelect: () => console.log("navigate to dashboard") },
+              { id: "settings", label: "Settings", group: "pages", onSelect: () => console.log("navigate to settings") },
+              { id: "analytics", label: "Analytics", group: "pages", onSelect: () => console.log("navigate to analytics") },
+            ]}
+            groups={[{ id: "pages", label: "Pages" }]}
+          />
+        </div>
+      );
+    };
+    return <CommandPaletteDemo2 />;
+  },
+  "comparison-table": () => {
+    const CT = ComparisonTable as unknown as React.ComponentType<{ products: { id: string; name: string; price?: number; currency?: string; badge?: string; rating?: number; pros?: string[]; cons?: string[] }[]; attributes: { key: string; label: string; render?: (p: { id: string; name: string; price?: number; rating?: number; pros?: string[] }) => React.ReactNode }[]; selectedIds?: string[]; onAddToCart?: (p: { id: string }) => void; onRemove?: (p: { id: string }) => void }>;
+    return (
+      <CT
+        selectedIds={["1", "2"]}
+        products={[
+          { id: "1", name: "Starter Plan", price: 9, currency: "USD", badge: "Popular", rating: 4.2, pros: ["5 projects", "10 GB storage", "Community support"], cons: ["No SSO", "Limited API access"] },
+          { id: "2", name: "Pro Plan", price: 29, currency: "USD", badge: "Best Value", rating: 4.8, pros: ["Unlimited projects", "100 GB storage", "Priority support", "Analytics"], cons: ["No dedicated support"] },
+          { id: "3", name: "Enterprise", price: 99, currency: "USD", rating: 5, pros: ["Everything in Pro", "SSO", "Dedicated support", "SLA"], cons: [] },
+        ]}
+        attributes={[
+          { key: "price", label: "Price/mo", render: (p) => <span className="font-semibold">${p.price}</span> },
+          { key: "rating", label: "Rating", render: (p) => <span>{p.rating} / 5</span> },
+          { key: "pros", label: "Highlights", render: (p) => <span>{(p.pros ?? []).slice(0, 2).join(", ")}</span> },
+        ]}
+        onAddToCart={(p) => console.log("select", p.id)}
+        onRemove={(p) => console.log("remove", p.id)}
+      />
+    );
+  },
+  "cookie-preferences": () => (
+    <CookiePreferences onSave={(prefs: Record<string, boolean>) => console.log("save prefs", prefs)} />
+  ),
+  "cta-section": () => (
+    <CTASection
+      variant="default"
+      background="primary"
+      headline="Ready to ship faster?"
+      subtext="Join thousands of developers building with LaunchApp."
+      primaryAction={<button type="button" className="rounded-md bg-white px-6 py-2.5 text-sm font-semibold text-primary">Get started free</button>}
+      secondaryAction={<button type="button" className="rounded-md border border-white/30 px-6 py-2.5 text-sm font-medium text-white">View docs</button>}
+      align="center"
+    />
+  ),
+  "faq-section": () => (
+    <FAQSection
+      variant="default"
+      eyebrow="FAQ"
+      headline="Frequently asked questions"
+      items={[
+        { question: "How do I get started?", answer: "Sign up for free and follow the quickstart guide in our documentation." },
+        { question: "Is there a free plan?", answer: "Yes, we have a generous free tier with 5 projects and 10 GB storage." },
+        { question: "Can I cancel anytime?", answer: "Absolutely. Cancel your subscription at any time with no questions asked." },
+        { question: "Do you offer team pricing?", answer: "Yes, our Pro and Enterprise plans support unlimited team members." },
+      ]}
+    />
+  ),
+  "feature-grid-block": () => (
+    <FeatureGridBlock
+      variant="default"
+      cols="3"
+      eyebrow="Features"
+      headline="Everything you need to ship"
+      subheadline="Production-ready UI components built for modern applications."
+      features={[
+        { title: "Accessible", description: "Built on Radix UI primitives for full keyboard and screen reader support.", icon: <span aria-hidden className="text-2xl">♿</span> },
+        { title: "Customizable", description: "CSS custom properties and Tailwind for effortless theming.", icon: <span aria-hidden className="text-2xl">🎨</span> },
+        { title: "TypeScript", description: "Fully typed APIs with IntelliSense for a great DX.", icon: <span aria-hidden className="text-2xl">📘</span> },
+        { title: "Dark Mode", description: "First-class dark mode support out of the box.", icon: <span aria-hidden className="text-2xl">🌙</span> },
+        { title: "Production Ready", description: "Battle-tested components shipped in production apps.", icon: <span aria-hidden className="text-2xl">🚀</span> },
+        { title: "Open Source", description: "MIT licensed and open for contributions.", icon: <span aria-hidden className="text-2xl">🔓</span> },
+      ]}
+    />
+  ),
+  "invite-form": () => (
+    <InviteForm
+      onSubmit={({ email, role }: { email: string; role: string }) => console.log("invite", email, role)}
+      onCancel={() => console.log("cancel")}
+    />
+  ),
+  "maintenance": () => (
+    <Maintenance
+      title="We'll be back soon"
+      description="We're performing scheduled maintenance. This should only take a few minutes."
+      estimatedTime="30 minutes"
+      updates={[
+        { label: "Database migration", status: "done" as const },
+        { label: "Service restart", status: "in-progress" as const },
+        { label: "Cache warm-up", status: "pending" as const },
+      ]}
+    />
+  ),
+  "multi-panel-layout": () => (
+    <div className="h-[420px] overflow-hidden rounded-lg border">
+      <MultiPanelLayout
+        leftPanel={<div className="p-4 h-full bg-muted/30 text-sm text-muted-foreground">Left Panel</div>}
+        centerPanel={<div className="p-4 h-full text-sm text-muted-foreground">Center Panel</div>}
+        rightPanel={<div className="p-4 h-full bg-muted/20 text-sm text-muted-foreground">Right Panel</div>}
+      />
+    </div>
+  ),
+  "multi-step-wizard": () => (
+    <MultiStepWizard
+      steps={[
+        { id: "basics", title: "Basic Info", description: "Tell us about yourself.", content: <div className="p-4 text-sm text-muted-foreground">Name and email form goes here</div> },
+        { id: "plan", title: "Choose Plan", description: "Select the right plan for you.", content: <div className="p-4 text-sm text-muted-foreground">Plan selection goes here</div> },
+        { id: "payment", title: "Payment", description: "Enter payment details.", content: <div className="p-4 text-sm text-muted-foreground">Payment form goes here</div> },
+      ]}
+      onComplete={() => console.log("wizard complete")}
+    />
+  ),
+  "not-found": () => (
+    <NotFound
+      homeAction={<button type="button" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Go home</button>}
+      backAction={<button type="button" className="rounded-md border px-4 py-2 text-sm font-medium">Go back</button>}
+    />
+  ),
+  "notification-bell": () => (
+    <div className="flex justify-center p-4">
+      <NotificationBell
+        notifications={[
+          { id: "1", title: "New comment", timestamp: "5m ago", read: false, description: "Alice commented on your post." },
+          { id: "2", title: "Payment received", timestamp: "1h ago", read: false, description: "$49 payment processed." },
+          { id: "3", title: "Team invite", timestamp: "2h ago", read: true, description: "Bob joined your workspace." },
+        ]}
+        onRead={(id: string) => console.log("read", id)}
+        onReadAll={() => console.log("read all")}
+        badgeCount={2}
+      />
+    </div>
+  ),
+  "o-auth-connect-card": () => (
+    <OAuthConnectCard
+      provider={{ id: "github", name: "GitHub", description: "Connect your GitHub account to sync repositories.", scopes: ["repo", "user"] }}
+      isConnected={false}
+      onConnect={() => console.log("connect github")}
+    />
+  ),
+  "portfolio": () => (
+    <Portfolio
+      name="Alice Johnson"
+      title="Full-Stack Engineer & Designer"
+      bio={<p>I build beautiful, performant web applications with a focus on user experience and accessibility.</p>}
+      projects={[
+        { title: "LaunchApp", description: "A complete SaaS design system.", tags: ["React", "TypeScript"], link: "#" },
+        { title: "DataViz", description: "Real-time analytics dashboard.", tags: ["Next.js", "D3.js"], link: "#" },
+        { title: "Commerce", description: "E-commerce platform with AR.", tags: ["Remix", "Three.js"], link: "#" },
+      ]}
+    />
+  ),
+  "pricing-section-block": () => (
+    <PricingSectionBlock
+      headline="Choose your plan"
+      subheadline="Scale as your team grows."
+      tiers={[
+        { name: "Free", monthlyPrice: "0", annualPrice: "0", description: "Perfect for individuals.", features: ["5 projects", "10 GB storage", "Community support"], ctaLabel: "Get started" },
+        { name: "Pro", monthlyPrice: "29", annualPrice: "290", description: "Best for growing teams.", features: ["Unlimited projects", "100 GB storage", "Priority support", "Analytics"], ctaLabel: "Start free trial", popular: true },
+        { name: "Enterprise", monthlyPrice: "99", annualPrice: "990", description: "For large organizations.", features: ["Everything in Pro", "SSO", "Dedicated support", "SLA"], ctaLabel: "Contact sales" },
+      ]}
+    />
+  ),
+  "pricing-table-block": () => (
+    <PricingTableBlock
+      headline="Simple, transparent pricing"
+      subheadline="No hidden fees. Cancel anytime."
+    />
+  ),
+  "saa-s-landing": () => (
+    <SaaSLanding
+      badge="New — v2.0 released"
+      headline="Build faster with LaunchApp"
+      subheadline="A complete design system built on Radix UI and Tailwind CSS."
+      primaryAction={<button type="button" className="rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">Get started</button>}
+      secondaryAction={<button type="button" className="rounded-md border px-6 py-2.5 text-sm font-medium">View docs</button>}
+      featuresTitle="Everything you need"
+      features={[
+        { title: "Fast", description: "Optimized for performance.", icon: <span>⚡</span> },
+        { title: "Secure", description: "Enterprise-grade security.", icon: <span>🔒</span> },
+        { title: "Scalable", description: "Grows with your business.", icon: <span>📈</span> },
+      ]}
+    />
+  ),
+  "search-results": () => (
+    <SearchResults
+      query="design system"
+      searchResults={[
+        { id: "1", title: "Getting Started Guide", excerpt: "Learn how to use LaunchApp.", url: "/docs/getting-started" },
+        { id: "2", title: "Dashboard", excerpt: "Main dashboard", url: "/dashboard" },
+        { id: "3", title: "API Reference", excerpt: "Complete API documentation.", url: "/docs/api" },
+        { id: "4", title: "Settings", excerpt: "Account settings", url: "/settings" },
+      ]}
+      totalCount={4}
+      onSearch={(q: string) => console.log("search", q)}
+      onResultClick={(result: { id: string }) => console.log("click", result.id)}
+    />
+  ),
+  "server-error": () => (
+    <ServerError
+      retryAction={<button type="button" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Try again</button>}
+      homeAction={<button type="button" className="rounded-md border px-4 py-2 text-sm font-medium">Go home</button>}
+    />
+  ),
+  "startup": () => (
+    <Startup
+      badge="YC-backed"
+      headline="The fastest way to build your startup"
+      subheadline="From idea to launch in days, not months."
+      primaryAction={<button type="button" className="rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">Start building</button>}
+      socialProof={[
+        { metric: "500+", label: "Startups" },
+        { metric: "$50M+", label: "Raised" },
+        { metric: "10k+", label: "Users" },
+      ]}
+      testimonials={[
+        { quote: "Shipped our MVP in 2 weeks using LaunchApp.", author: "Sarah Chen", role: "Founder at Acme" },
+      ]}
+    />
+  ),
+  "testimonials-section": () => (
+    <TestimonialsSection
+      variant="default"
+      displayMode="grid"
+      eyebrow="Testimonials"
+      headline="Loved by developers"
+      testimonials={[
+        { quote: "LaunchApp cut our dev time in half.", author: { name: "Alice Johnson", role: "CTO", company: "Startup Inc." } },
+        { quote: "Best component library we've used.", author: { name: "Bob Smith", role: "Lead Engineer", company: "Startup Co." } },
+        { quote: "The theming support is incredible.", author: { name: "Carol White", role: "Frontend Lead", company: "TechCorp" } },
+      ]}
+    />
+  ),
+  "user-menu": () => (
+    <div className="flex justify-center p-4">
+      <UserMenu
+        user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+        sections={[
+          { items: [{ label: "Settings", href: "/settings" }, { label: "Billing", href: "/billing" }] },
+          { items: [{ label: "Sign out", onClick: () => console.log("sign out"), danger: true }] },
+        ]}
+      />
+    </div>
+  ),
 };
