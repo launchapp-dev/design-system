@@ -23,10 +23,12 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./vue": "./src/vue/index.ts"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/vue"
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
