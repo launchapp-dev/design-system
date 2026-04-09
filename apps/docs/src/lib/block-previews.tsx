@@ -208,6 +208,54 @@ const metricCardItems = [
     trendValue: "0.0%",
     sparklineData: [3, 3.5, 3.2, 3.1, 3.3, 3.2, 3.24],
   },
+  {
+    id: "churn",
+    label: "Churn Rate",
+    value: "3.2%",
+    trend: "down" as const,
+    trendValue: "-1.1%",
+    sparklineData: [4.3, 4.1, 3.8, 3.5, 3.3, 3.2],
+  },
+  {
+    id: "nps",
+    label: "NPS Score",
+    value: "72",
+    trend: "up" as const,
+    trendValue: "+4",
+    sparklineData: [60, 65, 68, 70, 71, 72],
+  },
+  {
+    id: "visitors",
+    label: "Visitors",
+    value: "10,000",
+    trend: "up" as const,
+    trendValue: "+18.2%",
+    sparklineData: [8000, 8500, 9000, 9200, 9800, 10000],
+  },
+  {
+    id: "trial",
+    label: "Trial",
+    value: "1,800",
+    trend: "up" as const,
+    trendValue: "+12.5%",
+    sparklineData: [1200, 1350, 1500, 1600, 1700, 1800],
+  },
+  {
+    id: "signups",
+    label: "New Signups",
+    value: "4,200",
+    trend: "up" as const,
+    trendValue: "+25.3%",
+    sparklineData: [3000, 3200, 3600, 3800, 4000, 4200],
+  },
+  {
+    id: "paid",
+    label: "Paid",
+    value: "620",
+    trend: "up" as const,
+    trendValue: "+8.1%",
+    sparklineData: [500, 530, 560, 580, 600, 620],
+  },
 ];
 
 const statsItems = [
@@ -3475,6 +3523,472 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     <UserProfileCard
       user={{ name: "Alice Johnson", username: "alice_j", bio: "Product designer and full-stack developer. Building great UX at LaunchApp.", location: "San Francisco, CA", joinedDate: "January 2023", isVerified: true }}
       stats={[{ label: "Projects", value: 12 }, { label: "Contributions", value: 248 }, { label: "Following", value: 34 }]}
+    />
+  ),
+
+  // batch-7: registry-aligned alias keys (account, acme, admin first)
+  "account": () => (
+    <ConnectedAccounts
+      accounts={[
+        { id: "github", provider: "github", name: "GitHub", username: "alice-dev", connected: true, scopes: ["repo", "user"] },
+        { id: "google", provider: "google", name: "Google", connected: false },
+        { id: "stripe", provider: "stripe", name: "Stripe", connected: true, scopes: ["read", "write"] },
+      ]}
+      onConnectionToggle={(id: string) => console.log("toggle", id)}
+    />
+  ),
+  "acme": () => (
+    <UserProfileHeader
+      name="Alice Johnson"
+      username="alice_j"
+      bio="Product designer and full-stack developer."
+      location="San Francisco, CA"
+      joinedDate="January 2023"
+      isVerified={true}
+      avatarUrl=""
+      fallbackInitials="AJ"
+      organization="Acme Corp"
+      organizationRole="Engineering Lead"
+    />
+  ),
+  "admin": () => (
+    <UserManagementTable
+      users={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const, createdAt: "2024-01-01", lastActiveAt: "2024-01-15" },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "admin" as const, status: "active" as const, createdAt: "2024-02-01", lastActiveAt: "2024-02-10" },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const, status: "active" as const, createdAt: "2024-03-01", lastActiveAt: "2024-03-01" },
+      ]}
+      onBanUser={(id: string) => console.log("ban", id)}
+      onUnbanUser={(id: string) => console.log("unban", id)}
+      onDeleteUser={(id: string) => console.log("delete", id)}
+      onAddUser={() => console.log("add user")}
+    />
+  ),
+  "api": () => (
+    <StatusPage
+      title="System Status"
+      lastUpdated={new Date().toISOString()}
+      systems={[
+        { id: "api", name: "API Gateway", status: "operational" as const, description: "REST and GraphQL APIs", uptime: 99.98, latency: 42 },
+        { id: "web", name: "Web App", status: "operational" as const, description: "Main web application", uptime: 99.95 },
+        { id: "db", name: "Database", status: "degraded" as const, description: "Primary database cluster", uptime: 99.82 },
+      ]}
+    />
+  ),
+  "automate": () => (
+    <div className="grid grid-cols-3 gap-4 p-6">
+      <div className="rounded-lg border p-4 text-center">
+        <div className="mb-2 text-2xl">🚀</div>
+        <div className="text-sm font-medium">Launch</div>
+        <div className="text-xs text-muted-foreground">Ship a new product</div>
+      </div>
+      <div className="rounded-lg border bg-muted/50 p-4 text-center">
+        <div className="mb-2 text-2xl">👥</div>
+        <div className="text-sm font-medium">Grow</div>
+        <div className="text-xs text-muted-foreground">Scale engineering</div>
+      </div>
+      <div className="rounded-lg border p-4 text-center">
+        <div className="mb-2 text-2xl">⚙️</div>
+        <div className="text-sm font-medium">Automate</div>
+        <div className="text-xs text-muted-foreground">Workflows</div>
+      </div>
+    </div>
+  ),
+  "backlog": () => (
+    <ProjectKanban
+      columns={[
+        { id: "backlog", title: "Backlog", color: "#94a3b8", cards: [
+          { id: "1", title: "Refactor auth module", priority: "medium" as const },
+          { id: "2", title: "Add dark mode toggle", priority: "low" as const },
+          { id: "3", title: "Update API docs", priority: "low" as const },
+        ], addCard: true },
+      ]}
+    />
+  ),
+  "backups": () => (
+    <QuotaUsageBar
+      title="Storage Usage"
+      description="Your current storage usage by category."
+      quotas={[
+        { id: "backups", name: "Backups", used: 0.5, limit: 2, unit: "GB" },
+        { id: "files", name: "Files", used: 3.2, limit: 10, unit: "GB" },
+        { id: "media", name: "Media", used: 1.8, limit: 5, unit: "GB" },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+  "basics": () => (
+    <OnboardingWizard
+      steps={[
+        { id: "basics", title: "Basic Info", description: "Tell us about yourself.", content: <div className="p-4 text-sm text-muted-foreground">Name and email form goes here</div> },
+        { id: "plan", title: "Choose Plan", description: "Select the right plan.", content: <div className="p-4 text-sm text-muted-foreground">Plan selection goes here</div> },
+        { id: "done", title: "All done!", description: "You're ready to go.", content: <div className="p-4 text-sm text-muted-foreground">Setup complete!</div> },
+      ]}
+      onComplete={() => console.log("complete")}
+    />
+  ),
+  "bug": () => (
+    <SupportTicketForm
+      ticketType="bug"
+      onSubmit={(data) => console.log("submit", data)}
+      onCancel={() => console.log("cancel")}
+    />
+  ),
+  "churn": () => (
+    <StatsCard
+      title="Churn Rate"
+      value="3.2%"
+      description="Monthly customer churn rate"
+      trend={{ direction: "down", value: "-1.1%", label: "vs last month" }}
+    />
+  ),
+  "content": () => (
+    <div className="rounded-lg border p-6">
+      <div className="text-sm font-medium">Content</div>
+      <div className="mt-1 text-xs text-muted-foreground">Manage pages, posts, and media</div>
+    </div>
+  ),
+  "conversion": () => (
+    <MetricCards items={metricCardItems.filter(m => m.id === "conversion")} />
+  ),
+  "dash": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <DashboardShell
+        navigation={[
+          { id: "home", label: "Home", href: "#" },
+          { id: "analytics", label: "Analytics", href: "#", active: true },
+          { id: "projects", label: "Projects", href: "#" },
+          { id: "settings", label: "Settings", href: "#" },
+        ]}
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6">
+          <h1 className="text-2xl font-semibold">Analytics</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Your business performance at a glance.</p>
+        </div>
+      </DashboardShell>
+    </div>
+  ),
+  "db": () => (
+    <StatusPage
+      title="System Status"
+      lastUpdated={new Date().toISOString()}
+      systems={[
+        { id: "api", name: "API Gateway", status: "operational" as const, description: "REST and GraphQL APIs", uptime: 99.98, latency: 42 },
+        { id: "web", name: "Web App", status: "operational" as const, description: "Main web application", uptime: 99.95 },
+        { id: "db", name: "Database", status: "degraded" as const, description: "Primary database cluster", uptime: 99.82 },
+      ]}
+    />
+  ),
+  "docs": () => (
+    <ChangelogTimeline
+      title="Documentation"
+      entries={[
+        { id: "1", title: "Getting Started Guide", description: "Learn how to set up your first project.", date: "Jan 15, 2025", type: "feature" as const },
+        { id: "2", title: "API Reference", description: "Complete API documentation with examples.", date: "Jan 10, 2025", type: "update" as const },
+        { id: "3", title: "Authentication Guide", description: "Secure your app with OAuth and API keys.", date: "Jan 5, 2025", type: "feature" as const },
+      ]}
+    />
+  ),
+  "done": () => (
+    <ProjectKanban
+      columns={[
+        { id: "done", title: "Done", color: "#10b981", cards: [
+          { id: "1", title: "Project kickoff", priority: "low" as const },
+          { id: "2", title: "Setup CI/CD pipeline", priority: "high" as const },
+        ], addCard: false },
+      ]}
+    />
+  ),
+  "enterprise": () => (
+    <SubscriptionManager
+      plans={[
+        { id: "free", name: "Free", price: 0, billingCycle: "month" as const, features: ["5 projects", "10GB storage"], cta: "Get started", highlighted: false },
+        { id: "pro", name: "Pro", price: 29, billingCycle: "month" as const, features: ["Unlimited projects", "100GB storage", "Priority support"], cta: "Start trial", highlighted: false },
+        { id: "enterprise", name: "Enterprise", price: null, billingCycle: "month" as const, features: ["Unlimited everything", "Dedicated support", "SSO", "SLA"], cta: "Contact sales", highlighted: true },
+      ]}
+      onSelectPlan={(id: string) => console.log("select", id)}
+    />
+  ),
+  "feature": () => (
+    <SupportTicketForm
+      ticketType="feature"
+      onSubmit={(data) => console.log("submit", data)}
+      onCancel={() => console.log("cancel")}
+    />
+  ),
+  "free": () => (
+    <SubscriptionManager
+      plans={[
+        { id: "free", name: "Free", price: 0, billingCycle: "month" as const, features: ["5 projects", "10GB storage"], cta: "Get started", highlighted: true },
+        { id: "pro", name: "Pro", price: 29, billingCycle: "month" as const, features: ["Unlimited projects", "100GB storage", "Priority support"], cta: "Start trial", highlighted: false },
+      ]}
+      onSelectPlan={(id: string) => console.log("select", id)}
+    />
+  ),
+  "general": () => (
+    <AppearanceSettings
+      onThemeChange={(id: string) => console.log("theme", id)}
+      onFontChange={(id: string) => console.log("font", id)}
+    />
+  ),
+  "github": () => (
+    <OAuthConnectCard
+      provider={{ id: "github", name: "GitHub", description: "Sync repositories and pull requests.", scopes: ["repo", "user"] }}
+      isConnected={true}
+      connectedEmail="alice-dev@github.com"
+      onConnect={() => console.log("connect")}
+      onDisconnect={() => console.log("disconnect")}
+    />
+  ),
+  "google": () => (
+    <OAuthConnectCard
+      provider={{ id: "google", name: "Google", description: "Sign in with Google.", scopes: ["email", "profile"] }}
+      isConnected={false}
+      onConnect={() => console.log("connect")}
+      onDisconnect={() => console.log("disconnect")}
+    />
+  ),
+  "grow": () => (
+    <div className="rounded-lg border p-6 text-center">
+      <div className="mb-2 text-3xl">👥</div>
+      <div className="text-sm font-medium">Grow my team</div>
+      <div className="mt-1 text-xs text-muted-foreground">Scale engineering capacity</div>
+    </div>
+  ),
+  "in-progress": () => (
+    <ProjectKanban
+      columns={[
+        { id: "in-progress", title: "In Progress", color: "#f59e0b", cards: [
+          { id: "1", title: "Build API endpoints", priority: "high" as const },
+          { id: "2", title: "Write unit tests", priority: "medium" as const },
+        ], addCard: true },
+      ]}
+    />
+  ),
+  "integrate": () => (
+    <OnboardingChecklist
+      items={[
+        { id: "verify", title: "Verify your email", completed: true, href: "#" },
+        { id: "profile", title: "Complete your profile", completed: true, href: "#" },
+        { id: "integrate", title: "Set up an integration", completed: false, href: "#" },
+      ]}
+      showProgress
+    />
+  ),
+  "launch": () => (
+    <OnboardingChecklist
+      items={[
+        { id: "verify", title: "Verify your email", completed: true, href: "#" },
+        { id: "integrate", title: "Set up an integration", completed: true, href: "#" },
+        { id: "launch", title: "Launch my product", completed: false, href: "#" },
+      ]}
+      showProgress
+    />
+  ),
+  "main": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <DashboardShell
+        navigation={[
+          { id: "home", label: "Home", href: "#", active: true },
+          { id: "analytics", label: "Analytics", href: "#" },
+          { id: "projects", label: "Projects", href: "#" },
+          { id: "settings", label: "Settings", href: "#" },
+        ]}
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6">
+          <h1 className="text-2xl font-semibold">Home</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Your workspace at a glance.</p>
+        </div>
+      </DashboardShell>
+    </div>
+  ),
+  "marketing": () => (
+    <LogoCloud
+      title="Trusted by teams worldwide"
+      logos={[
+        { id: "1", name: "Acme Corp", width: 100 },
+        { id: "2", name: "Globex", width: 80 },
+        { id: "3", name: "Initech", width: 90 },
+        { id: "4", name: "Umbrella", width: 100 },
+        { id: "5", name: "Stark Ind", width: 85 },
+      ]}
+    />
+  ),
+  "media": () => (
+    <QuotaUsageBar
+      title="Storage Usage"
+      description="Your current storage usage by category."
+      quotas={[
+        { id: "media", name: "Media", used: 1.8, limit: 5, unit: "GB" },
+        { id: "files", name: "Files", used: 3.2, limit: 10, unit: "GB" },
+        { id: "backups", name: "Backups", used: 0.5, limit: 2, unit: "GB" },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+  "member": () => (
+    <TeamMemberCard
+      member={{ id: "1", name: "Bob Smith", email: "bob@example.com", role: "member" as const, status: "active" as const }}
+    />
+  ),
+  "name": () => (
+    <ProfileSettings
+      onSave={async (values) => console.log(values)}
+    />
+  ),
+  "nps": () => (
+    <StatsCard
+      title="NPS Score"
+      value="72"
+      description="Net Promoter Score"
+      trend={{ direction: "up", value: "+4", label: "vs last quarter" }}
+    />
+  ),
+  "pages": () => (
+    <ChangelogTimeline
+      title="Pages"
+      entries={[
+        { id: "1", title: "Home", description: "Main landing page.", date: "Jan 15, 2025", type: "update" as const },
+        { id: "2", title: "About", description: "Company information.", date: "Jan 10, 2025", type: "update" as const },
+        { id: "3", title: "Contact", description: "Contact forms and info.", date: "Jan 5, 2025", type: "feature" as const },
+      ]}
+    />
+  ),
+  "paid": () => (
+    <MetricCards items={metricCardItems.filter(m => m.id === "paid")} />
+  ),
+  "personal": () => (
+    <SubscriptionUsageMeter
+      plan="Personal"
+      usage={[
+        { id: "projects", label: "Projects", used: 2, limit: 5 },
+        { id: "storage", label: "Storage", used: 1.2, limit: 5, unit: "GB" },
+        { id: "members", label: "Team Members", used: 1, limit: 1 },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+  "plan": () => (
+    <OnboardingChecklist
+      items={[
+        { id: "basics", title: "Basic Info", completed: true, href: "#" },
+        { id: "plan", title: "Choose Plan", completed: false, href: "#" },
+        { id: "verify", title: "Verify your email", completed: false, href: "#" },
+      ]}
+      showProgress
+    />
+  ),
+  "pro": () => (
+    <SubscriptionManager
+      plans={[
+        { id: "free", name: "Free", price: 0, billingCycle: "month" as const, features: ["5 projects", "10GB storage"], cta: "Get started", highlighted: false },
+        { id: "pro", name: "Pro", price: 29, billingCycle: "month" as const, features: ["Unlimited projects", "100GB storage", "Priority support"], cta: "Start trial", highlighted: true },
+        { id: "enterprise", name: "Enterprise", price: null, billingCycle: "month" as const, features: ["Unlimited everything", "Dedicated support", "SSO", "SLA"], cta: "Contact sales", highlighted: false },
+      ]}
+      onSelectPlan={(id: string) => console.log("select", id)}
+    />
+  ),
+  "signups": () => (
+    <MetricCards items={metricCardItems.filter(m => m.id === "signups")} />
+  ),
+  "slack": () => (
+    <IntegrationCardGrid
+      title="Integrations"
+      integrations={[
+        { id: "slack", name: "Slack", description: "Team notifications.", category: "communication" as const, status: "disconnected" as const },
+        { id: "github", name: "GitHub", description: "Version control.", category: "developer" as const, status: "connected" as const },
+        { id: "stripe", name: "Stripe", description: "Payment processing.", category: "payments" as const, status: "connected" as const },
+      ]}
+      onConnect={(integration) => console.log("connect", integration.id)}
+      onDisconnect={(integration) => console.log("disconnect", integration.id)}
+      onConfigure={(integration) => console.log("configure", integration.id)}
+    />
+  ),
+  "starter": () => (
+    <SubscriptionManager
+      plans={[
+        { id: "starter", name: "Starter", price: 9, billingCycle: "month" as const, features: ["5 projects", "10GB storage", "Email support"], cta: "Get started", highlighted: true },
+        { id: "pro", name: "Pro", price: 29, billingCycle: "month" as const, features: ["Unlimited projects", "100GB storage", "Priority support"], cta: "Start trial", highlighted: false },
+        { id: "enterprise", name: "Enterprise", price: null, billingCycle: "month" as const, features: ["Unlimited everything", "Dedicated support", "SSO"], cta: "Contact sales", highlighted: false },
+      ]}
+      onSelectPlan={(id: string) => console.log("select", id)}
+    />
+  ),
+  "stripe": () => (
+    <IntegrationCardGrid
+      title="Integrations"
+      integrations={[
+        { id: "stripe", name: "Stripe", description: "Payment processing.", category: "payments" as const, status: "connected" as const },
+        { id: "github", name: "GitHub", description: "Version control.", category: "developer" as const, status: "connected" as const },
+        { id: "slack", name: "Slack", description: "Team notifications.", category: "communication" as const, status: "disconnected" as const },
+      ]}
+      onConnect={(integration) => console.log("connect", integration.id)}
+      onDisconnect={(integration) => console.log("disconnect", integration.id)}
+      onConfigure={(integration) => console.log("configure", integration.id)}
+    />
+  ),
+  "todo": () => (
+    <ProjectKanban
+      columns={[
+        { id: "todo", title: "To Do", color: "#94a3b8", cards: [
+          { id: "1", title: "Research competitors", priority: "medium" as const },
+          { id: "2", title: "Design wireframes", priority: "low" as const },
+        ], addCard: true },
+      ]}
+    />
+  ),
+  "trial": () => (
+    <MetricCards items={metricCardItems.filter(m => m.id === "trial")} />
+  ),
+  "user1": () => (
+    <MessageBubbles
+      messages={[
+        { id: "1", content: "Hey! How's it going?", sender: { id: "user1", name: "Alice" }, timestamp: "10:00 AM", isOwn: false },
+        { id: "2", content: "Pretty good! Just working on the new feature.", sender: { id: "me", name: "You" }, timestamp: "10:01 AM", isOwn: true },
+        { id: "3", content: "Can't wait to see it!", sender: { id: "user1", name: "Alice" }, timestamp: "10:02 AM", isOwn: false },
+      ]}
+    />
+  ),
+  "verify": () => (
+    <OnboardingChecklist
+      items={[
+        { id: "verify", title: "Verify your email", completed: true, href: "#" },
+        { id: "profile", title: "Complete your profile", completed: false, href: "#" },
+        { id: "integrate", title: "Set up an integration", completed: false, href: "#" },
+      ]}
+      showProgress
+    />
+  ),
+  "viewer": () => (
+    <TeamMemberCard
+      member={{ id: "3", name: "Carol White", email: "carol@example.com", role: "viewer" as const, status: "active" as const }}
+    />
+  ),
+  "visitors": () => (
+    <MetricCards items={metricCardItems.filter(m => m.id === "visitors")} />
+  ),
+  "web": () => (
+    <StatusPage
+      title="System Status"
+      lastUpdated={new Date().toISOString()}
+      systems={[
+        { id: "web", name: "Web App", status: "operational" as const, description: "Main web application", uptime: 99.95 },
+        { id: "api", name: "API Gateway", status: "operational" as const, description: "REST and GraphQL APIs", uptime: 99.98, latency: 42 },
+        { id: "db", name: "Database", status: "operational" as const, description: "Primary database cluster", uptime: 99.99 },
+      ]}
+    />
+  ),
+  "workspace": () => (
+    <WorkspaceSwitcher
+      currentWorkspace={{ id: "ws1", name: "Acme Corp", slug: "acme" }}
+      workspaces={[
+        { id: "ws1", name: "Acme Corp", slug: "acme" },
+        { id: "ws2", name: "Personal", slug: "personal" },
+      ]}
+      onWorkspaceChange={(ws) => console.log("switch", ws)}
+      onCreateWorkspace={() => console.log("create")}
     />
   ),
 };
