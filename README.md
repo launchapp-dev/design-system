@@ -1,8 +1,11 @@
 # @launchapp/design-system
 
+[![npm version](https://img.shields.io/npm/v/@launchapp/design-system?label=%40launchapp%2Fdesign-system)](https://www.npmjs.com/package/@launchapp/design-system)
 [![Chromatic](https://img.shields.io/badge/Chromatic-visual%20tests-4a48f5?logo=chromatic)](https://www.chromatic.com/library?appId=your-app-id)
 
-A React + TypeScript component library built on Radix UI primitives, styled with Tailwind CSS.
+A React + TypeScript component library built on Radix UI primitives, styled with Tailwind CSS 4. Ships **108+ components** and **191+ pre-built blocks** across 30 categories.
+
+Live previews: [design.launchapp.dev](https://design.launchapp.dev)
 
 ## Quick start
 
@@ -21,91 +24,96 @@ export default function App() {
 
 ---
 
-## npm installation
+## Installation
 
 ### Install the package
 
 ```bash
 npm install @launchapp/design-system
+# or
+pnpm add @launchapp/design-system
 ```
+
+Current version: **v0.3.0**
 
 ### Peer dependencies
 
 ```bash
-npm install react@^18 react-dom@^18 tailwindcss
+npm install react@^18 react-dom@^18
 ```
 
-### Configure Tailwind CSS
+### Configure Tailwind CSS 4
 
-Add the library's source to your `tailwind.config.ts` content paths and extend the theme with the `--la-*` CSS custom properties:
+This library uses **Tailwind CSS 4**. There is no `tailwind.config.ts` — configuration is CSS-first via `@theme` blocks.
 
-```ts
-// tailwind.config.ts
-import type { Config } from "tailwindcss";
+In your app's entry CSS file:
 
-const config: Config = {
-  content: [
-    "./src/**/*.{ts,tsx}",
-    "./node_modules/@launchapp/design-system/dist/**/*.js",
-  ],
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        border: "hsl(var(--la-border))",
-        input: "hsl(var(--la-input))",
-        ring: "hsl(var(--la-ring))",
-        background: "hsl(var(--la-background))",
-        foreground: "hsl(var(--la-foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--la-primary))",
-          foreground: "hsl(var(--la-primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--la-secondary))",
-          foreground: "hsl(var(--la-secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--la-destructive))",
-          foreground: "hsl(var(--la-destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--la-muted))",
-          foreground: "hsl(var(--la-muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--la-accent))",
-          foreground: "hsl(var(--la-accent-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--la-radius)",
-        md: "calc(var(--la-radius) - 2px)",
-        sm: "calc(var(--la-radius) - 4px)",
-      },
-    },
+```css
+@import "tailwindcss";
+@import "@launchapp/design-system/styles.css";
+
+/* Optional: bridge --la-* tokens into Tailwind utility classes */
+@theme inline {
+  --color-primary: hsl(var(--la-primary));
+  --color-primary-foreground: hsl(var(--la-primary-foreground));
+  --color-secondary: hsl(var(--la-secondary));
+  --color-secondary-foreground: hsl(var(--la-secondary-foreground));
+  --color-destructive: hsl(var(--la-destructive));
+  --color-muted: hsl(var(--la-muted));
+  --color-muted-foreground: hsl(var(--la-muted-foreground));
+  --color-accent: hsl(var(--la-accent));
+  --color-border: hsl(var(--la-border));
+  --color-background: hsl(var(--la-background));
+  --color-foreground: hsl(var(--la-foreground));
+}
+```
+
+Configure PostCSS to use the Tailwind CSS 4 plugin:
+
+```js
+// postcss.config.js
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
   },
-  plugins: [],
 };
-
-export default config;
 ```
 
-### Import CSS tokens
+Install the PostCSS plugin:
 
-In your app's entry point (e.g. `src/main.tsx` or `app/layout.tsx`), import the stylesheet:
+```bash
+npm install -D @tailwindcss/postcss
+```
 
-```ts
+---
+
+## Vue 3 / Nuxt
+
+Vue 3 SFC wrappers are available for 90 components via a separate entry point:
+
+```bash
+npm install @launchapp/design-system vue@^3
+```
+
+```vue
+<script setup lang="ts">
+import { LaButton, LaBadge } from "@launchapp/design-system/vue";
 import "@launchapp/design-system/styles.css";
+</script>
+
+<template>
+  <LaButton variant="outline">Hello</LaButton>
+  <LaBadge>New</LaBadge>
+</template>
 ```
 
-This file includes all `--la-*` CSS custom property definitions for both light and dark modes, plus Tailwind base/components/utilities directives.
+All Vue components use the `La` prefix (e.g. `LaButton`, `LaCard`, `LaDialog`). The API mirrors the React components — same props, same variants.
 
 ---
 
 ## shadcn registry installation
 
-Components are also available individually via the shadcn CLI. This copies component source directly into your project so you can customise it freely.
+Components and blocks are also available individually via the shadcn CLI. This copies source directly into your project for full customization.
 
 ### Install a single component
 
@@ -126,17 +134,34 @@ npx shadcn@latest add --registry https://launchapp-dev.github.io/design-system/r
 npx shadcn@latest add --registry https://launchapp-dev.github.io/design-system/registry.json
 ```
 
-Available component slugs match the names listed in [Component reference](#component-reference) below (lowercase, hyphenated).
+Available slugs match component names in lowercase-hyphenated form (e.g. `kpi-card`, `multi-step-wizard`).
+
+---
+
+## Blocks
+
+191 pre-built page sections and UI patterns across 30 categories:
+
+`activity` · `admin` · `app` · `auth` · `billing` · `blog` · `community` · `dashboard` · `data` · `ecommerce` · `errors` · `files` · `forms` · `inbox` · `integrations` · `landing` · `layout` · `marketing` · `messaging` · `metrics` · `navigation` · `notifications` · `onboarding` · `profile` · `project` · `search` · `settings` · `team` · `timeline`
+
+Browse live previews at [design.launchapp.dev/blocks](https://design.launchapp.dev/blocks).
+
+Install a block via shadcn:
+
+```bash
+npx shadcn@latest add --registry https://launchapp-dev.github.io/design-system/registry.json \
+  hero-split pricing-cards dashboard-overview
+```
 
 ---
 
 ## Theming
 
-All design tokens are CSS custom properties prefixed with `--la-`. Override them in your own stylesheet to apply custom branding:
+All design tokens are CSS custom properties prefixed with `--la-`. Override them in your own stylesheet:
 
 ```css
 :root {
-  /* Brand color (HSL values, no `hsl()` wrapper) */
+  /* Brand color (HSL channel values — no hsl() wrapper) */
   --la-primary: 210 100% 50%;
   --la-primary-foreground: 0 0% 100%;
 
@@ -148,7 +173,7 @@ All design tokens are CSS custom properties prefixed with `--la-`. Override them
 }
 ```
 
-You can scope overrides to a specific part of the page:
+You can scope overrides to a part of the page:
 
 ```css
 .marketing-section {
@@ -158,27 +183,64 @@ You can scope overrides to a specific part of the page:
 
 ### Available tokens
 
+**Semantic colors** (HSL channel values, used as `hsl(var(--la-*))`)
+
 | Token | Default (light) | Purpose |
 |---|---|---|
 | `--la-background` | `0 0% 100%` | Page background |
 | `--la-foreground` | `240 10% 3.9%` | Default text |
 | `--la-primary` | `262 83% 58%` | Primary actions |
+| `--la-primary-foreground` | `0 0% 98%` | Text on primary |
 | `--la-secondary` | `240 4.8% 95.9%` | Secondary actions |
+| `--la-secondary-foreground` | `240 5.9% 10%` | Text on secondary |
 | `--la-destructive` | `0 84.2% 60.2%` | Destructive actions |
+| `--la-destructive-foreground` | `0 0% 98%` | Text on destructive |
+| `--la-success` | `142 71% 45%` | Success states |
+| `--la-success-foreground` | `0 0% 98%` | Text on success |
 | `--la-muted` | `240 4.8% 95.9%` | Muted surfaces |
+| `--la-muted-foreground` | `240 3.8% 46.1%` | Muted text |
 | `--la-accent` | `240 4.8% 95.9%` | Accent surfaces |
 | `--la-border` | `240 5.9% 90%` | Border color |
-| `--la-radius` | `0.5rem` | Border radius |
+| `--la-ring` | `262 83% 58%` | Focus ring |
+| `--la-card` | `0 0% 100%` | Card background |
+| `--la-popover` | `0 0% 100%` | Popover background |
+
+**Layout**
+
+| Token | Default | Purpose |
+|---|---|---|
+| `--la-radius` | `0.5rem` | Border radius base |
+
+**Typography**
+
+| Token | Default | Purpose |
+|---|---|---|
+| `--la-font-sans` | `"Inter"` | Sans-serif font |
+| `--la-font-mono` | `"JetBrains Mono"` | Monospace font |
+
+**Animation**
+
+| Token | Default | Purpose |
+|---|---|---|
+| `--la-duration-fast` | `150ms` | Fast transitions |
+| `--la-duration-normal` | `250ms` | Normal transitions |
+| `--la-duration-slow` | `400ms` | Slow transitions |
+| `--la-ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | Ease out (default) |
+| `--la-ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Spring |
+
+**Charts** — `--la-chart-1` through `--la-chart-5`: five distinct colors for data visualization.
 
 ---
 
 ## Dark mode
 
-Dark mode is driven by the `dark` class on a parent element (typically `<html>`). Toggle it with JavaScript:
+Dark mode is driven by the `dark` class on a parent element (typically `<html>`):
 
 ```ts
 document.documentElement.classList.toggle("dark");
 ```
+
+All `--la-*` tokens have dark-mode values defined in the stylesheet — no extra configuration needed.
 
 ### Next.js with next-themes
 
@@ -199,8 +261,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-All `--la-*` tokens have corresponding dark-mode values defined in the stylesheet under the `.dark` selector — no additional configuration required.
-
 ---
 
 ## TypeScript
@@ -217,31 +277,43 @@ const props: ButtonProps = {
 };
 ```
 
-Types are co-located with each component and re-exported from the package root.
-
 ---
 
 ## Component reference
 
-| Component | Import |
-|---|---|
-| `Button` | `import { Button } from "@launchapp/design-system"` |
-| `Input` | `import { Input } from "@launchapp/design-system"` |
-| `Label` | `import { Label } from "@launchapp/design-system"` |
-| `Card` | `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@launchapp/design-system"` |
-| `Badge` | `import { Badge } from "@launchapp/design-system"` |
-| `Checkbox` | `import { Checkbox } from "@launchapp/design-system"` |
-| `Switch` | `import { Switch } from "@launchapp/design-system"` |
-| `Select` | `import { SelectRoot, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@launchapp/design-system"` |
-| `Dialog` | `import { DialogRoot, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@launchapp/design-system"` |
-| `Tabs` | `import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "@launchapp/design-system"` |
-| `Accordion` | `import { AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from "@launchapp/design-system"` |
-| `Tooltip` | `import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from "@launchapp/design-system"` |
-| `Avatar` | `import { Avatar, AvatarImage, AvatarFallback } from "@launchapp/design-system"` |
-| `Separator` | `import { Separator } from "@launchapp/design-system"` |
-| `Toast` | `import { Toaster, useToast } from "@launchapp/design-system"` |
+108 components available. All import from `@launchapp/design-system`.
 
-Full component documentation is available in the docs app.
+**Form**
+`Button` · `Checkbox` · `ColorPicker` · `Combobox` · `DatePicker` · `Form` · `Input` · `Label` · `MultiSelect` · `RadioGroup` · `Select` · `Slider` · `Switch` · `TagInput` · `Textarea` · `Toggle` · `ToggleGroup`
+
+**Layout**
+`Accordion` · `AspectRatio` · `Card` · `Collapsible` · `DashboardGrid` · `Masonry` · `Resizable` · `ScrollArea` · `Separator` · `Sheet` · `Tabs`
+
+**Overlay**
+`AlertDialog` · `ContextMenu` · `Dialog` · `DropdownMenu` · `Menubar` · `NavigationMenu` · `Popover` · `Tooltip`
+
+**Feedback**
+`Alert` · `Badge` · `Banner` · `Progress` · `Skeleton` · `Sonner` · `Toast`
+
+**Data display**
+`Avatar` · `BentoGrid` · `Breadcrumb` · `Carousel` · `Chart` · `DataTable` · `FunnelChart` · `Gauge` · `Heatmap` · `KPICard` · `Pagination` · `Sparkline` · `StatDisplay` · `Table` · `TreeMap`
+
+**Animation**
+`AnimatedBackground` · `AnimatedBorder` · `AnimatedHeight` · `AnimatedText` · `MagicCard` · `Marquee` · `PageTransition` · `ScrollAnimate` · `ScrollEffects` · `StaggeredList` · `TextAnimate`
+
+**Navigation**
+`Dock` · `MobileNav` · `Toolbar`
+
+**Theming**
+`PaletteSwitcher` · `SmartThemingGenerator` · `ThemeCard` · `ThemeGenerator` · `ThemePreview`
+
+**AI / Streaming**
+`ChatBubble` · `ChatInput` · `CopilotPanel` · `StreamingText` · `ThinkingIndicator`
+
+**Misc**
+`Background` · `Calendar` · `Changelog` · `Command` · `CookieConsent` · `ImageComparison` · `InlineEditable` · `Lightbox` · `LiveIndicator` · `MultiStepWizard` · `NotificationBell` · `Portal` · `RealtimeTicker` · `SankeyDiagram` · `Spotlight` · `StatusPage` · `Terminal` · `VideoPlayer` · `VisuallyHidden`
+
+Full documentation and live examples: [design.launchapp.dev/components](https://design.launchapp.dev/components)
 
 ---
 
