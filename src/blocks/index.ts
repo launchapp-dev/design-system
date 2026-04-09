@@ -45,3 +45,6 @@ export type { AuditLogViewerProps, AuditLogEntry, AuditLogLevel } from "./admin"
 // community is the authoritative source for UserProfileCard (also in profile).
 export { UserProfileCard } from "./community";
 export type { UserProfileCardProps, SocialLink } from "./community";
+// navigation is the authoritative source for CommandPalette (also in search).
+export { CommandPalette } from "./navigation";
+export type { CommandPaletteProps, CommandPaletteGroup } from "./navigation";
