@@ -18,11 +18,16 @@ const repoRoot = resolve(docsDir, "../..");
 const registryScript = resolve(repoRoot, "scripts/generate-registry.mjs");
 const registrySrc = resolve(repoRoot, "registry.json");
 const registryDest = resolve(docsDir, "public/registry.json");
+const blocksRegistryScript = resolve(docsDir, "scripts/generate-blocks-registry.mjs");
 
 console.log("[build] repo root:", repoRoot);
 console.log("[build] docs dir:", docsDir);
 
-// Step 1: generate registry.json at repo root
+// Step 1a: auto-regenerate blocks-registry.ts (adds stubs for new blocks)
+console.log("[build] checking blocks-registry.ts for unregistered blocks...");
+execSync(`node ${blocksRegistryScript}`, { cwd: docsDir, stdio: "inherit" });
+
+// Step 1b: generate registry.json at repo root
 console.log("[build] generating registry...");
 execSync(`node ${registryScript}`, { cwd: repoRoot, stdio: "inherit" });
 

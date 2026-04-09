@@ -108,5 +108,10 @@ CI will fail if `registry.json` is stale — the `Check registry is up to date` 
 **Checklist for any block task:**
 1. Add/modify files in `src/blocks/`
 2. Run `node scripts/generate-registry.mjs`
-3. `git add src/blocks/ registry.json`
-4. Commit both together
+3. Run `node apps/docs/scripts/generate-blocks-registry.mjs` (adds stubs for new blocks to blocks-registry.ts — edit description and code before merging)
+4. `git add src/blocks/ registry.json apps/docs/src/lib/blocks-registry.ts`
+5. Commit both together
+
+**Detecting gaps:**
+- `node apps/docs/scripts/find-missing-block-previews.mjs` — shows which blocks lack preview images and which source files are not yet registered
+- `node apps/docs/scripts/generate-blocks-registry.mjs --check` — CI check (exits 1 if any blocks are unregistered)

@@ -8,7 +8,10 @@
     "start": "next start --port 3001",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "generate-previews": "node scripts/capture-block-previews.mjs"
+    "generate-previews": "node scripts/capture-block-previews.mjs",
+    "generate-blocks-registry": "node scripts/generate-blocks-registry.mjs",
+    "check-blocks-registry": "node scripts/generate-blocks-registry.mjs --check",
+    "find-missing-previews": "node scripts/find-missing-block-previews.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.3",
