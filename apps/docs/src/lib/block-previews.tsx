@@ -95,7 +95,7 @@ import {
   PricingComparisonTable,
   ChangelogFeed,
 } from "@ds/blocks/marketing";
-import { MultiPanelLayout, MobileNavDrawerShell } from "@ds/blocks/layout";
+import { MultiPanelLayout, MobileNavDrawerShell, EmptyState as LayoutEmptyState } from "@ds/blocks/layout";
 import { SystemSettingsPanel, WebhookManager, FeatureFlagPanel, StatusPage } from "@ds/blocks/admin";
 import {
   AppShellMinimal,
@@ -163,7 +163,7 @@ import {
   ChecklistWithLinks,
   OnboardingFlow,
 } from "@ds/blocks/onboarding";
-import { SearchCommandPalette, SearchResults } from "@ds/blocks/search";
+import { SearchCommandPalette, SearchResults, CommandPalette as SearchCommandPaletteBlock } from "@ds/blocks/search";
 import { RoleSelector, InviteForm, WorkspaceSwitcher, TeamMemberGrid, TeamRoster, InviteMemberDialog, RolePermissionMatrix, RolePermissionsMatrix } from "@ds/blocks/team";
 import type { ColumnDef } from "@tanstack/react-table";
 import { ActivityStream, AuditLogViewer as ActivityAuditLogViewer } from "@ds/blocks/activity";
@@ -3477,4 +3477,73 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       stats={[{ label: "Projects", value: 12 }, { label: "Contributions", value: 248 }, { label: "Following", value: 34 }]}
     />
   ),
+
+  // batch-6: new unregistered blocks
+  "layout-empty-state": () => (
+    <LayoutEmptyState
+      variant="folder"
+      title="No files yet"
+      description="Upload your first file to get started."
+      action={{ label: "Upload file", onClick: () => console.log("upload") }}
+      secondaryAction={{ label: "Learn more", onClick: () => console.log("learn") }}
+    />
+  ),
+
+  "files-upload-zone": () => (
+    <FileUploadZone
+      accept="image/*,.pdf"
+      maxSize={10 * 1024 * 1024}
+      maxFiles={5}
+      onUpload={(files) => console.log("upload", files.map((f) => f.id))}
+    />
+  ),
+
+  "command-palette-block": () => {
+    const CommandPaletteDemo = () => {
+      const [open, setOpen] = React.useState(true);
+      return (
+        <div className="h-[360px] overflow-hidden rounded-lg border flex flex-col items-center justify-center gap-4 p-6">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent transition-colors"
+          >
+            Open Command Palette
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+          <SearchCommandPaletteBlock
+            open={open}
+            onOpenChange={setOpen}
+            groups={[
+              {
+                id: "pages",
+                label: "Pages",
+                items: [
+                  { id: "dashboard", label: "Dashboard", shortcut: "G D" },
+                  { id: "settings", label: "Settings", shortcut: "G S" },
+                  { id: "team", label: "Team", shortcut: "G T" },
+                ],
+              },
+              {
+                id: "actions",
+                label: "Actions",
+                items: [
+                  { id: "invite", label: "Invite teammate" },
+                  { id: "new-project", label: "New project" },
+                ],
+              },
+            ]}
+            recentItems={[
+              { id: "recent-1", label: "Dashboard" },
+              { id: "recent-2", label: "Settings" },
+            ]}
+            placeholder="Search commands..."
+          />
+        </div>
+      );
+    };
+    return <CommandPaletteDemo />;
+  },
 };

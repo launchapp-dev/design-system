@@ -11,3 +11,10 @@ export type {
 
 export { SearchResults } from "./SearchResults/SearchResults";
 export type { SearchResultsProps, SearchResultItem } from "./SearchResults/SearchResults";
+
+export { CommandPalette } from "./CommandPalette/CommandPalette";
+export type {
+  CommandPaletteProps,
+  CommandPaletteItem,
+  CommandPaletteGroup,
+} from "./CommandPalette/CommandPalette";
