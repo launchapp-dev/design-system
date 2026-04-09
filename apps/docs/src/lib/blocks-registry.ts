@@ -4522,27 +4522,6 @@ export default function ErrorPage() {
 }`,
   },
 
-  // integrations (alias key)
-  {
-    id: "o-auth-connect-card",
-    name: "OAuth Connect Card",
-    description: "Card for connecting a single OAuth provider with scope list and connect/disconnect actions.",
-    category: "integrations",
-    sourcePath: "integrations/OAuthConnectCard.tsx",
-    code: `import { OAuthConnectCard } from "@launchapp/design-system/blocks/integrations";
-
-export default function Page() {
-  return (
-    <OAuthConnectCard
-      provider={{ id: "github", name: "GitHub", description: "Connect your GitHub account to sync repositories.", scopes: ["repo", "user"] }}
-      isConnected={false}
-      onConnect={() => console.log("connect")}
-      onDisconnect={() => console.log("disconnect")}
-    />
-  );
-}`,
-  },
-
   // landing (alias keys — match preview keys in block-previews.tsx batch-3)
   {
     id: "agency",
@@ -4702,7 +4681,7 @@ export default function Page() {
 }`,
   },
   {
-    id: "saa-s-landing",
+    id: "saas-landing",
     name: "SaaS Landing",
     description: "Complete SaaS landing page with hero, features grid, pricing tiers, and CTA.",
     category: "landing",
