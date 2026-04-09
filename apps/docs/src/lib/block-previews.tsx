@@ -4056,9 +4056,8 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
           content: <div className="p-4 text-sm text-muted-foreground">Invite teammates</div>,
         },
       ]}
-      currentStepIndex={0}
-      onNext={() => console.log("next")}
-      onBack={() => console.log("back")}
+      initialStep={0}
+      onStepChange={(step) => console.log("step", step)}
       onComplete={() => console.log("project created")}
     />
   ),
