@@ -3114,4 +3114,334 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       />
     </div>
   ),
+
+  // batch-4: registry-aligned alias keys
+  "dashboard": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <DashboardShell
+        navigation={[
+          { id: "home", label: "Home", href: "#", active: true },
+          { id: "analytics", label: "Analytics", href: "#" },
+          { id: "projects", label: "Projects", href: "#" },
+          { id: "settings", label: "Settings", href: "#" },
+        ]}
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6">
+          <h1 className="text-2xl font-semibold">Dashboard</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Welcome back, Alice.</p>
+        </div>
+      </DashboardShell>
+    </div>
+  ),
+
+  "analytics": () => (
+    <MetricsDashboard
+      title="Analytics"
+      columns={3}
+      showChange
+      metrics={[
+        { id: "visitors", label: "Visitors", value: "12,450", change: "+18%", changeType: "up" },
+        { id: "pageviews", label: "Page Views", value: "48,200", change: "+22%", changeType: "up" },
+        { id: "bounce", label: "Bounce Rate", value: "38.2%", change: "-2.1%", changeType: "down" },
+        { id: "sessions", label: "Sessions", value: "9,810", change: "+14%", changeType: "up" },
+        { id: "conversion", label: "Conversion", value: "3.6%", change: "+0.4%", changeType: "up" },
+        { id: "revenue", label: "Revenue", value: "$18,900", change: "+9%", changeType: "up" },
+      ]}
+    />
+  ),
+
+  "users": () => (
+    <UserManagementTable
+      users={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const, createdAt: "2024-01-01", lastActiveAt: "2024-01-15" },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "editor" as const, status: "active" as const, createdAt: "2024-02-01", lastActiveAt: "2024-02-10" },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "viewer" as const, status: "pending" as const, createdAt: "2024-03-01", lastActiveAt: "2024-03-01" },
+      ]}
+      onBanUser={(id: string) => console.log("ban", id)}
+      onUnbanUser={(id: string) => console.log("unban", id)}
+      onDeleteUser={(id: string) => console.log("delete", id)}
+      onAddUser={() => console.log("add user")}
+    />
+  ),
+
+  "settings": () => (
+    <TabbedSettings
+      tabs={[
+        { id: "general", label: "General", children: <div className="p-4 text-sm text-muted-foreground">General settings</div> },
+        { id: "account", label: "Account", children: <div className="p-4 text-sm text-muted-foreground">Account settings</div> },
+        { id: "notifications", label: "Notifications", children: <div className="p-4 text-sm text-muted-foreground">Notification preferences</div> },
+        { id: "billing", label: "Billing", children: <div className="p-4 text-sm text-muted-foreground">Billing and plan details</div> },
+      ]}
+    />
+  ),
+
+  "notifications": () => (
+    <NotificationCenter
+      notifications={[
+        { id: "1", title: "PR approved", description: "Alice approved your pull request.", timestamp: "2m ago", read: false, avatarInitials: "AJ" },
+        { id: "2", title: "Payment received", description: "$290 payment processed.", timestamp: "1h ago", read: false, avatarInitials: "ST" },
+        { id: "3", title: "Deployment complete", description: "Production deploy finished successfully.", timestamp: "3h ago", read: true, avatarInitials: "CI" },
+      ]}
+      onRead={(id: string) => console.log("read", id)}
+      onReadAll={() => console.log("read all")}
+    />
+  ),
+
+  "integrations": () => (
+    <IntegrationCardGrid
+      title="Integrations"
+      description="Connect the tools your team already uses."
+      searchable
+      integrations={[
+        { id: "github", name: "GitHub", description: "Sync repositories and pull requests.", category: "other" as const, status: "connected" as const },
+        { id: "slack", name: "Slack", description: "Send notifications to Slack channels.", category: "communication" as const, status: "connected" as const },
+        { id: "stripe", name: "Stripe", description: "Process payments and subscriptions.", category: "payments" as const, status: "connected" as const },
+        { id: "hubspot", name: "HubSpot", description: "Sync leads and customer data.", category: "crm" as const, status: "disconnected" as const },
+        { id: "zapier", name: "Zapier", description: "Automate workflows between apps.", category: "other" as const, status: "disconnected" as const },
+        { id: "intercom", name: "Intercom", description: "Customer messaging platform.", category: "communication" as const, status: "disconnected" as const },
+      ]}
+      onConnect={(integration) => console.log("connect", integration.id)}
+      onDisconnect={(integration) => console.log("disconnect", integration.id)}
+      onConfigure={(integration) => console.log("configure", integration.id)}
+    />
+  ),
+
+  "team": () => (
+    <TeamMemberList
+      members={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "admin" as const, status: "active" as const },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "member" as const, status: "active" as const },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const, status: "active" as const },
+        { id: "4", name: "Dave Brown", email: "dave@example.com", role: "member" as const, status: "pending" as const },
+      ]}
+      onRemove={(member) => console.log("remove", member.id)}
+    />
+  ),
+
+  "profile": () => (
+    <UserProfileCard
+      user={{ name: "Alice Johnson", username: "alice", bio: "Full-stack developer passionate about great UX.", location: "San Francisco, CA", joinedDate: "January 2023", isVerified: true }}
+      stats={[{ label: "Posts", value: 42 }, { label: "Followers", value: 128 }, { label: "Following", value: 64 }]}
+    />
+  ),
+
+  "billing": () => (
+    <BillingOverview
+      plan={{ id: "pro", name: "Pro", price: "$29/mo", billingCycle: "monthly", description: "Best for growing teams." }}
+      status="active"
+      onUpgrade={() => console.log("upgrade")}
+      onManage={() => console.log("manage")}
+    />
+  ),
+
+  "files": () => (
+    <FileGrid
+      files={[
+        { id: "1", name: "report.pdf", type: "document" as const, size: 2457600, modifiedAt: "2024-01-01" },
+        { id: "2", name: "photo.jpg", type: "image" as const, size: 1153434, modifiedAt: "2024-01-02" },
+        { id: "3", name: "slides.pptx", type: "document" as const, size: 4194304, modifiedAt: "2024-01-03" },
+        { id: "4", name: "archive.zip", type: "archive" as const, size: 983040, modifiedAt: "2024-01-04" },
+      ]}
+      columns={4}
+      onOpen={(id: string) => console.log("open", id)}
+      onDownload={(id: string) => console.log("download", id)}
+    />
+  ),
+
+  "projects": () => (
+    <ProjectBoard
+      initialColumns={[
+        { id: "planning", title: "To Do", status: "planning", tasks: [
+          { id: "1", title: "Design onboarding flow", priority: "high", tags: ["design"] },
+          { id: "2", title: "Write API docs", priority: "medium", tags: ["docs"] },
+        ]},
+        { id: "in-progress", title: "In Progress", status: "in-progress", tasks: [
+          { id: "3", title: "Implement auth", priority: "high", assignee: { name: "Bob Smith" }, tags: ["auth"] },
+        ]},
+        { id: "review", title: "Review", status: "review", tasks: [] },
+        { id: "completed", title: "Done", status: "completed", tasks: [
+          { id: "4", title: "Setup CI/CD", priority: "medium", assignee: { name: "Carol White" } },
+        ]},
+      ]}
+    />
+  ),
+
+  "revenue": () => (
+    <StatsCard
+      title="Monthly Revenue"
+      value="$45,231"
+      description="MRR — Monthly Recurring Revenue"
+      trend={{ direction: "up", value: "+20.1%", label: "vs last month" }}
+    />
+  ),
+
+  "members": () => (
+    <TeamMemberGrid
+      title="Team Members"
+      description="Manage your team and their permissions."
+      columns={2}
+      showInviteButton
+      members={[
+        { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "owner" as const, status: "active" as const, joinedAt: "2023-01-01" },
+        { id: "2", name: "Bob Smith", email: "bob@example.com", role: "admin" as const, status: "active" as const, joinedAt: "2023-02-01" },
+        { id: "3", name: "Carol White", email: "carol@example.com", role: "member" as const, status: "active" as const, joinedAt: "2023-03-01" },
+        { id: "4", name: "Dave Brown", email: "dave@example.com", role: "member" as const, status: "pending" as const, joinedAt: "2024-01-01" },
+      ]}
+      currentUserId="1"
+      onRemove={(member) => console.log("remove", member.id)}
+      onChangeRole={(member, role) => console.log("change role", member.id, role)}
+      onInvite={() => console.log("invite")}
+    />
+  ),
+
+  "invite": () => (
+    <TeamInviteFlow
+      onSendInvites={(emails: string[]) => console.log("invite", emails)}
+      onSkip={() => console.log("skip")}
+      maxInvites={5}
+    />
+  ),
+
+  "role": () => (
+    <div className="flex flex-col gap-3 p-4">
+      <p className="text-sm font-medium">Select a role</p>
+      <RoleSelector
+        value="member"
+        onChange={(role: string) => console.log("role changed to", role)}
+      />
+    </div>
+  ),
+
+  "status": () => {
+    const SP = StatusPage as React.ComponentType<{ services: { id: string; name: string; status: "operational" | "degraded" | "outage" | "maintenance"; uptime?: number; latency?: number; description?: string }[]; overallStatus?: "operational" | "degraded" | "outage" | "maintenance"; title?: string }>;
+    return (
+      <SP
+        title="System Status"
+        overallStatus="operational"
+        services={[
+          { id: "api", name: "API Gateway", status: "operational", uptime: 99.98, latency: 42 },
+          { id: "web", name: "Web App", status: "operational", uptime: 99.95, latency: 120 },
+          { id: "db", name: "Database", status: "degraded", uptime: 99.5, latency: 85, description: "Elevated query times" },
+          { id: "email", name: "Email Service", status: "operational", uptime: 100, latency: 250 },
+        ]}
+      />
+    );
+  },
+
+  "welcome": () => (
+    <WelcomeScreen
+      title="Welcome to LaunchApp"
+      description="Everything you need to build and ship your SaaS product."
+      features={[
+        { icon: <span aria-hidden>🚀</span>, title: "Ship faster", description: "Production-ready components out of the box." },
+        { icon: <span aria-hidden>🎨</span>, title: "Beautiful by default", description: "Thoughtfully designed with dark mode support." },
+        { icon: <span aria-hidden>♿</span>, title: "Fully accessible", description: "Built on Radix UI for WCAG compliance." },
+      ]}
+      ctaLabel="Get started"
+      onCta={() => console.log("get started")}
+    />
+  ),
+
+  "review": () => {
+    const RL = ReviewsList as React.ComponentType<{ reviews: { id: string; author: string; rating: number; title?: string; content: string; date: string; verified?: boolean; helpful?: number }[]; overallRating?: number; totalCount?: number; ratingDistribution?: Record<number, number>; showDistribution?: boolean; showHelpful?: boolean; showVerified?: boolean; onHelpful?: (r: { id: string }) => void; onReport?: (r: { id: string }) => void }>;
+    return (
+      <RL
+        overallRating={4.3}
+        totalCount={128}
+        showDistribution
+        showHelpful
+        showVerified
+        ratingDistribution={{ 5: 68, 4: 32, 3: 14, 2: 8, 1: 6 }}
+        reviews={[
+          { id: "1", author: "Alice Johnson", rating: 5, title: "Excellent product!", content: "Exactly what I was looking for. Great quality and fast shipping.", date: "2024-01-15", verified: true, helpful: 12 },
+          { id: "2", author: "Bob Smith", rating: 4, title: "Good but could be better", content: "Overall satisfied with the purchase. Minor issue with packaging.", date: "2024-01-10", verified: true, helpful: 7 },
+          { id: "3", author: "Carol White", rating: 3, title: "Average", content: "Meets expectations but nothing special.", date: "2024-01-05", verified: false, helpful: 2 },
+        ]}
+        onHelpful={(r) => console.log("helpful", r.id)}
+        onReport={(r) => console.log("report", r.id)}
+      />
+    );
+  },
+
+  "orders": () => (
+    <OrderSummary
+      items={[
+        { id: "1", name: "Premium Plan", quantity: 1, price: 290 },
+        { id: "2", name: "Extra Storage (50GB)", quantity: 1, price: 49 },
+        { id: "3", name: "Priority Support", quantity: 1, price: 99 },
+      ]}
+      taxRate={0.08}
+      shippingCost={0}
+      onCheckout={() => console.log("checkout")}
+    />
+  ),
+
+  "payment": () => (
+    <PaymentMethodCard
+      methods={[
+        { id: "1", type: "card" as const, brand: "Visa", last4: "4242", expiryMonth: 12, expiryYear: 2026, isDefault: true },
+        { id: "2", type: "card" as const, brand: "Mastercard", last4: "5353", expiryMonth: 8, expiryYear: 2027, isDefault: false },
+      ]}
+      selectedId="1"
+    />
+  ),
+
+  "storage": () => (
+    <QuotaUsageBar
+      title="Storage Usage"
+      description="Your current storage usage by category."
+      quotas={[
+        { id: "files", name: "Files", used: 3.2, limit: 10, unit: "GB" },
+        { id: "media", name: "Media", used: 1.8, limit: 5, unit: "GB" },
+        { id: "backups", name: "Backups", used: 0.5, limit: 2, unit: "GB" },
+      ]}
+      onUpgrade={() => console.log("upgrade")}
+    />
+  ),
+
+  "images": () => (
+    <ImageGallery
+      images={[
+        { id: "1", src: "/placeholder-image.jpg", alt: "Screenshot 1" },
+        { id: "2", src: "/placeholder-image.jpg", alt: "Screenshot 2" },
+        { id: "3", src: "/placeholder-image.jpg", alt: "Screenshot 3" },
+        { id: "4", src: "/placeholder-image.jpg", alt: "Screenshot 4" },
+        { id: "5", src: "/placeholder-image.jpg", alt: "Screenshot 5" },
+        { id: "6", src: "/placeholder-image.jpg", alt: "Screenshot 6" },
+      ]}
+      columns={3}
+    />
+  ),
+
+  "navigation": () => (
+    <div className="h-[500px] relative overflow-hidden border rounded-lg">
+      <AppSidebar sections={navSections} user={navUser} />
+    </div>
+  ),
+
+  "home": () => (
+    <div className="h-[480px] overflow-hidden rounded-lg border">
+      <DashboardShell
+        navigation={[
+          { id: "home", label: "Home", href: "#", active: true },
+          { id: "analytics", label: "Analytics", href: "#" },
+          { id: "settings", label: "Settings", href: "#" },
+        ]}
+        user={{ name: "Alice Johnson", email: "alice@example.com", fallbackInitials: "AJ" }}
+      >
+        <div className="p-6">
+          <h1 className="text-2xl font-semibold">Home</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Your workspace at a glance.</p>
+        </div>
+      </DashboardShell>
+    </div>
+  ),
+
+  "me": () => (
+    <UserProfileCard
+      user={{ name: "Alice Johnson", username: "alice_j", bio: "Product designer and full-stack developer. Building great UX at LaunchApp.", location: "San Francisco, CA", joinedDate: "January 2023", isVerified: true }}
+      stats={[{ label: "Projects", value: 12 }, { label: "Contributions", value: 248 }, { label: "Following", value: 34 }]}
+    />
+  ),
 };
