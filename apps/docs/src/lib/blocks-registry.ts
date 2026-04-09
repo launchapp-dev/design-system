@@ -4486,6 +4486,500 @@ export default function Page() {
 }`,
   },
 
+  // errors (alias keys — match preview keys in block-previews.tsx batch-3)
+  {
+    id: "not-found",
+    name: "404 Not Found",
+    description: "Clean 404 page with headline, description, and home/back action buttons.",
+    category: "errors",
+    sourcePath: "errors/NotFound/NotFound.tsx",
+    code: `import { NotFound } from "@launchapp/design-system/blocks/errors";
+
+export default function NotFoundPage() {
+  return (
+    <NotFound
+      homeAction={<a href="/">Go home</a>}
+      backAction={<button type="button" onClick={() => history.back()}>Go back</button>}
+    />
+  );
+}`,
+  },
+  {
+    id: "server-error",
+    name: "500 Server Error",
+    description: "Server error page with retry action and home link.",
+    category: "errors",
+    sourcePath: "errors/ServerError/ServerError.tsx",
+    code: `import { ServerError } from "@launchapp/design-system/blocks/errors";
+
+export default function ErrorPage() {
+  return (
+    <ServerError
+      retryAction={<button type="button" onClick={() => window.location.reload()}>Try again</button>}
+      homeAction={<a href="/">Go home</a>}
+    />
+  );
+}`,
+  },
+
+  // integrations (alias key)
+  {
+    id: "o-auth-connect-card",
+    name: "OAuth Connect Card",
+    description: "Card for connecting a single OAuth provider with scope list and connect/disconnect actions.",
+    category: "integrations",
+    sourcePath: "integrations/OAuthConnectCard.tsx",
+    code: `import { OAuthConnectCard } from "@launchapp/design-system/blocks/integrations";
+
+export default function Page() {
+  return (
+    <OAuthConnectCard
+      provider={{ id: "github", name: "GitHub", description: "Connect your GitHub account to sync repositories.", scopes: ["repo", "user"] }}
+      isConnected={false}
+      onConnect={() => console.log("connect")}
+      onDisconnect={() => console.log("disconnect")}
+    />
+  );
+}`,
+  },
+
+  // landing (alias keys — match preview keys in block-previews.tsx batch-3)
+  {
+    id: "agency",
+    name: "Agency Landing",
+    description: "Full-page agency landing with hero, services grid, team, and case studies.",
+    category: "landing",
+    sourcePath: "landing/Agency/Agency.tsx",
+    code: `import { Agency } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <Agency
+      badge="Award-winning studio"
+      headline="We craft digital experiences that convert"
+      subheadline="Strategy, design, and engineering for forward-thinking brands."
+      primaryAction={<a href="/contact">Start a project</a>}
+      services={[
+        { title: "Strategy", description: "Brand positioning and go-to-market planning." },
+        { title: "Design", description: "UI/UX design systems and prototyping." },
+        { title: "Engineering", description: "Full-stack development and DevOps." },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "cta-section",
+    name: "CTA Section",
+    description: "Full-width call-to-action section with headline, subtext, and action buttons.",
+    category: "landing",
+    sourcePath: "landing/CTASection/CTASection.tsx",
+    code: `import { CTASection } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <CTASection
+      background="primary"
+      headline="Ready to ship faster?"
+      subtext="Join thousands of developers building with LaunchApp."
+      primaryAction={<a href="/signup">Get started free</a>}
+      secondaryAction={<a href="/docs">View docs</a>}
+      align="center"
+    />
+  );
+}`,
+  },
+  {
+    id: "faq-section",
+    name: "FAQ Section",
+    description: "Accordion FAQ section with optional search, eyebrow, and headline.",
+    category: "landing",
+    sourcePath: "landing/FAQSection/FAQSection.tsx",
+    code: `import { FAQSection } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <FAQSection
+      eyebrow="FAQ"
+      headline="Frequently asked questions"
+      items={[
+        { question: "How do I get started?", answer: "Sign up for free and follow the quickstart guide." },
+        { question: "Is there a free plan?", answer: "Yes, we have a generous free tier with 5 projects and 10 GB storage." },
+        { question: "Can I cancel anytime?", answer: "Absolutely. Cancel at any time with no questions asked." },
+        { question: "Do you offer team pricing?", answer: "Yes, our Pro and Enterprise plans support unlimited team members." },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "feature-grid-block",
+    name: "Feature Grid Block",
+    description: "Responsive feature grid with icons, titles, descriptions, and optional badges.",
+    category: "landing",
+    sourcePath: "landing/FeatureGridBlock/FeatureGridBlock.tsx",
+    code: `import { FeatureGridBlock } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <FeatureGridBlock
+      cols="3"
+      eyebrow="Features"
+      headline="Everything you need to ship"
+      subheadline="Production-ready UI components built for modern applications."
+      features={[
+        { title: "Accessible", description: "Built on Radix UI primitives for full keyboard and screen reader support." },
+        { title: "Customizable", description: "CSS custom properties and Tailwind for effortless theming." },
+        { title: "TypeScript", description: "Fully typed APIs with IntelliSense for a great DX." },
+        { title: "Dark Mode", description: "First-class dark mode support out of the box." },
+        { title: "Production Ready", description: "Battle-tested components shipped in production apps." },
+        { title: "Open Source", description: "MIT licensed and open for contributions." },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "portfolio",
+    name: "Portfolio Landing",
+    description: "Personal portfolio landing with projects grid, bio, and contact section.",
+    category: "landing",
+    sourcePath: "landing/Portfolio/Portfolio.tsx",
+    code: `import { Portfolio } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <Portfolio
+      name="Alice Johnson"
+      title="Full-Stack Engineer & Designer"
+      bio="I build beautiful, performant web applications with a focus on user experience."
+      projects={[
+        { title: "LaunchApp", description: "A complete SaaS design system.", tags: ["React", "TypeScript"], link: "#" },
+        { title: "DataViz", description: "Real-time analytics dashboard.", tags: ["Next.js", "D3.js"], link: "#" },
+        { title: "Commerce", description: "E-commerce platform with AR.", tags: ["Remix", "Three.js"], link: "#" },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "pricing-section-block",
+    name: "Pricing Section Block",
+    description: "Pricing section with monthly/annual billing toggle, tier cards, and optional FAQ.",
+    category: "landing",
+    sourcePath: "landing/PricingSectionBlock/PricingSectionBlock.tsx",
+    code: `import { PricingSectionBlock } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <PricingSectionBlock
+      headline="Choose your plan"
+      subheadline="Scale as your team grows."
+      tiers={[
+        { name: "Free", monthlyPrice: "0", annualPrice: "0", description: "Perfect for individuals.", features: ["5 projects", "10 GB storage", "Community support"], ctaLabel: "Get started" },
+        { name: "Pro", monthlyPrice: "29", annualPrice: "290", description: "Best for growing teams.", features: ["Unlimited projects", "100 GB storage", "Priority support"], ctaLabel: "Start free trial", popular: true },
+        { name: "Enterprise", monthlyPrice: "99", annualPrice: "990", description: "For large organizations.", features: ["Everything in Pro", "SSO", "Dedicated support"], ctaLabel: "Contact sales" },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "pricing-table-block",
+    name: "Pricing Table Block",
+    description: "Detailed pricing comparison table with tier columns and feature rows.",
+    category: "landing",
+    sourcePath: "landing/PricingTableBlock/PricingTableBlock.tsx",
+    code: `import { PricingTableBlock } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <PricingTableBlock
+      headline="Simple, transparent pricing"
+      subheadline="No hidden fees. Cancel anytime."
+    />
+  );
+}`,
+  },
+  {
+    id: "saa-s-landing",
+    name: "SaaS Landing",
+    description: "Complete SaaS landing page with hero, features grid, pricing tiers, and CTA.",
+    category: "landing",
+    sourcePath: "landing/SaaSLanding/SaaSLanding.tsx",
+    code: `import { SaaSLanding } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <SaaSLanding
+      badge="New — v2.0 released"
+      headline="Build faster with LaunchApp"
+      subheadline="A complete design system built on Radix UI and Tailwind CSS."
+      primaryAction={<a href="/signup">Get started</a>}
+      secondaryAction={<a href="/docs">View docs</a>}
+      featuresTitle="Everything you need"
+      features={[
+        { title: "Fast", description: "Optimized for performance." },
+        { title: "Secure", description: "Enterprise-grade security." },
+        { title: "Scalable", description: "Grows with your business." },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "startup",
+    name: "Startup Landing",
+    description: "Startup landing page with bold hero, traction metrics, and testimonials.",
+    category: "landing",
+    sourcePath: "landing/Startup/Startup.tsx",
+    code: `import { Startup } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <Startup
+      badge="YC-backed"
+      headline="The fastest way to build your startup"
+      subheadline="From idea to launch in days, not months."
+      primaryAction={<a href="/signup">Start building</a>}
+      socialProof={[
+        { metric: "500+", label: "Startups" },
+        { metric: "$50M+", label: "Raised" },
+        { metric: "10k+", label: "Users" },
+      ]}
+      testimonials={[
+        { quote: "Shipped our MVP in 2 weeks using LaunchApp.", author: "Sarah Chen", role: "Founder at Acme" },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "testimonials-section",
+    name: "Testimonials Section",
+    description: "Customer testimonials section with grid, carousel, or masonry display modes.",
+    category: "landing",
+    sourcePath: "landing/TestimonialsSection/TestimonialsSection.tsx",
+    code: `import { TestimonialsSection } from "@launchapp/design-system/blocks/landing";
+
+export default function Page() {
+  return (
+    <TestimonialsSection
+      displayMode="grid"
+      eyebrow="Testimonials"
+      headline="Loved by developers"
+      testimonials={[
+        { quote: "LaunchApp cut our dev time in half.", author: { name: "Alice Johnson", role: "CTO", company: "Startup Inc." } },
+        { quote: "Best component library we've used.", author: { name: "Bob Smith", role: "Lead Engineer", company: "Startup Co." } },
+        { quote: "The theming support is incredible.", author: { name: "Carol White", role: "Frontend Lead", company: "TechCorp" } },
+      ]}
+    />
+  );
+}`,
+  },
+
+  // layout (alias key)
+  {
+    id: "multi-panel-layout",
+    name: "Multi Panel Layout",
+    description: "Three-column layout with configurable left, center, and right panels and optional header.",
+    category: "app-shells",
+    sourcePath: "layout/MultiPanelLayout/MultiPanelLayout.tsx",
+    code: `import { MultiPanelLayout } from "@launchapp/design-system/blocks/layout";
+
+export default function Page() {
+  return (
+    <MultiPanelLayout
+      leftPanel={<div className="p-4">Navigation</div>}
+      centerPanel={<div className="p-4">Main Content</div>}
+      rightPanel={<div className="p-4">Details</div>}
+    />
+  );
+}`,
+  },
+
+  // navigation (alias key)
+  {
+    id: "user-menu",
+    name: "User Menu",
+    description: "Avatar-triggered dropdown menu with sectioned navigation items, badges, and sign-out.",
+    category: "navigation",
+    sourcePath: "navigation/UserMenu/UserMenu.tsx",
+    code: `import { UserMenu } from "@launchapp/design-system/blocks/navigation";
+
+export default function Page() {
+  return (
+    <UserMenu
+      user={{ name: "Alice Johnson", email: "alice@example.com", avatarFallback: "AJ" }}
+      sections={[
+        { items: [{ label: "Settings", href: "/settings" }, { label: "Billing", href: "/billing" }] },
+        { items: [{ label: "Sign out", onClick: () => console.log("sign out"), danger: true }] },
+      ]}
+    />
+  );
+}`,
+  },
+
+  // notifications (alias keys)
+  {
+    id: "activity-timeline",
+    name: "Activity Timeline",
+    description: "Vertical timeline of activity events with icons, titles, descriptions, and timestamps.",
+    category: "notifications",
+    sourcePath: "notifications/ActivityTimeline.tsx",
+    code: `import { ActivityTimeline } from "@launchapp/design-system/blocks/notifications";
+
+export default function Page() {
+  return (
+    <ActivityTimeline
+      title="Recent Activity"
+      items={[
+        { id: "1", title: "Project created", description: "You created 'LaunchApp v2'", timestamp: "2024-01-01T10:00:00Z" },
+        { id: "2", title: "Member added", description: "Alice joined the team", timestamp: "2024-01-02T09:00:00Z" },
+        { id: "3", title: "PR merged", description: "feat(docs): update component library", timestamp: "2024-01-03T14:30:00Z" },
+      ]}
+    />
+  );
+}`,
+  },
+  {
+    id: "notification-bell",
+    name: "Notification Bell",
+    description: "Icon button with unread badge that opens a notification dropdown list.",
+    category: "notifications",
+    sourcePath: "notifications/NotificationBell/NotificationBell.tsx",
+    code: `import { NotificationBell } from "@launchapp/design-system/blocks/notifications";
+
+export default function Page() {
+  return (
+    <NotificationBell
+      notifications={[
+        { id: "1", title: "New comment", timestamp: "5m ago", read: false, description: "Alice commented on your post." },
+        { id: "2", title: "Payment received", timestamp: "1h ago", read: false, description: "$49 payment processed." },
+        { id: "3", title: "Team invite", timestamp: "2h ago", read: true, description: "Bob joined your workspace." },
+      ]}
+      badgeCount={2}
+      onRead={(id) => console.log("read", id)}
+      onReadAll={() => console.log("read all")}
+    />
+  );
+}`,
+  },
+
+  // onboarding (alias key)
+  {
+    id: "multi-step-wizard",
+    name: "Multi Step Wizard",
+    description: "Step-by-step wizard with progress indicator, back/next navigation, and completion handler.",
+    category: "onboarding",
+    sourcePath: "onboarding/MultiStepWizard.tsx",
+    code: `import { MultiStepWizard } from "@launchapp/design-system/blocks/onboarding";
+
+export default function Page() {
+  return (
+    <MultiStepWizard
+      steps={[
+        { id: "basics", title: "Basic Info", description: "Tell us about yourself.", content: <div className="p-4">Name and email form</div> },
+        { id: "plan", title: "Choose Plan", description: "Select the right plan.", content: <div className="p-4">Plan selection</div> },
+        { id: "payment", title: "Payment", description: "Enter payment details.", content: <div className="p-4">Payment form</div> },
+      ]}
+      onComplete={() => console.log("wizard complete")}
+    />
+  );
+}`,
+  },
+
+  // search (alias keys)
+  {
+    id: "command-palette",
+    name: "Command Palette",
+    description: "Keyboard-accessible command palette with grouped actions and recent items.",
+    category: "search",
+    sourcePath: "search/CommandPalette/CommandPalette.tsx",
+    code: `import { CommandPalette } from "@launchapp/design-system/blocks/search";
+import { useState } from "react";
+
+export default function Page() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Command Palette (⌘K)</button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        groups={[{ id: "pages", label: "Pages" }]}
+        actions={[
+          { id: "dashboard", label: "Dashboard", group: "pages", onSelect: () => console.log("dashboard") },
+          { id: "settings", label: "Settings", group: "pages", onSelect: () => console.log("settings") },
+          { id: "analytics", label: "Analytics", group: "pages", onSelect: () => console.log("analytics") },
+        ]}
+      />
+    </>
+  );
+}`,
+  },
+  {
+    id: "search-results",
+    name: "Search Results",
+    description: "Search results page with query input, result list, filters, and sort controls.",
+    category: "search",
+    sourcePath: "search/SearchResults/SearchResults.tsx",
+    code: `import { SearchResults } from "@launchapp/design-system/blocks/search";
+
+export default function Page() {
+  return (
+    <SearchResults
+      query="design system"
+      searchResults={[
+        { id: "1", title: "Getting Started Guide", excerpt: "Learn how to use LaunchApp.", url: "/docs/getting-started" },
+        { id: "2", title: "Dashboard", excerpt: "Main dashboard overview.", url: "/dashboard" },
+        { id: "3", title: "API Reference", excerpt: "Complete API documentation.", url: "/docs/api" },
+      ]}
+      totalCount={3}
+      onSearch={(q) => console.log("search", q)}
+      onResultClick={(result) => console.log("click", result.id)}
+    />
+  );
+}`,
+  },
+
+  // settings (alias key)
+  {
+    id: "cookie-preferences",
+    name: "Cookie Preferences",
+    description: "GDPR-compliant cookie consent panel with category toggles and save action.",
+    category: "settings",
+    sourcePath: "settings/CookiePreferences/CookiePreferences.tsx",
+    code: `import { CookiePreferences } from "@launchapp/design-system/blocks/settings";
+
+export default function Page() {
+  return (
+    <CookiePreferences
+      onSave={(prefs) => console.log("save prefs", prefs)}
+    />
+  );
+}`,
+  },
+
+  // team (alias key)
+  {
+    id: "invite-form",
+    name: "Invite Form",
+    description: "Team member invite form with email input, role selector, and multi-recipient support.",
+    category: "team",
+    sourcePath: "team/InviteForm.tsx",
+    code: `import { InviteForm } from "@launchapp/design-system/blocks/team";
+
+export default function Page() {
+  return (
+    <InviteForm
+      onSubmit={({ email, role }) => console.log("invite", email, role)}
+      onCancel={() => console.log("cancel")}
+    />
+  );
+}`,
+  },
+
   // timeline
   {
     id: "timeline-view",
