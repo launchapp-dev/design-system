@@ -47,7 +47,8 @@ function handleKeydown(e: KeyboardEvent) {
     e.preventDefault();
     addTag(inputValue.value);
   } else if (e.key === "Backspace" && !inputValue.value && props.modelValue.length > 0) {
-    removeTag(props.modelValue[props.modelValue.length - 1]);
+    const lastTag = props.modelValue[props.modelValue.length - 1];
+    if (lastTag) removeTag(lastTag);
   }
 }
 </script>
