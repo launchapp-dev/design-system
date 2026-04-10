@@ -655,7 +655,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <LoginForm />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <LoginForm disabled />
+        <LoginForm />
       </div>
     </div>
   ),
@@ -668,7 +668,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <SignUpForm />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <SignUpForm disabled />
+        <SignUpForm />
       </div>
     </div>
   ),
@@ -681,7 +681,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <ForgotPasswordForm />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <ForgotPasswordForm disabled />
+        <ForgotPasswordForm />
       </div>
     </div>
   ),
@@ -694,7 +694,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <OTPVerification email="alice@example.com" />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <OTPVerification email="alice@example.com" disabled />
+        <OTPVerification email="alice@example.com" />
       </div>
     </div>
   ),
@@ -707,7 +707,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <MetricCards items={metricCardItems} />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <MetricCards items={metricCardItems} disabled />
+        <MetricCards items={metricCardItems} />
       </div>
     </div>
   ),
@@ -730,7 +730,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <ActivityFeed
           activities={activityItems}
           title="Recent Activity"
-          disabled
         />
       </div>
     </div>
@@ -753,7 +752,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <AccountSettings />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <AccountSettings disabled />
+        <AccountSettings />
       </div>
     </div>
   ),
@@ -766,7 +765,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <NotificationPreferences />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <NotificationPreferences disabled />
+        <NotificationPreferences />
       </div>
     </div>
   ),
@@ -779,7 +778,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <BillingPage />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <BillingPage disabled />
+        <BillingPage />
       </div>
     </div>
   ),
@@ -798,7 +797,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
         <div
           className="h-[500px] relative overflow-hidden border rounded-lg"
-          disabled
         >
           <AppSidebar sections={navSections} user={navUser} />
         </div>
@@ -832,7 +830,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
           columns={userColumns}
           data={userData}
           searchColumn="name"
-          disabled
         />
       </div>
     </div>
@@ -846,7 +843,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <KanbanBoard initialColumns={kanbanColumns} />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <KanbanBoard initialColumns={kanbanColumns} disabled />
+        <KanbanBoard initialColumns={kanbanColumns} />
       </div>
     </div>
   ),
@@ -867,7 +864,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <Timeline items={timelineItems} />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <Timeline items={timelineItems} disabled />
+        <Timeline items={timelineItems} />
       </div>
     </div>
   ),
@@ -926,7 +923,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <ProductCardGrid products={products} columns={3} />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <ProductCardGrid products={products} columns={3} disabled />
+        <ProductCardGrid products={products} columns={3} />
       </div>
     </div>
   ),
@@ -954,7 +951,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
           taxRate={0.08}
           shippingCost={9.99}
           freeShippingThreshold={100}
-          disabled
         />
       </div>
     </div>
@@ -1000,7 +996,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <PricingTable
           tiers={pricingTiers}
           headline="Simple, transparent pricing"
-          disabled
         />
       </div>
     </div>
@@ -1790,7 +1785,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <AuthFormBlock variant="login" />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <AuthFormBlock variant="login" disabled />
+        <AuthFormBlock variant="login" />
       </div>
     </div>
   ),
@@ -1803,7 +1798,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <ResetPasswordForm />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <ResetPasswordForm disabled />
+        <ResetPasswordForm />
       </div>
     </div>
   ),
@@ -1951,7 +1946,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
           onSave={(prefs: Record<string, boolean>) =>
             console.log("save prefs", prefs)
           }
-          disabled
         />
       </div>
     </div>
@@ -1971,7 +1965,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <LanguageSettings />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <LanguageSettings disabled />
+        <LanguageSettings />
       </div>
     </div>
   ),
@@ -2321,7 +2315,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
           title="My Page"
           description="Page description here."
           maxWidth="lg"
-          disabled
         >
           <div className="rounded-lg border p-6 text-sm text-muted-foreground">
             Content goes here
@@ -3032,7 +3025,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <CommunityThemesGallery columns={3} />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <CommunityThemesGallery columns={3} disabled />
+        <CommunityThemesGallery columns={3} />
       </div>
     </div>
   ),
@@ -5929,7 +5922,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
           onSave={(prefs: Record<string, boolean>) =>
             console.log("save prefs", prefs)
           }
-          disabled
         />
       </div>
     </div>
@@ -7160,7 +7152,6 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
         <div
           className="h-[500px] relative overflow-hidden border rounded-lg"
-          disabled
         >
           <AppSidebar sections={navSections} user={navUser} />
         </div>
@@ -7297,7 +7288,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <AccountSettings />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <AccountSettings disabled />
+        <AccountSettings />
       </div>
     </div>
   ),
@@ -8212,7 +8203,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
         <NotificationPreferences />
       </div>
       <div className="w-full max-w-sm opacity-50 pointer-events-none">
-        <NotificationPreferences disabled />
+        <NotificationPreferences />
       </div>
     </div>
   ),
