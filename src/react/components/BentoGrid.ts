@@ -1,0 +1,15 @@
+export { BentoGrid as LaBentoGrid } from "../../components/BentoGrid";
+export { BentoCard as LaBentoCard } from "../../components/BentoGrid";
+export { BentoCardHeader as LaBentoCardHeader } from "../../components/BentoGrid";
+export { BentoCardTitle as LaBentoCardTitle } from "../../components/BentoGrid";
+export { BentoCardDescription as LaBentoCardDescription } from "../../components/BentoGrid";
+export { BentoCardBody as LaBentoCardBody } from "../../components/BentoGrid";
+export { BentoCardFooter as LaBentoCardFooter } from "../../components/BentoGrid";
+export { bentoGridVariants as laBentoGridVariants } from "../../components/BentoGrid";
+export { bentoCardVariants as laBentoCardVariants } from "../../components/BentoGrid";
+export type { BentoGridProps as LaBentoGridProps } from "../../components/BentoGrid";
+export type { BentoCardProps as LaBentoCardProps } from "../../components/BentoGrid";
+export type { BentoGridVariantsProps as LaBentoGridVariantsProps } from "../../components/BentoGrid";
+export type { BentoCardVariantsProps as LaBentoCardVariantsProps } from "../../components/BentoGrid";
+export type { BentoGridVariants as LaBentoGridVariants } from "../../components/BentoGrid";
+export type { BentoCardVariants as LaBentoCardVariants } from "../../components/BentoGrid";

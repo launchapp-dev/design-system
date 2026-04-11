@@ -1,0 +1,11 @@
+export { ChatBubble as LaChatBubble } from "../../components/ChatBubble";
+export { ChatBubbleGroup as LaChatBubbleGroup } from "../../components/ChatBubble";
+export { ChatBubbleLinkPreview as LaChatBubbleLinkPreview } from "../../components/ChatBubble";
+export { chatBubbleVariants as laChatBubbleVariants } from "../../components/ChatBubble";
+export { chatBubbleContentVariants as laChatBubbleContentVariants } from "../../components/ChatBubble";
+export type { ChatBubbleProps as LaChatBubbleProps } from "../../components/ChatBubble";
+export type { ChatBubbleGroupProps as LaChatBubbleGroupProps } from "../../components/ChatBubble";
+export type { LinkPreviewProps as LaLinkPreviewProps } from "../../components/ChatBubble";
+export type { ChatBubbleVariants as LaChatBubbleVariants } from "../../components/ChatBubble";
+export type { ChatBubbleContentVariants as LaChatBubbleContentVariants } from "../../components/ChatBubble";
+export type { CodeBlockVariants as LaCodeBlockVariants } from "../../components/ChatBubble";

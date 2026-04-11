@@ -1,0 +1,10 @@
+export { DialogRoot as LaDialogRoot } from "../../components/Dialog";
+export { DialogTrigger as LaDialogTrigger } from "../../components/Dialog";
+export { DialogPortal as LaDialogPortal } from "../../components/Dialog";
+export { DialogClose as LaDialogClose } from "../../components/Dialog";
+export { DialogOverlay as LaDialogOverlay } from "../../components/Dialog";
+export { DialogContent as LaDialogContent } from "../../components/Dialog";
+export { DialogHeader as LaDialogHeader } from "../../components/Dialog";
+export { DialogFooter as LaDialogFooter } from "../../components/Dialog";
+export { DialogTitle as LaDialogTitle } from "../../components/Dialog";
+export { DialogDescription as LaDialogDescription } from "../../components/Dialog";

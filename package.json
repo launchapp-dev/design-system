@@ -24,10 +24,12 @@
       "require": "./dist/index.cjs"
     },
     "./styles.css": "./dist/styles.css",
+    "./react": "./src/react/index.ts",
     "./vue": "./src/vue/index.ts"
   },
   "files": [
     "dist",
+    "src/react",
     "src/vue"
   ],
   "scripts": {

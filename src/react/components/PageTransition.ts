@@ -1,0 +1,10 @@
+export { PageTransition as LaPageTransition } from "../../components/PageTransition";
+export { TransitionGroup as LaTransitionGroup } from "../../components/PageTransition";
+export { RouteTransition as LaRouteTransition } from "../../components/PageTransition";
+export { AnimatePresence as LaAnimatePresence } from "../../components/PageTransition";
+export { MorphTransition as LaMorphTransition } from "../../components/PageTransition";
+export type { PageTransitionProps as LaPageTransitionProps } from "../../components/PageTransition";
+export type { TransitionGroupProps as LaTransitionGroupProps } from "../../components/PageTransition";
+export type { RouteTransitionProps as LaRouteTransitionProps } from "../../components/PageTransition";
+export type { AnimatePresenceProps as LaAnimatePresenceProps } from "../../components/PageTransition";
+export type { MorphTransitionProps as LaMorphTransitionProps } from "../../components/PageTransition";

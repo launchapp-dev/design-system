@@ -1,0 +1,11 @@
+export { Banner as LaBanner } from "../../components/Banner";
+export { BannerContent as LaBannerContent } from "../../components/Banner";
+export { BannerTitle as LaBannerTitle } from "../../components/Banner";
+export { BannerDescription as LaBannerDescription } from "../../components/Banner";
+export { BannerAction as LaBannerAction } from "../../components/Banner";
+export { BannerActions as LaBannerActions } from "../../components/Banner";
+export { BannerDismiss as LaBannerDismiss } from "../../components/Banner";
+export { bannerVariants as laBannerVariants } from "../../components/Banner";
+export type { BannerProps as LaBannerProps } from "../../components/Banner";
+export type { BannerActionProps as LaBannerActionProps } from "../../components/Banner";
+export type { BannerVariants as LaBannerVariants } from "../../components/Banner";

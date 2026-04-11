@@ -1,0 +1,11 @@
+export { AlertDialogRoot as LaAlertDialogRoot } from "../../components/AlertDialog";
+export { AlertDialogTrigger as LaAlertDialogTrigger } from "../../components/AlertDialog";
+export { AlertDialogPortal as LaAlertDialogPortal } from "../../components/AlertDialog";
+export { AlertDialogOverlay as LaAlertDialogOverlay } from "../../components/AlertDialog";
+export { AlertDialogContent as LaAlertDialogContent } from "../../components/AlertDialog";
+export { AlertDialogHeader as LaAlertDialogHeader } from "../../components/AlertDialog";
+export { AlertDialogFooter as LaAlertDialogFooter } from "../../components/AlertDialog";
+export { AlertDialogTitle as LaAlertDialogTitle } from "../../components/AlertDialog";
+export { AlertDialogDescription as LaAlertDialogDescription } from "../../components/AlertDialog";
+export { AlertDialogAction as LaAlertDialogAction } from "../../components/AlertDialog";
+export { AlertDialogCancel as LaAlertDialogCancel } from "../../components/AlertDialog";

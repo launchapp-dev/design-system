@@ -1,0 +1,16 @@
+export { MenubarRoot as LaMenubarRoot } from "../../components/Menubar";
+export { MenubarMenu as LaMenubarMenu } from "../../components/Menubar";
+export { MenubarTrigger as LaMenubarTrigger } from "../../components/Menubar";
+export { MenubarContent as LaMenubarContent } from "../../components/Menubar";
+export { MenubarItem as LaMenubarItem } from "../../components/Menubar";
+export { MenubarCheckboxItem as LaMenubarCheckboxItem } from "../../components/Menubar";
+export { MenubarRadioItem as LaMenubarRadioItem } from "../../components/Menubar";
+export { MenubarLabel as LaMenubarLabel } from "../../components/Menubar";
+export { MenubarSeparator as LaMenubarSeparator } from "../../components/Menubar";
+export { MenubarShortcut as LaMenubarShortcut } from "../../components/Menubar";
+export { MenubarGroup as LaMenubarGroup } from "../../components/Menubar";
+export { MenubarPortal as LaMenubarPortal } from "../../components/Menubar";
+export { MenubarSub as LaMenubarSub } from "../../components/Menubar";
+export { MenubarSubContent as LaMenubarSubContent } from "../../components/Menubar";
+export { MenubarSubTrigger as LaMenubarSubTrigger } from "../../components/Menubar";
+export { MenubarRadioGroup as LaMenubarRadioGroup } from "../../components/Menubar";

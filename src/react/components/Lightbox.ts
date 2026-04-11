@@ -1,0 +1,11 @@
+export { Lightbox as LaLightbox } from "../../components/Lightbox";
+export { lightboxVariants as laLightboxVariants } from "../../components/Lightbox";
+export { lightboxContentVariants as laLightboxContentVariants } from "../../components/Lightbox";
+export { lightboxImageVariants as laLightboxImageVariants } from "../../components/Lightbox";
+export { lightboxThumbnailVariants as laLightboxThumbnailVariants } from "../../components/Lightbox";
+export type { LightboxProps as LaLightboxProps } from "../../components/Lightbox";
+export type { LightboxImage as LaLightboxImage } from "../../components/Lightbox";
+export type { LightboxVariants as LaLightboxVariants } from "../../components/Lightbox";
+export type { LightboxContentVariants as LaLightboxContentVariants } from "../../components/Lightbox";
+export type { LightboxImageVariants as LaLightboxImageVariants } from "../../components/Lightbox";
+export type { LightboxThumbnailVariants as LaLightboxThumbnailVariants } from "../../components/Lightbox";

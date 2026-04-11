@@ -1,0 +1,12 @@
+export { Card as LaCard } from "../../components/Card";
+export { CardHeader as LaCardHeader } from "../../components/Card";
+export { CardTitle as LaCardTitle } from "../../components/Card";
+export { CardDescription as LaCardDescription } from "../../components/Card";
+export { CardContent as LaCardContent } from "../../components/Card";
+export { CardFooter as LaCardFooter } from "../../components/Card";
+export type { CardProps as LaCardProps } from "../../components/Card";
+export type { CardHeaderProps as LaCardHeaderProps } from "../../components/Card";
+export type { CardTitleProps as LaCardTitleProps } from "../../components/Card";
+export type { CardDescriptionProps as LaCardDescriptionProps } from "../../components/Card";
+export type { CardContentProps as LaCardContentProps } from "../../components/Card";
+export type { CardFooterProps as LaCardFooterProps } from "../../components/Card";
