@@ -17,6 +17,7 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "svelte": "./src/svelte/index.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -25,7 +26,10 @@
     },
     "./styles.css": "./dist/styles.css",
     "./react": "./src/react/index.ts",
-    "./svelte": "./src/svelte/index.ts",
+    "./svelte": {
+      "svelte": "./src/svelte/index.ts",
+      "default": "./src/svelte/index.ts"
+    },
     "./vue": "./src/vue/index.ts"
   },
   "files": [
