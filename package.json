@@ -1,6 +1,6 @@
 {
   "name": "@launchapp/design-system",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "workspaces": [
     ".",
     "apps/*",
@@ -25,11 +25,13 @@
     },
     "./styles.css": "./dist/styles.css",
     "./react": "./src/react/index.ts",
+    "./svelte": "./src/svelte/index.ts",
     "./vue": "./src/vue/index.ts"
   },
   "files": [
     "dist",
     "src/react",
+    "src/svelte",
     "src/vue"
   ],
   "scripts": {

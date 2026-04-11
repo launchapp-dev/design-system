@@ -1,3 +1,11 @@
+## 0.4.0
+
+### Minor Changes
+
+- Add 108 React adapter components in `src/react/` — import via `@launchapp/design-system/react` (`La*` prefix, e.g. `LaButton`, `LaCard`)
+- Add Svelte 5 wrappers for all 108 components in `src/svelte/` — import via `@launchapp/design-system/svelte` (`La*` prefix, e.g. `LaButton`, `LaCard`)
+- Expose `./react` and `./svelte` package exports and include both directories in published `files`
+
 ## 0.3.0
 
 ### Minor Changes
