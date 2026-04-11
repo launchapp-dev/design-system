@@ -71,11 +71,14 @@ const getFiles = (dir, fileList = []) => {
 
 const tsxFiles = getFiles(COMPONENT_DIR);
 let exportsList = `export { cn } from "./utils/cn";\n\n`;
+const generatedComponents = new Set();
 
 for (const file of tsxFiles) {
   const content = fs.readFileSync(file, 'utf-8');
   const componentName = path.basename(file, '.tsx');
   if (componentName === 'index' || componentName.toLowerCase() === componentName) continue;
+  if (generatedComponents.has(componentName)) continue;
+  generatedComponents.add(componentName);
 
   const cvaData = extractCva(content);
   let svelteContent = '';

@@ -32,7 +32,6 @@ export { default as LaConsentHistoryTable } from "./components/ConsentHistoryTab
 export { default as LaContextMenu } from "./components/ContextMenu.svelte";
 export { default as LaCookieConsent } from "./components/CookieConsent.svelte";
 export { default as LaCookieConsentBanner } from "./components/CookieConsentBanner.svelte";
-export { default as LaCookieConsentBanner } from "./components/CookieConsentBanner.svelte";
 export { default as LaCookiePreferencesDialog } from "./components/CookiePreferencesDialog.svelte";
 export { default as LaCopilotPanel } from "./components/CopilotPanel.svelte";
 export { default as LaDashboardGrid } from "./components/DashboardGrid.svelte";
