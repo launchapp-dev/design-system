@@ -18,6 +18,6 @@ export { Cell as LaCell } from "../../components/Chart";
 export { XAxis as LaXAxis } from "../../components/Chart";
 export { YAxis as LaYAxis } from "../../components/Chart";
 export { CartesianGrid as LaCartesianGrid } from "../../components/Chart";
-export { Tooltip as LaChartTooltip } from "../../components/Chart";
+export { ChartTooltip as LaChartTooltip } from "../../components/Chart";
 export { Legend as LaLegend } from "../../components/Chart";
 export { ResponsiveContainer as LaResponsiveContainer } from "../../components/Chart";

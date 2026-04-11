@@ -1,3 +1,3 @@
-export { Toaster as LaToaster } from "../../components/Sonner";
-export type { ToasterProps as LaToasterProps } from "../../components/Sonner";
-export { toast as laToast } from "../../components/Sonner";
+export { Toaster as LaSonnerToaster } from "../../components/Sonner";
+export type { ToasterProps as LaSonnerToasterProps } from "../../components/Sonner";
+export { toast as laSonnerToast } from "../../components/Sonner";

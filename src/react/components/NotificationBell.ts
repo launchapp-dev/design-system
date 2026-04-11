@@ -3,4 +3,3 @@ export { notificationBellVariants as laNotificationBellVariants } from "../../co
 export type { NotificationBellProps as LaNotificationBellProps } from "../../components/NotificationBell";
 export type { NotificationItem as LaNotificationItem } from "../../components/NotificationBell";
 export type { NotificationBellVariants as LaNotificationBellVariants } from "../../components/NotificationBell";
-export type { BadgeVariants as LaBadgeVariants } from "../../components/NotificationBell";

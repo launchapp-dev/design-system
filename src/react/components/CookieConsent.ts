@@ -2,10 +2,8 @@ export { CookieConsent as LaCookieConsent } from "../../components/CookieConsent
 export { DEFAULT_CATEGORIES as LaDEFAULT_CATEGORIES } from "../../components/CookieConsent";
 export type { CookieConsentProps as LaCookieConsentProps } from "../../components/CookieConsent";
 export type { CookieCategory as LaCookieCategory } from "../../components/CookieConsent";
-export { CookieConsentBanner as LaCookieConsentBanner } from "../../components/CookieConsent";
 export { CookieSettingsButton as LaCookieSettingsButton } from "../../components/CookieConsent";
 export { LAUNCHAPP_CATEGORIES as LaLAUNCHAPP_CATEGORIES } from "../../components/CookieConsent";
-export type { CookieConsentBannerProps as LaCookieConsentBannerProps } from "../../components/CookieConsent";
 export type { CookieSettingsButtonProps as LaCookieSettingsButtonProps } from "../../components/CookieConsent";
 export { useCookieConsent as laUseCookieConsent } from "../../components/CookieConsent";
 export { readConsentCookie as laReadConsentCookie } from "../../components/CookieConsent";
