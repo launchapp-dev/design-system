@@ -1063,20 +1063,6 @@ export { analyzeImageColors } from "./lib/vision";
 export type { VisionThemeOptions, VisionColorMap, VisionThemeResult } from "./lib/vision";
 
 export {
-  analyzeComponentA11y,
-  generateComponentFix,
-  batchAnalyzeComponents,
-  generateA11yReport,
-  verifyWithAxeCore,
-} from "./lib/a11y-fixer";
-export type {
-  A11yViolation,
-  A11yFix,
-  A11yAnalysisResult,
-  A11yFixerOptions,
-} from "./lib/a11y-fixer";
-
-export {
   getPluginManager,
   resetPluginManager,
   useVariant,
