@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
   // where distDir puts the build on Vercel), so Vercel can correctly resolve
   // file paths and serve all pages — including dynamic routes — on direct nav.
   outputFileTracingRoot: path.resolve(__dirname, "../.."),
+  // jsdom is a Node-only package used by a11y-fixer (dynamically imported).
+  // Marking it as a server external prevents it from being pulled into the
+  // client bundle when @launchapp/design-system is transpiled.
+  serverExternalPackages: ["jsdom"],
 };
 
 export default nextConfig;

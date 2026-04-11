@@ -1,3 +1,5 @@
+"use client";
+
 import { AnimatedBackground } from "@launchapp/design-system";
 import { AnimatedBorder } from "@launchapp/design-system";
 import { AnimatedHeight } from "@launchapp/design-system";
@@ -60,7 +62,6 @@ import { ThemePreview } from "@launchapp/design-system";
 import { ThinkingIndicator } from "@launchapp/design-system";
 import { TreeMap } from "@launchapp/design-system";
 import { VideoPlayer } from "@launchapp/design-system";
-("use client");
 
 import * as React from "react";
 import {
