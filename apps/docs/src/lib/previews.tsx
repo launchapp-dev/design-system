@@ -222,9 +222,109 @@ import {
   ToolbarToggleItem,
 } from "@launchapp/design-system";
 
+import { Calendar, Collapsible, CollapsibleTrigger, CollapsibleContent, DatePicker, Progress, Toaster, useToast } from "@launchapp/design-system";
+
 export type PreviewFn = () => React.ReactElement;
 
 export const previews: Record<string, PreviewFn> = {
+  calendar: () => {
+    const [date, setDate] = React.useState<Date | undefined>(new Date());
+    return (
+      <div className="p-4 border rounded-md bg-background shadow-sm inline-block">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          className="rounded-md border"
+        />
+      </div>
+    );
+  },
+  collapsible: () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    return (
+      <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-[350px] space-y-2 border rounded-md p-4">
+        <div className="flex items-center justify-between space-x-4 px-4">
+          <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" size="sm">
+              <span className="sr-only">Toggle</span>
+              {isOpen ? "Close" : "Open"}
+            </Button>
+          </CollapsibleTrigger>
+        </div>
+        <CollapsibleContent className="space-y-2">
+          <div className="rounded-md border px-4 py-2 font-mono text-sm shadow-sm">
+            radix-ui/primitives
+          </div>
+          <div className="rounded-md border px-4 py-2 font-mono text-sm shadow-sm">
+            radix-ui/colors
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
+    );
+  },
+  "date-picker": () => {
+    const [date, setDate] = React.useState<Date | undefined>(new Date());
+    return (
+      <div className="flex flex-col gap-4 max-w-sm">
+        <DatePicker
+          date={date}
+          setDate={setDate}
+        />
+        <div className="text-sm text-muted-foreground">
+          Selected date: {date ? date.toLocaleDateString() : "None"}
+        </div>
+      </div>
+    );
+  },
+  progress: () => {
+    const [progress, setProgress] = React.useState(13);
+    React.useEffect(() => {
+      const timer = setTimeout(() => setProgress(66), 500);
+      return () => clearTimeout(timer);
+    }, []);
+    return (
+      <div className="w-[60%] flex flex-col gap-4 p-4 border rounded-md">
+        <Progress value={progress} className="w-full" />
+        <Progress value={100} className="w-full" />
+        <div className="text-sm text-muted-foreground text-center">
+          Loading resources...
+        </div>
+      </div>
+    );
+  },
+  toast: () => {
+    const { toast } = useToast();
+    return (
+      <div className="flex flex-col gap-4 p-6 border rounded-md items-center">
+        <Button
+          variant="outline"
+          onClick={() => {
+            toast({
+              title: "Scheduled: Catch up",
+              description: "Friday, February 10, 2023 at 5:57 PM",
+            });
+          }}
+        >
+          Show Default Toast
+        </Button>
+        <Button
+          variant="default"
+          onClick={() => {
+            toast({
+              variant: "destructive",
+              title: "Uh oh! Something went wrong.",
+              description: "There was a problem with your request.",
+            });
+          }}
+        >
+          Show Destructive Toast
+        </Button>
+        <Toaster />
+      </div>
+    );
+  },
   button: () => (
     <div className="flex flex-wrap gap-2">
       <Button>Default</Button>
@@ -1135,8 +1235,9 @@ export const previews: Record<string, PreviewFn> = {
     );
   },
   "animated-text": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <AnimatedText text="Building great products starts here." animation="fadeUp" />
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px] p-8 bg-muted/10 rounded-lg">
+      <AnimatedText text="Building great products starts here." animation="fadeUp" className="text-2xl font-bold tracking-tight text-primary" />
+      <AnimatedText text="With LaunchApp templates." animation="blurIn" className="text-lg text-muted-foreground mt-2" delay={500} />
     </div>
   ),
   background: () => (
@@ -1211,13 +1312,17 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
   "chat-bubble": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ChatBubble timestamp="10:00 AM">Hey! How&#39;s it going?</ChatBubble>
+    <div className="flex flex-col gap-4 w-full max-w-md mx-auto items-start justify-center min-h-[200px] p-4 border rounded-xl bg-background/50">
+      <ChatBubble timestamp="10:00 AM" variant="received">Hey! How&#39;s it going?</ChatBubble>
+      <ChatBubble timestamp="10:01 AM" variant="sent" className="self-end bg-primary text-primary-foreground">Doing well, just working on some UI components!</ChatBubble>
     </div>
   ),
   "chat-input": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ChatInput placeholder="Message #general" onSend={(msg) => console.log("sent:", msg)} />
+    <div className="flex flex-col gap-4 w-full items-center justify-end min-h-[200px] p-6 bg-muted/20 rounded-xl">
+      <div className="w-full max-w-lg">
+        <ChatInput placeholder="Message #general" onSend={(msg) => console.log("sent:", msg)} />
+        <p className="text-xs text-muted-foreground mt-2 text-center">Press Enter to send, Shift+Enter for new line.</p>
+      </div>
     </div>
   ),
   "color-picker": () => {
@@ -1331,8 +1436,10 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
   gauge: () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <Gauge value={72} label="Performance" />
+    <div className="flex flex-row gap-8 w-full items-center justify-center min-h-[200px] flex-wrap p-4 bg-card rounded-xl border">
+      <Gauge value={72} label="Performance" size="md" color="var(--primary)" />
+      <Gauge value={98} label="Accessibility" size="md" color="var(--success, #22c55e)" />
+      <Gauge value={45} label="SEO" size="md" color="var(--warning, #eab308)" />
     </div>
   ),
   heatmap: () => (
@@ -1385,8 +1492,10 @@ export const previews: Record<string, PreviewFn> = {
     );
   },
   "live-indicator": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <LiveIndicator label="Live" status="online" />
+    <div className="flex flex-row gap-6 w-full items-center justify-center min-h-[200px] border rounded-lg bg-background p-6">
+      <LiveIndicator label="Live" status="online" pulse />
+      <LiveIndicator label="Connecting..." status="away" pulse={false} />
+      <LiveIndicator label="Offline" status="offline" pulse={false} />
     </div>
   ),
   "magic-card": () => (
@@ -1476,7 +1585,8 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
   "palette-switcher": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+    <div className="flex flex-col gap-6 w-full items-center justify-center min-h-[200px] p-6 border rounded-xl bg-card">
+      <div className="text-sm font-medium text-muted-foreground">Select a theme palette</div>
       <PaletteSwitcher onValueChange={(name) => console.log("palette:", name)} />
     </div>
   ),
@@ -1541,8 +1651,9 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
   sparkline: () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <Sparkline data={[30, 45, 28, 60, 72, 55, 80, 95]} type="area" />
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full items-center justify-center min-h-[200px] p-6">
+      <div className="p-4 border rounded-lg bg-card shadow-sm"><Sparkline data={[30, 45, 28, 60, 72, 55, 80, 95]} type="area" color="var(--primary)" /></div>
+      <div className="p-4 border rounded-lg bg-card shadow-sm"><Sparkline data={[95, 80, 55, 72, 60, 28, 45, 30]} type="line" color="var(--destructive, #ef4444)" /></div>
     </div>
   ),
   spotlight: () => (
@@ -1617,8 +1728,9 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
   "text-animate": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <WordReveal text="Ship products faster than ever." />
+    <div className="flex flex-col gap-6 w-full items-center justify-center min-h-[200px] bg-muted/30 border rounded-xl p-8">
+      <WordReveal text="Ship products faster than ever." className="text-3xl font-bold" />
+      <WordReveal text="Focus on your business logic, we handle the rest." className="text-lg text-muted-foreground" delay={300} />
     </div>
   ),
   "theme-card": () => (
@@ -1640,18 +1752,24 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
   "theme-generator": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[300px] p-6 bg-card border rounded-xl shadow-sm max-w-2xl mx-auto">
+      <div className="text-center mb-2"><h3 className="font-semibold text-lg">AI Theme Generator</h3><p className="text-sm text-muted-foreground">Describe your brand to generate a palette</p></div>
       <ThemeGenerator onThemeGenerated={(palette) => console.log("generated:", palette)} />
     </div>
   ),
   "theme-preview": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ThemePreview colors={{ primary: "210 80% 56%", secondary: "220 9% 46%", muted: "210 40% 96%", accent: "210 40% 96%", destructive: "0 84% 60%" }} />
+    <div className="flex flex-col gap-6 w-full items-center justify-center min-h-[300px] p-8 border rounded-xl bg-background shadow-sm">
+      <div className="w-full max-w-3xl">
+        <h4 className="mb-4 text-sm font-medium text-muted-foreground uppercase tracking-wider">Light Theme</h4>
+        <ThemePreview colors={{ primary: "210 80% 56%", secondary: "220 9% 46%", muted: "210 40% 96%", accent: "210 40% 96%", destructive: "0 84% 60%", background: "0 0% 100%", foreground: "222 47% 11%" }} />
+      </div>
     </div>
   ),
   "thinking-indicator": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ThinkingIndicator label="AI is thinking..." variant="dots" />
+    <div className="flex flex-col gap-8 w-full items-center justify-center min-h-[200px] border rounded-xl p-8 bg-muted/20">
+      <ThinkingIndicator label="AI is thinking..." variant="dots" size="md" />
+      <ThinkingIndicator label="Generating response" variant="spinner" size="sm" />
+      <ThinkingIndicator label="Processing" variant="pulse" size="lg" />
     </div>
   ),
   "tree-map": () => (
