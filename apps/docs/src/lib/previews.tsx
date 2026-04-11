@@ -1,4 +1,66 @@
-"use client";
+import { AnimatedBackground } from "@launchapp/design-system";
+import { AnimatedBorder } from "@launchapp/design-system";
+import { AnimatedHeight } from "@launchapp/design-system";
+import { AnimatedText } from "@launchapp/design-system";
+import { Background } from "@launchapp/design-system";
+import { Banner } from "@launchapp/design-system";
+import { BentoGrid, BentoGridItem } from "@launchapp/design-system";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@launchapp/design-system";
+import { Changelog } from "@launchapp/design-system";
+import { ChatBubble } from "@launchapp/design-system";
+import { ChatInput } from "@launchapp/design-system";
+import { ColorPicker } from "@launchapp/design-system";
+import { ConsentHistoryTable } from "@launchapp/design-system";
+import { CookieConsent } from "@launchapp/design-system";
+import { CookieConsentBanner } from "@launchapp/design-system";
+import { CookiePreferencesDialog } from "@launchapp/design-system";
+import { CopilotPanel } from "@launchapp/design-system";
+import { DashboardGrid, DashboardGridItem } from "@launchapp/design-system";
+import { Dock, DockIcon } from "@launchapp/design-system";
+import { FunnelChart } from "@launchapp/design-system";
+import { Gauge } from "@launchapp/design-system";
+import { Heatmap } from "@launchapp/design-system";
+import { ImageComparison } from "@launchapp/design-system";
+import { InlineEditable } from "@launchapp/design-system";
+import { Lightbox } from "@launchapp/design-system";
+import { LiveIndicator } from "@launchapp/design-system";
+import { MagicCard } from "@launchapp/design-system";
+import { Marquee } from "@launchapp/design-system";
+import { Masonry } from "@launchapp/design-system";
+import { MobileNav, MobileNavItem } from "@launchapp/design-system";
+import { MultiPanelLayout } from "@launchapp/design-system";
+import { MultiStepWizard } from "@launchapp/design-system";
+import { NotificationBell } from "@launchapp/design-system";
+import { PageTransition } from "@launchapp/design-system";
+import { PaletteSwitcher } from "@launchapp/design-system";
+import { PrivacyDashboard } from "@launchapp/design-system";
+import { RealtimeTicker } from "@launchapp/design-system";
+import { SankeyDiagram } from "@launchapp/design-system";
+import { ScrollAnimate } from "@launchapp/design-system";
+import { ScrollEffects } from "@launchapp/design-system";
+import { SmartThemingGenerator } from "@launchapp/design-system";
+import { Sparkline } from "@launchapp/design-system";
+import { Spotlight } from "@launchapp/design-system";
+import { StaggeredList } from "@launchapp/design-system";
+import { StatusPage } from "@launchapp/design-system";
+import { StreamingText } from "@launchapp/design-system";
+import { TabContentCrossfade } from "@launchapp/design-system";
+import { TagInput } from "@launchapp/design-system";
+import { Terminal } from "@launchapp/design-system";
+import { TextAnimate } from "@launchapp/design-system";
+import { ThemeCard } from "@launchapp/design-system";
+import { ThemeGenerator } from "@launchapp/design-system";
+import { ThemePreview } from "@launchapp/design-system";
+import { ThinkingIndicator } from "@launchapp/design-system";
+import { TreeMap } from "@launchapp/design-system";
+import { VideoPlayer } from "@launchapp/design-system";
+("use client");
 
 import * as React from "react";
 import {
@@ -368,9 +430,7 @@ export const previews: Record<string, PreviewFn> = {
       </AccordionItem>
       <AccordionItem value="item-3">
         <AccordionTrigger>Is it animated?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It uses CSS animations for smooth expand/collapse.
-        </AccordionContent>
+        <AccordionContent>Yes. It uses CSS animations for smooth expand/collapse.</AccordionContent>
       </AccordionItem>
     </AccordionRoot>
   ),
@@ -437,9 +497,7 @@ export const previews: Record<string, PreviewFn> = {
             </Button>
           </CollapsibleTrigger>
         </div>
-        <div className="rounded-md border px-4 py-3 font-mono text-sm">
-          @radix-ui/primitives
-        </div>
+        <div className="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/primitives</div>
         <CollapsibleContent className="space-y-2">
           <div className="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/colors</div>
           <div className="rounded-md border px-4 py-3 font-mono text-sm">@stitches/react</div>
@@ -494,10 +552,7 @@ export const previews: Record<string, PreviewFn> = {
 
   "aspect-ratio": () => (
     <div className="w-[300px]">
-      <AspectRatio
-        ratio={16 / 9}
-        className="bg-muted rounded-md flex items-center justify-center"
-      >
+      <AspectRatio ratio={16 / 9} className="bg-muted rounded-md flex items-center justify-center">
         <span className="text-sm text-muted-foreground">16 / 9</span>
       </AspectRatio>
     </div>
@@ -553,12 +608,7 @@ export const previews: Record<string, PreviewFn> = {
         trend="up"
         trendLabel="+20.1% from last month"
       />
-      <KPICard
-        label="Active Users"
-        value="2,350"
-        trend="down"
-        trendLabel="-4.3% from last week"
-      />
+      <KPICard label="Active Users" value="2,350" trend="down" trendLabel="-4.3% from last week" />
     </div>
   ),
 
@@ -608,12 +658,7 @@ export const previews: Record<string, PreviewFn> = {
   calendar: function CalendarPreview() {
     const [date, setDate] = React.useState<Date | undefined>(new Date());
     return (
-      <Calendar
-        mode="single"
-        selected={date}
-        onSelect={setDate}
-        className="rounded-md border"
-      />
+      <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border" />
     );
   },
 
@@ -725,9 +770,7 @@ export const previews: Record<string, PreviewFn> = {
 
   "date-picker": function DatePickerPreview() {
     const [date, setDate] = React.useState<Date | undefined>();
-    return (
-      <DatePicker selected={date} onSelect={setDate} placeholder="Pick a date" />
-    );
+    return <DatePicker selected={date} onSelect={setDate} placeholder="Pick a date" />;
   },
 
   dialog: () => (
@@ -780,8 +823,12 @@ export const previews: Record<string, PreviewFn> = {
     <FocusScope loop>
       <div className="flex gap-2 p-4 border rounded-md items-center">
         <Button size="sm">First</Button>
-        <Button size="sm" variant="outline">Second</Button>
-        <Button size="sm" variant="ghost">Third</Button>
+        <Button size="sm" variant="outline">
+          Second
+        </Button>
+        <Button size="sm" variant="ghost">
+          Third
+        </Button>
         <span className="text-xs text-muted-foreground ml-2">Tab cycles within</span>
       </div>
     </FocusScope>
@@ -844,13 +891,7 @@ export const previews: Record<string, PreviewFn> = {
       { value: "svelte", label: "Svelte" },
       { value: "next", label: "Next.js" },
     ];
-    return (
-      <MultiSelect
-        options={options}
-        placeholder="Select frameworks..."
-        maxCount={2}
-      />
-    );
+    return <MultiSelect options={options} placeholder="Select frameworks..." maxCount={2} />;
   },
 
   "navigation-menu": () => (
@@ -885,14 +926,25 @@ export const previews: Record<string, PreviewFn> = {
 
   portal: () => (
     <div className="flex flex-col items-center gap-4 p-4 border rounded-md text-sm text-center text-muted-foreground">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-primary/40">
+      <svg
+        width="40"
+        height="40"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="text-primary/40"
+      >
         <rect x="3" y="3" width="18" height="18" rx="2" />
         <path d="M3 9h18" />
         <path d="M9 21V9" />
       </svg>
       <div>
         <p className="font-medium text-foreground mb-1">Portal</p>
-        <p className="text-xs">Renders children outside the DOM hierarchy into a target container (defaults to <code className="font-mono text-primary">document.body</code>).</p>
+        <p className="text-xs">
+          Renders children outside the DOM hierarchy into a target container (defaults to{" "}
+          <code className="font-mono text-primary">document.body</code>).
+        </p>
       </div>
     </div>
   ),
@@ -950,7 +1002,10 @@ export const previews: Record<string, PreviewFn> = {
         <Button variant="outline" onClick={() => (sonnerToast as any).success("Profile updated!")}>
           Success
         </Button>
-        <Button variant="outline" onClick={() => (sonnerToast as any).error("Something went wrong")}>
+        <Button
+          variant="outline"
+          onClick={() => (sonnerToast as any).error("Something went wrong")}
+        >
           Error
         </Button>
         <Button variant="outline" onClick={() => (sonnerToast as any).warning("Unsaved changes")}>
@@ -1002,14 +1057,20 @@ export const previews: Record<string, PreviewFn> = {
         <div className="flex flex-wrap gap-2 justify-center">
           <Button
             variant="outline"
-            onClick={() => toast({ title: "Scheduled", description: "Monday, January 3rd at 6:00pm" })}
+            onClick={() =>
+              toast({ title: "Scheduled", description: "Monday, January 3rd at 6:00pm" })
+            }
           >
             Show Toast
           </Button>
           <Button
             variant="destructive"
             onClick={() =>
-              toast({ title: "Error", description: "Something went wrong.", variant: "destructive" })
+              toast({
+                title: "Error",
+                description: "Something went wrong.",
+                variant: "destructive",
+              })
             }
           >
             Error Toast
@@ -1036,5 +1097,620 @@ export const previews: Record<string, PreviewFn> = {
       <ToolbarButton>Share</ToolbarButton>
       <ToolbarButton>Print</ToolbarButton>
     </ToolbarRoot>
+  ),
+  "animated-background": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="relative h-64 rounded-xl overflow-hidden">
+        <AnimatedBackground variant="gradient" />
+        <div className="relative z-10 flex h-full items-center justify-center">
+          <h1 className="text-3xl font-bold text-white">Hero Title</h1>
+        </div>
+      </div>
+    </div>
+  ),
+  "animated-border": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <AnimatedBorder>
+        <div className="rounded-xl bg-background p-6">
+          <h3 className="font-semibold">Featured</h3>
+          <p className="text-sm text-muted-foreground">Highlighted with an animated border.</p>
+        </div>
+      </AnimatedBorder>
+    </div>
+  ),
+  "animated-height": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      const [open, setOpen] = React.useState(false); return (
+      <>
+        <button type="button" onClick={() => setOpen(!open)}>
+          Toggle
+        </button>
+        <AnimatedHeight visible={open}>
+          <div className="p-4 bg-muted rounded-md mt-2">
+            <p>Hidden content revealed with smooth animation.</p>
+          </div>
+        </AnimatedHeight>
+      </>
+      );
+    </div>
+  ),
+  "animated-text": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <AnimatedText text="Building great products starts here." variant="typewriter" />
+    </div>
+  ),
+  background: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="relative h-48 rounded-xl overflow-hidden">
+        <Background variant="grid" />
+      </div>
+    </div>
+  ),
+  banner: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Banner variant="info" onDismiss={() => console.log("dismissed")}>
+        🎉 New features available — <a href="/changelog">See what's new</a>
+      </Banner>
+    </div>
+  ),
+  "bento-grid": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <BentoGrid>
+        <BentoGridItem className="col-span-2" title="Fast" description="Built for speed.">
+          <div className="h-32 bg-muted rounded-md" />
+        </BentoGridItem>
+        <BentoGridItem title="Secure" description="Enterprise-grade.">
+          <div className="h-32 bg-muted rounded-md" />
+        </BentoGridItem>
+      </BentoGrid>
+    </div>
+  ),
+  carousel: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Carousel>
+        <CarouselContent>
+          <CarouselItem>
+            <div className="p-4 bg-muted rounded-xl h-48 flex items-center justify-center">
+              Slide 1
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-4 bg-muted rounded-xl h-48 flex items-center justify-center">
+              Slide 2
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-4 bg-muted rounded-xl h-48 flex items-center justify-center">
+              Slide 3
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
+  ),
+  changelog: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Changelog
+        entries={[
+          {
+            version: "2.0.0",
+            date: "2024-03-01",
+            title: "Major release",
+            changes: ["New component library", "Dark mode support"],
+          },
+          {
+            version: "1.5.0",
+            date: "2024-02-01",
+            title: "Feature update",
+            changes: ["Added Carousel", "Improved performance"],
+          },
+        ]}
+      />
+    </div>
+  ),
+  "chat-bubble": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ChatBubble message="Hey! How's it going?" timestamp="10:00 AM" />
+    </div>
+  ),
+  "chat-input": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ChatInput placeholder="Message #general" onSend={(msg) => console.log("sent:", msg)} />
+    </div>
+  ),
+  "color-picker": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      const [color, setColor] = React.useState("#3b82f6"); return{" "}
+      <ColorPicker value={color} onChange={setColor} />;
+    </div>
+  ),
+  "consent-history-table": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ConsentHistoryTable
+        entries={[
+          {
+            id: "1",
+            type: "analytics",
+            granted: true,
+            timestamp: "2024-01-01T10:00:00Z",
+            version: "1.0",
+          },
+          {
+            id: "2",
+            type: "marketing",
+            granted: false,
+            timestamp: "2024-01-02T11:00:00Z",
+            version: "1.0",
+          },
+        ]}
+      />
+    </div>
+  ),
+  "cookie-consent": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <CookieConsent
+        onAccept={(prefs) => console.log("accepted:", prefs)}
+        onDeny={() => console.log("denied")}
+      />
+    </div>
+  ),
+  "cookie-consent-banner": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <CookieConsentBanner
+        onAccept={() => console.log("accepted")}
+        onCustomize={() => console.log("customize")}
+      />
+    </div>
+  ),
+  "cookie-preferences-dialog": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      const [open, setOpen] = React.useState(false); return (
+      <>
+        <button type="button" onClick={() => setOpen(true)}>
+          Cookie Preferences
+        </button>
+        <CookiePreferencesDialog
+          open={open}
+          onOpenChange={setOpen}
+          onSave={(prefs) => {
+            console.log(prefs);
+            setOpen(false);
+          }}
+        />
+      </>
+      );
+    </div>
+  ),
+  "copilot-panel": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      const [open, setOpen] = React.useState(false); return (
+      <>
+        <button type="button" onClick={() => setOpen(true)}>
+          Open Copilot
+        </button>
+        <CopilotPanel
+          open={open}
+          onOpenChange={setOpen}
+          onSend={async (msg) => "AI response to: " + msg}
+        />
+      </>
+      );
+    </div>
+  ),
+  "dashboard-grid": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <DashboardGrid>
+        <DashboardGridItem id="revenue" x={0} y={0} w={4} h={2}>
+          <div className="h-full bg-muted rounded-lg p-4">Revenue</div>
+        </DashboardGridItem>
+        <DashboardGridItem id="users" x={4} y={0} w={4} h={2}>
+          <div className="h-full bg-muted rounded-lg p-4">Users</div>
+        </DashboardGridItem>
+      </DashboardGrid>
+    </div>
+  ),
+  dock: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Dock>
+        <DockIcon>
+          <span className="text-2xl">🏠</span>
+        </DockIcon>
+        <DockIcon>
+          <span className="text-2xl">📁</span>
+        </DockIcon>
+        <DockIcon>
+          <span className="text-2xl">⚙️</span>
+        </DockIcon>
+      </Dock>
+    </div>
+  ),
+  "funnel-chart": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <FunnelChart
+        data={[
+          { label: "Visitors", value: 10000 },
+          { label: "Sign-ups", value: 3500 },
+          { label: "Activated", value: 1200 },
+          { label: "Paid", value: 420 },
+        ]}
+      />
+    </div>
+  ),
+  gauge: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Gauge value={72} label="Performance" />
+    </div>
+  ),
+  heatmap: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Heatmap
+        data={[
+          { date: "2024-01-01", value: 3 },
+          { date: "2024-01-02", value: 7 },
+          { date: "2024-01-03", value: 1 },
+        ]}
+      />
+    </div>
+  ),
+  "image-comparison": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ImageComparison
+        before={{ src: "/before.jpg", alt: "Before" }}
+        after={{ src: "/after.jpg", alt: "After" }}
+        defaultPosition={40}
+      />
+    </div>
+  ),
+  "inline-editable": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      const [name, setName] = React.useState("My Project"); return (
+      <InlineEditable value={name} onSave={setName} placeholder="Enter project name" />
+      );
+    </div>
+  ),
+  lightbox: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      const [open, setOpen] = React.useState(false); return (
+      <>
+        <button type="button" onClick={() => setOpen(true)}>
+          View Gallery
+        </button>
+        <Lightbox
+          open={open}
+          onClose={() => setOpen(false)}
+          images={[
+            { src: "/photo1.jpg", alt: "Photo 1" },
+            { src: "/photo2.jpg", alt: "Photo 2" },
+          ]}
+        />
+      </>
+      );
+    </div>
+  ),
+  "live-indicator": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <LiveIndicator label="Live" variant="red" />
+    </div>
+  ),
+  "magic-card": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <MagicCard gradientColor="#3b82f6">
+        <div className="p-8">
+          <h3 className="text-xl font-bold">Magic Card</h3>
+          <p className="text-muted-foreground mt-2">Hover to see the spotlight effect.</p>
+        </div>
+      </MagicCard>
+    </div>
+  ),
+  marquee: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Marquee pauseOnHover>
+        {["Acme", "Globex", "Initech", "Umbrella", "Stark Industries"].map((name) => (
+          <div key={name} className="mx-8 text-sm font-semibold text-muted-foreground">
+            {name}
+          </div>
+        ))}
+      </Marquee>
+    </div>
+  ),
+  masonry: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Masonry columns={3} gap={4}>
+        {photos.map((photo) => (
+          <img key={photo.id} src={photo.src} alt={photo.alt} className="rounded-lg w-full" />
+        ))}
+      </Masonry>
+    </div>
+  ),
+  "mobile-nav": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <MobileNav>
+        <MobileNavItem href="/" icon={<HomeIcon />} label="Home" isActive />
+        <MobileNavItem href="/explore" icon={<SearchIcon />} label="Explore" />
+        <MobileNavItem href="/profile" icon={<UserIcon />} label="Profile" />
+      </MobileNav>
+    </div>
+  ),
+  "multi-panel-layout": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <MultiPanelLayout
+        primary={<div className="p-4">Main content</div>}
+        secondary={<div className="p-4 bg-muted/30">Sidebar</div>}
+        tertiary={<div className="p-4 bg-muted/20">Inspector</div>}
+      />
+    </div>
+  ),
+  "multi-step-wizard": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <MultiStepWizard
+        steps={[
+          { id: "info", title: "Basic Info", content: <div>Step 1 form</div> },
+          { id: "config", title: "Configuration", content: <div>Step 2 form</div> },
+          { id: "review", title: "Review", content: <div>Summary</div> },
+        ]}
+        onComplete={() => console.log("done")}
+      />
+    </div>
+  ),
+  "notification-bell": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <NotificationBell count={5} onClick={() => console.log("open notifications")} />
+    </div>
+  ),
+  "page-transition": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <PageTransition variant="fade">
+        <div>Page content</div>
+      </PageTransition>
+    </div>
+  ),
+  "palette-switcher": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <PaletteSwitcher
+        palettes={[
+          { id: "blue", name: "Ocean Blue", primary: "#3b82f6" },
+          { id: "green", name: "Forest Green", primary: "#16a34a" },
+          { id: "purple", name: "Royal Purple", primary: "#9333ea" },
+        ]}
+        value="blue"
+        onChange={(id) => console.log("palette:", id)}
+      />
+    </div>
+  ),
+  "privacy-dashboard": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <PrivacyDashboard
+        consents={[
+          {
+            id: "1",
+            type: "analytics",
+            granted: true,
+            timestamp: "2024-01-01T10:00:00Z",
+            version: "1.0",
+          },
+        ]}
+        onDownloadData={() => console.log("download")}
+        onDeleteAccount={() => console.log("delete account")}
+      />
+    </div>
+  ),
+  "realtime-ticker": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <RealtimeTicker
+        items={[
+          { symbol: "ACME", value: 142.5, change: +2.3 },
+          { symbol: "GLOB", value: 87.2, change: -1.1 },
+        ]}
+      />
+    </div>
+  ),
+  "sankey-diagram": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <SankeyDiagram
+        nodes={[{ id: "organic" }, { id: "paid" }, { id: "signup" }, { id: "purchase" }]}
+        links={[
+          { source: "organic", target: "signup", value: 400 },
+          { source: "paid", target: "signup", value: 200 },
+          { source: "signup", target: "purchase", value: 350 },
+        ]}
+      />
+    </div>
+  ),
+  "scroll-animate": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ScrollAnimate animation="fade-up">
+        <div className="p-6 rounded-xl bg-muted">
+          <h2 className="text-xl font-bold">Animated section</h2>
+          <p className="mt-2 text-muted-foreground">Appears as you scroll down.</p>
+        </div>
+      </ScrollAnimate>
+    </div>
+  ),
+  "scroll-effects": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ScrollEffects effect="parallax" speed={0.3}>
+        <div className="h-screen bg-gradient-to-b from-primary/10 to-background flex items-center justify-center">
+          <h1 className="text-5xl font-bold">Hero Title</h1>
+        </div>
+      </ScrollEffects>
+    </div>
+  ),
+  "smart-theming-generator": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <SmartThemingGenerator
+        defaultColor="#3b82f6"
+        onGenerate={(tokens) => console.log("generated tokens:", tokens)}
+      />
+    </div>
+  ),
+  sparkline: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Sparkline data={[30, 45, 28, 60, 72, 55, 80, 95]} type="area" />
+    </div>
+  ),
+  spotlight: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="relative min-h-[300px] bg-black rounded-xl overflow-hidden">
+        <Spotlight fill="rgba(100, 200, 255, 0.3)" />
+        <div className="relative z-10 flex items-center justify-center h-64 text-white text-2xl font-bold">
+          Move your cursor over me
+        </div>
+      </div>
+    </div>
+  ),
+  "staggered-list": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <StaggeredList staggerDelay={75}>
+        {["Dashboard", "Projects", "Team", "Settings"].map((item) => (
+          <div key={item} className="py-2 px-4 rounded-md hover:bg-muted">
+            {item}
+          </div>
+        ))}
+      </StaggeredList>
+    </div>
+  ),
+  "status-page": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <StatusPage
+        overallStatus="operational"
+        services={[
+          { id: "api", name: "API", status: "operational" },
+          { id: "db", name: "Database", status: "operational" },
+          { id: "cdn", name: "CDN", status: "degraded" },
+        ]}
+        incidents={[
+          {
+            id: "1",
+            title: "CDN latency increase",
+            status: "investigating",
+            startedAt: "2024-01-15T10:00:00Z",
+          },
+        ]}
+      />
+    </div>
+  ),
+  "streaming-text": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <StreamingText
+        text="Here is the analysis you requested. The data shows a 23% increase in user engagement over the past month..."
+        speed={40}
+        onComplete={() => console.log("done")}
+      />
+    </div>
+  ),
+  "tab-content-crossfade": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <TabContentCrossfade
+        tabs={[
+          { id: "overview", label: "Overview", content: <div>Overview content</div> },
+          { id: "details", label: "Details", content: <div>Details content</div> },
+          { id: "history", label: "History", content: <div>History content</div> },
+        ]}
+        defaultTab="overview"
+      />
+    </div>
+  ),
+  "tag-input": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      const [tags, setTags] = React.useState(["React", "TypeScript"]); return (
+      <TagInput value={tags} onChange={setTags} placeholder="Add skill..." />
+      );
+    </div>
+  ),
+  terminal: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <Terminal
+        title="Getting Started"
+        lines={[
+          { type: "command", content: "npm install @launchapp/design-system" },
+          { type: "output", content: "added 42 packages in 3.2s" },
+          { type: "command", content: "npm run dev" },
+          { type: "output", content: "⚡ Server ready on http://localhost:3000" },
+        ]}
+      />
+    </div>
+  ),
+  "text-animate": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <TextAnimate text="Ship products faster than ever." by="word" animation="slideUp" />
+    </div>
+  ),
+  "theme-card": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ThemeCard
+        name="Ocean Blue"
+        colors={["#0f172a", "#1e40af", "#3b82f6", "#bfdbfe"]}
+        isActive={false}
+        onSelect={() => console.log("selected")}
+      />
+    </div>
+  ),
+  "theme-generator": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ThemeGenerator onApply={(tokens) => console.log("apply theme:", tokens)} />
+    </div>
+  ),
+  "theme-preview": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ThemePreview tokens={{ primary: "#3b82f6", secondary: "#6b7280", background: "#ffffff" }} />
+    </div>
+  ),
+  "thinking-indicator": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <ThinkingIndicator label="AI is thinking..." variant="dots" />
+    </div>
+  ),
+  "tree-map": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <TreeMap
+        data={{
+          name: "Budget",
+          children: [
+            { name: "Engineering", value: 400000 },
+            { name: "Marketing", value: 200000 },
+            { name: "Design", value: 100000 },
+            { name: "Operations", value: 80000 },
+          ],
+        }}
+        height={300}
+      />
+    </div>
+  ),
+  "video-player": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <VideoPlayer
+        src="https://example.com/demo.mp4"
+        poster="https://example.com/thumb.jpg"
+        muted
+      />
+    </div>
+  ),
+
+  calendar: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="p-4 border rounded-md">Calendar Preview</div>
+    </div>
+  ),
+  collapsible: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="p-4 border rounded-md">Collapsible Preview</div>
+    </div>
+  ),
+  "date-picker": () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="p-4 border rounded-md">Date Picker Preview</div>
+    </div>
+  ),
+  progress: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="p-4 border rounded-md">Progress Preview</div>
+    </div>
+  ),
+  toast: () => (
+    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+      <div className="p-4 border rounded-md">Toast Preview</div>
+    </div>
   ),
 };
