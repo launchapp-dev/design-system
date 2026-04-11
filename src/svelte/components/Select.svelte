@@ -1,51 +1,15 @@
 <script lang="ts">
-import { ref, watch } from "vue";
-import { provideSelectContext } from "../composables/useSelect";
+  import { cn } from "../utils/cn";
 
-  let { modelValue, defaultValue = "", disabled = false, class: className, children, ...restProps }: {
-  modelValue?: string;
-  defaultValue?: string;
-  disabled?: boolean;
+  let { class: className, children, ...restProps }: {
     class?: string;
     children?: import('svelte').Snippet;
     [key: string]: any;
   } = $props();
 
-
-
-
-const emit = defineEmits<{
-  "update:modelValue": [value: string];
-}>();
-
-const open = ref(false);
-const value = ref(modelValue ?? defaultValue);
-const containerRef = ref<HTMLElement | null>(null);
-
-watch(
-  () => modelValue,
-  (v) => {
-    if (v !== undefined) value.value = v;
-  },
-);
-
-function select(v: string) {
-  value.value = v;
-  open.value = false;
-  emit("update:modelValue", v);
-}
-
-function close() {
-  open.value = false;
-}
-
-function toggle() {
-  if (!disabled) open.value = !open.value;
-}
-
-provideSelectContext({ open, value, containerRef, select, close, toggle });
+  let classes = $derived(cn("flex cursor-default items-center justify-center py-1 text-muted-foreground", className));
 </script>
 
-<div ref="containerRef" class="relative" {...restProps}>
-    {@render children?.()}
-  </div>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

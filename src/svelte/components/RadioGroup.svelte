@@ -1,28 +1,15 @@
 <script lang="ts">
-import { cn } from "../utils/cn";
-import { provideRadioGroupContext } from "../composables/useRadioGroup";
+  import { cn } from "../utils/cn";
 
-  let { modelValue, class: className, children, ...restProps }: {
-  modelValue?: string;
+  let { class: className, children, ...restProps }: {
     class?: string;
     children?: import('svelte').Snippet;
     [key: string]: any;
   } = $props();
 
-
-
-const emit = defineEmits<{
-  "update:modelValue": [value: string];
-}>();
-
-provideRadioGroupContext({
-  value: computed(() => modelValue),
-  onChange: (v: string) => emit("update:modelValue", v),
-});
-
-let classes = $derived(cn("grid gap-2", className));
+  let classes = $derived(cn("fill-current", className));
 </script>
 
-<div role="radiogroup" class={classes} {...restProps}>
-    {@render children?.()}
-  </div>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

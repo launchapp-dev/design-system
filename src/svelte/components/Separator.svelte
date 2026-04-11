@@ -1,27 +1,12 @@
 <script lang="ts">
-import { cn } from "../utils/cn";
+  import { cn } from "../utils/cn";
 
-  let { orientation = "horizontal", decorative = true, class: className, ...restProps }: {
-  orientation?: "horizontal" | "vertical";
-  decorative?: boolean;
+  let { class: className, ...restProps }: {
     class?: string;
-    [key: string]: any;
+        [key: string]: any;
   } = $props();
 
-
-
-
-let classes = $derived(
-cn(
-    "shrink-0 bg-[hsl(var(--la-border))]",
-    orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
-    className,
-  ),
-);
+  let classes = $derived(cn("shrink-0 bg-border", className));
 </script>
 
-<div
-    :role="decorative ? 'none' : 'separator'"
-    :aria-orientation="decorative ? undefined : orientation"
-    class={classes}
-  / {...restProps}>
+<div class={classes} {...restProps} />

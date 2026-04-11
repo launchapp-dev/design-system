@@ -1,21 +1,15 @@
 <script lang="ts">
-import { ref } from "vue";
-import { providePopoverContext } from "../composables/usePopover";
+  import { cn } from "../utils/cn";
 
-const open = ref(false);
-const containerRef = ref<HTMLElement | null>(null);
+  let { class: className, children, ...restProps }: {
+    class?: string;
+    children?: import('svelte').Snippet;
+    [key: string]: any;
+  } = $props();
 
-function toggle() {
-  open.value = !open.value;
-}
-
-function close() {
-  open.value = false;
-}
-
-providePopoverContext({ open, containerRef, toggle, close });
+  let classes = $derived(cn("z-50 w-72 rounded-md border border-border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-scale-in data-[state=closed]:animate-fade-out data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", className));
 </script>
 
-<div ref="containerRef" class="relative inline-block" {...restProps}>
-    {@render children?.()}
-  </div>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

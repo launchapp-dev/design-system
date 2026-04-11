@@ -1,21 +1,15 @@
 <script lang="ts">
-import { ref } from "vue";
-import { provideDropdownMenuContext } from "../composables/useDropdownMenu";
+  import { cn } from "../utils/cn";
 
-const open = ref(false);
-const containerRef = ref<HTMLElement | null>(null);
+  let { class: className, children, ...restProps }: {
+    class?: string;
+    children?: import('svelte').Snippet;
+    [key: string]: any;
+  } = $props();
 
-function toggle() {
-  open.value = !open.value;
-}
-
-function close() {
-  open.value = false;
-}
-
-provideDropdownMenuContext({ open, containerRef, toggle, close });
+  let classes = $derived(cn("flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-3 md:py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] md:min-h-0", className));
 </script>
 
-<div ref="containerRef" class="relative inline-block" {...restProps}>
-    {@render children?.()}
-  </div>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

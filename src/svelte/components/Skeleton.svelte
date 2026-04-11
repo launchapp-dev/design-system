@@ -1,17 +1,15 @@
 <script lang="ts">
-import { cn } from "../utils/cn";
+  import { cn } from "../utils/cn";
 
-  let { class: className, ...restProps }: {
-
+  let { class: className, children, ...restProps }: {
     class?: string;
+    children?: import('svelte').Snippet;
     [key: string]: any;
   } = $props();
 
-
-
-let classes = $derived(
-cn("animate-pulse rounded-[--la-radius] bg-[hsl(var(--la-muted))]", className),
-);
+  let classes = $derived(cn("animate-pulse rounded-md bg-muted", className));
 </script>
 
-<div class={classes} / {...restProps}>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

@@ -1,51 +1,29 @@
 <script lang="ts">
-import { cn } from "../utils/cn";
+  import { cn } from "../utils/cn";
 
-  let { variant = "default", dismissible = false, class: className, children, ...restProps }: {
-  variant?: "default" | "info" | "success" | "warning" | "destructive";
-  dismissible?: boolean;
+  let { class: className, variant = "info", position = "inline", children, ...restProps }: {
     class?: string;
+    variant?: "info" | "warning" | "error" | "success";
+    position?: "inline" | "stickyTop" | "stickyBottom";
     children?: import('svelte').Snippet;
     [key: string]: any;
   } = $props();
 
+  const variantClasses: Record<string, string> = {
+    info: "bg-blue-500/15 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400",
+    warning: "bg-amber-500/15 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300 [&>svg]:text-amber-600 dark:[&>svg]:text-amber-400",
+    error: "bg-red-500/15 text-red-700 dark:bg-red-500/20 dark:text-red-300 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
+    success: "bg-green-500/15 text-green-700 dark:bg-green-500/20 dark:text-green-300 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
+  };
+  const positionClasses: Record<string, string> = {
+    inline: "rounded-lg",
+    stickyTop: "sticky top-0 z-50 border-b border-inherit",
+    stickyBottom: "sticky bottom-0 z-50 border-t border-inherit",
+  };
 
-
-
-const emit = defineEmits<{
-  dismiss: [];
-}>();
-
-const variantClasses = {
-  default: "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-foreground))]",
-  info: "bg-blue-50 text-blue-900 dark:bg-blue-900/20 dark:text-blue-300",
-  success: "bg-green-50 text-green-900 dark:bg-green-900/20 dark:text-green-300",
-  warning: "bg-yellow-50 text-yellow-900 dark:bg-yellow-900/20 dark:text-yellow-300",
-  destructive: "bg-red-50 text-red-900 dark:bg-red-900/20 dark:text-red-300",
-};
-
-let classes = $derived(
-cn(
-    "relative flex items-center justify-between gap-4 rounded-[--la-radius] p-4 text-sm",
-    variantClasses[variant],
-    className,
-  ),
-);
+  let classes = $derived(cn("relative flex w-full items-center justify-between gap-3 px-4 py-3 text-sm [&>svg]:shrink-0", className, variant ? variantClasses[variant] : "", position ? positionClasses[position] : ""));
 </script>
 
-<div class={classes} role="status" {...restProps}>
-    <div class="flex items-center gap-2">
-      {@render children?.()}
-    </div>
-    <button
-      v-if="dismissible"
-      type="button"
-      class="ml-auto shrink-0 rounded-sm opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))]"
-      aria-label="Dismiss"
-      @click="emit('dismiss')"
-    >
-      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

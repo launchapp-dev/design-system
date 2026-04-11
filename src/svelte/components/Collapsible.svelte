@@ -1,39 +1,15 @@
 <script lang="ts">
-import { ref, watch } from "vue";
-import { provideCollapsibleContext } from "../composables/useCollapsible";
+  import { cn } from "../utils/cn";
 
-  let { modelValue, defaultOpen = false, class: className, children, ...restProps }: {
-  modelValue?: boolean;
-  defaultOpen?: boolean;
+  let { class: className, children, ...restProps }: {
     class?: string;
     children?: import('svelte').Snippet;
     [key: string]: any;
   } = $props();
 
-
-
-
-const emit = defineEmits<{
-  "update:modelValue": [value: boolean];
-}>();
-
-const open = ref(modelValue ?? defaultOpen);
-
-watch(
-  () => modelValue,
-  (v) => {
-    if (v !== undefined) open.value = v;
-  },
-);
-
-function toggle() {
-  open.value = !open.value;
-  emit("update:modelValue", open.value);
-}
-
-provideCollapsibleContext({ open, toggle });
+  let classes = $derived(cn("overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down", className));
 </script>
 
-<div {...restProps}>
-    {@render children?.()}
-  </div>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

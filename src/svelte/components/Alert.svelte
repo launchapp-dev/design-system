@@ -1,30 +1,15 @@
 <script lang="ts">
-import { cn } from "../utils/cn";
+  import { cn } from "../utils/cn";
 
-  let { variant = "default", class: className, children, ...restProps }: {
-  variant?: "default" | "destructive";
+  let { class: className, children, ...restProps }: {
     class?: string;
     children?: import('svelte').Snippet;
     [key: string]: any;
   } = $props();
 
-
-
-
-const variantClasses = {
-  default: "bg-[hsl(var(--la-background))] text-[hsl(var(--la-foreground))]",
-  destructive: "border-[hsl(var(--la-destructive)/0.5)] text-[hsl(var(--la-destructive))] [&>svg]:text-[hsl(var(--la-destructive))]",
-};
-
-let classes = $derived(
-cn(
-    "relative w-full rounded-[--la-radius] border border-[hsl(var(--la-border))] p-4 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg~*]:pl-7",
-    variantClasses[variant],
-    className,
-  ),
-);
+  let classes = $derived(cn("mb-1 font-medium leading-none tracking-tight", className));
 </script>
 
-<div role="alert" class={classes} {...restProps}>
-    {@render children?.()}
-  </div>
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>

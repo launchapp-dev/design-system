@@ -1,37 +1,15 @@
 <script lang="ts">
-import { ref, watch } from "vue";
-import { provideDialogContext } from "../composables/useDisclosure";
+  import { cn } from "../utils/cn";
 
-  let { modelValue, defaultOpen = false, class: className, children, ...restProps }: {
-  modelValue?: boolean;
-  defaultOpen?: boolean;
+  let { class: className, children, ...restProps }: {
     class?: string;
     children?: import('svelte').Snippet;
     [key: string]: any;
   } = $props();
 
-
-
-
-const emit = defineEmits<{
-  "update:modelValue": [value: boolean];
-}>();
-
-const internalOpen = ref(modelValue ?? defaultOpen);
-
-watch(
-  () => modelValue,
-  (v) => {
-    if (v !== undefined) internalOpen.value = v;
-  },
-);
-
-function close() {
-  internalOpen.value = false;
-  emit("update:modelValue", false);
-}
-
-provideDialogContext(internalOpen, close);
+  let classes = $derived(cn("fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out", className));
 </script>
 
-{@render children?.()}
+<div class={classes} {...restProps}>
+  {@render children?.()}
+</div>
