@@ -1,18 +1,18 @@
 "use client";
 
-import { AnimatedBackground } from "@launchapp/design-system";
+import { AnimatedGradient } from "@launchapp/design-system";
 import { AnimatedBorder } from "@launchapp/design-system";
 import { AnimatedHeight } from "@launchapp/design-system";
 import { AnimatedText } from "@launchapp/design-system";
-import { Background } from "@launchapp/design-system";
+import { GridPattern } from "@launchapp/design-system";
 import { Banner } from "@launchapp/design-system";
-import { BentoGrid, BentoGridItem } from "@launchapp/design-system";
+import { BentoGrid, BentoCard } from "@launchapp/design-system";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPrev,
 } from "@launchapp/design-system";
 import { Changelog } from "@launchapp/design-system";
 import { ChatBubble } from "@launchapp/design-system";
@@ -23,8 +23,8 @@ import { CookieConsent } from "@launchapp/design-system";
 import { CookieConsentBanner } from "@launchapp/design-system";
 import { CookiePreferencesDialog } from "@launchapp/design-system";
 import { CopilotPanel } from "@launchapp/design-system";
-import { DashboardGrid, DashboardGridItem } from "@launchapp/design-system";
-import { Dock, DockIcon } from "@launchapp/design-system";
+import { DashboardGrid } from "@launchapp/design-system";
+import { Dock } from "@launchapp/design-system";
 import { FunnelChart } from "@launchapp/design-system";
 import { Gauge } from "@launchapp/design-system";
 import { Heatmap } from "@launchapp/design-system";
@@ -35,7 +35,7 @@ import { LiveIndicator } from "@launchapp/design-system";
 import { MagicCard } from "@launchapp/design-system";
 import { Marquee } from "@launchapp/design-system";
 import { Masonry } from "@launchapp/design-system";
-import { MobileNav, MobileNavItem } from "@launchapp/design-system";
+import { MobileNav } from "@launchapp/design-system";
 import { MultiPanelLayout } from "@launchapp/design-system";
 import { MultiStepWizard } from "@launchapp/design-system";
 import { NotificationBell } from "@launchapp/design-system";
@@ -44,18 +44,18 @@ import { PaletteSwitcher } from "@launchapp/design-system";
 import { PrivacyDashboard } from "@launchapp/design-system";
 import { RealtimeTicker } from "@launchapp/design-system";
 import { SankeyDiagram } from "@launchapp/design-system";
-import { ScrollAnimate } from "@launchapp/design-system";
-import { ScrollEffects } from "@launchapp/design-system";
+import { FadeInOnScroll } from "@launchapp/design-system";
+import { ParallaxSection } from "@launchapp/design-system";
 import { SmartThemingGenerator } from "@launchapp/design-system";
 import { Sparkline } from "@launchapp/design-system";
 import { Spotlight } from "@launchapp/design-system";
 import { StaggeredList } from "@launchapp/design-system";
 import { StatusPage } from "@launchapp/design-system";
 import { StreamingText } from "@launchapp/design-system";
-import { TabContentCrossfade } from "@launchapp/design-system";
+import { TabContentCrossfade, TabPanel } from "@launchapp/design-system";
 import { TagInput } from "@launchapp/design-system";
 import { Terminal } from "@launchapp/design-system";
-import { TextAnimate } from "@launchapp/design-system";
+import { WordReveal } from "@launchapp/design-system";
 import { ThemeCard } from "@launchapp/design-system";
 import { ThemeGenerator } from "@launchapp/design-system";
 import { ThemePreview } from "@launchapp/design-system";
@@ -1102,7 +1102,7 @@ export const previews: Record<string, PreviewFn> = {
   "animated-background": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <div className="relative h-64 rounded-xl overflow-hidden">
-        <AnimatedBackground variant="gradient" />
+        <AnimatedGradient />
         <div className="relative z-10 flex h-full items-center justify-center">
           <h1 className="text-3xl font-bold text-white">Hero Title</h1>
         </div>
@@ -1119,37 +1119,36 @@ export const previews: Record<string, PreviewFn> = {
       </AnimatedBorder>
     </div>
   ),
-  "animated-height": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      const [open, setOpen] = React.useState(false); return (
-      <>
+  "animated-height": () => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
         <button type="button" onClick={() => setOpen(!open)}>
           Toggle
         </button>
-        <AnimatedHeight visible={open}>
+        <AnimatedHeight isOpen={open}>
           <div className="p-4 bg-muted rounded-md mt-2">
             <p>Hidden content revealed with smooth animation.</p>
           </div>
         </AnimatedHeight>
-      </>
-      );
-    </div>
-  ),
+      </div>
+    );
+  },
   "animated-text": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <AnimatedText text="Building great products starts here." variant="typewriter" />
+      <AnimatedText text="Building great products starts here." animation="fadeUp" />
     </div>
   ),
   background: () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <div className="relative h-48 rounded-xl overflow-hidden">
-        <Background variant="grid" />
+        <GridPattern />
       </div>
     </div>
   ),
   banner: () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <Banner variant="info" onDismiss={() => console.log("dismissed")}>
+      <Banner variant="info" onOpenChange={() => console.log("dismissed")}>
         🎉 New features available — <a href="/changelog">See what's new</a>
       </Banner>
     </div>
@@ -1157,12 +1156,12 @@ export const previews: Record<string, PreviewFn> = {
   "bento-grid": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <BentoGrid>
-        <BentoGridItem className="col-span-2" title="Fast" description="Built for speed.">
+        <BentoCard colSpan={2}>
           <div className="h-32 bg-muted rounded-md" />
-        </BentoGridItem>
-        <BentoGridItem title="Secure" description="Enterprise-grade.">
+        </BentoCard>
+        <BentoCard>
           <div className="h-32 bg-muted rounded-md" />
-        </BentoGridItem>
+        </BentoCard>
       </BentoGrid>
     </div>
   ),
@@ -1186,7 +1185,7 @@ export const previews: Record<string, PreviewFn> = {
             </div>
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
+        <CarouselPrev />
         <CarouselNext />
       </Carousel>
     </div>
@@ -1199,13 +1198,13 @@ export const previews: Record<string, PreviewFn> = {
             version: "2.0.0",
             date: "2024-03-01",
             title: "Major release",
-            changes: ["New component library", "Dark mode support"],
+            changes: [{ text: "New component library" }, { text: "Dark mode support" }],
           },
           {
             version: "1.5.0",
             date: "2024-02-01",
             title: "Feature update",
-            changes: ["Added Carousel", "Improved performance"],
+            changes: [{ text: "Added Carousel" }, { text: "Improved performance" }],
           },
         ]}
       />
@@ -1213,7 +1212,7 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "chat-bubble": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ChatBubble message="Hey! How's it going?" timestamp="10:00 AM" />
+      <ChatBubble timestamp="10:00 AM">Hey! How&#39;s it going?</ChatBubble>
     </div>
   ),
   "chat-input": () => (
@@ -1221,29 +1220,29 @@ export const previews: Record<string, PreviewFn> = {
       <ChatInput placeholder="Message #general" onSend={(msg) => console.log("sent:", msg)} />
     </div>
   ),
-  "color-picker": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      const [color, setColor] = React.useState("#3b82f6"); return{" "}
-      <ColorPicker value={color} onChange={setColor} />;
-    </div>
-  ),
+  "color-picker": () => {
+    const [color, setColor] = React.useState("#3b82f6");
+    return (
+      <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+        <ColorPicker value={color} onChange={setColor} />
+      </div>
+    );
+  },
   "consent-history-table": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <ConsentHistoryTable
         entries={[
           {
             id: "1",
-            type: "analytics",
-            granted: true,
+            action: "accepted_all",
             timestamp: "2024-01-01T10:00:00Z",
-            version: "1.0",
+            categories: { analytics: true, marketing: true },
           },
           {
             id: "2",
-            type: "marketing",
-            granted: false,
+            action: "customized",
             timestamp: "2024-01-02T11:00:00Z",
-            version: "1.0",
+            categories: { analytics: true, marketing: false },
           },
         ]}
       />
@@ -1252,23 +1251,25 @@ export const previews: Record<string, PreviewFn> = {
   "cookie-consent": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <CookieConsent
-        onAccept={(prefs) => console.log("accepted:", prefs)}
-        onDeny={() => console.log("denied")}
+        onAcceptAll={() => console.log("accepted all")}
+        onRejectAll={() => console.log("denied")}
+        onSavePreferences={(prefs) => console.log("saved:", prefs)}
       />
     </div>
   ),
   "cookie-consent-banner": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <CookieConsentBanner
-        onAccept={() => console.log("accepted")}
-        onCustomize={() => console.log("customize")}
+        visible={true}
+        onAcceptAll={() => console.log("accepted all")}
+        onRejectAll={() => console.log("rejected all")}
       />
     </div>
   ),
-  "cookie-preferences-dialog": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      const [open, setOpen] = React.useState(false); return (
-      <>
+  "cookie-preferences-dialog": () => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
         <button type="button" onClick={() => setOpen(true)}>
           Cookie Preferences
         </button>
@@ -1280,61 +1281,51 @@ export const previews: Record<string, PreviewFn> = {
             setOpen(false);
           }}
         />
-      </>
-      );
-    </div>
-  ),
-  "copilot-panel": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      const [open, setOpen] = React.useState(false); return (
-      <>
+      </div>
+    );
+  },
+  "copilot-panel": () => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
         <button type="button" onClick={() => setOpen(true)}>
           Open Copilot
         </button>
-        <CopilotPanel
-          open={open}
-          onOpenChange={setOpen}
-          onSend={async (msg) => "AI response to: " + msg}
-        />
-      </>
-      );
-    </div>
-  ),
+        <CopilotPanel open={open} onOpenChange={setOpen}>
+          <div className="p-4 text-sm text-muted-foreground">AI Copilot Panel</div>
+        </CopilotPanel>
+      </div>
+    );
+  },
   "dashboard-grid": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <DashboardGrid>
-        <DashboardGridItem id="revenue" x={0} y={0} w={4} h={2}>
-          <div className="h-full bg-muted rounded-lg p-4">Revenue</div>
-        </DashboardGridItem>
-        <DashboardGridItem id="users" x={4} y={0} w={4} h={2}>
-          <div className="h-full bg-muted rounded-lg p-4">Users</div>
-        </DashboardGridItem>
-      </DashboardGrid>
+      <DashboardGrid
+        widgets={[
+          { id: "revenue", title: "Revenue", children: <div className="h-full bg-muted rounded-lg p-4">Revenue</div> },
+          { id: "users", title: "Users", children: <div className="h-full bg-muted rounded-lg p-4">Users</div> },
+        ]}
+      />
     </div>
   ),
   dock: () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <Dock>
-        <DockIcon>
-          <span className="text-2xl">🏠</span>
-        </DockIcon>
-        <DockIcon>
-          <span className="text-2xl">📁</span>
-        </DockIcon>
-        <DockIcon>
-          <span className="text-2xl">⚙️</span>
-        </DockIcon>
-      </Dock>
+      <Dock
+        items={[
+          { id: "home", icon: <span className="text-2xl">🏠</span>, label: "Home" },
+          { id: "files", icon: <span className="text-2xl">📁</span>, label: "Files" },
+          { id: "settings", icon: <span className="text-2xl">⚙️</span>, label: "Settings" },
+        ]}
+      />
     </div>
   ),
   "funnel-chart": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <FunnelChart
         data={[
-          { label: "Visitors", value: 10000 },
-          { label: "Sign-ups", value: 3500 },
-          { label: "Activated", value: 1200 },
-          { label: "Paid", value: 420 },
+          { id: "visitors", label: "Visitors", value: 10000 },
+          { id: "signups", label: "Sign-ups", value: 3500 },
+          { id: "activated", label: "Activated", value: 1200 },
+          { id: "paid", label: "Paid", value: 420 },
         ]}
       />
     </div>
@@ -1348,56 +1339,59 @@ export const previews: Record<string, PreviewFn> = {
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <Heatmap
         data={[
-          { date: "2024-01-01", value: 3 },
-          { date: "2024-01-02", value: 7 },
-          { date: "2024-01-03", value: 1 },
+          [{ value: 3 }, { value: 7 }, { value: 1 }],
+          [{ value: 5 }, { value: 2 }, { value: 9 }],
         ]}
+        rowLabels={["Mon", "Tue"]}
+        colLabels={["Jan", "Feb", "Mar"]}
       />
     </div>
   ),
   "image-comparison": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <ImageComparison
-        before={{ src: "/before.jpg", alt: "Before" }}
-        after={{ src: "/after.jpg", alt: "After" }}
-        defaultPosition={40}
+        beforeSrc="/before.jpg"
+        beforeAlt="Before"
+        afterSrc="/after.jpg"
+        afterAlt="After"
+        initialPosition={40}
       />
     </div>
   ),
-  "inline-editable": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      const [name, setName] = React.useState("My Project"); return (
-      <InlineEditable value={name} onSave={setName} placeholder="Enter project name" />
-      );
-    </div>
-  ),
-  lightbox: () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      const [open, setOpen] = React.useState(false); return (
-      <>
+  "inline-editable": () => {
+    const [name, setName] = React.useState("My Project");
+    return (
+      <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+        <InlineEditable value={name} onChange={setName} placeholder="Enter project name" />
+      </div>
+    );
+  },
+  lightbox: () => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
         <button type="button" onClick={() => setOpen(true)}>
           View Gallery
         </button>
         <Lightbox
           open={open}
-          onClose={() => setOpen(false)}
+          onOpenChange={setOpen}
           images={[
             { src: "/photo1.jpg", alt: "Photo 1" },
             { src: "/photo2.jpg", alt: "Photo 2" },
           ]}
         />
-      </>
-      );
-    </div>
-  ),
+      </div>
+    );
+  },
   "live-indicator": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <LiveIndicator label="Live" variant="red" />
+      <LiveIndicator label="Live" status="online" />
     </div>
   ),
   "magic-card": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <MagicCard gradientColor="#3b82f6">
+      <MagicCard effect="glow">
         <div className="p-8">
           <h3 className="text-xl font-bold">Magic Card</h3>
           <p className="text-muted-foreground mt-2">Hover to see the spotlight effect.</p>
@@ -1418,8 +1412,12 @@ export const previews: Record<string, PreviewFn> = {
   ),
   masonry: () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <Masonry columns={3} gap={4}>
-        {photos.map((photo) => (
+      <Masonry columns={3} gap="md">
+        {[
+          { id: "1", src: "/photo1.jpg", alt: "Photo 1" },
+          { id: "2", src: "/photo2.jpg", alt: "Photo 2" },
+          { id: "3", src: "/photo3.jpg", alt: "Photo 3" },
+        ].map((photo) => (
           <img key={photo.id} src={photo.src} alt={photo.alt} className="rounded-lg w-full" />
         ))}
       </Masonry>
@@ -1427,19 +1425,23 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "mobile-nav": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <MobileNav>
-        <MobileNavItem href="/" icon={<HomeIcon />} label="Home" isActive />
-        <MobileNavItem href="/explore" icon={<SearchIcon />} label="Explore" />
-        <MobileNavItem href="/profile" icon={<UserIcon />} label="Profile" />
-      </MobileNav>
+      <MobileNav
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Explore", href: "/explore" },
+          { label: "Profile", href: "/profile" },
+        ]}
+      />
     </div>
   ),
   "multi-panel-layout": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <MultiPanelLayout
-        primary={<div className="p-4">Main content</div>}
-        secondary={<div className="p-4 bg-muted/30">Sidebar</div>}
-        tertiary={<div className="p-4 bg-muted/20">Inspector</div>}
+        panels={[
+          { id: "main", children: <div className="p-4">Main content</div>, defaultSize: 60 },
+          { id: "sidebar", children: <div className="p-4 bg-muted/30">Sidebar</div>, defaultSize: 25 },
+          { id: "inspector", children: <div className="p-4 bg-muted/20">Inspector</div>, defaultSize: 15 },
+        ]}
       />
     </div>
   ),
@@ -1457,7 +1459,13 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "notification-bell": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <NotificationBell count={5} onClick={() => console.log("open notifications")} />
+      <NotificationBell
+        notifications={[
+          { id: "1", title: "New message", timestamp: "2m ago", read: false },
+          { id: "2", title: "Build passed", description: "main branch", timestamp: "10m ago", read: false },
+          { id: "3", title: "Deploy complete", timestamp: "1h ago", read: true },
+        ]}
+      />
     </div>
   ),
   "page-transition": () => (
@@ -1469,31 +1477,17 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "palette-switcher": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <PaletteSwitcher
-        palettes={[
-          { id: "blue", name: "Ocean Blue", primary: "#3b82f6" },
-          { id: "green", name: "Forest Green", primary: "#16a34a" },
-          { id: "purple", name: "Royal Purple", primary: "#9333ea" },
-        ]}
-        value="blue"
-        onChange={(id) => console.log("palette:", id)}
-      />
+      <PaletteSwitcher onValueChange={(name) => console.log("palette:", name)} />
     </div>
   ),
   "privacy-dashboard": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <PrivacyDashboard
-        consents={[
-          {
-            id: "1",
-            type: "analytics",
-            granted: true,
-            timestamp: "2024-01-01T10:00:00Z",
-            version: "1.0",
-          },
+        consentHistory={[
+          { id: "1", action: "accepted_all", timestamp: "2024-01-01T10:00:00Z" },
         ]}
-        onDownloadData={() => console.log("download")}
-        onDeleteAccount={() => console.log("delete account")}
+        onRequestDataDownload={() => console.log("download")}
+        onRequestAccountDeletion={() => console.log("delete account")}
       />
     </div>
   ),
@@ -1501,8 +1495,8 @@ export const previews: Record<string, PreviewFn> = {
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <RealtimeTicker
         items={[
-          { symbol: "ACME", value: 142.5, change: +2.3 },
-          { symbol: "GLOB", value: 87.2, change: -1.1 },
+          { id: "acme", label: "ACME", value: 142.5, previousValue: 140.2, format: "currency" },
+          { id: "glob", label: "GLOB", value: 87.2, previousValue: 88.3, format: "currency" },
         ]}
       />
     </div>
@@ -1510,7 +1504,7 @@ export const previews: Record<string, PreviewFn> = {
   "sankey-diagram": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <SankeyDiagram
-        nodes={[{ id: "organic" }, { id: "paid" }, { id: "signup" }, { id: "purchase" }]}
+        nodes={[{ id: "organic", name: "Organic" }, { id: "paid", name: "Paid" }, { id: "signup", name: "Sign-up" }, { id: "purchase", name: "Purchase" }]}
         links={[
           { source: "organic", target: "signup", value: 400 },
           { source: "paid", target: "signup", value: 200 },
@@ -1521,28 +1515,28 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "scroll-animate": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ScrollAnimate animation="fade-up">
+      <FadeInOnScroll>
         <div className="p-6 rounded-xl bg-muted">
           <h2 className="text-xl font-bold">Animated section</h2>
           <p className="mt-2 text-muted-foreground">Appears as you scroll down.</p>
         </div>
-      </ScrollAnimate>
+      </FadeInOnScroll>
     </div>
   ),
   "scroll-effects": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ScrollEffects effect="parallax" speed={0.3}>
+      <ParallaxSection speed={0.3}>
         <div className="h-screen bg-gradient-to-b from-primary/10 to-background flex items-center justify-center">
           <h1 className="text-5xl font-bold">Hero Title</h1>
         </div>
-      </ScrollEffects>
+      </ParallaxSection>
     </div>
   ),
   "smart-theming-generator": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <SmartThemingGenerator
-        defaultColor="#3b82f6"
-        onGenerate={(tokens) => console.log("generated tokens:", tokens)}
+        apiKey="demo"
+        onThemeGenerated={(colors) => console.log("generated:", colors)}
       />
     </div>
   ),
@@ -1554,7 +1548,7 @@ export const previews: Record<string, PreviewFn> = {
   spotlight: () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <div className="relative min-h-[300px] bg-black rounded-xl overflow-hidden">
-        <Spotlight fill="rgba(100, 200, 255, 0.3)" />
+        <Spotlight size={400} followsMouse={true} />
         <div className="relative z-10 flex items-center justify-center h-64 text-white text-2xl font-bold">
           Move your cursor over me
         </div>
@@ -1575,19 +1569,10 @@ export const previews: Record<string, PreviewFn> = {
   "status-page": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <StatusPage
-        overallStatus="operational"
         services={[
           { id: "api", name: "API", status: "operational" },
           { id: "db", name: "Database", status: "operational" },
           { id: "cdn", name: "CDN", status: "degraded" },
-        ]}
-        incidents={[
-          {
-            id: "1",
-            title: "CDN latency increase",
-            status: "investigating",
-            startedAt: "2024-01-15T10:00:00Z",
-          },
         ]}
       />
     </div>
@@ -1603,31 +1588,29 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "tab-content-crossfade": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <TabContentCrossfade
-        tabs={[
-          { id: "overview", label: "Overview", content: <div>Overview content</div> },
-          { id: "details", label: "Details", content: <div>Details content</div> },
-          { id: "history", label: "History", content: <div>History content</div> },
-        ]}
-        defaultTab="overview"
-      />
+      <TabContentCrossfade activeKey="overview">
+        <TabPanel tabKey="overview"><div>Overview content</div></TabPanel>
+        <TabPanel tabKey="details"><div>Details content</div></TabPanel>
+        <TabPanel tabKey="history"><div>History content</div></TabPanel>
+      </TabContentCrossfade>
     </div>
   ),
-  "tag-input": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      const [tags, setTags] = React.useState(["React", "TypeScript"]); return (
-      <TagInput value={tags} onChange={setTags} placeholder="Add skill..." />
-      );
-    </div>
-  ),
+  "tag-input": () => {
+    const [tags, setTags] = React.useState<string[]>(["React", "TypeScript"]);
+    return (
+      <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
+        <TagInput value={tags} onChange={setTags} placeholder="Add skill..." />
+      </div>
+    );
+  },
   terminal: () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <Terminal
         title="Getting Started"
         lines={[
-          { type: "command", content: "npm install @launchapp/design-system" },
+          { type: "input", content: "npm install @launchapp/design-system" },
           { type: "output", content: "added 42 packages in 3.2s" },
-          { type: "command", content: "npm run dev" },
+          { type: "input", content: "npm run dev" },
           { type: "output", content: "⚡ Server ready on http://localhost:3000" },
         ]}
       />
@@ -1635,27 +1618,35 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "text-animate": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <TextAnimate text="Ship products faster than ever." by="word" animation="slideUp" />
+      <WordReveal text="Ship products faster than ever." />
     </div>
   ),
   "theme-card": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <ThemeCard
-        name="Ocean Blue"
-        colors={["#0f172a", "#1e40af", "#3b82f6", "#bfdbfe"]}
-        isActive={false}
-        onSelect={() => console.log("selected")}
+        theme={{
+          id: "ocean-blue",
+          name: "Ocean Blue",
+          description: "A calming blue theme",
+          author: { name: "Demo" },
+          version: "1.0.0",
+          license: "MIT",
+          previewColor: "210 80% 56%",
+          tokens: { light: {} as never, dark: {} as never },
+        }}
+        onViewDetails={(id) => console.log("view", id)}
+        onUseTheme={(id) => console.log("use", id)}
       />
     </div>
   ),
   "theme-generator": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ThemeGenerator onApply={(tokens) => console.log("apply theme:", tokens)} />
+      <ThemeGenerator onThemeGenerated={(palette) => console.log("generated:", palette)} />
     </div>
   ),
   "theme-preview": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <ThemePreview tokens={{ primary: "#3b82f6", secondary: "#6b7280", background: "#ffffff" }} />
+      <ThemePreview colors={{ primary: "210 80% 56%", secondary: "220 9% 46%", muted: "210 40% 96%", accent: "210 40% 96%", destructive: "0 84% 60%" }} />
     </div>
   ),
   "thinking-indicator": () => (
@@ -1666,15 +1657,12 @@ export const previews: Record<string, PreviewFn> = {
   "tree-map": () => (
     <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
       <TreeMap
-        data={{
-          name: "Budget",
-          children: [
-            { name: "Engineering", value: 400000 },
-            { name: "Marketing", value: 200000 },
-            { name: "Design", value: 100000 },
-            { name: "Operations", value: 80000 },
-          ],
-        }}
+        data={[
+          { id: "eng", name: "Engineering", value: 400000 },
+          { id: "mkt", name: "Marketing", value: 200000 },
+          { id: "des", name: "Design", value: 100000 },
+          { id: "ops", name: "Operations", value: 80000 },
+        ]}
         height={300}
       />
     </div>
@@ -1689,29 +1677,4 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
 
-  calendar: () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <div className="p-4 border rounded-md">Calendar Preview</div>
-    </div>
-  ),
-  collapsible: () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <div className="p-4 border rounded-md">Collapsible Preview</div>
-    </div>
-  ),
-  "date-picker": () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <div className="p-4 border rounded-md">Date Picker Preview</div>
-    </div>
-  ),
-  progress: () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <div className="p-4 border rounded-md">Progress Preview</div>
-    </div>
-  ),
-  toast: () => (
-    <div className="flex flex-col gap-4 w-full items-center justify-center min-h-[200px]">
-      <div className="p-4 border rounded-md">Toast Preview</div>
-    </div>
-  ),
 };
