@@ -1,3 +1,10 @@
+## 0.4.0
+
+### Minor Changes
+
+- Add React adapters for all 108 base components with `La` prefix (e.g. `LaButton`, `LaCard`) — import from `@launchapp/design-system/react`
+- Add Svelte 5 wrappers for all components — import from `@launchapp/design-system/svelte`
+
 ## 0.3.0
 
 ### Minor Changes
