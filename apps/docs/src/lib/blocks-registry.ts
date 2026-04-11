@@ -2518,7 +2518,7 @@ export default function ErrorPage() {
 }`,
   },
   {
-    id: "maintenance-page",
+    id: "maintenance",
     name: "Maintenance Page",
     description: "Maintenance mode page with status message and estimated return time.",
     category: "errors",

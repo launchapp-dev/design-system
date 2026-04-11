@@ -804,10 +804,22 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     </div>
   ),
   "top-nav": () => (
-    <TopNav items={topNavItems} notificationCount={3} user={navUser} />
+    <div className="w-full flex flex-col gap-4 bg-muted/20 border rounded-lg min-h-[200px]">
+      <TopNav
+        items={topNavItems}
+        notificationCount={3}
+        user={navUser}
+      />
+    </div>
   ),
   "mobile-nav-drawer": () => (
-    <MobileNavDrawer sections={navSections} title="Navigation" user={navUser} />
+    <div className="flex h-[420px] w-full items-center justify-center border rounded-lg bg-muted/20">
+      <MobileNavDrawer
+        sections={navSections}
+        title="Navigation"
+        user={navUser}
+      />
+    </div>
   ),
   "full-data-table": () => (
     <div className="flex flex-col gap-10 w-full items-center">
@@ -2116,7 +2128,13 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
     />
   ),
   "account-deletion-card": () => (
-    <AccountDeletionCard onDelete={() => console.log("delete account")} />
+    <div className="p-4 max-w-lg mx-auto w-full">
+      <AccountDeletionCard
+        onDelete={() => {
+          console.log("Delete account requested");
+        }}
+      />
+    </div>
   ),
 
   // navigation (additional)
