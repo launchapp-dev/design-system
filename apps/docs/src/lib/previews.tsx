@@ -222,7 +222,6 @@ import {
   ToolbarToggleItem,
 } from "@launchapp/design-system";
 
-import { Calendar, Collapsible, CollapsibleTrigger, CollapsibleContent, DatePicker, Progress, Toaster, useToast } from "@launchapp/design-system";
 
 export type PreviewFn = () => React.ReactElement;
 
@@ -269,8 +268,8 @@ export const previews: Record<string, PreviewFn> = {
     return (
       <div className="flex flex-col gap-4 max-w-sm">
         <DatePicker
-          date={date}
-          setDate={setDate}
+          selected={date}
+          onSelect={setDate}
         />
         <div className="text-sm text-muted-foreground">
           Selected date: {date ? date.toLocaleDateString() : "None"}
@@ -390,20 +389,6 @@ export const previews: Record<string, PreviewFn> = {
     </div>
   ),
 
-  progress: function ProgressPreview() {
-    const [value, setValue] = React.useState(0);
-    React.useEffect(() => {
-      const timer = setTimeout(() => setValue(66), 200);
-      return () => clearTimeout(timer);
-    }, []);
-    return (
-      <div className="flex flex-col gap-3 w-full max-w-sm">
-        <Progress value={value} />
-        <Progress value={33} />
-        <Progress value={100} />
-      </div>
-    );
-  },
 
   slider: () => (
     <div className="flex flex-col gap-4 w-full max-w-sm">
@@ -586,27 +571,6 @@ export const previews: Record<string, PreviewFn> = {
     </RadioGroup>
   ),
 
-  collapsible: function CollapsiblePreview() {
-    const [open, setOpen] = React.useState(false);
-    return (
-      <Collapsible open={open} onOpenChange={setOpen} className="w-[350px] space-y-2">
-        <div className="flex items-center justify-between space-x-4 px-4">
-          <h4 className="text-sm font-semibold">Starred repositories</h4>
-          <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="sm">
-              {open ? "▲" : "▼"}
-            </Button>
-          </CollapsibleTrigger>
-        </div>
-        <div className="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/primitives</div>
-        <CollapsibleContent className="space-y-2">
-          <div className="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/colors</div>
-          <div className="rounded-md border px-4 py-3 font-mono text-sm">@stitches/react</div>
-        </CollapsibleContent>
-      </Collapsible>
-    );
-  },
-
   popover: () => (
     <Popover>
       <PopoverTrigger asChild>
@@ -756,13 +720,6 @@ export const previews: Record<string, PreviewFn> = {
     </AlertDialogRoot>
   ),
 
-  calendar: function CalendarPreview() {
-    const [date, setDate] = React.useState<Date | undefined>(new Date());
-    return (
-      <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border" />
-    );
-  },
-
   chart: () => {
     const data = [
       { month: "Jan", revenue: 186 },
@@ -867,11 +824,6 @@ export const previews: Record<string, PreviewFn> = {
         />
       </div>
     );
-  },
-
-  "date-picker": function DatePickerPreview() {
-    const [date, setDate] = React.useState<Date | undefined>();
-    return <DatePicker selected={date} onSelect={setDate} placeholder="Pick a date" />;
   },
 
   dialog: () => (
@@ -1150,37 +1102,6 @@ export const previews: Record<string, PreviewFn> = {
     </Table>
   ),
 
-  toast: function ToastPreview() {
-    const { toast } = useToast();
-    return (
-      <>
-        <Toaster />
-        <div className="flex flex-wrap gap-2 justify-center">
-          <Button
-            variant="outline"
-            onClick={() =>
-              toast({ title: "Scheduled", description: "Monday, January 3rd at 6:00pm" })
-            }
-          >
-            Show Toast
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={() =>
-              toast({
-                title: "Error",
-                description: "Something went wrong.",
-                variant: "destructive",
-              })
-            }
-          >
-            Error Toast
-          </Button>
-        </div>
-      </>
-    );
-  },
-
   toolbar: () => (
     <ToolbarRoot className="flex w-full min-w-max rounded-md border bg-background p-0.5 max-w-sm">
       <ToolbarToggleGroup type="multiple">
@@ -1313,8 +1234,8 @@ export const previews: Record<string, PreviewFn> = {
   ),
   "chat-bubble": () => (
     <div className="flex flex-col gap-4 w-full max-w-md mx-auto items-start justify-center min-h-[200px] p-4 border rounded-xl bg-background/50">
-      <ChatBubble timestamp="10:00 AM" variant="received">Hey! How&#39;s it going?</ChatBubble>
-      <ChatBubble timestamp="10:01 AM" variant="sent" className="self-end bg-primary text-primary-foreground">Doing well, just working on some UI components!</ChatBubble>
+      <ChatBubble timestamp="10:00 AM" variant="assistant">Hey! How&#39;s it going?</ChatBubble>
+      <ChatBubble timestamp="10:01 AM" variant="user" className="self-end">Doing well, just working on some UI components!</ChatBubble>
     </div>
   ),
   "chat-input": () => (
@@ -1494,7 +1415,7 @@ export const previews: Record<string, PreviewFn> = {
   "live-indicator": () => (
     <div className="flex flex-row gap-6 w-full items-center justify-center min-h-[200px] border rounded-lg bg-background p-6">
       <LiveIndicator label="Live" status="online" pulse />
-      <LiveIndicator label="Connecting..." status="away" pulse={false} />
+      <LiveIndicator label="Connecting..." status="degraded" pulse={false} />
       <LiveIndicator label="Offline" status="offline" pulse={false} />
     </div>
   ),
@@ -1652,8 +1573,8 @@ export const previews: Record<string, PreviewFn> = {
   ),
   sparkline: () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full items-center justify-center min-h-[200px] p-6">
-      <div className="p-4 border rounded-lg bg-card shadow-sm"><Sparkline data={[30, 45, 28, 60, 72, 55, 80, 95]} type="area" color="var(--primary)" /></div>
-      <div className="p-4 border rounded-lg bg-card shadow-sm"><Sparkline data={[95, 80, 55, 72, 60, 28, 45, 30]} type="line" color="var(--destructive, #ef4444)" /></div>
+      <div className="p-4 border rounded-lg bg-card shadow-sm"><Sparkline data={[30, 45, 28, 60, 72, 55, 80, 95]} showArea colorScheme="primary" /></div>
+      <div className="p-4 border rounded-lg bg-card shadow-sm"><Sparkline data={[95, 80, 55, 72, 60, 28, 45, 30]} colorScheme="warning" /></div>
     </div>
   ),
   spotlight: () => (
@@ -1730,7 +1651,7 @@ export const previews: Record<string, PreviewFn> = {
   "text-animate": () => (
     <div className="flex flex-col gap-6 w-full items-center justify-center min-h-[200px] bg-muted/30 border rounded-xl p-8">
       <WordReveal text="Ship products faster than ever." className="text-3xl font-bold" />
-      <WordReveal text="Focus on your business logic, we handle the rest." className="text-lg text-muted-foreground" delay={300} />
+      <WordReveal text="Focus on your business logic, we handle the rest." className="text-lg text-muted-foreground" staggerDelay={300} />
     </div>
   ),
   "theme-card": () => (
@@ -1761,15 +1682,15 @@ export const previews: Record<string, PreviewFn> = {
     <div className="flex flex-col gap-6 w-full items-center justify-center min-h-[300px] p-8 border rounded-xl bg-background shadow-sm">
       <div className="w-full max-w-3xl">
         <h4 className="mb-4 text-sm font-medium text-muted-foreground uppercase tracking-wider">Light Theme</h4>
-        <ThemePreview colors={{ primary: "210 80% 56%", secondary: "220 9% 46%", muted: "210 40% 96%", accent: "210 40% 96%", destructive: "0 84% 60%", background: "0 0% 100%", foreground: "222 47% 11%" }} />
+        <ThemePreview colors={{ primary: "210 80% 56%", secondary: "220 9% 46%", muted: "210 40% 96%", accent: "210 40% 96%", destructive: "0 84% 60%" }} />
       </div>
     </div>
   ),
   "thinking-indicator": () => (
     <div className="flex flex-col gap-8 w-full items-center justify-center min-h-[200px] border rounded-xl p-8 bg-muted/20">
       <ThinkingIndicator label="AI is thinking..." variant="dots" size="md" />
-      <ThinkingIndicator label="Generating response" variant="spinner" size="sm" />
-      <ThinkingIndicator label="Processing" variant="pulse" size="lg" />
+      <ThinkingIndicator label="Generating response" variant="brain" size="sm" />
+      <ThinkingIndicator label="Processing" variant="chain" size="lg" />
     </div>
   ),
   "tree-map": () => (
