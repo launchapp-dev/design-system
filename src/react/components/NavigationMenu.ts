@@ -1,0 +1,10 @@
+export { NavigationMenu as LaNavigationMenu } from "../../components/NavigationMenu";
+export { NavigationMenuList as LaNavigationMenuList } from "../../components/NavigationMenu";
+export { NavigationMenuItem as LaNavigationMenuItem } from "../../components/NavigationMenu";
+export { NavigationMenuContent as LaNavigationMenuContent } from "../../components/NavigationMenu";
+export { NavigationMenuTrigger as LaNavigationMenuTrigger } from "../../components/NavigationMenu";
+export { NavigationMenuLink as LaNavigationMenuLink } from "../../components/NavigationMenu";
+export { NavigationMenuViewport as LaNavigationMenuViewport } from "../../components/NavigationMenu";
+export { NavigationMenuIndicator as LaNavigationMenuIndicator } from "../../components/NavigationMenu";
+export { navigationMenuTriggerStyle as laNavigationMenuTriggerStyle } from "../../components/NavigationMenu";
+export type { NavigationMenuTriggerStyleVariants as LaNavigationMenuTriggerStyleVariants } from "../../components/NavigationMenu";

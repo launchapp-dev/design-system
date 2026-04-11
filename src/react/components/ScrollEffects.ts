@@ -1,0 +1,18 @@
+export { StickySection as LaStickySection } from "../../components/ScrollEffects";
+export { StickyHeader as LaStickyHeader } from "../../components/ScrollEffects";
+export { HorizontalScroll as LaHorizontalScroll } from "../../components/ScrollEffects";
+export { ScrollProgress as LaScrollProgress } from "../../components/ScrollEffects";
+export { RevealOnScroll as LaRevealOnScroll } from "../../components/ScrollEffects";
+export { ScrollSnapContainer as LaScrollSnapContainer } from "../../components/ScrollEffects";
+export { ScrollSnapItem as LaScrollSnapItem } from "../../components/ScrollEffects";
+export { ParallaxSection as LaParallaxSection } from "../../components/ScrollEffects";
+export { ProgressIndicator as LaProgressIndicator } from "../../components/ScrollEffects";
+export type { StickySectionProps as LaStickySectionProps } from "../../components/ScrollEffects";
+export type { StickyHeaderProps as LaStickyHeaderProps } from "../../components/ScrollEffects";
+export type { HorizontalScrollProps as LaHorizontalScrollProps } from "../../components/ScrollEffects";
+export type { ScrollProgressProps as LaScrollProgressProps } from "../../components/ScrollEffects";
+export type { RevealOnScrollProps as LaRevealOnScrollProps } from "../../components/ScrollEffects";
+export type { ScrollSnapContainerProps as LaScrollSnapContainerProps } from "../../components/ScrollEffects";
+export type { ScrollSnapItemProps as LaScrollSnapItemProps } from "../../components/ScrollEffects";
+export type { ParallaxSectionProps as LaParallaxSectionProps } from "../../components/ScrollEffects";
+export type { ProgressIndicatorProps as LaProgressIndicatorProps } from "../../components/ScrollEffects";

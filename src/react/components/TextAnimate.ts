@@ -1,0 +1,16 @@
+export { Typewriter as LaTypewriter } from "../../components/TextAnimate";
+export { BlurIn as LaBlurIn } from "../../components/TextAnimate";
+export { FadeUp as LaFadeUp } from "../../components/TextAnimate";
+export { LetterReveal as LaLetterReveal } from "../../components/TextAnimate";
+export { WordReveal as LaWordReveal } from "../../components/TextAnimate";
+export { GradientText as LaGradientText } from "../../components/TextAnimate";
+export { gradientTextVariants as laGradientTextVariants } from "../../components/TextAnimate";
+export type { TypewriterProps as LaTypewriterProps } from "../../components/TextAnimate";
+export type { BlurInProps as LaBlurInProps } from "../../components/TextAnimate";
+export type { FadeUpProps as LaFadeUpProps } from "../../components/TextAnimate";
+export type { LetterRevealProps as LaLetterRevealProps } from "../../components/TextAnimate";
+export type { WordRevealProps as LaWordRevealProps } from "../../components/TextAnimate";
+export type { GradientTextProps as LaGradientTextProps } from "../../components/TextAnimate";
+export type { BlurInVariants as LaBlurInVariants } from "../../components/TextAnimate";
+export type { FadeUpVariants as LaFadeUpVariants } from "../../components/TextAnimate";
+export type { GradientTextVariants as LaGradientTextVariants } from "../../components/TextAnimate";

@@ -1,0 +1,16 @@
+export { Particles as LaParticles } from "../../components/AnimatedBackground";
+export { Stars as LaStars } from "../../components/AnimatedBackground";
+export { MatrixRain as LaMatrixRain } from "../../components/AnimatedBackground";
+export { NoiseTexture as LaNoiseTexture } from "../../components/AnimatedBackground";
+export { AnimatedGrid as LaAnimatedGrid } from "../../components/AnimatedBackground";
+export { GradientBackground as LaGradientBackground } from "../../components/AnimatedBackground";
+export { AnimatedGradient as LaAnimatedGradient } from "../../components/AnimatedBackground";
+export { ShimmerBackground as LaShimmerBackground } from "../../components/AnimatedBackground";
+export type { ParticlesProps as LaParticlesProps } from "../../components/AnimatedBackground";
+export type { StarsProps as LaStarsProps } from "../../components/AnimatedBackground";
+export type { MatrixRainProps as LaMatrixRainProps } from "../../components/AnimatedBackground";
+export type { NoiseTextureProps as LaNoiseTextureProps } from "../../components/AnimatedBackground";
+export type { AnimatedGridProps as LaAnimatedGridProps } from "../../components/AnimatedBackground";
+export type { GradientBackgroundProps as LaGradientBackgroundProps } from "../../components/AnimatedBackground";
+export type { AnimatedGradientProps as LaAnimatedGradientProps } from "../../components/AnimatedBackground";
+export type { ShimmerBackgroundProps as LaShimmerBackgroundProps } from "../../components/AnimatedBackground";
