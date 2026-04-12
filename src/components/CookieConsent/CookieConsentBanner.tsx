@@ -105,7 +105,7 @@ function CookieConsentBanner({
               <div
                 key={category.id}
                 className={cn(
-                  "flex items-start justify-between gap-4 rounded-lg p-3",
+                  "flex flex-col sm:flex-row items-start justify-between gap-4 rounded-lg p-3",
                   "border border-[hsl(var(--la-border))]",
                 )}
               >

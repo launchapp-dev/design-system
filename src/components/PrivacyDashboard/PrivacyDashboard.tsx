@@ -143,7 +143,7 @@ function PrivacyDashboard({
       {/* Consent Management */}
       <Card>
         <CardHeader>
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
             <div className="flex items-start gap-3">
               <div
                 aria-hidden="true"

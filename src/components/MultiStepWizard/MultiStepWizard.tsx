@@ -137,7 +137,7 @@ function MultiStepWizard({
         {step?.content}
       </div>
 
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex gap-2">
           <button
             type="button"

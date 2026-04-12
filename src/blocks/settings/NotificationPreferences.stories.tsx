@@ -128,7 +128,7 @@ export function NotificationPreferences({ groups, onChange }) {
             <h3 className="text-sm font-semibold mb-3">{group.title}</h3>
             <div className="space-y-4">
               {group.items.map((item) => (
-                <div key={item.id} className="flex items-center justify-between gap-4">
+                <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div>
                     <Label htmlFor={item.id} className="font-medium">{item.label}</Label>
                     {item.description && (

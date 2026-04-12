@@ -205,7 +205,7 @@ export function CookiePreferences({ onSave, onAcceptAll, onRejectAll }) {
         <CardContent className="space-y-0">
           {categories.map((cat, i) => (
             <React.Fragment key={cat.id}>
-              <div className="flex items-start justify-between gap-4 py-3">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-4 py-3">
                 <div className="space-y-0.5 flex-1">
                   <div className="flex items-center gap-2">
                     <Label htmlFor={cat.id}>{cat.name}</Label>

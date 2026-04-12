@@ -71,7 +71,7 @@ function CartDrawerItem({
         )}
       </div>
       <div className="flex flex-1 flex-col justify-between">
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
           <p className="text-sm font-medium leading-tight line-clamp-2">{item.name}</p>
           <button
             type="button"

@@ -154,7 +154,7 @@ function SystemSettingsPanelInner(
             </CardHeader>
             <CardContent className="space-y-6">
               {featureFlags.map((flag) => (
-                <div key={flag.id} className="flex items-start justify-between gap-4">
+                <div key={flag.id} className="flex flex-col sm:flex-row items-start justify-between gap-4">
                   <div className="space-y-0.5">
                     <Label htmlFor={flag.id} className="text-base font-medium">
                       {flag.name}

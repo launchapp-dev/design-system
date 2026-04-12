@@ -147,7 +147,7 @@ function BillingCard({
     return (
       <Card className={cn("overflow-hidden", className)} {...props}>
         <CardHeader className="pb-3">
-          <div className="flex items-start justify-between gap-2">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
             <div>
               <CardTitle className="text-base">{planName}</CardTitle>
               {planDescription && (
@@ -195,7 +195,7 @@ function BillingCard({
   return (
     <Card className={cn("overflow-hidden", className)} {...props}>
       <CardHeader>
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <CardTitle>{planName}</CardTitle>

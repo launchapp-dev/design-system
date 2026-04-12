@@ -114,7 +114,7 @@ function BillingPage({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <CardTitle className="text-base">{plan.name} plan</CardTitle>
                 <Badge variant={statusBadgeVariant[plan.status]}>
                   {plan.status.replace("_", " ")}
@@ -172,7 +172,7 @@ function BillingPage({
 
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
               <div>
                 <CardTitle className="text-base">Payment method</CardTitle>
                 <CardDescription>

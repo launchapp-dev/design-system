@@ -81,7 +81,7 @@ function NotificationSettingsCard({
           return (
             <div key={group.id}>
               {groupIndex > 0 && <Separator className="mb-6" />}
-              <div className="flex items-start justify-between gap-4 mb-4">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-4 mb-4">
                 <div>
                   <p className="font-medium text-sm">{group.label}</p>
                   {group.description && (

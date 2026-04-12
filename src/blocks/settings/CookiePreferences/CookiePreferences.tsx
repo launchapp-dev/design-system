@@ -172,7 +172,7 @@ function CookiePreferences({
         <CardContent className="space-y-0">
           {categories.map((category, index) => (
             <React.Fragment key={category.id}>
-              <div className="flex items-start justify-between gap-4 py-3">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-4 py-3">
                 <div className="min-w-0 flex-1 space-y-0.5">
                   <div className="flex flex-wrap items-center gap-2">
                     <Label

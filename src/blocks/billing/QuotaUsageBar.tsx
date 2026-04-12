@@ -151,7 +151,7 @@ function QuotaUsageBar({
     <TooltipProvider>
       <Card className={className} {...props}>
         <CardHeader>
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
             <div className="flex items-center gap-3">
               <GaugeIcon className="h-5 w-5 text-muted-foreground" />
               <div>

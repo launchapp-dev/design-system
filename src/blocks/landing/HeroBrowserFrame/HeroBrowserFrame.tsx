@@ -100,7 +100,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
           <div className="flex" style={{ background: "var(--la-background)", height: "320px" }}>
             {/* Sidebar */}
             <aside
-              className="w-40 shrink-0 flex flex-col gap-5 p-4 border-r"
+              className="hidden sm:flex w-40 shrink-0 flex-col gap-5 p-4 border-r"
               style={{ background: "var(--la-card)", borderColor: "var(--la-border)" }}
             >
               {/* Logo */}
@@ -116,7 +116,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
               </div>
 
               {/* Nav items */}
-              <nav className="flex flex-col gap-0.5 flex-1">
+              <nav className="hidden sm:flex flex-col gap-0.5 flex-1">
                 {[
                   { label: "Dashboard", short: true, active: true },
                   { label: "Analytics", short: false, active: false },
@@ -192,8 +192,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
 
               {/* Stats row */}
               <div
-                className="grid gap-2"
-                style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
+                className="grid gap-2 grid-cols-2 sm:grid-cols-4"
               >
                 {stats.map((stat, i) => (
                   <div
@@ -218,7 +217,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
               </div>
 
               {/* Content row: chart + table */}
-              <div className="flex-1 grid gap-2 min-h-0" style={{ gridTemplateColumns: "1.4fr 1fr" }}>
+              <div className="flex-1 flex flex-col sm:grid gap-2 min-h-0 sm:grid-cols-[1.4fr_1fr]">
                 {/* Chart card */}
                 <div
                   className="rounded-lg p-2.5 flex flex-col gap-2 border overflow-hidden"

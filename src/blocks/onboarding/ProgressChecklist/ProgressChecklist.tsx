@@ -42,7 +42,7 @@ function SectionProgress({
   return (
     <Card>
       <CardHeader className="pb-3">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
             <CardTitle className="text-base">{section.title}</CardTitle>
             {section.description && (
@@ -143,7 +143,7 @@ const ProgressChecklist = React.forwardRef<HTMLDivElement, ProgressChecklistProp
         {showOverallProgress && (
           <Card>
             <CardHeader className="pb-4">
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
                 <div>
                   <CardTitle>{overallTitle}</CardTitle>
                   <p className="mt-0.5 text-sm text-muted-foreground">

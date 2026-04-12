@@ -121,7 +121,7 @@ function GoalSetupWizard({
                     <span className="flex-shrink-0 mt-0.5">{option.icon}</span>
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                       <span className="font-medium text-sm">{option.label}</span>
                       {isSelected && (
                         <Badge variant="default" className="h-5 shrink-0">

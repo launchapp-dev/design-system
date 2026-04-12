@@ -141,7 +141,7 @@ function InboxManager({
                     <AvatarFallback className="text-xs">{message.sender.initials ?? message.sender.name.slice(0, 2)}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                       <span className={cn("text-sm truncate", !message.read && "font-semibold")}>
                         {message.sender.name}
                       </span>
