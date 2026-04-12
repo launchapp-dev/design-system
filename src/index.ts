@@ -94,6 +94,8 @@ export { TabContentCrossfade, TabPanel } from "./components/TabContentCrossfade"
 export type { TabContentCrossfadeProps, TabPanelProps } from "./components/TabContentCrossfade";
 export { Button, buttonVariants } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
+export { Logo, logoVariants } from "./components/Logo";
+export type { LogoProps, LogoVariant, LogoSize, LogoColor } from "./components/Logo";
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 export { Label } from "./components/Label";
