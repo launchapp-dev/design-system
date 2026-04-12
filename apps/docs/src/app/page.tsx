@@ -46,7 +46,7 @@ export default function HomePage() {
     <div className="max-w-5xl mx-auto px-6 py-10">
       <div className="mb-10">
         <div className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground mb-4">
-          v0.2.1 · {components.length} components · {blocks.length}+ blocks
+          v0.4.1 · {components.length} components · {blocks.length}+ blocks
         </div>
         <h1 className="text-4xl font-bold tracking-tight mb-4">
           LaunchApp Design System
