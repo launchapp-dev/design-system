@@ -71,7 +71,7 @@ function TimelineView({
                   event.href && "cursor-pointer",
                 )}
               >
-                <div className="flex items-start justify-between gap-2">
+                <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <p className={cn("font-medium leading-tight", compact ? "text-sm" : "text-base")}>

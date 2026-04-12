@@ -85,7 +85,7 @@ function PageContainer({
           )}
 
           {(title || description) && (
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
               <div>
                 {title && (
                   <h1 className="text-2xl font-bold tracking-tight">{title}</h1>

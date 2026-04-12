@@ -208,7 +208,7 @@ function ColumnPopover({
 
         <Separator />
 
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <Button variant="ghost" size="sm" onClick={onClear} className="text-xs h-7">
             Clear
           </Button>

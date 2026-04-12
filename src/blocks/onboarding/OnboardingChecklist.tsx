@@ -29,7 +29,7 @@ const OnboardingChecklist = React.forwardRef<HTMLDivElement, OnboardingChecklist
     return (
       <Card ref={ref} className={cn("", className)} {...props}>
         <CardHeader>
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
             <div className="flex-1">
               <CardTitle>{title}</CardTitle>
               {description && <CardDescription className="mt-1">{description}</CardDescription>}

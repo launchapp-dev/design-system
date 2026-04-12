@@ -173,7 +173,7 @@ function ToggleRow({
   onCheckedChange?: (checked: boolean) => void;
 }) {
   return (
-    <div className="flex items-start justify-between gap-4">
+    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
       <div>
         <p className="text-sm font-medium">{label}</p>
         {description && <p className="text-xs text-muted-foreground">{description}</p>}

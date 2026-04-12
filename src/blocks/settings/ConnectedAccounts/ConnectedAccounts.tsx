@@ -46,7 +46,7 @@ function ConnectedAccounts({
   return (
     <Card ref={null} className={cn("", className)} {...props}>
       <CardHeader>
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
           <div>
             <CardTitle className="text-base">{title}</CardTitle>
             <CardDescription className="mt-1">{description}</CardDescription>
@@ -62,7 +62,7 @@ function ConnectedAccounts({
         {accounts.map((account) => (
           <div
             key={account.id}
-            className="flex items-center justify-between gap-4 rounded-lg border p-4"
+            className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-lg border p-4"
           >
             <div className="flex items-center gap-3">
               {account.providerIcon ? (

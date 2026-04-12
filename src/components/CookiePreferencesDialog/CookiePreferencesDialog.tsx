@@ -230,7 +230,7 @@ function CookiePreferencesDialog({
                     value={category.id}
                     className="space-y-4 focus-visible:outline-none"
                   >
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                       <div>
                         <h3 className="text-base font-medium text-[hsl(var(--la-foreground))]">
                           {category.name} Cookies

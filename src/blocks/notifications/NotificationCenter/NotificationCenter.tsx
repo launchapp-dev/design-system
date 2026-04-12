@@ -121,7 +121,7 @@ const NotificationCenter = ({
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0 flex-1 space-y-0.5">
-                    <div className="flex items-start justify-between gap-2">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
                       <p className={cn("text-sm", !notification.read && "font-semibold")}>
                         {notification.title}
                       </p>

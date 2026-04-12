@@ -319,7 +319,7 @@ function FeatureFlagPanel({
           <Card key={flag.id}>
             <CardContent className="p-4">
               <div className="flex flex-col gap-4">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <h3 className="font-medium">{flag.name}</h3>

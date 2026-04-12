@@ -56,7 +56,7 @@ const FileList = React.forwardRef<HTMLDivElement, FileListProps>(
               <div className="flex items-start gap-3">
                 <FileIcon />
                 <div className="min-w-0 flex-1 space-y-1.5">
-                  <div className="flex items-start justify-between gap-2">
+                  <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
                     <div className="min-w-0">
                       <p className="truncate text-sm font-medium">{file.name}</p>
                       <p className="text-xs text-muted-foreground">

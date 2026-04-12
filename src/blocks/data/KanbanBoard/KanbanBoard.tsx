@@ -58,7 +58,7 @@ function KanbanCardDisplay({ card, isDragging }: { card: KanbanCard; isDragging?
       )}
     >
       <CardContent className="p-3">
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
           <p className="text-sm font-medium leading-snug">{card.title}</p>
           {card.avatarFallback && (
             <Avatar size="sm" className="shrink-0">

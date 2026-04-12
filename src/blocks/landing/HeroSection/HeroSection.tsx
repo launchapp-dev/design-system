@@ -99,7 +99,7 @@ const HeroSectionBlock = React.forwardRef<HTMLElement, HeroSectionBlockProps>(
         <div className="w-full mt-16 pt-12 border-t border-border/50">
           {socialProofMetrics.length > 0 && (
             <div
-              className="grid grid-cols-2 gap-8 mb-10 sm:grid-cols-4"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10 sm:grid-cols-4"
               style={{
                 gridTemplateColumns: `repeat(${Math.min(socialProofMetrics.length, 4)}, 1fr)`,
               }}

@@ -93,7 +93,7 @@ function NotificationPreferences({ groups = defaultGroups, values, onChange, cla
                 <CardContent className="space-y-0">
                   {group.items.map((item, itemIndex) => (
                     <React.Fragment key={item.id}>
-                      <div className="flex items-start justify-between gap-4 py-3">
+                      <div className="flex flex-col sm:flex-row items-start justify-between gap-4 py-3">
                         <div className="space-y-0.5 flex-1">
                           <Label
                             htmlFor={item.id}

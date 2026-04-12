@@ -24,7 +24,7 @@ const ThemeCard = React.forwardRef<HTMLDivElement, ThemeCardProps>(
               Featured
             </Badge>
           )}
-          <div className="flex items-start justify-between gap-2">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
               <CardTitle className="truncate">{theme.name}</CardTitle>
               <CardDescription className="text-xs mt-1">by {theme.author.name}</CardDescription>

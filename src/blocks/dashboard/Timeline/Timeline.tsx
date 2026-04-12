@@ -68,7 +68,7 @@ function Timeline({
               )}
             </div>
             <div className={cn("flex flex-col min-w-0 flex-1", compact ? "pt-0.5" : "pt-1")}>
-              <div className="flex items-start justify-between gap-2">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
                 <div className="min-w-0 flex-1">
                   <p
                     className={cn("font-medium text-foreground", compact ? "text-sm" : "text-base")}

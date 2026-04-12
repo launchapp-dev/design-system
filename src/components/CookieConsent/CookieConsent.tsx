@@ -133,7 +133,7 @@ function CookieConsent({
             {categories.map((category) => (
               <div
                 key={category.id}
-                className="flex items-start justify-between gap-4 rounded-lg border border-[hsl(var(--la-border))] p-4"
+                className="flex flex-col sm:flex-row items-start justify-between gap-4 rounded-lg border border-[hsl(var(--la-border))] p-4"
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">

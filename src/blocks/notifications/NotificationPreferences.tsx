@@ -204,7 +204,7 @@ function NotificationPreferencesCenter({
               <div className="space-y-4">
                 {category.channels.map((channel, channelIndex) => (
                   <div key={channel.id}>
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                       <div className="space-y-0.5">
                         <Label
                           htmlFor={`${category.id}_${channel.id}`}

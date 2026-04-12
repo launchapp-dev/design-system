@@ -214,7 +214,7 @@ function WebhooksList({
             return (
               <Card key={webhook.id} className={cn(webhook.status === "failing" && "border-destructive/50")}>
                 <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
                     <div className="flex items-center gap-2 min-w-0">
                       <WebhookIcon className="h-5 w-5 text-muted-foreground shrink-0" />
                       <div className="min-w-0">

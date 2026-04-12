@@ -249,7 +249,7 @@ function DataExportPanel({
                 return (
                   <li
                     key={item.id}
-                    className="flex items-center justify-between gap-3 rounded-lg border p-3"
+                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-lg border p-3"
                   >
                     <div className="min-w-0 flex-1 space-y-0.5">
                       <div className="flex items-center gap-2">

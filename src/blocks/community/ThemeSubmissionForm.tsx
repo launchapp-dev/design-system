@@ -180,7 +180,7 @@ function ThemeSubmissionForm(
 
         <CardContent>
           <TabsRoot defaultValue="info" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 h-auto">
               <TabsTrigger value="info">Theme Info</TabsTrigger>
               <TabsTrigger value="colors">Colors</TabsTrigger>
               <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -200,7 +200,7 @@ function ThemeSubmissionForm(
                 )}
 
                 <TabsContent value="info" className="space-y-6 mt-0">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
                       name="id"
@@ -279,7 +279,7 @@ function ThemeSubmissionForm(
                       )}
                     />
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
                         name="authorUrl"
@@ -321,7 +321,7 @@ function ThemeSubmissionForm(
 
                   <div className="space-y-4 border-t pt-6">
                     <h3 className="font-semibold text-sm">Theme Metadata</h3>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <FormField
                         control={form.control}
                         name="version"
@@ -404,7 +404,7 @@ function ThemeSubmissionForm(
                     Choose your primary colors. Additional shades will be automatically generated.
                   </p>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <FormField
                       control={form.control}
                       name="primaryColor"

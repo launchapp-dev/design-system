@@ -50,7 +50,7 @@ const PrivacySettings = React.forwardRef<HTMLDivElement, PrivacySettingsProps>(
             {defaultToggles.map((toggle, index) => (
               <React.Fragment key={toggle.id}>
                 {index > 0 && <Separator />}
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                   <div className="space-y-0.5">
                     <p className="text-sm font-medium">{toggle.label}</p>
                     <p className="text-xs text-muted-foreground">{toggle.description}</p>

@@ -137,7 +137,7 @@ function StatusPage({
 
           return (
             <div key={service.id} className="px-4 py-4 sm:px-6">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className={cn("h-2 w-2 rounded-full flex-shrink-0", sConfig.dotClass)} />

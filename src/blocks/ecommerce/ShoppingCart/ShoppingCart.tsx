@@ -129,7 +129,7 @@ function ShoppingCart({
               </div>
             )}
             <div className="flex flex-1 flex-col justify-between min-w-0">
-              <div className="flex items-start justify-between gap-2">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
                 <div className="min-w-0">
                   <p className="text-sm font-medium leading-tight truncate">{item.name}</p>
                   {item.variant && <p className="text-xs text-muted-foreground">{item.variant}</p>}

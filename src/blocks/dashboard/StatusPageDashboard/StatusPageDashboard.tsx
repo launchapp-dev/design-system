@@ -332,7 +332,7 @@ function StatusPageDashboard({
           <CardContent>
             <ul className="space-y-3">
               {pastIncidents.slice(0, 5).map((incident) => (
-                <li key={incident.id} className="flex items-start justify-between gap-3">
+                <li key={incident.id} className="flex flex-col sm:flex-row items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium line-through decoration-muted-foreground/50">
                       {incident.title}

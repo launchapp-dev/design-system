@@ -317,7 +317,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
 
           <div className="mb-6">{currentStepData?.content}</div>
 
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <Button
               variant="outline"
               onClick={handlePrev}
@@ -433,7 +433,7 @@ const OnboardingStepper = React.forwardRef<HTMLDivElement, OnboardingStepperProp
 
             <div className="mb-6">{currentStepData?.content}</div>
 
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <Button
                 variant="outline"
                 onClick={handlePrev}

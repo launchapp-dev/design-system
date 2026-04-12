@@ -178,7 +178,7 @@ const Agency = React.forwardRef<HTMLDivElement, AgencyProps>(
                   <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">{teamSubtitle}</p>
                 )}
               </div>
-              <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
                 {team.map((member, i) => (
                   <div key={i} className="flex flex-col items-center text-center gap-3">
                     <Avatar className="h-20 w-20">

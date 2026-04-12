@@ -252,14 +252,14 @@ const PricingTableBlock = React.forwardRef<HTMLElement, PricingTableBlockProps>(
       return (
         <div className="mt-16 w-full overflow-auto">
           <div className="min-w-[640px]">
-            <div className="grid grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
               <div />
               <div className="text-center font-semibold text-sm">Free</div>
               <div className="text-center font-semibold text-sm text-primary">Pro</div>
               <div className="text-center font-semibold text-sm">Enterprise</div>
             </div>
             {features.map((feature, fi) => (
-              <div key={fi} className="grid grid-cols-4 gap-4 py-3 border-t border-border/50">
+              <div key={fi} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-3 border-t border-border/50">
                 <div className="text-sm text-muted-foreground">{feature.label}</div>
                 <div className="text-center text-sm">{feature.free}</div>
                 <div className="text-center text-sm">{feature.pro}</div>

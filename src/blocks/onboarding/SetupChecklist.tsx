@@ -50,7 +50,7 @@ const SetupChecklist = React.forwardRef<HTMLDivElement, SetupChecklistProps>(
         {(title || description || showProgress) && (
           <CardHeader>
             {(title || description) && (
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                 <div className="flex-1">
                   {title && <CardTitle>{title}</CardTitle>}
                   {description && <CardDescription className="mt-1">{description}</CardDescription>}
