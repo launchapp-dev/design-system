@@ -69,6 +69,29 @@ const colorTokens = [
     ],
   },
   {
+    group: "Success",
+    tokens: [
+      { name: "--la-success", light: "142 71% 45%", dark: "142 69% 58%" },
+      { name: "--la-success-foreground", light: "0 0% 98%", dark: "0 0% 98%" },
+    ],
+  },
+  {
+    group: "Warning",
+    tokens: [
+      { name: "--la-warning", light: "38 92% 50%", dark: "38 90% 60%" },
+      { name: "--la-warning-foreground", light: "26 83% 14%", dark: "26 83% 14%" },
+      { name: "--la-warning-border", light: "38 92% 70%", dark: "38 80% 35%" },
+    ],
+  },
+  {
+    group: "Info",
+    tokens: [
+      { name: "--la-info", light: "199 89% 45%", dark: "199 85% 55%" },
+      { name: "--la-info-foreground", light: "0 0% 98%", dark: "0 0% 98%" },
+      { name: "--la-info-border", light: "199 89% 68%", dark: "199 80% 32%" },
+    ],
+  },
+  {
     group: "Border / Input / Ring",
     tokens: [
       { name: "--la-border", light: "240 5.9% 90%", dark: "240 3.7% 15.9%" },
