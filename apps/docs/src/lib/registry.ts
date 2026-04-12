@@ -816,6 +816,55 @@ const data = [
     ],
   },
   {
+    slug: "logo",
+    name: "Logo",
+    description: "The LaunchApp brand logo with support for horizontal, stacked, mark-only, and wordmark variants in multiple sizes and color schemes.",
+    category: "display",
+    importStatement: `import { Logo } from "@launchapp/design-system";`,
+    props: [
+      { name: "variant", type: '"horizontal" | "stacked" | "mark" | "wordmark"', defaultValue: '"horizontal"', description: "Visual layout of the logo." },
+      { name: "size", type: '"xs" | "sm" | "md" | "lg" | "xl"', defaultValue: '"md"', description: "Size preset for the logo." },
+      { name: "color", type: '"brand" | "white" | "black" | "current"', defaultValue: '"brand"', description: "Color scheme — brand uses bronze + blue, white/black for monochrome, current inherits CSS color." },
+      { name: "label", type: "string", defaultValue: '"LaunchApp"', description: "Accessible label for screen readers." },
+      { name: "className", type: "string", description: "Additional CSS classes." },
+    ],
+    examples: [
+      {
+        title: "Default (horizontal, brand)",
+        code: `<Logo />`,
+      },
+      {
+        title: "All variants",
+        code: `<div className="flex flex-col gap-4">
+  <Logo variant="horizontal" size="md" />
+  <Logo variant="stacked" size="md" />
+  <Logo variant="mark" size="md" />
+  <Logo variant="wordmark" size="md" />
+</div>`,
+      },
+      {
+        title: "All sizes",
+        code: `<div className="flex flex-col gap-4">
+  <Logo size="xs" />
+  <Logo size="sm" />
+  <Logo size="md" />
+  <Logo size="lg" />
+  <Logo size="xl" />
+</div>`,
+      },
+      {
+        title: "Color schemes",
+        code: `<div className="flex flex-col gap-4">
+  <Logo color="brand" />
+  <div className="p-2 bg-slate-900 rounded-md inline-flex">
+    <Logo color="white" />
+  </div>
+  <Logo color="black" />
+</div>`,
+      },
+    ],
+  },
+  {
     slug: "menubar",
     name: "Menubar",
     description: "A visually persistent menu common in desktop applications providing quick access to commands.",
