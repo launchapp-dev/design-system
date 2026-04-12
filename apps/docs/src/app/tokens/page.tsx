@@ -11,7 +11,7 @@ interface Token {
   lightValue: string;
   darkValue: string;
   description: string;
-  type: "color" | "size" | "font";
+  type: "color" | "size" | "font" | "duration" | "easing";
 }
 
 interface TokenGroup {
@@ -82,6 +82,25 @@ const TOKEN_GROUPS: TokenGroup[] = [
       { name: "Font Mono", variable: "--la-font-mono", lightValue: '"JetBrains Mono"', darkValue: '"JetBrains Mono"', description: "Monospace font family", type: "font" },
     ],
   },
+  {
+    title: "Motion — Duration",
+    tokens: [
+      { name: "Fast", variable: "--la-duration-fast", lightValue: "150ms", darkValue: "150ms", description: "Quick micro-interactions (tooltips, dropdowns)", type: "duration" },
+      { name: "Normal", variable: "--la-duration-normal", lightValue: "250ms", darkValue: "250ms", description: "Default transition speed (modals, panels)", type: "duration" },
+      { name: "Slow", variable: "--la-duration-slow", lightValue: "400ms", darkValue: "400ms", description: "Deliberate, larger transitions (page sections)", type: "duration" },
+      { name: "Slower", variable: "--la-duration-slower", lightValue: "600ms", darkValue: "600ms", description: "Slow enter animations (spinners, long fades)", type: "duration" },
+    ],
+  },
+  {
+    title: "Motion — Easing",
+    tokens: [
+      { name: "Ease In", variable: "--la-ease-in", lightValue: "cubic-bezier(0.4, 0, 1, 1)", darkValue: "cubic-bezier(0.4, 0, 1, 1)", description: "Accelerating — use for exit animations", type: "easing" },
+      { name: "Ease Out", variable: "--la-ease-out", lightValue: "cubic-bezier(0.16, 1, 0.3, 1)", darkValue: "cubic-bezier(0.16, 1, 0.3, 1)", description: "Decelerating — use for enter animations", type: "easing" },
+      { name: "Ease In Out", variable: "--la-ease-in-out", lightValue: "cubic-bezier(0.4, 0, 0.2, 1)", darkValue: "cubic-bezier(0.4, 0, 0.2, 1)", description: "Standard symmetric — use for reposition / toggle", type: "easing" },
+      { name: "Spring", variable: "--la-ease-spring", lightValue: "cubic-bezier(0.34, 1.56, 0.64, 1)", darkValue: "cubic-bezier(0.34, 1.56, 0.64, 1)", description: "Overshoot spring — scale-enter animations", type: "easing" },
+      { name: "Bounce", variable: "--la-ease-bounce", lightValue: "cubic-bezier(0.68, -0.55, 0.27, 1.55)", darkValue: "cubic-bezier(0.68, -0.55, 0.27, 1.55)", description: "Strong bounce — playful / emphasis effects", type: "easing" },
+    ],
+  },
 ];
 
 function ColorSwatch({ lightValue, darkValue }: { lightValue: string; darkValue: string }) {
@@ -121,6 +140,12 @@ function TokenRow({ token }: { token: Token }) {
         )}
         {token.type === "font" && (
           <span style={{ fontFamily: token.lightValue }} className="text-base">Aa</span>
+        )}
+        {token.type === "duration" && (
+          <span className="text-xs font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">{token.lightValue}</span>
+        )}
+        {token.type === "easing" && (
+          <span className="text-xs font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">curve</span>
         )}
       </td>
       <td className="px-4 py-3 align-middle font-medium text-sm">{token.name}</td>

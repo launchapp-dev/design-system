@@ -14,6 +14,7 @@ const sidebarSections: SidebarSection[] = [
       { href: "/docs/installation", label: "Installation" },
       { href: "/docs/theming", label: "Theming" },
       { href: "/docs/dark-mode", label: "Dark Mode" },
+      { href: "/docs/framework-wrappers", label: "Framework Wrappers" },
     ],
   },
   {
