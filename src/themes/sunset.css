@@ -17,6 +17,12 @@
   --la-destructive-foreground: 0 0% 98%;
   --la-success: 142 71% 45%;
   --la-success-foreground: 0 0% 98%;
+  --la-warning: 38 92% 50%;
+  --la-warning-foreground: 26 83% 14%;
+  --la-warning-border: 38 92% 70%;
+  --la-info: 199 89% 45%;
+  --la-info-foreground: 0 0% 98%;
+  --la-info-border: 199 89% 68%;
   --la-border: 30 30% 86%;
   --la-input: 30 30% 86%;
   --la-ring: 20 90% 52%;
@@ -42,6 +48,12 @@
   --la-destructive-foreground: 0 0% 98%;
   --la-success: 142 69% 58%;
   --la-success-foreground: 0 0% 98%;
+  --la-warning: 38 90% 60%;
+  --la-warning-foreground: 26 83% 14%;
+  --la-warning-border: 38 80% 35%;
+  --la-info: 199 85% 55%;
+  --la-info-foreground: 0 0% 98%;
+  --la-info-border: 199 80% 32%;
   --la-border: 25 25% 15%;
   --la-input: 25 25% 15%;
   --la-ring: 20 85% 60%;
