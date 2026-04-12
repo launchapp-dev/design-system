@@ -945,6 +945,24 @@
       "devDependencies": []
     },
     {
+      "name": "logo",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/components/Logo/Logo.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/Logo/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "magic-card",
       "type": "registry:ui",
       "files": [
