@@ -192,8 +192,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
 
               {/* Stats row */}
               <div
-                className="grid gap-2"
-                className="grid-cols-2 sm:grid-cols-4"
+                className="grid gap-2 grid-cols-2 sm:grid-cols-4"
               >
                 {stats.map((stat, i) => (
                   <div
