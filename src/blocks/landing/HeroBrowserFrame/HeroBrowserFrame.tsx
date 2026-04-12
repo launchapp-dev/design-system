@@ -33,6 +33,11 @@ const defaultTableRows: TableRow[] = [
   { name: "Alex Thompson", sub: "Starter plan", badge: "green" },
 ];
 
+/**
+ * HeroBrowserFrame
+ * A browser-window mockup showing a dashboard preview, used in landing page hero sections.
+ * Ported from Nuxt implementation.
+ */
 const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>(
   ({ className, url = "app.launchapp.dev", stats = defaultStats, tableRows = defaultTableRows, ...props }, ref) => {
     const gradId = `dsBarGrad-${React.useId()}`;
