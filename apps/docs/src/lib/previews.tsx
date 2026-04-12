@@ -62,6 +62,7 @@ import { ThemePreview } from "@launchapp/design-system";
 import { ThinkingIndicator } from "@launchapp/design-system";
 import { TreeMap } from "@launchapp/design-system";
 import { VideoPlayer } from "@launchapp/design-system";
+import { Logo } from "@launchapp/design-system";
 
 import * as React from "react";
 import {
@@ -1713,6 +1714,26 @@ export const previews: Record<string, PreviewFn> = {
         poster="https://example.com/thumb.jpg"
         muted
       />
+    </div>
+  ),
+  logo: () => (
+    <div className="flex flex-col gap-6 w-full items-center justify-center min-h-[200px] border rounded-xl p-8 bg-background">
+      <div className="flex flex-wrap gap-6 items-center justify-center">
+        <Logo variant="horizontal" size="md" />
+        <Logo variant="stacked" size="md" />
+        <Logo variant="mark" size="md" />
+        <Logo variant="wordmark" size="md" />
+      </div>
+      <div className="flex flex-wrap gap-6 items-center justify-center">
+        <Logo size="xs" />
+        <Logo size="sm" />
+        <Logo size="lg" />
+        <Logo size="xl" />
+      </div>
+      <div className="flex gap-6 items-center justify-center p-4 bg-slate-900 rounded-lg w-full">
+        <Logo color="white" variant="horizontal" size="md" />
+        <Logo color="white" variant="mark" size="md" />
+      </div>
     </div>
   ),
 
