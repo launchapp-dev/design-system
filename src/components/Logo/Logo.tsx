@@ -160,7 +160,7 @@ export function Logo({
   const blueColor = color === "brand" ? BLUE : color === "white" ? "#ffffff" : color === "black" ? "#0f172a" : "currentColor";
   const textColor =
     color === "brand"
-      ? "text-[#0f172a] dark:text-white"
+      ? "text-foreground"
       : color === "white"
         ? "text-white"
         : color === "black"
