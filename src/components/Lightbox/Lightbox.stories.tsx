@@ -81,7 +81,7 @@ const LightboxDemo = (args: Partial<React.ComponentProps<typeof Lightbox>>) => {
               setInitialIndex(index);
               setOpen(true);
             }}
-            className="relative overflow-hidden rounded-lg aspect-square hover:ring-2 hover:ring-[hsl(var(--la-ring))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2"
+            className="relative overflow-hidden rounded-lg aspect-square hover:ring-2 hover:ring-ring focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
             <img
               src={image.thumbnail || image.src}
@@ -171,7 +171,7 @@ export const SingleImage: Story = {
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <button
           onClick={() => setOpen(true)}
-          className="px-6 py-3 bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-lg hover:bg-[hsl(var(--la-primary)/0.9)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2"
+          className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         >
           Open Single Image Lightbox
         </button>

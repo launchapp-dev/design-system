@@ -50,9 +50,9 @@ function StarRating({ rating, size = 14 }: { rating: number; size?: number }) {
           style={{ width: size, height: size }}
           className={cn(
             star <= Math.floor(rating)
-              ? "fill-amber-400 text-amber-400"
+              ? "fill-warning text-warning"
               : star - 0.5 <= rating
-                ? "fill-amber-200 text-amber-400"
+                ? "fill-warning/50 text-warning"
                 : "fill-muted text-muted",
           )}
           viewBox="0 0 20 20"
@@ -115,7 +115,7 @@ function ReviewCard({
             {showVerified && review.verified && (
               <Badge variant="secondary" className="text-xs py-0 px-1.5">
                 <svg
-                  className="mr-1 h-3 w-3 text-green-600"
+                  className="mr-1 h-3 w-3 text-success"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
@@ -206,7 +206,7 @@ function RatingDistributionBar({
       <span className="w-8 shrink-0 text-muted-foreground text-xs">{stars} ★</span>
       <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
         <div
-          className="h-full bg-amber-400 rounded-full transition-all"
+          className="h-full bg-warning rounded-full transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>

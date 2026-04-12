@@ -78,7 +78,7 @@ function InboxManager({
                   className={cn(
                     "w-full flex items-center justify-between rounded-[--la-radius] px-2 py-1.5 text-sm transition-colors",
                     activeFolder === folder.id
-                      ? "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))] font-medium"
+                      ? "bg-accent text-accent-foreground font-medium"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground",
                   )}
                 >
@@ -131,9 +131,9 @@ function InboxManager({
                   key={message.id}
                   onClick={() => onMessageSelect?.(message)}
                   className={cn(
-                    "w-full flex items-start gap-3 px-4 py-3 text-left transition-colors hover:bg-[hsl(var(--la-accent))]",
+                    "w-full flex items-start gap-3 px-4 py-3 text-left transition-colors hover:bg-accent",
                     !message.read && "bg-muted/30",
-                    selectedMessageId === message.id && "bg-[hsl(var(--la-accent))]",
+                    selectedMessageId === message.id && "bg-accent",
                   )}
                 >
                   <Avatar size="sm" className="shrink-0 mt-0.5">
@@ -159,10 +159,10 @@ function InboxManager({
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
                     {message.priority === "urgent" && (
-                      <span className="h-2 w-2 rounded-full bg-red-500" title="Urgent" />
+                      <span className="h-2 w-2 rounded-full bg-destructive" title="Urgent" />
                     )}
                     {message.starred && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1" className="text-amber-500" aria-label="Starred">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1" className="text-warning" aria-label="Starred">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                       </svg>
                     )}

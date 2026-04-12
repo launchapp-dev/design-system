@@ -37,7 +37,7 @@ You generate production-ready components that:
 
 Design System Context:
 - Semantic tokens: primary, secondary, muted, accent, destructive (with -foreground variants)
-- Token usage: hsl(var(--la-primary)), hsl(var(--la-primary-foreground))
+- Token usage: var(--la-primary), var(--la-primary-foreground)
 - Utility function: cn() from "@/lib/utils"
 - Size variants: sm, md (default), lg
 - Common variants: default, outline, ghost, destructive

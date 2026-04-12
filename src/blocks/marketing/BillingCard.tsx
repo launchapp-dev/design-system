@@ -244,7 +244,7 @@ function BillingCard({
             </div>
             <Progress value={usagePercent} />
             {usagePercent >= 80 && (
-              <p className="flex items-center gap-1.5 text-xs text-amber-600">
+              <p className="flex items-center gap-1.5 text-xs text-warning">
                 <AlertCircleIcon className="h-3.5 w-3.5" />
                 You&apos;re approaching your limit
               </p>

@@ -26,13 +26,13 @@ const actionBadgeVariants = cva(
     variants: {
       action: {
         accepted_all:
-          "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+          "bg-success/10 text-success dark:bg-success/30 dark:dark:text-success",
         rejected_all:
-          "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+          "bg-destructive text-destructive-foreground dark:bg-destructive/30 dark:text-destructive",
         customized:
-          "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+          "bg-info text-info-foreground dark:bg-info/30 dark:text-info",
         withdrawn:
-          "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))]",
+          "bg-muted text-muted-foreground",
       },
     },
     defaultVariants: {
@@ -66,8 +66,8 @@ function ConsentHistoryTable({
     return (
       <div
         className={cn(
-          "rounded-lg border border-[hsl(var(--la-border))] p-8 text-center",
-          "text-sm text-[hsl(var(--la-muted-foreground))]",
+          "rounded-lg border border-border p-8 text-center",
+          "text-sm text-muted-foreground",
           className
         )}
       >
@@ -79,35 +79,35 @@ function ConsentHistoryTable({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-[hsl(var(--la-border))]",
+        "overflow-hidden rounded-lg border border-border",
         className
       )}
     >
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-[hsl(var(--la-border))] bg-[hsl(var(--la-muted))]">
-              <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
+            <tr className="border-b border-border bg-muted">
+              <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 Date &amp; Time
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
+              <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 Action
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
+              <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 Categories
               </th>
-              <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
+              <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 <span className="sr-only">Actions</span>
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[hsl(var(--la-border))] bg-[hsl(var(--la-background))]">
+          <tbody className="divide-y divide-border bg-background">
             {entries.map((entry) => (
               <tr
                 key={entry.id}
-                className="transition-colors hover:bg-[hsl(var(--la-muted)/0.5)]"
+                className="transition-colors hover:bg-muted/50"
               >
-                <td className="whitespace-nowrap px-4 py-3 text-[hsl(var(--la-foreground))]">
+                <td className="whitespace-nowrap px-4 py-3 text-foreground">
                   {formatTimestamp(entry.timestamp)}
                 </td>
                 <td className="px-4 py-3">
@@ -124,8 +124,8 @@ function ConsentHistoryTable({
                           className={cn(
                             "inline-flex items-center rounded px-1.5 py-0.5 text-[11px]",
                             enabled
-                              ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                              : "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))] line-through"
+                              ? "bg-success/10 text-success dark:bg-success/30 dark:dark:text-success"
+                              : "bg-muted text-muted-foreground line-through"
                           )}
                         >
                           {key}
@@ -133,7 +133,7 @@ function ConsentHistoryTable({
                       ))}
                     </div>
                   ) : (
-                    <span className="text-[hsl(var(--la-muted-foreground))]">—</span>
+                    <span className="text-muted-foreground">—</span>
                   )}
                 </td>
                 <td className="px-4 py-3 text-right">
@@ -142,9 +142,9 @@ function ConsentHistoryTable({
                       type="button"
                       onClick={() => onWithdraw(entry.id)}
                       className={cn(
-                        "text-xs text-[hsl(var(--la-muted-foreground))] underline",
-                        "hover:text-[hsl(var(--la-foreground))] hover:no-underline",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
+                        "text-xs text-muted-foreground underline",
+                        "hover:text-foreground hover:no-underline",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         "rounded"
                       )}
                     >

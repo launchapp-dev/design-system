@@ -41,7 +41,7 @@ function TabBar({ active, onChange }: { active: string; onChange: (key: string) 
         display: "flex",
         gap: "4px",
         padding: "4px",
-        background: "hsl(var(--la-muted))",
+        background: "var(--la-muted)",
         borderRadius: "var(--la-radius)",
         marginBottom: "16px",
       }}
@@ -57,9 +57,9 @@ function TabBar({ active, onChange }: { active: string; onChange: (key: string) 
             cursor: "pointer",
             fontSize: "14px",
             fontWeight: active === tab.key ? "600" : "400",
-            background: active === tab.key ? "hsl(var(--la-background))" : "transparent",
+            background: active === tab.key ? "var(--la-background)" : "transparent",
             color:
-              active === tab.key ? "hsl(var(--la-foreground))" : "hsl(var(--la-muted-foreground))",
+              active === tab.key ? "var(--la-foreground)" : "var(--la-muted-foreground)",
             boxShadow: active === tab.key ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
             transition: "all 150ms",
           }}
@@ -88,13 +88,13 @@ export const Default: Story = {
               <div
                 style={{
                   padding: "20px",
-                  border: "1px solid hsl(var(--la-border))",
+                  border: "1px solid var(--la-border)",
                   borderRadius: "var(--la-radius)",
-                  background: "hsl(var(--la-card))",
+                  background: "var(--la-card)",
                 }}
               >
                 <p style={{ fontWeight: "600", marginBottom: "8px" }}>{tab.label}</p>
-                <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>
+                <p style={{ fontSize: "14px", color: "var(--la-muted-foreground)" }}>
                   {tab.content}
                 </p>
               </div>
@@ -121,15 +121,15 @@ export const SlowCrossfade: Story = {
               <div
                 style={{
                   padding: "20px",
-                  border: "1px solid hsl(var(--la-border))",
+                  border: "1px solid var(--la-border)",
                   borderRadius: "var(--la-radius)",
-                  background: "hsl(var(--la-card))",
+                  background: "var(--la-card)",
                   minHeight: "100px",
                   display: "flex",
                   alignItems: "center",
                 }}
               >
-                <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>
+                <p style={{ fontSize: "14px", color: "var(--la-muted-foreground)" }}>
                   {tab.content}
                 </p>
               </div>
@@ -170,17 +170,17 @@ export const WithStaggeredContent: Story = {
               onClick={() => setActive(p.key)}
               style={{
                 padding: "6px 14px",
-                border: "1px solid hsl(var(--la-border))",
+                border: "1px solid var(--la-border)",
                 borderRadius: "var(--la-radius)",
                 cursor: "pointer",
                 fontSize: "13px",
                 fontWeight: active === p.key ? "600" : "400",
                 background:
-                  active === p.key ? "hsl(var(--la-primary))" : "hsl(var(--la-background))",
+                  active === p.key ? "var(--la-primary)" : "var(--la-background)",
                 color:
                   active === p.key
-                    ? "hsl(var(--la-primary-foreground))"
-                    : "hsl(var(--la-foreground))",
+                    ? "var(--la-primary-foreground)"
+                    : "var(--la-foreground)",
               }}
             >
               {p.label}
@@ -196,9 +196,9 @@ export const WithStaggeredContent: Story = {
                     key={item}
                     style={{
                       padding: "12px 16px",
-                      border: "1px solid hsl(var(--la-border))",
+                      border: "1px solid var(--la-border)",
                       borderRadius: "var(--la-radius)",
-                      background: "hsl(var(--la-card))",
+                      background: "var(--la-card)",
                       fontSize: "14px",
                     }}
                   >

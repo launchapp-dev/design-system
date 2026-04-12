@@ -181,7 +181,7 @@ const HeroSectionBlock = React.forwardRef<HTMLElement, HeroSectionBlockProps>(
             aria-hidden="true"
           />
           <div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(var(--la-primary-rgb,99,102,241),0.08),transparent_60%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,color-mix(in_srgb,var(--la-primary)_8%,transparent),transparent_60%)]"
             aria-hidden="true"
           />
           <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto gap-6">

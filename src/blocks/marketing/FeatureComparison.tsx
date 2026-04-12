@@ -326,7 +326,7 @@ function FeatureComparison({
                         index % 2 === 0 && "bg-muted/30",
                         highlightDifferences &&
                           new Set(Object.values(feature.values)).size > 1 &&
-                          "bg-amber-50/30 dark:bg-amber-950/10",
+                          "bg-warning/5/30 dark:bg-warning/10",
                       )}
                     >
                       <td className="sticky left-0 z-10 border-t border-border p-4">

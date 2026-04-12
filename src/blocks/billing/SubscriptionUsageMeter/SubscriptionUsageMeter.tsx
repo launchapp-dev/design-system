@@ -46,7 +46,7 @@ function getUsagePercent(used: number, limit: number): number {
 
 function getUsageColor(percent: number, warningThreshold = 80): string {
   if (percent >= 100) return "text-destructive";
-  if (percent >= warningThreshold) return "text-orange-500 dark:text-orange-400";
+  if (percent >= warningThreshold) return "text-warning dark:text-warning";
   return "text-primary";
 }
 
@@ -73,7 +73,7 @@ function MetricRow({
             <TooltipRoot>
               <TooltipTrigger asChild>
                 <svg
-                  className="h-4 w-4 shrink-0 text-orange-500"
+                  className="h-4 w-4 shrink-0 text-warning"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -134,7 +134,7 @@ function MetricRow({
         aria-label={`${metric.label}: ${metric.used} of ${metric.limit} used`}
         className={cn(
           isOver && "[&>div]:bg-destructive",
-          isWarning && "[&>div]:bg-orange-500 dark:[&>div]:bg-orange-400",
+          isWarning && "[&>div]:bg-warning dark:[&>div]:bg-warning",
         )}
       />
     </div>
@@ -181,7 +181,7 @@ export function SubscriptionUsageMeter({
               totalPercent >= 100
                 ? "text-destructive"
                 : totalPercent >= 80
-                  ? "text-orange-500 dark:text-orange-400"
+                  ? "text-warning dark:text-warning"
                   : "text-primary"
             )}
           >

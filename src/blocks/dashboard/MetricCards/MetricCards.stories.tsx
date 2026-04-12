@@ -178,7 +178,7 @@ export const WithoutChanges: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark p-6 rounded-lg bg-[hsl(var(--la-background))]">
+      <div className="dark p-6 rounded-lg bg-background">
         <Story />
       </div>
     ),

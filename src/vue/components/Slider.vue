@@ -41,9 +41,9 @@ const classes = computed(() =>
 
 <template>
   <div :class="classes">
-    <div class="relative h-2 w-full grow overflow-hidden rounded-full bg-[hsl(var(--la-secondary))]">
+    <div class="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
       <div
-        class="absolute h-full bg-[hsl(var(--la-primary))]"
+        class="absolute h-full bg-primary"
         :style="{ width: `${percentage}%` }"
       />
     </div>
@@ -58,7 +58,7 @@ const classes = computed(() =>
       @input="handleInput"
     />
     <div
-      class="block h-5 w-5 rounded-full border-2 border-[hsl(var(--la-primary))] bg-[hsl(var(--la-background))] shadow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 absolute"
+      class="block h-5 w-5 rounded-full border-2 border-primary bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 absolute"
       :style="{ left: `calc(${percentage}% - 10px)` }"
     />
   </div>

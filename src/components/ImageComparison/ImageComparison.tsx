@@ -33,7 +33,7 @@ const imageComparisonSliderVariants = cva(
 );
 
 const imageComparisonHandleVariants = cva(
-  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-white shadow-lg transition-transform focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2",
+  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-white shadow-lg transition-transform focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       size: {
@@ -274,7 +274,7 @@ function ImageComparison({
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-gray-700"
+            className="text-muted-foreground"
           >
             <path d="m15 18-6-6 6-6" />
             <path d="m9 18 6-6-6-6" />

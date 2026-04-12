@@ -202,7 +202,7 @@ function TeamMemberList({
                   {member.name}
                 </span>
                 {isCurrent && <span className="text-xs text-muted-foreground">(you)</span>}
-                {isOwner && <CrownIcon className="h-3 w-3 text-amber-500" />}
+                {isOwner && <CrownIcon className="h-3 w-3 text-warning" />}
                 {isPending ? (
                   <Badge variant="secondary" className="text-xs">
                     <MailIcon className="mr-1 h-3 w-3" />

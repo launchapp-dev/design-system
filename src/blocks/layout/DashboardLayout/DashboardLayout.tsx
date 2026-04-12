@@ -47,9 +47,9 @@ const DashboardLayout = React.forwardRef<HTMLDivElement, DashboardLayoutProps>(
     },
     ref,
   ) => (
-    <div ref={ref} className={cn("flex min-h-screen flex-col bg-[hsl(var(--la-background))]", className)} {...props}>
+    <div ref={ref} className={cn("flex min-h-screen flex-col bg-background", className)} {...props}>
       {header && (
-        <header className="sticky top-0 z-10 border-b border-[hsl(var(--la-border))] bg-[hsl(var(--la-background)/0.95)] backdrop-blur supports-[backdrop-filter]:bg-[hsl(var(--la-background)/0.6)]">
+        <header className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           {header}
         </header>
       )}
@@ -58,7 +58,7 @@ const DashboardLayout = React.forwardRef<HTMLDivElement, DashboardLayoutProps>(
         {/* Left panel — split (col=2) or triple (col=3) */}
         {columns >= 2 && leftPanel && (
           <aside
-            className="hidden h-full shrink-0 flex-col overflow-y-auto border-r border-[hsl(var(--la-border))] lg:flex"
+            className="hidden h-full shrink-0 flex-col overflow-y-auto border-r border-border lg:flex"
             style={{ width: leftPanelWidth }}
           >
             {leftPanel}
@@ -77,7 +77,7 @@ const DashboardLayout = React.forwardRef<HTMLDivElement, DashboardLayoutProps>(
         {/* Right panel — triple only */}
         {columns === 3 && rightPanel && (
           <aside
-            className="hidden h-full shrink-0 flex-col overflow-y-auto border-l border-[hsl(var(--la-border))] xl:flex"
+            className="hidden h-full shrink-0 flex-col overflow-y-auto border-l border-border xl:flex"
             style={{ width: rightPanelWidth }}
           >
             {rightPanel}

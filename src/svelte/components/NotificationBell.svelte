@@ -7,7 +7,7 @@
     [key: string]: any;
   } = $props();
 
-  let classes = $derived(cn("z-50 w-80 rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] p-0 text-[hsl(var(--la-popover-foreground))] shadow-lg outline-none", className));
+  let classes = $derived(cn("z-50 w-80 rounded-lg border border-border bg-popover p-0 text-popover-foreground shadow-lg outline-none", className));
 </script>
 
 <div class={classes} {...restProps}>

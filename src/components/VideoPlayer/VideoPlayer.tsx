@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 import { Slider } from "../Slider";
 
 const videoPlayerVariants = cva(
-  "relative group rounded-[--la-radius] overflow-hidden bg-black focus-within:ring-2 focus-within:ring-[hsl(var(--la-ring))] focus-within:ring-offset-2 focus-within:ring-offset-background",
+  "relative group rounded-[--la-radius] overflow-hidden bg-black focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background",
   {
     variants: {
       size: {

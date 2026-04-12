@@ -121,7 +121,7 @@ function AuditLogViewerInner(
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Audit Log</h2>
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             {filtered.length} entr{filtered.length !== 1 ? "ies" : "y"}
           </p>
         </div>
@@ -135,7 +135,7 @@ function AuditLogViewerInner(
           className="max-w-sm"
         />
         <div className="flex flex-wrap gap-2">
-          <span className="self-center text-xs text-[hsl(var(--la-muted-foreground))]">Level:</span>
+          <span className="self-center text-xs text-muted-foreground">Level:</span>
           {levels.map((level) => (
             <Badge
               key={level}
@@ -148,7 +148,7 @@ function AuditLogViewerInner(
           ))}
         </div>
         <div className="flex flex-wrap gap-2">
-          <span className="self-center text-xs text-[hsl(var(--la-muted-foreground))]">Action:</span>
+          <span className="self-center text-xs text-muted-foreground">Action:</span>
           {actions.map((action) => (
             <Badge
               key={action}
@@ -162,21 +162,21 @@ function AuditLogViewerInner(
         </div>
       </div>
 
-      <ScrollArea className="h-[400px] rounded-md border border-[hsl(var(--la-border))]">
-        <div className="divide-y divide-[hsl(var(--la-border))]">
+      <ScrollArea className="h-[400px] rounded-md border border-border">
+        <div className="divide-y divide-border">
           {loading ? (
-            <div className="flex items-center justify-center h-32 text-[hsl(var(--la-muted-foreground))]">
+            <div className="flex items-center justify-center h-32 text-muted-foreground">
               Loading...
             </div>
           ) : paginated.length === 0 ? (
-            <div className="flex items-center justify-center h-32 text-[hsl(var(--la-muted-foreground))]">
+            <div className="flex items-center justify-center h-32 text-muted-foreground">
               No logs found.
             </div>
           ) : (
             paginated.map((entry) => (
               <div
                 key={entry.id}
-                className="flex items-start gap-3 px-4 py-3 hover:bg-[hsl(var(--la-muted))] cursor-pointer"
+                className="flex items-start gap-3 px-4 py-3 hover:bg-muted cursor-pointer"
                 onClick={() => onViewDetails?.(entry)}
               >
                 <div className="shrink-0 pt-0.5">
@@ -190,14 +190,14 @@ function AuditLogViewerInner(
                     {entry.actor && (
                       <span className="text-xs font-medium">{entry.actor}</span>
                     )}
-                    <span className="text-xs text-[hsl(var(--la-muted-foreground))]">{entry.timestamp}</span>
+                    <span className="text-xs text-muted-foreground">{entry.timestamp}</span>
                     {entry.ipAddress && (
-                      <span className="text-xs text-[hsl(var(--la-muted-foreground))]">{entry.ipAddress}</span>
+                      <span className="text-xs text-muted-foreground">{entry.ipAddress}</span>
                     )}
                   </div>
                   <p className="text-sm leading-snug">{entry.description}</p>
                   {entry.resource && (
-                    <p className="text-xs text-[hsl(var(--la-muted-foreground))]">
+                    <p className="text-xs text-muted-foreground">
                       Resource: {entry.resource}
                     </p>
                   )}

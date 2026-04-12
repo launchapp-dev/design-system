@@ -67,7 +67,7 @@ function TimelineView({
               <button
                 onClick={() => onEventClick?.(event)}
                 className={cn(
-                  "w-full text-left rounded-[--la-radius] p-2 transition-colors hover:bg-[hsl(var(--la-accent))]",
+                  "w-full text-left rounded-[--la-radius] p-2 transition-colors hover:bg-accent",
                   event.href && "cursor-pointer",
                 )}
               >

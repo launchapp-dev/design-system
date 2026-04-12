@@ -38,7 +38,7 @@ function ChartContainer({
     return Object.fromEntries(
       Object.entries(config).map(([key, { color }]) => [
         `--color-${key}`,
-        color ?? "hsl(var(--la-chart-1))",
+        color ?? "var(--la-chart-1)",
       ]),
     );
   }, [config]);
@@ -100,11 +100,11 @@ function PieChart(props: PieChartProps) {
 PieChart.displayName = "PieChart";
 
 export const CHART_COLORS = [
-  "hsl(var(--la-chart-1))",
-  "hsl(var(--la-chart-2))",
-  "hsl(var(--la-chart-3))",
-  "hsl(var(--la-chart-4))",
-  "hsl(var(--la-chart-5))",
+  "var(--la-chart-1)",
+  "var(--la-chart-2)",
+  "var(--la-chart-3)",
+  "var(--la-chart-4)",
+  "var(--la-chart-5)",
 ] as const;
 
 export { ChartContainer, LineChart, BarChart, AreaChart, PieChart };

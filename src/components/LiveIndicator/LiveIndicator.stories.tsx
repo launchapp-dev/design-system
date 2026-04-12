@@ -65,7 +65,7 @@ export const NoPulse: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark" style={{ background: "#09090b", padding: "24px", borderRadius: "8px" }}>
+      <div className="dark bg-background p-6 rounded-lg">
         <Story />
       </div>
     ),

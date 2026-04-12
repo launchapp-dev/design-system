@@ -36,44 +36,44 @@ const STATUS_CONFIG: Record<
 > = {
   operational: {
     label: "Operational",
-    dotClass: "bg-green-500",
-    barClass: "bg-green-500",
-    badgeClass: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+    dotClass: "bg-success",
+    barClass: "bg-success",
+    badgeClass: "bg-success/10 text-success dark:bg-success/30 dark:dark:text-success",
   },
   degraded: {
     label: "Degraded Performance",
-    dotClass: "bg-yellow-500",
-    barClass: "bg-yellow-500",
-    badgeClass: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
+    dotClass: "bg-warning",
+    barClass: "bg-warning",
+    badgeClass: "bg-warning/10 text-warning dark:bg-warning/10 dark:text-warning",
   },
   partial_outage: {
     label: "Partial Outage",
-    dotClass: "bg-orange-500",
-    barClass: "bg-orange-500",
-    badgeClass: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400",
+    dotClass: "bg-warning",
+    barClass: "bg-warning",
+    badgeClass: "bg-warning text-warning dark:bg-warning/10 dark:text-warning",
   },
   major_outage: {
     label: "Major Outage",
-    dotClass: "bg-red-500",
-    barClass: "bg-red-500",
-    badgeClass: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+    dotClass: "bg-destructive",
+    barClass: "bg-destructive",
+    badgeClass: "bg-destructive text-destructive-foreground dark:bg-destructive/30 dark:text-destructive",
   },
   maintenance: {
     label: "Under Maintenance",
-    dotClass: "bg-blue-500",
-    barClass: "bg-blue-500",
-    badgeClass: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+    dotClass: "bg-info",
+    barClass: "bg-info",
+    badgeClass: "bg-info text-info-foreground dark:bg-info/30 dark:text-info",
   },
 };
 
 const overallStatusVariants = cva("rounded-lg px-4 py-3 text-sm font-medium", {
   variants: {
     status: {
-      operational: "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300",
-      degraded: "bg-yellow-50 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300",
-      partial_outage: "bg-orange-50 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300",
-      major_outage: "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300",
-      maintenance: "bg-blue-50 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300",
+      operational: "bg-success text-success dark:bg-success/20 dark:text-success",
+      degraded: "bg-warning/5 text-warning dark:bg-warning/10 dark:text-warning",
+      partial_outage: "bg-warning text-warning dark:bg-warning/10 dark:text-warning",
+      major_outage: "bg-destructive/5 text-destructive-foreground dark:bg-destructive/20 dark:text-destructive",
+      maintenance: "bg-info text-info-foreground dark:bg-info/20 dark:text-info",
     },
   },
   defaultVariants: {
@@ -115,9 +115,9 @@ function StatusPage({
   return (
     <div className={cn("space-y-6", className)} {...props}>
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-[hsl(var(--la-foreground))]">{title}</h1>
+        <h1 className="text-2xl font-bold text-foreground">{title}</h1>
         {description && (
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">{description}</p>
+          <p className="text-sm text-muted-foreground">{description}</p>
         )}
       </div>
 
@@ -129,7 +129,7 @@ function StatusPage({
         {lastUpdated && <p className="mt-1 text-xs opacity-70">Last updated: {lastUpdated}</p>}
       </div>
 
-      <div className="divide-y divide-[hsl(var(--la-border))] rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-card))]">
+      <div className="divide-y divide-border rounded-lg border border-border bg-card">
         {services.map((service) => {
           const sConfig = STATUS_CONFIG[service.status];
           const history = service.uptimeHistory ?? [];
@@ -141,12 +141,12 @@ function StatusPage({
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className={cn("h-2 w-2 rounded-full flex-shrink-0", sConfig.dotClass)} />
-                    <span className="font-medium text-sm text-[hsl(var(--la-card-foreground))]">
+                    <span className="font-medium text-sm text-card-foreground">
                       {service.name}
                     </span>
                   </div>
                   {service.description && (
-                    <p className="mt-0.5 pl-4 text-xs text-[hsl(var(--la-muted-foreground))]">
+                    <p className="mt-0.5 pl-4 text-xs text-muted-foreground">
                       {service.description}
                     </p>
                   )}
@@ -175,7 +175,7 @@ function StatusPage({
                       />
                     ))}
                   </div>
-                  <div className="mt-1 flex justify-between text-xs text-[hsl(var(--la-muted-foreground))]">
+                  <div className="mt-1 flex justify-between text-xs text-muted-foreground">
                     <span>{history.length} days ago</span>
                     <span>{uptime}% uptime</span>
                     <span>Today</span>

@@ -122,10 +122,10 @@ export interface SupportTicketFormProps extends Omit<React.HTMLAttributes<HTMLDi
 }
 
 const priorityConfig: Record<TicketPriority, { label: string; color: string; badge: "default" | "secondary" | "destructive" | "outline" }> = {
-  low: { label: "Low", color: "text-blue-600", badge: "outline" },
-  medium: { label: "Medium", color: "text-amber-600", badge: "secondary" },
-  high: { label: "High", color: "text-orange-600", badge: "destructive" },
-  urgent: { label: "Urgent", color: "text-red-600", badge: "destructive" },
+  low: { label: "Low", color: "text-info", badge: "outline" },
+  medium: { label: "Medium", color: "text-warning", badge: "secondary" },
+  high: { label: "High", color: "text-warning", badge: "destructive" },
+  urgent: { label: "Urgent", color: "text-destructive", badge: "destructive" },
 };
 
 const defaultCategories: { value: TicketCategory; label: string }[] = [

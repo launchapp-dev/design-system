@@ -205,9 +205,9 @@ function TerminalHeader({ className, variant, title, ...props }: TerminalHeaderP
   const content =
     variant === "dots" ? (
       <div className="flex items-center gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
+        <div className="w-3 h-3 rounded-full bg-destructive/80" />
+        <div className="w-3 h-3 rounded-full bg-warning/80" />
+        <div className="w-3 h-3 rounded-full bg-success/80" />
       </div>
     ) : null;
 

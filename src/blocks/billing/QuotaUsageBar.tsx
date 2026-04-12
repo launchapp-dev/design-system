@@ -143,7 +143,7 @@ function QuotaUsageBar({
 
   const statusConfig = {
     normal: { color: "bg-primary", text: "text-foreground" },
-    warning: { color: "bg-amber-500", text: "text-amber-600" },
+    warning: { color: "bg-warning", text: "text-warning" },
     critical: { color: "bg-destructive", text: "text-destructive" },
   };
 
@@ -223,7 +223,7 @@ function QuotaUsageBar({
                 </>
               ) : (
                 <>
-                  <AlertTriangleIcon className="h-5 w-5 text-amber-500" />
+                  <AlertTriangleIcon className="h-5 w-5 text-warning" />
                   <p className="text-sm text-muted-foreground flex-1">
                     Approaching usage limits. Consider upgrading soon.
                   </p>

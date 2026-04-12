@@ -12,7 +12,7 @@ import { cn } from "../utils/cn";
 
 let classes = $derived(
 cn(
-    "inline-flex h-10 items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-muted))] p-1 text-[hsl(var(--la-muted-foreground))]",
+    "inline-flex h-10 items-center justify-center rounded-[--la-radius] bg-muted p-1 text-muted-foreground",
     className,
   ),
 );

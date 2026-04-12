@@ -30,14 +30,14 @@ function StatsCard({
   ...props
 }: StatsCardProps & { ref?: React.Ref<HTMLDivElement> }) {
   const trendColors = {
-    up: "text-emerald-600 dark:text-emerald-400",
+    up: "text-success",
     down: "text-destructive",
     neutral: "text-muted-foreground",
   };
 
   const trendBg = {
-    up: "bg-emerald-50 dark:bg-emerald-950/30",
-    down: "bg-red-50 dark:bg-red-950/30",
+    up: "bg-success/5 dark:bg-success/10",
+    down: "bg-destructive/5 dark:bg-destructive/10",
     neutral: "bg-muted",
   };
 

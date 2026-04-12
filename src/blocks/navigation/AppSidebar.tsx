@@ -93,10 +93,10 @@ const SidebarNavItem = ({ item, collapsed }: SidebarNavItemProps) => {
 
   const itemClass = cn(
     "flex w-full items-center gap-3 rounded-[--la-radius] px-3 py-2 text-sm font-medium transition-colors",
-    "text-[hsl(var(--la-foreground))]",
-    "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-1",
-    item.isActive && "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
+    "text-foreground",
+    "hover:bg-accent hover:text-accent-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
+    item.isActive && "bg-accent text-accent-foreground",
     collapsed && "justify-center px-2",
   );
 
@@ -123,7 +123,7 @@ const SidebarNavItem = ({ item, collapsed }: SidebarNavItemProps) => {
         </CollapsibleTrigger>
         {!collapsed && (
           <CollapsibleContent>
-            <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-[hsl(var(--la-border))] pl-3">
+            <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-border pl-3">
               {item.children.map((child) => (
                 <SidebarNavItem key={child.label} item={child} collapsed={false} />
               ))}
@@ -171,7 +171,7 @@ function AppSidebar({
     <aside
       ref={ref}
       className={cn(
-        "flex h-full flex-col border-r border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] transition-[width] duration-300 ease-in-out",
+        "flex h-full flex-col border-r border-border bg-background transition-[width] duration-300 ease-in-out",
         collapsed ? "w-[60px]" : "w-[240px]",
         className,
       )}
@@ -181,7 +181,7 @@ function AppSidebar({
         className={cn("flex items-center p-3", collapsed ? "justify-center" : "justify-between")}
       >
         {!collapsed && logo && (
-          <div className="flex items-center gap-2 font-semibold text-[hsl(var(--la-foreground))]">
+          <div className="flex items-center gap-2 font-semibold text-foreground">
             {logo}
           </div>
         )}
@@ -202,7 +202,7 @@ function AppSidebar({
         {sections.map((section, idx) => (
           <div key={idx} className="flex flex-col gap-1">
             {!collapsed && section.title && (
-              <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
+              <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 {section.title}
               </p>
             )}
@@ -226,11 +226,11 @@ function AppSidebar({
             </Avatar>
             {!collapsed && (
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-[hsl(var(--la-foreground))]">
+                <p className="truncate text-sm font-medium text-foreground">
                   {user.name}
                 </p>
                 {user.email && (
-                  <p className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">
+                  <p className="truncate text-xs text-muted-foreground">
                     {user.email}
                   </p>
                 )}

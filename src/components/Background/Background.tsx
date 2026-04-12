@@ -20,7 +20,7 @@ export interface GradientMeshProps extends React.HTMLAttributes<HTMLDivElement> 
 
 function GradientMesh({
   className,
-  colors = ["#ee7752", "#e73c7e", "#23a6d5", "#23d5ab"],
+  colors = ["var(--la-chart-1)", "var(--la-chart-5)", "var(--la-chart-2)", "var(--la-chart-3)"],
   speed = 8,
   style,
   ref,
@@ -50,7 +50,7 @@ export interface AuroraProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function Aurora({
   className,
-  colors = ["#3b82f6", "#8b5cf6", "#ec4899", "#06b6d4"],
+  colors = ["var(--la-chart-2)", "var(--la-chart-1)", "var(--la-chart-5)", "var(--la-chart-3)"],
   speed = 10,
   children,
   ref,
@@ -100,7 +100,7 @@ function GridPattern({
       ref={ref}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full fill-none stroke-[hsl(var(--la-border))]",
+        "pointer-events-none absolute inset-0 h-full w-full fill-none stroke-border",
         className,
       )}
       {...props}
@@ -120,7 +120,7 @@ function GridPattern({
               height={height - 1}
               x={sqX * width + 1}
               y={sqY * height + 1}
-              fill="hsl(var(--la-accent))"
+              fill="var(--la-accent)"
               strokeWidth={0}
             />
           ))}
@@ -155,7 +155,7 @@ function DotPattern({
       ref={ref}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full fill-[hsl(var(--la-border))]",
+        "pointer-events-none absolute inset-0 h-full w-full fill-border",
         className,
       )}
       {...props}

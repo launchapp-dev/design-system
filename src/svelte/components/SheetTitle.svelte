@@ -10,7 +10,7 @@ import { cn } from "../utils/cn";
 
 
 
-let classes = $derived(cn("text-lg font-semibold text-[hsl(var(--la-foreground))]", className));
+let classes = $derived(cn("text-lg font-semibold text-foreground", className));
 </script>
 
 <h2 class={classes} {...restProps}>

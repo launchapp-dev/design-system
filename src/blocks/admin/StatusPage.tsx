@@ -167,41 +167,41 @@ export interface StatusPageProps extends React.HTMLAttributes<HTMLDivElement> {
 const statusConfig: Record<ServiceStatus, { label: string; color: string; icon: React.ReactNode; badge: "default" | "secondary" | "destructive" | "outline" }> = {
   operational: {
     label: "Operational",
-    color: "bg-emerald-500",
-    icon: <CheckCircleIcon className="h-5 w-5 text-emerald-500" />,
+    color: "bg-success",
+    icon: <CheckCircleIcon className="h-5 w-5 text-success" />,
     badge: "default",
   },
   degraded: {
     label: "Degraded Performance",
-    color: "bg-yellow-500",
-    icon: <AlertTriangleIcon className="h-5 w-5 text-yellow-500" />,
+    color: "bg-warning",
+    icon: <AlertTriangleIcon className="h-5 w-5 text-warning" />,
     badge: "secondary",
   },
   partial_outage: {
     label: "Partial Outage",
-    color: "bg-orange-500",
-    icon: <AlertTriangleIcon className="h-5 w-5 text-orange-500" />,
+    color: "bg-warning",
+    icon: <AlertTriangleIcon className="h-5 w-5 text-warning" />,
     badge: "destructive",
   },
   major_outage: {
     label: "Major Outage",
-    color: "bg-red-500",
-    icon: <XCircleIcon className="h-5 w-5 text-red-500" />,
+    color: "bg-destructive",
+    icon: <XCircleIcon className="h-5 w-5 text-destructive" />,
     badge: "destructive",
   },
   maintenance: {
     label: "Maintenance",
-    color: "bg-blue-500",
-    icon: <ClockIcon className="h-5 w-5 text-blue-500" />,
+    color: "bg-info",
+    icon: <ClockIcon className="h-5 w-5 text-info" />,
     badge: "outline",
   },
 };
 
 const incidentStatusConfig: Record<Incident["status"], { label: string; color: string }> = {
-  investigating: { label: "Investigating", color: "bg-red-500" },
-  identified: { label: "Identified", color: "bg-orange-500" },
-  monitoring: { label: "Monitoring", color: "bg-yellow-500" },
-  resolved: { label: "Resolved", color: "bg-emerald-500" },
+  investigating: { label: "Investigating", color: "bg-destructive" },
+  identified: { label: "Identified", color: "bg-warning" },
+  monitoring: { label: "Monitoring", color: "bg-warning" },
+  resolved: { label: "Resolved", color: "bg-success" },
 };
 
 function StatusPage({

@@ -216,7 +216,7 @@ export const DarkMode: Story = {
         return () => document.documentElement.classList.remove("dark");
       }, []);
       return (
-        <div className="dark bg-[hsl(var(--la-background))] p-8">
+        <div className="dark bg-background p-8">
           <Story />
         </div>
       );

@@ -57,7 +57,7 @@ onUnmounted(() => document.removeEventListener("mousedown", onClickOutside));
 
 const triggerClasses = computed(() =>
   cn(
-    "flex min-h-10 w-full flex-wrap items-center gap-1 rounded-[--la-radius] border border-[hsl(var(--la-input))] bg-[hsl(var(--la-background))] px-3 py-2 text-sm cursor-pointer",
+    "flex min-h-10 w-full flex-wrap items-center gap-1 rounded-[--la-radius] border border-input bg-background px-3 py-2 text-sm cursor-pointer",
     props.disabled && "cursor-not-allowed opacity-50",
     props.class,
   ),
@@ -71,7 +71,7 @@ const triggerClasses = computed(() =>
         <span
           v-for="opt in selectedOptions"
           :key="opt.value"
-          class="inline-flex items-center gap-1 rounded-full bg-[hsl(var(--la-secondary))] px-2 py-0.5 text-xs text-[hsl(var(--la-secondary-foreground))]"
+          class="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
         >
           {{ opt.label }}
           <button
@@ -85,24 +85,24 @@ const triggerClasses = computed(() =>
           </button>
         </span>
       </template>
-      <span v-else class="text-[hsl(var(--la-muted-foreground))]">{{ placeholder }}</span>
+      <span v-else class="text-muted-foreground">{{ placeholder }}</span>
       <svg class="ml-auto h-4 w-4 shrink-0 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M6 9l6 6 6-6" />
       </svg>
     </div>
     <div
       v-if="open"
-      class="absolute z-50 mt-1 w-full overflow-hidden rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] p-1 shadow-md"
+      class="absolute z-50 mt-1 w-full overflow-hidden rounded-[--la-radius] border border-border bg-popover p-1 shadow-md"
     >
       <div
         v-for="opt in options"
         :key="opt.value"
-        class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]"
+        class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
         @click="toggle(opt.value)"
       >
         <div
-          class="mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-[hsl(var(--la-primary))]"
-          :class="modelValue.includes(opt.value) ? 'bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]' : ''"
+          class="mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary"
+          :class="modelValue.includes(opt.value) ? 'bg-primary text-primary-foreground' : ''"
         >
           <svg v-if="modelValue.includes(opt.value)" class="h-3 w-3" viewBox="0 0 12 12" fill="none">
             <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />

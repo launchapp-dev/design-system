@@ -24,9 +24,9 @@ export interface TeamSettingsProps extends React.HTMLAttributes<HTMLDivElement> 
 }
 
 const roleColors: Record<TeamMember["role"], string> = {
-  owner: "bg-amber-100 text-amber-800",
-  admin: "bg-violet-100 text-violet-800",
-  member: "bg-blue-100 text-blue-800",
+  owner: "bg-warning/10 text-warning",
+  admin: "bg-primary text-primary",
+  member: "bg-info text-info",
   viewer: "bg-muted text-muted-foreground",
 };
 

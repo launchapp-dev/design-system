@@ -147,7 +147,7 @@ export const GridPatternStory: StoryObj = {
         height: 300,
         borderRadius: 8,
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <GridPattern />
@@ -172,7 +172,7 @@ export const GridPatternDashed: StoryObj = {
         height: 300,
         borderRadius: 8,
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <GridPattern strokeDasharray="4 2" width={32} height={32} />
@@ -197,7 +197,7 @@ export const GridPatternHighlighted: StoryObj = {
         height: 300,
         borderRadius: 8,
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <GridPattern
@@ -233,7 +233,7 @@ export const DotPatternStory: StoryObj = {
         height: 300,
         borderRadius: 8,
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <DotPattern />
@@ -258,7 +258,7 @@ export const DotPatternDense: StoryObj = {
         height: 300,
         borderRadius: 8,
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <DotPattern width={8} height={8} cx={1} cy={1} cr={1} />
@@ -295,8 +295,8 @@ export const AllBackgrounds: StoryObj = {
             height: 120,
             borderRadius: 8,
             overflow: "hidden",
-            background: "hsl(var(--la-background))",
-            border: "1px solid hsl(var(--la-border))",
+            background: "var(--la-background)",
+            border: "1px solid var(--la-border)",
           }}
         >
           <GridPattern />
@@ -310,8 +310,8 @@ export const AllBackgrounds: StoryObj = {
             height: 120,
             borderRadius: 8,
             overflow: "hidden",
-            background: "hsl(var(--la-background))",
-            border: "1px solid hsl(var(--la-border))",
+            background: "var(--la-background)",
+            border: "1px solid var(--la-border)",
           }}
         >
           <DotPattern />

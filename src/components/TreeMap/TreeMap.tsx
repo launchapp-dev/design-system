@@ -44,11 +44,11 @@ interface LayoutNode extends TreeMapNode {
 }
 
 const CHART_COLORS = [
-  "hsl(var(--la-chart-1))",
-  "hsl(var(--la-chart-2))",
-  "hsl(var(--la-chart-3))",
-  "hsl(var(--la-chart-4))",
-  "hsl(var(--la-chart-5))",
+  "var(--la-chart-1)",
+  "var(--la-chart-2)",
+  "var(--la-chart-3)",
+  "var(--la-chart-4)",
+  "var(--la-chart-5)",
 ];
 
 function squarify(
@@ -248,18 +248,18 @@ function TreeMap({
 
     if (colorScheme === "primary") {
       const opacity = 0.4 + (node.value / Math.max(...data.map((d) => d.value))) * 0.5;
-      return `hsl(var(--la-primary) / ${opacity.toFixed(2)})`;
+      return `color-mix(in srgb, var(--la-primary) ${Math.round(opacity * 100)}%, transparent)`;
     }
     if (colorScheme === "secondary") {
       const opacity = 0.4 + (node.value / Math.max(...data.map((d) => d.value))) * 0.5;
-      return `hsl(var(--la-secondary) / ${opacity.toFixed(2)})`;
+      return `color-mix(in srgb, var(--la-secondary) ${Math.round(opacity * 100)}%, transparent)`;
     }
     if (colorScheme === "diverging") {
       const totalValue = data.reduce((sum, n) => sum + n.value, 0);
       const ratio = node.value / totalValue;
-      if (ratio > 0.2) return "hsl(var(--la-chart-3))";
-      if (ratio > 0.1) return "hsl(var(--la-chart-2))";
-      return "hsl(var(--la-chart-5))";
+      if (ratio > 0.2) return "var(--la-chart-3)";
+      if (ratio > 0.1) return "var(--la-chart-2)";
+      return "var(--la-chart-5)";
     }
 
     return CHART_COLORS[index % CHART_COLORS.length];
@@ -331,7 +331,7 @@ function TreeMap({
                 width={Math.max(0, node.width)}
                 height={Math.max(0, node.height)}
                 fill={getNodeColor(node, index)}
-                stroke="hsl(var(--la-background))"
+                stroke="var(--la-background)"
                 strokeWidth={2}
                 rx={4}
                 className={cn(
@@ -348,7 +348,7 @@ function TreeMap({
                   y={node.y + node.height / 2 - (showValueLabel ? 6 : 0)}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fill="hsl(var(--la-card-foreground))"
+                  fill="var(--la-card-foreground)"
                   className="text-xs font-medium select-none pointer-events-none"
                   style={{ fontSize: Math.min(12, Math.min(node.width / 5, node.height / 3)) }}
                 >
@@ -363,7 +363,7 @@ function TreeMap({
                   y={node.y + node.height / 2 + 10}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fill="hsl(var(--la-muted-foreground))"
+                  fill="var(--la-muted-foreground)"
                   className="text-[10px] select-none pointer-events-none"
                 >
                   {formatValue(node.value)}

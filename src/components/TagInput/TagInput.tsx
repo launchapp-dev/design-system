@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 import { Popover, PopoverContent, PopoverAnchor } from "../Popover";
 
 const tagInputVariants = cva(
-  "flex flex-wrap items-center gap-1.5 w-full rounded-[--la-radius] border bg-[hsl(var(--la-background))] text-sm ring-offset-[hsl(var(--la-background))] transition-colors focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2",
+  "flex flex-wrap items-center gap-1.5 w-full rounded-[--la-radius] border bg-background text-sm ring-offset-background transition-colors focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2",
   {
     variants: {
       size: {
@@ -13,15 +13,15 @@ const tagInputVariants = cva(
         lg: "min-h-12 px-4 py-3 text-base gap-2",
       },
       error: {
-        true: "border-[hsl(var(--la-destructive))] focus-within:ring-[hsl(var(--la-destructive))]",
-        false: "border-[hsl(var(--la-input))] focus-within:ring-[hsl(var(--la-ring))]",
+        true: "border-destructive focus-within:ring-destructive",
+        false: "border-input focus-within:ring-ring",
       },
     },
     compoundVariants: [
       {
         size: "sm",
         error: false,
-        className: "focus-within:ring-[hsl(var(--la-ring))]",
+        className: "focus-within:ring-ring",
       },
     ],
     defaultVariants: {
@@ -37,11 +37,11 @@ const tagVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[hsl(var(--la-primary)/0.1)] text-[hsl(var(--la-primary))] hover:bg-[hsl(var(--la-primary)/0.2)]",
+          "bg-primary/10 text-primary hover:bg-primary/20",
         secondary:
-          "bg-[hsl(var(--la-secondary))] text-[hsl(var(--la-secondary-foreground))] hover:bg-[hsl(var(--la-secondary)/0.8)]",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         outline:
-          "border border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))] hover:bg-[hsl(var(--la-accent))]",
+          "border border-border text-foreground hover:bg-accent",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",
@@ -299,7 +299,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   onBlur={() => setFocusedTagIndex(null)}
                   className={cn(
                     tagVariants({ variant: tagVariant, size }),
-                    focusedTagIndex === index && "ring-2 ring-[hsl(var(--la-ring))] ring-offset-1",
+                    focusedTagIndex === index && "ring-2 ring-ring ring-offset-1",
                   )}
                   aria-label={`${tag}, press Backspace or Delete to remove`}
                 >
@@ -312,7 +312,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                       removeTag(tag);
                     }}
                     aria-label={`Remove ${tag}`}
-                    className="ml-0.5 rounded-full hover:bg-black/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--la-ring))]"
+                    className="ml-0.5 rounded-full hover:bg-black/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -352,7 +352,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                     highlightedIndex >= 0 ? `${listboxId}-${highlightedIndex}` : undefined
                   }
                   id={inputId}
-                  className="flex-1 min-w-[120px] bg-transparent outline-none placeholder:text-[hsl(var(--la-muted-foreground))]"
+                  className="flex-1 min-w-[120px] bg-transparent outline-none placeholder:text-muted-foreground"
                 />
               )}
             </div>
@@ -383,10 +383,10 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                       onMouseEnter={() => setHighlightedIndex(i)}
                       className={cn(
                         "w-full text-left px-2 py-1.5 rounded-sm text-sm transition-colors",
-                        "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
+                        "hover:bg-accent hover:text-accent-foreground",
                         i === highlightedIndex &&
-                          "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
-                        isCreate && "text-[hsl(var(--la-primary))] font-medium",
+                          "bg-accent text-accent-foreground",
+                        isCreate && "text-primary font-medium",
                       )}
                     >
                       {item}
@@ -399,7 +399,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
         </Popover>
         {maxTags !== undefined && (
           <p
-            className="mt-1 text-xs text-[hsl(var(--la-muted-foreground))]"
+            className="mt-1 text-xs text-muted-foreground"
             aria-live="polite"
             role="status"
           >

@@ -55,9 +55,9 @@ function CheckoutFunnel(
                       className={cn(
                         "h-full rounded-md transition-all duration-500",
                         idx === 0
-                          ? "bg-blue-500"
+                          ? "bg-info"
                           : idx === steps.length - 1
-                            ? "bg-green-500"
+                            ? "bg-success"
                             : "bg-primary/80",
                       )}
                       style={{ width: `${widthPct}%` }}
@@ -117,7 +117,7 @@ function CheckoutFunnel(
           </div>
           <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full rounded-full bg-green-500 transition-all"
+              className="h-full rounded-full bg-success transition-all"
               style={{
                 width: `${Math.max(
                   (steps[steps.length - 1].count / (startCount ?? steps[0].count)) * 100,

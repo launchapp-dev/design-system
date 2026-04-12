@@ -184,8 +184,8 @@ const roleLabel: Record<TeamMemberGridRole, string> = {
 };
 
 const statusConfig: Record<TeamMemberGridStatus, { label: string; className: string }> = {
-  active: { label: "Active", className: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" },
-  pending: { label: "Pending", className: "bg-amber-500/10 text-amber-600 border-amber-500/20" },
+  active: { label: "Active", className: "bg-success/10 text-success border-success/20" },
+  pending: { label: "Pending", className: "bg-warning/10 text-warning border-warning/20" },
   inactive: { label: "Inactive", className: "bg-muted text-muted-foreground" },
 };
 

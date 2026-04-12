@@ -24,7 +24,7 @@ const meta: Meta<typeof MultiPanelLayout> = {
   },
   decorators: [
     (Story) => (
-      <div className="h-[400px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="h-[400px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),
@@ -240,7 +240,7 @@ export const FourPanels: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark h-[400px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="dark h-[400px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),

@@ -60,14 +60,14 @@ export const StickySectionStory: StoryObj = {
       style={{
         height: 400,
         overflow: "auto",
-        border: "1px solid hsl(var(--la-border))",
+        border: "1px solid var(--la-border)",
         borderRadius: "var(--la-radius)",
       }}
     >
       <div
         style={{
           height: 100,
-          background: "hsl(var(--la-muted))",
+          background: "var(--la-muted)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -79,8 +79,8 @@ export const StickySectionStory: StoryObj = {
         <div
           style={{
             padding: 16,
-            background: "hsl(var(--la-primary))",
-            color: "hsl(var(--la-primary-foreground))",
+            background: "var(--la-primary)",
+            color: "var(--la-primary-foreground)",
             textAlign: "center",
           }}
         >
@@ -92,7 +92,7 @@ export const StickySectionStory: StoryObj = {
         <p>Notice how the sticky section stays visible.</p>
       </div>
       <StickySection offset={48}>
-        <div style={{ padding: 16, background: "hsl(var(--la-secondary))", textAlign: "center" }}>
+        <div style={{ padding: 16, background: "var(--la-secondary)", textAlign: "center" }}>
           Another Sticky Section
         </div>
       </StickySection>
@@ -110,7 +110,7 @@ export const StickyHeaderStory: StoryObj = {
       style={{
         height: 400,
         overflow: "auto",
-        border: "1px solid hsl(var(--la-border))",
+        border: "1px solid var(--la-border)",
         borderRadius: "var(--la-radius)",
       }}
     >
@@ -127,7 +127,7 @@ export const StickyHeaderStory: StoryObj = {
           <button
             style={{
               padding: "4px 12px",
-              background: "hsl(var(--la-primary))",
+              background: "var(--la-primary)",
               color: "white",
               border: "none",
               borderRadius: 4,
@@ -140,7 +140,7 @@ export const StickyHeaderStory: StoryObj = {
       </StickyHeader>
       <div style={{ padding: 24 }}>
         {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} style={{ padding: 24, borderBottom: "1px solid hsl(var(--la-border))" }}>
+          <div key={i} style={{ padding: 24, borderBottom: "1px solid var(--la-border)" }}>
             <p style={{ fontWeight: 600 }}>Section {i + 1}</p>
             <p style={{ fontSize: 14, opacity: 0.6, marginTop: 4 }}>Content for section {i + 1}</p>
           </div>
@@ -166,8 +166,8 @@ export const HorizontalScrollStory: StoryObj = {
               height: 160,
               marginRight: 16,
               flexShrink: 0,
-              background: "hsl(var(--la-card))",
-              border: "1px solid hsl(var(--la-border))",
+              background: "var(--la-card)",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
               padding: 16,
               display: "flex",
@@ -182,7 +182,7 @@ export const HorizontalScrollStory: StoryObj = {
             <button
               style={{
                 padding: "6px 12px",
-                background: "hsl(var(--la-primary))",
+                background: "var(--la-primary)",
                 color: "white",
                 border: "none",
                 borderRadius: 4,
@@ -209,13 +209,13 @@ export const ScrollProgressStory: StoryObj = {
         position="top"
         style={{
           height: 300,
-          border: "1px solid hsl(var(--la-border))",
+          border: "1px solid var(--la-border)",
           borderRadius: "var(--la-radius)",
         }}
       >
         <div style={{ padding: 24 }}>
           {Array.from({ length: 15 }).map((_, i) => (
-            <div key={i} style={{ padding: 16, borderBottom: "1px solid hsl(var(--la-border))" }}>
+            <div key={i} style={{ padding: 16, borderBottom: "1px solid var(--la-border)" }}>
               <p style={{ fontWeight: 500 }}>Item {i + 1}</p>
               <p style={{ fontSize: 12, opacity: 0.5 }}>Scroll to see progress</p>
             </div>
@@ -235,16 +235,16 @@ export const ScrollProgressBottom: StoryObj = {
       </p>
       <ScrollProgress
         position="bottom"
-        color="hsl(var(--la-accent))"
+        color="var(--la-accent)"
         style={{
           height: 300,
-          border: "1px solid hsl(var(--la-border))",
+          border: "1px solid var(--la-border)",
           borderRadius: "var(--la-radius)",
         }}
       >
         <div style={{ padding: 24 }}>
           {Array.from({ length: 15 }).map((_, i) => (
-            <div key={i} style={{ padding: 16, borderBottom: "1px solid hsl(var(--la-border))" }}>
+            <div key={i} style={{ padding: 16, borderBottom: "1px solid var(--la-border)" }}>
               <p style={{ fontWeight: 500 }}>Item {i + 1}</p>
               <p style={{ fontSize: 12, opacity: 0.5 }}>Scroll to see progress</p>
             </div>
@@ -279,8 +279,8 @@ export const RevealOnScrollStory: StoryObj = {
               <div
                 style={{
                   padding: 20,
-                  background: "hsl(var(--la-card))",
-                  border: "1px solid hsl(var(--la-border))",
+                  background: "var(--la-card)",
+                  border: "1px solid var(--la-border)",
                   borderRadius: "var(--la-radius)",
                 }}
               >
@@ -312,13 +312,13 @@ export const ScrollSnapStory: StoryObj = {
               width: 280,
               marginRight: 16,
               flexShrink: 0,
-              background: "hsl(var(--la-card))",
-              border: "1px solid hsl(var(--la-border))",
+              background: "var(--la-card)",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
               padding: 20,
             }}
           >
-            <p style={{ fontSize: 24, fontWeight: 700, color: "hsl(var(--la-primary))" }}>
+            <p style={{ fontSize: 24, fontWeight: 700, color: "var(--la-primary)" }}>
               0{i + 1}
             </p>
             <p style={{ fontWeight: 600, marginTop: 8 }}>Snap Section {i + 1}</p>
@@ -342,8 +342,8 @@ export const AllScrollEffects: StoryObj = {
           <div
             style={{
               padding: 20,
-              background: "hsl(var(--la-card))",
-              border: "1px solid hsl(var(--la-border))",
+              background: "var(--la-card)",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
             }}
           >
@@ -363,7 +363,7 @@ export const AllScrollEffects: StoryObj = {
                 height: 80,
                 marginRight: 12,
                 flexShrink: 0,
-                background: "hsl(var(--la-secondary))",
+                background: "var(--la-secondary)",
                 borderRadius: "var(--la-radius)",
                 display: "flex",
                 alignItems: "center",
@@ -380,7 +380,7 @@ export const AllScrollEffects: StoryObj = {
         <ScrollProgress
           style={{
             height: 100,
-            border: "1px solid hsl(var(--la-border))",
+            border: "1px solid var(--la-border)",
             borderRadius: "var(--la-radius)",
           }}
         >
@@ -409,8 +409,8 @@ export const ReducedMotion: StoryObj = {
           <div
             style={{
               padding: 20,
-              background: "hsl(var(--la-card))",
-              border: "1px solid hsl(var(--la-border))",
+              background: "var(--la-card)",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
             }}
           >
@@ -429,7 +429,7 @@ export const ReducedMotion: StoryObj = {
                 height: 60,
                 marginRight: 12,
                 flexShrink: 0,
-                background: "hsl(var(--la-secondary))",
+                background: "var(--la-secondary)",
                 borderRadius: "var(--la-radius)",
                 display: "flex",
                 alignItems: "center",
@@ -452,7 +452,7 @@ export const ParallaxSectionStory: StoryObj = {
       style={{
         height: 500,
         overflow: "auto",
-        border: "1px solid hsl(var(--la-border))",
+        border: "1px solid var(--la-border)",
         borderRadius: "var(--la-radius)",
       }}
     >
@@ -462,7 +462,7 @@ export const ParallaxSectionStory: StoryObj = {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "hsl(var(--la-muted))",
+          background: "var(--la-muted)",
         }}
       >
         <p>Scroll down to see parallax effect</p>
@@ -472,11 +472,11 @@ export const ParallaxSectionStory: StoryObj = {
           style={{
             height: "100%",
             background:
-              "linear-gradient(135deg, hsl(var(--la-primary)) 0%, hsl(var(--la-accent)) 100%)",
+              "linear-gradient(135deg, var(--la-primary) 0%, var(--la-accent) 100%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "hsl(var(--la-primary-foreground))",
+            color: "var(--la-primary-foreground)",
           }}
         >
           <div style={{ textAlign: "center" }}>
@@ -493,7 +493,7 @@ export const ParallaxSectionStory: StoryObj = {
           style={{
             height: "100%",
             background:
-              "linear-gradient(135deg, hsl(var(--la-secondary)) 0%, hsl(var(--la-muted)) 100%)",
+              "linear-gradient(135deg, var(--la-secondary) 0%, var(--la-muted) 100%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -519,14 +519,14 @@ export const ProgressIndicatorStory: StoryObj = {
   },
   render: () => (
     <div>
-      <ProgressIndicator color="hsl(var(--la-primary))" height={4} />
+      <ProgressIndicator color="var(--la-primary)" height={4} />
       <div style={{ padding: 24, textAlign: "center" }}>
         <p style={{ fontSize: 14, opacity: 0.6, marginBottom: 16 }}>
           Scroll the page to see the progress bar at the top.
         </p>
       </div>
       {Array.from({ length: 20 }).map((_, i) => (
-        <div key={i} style={{ padding: 24, borderBottom: "1px solid hsl(var(--la-border))" }}>
+        <div key={i} style={{ padding: 24, borderBottom: "1px solid var(--la-border)" }}>
           <p style={{ fontWeight: 500 }}>Section {i + 1}</p>
           <p style={{ fontSize: 12, opacity: 0.5 }}>Scroll to see the progress indicator</p>
         </div>

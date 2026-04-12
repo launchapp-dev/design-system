@@ -232,10 +232,10 @@ function ThinkingIndicator({
         }
         @keyframes chain-pulse {
           0%, 100% {
-            box-shadow: 0 0 0 0 hsl(var(--la-primary) / 0.4);
+            box-shadow: 0 0 0 0 color-mix(in srgb, var(--la-primary) 40%, transparent);
           }
           50% {
-            box-shadow: 0 0 0 4px hsl(var(--la-primary) / 0);
+            box-shadow: 0 0 0 4px transparent;
           }
         }
         @media (prefers-reduced-motion: reduce) {

@@ -56,7 +56,7 @@ const initials = computed(() => {
     />
     <span
       v-else
-      class="flex h-full w-full items-center justify-center rounded-full bg-[hsl(var(--la-muted))] font-medium text-[hsl(var(--la-muted-foreground))]"
+      class="flex h-full w-full items-center justify-center rounded-full bg-muted font-medium text-muted-foreground"
     >
       <slot>{{ initials }}</slot>
     </span>

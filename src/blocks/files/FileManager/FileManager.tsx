@@ -374,7 +374,7 @@ function FileManager({
                     <Progress value={file.progress ?? 0} className="w-20" />
                   )}
                   {file.status === "complete" && (
-                    <span className="text-xs text-emerald-600 dark:text-emerald-400">Done</span>
+                    <span className="text-xs text-success">Done</span>
                   )}
                   {file.status === "error" && (
                     <span className="text-xs text-destructive">{file.errorMessage ?? "Error"}</span>

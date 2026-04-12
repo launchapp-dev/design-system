@@ -85,16 +85,16 @@ function CookieConsentBanner({
       <div
         className={cn(
           "mx-auto max-w-2xl rounded-xl p-6",
-          "border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] shadow-2xl",
+          "border border-border bg-background shadow-2xl",
         )}
       >
-        <h2 className="text-base font-semibold text-[hsl(var(--la-foreground))]">
+        <h2 className="text-base font-semibold text-foreground">
           Cookie Preferences
         </h2>
-        <p className="mt-1.5 text-sm text-[hsl(var(--la-muted-foreground))]">
+        <p className="mt-1.5 text-sm text-muted-foreground">
           We use cookies to enhance your experience and analyse our traffic. Choose which cookies
           you allow us to use.{" "}
-          <a href={policyHref} className="underline hover:text-[hsl(var(--la-foreground))]">
+          <a href={policyHref} className="underline hover:text-foreground">
             Cookie Policy
           </a>
         </p>
@@ -106,26 +106,26 @@ function CookieConsentBanner({
                 key={category.id}
                 className={cn(
                   "flex flex-col sm:flex-row items-start justify-between gap-4 rounded-lg p-3",
-                  "border border-[hsl(var(--la-border))]",
+                  "border border-border",
                 )}
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-[hsl(var(--la-foreground))]">
+                    <span className="text-sm font-medium text-foreground">
                       {category.name}
                     </span>
                     {category.required && (
                       <span
                         className={cn(
                           "rounded-full px-2 py-0.5 text-xs",
-                          "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-muted-foreground))]",
+                          "bg-muted text-muted-foreground",
                         )}
                       >
                         Required
                       </span>
                     )}
                   </div>
-                  <p className="mt-0.5 text-xs text-[hsl(var(--la-muted-foreground))]">
+                  <p className="mt-0.5 text-xs text-muted-foreground">
                     {category.description}
                   </p>
                 </div>
@@ -137,11 +137,11 @@ function CookieConsentBanner({
                   className={cn(
                     "inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
                     "transition-colors focus-visible:outline-none focus-visible:ring-2",
-                    "focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2",
-                    "focus-visible:ring-offset-[hsl(var(--la-background))]",
+                    "focus-visible:ring-ring focus-visible:ring-offset-2",
+                    "focus-visible:ring-offset-background",
                     "disabled:cursor-not-allowed disabled:opacity-50",
-                    "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                    "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
+                    "data-[state=checked]:bg-primary",
+                    "data-[state=unchecked]:bg-input",
                   )}
                 >
                   <SwitchPrimitive.Thumb
@@ -164,7 +164,7 @@ function CookieConsentBanner({
                 onClick={handleSaveCustom}
                 className={cn(
                   "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
-                  "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]",
+                  "bg-primary text-primary-foreground",
                   "hover:opacity-90",
                 )}
               >
@@ -175,8 +175,8 @@ function CookieConsentBanner({
                 onClick={handleAcceptAll}
                 className={cn(
                   "rounded-lg border px-4 py-2 text-sm font-medium transition-colors",
-                  "border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))]",
-                  "hover:bg-[hsl(var(--la-muted))]",
+                  "border-border text-foreground",
+                  "hover:bg-muted",
                 )}
               >
                 Accept All
@@ -186,8 +186,8 @@ function CookieConsentBanner({
                 onClick={handleRejectAll}
                 className={cn(
                   "rounded-lg border px-4 py-2 text-sm font-medium transition-colors",
-                  "border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))]",
-                  "hover:bg-[hsl(var(--la-muted))]",
+                  "border-border text-foreground",
+                  "hover:bg-muted",
                 )}
               >
                 Reject All
@@ -200,7 +200,7 @@ function CookieConsentBanner({
                 onClick={handleAcceptAll}
                 className={cn(
                   "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
-                  "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]",
+                  "bg-primary text-primary-foreground",
                   "hover:opacity-90",
                 )}
               >
@@ -211,8 +211,8 @@ function CookieConsentBanner({
                 onClick={handleRejectAll}
                 className={cn(
                   "rounded-lg border px-4 py-2 text-sm font-medium transition-colors",
-                  "border-[hsl(var(--la-border))] text-[hsl(var(--la-foreground))]",
-                  "hover:bg-[hsl(var(--la-muted))]",
+                  "border-border text-foreground",
+                  "hover:bg-muted",
                 )}
               >
                 Reject All
@@ -220,7 +220,7 @@ function CookieConsentBanner({
               <button
                 type="button"
                 onClick={() => setShowCustomize(true)}
-                className="text-sm text-[hsl(var(--la-muted-foreground))] underline hover:text-[hsl(var(--la-foreground))]"
+                className="text-sm text-muted-foreground underline hover:text-foreground"
               >
                 Customize
               </button>
@@ -251,7 +251,7 @@ function CookieSettingsButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "text-sm text-[hsl(var(--la-muted-foreground))] hover:text-[hsl(var(--la-foreground))] transition-colors",
+        "text-sm text-muted-foreground hover:text-foreground transition-colors",
         className,
       )}
     >

@@ -113,7 +113,7 @@ function CookieConsent({
           className={cn(
             "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
             "w-full max-w-lg max-h-[90vh] overflow-y-auto",
-            "rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] shadow-lg",
+            "rounded-lg border border-border bg-background shadow-lg",
             "p-6",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -122,10 +122,10 @@ function CookieConsent({
             "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
           )}
         >
-          <DialogPrimitive.Title className="text-lg font-semibold text-[hsl(var(--la-foreground))]">
+          <DialogPrimitive.Title className="text-lg font-semibold text-foreground">
             {title}
           </DialogPrimitive.Title>
-          <DialogPrimitive.Description className="mt-2 text-sm text-[hsl(var(--la-muted-foreground))]">
+          <DialogPrimitive.Description className="mt-2 text-sm text-muted-foreground">
             {description}
           </DialogPrimitive.Description>
 
@@ -133,20 +133,20 @@ function CookieConsent({
             {categories.map((category) => (
               <div
                 key={category.id}
-                className="flex flex-col sm:flex-row items-start justify-between gap-4 rounded-lg border border-[hsl(var(--la-border))] p-4"
+                className="flex flex-col sm:flex-row items-start justify-between gap-4 rounded-lg border border-border p-4"
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-[hsl(var(--la-foreground))]">
+                    <span className="text-sm font-medium text-foreground">
                       {category.name}
                     </span>
                     {category.required && (
-                      <span className="rounded-full bg-[hsl(var(--la-muted))] px-2 py-0.5 text-xs text-[hsl(var(--la-muted-foreground))]">
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
                         Required
                       </span>
                     )}
                   </div>
-                  <p className="mt-1 text-xs text-[hsl(var(--la-muted-foreground))]">
+                  <p className="mt-1 text-xs text-muted-foreground">
                     {category.description}
                   </p>
                 </div>
@@ -158,11 +158,11 @@ function CookieConsent({
                   className={cn(
                     "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
                     "transition-colors focus-visible:outline-none focus-visible:ring-2",
-                    "focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2",
-                    "focus-visible:ring-offset-[hsl(var(--la-background))]",
+                    "focus-visible:ring-ring focus-visible:ring-offset-2",
+                    "focus-visible:ring-offset-background",
                     "disabled:cursor-not-allowed disabled:opacity-50",
-                    "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                    "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
+                    "data-[state=checked]:bg-primary",
+                    "data-[state=unchecked]:bg-input",
                   )}
                 >
                   <SwitchPrimitive.Thumb
@@ -188,9 +188,9 @@ function CookieConsent({
 
           <DialogPrimitive.Close
             className={cn(
-              "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-[hsl(var(--la-background))]",
+              "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background",
               "transition-opacity hover:opacity-100",
-              "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2",
+              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
               "disabled:pointer-events-none",
             )}
           >

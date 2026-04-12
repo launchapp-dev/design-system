@@ -147,7 +147,7 @@ function ScrollProgress({
   children,
   className,
   position = "top",
-  color = "hsl(var(--la-primary))",
+  color = "var(--la-primary)",
   height = 3,
   ref,
   ...props
@@ -445,7 +445,7 @@ const ProgressIndicator = React.forwardRef<HTMLDivElement, ProgressIndicatorProp
     {
       className,
       position = "top",
-      color = "hsl(var(--la-primary))",
+      color = "var(--la-primary)",
       height = 3,
       showOnScroll = false,
       style,

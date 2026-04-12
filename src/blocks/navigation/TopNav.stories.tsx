@@ -20,8 +20,8 @@ const sampleUser = {
 
 const LogoMark = () => (
   <div className="flex items-center gap-2">
-    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
-      <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
+    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary">
+      <span className="text-xs font-bold text-primary-foreground">A</span>
     </div>
     <span className="text-sm font-semibold">Acme</span>
   </div>
@@ -62,8 +62,8 @@ export default function Page() {
     (Story) => (
       <div className="w-full">
         <Story />
-        <main className="flex h-64 items-center justify-center bg-[hsl(var(--la-muted))]">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Page content</p>
+        <main className="flex h-64 items-center justify-center bg-muted">
+          <p className="text-sm text-muted-foreground">Page content</p>
         </main>
       </div>
     ),
@@ -122,10 +122,10 @@ export const FullFeatured: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark w-full bg-[hsl(var(--la-background))]">
+      <div className="dark w-full bg-background">
         <Story />
-        <main className="flex h-64 items-center justify-center bg-[hsl(var(--la-muted))]">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">Page content</p>
+        <main className="flex h-64 items-center justify-center bg-muted">
+          <p className="text-sm text-muted-foreground">Page content</p>
         </main>
       </div>
     ),

@@ -18,7 +18,7 @@ let isSelected = $derived(selectedValue.value === value);
 
 let classes = $derived(
 cn(
-    "aspect-square h-4 w-4 rounded-full border border-[hsl(var(--la-primary))] text-[hsl(var(--la-primary))] ring-offset-[hsl(var(--la-background))] focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center cursor-pointer",
+    "aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center cursor-pointer",
     className,
   ),
 );
@@ -41,6 +41,6 @@ function handleClick() {
    {...restProps}>
     <div
       v-if="isSelected"
-      class="h-2.5 w-2.5 rounded-full bg-[hsl(var(--la-primary))]"
+      class="h-2.5 w-2.5 rounded-full bg-primary"
     />
   </button>

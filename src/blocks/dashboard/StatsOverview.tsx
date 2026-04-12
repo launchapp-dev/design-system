@@ -42,12 +42,12 @@ function StatsOverview({ items, cols = 4, title, description, chartData, chartKe
                     <linearGradient key={key} id={`gradient-${key}`} x1="0" y1="0" x2="0" y2="1">
                       <stop
                         offset="5%"
-                        stopColor={color ?? `hsl(var(--la-chart-${i + 1}))`}
+                        stopColor={color ?? `var(--la-chart-)`}
                         stopOpacity={0.2}
                       />
                       <stop
                         offset="95%"
-                        stopColor={color ?? `hsl(var(--la-chart-${i + 1}))`}
+                        stopColor={color ?? `var(--la-chart-)`}
                         stopOpacity={0}
                       />
                     </linearGradient>
@@ -56,14 +56,14 @@ function StatsOverview({ items, cols = 4, title, description, chartData, chartKe
                 <CartesianGrid strokeDasharray="3 3" className="stroke-border" vertical={false} />
                 <XAxis
                   dataKey="label"
-                  tick={{ fontSize: 11, fill: "hsl(var(--la-muted-foreground))" }}
+                  tick={{ fontSize: 11, fill: "var(--la-muted-foreground)" }}
                   tickLine={false}
                   axisLine={false}
                 />
                 <ChartTooltip
                   contentStyle={{
-                    background: "hsl(var(--la-card))",
-                    border: "1px solid hsl(var(--la-border))",
+                    background: "var(--la-card)",
+                    border: "1px solid var(--la-border)",
                     borderRadius: "var(--la-radius)",
                     fontSize: 12,
                   }}
@@ -73,7 +73,7 @@ function StatsOverview({ items, cols = 4, title, description, chartData, chartKe
                     key={key}
                     type="monotone"
                     dataKey={key}
-                    stroke={color ?? `hsl(var(--la-chart-${i + 1}))`}
+                    stroke={color ?? `var(--la-chart-)`}
                     strokeWidth={2}
                     fill={`url(#gradient-${key})`}
                     dot={false}

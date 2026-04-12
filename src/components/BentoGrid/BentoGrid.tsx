@@ -59,7 +59,7 @@ const bentoCardVariants = cva(
       hover: {
         none: "",
         lift: "hover:shadow-lg hover:-translate-y-1",
-        glow: "hover:shadow-[0_0_20px_rgba(var(--la-primary-rgb),0.3)]",
+        glow: "hover:shadow-[0_0_20px_color-mix(in_srgb,var(--la-primary)_30%,transparent)]",
         scale: "hover:scale-[1.02]",
       },
     },

@@ -21,15 +21,15 @@ const emit = defineEmits<{
 
 const trackClasses = computed(() =>
   cn(
-    "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--la-background))] disabled:cursor-not-allowed disabled:opacity-50",
-    props.modelValue ? "bg-[hsl(var(--la-primary))]" : "bg-[hsl(var(--la-input))]",
+    "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50",
+    props.modelValue ? "bg-primary" : "bg-input",
     props.class,
   ),
 );
 
 const thumbClasses = computed(() =>
   cn(
-    "pointer-events-none block h-5 w-5 rounded-full bg-[hsl(var(--la-background))] shadow-lg ring-0 transition-transform",
+    "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform",
     props.modelValue ? "translate-x-5" : "translate-x-0",
   ),
 );

@@ -8,7 +8,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const classes = computed(() =>
-  cn("animate-pulse rounded-[--la-radius] bg-[hsl(var(--la-muted))]", props.class),
+  cn("animate-pulse rounded-[--la-radius] bg-muted", props.class),
 );
 </script>
 

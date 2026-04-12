@@ -252,7 +252,7 @@ function CartDrawer({
                     <Badge variant="secondary" className="text-xs">{discount.code}</Badge>
                     <span className="text-muted-foreground">Discount</span>
                   </div>
-                  <span className="text-emerald-600">
+                  <span className="text-success">
                     -{currency}
                     {discountAmount.toFixed(2)}
                   </span>

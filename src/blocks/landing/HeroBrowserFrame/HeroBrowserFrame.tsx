@@ -210,7 +210,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
                     />
                     <div
                       className="h-1.5 rounded w-10"
-                      style={{ background: stat.trend === "up" ? "#22c55e" : "#ef4444", opacity: 0.5 }}
+                      style={{ background: stat.trend === "up" ? "var(--la-success)" : "var(--la-destructive)", opacity: 0.5 }}
                     />
                   </div>
                 ))}
@@ -275,7 +275,7 @@ const HeroBrowserFrame = React.forwardRef<HTMLDivElement, HeroBrowserFrameProps>
                         <div
                           className="w-5.5 h-5.5 rounded-full shrink-0"
                           style={{
-                            background: "linear-gradient(135deg, var(--la-primary) 0%, color-mix(in srgb, var(--la-primary) 50%, #a855f7) 100%)",
+                            background: "linear-gradient(135deg, var(--la-primary) 0%, color-mix(in srgb, var(--la-primary) 60%, var(--la-chart-1)) 100%)",
                             opacity: 0.5,
                           }}
                         />

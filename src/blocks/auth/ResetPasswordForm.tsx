@@ -73,9 +73,9 @@ function ResetPasswordForm({
         </CardHeader>
         <CardContent>
           {success ? (
-            <div className="rounded-md bg-[hsl(var(--la-primary)/0.1)] p-4 text-sm text-[hsl(var(--la-primary))] text-center space-y-1">
+            <div className="rounded-md bg-primary/10 p-4 text-sm text-primary text-center space-y-1">
               <p className="font-medium">Password updated</p>
-              <p className="text-[hsl(var(--la-muted-foreground))]">
+              <p className="text-muted-foreground">
                 Your password has been changed. You can now sign in.
               </p>
             </div>
@@ -83,7 +83,7 @@ function ResetPasswordForm({
             <Form {...form}>
               <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
                 {error && (
-                  <div className="rounded-md bg-[hsl(var(--la-destructive)/0.1)] p-3 text-sm text-[hsl(var(--la-destructive))]">
+                  <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                     {error}
                   </div>
                 )}

@@ -87,7 +87,7 @@ export interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement>
 function SpotlightCard({
   className,
   children,
-  spotlightColor = "hsl(var(--la-primary) / 0.15)",
+  spotlightColor = "color-mix(in srgb, var(--la-primary) 15%, transparent)",
   spotlightSize = 400,
   ref,
   ...props
@@ -203,7 +203,7 @@ function MagneticButton({
         else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
       }}
       className={cn(
-        "inline-flex items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] px-4 py-2 text-sm font-medium ring-offset-[hsl(var(--la-background))] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex items-center justify-center rounded-[--la-radius] bg-primary text-primary-foreground px-4 py-2 text-sm font-medium ring-offset-background transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         className,
       )}
       style={{
@@ -237,7 +237,7 @@ function ShimmerButton({
     <button
       ref={ref}
       className={cn(
-        "relative inline-flex items-center justify-center overflow-hidden rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "relative inline-flex items-center justify-center overflow-hidden rounded-[--la-radius] bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         className,
       )}
       {...props}
@@ -263,7 +263,7 @@ export interface AnimatedBorderCardProps extends React.HTMLAttributes<HTMLDivEle
 function AnimatedBorderCard({
   className,
   children,
-  borderColor = "hsl(var(--la-primary))",
+  borderColor = "var(--la-primary)",
   duration = 3,
   ref,
   ...props
@@ -374,7 +374,7 @@ const glowIntensityMap = {
 function NeonGlowCard({
   className,
   children,
-  glowColor = "hsl(var(--la-primary))",
+  glowColor = "var(--la-primary)",
   glowIntensity = "md",
   animate = true,
   ref,
@@ -473,7 +473,7 @@ function RippleButton({
         else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
       }}
       className={cn(
-        "relative inline-flex items-center justify-center overflow-hidden rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "relative inline-flex items-center justify-center overflow-hidden rounded-[--la-radius] bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         className,
       )}
       onClick={createRipple}
@@ -513,7 +513,7 @@ const pulseIntensityMap = {
 function GlowPulseButton({
   className,
   children,
-  glowColor = "hsl(var(--la-primary))",
+  glowColor = "var(--la-primary)",
   pulseIntensity = "md",
   ref,
   ...props
@@ -525,7 +525,7 @@ function GlowPulseButton({
     <button
       ref={ref}
       className={cn(
-        "relative inline-flex items-center justify-center rounded-[--la-radius] bg-[hsl(var(--la-primary))] px-4 py-2 text-sm font-medium text-[hsl(var(--la-primary-foreground))] ring-offset-[hsl(var(--la-background))] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "relative inline-flex items-center justify-center rounded-[--la-radius] bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         reduced ? "" : "hover:scale-[var(--pulse-scale)]",
         className,
       )}
@@ -557,14 +557,14 @@ export interface MorphButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
 }
 
 const morphVariants = cva(
-  "relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium ring-offset-[hsl(var(--la-background))] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       morphStyle: {
-        blob: "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-2xl",
-        pill: "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-full",
+        blob: "bg-primary text-primary-foreground rounded-2xl",
+        pill: "bg-primary text-primary-foreground rounded-full",
         rounded:
-          "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] rounded-[--la-radius]",
+          "bg-primary text-primary-foreground rounded-[--la-radius]",
       },
     },
     defaultVariants: {
@@ -708,7 +708,7 @@ function MagicCard({
           className="pointer-events-none absolute inset-0 transition-opacity duration-300"
           style={{
             opacity: state.visible ? 1 : 0,
-            background: `radial-gradient(300px circle at ${state.x}px ${state.y}px, hsl(var(--la-primary) / 0.15), transparent 60%)`,
+            background: `radial-gradient(300px circle at ${state.x}px ${state.y}px, color-mix(in srgb, var(--la-primary) 15%, transparent), transparent 60%)`,
           }}
         />
       )}
@@ -717,7 +717,7 @@ function MagicCard({
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
-            boxShadow: `inset 0 0 20px hsl(var(--la-primary) / ${0.1 * intensity})`,
+            boxShadow: `inset 0 0 20px color-mix(in srgb, var(--la-primary) ${Math.round(0.1 * intensity * 100)}%, transparent)`,
           }}
         />
       )}

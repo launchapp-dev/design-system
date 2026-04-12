@@ -81,7 +81,7 @@ function MetricsDashboard({
             <CardHeader className={compact ? "pb-2" : "flex flex-row items-center justify-between space-y-0 pb-2"}>
               <div className="flex items-center gap-3 min-w-0">
                 {metric.icon && (
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-accent text-accent-foreground">
                     {metric.icon}
                   </div>
                 )}
@@ -111,8 +111,8 @@ function MetricsDashboard({
                     variant="secondary"
                     className={cn(
                       "gap-1 text-xs font-medium",
-                      metric.changeType === "up" && "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
-                      metric.changeType === "down" && "text-destructive bg-red-50 dark:bg-red-950/30",
+                      metric.changeType === "up" && "text-success bg-success/5 dark:bg-success/10",
+                      metric.changeType === "down" && "text-destructive bg-destructive/5 dark:bg-destructive/10",
                       metric.changeType === "neutral" && "text-muted-foreground",
                     )}
                   >

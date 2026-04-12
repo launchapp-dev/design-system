@@ -60,7 +60,7 @@ onUnmounted(() => document.removeEventListener("mousedown", onClickOutside));
 
 const triggerClasses = computed(() =>
   cn(
-    "flex h-10 w-full items-center justify-between rounded-[--la-radius] border border-[hsl(var(--la-input))] bg-[hsl(var(--la-background))] px-3 py-2 text-sm cursor-pointer",
+    "flex h-10 w-full items-center justify-between rounded-[--la-radius] border border-input bg-background px-3 py-2 text-sm cursor-pointer",
     props.disabled && "cursor-not-allowed opacity-50",
     props.class,
   ),
@@ -77,7 +77,7 @@ const triggerClasses = computed(() =>
       aria-haspopup="listbox"
       @click="open = !open"
     >
-      <span :class="selectedLabel ? 'text-[hsl(var(--la-foreground))]' : 'text-[hsl(var(--la-muted-foreground))]'">
+      <span :class="selectedLabel ? 'text-foreground' : 'text-muted-foreground'">
         {{ selectedLabel ?? placeholder }}
       </span>
       <svg class="h-4 w-4 shrink-0 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -86,9 +86,9 @@ const triggerClasses = computed(() =>
     </button>
     <div
       v-if="open"
-      class="absolute z-50 mt-1 w-full overflow-hidden rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] shadow-md"
+      class="absolute z-50 mt-1 w-full overflow-hidden rounded-[--la-radius] border border-border bg-popover shadow-md"
     >
-      <div class="flex items-center border-b border-[hsl(var(--la-border))] px-3">
+      <div class="flex items-center border-b border-border px-3">
         <svg class="mr-2 h-4 w-4 shrink-0 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8" />
           <path d="M21 21l-4.35-4.35" />
@@ -96,13 +96,13 @@ const triggerClasses = computed(() =>
         <input
           v-model="search"
           :placeholder="searchPlaceholder"
-          class="h-10 w-full bg-transparent py-3 text-sm outline-none placeholder:text-[hsl(var(--la-muted-foreground))]"
+          class="h-10 w-full bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground"
         />
       </div>
       <div class="max-h-[200px] overflow-y-auto p-1">
         <div
           v-if="filtered.length === 0"
-          class="py-6 text-center text-sm text-[hsl(var(--la-muted-foreground))]"
+          class="py-6 text-center text-sm text-muted-foreground"
         >
           {{ emptyText }}
         </div>
@@ -111,7 +111,7 @@ const triggerClasses = computed(() =>
           :key="opt.value"
           role="option"
           :aria-selected="modelValue === opt.value"
-          class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]"
+          class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
           @click="select(opt.value)"
         >
           <svg

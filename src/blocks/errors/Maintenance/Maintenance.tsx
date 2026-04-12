@@ -36,7 +36,7 @@ const defaultIllustration = (
 );
 
 const statusColors = {
-  done: "bg-green-500",
+  done: "bg-success",
   "in-progress": "bg-primary animate-pulse",
   pending: "bg-muted-foreground/30",
 };

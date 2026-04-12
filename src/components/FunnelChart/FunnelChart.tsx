@@ -407,7 +407,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                       y={y + stageHeight / 2 - (showValues || showPercentage ? 6 : 0)}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fill="hsl(var(--la-card-foreground))"
+                      fill="var(--la-card-foreground)"
                       className="font-medium select-none pointer-events-none"
                       style={{
                         fontSize: size === "sm" ? 10 : size === "lg" ? 14 : 12,
@@ -425,7 +425,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                       y={y + stageHeight / 2 + (showLabels ? 8 : 0)}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fill="hsl(var(--la-card-foreground) / 0.8)"
+                      fill="color-mix(in srgb, var(--la-card-foreground) 80%, transparent)"
                       className="select-none pointer-events-none tabular-nums"
                       style={{
                         fontSize: size === "sm" ? 9 : size === "lg" ? 12 : 10,
@@ -441,7 +441,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                       y={y + stageHeight / 2 + (showLabels ? 8 : 0)}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fill="hsl(var(--la-card-foreground) / 0.8)"
+                      fill="color-mix(in srgb, var(--la-card-foreground) 80%, transparent)"
                       className="select-none pointer-events-none tabular-nums"
                       style={{
                         fontSize: size === "sm" ? 9 : size === "lg" ? 12 : 10,

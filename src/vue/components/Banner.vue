@@ -18,7 +18,7 @@ const emit = defineEmits<{
 }>();
 
 const variantClasses = {
-  default: "bg-[hsl(var(--la-muted))] text-[hsl(var(--la-foreground))]",
+  default: "bg-muted text-foreground",
   info: "bg-blue-50 text-blue-900 dark:bg-blue-900/20 dark:text-blue-300",
   success: "bg-green-50 text-green-900 dark:bg-green-900/20 dark:text-green-300",
   warning: "bg-yellow-50 text-yellow-900 dark:bg-yellow-900/20 dark:text-yellow-300",
@@ -42,7 +42,7 @@ const classes = computed(() =>
     <button
       v-if="dismissible"
       type="button"
-      class="ml-auto shrink-0 rounded-sm opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))]"
+      class="ml-auto shrink-0 rounded-sm opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring"
       aria-label="Dismiss"
       @click="emit('dismiss')"
     >

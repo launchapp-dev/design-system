@@ -36,8 +36,8 @@ export interface RolePermissionsMatrixProps
 
 const levelColors: Record<PermissionLevel, string> = {
   none: "bg-muted",
-  limited: "bg-orange-400/70 dark:bg-orange-600/70",
-  full: "bg-green-500 dark:bg-green-600",
+  limited: "bg-warning/10 dark:bg-warning/10",
+  full: "bg-success dark:bg-success",
 };
 
 const levelLabel: Record<PermissionLevel, string> = {
@@ -48,8 +48,8 @@ const levelLabel: Record<PermissionLevel, string> = {
 
 const levelTextColors: Record<PermissionLevel, string> = {
   none: "text-muted-foreground",
-  limited: "text-orange-600 dark:text-orange-400",
-  full: "text-green-600 dark:text-green-400",
+  limited: "text-warning dark:text-warning",
+  full: "text-success dark:dark:text-success",
 };
 
 function RoleCard({

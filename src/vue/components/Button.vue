@@ -20,12 +20,12 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const variantClasses = {
-  default: "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] hover:bg-[hsl(var(--la-primary)/0.9)]",
-  destructive: "bg-[hsl(var(--la-destructive))] text-[hsl(var(--la-destructive-foreground))] hover:bg-[hsl(var(--la-destructive)/0.9)]",
-  outline: "border border-[hsl(var(--la-input))] bg-[hsl(var(--la-background))] hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-  secondary: "bg-[hsl(var(--la-secondary))] text-[hsl(var(--la-secondary-foreground))] hover:bg-[hsl(var(--la-secondary)/0.8)]",
-  ghost: "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-  link: "text-[hsl(var(--la-primary))] underline-offset-4 hover:underline",
+  default: "bg-primary text-primary-foreground hover:bg-primary/90",
+  destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+  outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+  ghost: "hover:bg-accent hover:text-accent-foreground",
+  link: "text-primary underline-offset-4 hover:underline",
 };
 
 const sizeClasses = {
@@ -38,7 +38,7 @@ const sizeClasses = {
 const isDisabled = computed(() => props.disabled || props.loading);
 const classes = computed(() =>
   cn(
-    "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-[--la-radius] font-medium ring-offset-[hsl(var(--la-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-[--la-radius] font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     variantClasses[props.variant],
     sizeClasses[props.size],
     props.class,

@@ -73,7 +73,7 @@ function OnboardingFlow({
 
       <div className="flex items-center gap-4 mb-6">
         {step.icon && (
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
             {step.icon}
           </div>
         )}

@@ -12,7 +12,7 @@ const props = defineProps<Props>();
 provideAccordionItemContext({ value: props.value });
 const { activeItems } = useAccordionContext();
 const isOpen = computed(() => activeItems.value.includes(props.value));
-const classes = computed(() => cn("border-b border-[hsl(var(--la-border))]", props.class));
+const classes = computed(() => cn("border-b border-border", props.class));
 </script>
 
 <template>

@@ -41,7 +41,7 @@ const carouselItemVariants = cva("min-w-0 shrink-0 grow-0 basis-full", {
 });
 
 const carouselButtonVariants = cva(
-  "absolute z-10 inline-flex items-center justify-center whitespace-nowrap rounded-full border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] p-2 text-[hsl(var(--la-foreground))] shadow-md transition-all hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 min-h-[44px] min-w-[44px] dark:bg-[hsl(var(--la-background)/0.8)] dark:backdrop-blur-sm",
+  "absolute z-10 inline-flex items-center justify-center whitespace-nowrap rounded-full border border-border bg-background p-2 text-foreground shadow-md transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 min-h-[44px] min-w-[44px] dark:bg-background/80 dark:backdrop-blur-sm",
   {
     variants: {
       orientation: {
@@ -60,9 +60,9 @@ const carouselDotVariants = cva(
   {
     variants: {
       active: {
-        true: "w-6 bg-[hsl(var(--la-primary))]",
+        true: "w-6 bg-primary",
         false:
-          "bg-[hsl(var(--la-muted-foreground)/0.3)] hover:bg-[hsl(var(--la-muted-foreground)/0.5)]",
+          "bg-muted-foreground/30 hover:bg-muted-foreground/50",
       },
     },
     defaultVariants: {
@@ -418,7 +418,7 @@ function CarouselAutoplay({
         type="button"
         onClick={toggleAutoplay}
         aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
-        className="inline-flex items-center justify-center rounded-full border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] p-2 text-[hsl(var(--la-foreground))] shadow-sm transition-all hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 dark:bg-[hsl(var(--la-background)/0.8)] dark:backdrop-blur-sm"
+        className="inline-flex items-center justify-center rounded-full border border-border bg-background p-2 text-foreground shadow-sm transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 dark:bg-background/80 dark:backdrop-blur-sm"
       >
         {isPlaying
           ? pauseIcon || (

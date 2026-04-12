@@ -103,7 +103,7 @@ function SystemSettingsPanelInner(
     <div ref={ref} className={cn("space-y-8", className)}>
       <div>
         <h2 className="text-xl font-semibold tracking-tight">System Settings</h2>
-        <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+        <p className="text-sm text-muted-foreground">
           Configure {appName} application settings and feature flags.
         </p>
       </div>
@@ -159,7 +159,7 @@ function SystemSettingsPanelInner(
                     <Label htmlFor={flag.id} className="text-base font-medium">
                       {flag.name}
                     </Label>
-                    <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+                    <p className="text-sm text-muted-foreground">
                       {flag.description}
                     </p>
                   </div>

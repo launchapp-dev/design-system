@@ -77,7 +77,7 @@ function UserManagementTableInner(
         header: "Name",
         cell: ({ row }) => (
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[hsl(var(--la-muted))] text-xs font-medium">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium">
               {row.original.name.charAt(0).toUpperCase()}
             </div>
             <span className="font-medium">{row.original.name}</span>
@@ -156,7 +156,7 @@ function UserManagementTableInner(
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Users</h2>
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             {users.length} total user{users.length !== 1 ? "s" : ""}
           </p>
         </div>
@@ -174,7 +174,7 @@ function UserManagementTableInner(
           <DialogHeader>
             <DialogTitle>Delete User</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             Are you sure you want to delete <strong>{deleteTarget?.name}</strong>? This action
             cannot be undone.
           </p>

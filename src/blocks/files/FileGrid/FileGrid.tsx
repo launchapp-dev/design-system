@@ -49,7 +49,7 @@ const getFileIcon = (type: FileItemType, extension?: string) => {
     case "image":
       return (
         <svg
-          className={cn(iconClass, "text-purple-500")}
+          className={cn(iconClass, "text-primary")}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ const getFileIcon = (type: FileItemType, extension?: string) => {
     case "video":
       return (
         <svg
-          className={cn(iconClass, "text-red-500")}
+          className={cn(iconClass, "text-destructive")}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ const getFileIcon = (type: FileItemType, extension?: string) => {
     case "audio":
       return (
         <svg
-          className={cn(iconClass, "text-amber-500")}
+          className={cn(iconClass, "text-warning")}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ const getFileIcon = (type: FileItemType, extension?: string) => {
     case "archive":
       return (
         <svg
-          className={cn(iconClass, "text-orange-500")}
+          className={cn(iconClass, "text-warning")}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ const getFileIcon = (type: FileItemType, extension?: string) => {
       if (extension === "pdf") {
         return (
           <svg
-            className={cn(iconClass, "text-red-600")}
+            className={cn(iconClass, "text-destructive")}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -135,7 +135,7 @@ const getFileIcon = (type: FileItemType, extension?: string) => {
       }
       return (
         <svg
-          className={cn(iconClass, "text-blue-500")}
+          className={cn(iconClass, "text-info")}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

@@ -35,10 +35,10 @@ export interface ProjectKanbanProps extends React.HTMLAttributes<HTMLDivElement>
 }
 
 const priorityColors: Record<ProjectCard["priority"] & string, string> = {
-  low: "text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/30",
-  medium: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/30",
-  high: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30",
-  urgent: "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30",
+  low: "text-muted-foreground dark:text-muted-foreground bg-muted dark:bg-muted",
+  medium: "text-info dark:text-info bg-info dark:bg-info/30",
+  high: "text-warning dark:text-warning bg-warning/5 dark:bg-warning/10",
+  urgent: "text-destructive dark:text-destructive bg-destructive/5 dark:bg-destructive/10",
 };
 
 function ProjectKanban({

@@ -15,7 +15,7 @@ export const Default: StoryObj = {
         borderRadius: 8,
         position: "relative",
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <Spotlight className="absolute inset-0" />
@@ -35,7 +35,7 @@ export const Default: StoryObj = {
         <p
           style={{
             fontSize: 14,
-            color: "hsl(var(--la-muted-foreground))",
+            color: "var(--la-muted-foreground)",
             textAlign: "center",
             maxWidth: 300,
           }}
@@ -56,7 +56,7 @@ export const LargeSpotlight: StoryObj = {
         borderRadius: 8,
         position: "relative",
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <Spotlight className="absolute inset-0" size={800} />
@@ -85,7 +85,7 @@ export const SmallSpotlight: StoryObj = {
         borderRadius: 8,
         position: "relative",
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <Spotlight className="absolute inset-0" size={200} />
@@ -114,7 +114,7 @@ export const SpringSpotlight: StoryObj = {
         borderRadius: 8,
         position: "relative",
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <Spotlight className="absolute inset-0" spring />
@@ -134,7 +134,7 @@ export const SpringSpotlight: StoryObj = {
         <p
           style={{
             fontSize: 14,
-            color: "hsl(var(--la-muted-foreground))",
+            color: "var(--la-muted-foreground)",
             textAlign: "center",
             maxWidth: 300,
           }}
@@ -155,7 +155,7 @@ export const StaticSpotlight: StoryObj = {
         borderRadius: 8,
         position: "relative",
         overflow: "hidden",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
       }}
     >
       <Spotlight className="absolute inset-0" followsMouse={false} />
@@ -187,7 +187,7 @@ export const AllSpotlights: StoryObj = {
             borderRadius: 8,
             position: "relative",
             overflow: "hidden",
-            background: "hsl(var(--la-background))",
+            background: "var(--la-background)",
           }}
         >
           <Spotlight className="absolute inset-0" />
@@ -201,7 +201,7 @@ export const AllSpotlights: StoryObj = {
             borderRadius: 8,
             position: "relative",
             overflow: "hidden",
-            background: "hsl(var(--la-background))",
+            background: "var(--la-background)",
           }}
         >
           <Spotlight className="absolute inset-0" size={800} />
@@ -215,7 +215,7 @@ export const AllSpotlights: StoryObj = {
             borderRadius: 8,
             position: "relative",
             overflow: "hidden",
-            background: "hsl(var(--la-background))",
+            background: "var(--la-background)",
           }}
         >
           <Spotlight className="absolute inset-0" size={200} />
@@ -229,7 +229,7 @@ export const AllSpotlights: StoryObj = {
             borderRadius: 8,
             position: "relative",
             overflow: "hidden",
-            background: "hsl(var(--la-background))",
+            background: "var(--la-background)",
           }}
         >
           <Spotlight className="absolute inset-0" spring />

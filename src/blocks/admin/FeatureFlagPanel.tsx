@@ -156,9 +156,9 @@ export interface FeatureFlagPanelProps extends Omit<React.HTMLAttributes<HTMLDiv
 }
 
 const environmentConfig: Record<FeatureFlagEnvironment, { label: string; color: string }> = {
-  development: { label: "Dev", color: "bg-slate-500" },
-  staging: { label: "Staging", color: "bg-amber-500" },
-  production: { label: "Prod", color: "bg-emerald-500" },
+  development: { label: "Dev", color: "bg-muted-foreground" },
+  staging: { label: "Staging", color: "bg-warning" },
+  production: { label: "Prod", color: "bg-success" },
 };
 
 function FeatureFlagPanel({

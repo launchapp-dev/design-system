@@ -88,12 +88,12 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         {showGradient && !isVertical && (
           <>
             <div
-              className="pointer-events-none absolute left-0 top-0 z-10 h-full bg-gradient-to-r from-[var(--gradient-color,hsl(var(--la-background)))] to-transparent"
+              className="pointer-events-none absolute left-0 top-0 z-10 h-full bg-gradient-to-r from-[var(--gradient-color,var(--la-background))] to-transparent"
               style={{ width: gradientWidthStyle, ...gradientStyle }}
               aria-hidden="true"
             />
             <div
-              className="pointer-events-none absolute right-0 top-0 z-10 h-full bg-gradient-to-l from-[var(--gradient-color,hsl(var(--la-background)))] to-transparent"
+              className="pointer-events-none absolute right-0 top-0 z-10 h-full bg-gradient-to-l from-[var(--gradient-color,var(--la-background))] to-transparent"
               style={{ width: gradientWidthStyle, ...gradientStyle }}
               aria-hidden="true"
             />
@@ -102,12 +102,12 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         {showGradient && isVertical && (
           <>
             <div
-              className="pointer-events-none absolute left-0 top-0 z-10 w-full bg-gradient-to-b from-[var(--gradient-color,hsl(var(--la-background)))] to-transparent"
+              className="pointer-events-none absolute left-0 top-0 z-10 w-full bg-gradient-to-b from-[var(--gradient-color,var(--la-background))] to-transparent"
               style={{ height: gradientWidthStyle, ...gradientStyle }}
               aria-hidden="true"
             />
             <div
-              className="pointer-events-none absolute bottom-0 left-0 z-10 w-full bg-gradient-to-t from-[var(--gradient-color,hsl(var(--la-background)))] to-transparent"
+              className="pointer-events-none absolute bottom-0 left-0 z-10 w-full bg-gradient-to-t from-[var(--gradient-color,var(--la-background))] to-transparent"
               style={{ height: gradientWidthStyle, ...gradientStyle }}
               aria-hidden="true"
             />

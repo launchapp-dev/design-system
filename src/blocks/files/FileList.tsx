@@ -70,7 +70,7 @@ const FileList = React.forwardRef<HTMLDivElement, FileListProps>(
                       {file.status === "complete" && (
                         <span aria-label="Upload complete">
                           <svg
-                            className="h-4 w-4 text-green-500"
+                            className="h-4 w-4 text-success"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"

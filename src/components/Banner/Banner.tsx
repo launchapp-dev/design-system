@@ -8,10 +8,10 @@ const bannerVariants = cva(
   {
     variants: {
       variant: {
-        info: "bg-blue-500/15 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400",
-        warning: "bg-amber-500/15 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300 [&>svg]:text-amber-600 dark:[&>svg]:text-amber-400",
-        error: "bg-red-500/15 text-red-700 dark:bg-red-500/20 dark:text-red-300 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
-        success: "bg-green-500/15 text-green-700 dark:bg-green-500/20 dark:text-green-300 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
+        info: "bg-info/15 text-info-foreground dark:bg-info/20 dark:text-info [&>svg]:text-info dark:[&>svg]:text-info",
+        warning: "bg-warning/15 text-warning dark:bg-warning/20 dark:text-warning [&>svg]:text-warning dark:[&>svg]:text-warning",
+        error: "bg-destructive/15 text-destructive-foreground dark:bg-destructive/20 dark:text-destructive [&>svg]:text-destructive dark:[&>svg]:text-destructive",
+        success: "bg-success/15 text-success dark:bg-success/20 dark:text-success [&>svg]:text-success dark:[&>svg]:dark:text-success",
       },
       position: {
         inline: "rounded-lg",

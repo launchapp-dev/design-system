@@ -10,7 +10,7 @@ import { cn } from "../utils/cn";
 
 
 
-let classes = $derived(cn("text-sm text-[hsl(var(--la-muted-foreground))]", className));
+let classes = $derived(cn("text-sm text-muted-foreground", className));
 </script>
 
 <p class={classes} {...restProps}>

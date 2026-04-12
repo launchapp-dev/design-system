@@ -73,7 +73,7 @@ export const WithSparkline: Story = {
     trend: "up",
     trendLabel: "+12.3% vs last month",
     sparklineData: sparklineRevenue,
-    sparklineColor: "hsl(var(--la-chart-1))",
+    sparklineColor: "var(--la-chart-1)",
   },
 };
 
@@ -85,7 +85,7 @@ export const TrendDown: Story = {
     trend: "down",
     trendLabel: "-9.1% vs last month",
     sparklineData: sparklineChurn,
-    sparklineColor: "hsl(var(--la-destructive))",
+    sparklineColor: "var(--la-destructive)",
   },
 };
 
@@ -97,7 +97,7 @@ export const TrendNeutral: Story = {
     trend: "neutral",
     trendLabel: "+0.1% vs last month",
     sparklineData: sparklineConversion,
-    sparklineColor: "hsl(var(--la-chart-3))",
+    sparklineColor: "var(--la-chart-3)",
   },
 };
 

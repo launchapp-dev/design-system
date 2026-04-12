@@ -106,9 +106,9 @@ function FeedbackForm({
   if (submitted) {
     return (
       <div className={cn("flex flex-col items-center gap-3 py-6 text-center", className)}>
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success/10 dark:bg-success/30">
           <svg
-            className="h-6 w-6 text-green-600 dark:text-green-400"
+            className="h-6 w-6 text-success dark:dark:text-success"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

@@ -31,7 +31,7 @@ import { NotificationBell, type NotificationItem } from "@/components/Notificati
 import { ScrollArea } from "@/components/ScrollArea";
 
 const sidebarVariants = cva(
-  "fixed inset-y-0 left-0 z-40 flex flex-col bg-[hsl(var(--la-background))] border-r border-[hsl(var(--la-border))] transition-all duration-300 ease-in-out",
+  "fixed inset-y-0 left-0 z-40 flex flex-col bg-background border-r border-border transition-all duration-300 ease-in-out",
   {
     variants: {
       collapsed: {
@@ -255,8 +255,8 @@ function DashboardNavItemRenderer({
           <button
             className={cn(
               "w-full flex items-center gap-3 px-3 py-2 rounded-[--la-radius] text-sm transition-colors",
-              "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-              item.active && "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] hover:bg-[hsl(var(--la-primary)/0.9)]",
+              "hover:bg-accent hover:text-accent-foreground",
+              item.active && "bg-primary text-primary-foreground hover:bg-primary/90",
               collapsed && "justify-center px-2",
               level > 0 && "ml-4"
             )}
@@ -300,8 +300,8 @@ function DashboardNavItemRenderer({
       onClick={handleClick}
       className={cn(
         "flex items-center gap-3 px-3 py-2 rounded-[--la-radius] text-sm transition-colors",
-        "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-        item.active && "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] hover:bg-[hsl(var(--la-primary)/0.9)]",
+        "hover:bg-accent hover:text-accent-foreground",
+        item.active && "bg-primary text-primary-foreground hover:bg-primary/90",
         collapsed && "justify-center px-2"
       )}
     >
@@ -339,7 +339,7 @@ function MobileNav({
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[280px] p-0">
-        <SheetHeader className="p-4 border-b border-[hsl(var(--la-border))]">
+        <SheetHeader className="p-4 border-b border-border">
           <SheetTitle className="flex items-center gap-2">
             {logo || (
               <span className="font-semibold text-lg">Dashboard</span>
@@ -359,17 +359,17 @@ function MobileNav({
               ))}
             </nav>
           </ScrollArea>
-          <div className="p-4 border-t border-[hsl(var(--la-border))]">
+          <div className="p-4 border-t border-border">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="w-full flex items-center gap-3 px-3 py-2 rounded-[--la-radius] hover:bg-[hsl(var(--la-accent))] transition-colors">
+                <button className="w-full flex items-center gap-3 px-3 py-2 rounded-[--la-radius] hover:bg-accent transition-colors">
                   <Avatar size="sm">
                     {user.avatarUrl && <AvatarImage src={user.avatarUrl} alt={user.name} />}
                     <AvatarFallback>{user.fallbackInitials || user.name.charAt(0).toUpperCase()}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 text-left overflow-hidden">
                     <p className="text-sm font-medium truncate">{user.name}</p>
-                    <p className="text-xs text-[hsl(var(--la-muted-foreground))] truncate">{user.email}</p>
+                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
                   </div>
                 </button>
               </DropdownMenuTrigger>
@@ -435,13 +435,13 @@ function DashboardShell({
   return (
     <div
       ref={ref}
-      className={cn("min-h-screen bg-[hsl(var(--la-muted))]", className)}
+      className={cn("min-h-screen bg-muted", className)}
       {...props}
     >
       {/* Desktop Sidebar */}
       <aside className={cn(sidebarVariants({ collapsed }), "hidden lg:flex")}>
         {/* Sidebar Header */}
-        <div className="h-16 flex items-center px-4 border-b border-[hsl(var(--la-border))]">
+        <div className="h-16 flex items-center px-4 border-b border-border">
           {collapsed ? (
             <div className="w-full flex justify-center">
               {logoCollapsed || logo || (
@@ -470,12 +470,12 @@ function DashboardShell({
         </ScrollArea>
 
         {/* Sidebar Footer */}
-        <div className="p-3 border-t border-[hsl(var(--la-border))]">
+        <div className="p-3 border-t border-border">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
                 className={cn(
-                  "w-full flex items-center gap-3 px-3 py-2 rounded-[--la-radius] hover:bg-[hsl(var(--la-accent))] transition-colors",
+                  "w-full flex items-center gap-3 px-3 py-2 rounded-[--la-radius] hover:bg-accent transition-colors",
                   collapsed && "justify-center px-2"
                 )}
               >
@@ -486,7 +486,7 @@ function DashboardShell({
                 {!collapsed && (
                   <div className="flex-1 text-left overflow-hidden">
                     <p className="text-sm font-medium truncate">{user.name}</p>
-                    <p className="text-xs text-[hsl(var(--la-muted-foreground))] truncate">{user.email}</p>
+                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
                   </div>
                 )}
               </button>
@@ -524,7 +524,7 @@ function DashboardShell({
         )}
       >
         {/* Header */}
-        <header className="sticky top-0 z-30 h-16 flex items-center gap-4 px-4 border-b border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))]">
+        <header className="sticky top-0 z-30 h-16 flex items-center gap-4 px-4 border-b border-border bg-background">
           <div className="flex items-center gap-2">
             <MobileNav
               navigation={navigation}

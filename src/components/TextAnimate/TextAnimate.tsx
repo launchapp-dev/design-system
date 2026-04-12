@@ -183,13 +183,13 @@ const gradientTextVariants = cva("inline-block", {
   variants: {
     variant: {
       default:
-        "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+        "bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent",
       primary:
-        "bg-gradient-to-r from-[hsl(var(--la-primary))] to-[hsl(var(--la-primary)/0.7)] bg-clip-text text-transparent",
+        "bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent",
       rainbow:
-        "bg-gradient-to-r from-[hsl(var(--la-destructive))] via-[hsl(var(--la-primary))] to-[hsl(var(--la-secondary))] bg-clip-text text-transparent",
+        "bg-gradient-to-r from-destructive via-primary to-secondary bg-clip-text text-transparent",
       sunset:
-        "bg-gradient-to-r from-[#f97316] via-[#ec4899] to-[#8b5cf6] bg-clip-text text-transparent",
+        "bg-gradient-to-r from-warning via-destructive to-primary bg-clip-text text-transparent",
     },
   },
   defaultVariants: {

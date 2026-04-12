@@ -63,13 +63,13 @@ export const Default: Story = {
         <div
           style={{
             padding: "16px",
-            border: "1px solid hsl(var(--la-border))",
+            border: "1px solid var(--la-border)",
             borderRadius: "var(--la-radius)",
-            background: "hsl(var(--la-card))",
+            background: "var(--la-card)",
           }}
         >
           <p style={{ fontWeight: "600", marginBottom: "8px" }}>Collapsible content</p>
-          <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>
+          <p style={{ fontSize: "14px", color: "var(--la-muted-foreground)" }}>
             This content smoothly animates its height when shown or hidden. Toggle the isOpen
             control to see the transition.
           </p>
@@ -95,8 +95,8 @@ export const Interactive: Story = {
           onClick={() => setOpen((v) => !v)}
           style={{
             padding: "8px 16px",
-            background: "hsl(var(--la-primary))",
-            color: "hsl(var(--la-primary-foreground))",
+            background: "var(--la-primary)",
+            color: "var(--la-primary-foreground)",
             border: "none",
             borderRadius: "var(--la-radius)",
             cursor: "pointer",
@@ -110,23 +110,23 @@ export const Interactive: Story = {
           <div
             style={{
               padding: "16px",
-              border: "1px solid hsl(var(--la-border))",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
-              background: "hsl(var(--la-card))",
+              background: "var(--la-card)",
             }}
           >
             <p style={{ fontWeight: "600", marginBottom: "8px" }}>Details section</p>
             <p
               style={{
                 fontSize: "14px",
-                color: "hsl(var(--la-muted-foreground))",
+                color: "var(--la-muted-foreground)",
                 marginBottom: "8px",
               }}
             >
               This panel expands and collapses with a smooth height animation. It's useful for FAQ
               sections, collapsible sidebars, and accordion-like UI patterns.
             </p>
-            <p style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))" }}>
+            <p style={{ fontSize: "14px", color: "var(--la-muted-foreground)" }}>
               The height transitions smoothly from 0 to auto and back, without janky reflows.
             </p>
           </div>
@@ -166,7 +166,7 @@ export const MultipleItems: Story = {
           <div
             key={i}
             style={{
-              border: "1px solid hsl(var(--la-border))",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
               overflow: "hidden",
             }}
@@ -176,7 +176,7 @@ export const MultipleItems: Story = {
               style={{
                 width: "100%",
                 padding: "12px 16px",
-                background: "hsl(var(--la-card))",
+                background: "var(--la-card)",
                 border: "none",
                 cursor: "pointer",
                 textAlign: "left",
@@ -203,8 +203,8 @@ export const MultipleItems: Story = {
                 style={{
                   padding: "12px 16px",
                   fontSize: "14px",
-                  color: "hsl(var(--la-muted-foreground))",
-                  borderTop: "1px solid hsl(var(--la-border))",
+                  color: "var(--la-muted-foreground)",
+                  borderTop: "1px solid var(--la-border)",
                 }}
               >
                 {item.body}
