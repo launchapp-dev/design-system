@@ -24,7 +24,7 @@ export interface ParticlesProps extends React.HTMLAttributes<HTMLDivElement> {
 function Particles({
   count = 50,
   speed = 1,
-  color = "hsl(var(--la-primary))",
+  color = "var(--la-primary)",
   size = 4,
   maxSize = 8,
   className,
@@ -172,7 +172,7 @@ function Stars({
   return (
     <div
       ref={ref}
-      className={cn("relative overflow-hidden bg-[#0a0a1a] dark:bg-[#0a0a1a]", className)}
+      className={cn("relative overflow-hidden bg-[oklch(5%_0_0)]", className)}
       {...props}
     >
       <div aria-hidden className="absolute inset-0">
@@ -380,7 +380,7 @@ export interface AnimatedGridProps extends React.HTMLAttributes<HTMLDivElement> 
 
 function AnimatedGrid({
   cellSize = 40,
-  color = "hsl(var(--la-border))",
+  color = "var(--la-border)",
   strokeWidth = 1,
   animated = true,
   animationSpeed = 3,
@@ -421,7 +421,7 @@ function AnimatedGrid({
           aria-hidden
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `linear-gradient(90deg, transparent 0%, hsl(var(--la-background)/0.1) 50%, transparent 100%)`,
+            background: `linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--la-background) 10%, transparent) 50%, transparent 100%)`,
             backgroundSize: "200% 100%",
             animation: `grid-sweep ${animationSpeed}s linear infinite`,
           }}
@@ -446,7 +446,7 @@ export interface GradientBackgroundProps extends React.HTMLAttributes<HTMLDivEle
 }
 
 function GradientBackground({
-  colors = ["hsl(var(--la-primary))", "hsl(var(--la-secondary))", "hsl(var(--la-accent))"],
+  colors = ["var(--la-primary)", "var(--la-secondary)", "var(--la-accent)"],
   speed = 8,
   direction = "linear",
   angle = 45,
@@ -547,7 +547,7 @@ export interface ShimmerBackgroundProps extends React.HTMLAttributes<HTMLDivElem
 }
 
 function ShimmerBackground({
-  color = "hsl(var(--la-primary))",
+  color = "var(--la-primary)",
   speed = 2,
   intensity = 0.5,
   width = 100,

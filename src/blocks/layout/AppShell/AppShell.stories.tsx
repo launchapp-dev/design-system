@@ -159,16 +159,16 @@ const sampleUser = {
 
 const LogoMark = () => (
   <div className="flex items-center gap-2">
-    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
-      <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
+    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary">
+      <span className="text-xs font-bold text-primary-foreground">A</span>
     </div>
     <span className="text-sm font-semibold">Acme</span>
   </div>
 );
 
 const LogoCollapsed = () => (
-  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
-    <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
+  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary">
+    <span className="text-xs font-bold text-primary-foreground">A</span>
   </div>
 );
 
@@ -181,17 +181,17 @@ const meta: Meta<typeof AppShell> = {
   },
   decorators: [
     (Story) => (
-      <div className="h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="h-[600px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),
   ],
   render: (args) => (
     <AppShell {...args}>
-      <div className="flex h-full items-center justify-center bg-[hsl(var(--la-muted))]">
+      <div className="flex h-full items-center justify-center bg-muted">
         <div className="text-center">
-          <p className="text-sm font-medium text-[hsl(var(--la-foreground))]">App Content</p>
-          <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm font-medium text-foreground">App Content</p>
+          <p className="mt-1 text-sm text-muted-foreground">
             Your main application content goes here
           </p>
         </div>
@@ -250,7 +250,7 @@ export const NonCollapsible: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="dark h-[600px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),

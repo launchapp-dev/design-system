@@ -149,9 +149,9 @@ export const CustomTrackAndNeedleColors: Story = {
     unit: "%",
     showValue: true,
     showMinMax: true,
-    trackColor: "hsl(var(--la-muted))",
+    trackColor: "var(--la-muted)",
     needleColor: "hsl(142, 76%, 36%)",
-    centerColor: "hsl(var(--la-card))",
+    centerColor: "var(--la-card)",
   },
 };
 

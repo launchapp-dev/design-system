@@ -69,10 +69,10 @@ const priorityLabel: Record<string, string> = {
 };
 
 const statusColors: Record<ProjectStatus, string> = {
-  planning: "bg-blue-500",
-  "in-progress": "bg-amber-500",
-  review: "bg-purple-500",
-  completed: "bg-green-500",
+  planning: "bg-info",
+  "in-progress": "bg-warning",
+  review: "bg-primary",
+  completed: "bg-success",
   "on-hold": "bg-muted-foreground",
 };
 

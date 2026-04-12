@@ -42,7 +42,7 @@ const alignClasses = {
 
 let classes = $derived(
 cn(
-    "absolute z-50 mt-2 w-72 rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] p-4 text-[hsl(var(--la-popover-foreground))] shadow-md outline-none",
+    "absolute z-50 mt-2 w-72 rounded-[--la-radius] border border-border bg-popover p-4 text-popover-foreground shadow-md outline-none",
     alignClasses[align],
     className,
   ),

@@ -27,9 +27,9 @@ export interface TeamRosterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const availabilityDot: Record<string, string> = {
-  available: "bg-green-500",
-  busy: "bg-red-500",
-  away: "bg-amber-400",
+  available: "bg-success",
+  busy: "bg-destructive",
+  away: "bg-warning",
   offline: "bg-muted-foreground",
 };
 
@@ -42,9 +42,9 @@ const availabilityLabel: Record<string, string> = {
 
 const roleColor: Record<string, string> = {
   owner: "bg-primary/10 text-primary border-primary/20",
-  admin: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+  admin: "bg-info/10 text-info border-info/20",
   member: "bg-muted text-muted-foreground border-border",
-  billing: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+  billing: "bg-primary/10 text-primary border-primary/20",
 };
 
 function getInitials(name: string): string {

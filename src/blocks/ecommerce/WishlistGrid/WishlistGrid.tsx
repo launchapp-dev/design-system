@@ -38,9 +38,9 @@ function StarRating({ rating }: { rating: number }) {
           className={cn(
             "h-3 w-3",
             star <= Math.floor(rating)
-              ? "fill-amber-400 text-amber-400"
+              ? "fill-warning text-warning"
               : star - 0.5 <= rating
-                ? "fill-amber-200 text-amber-400"
+                ? "fill-warning/50 text-warning"
                 : "fill-muted text-muted",
           )}
           viewBox="0 0 20 20"

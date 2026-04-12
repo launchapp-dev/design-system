@@ -50,7 +50,7 @@ const ImageIcon = () => (
 );
 
 const CheckIcon = () => (
-  <svg className="h-4 w-4 shrink-0 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <svg className="h-4 w-4 shrink-0 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.5 12.75l6 6 9-13.5" />
   </svg>
 );
@@ -244,7 +244,7 @@ const FileUploadZone = React.forwardRef<HTMLDivElement, FileUploadZoneProps>(
                 className={cn(
                   "flex items-center gap-3 rounded-lg border px-3 py-2.5 transition-colors",
                   file.status === "error" && "border-destructive/30 bg-destructive/5",
-                  file.status === "complete" && "border-green-500/20 bg-green-500/5",
+                  file.status === "complete" && "border-success/20 bg-success/5",
                   file.status === "uploading" && "border-border bg-muted/30"
                 )}
               >
@@ -268,7 +268,7 @@ const FileUploadZone = React.forwardRef<HTMLDivElement, FileUploadZoneProps>(
                       </>
                     )}
                     {file.status === "complete" && (
-                      <span className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
+                      <span className="flex items-center gap-1 text-xs text-success dark:dark:text-success">
                         <CheckIcon /> {formatBytes(file.size)}
                       </span>
                     )}

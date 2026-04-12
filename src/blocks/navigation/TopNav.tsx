@@ -142,13 +142,13 @@ function TopNav({
     <header
       ref={ref}
       className={cn(
-        "flex h-14 items-center gap-4 border-b border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] px-4",
+        "flex h-14 items-center gap-4 border-b border-border bg-background px-4",
         className,
       )}
       {...props}
     >
       {logo && (
-        <div className="flex shrink-0 items-center gap-2 font-semibold text-[hsl(var(--la-foreground))]">
+        <div className="flex shrink-0 items-center gap-2 font-semibold text-foreground">
           {logo}
         </div>
       )}
@@ -161,11 +161,11 @@ function TopNav({
               href={item.href ?? "#"}
               className={cn(
                 "rounded-[--la-radius] px-3 py-1.5 text-sm font-medium transition-colors",
-                "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
+                "hover:bg-accent hover:text-accent-foreground",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 item.isActive
-                  ? "text-[hsl(var(--la-foreground))]"
-                  : "text-[hsl(var(--la-muted-foreground))]",
+                  ? "text-foreground"
+                  : "text-muted-foreground",
               )}
               aria-current={item.isActive ? "page" : undefined}
             >
@@ -196,7 +196,7 @@ function TopNav({
             </Button>
             {notificationCount && notificationCount > 0 ? (
               <span
-                className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[hsl(var(--la-destructive))] px-1 text-[10px] font-bold text-[hsl(var(--la-destructive-foreground))]"
+                className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-bold text-destructive-foreground"
                 aria-hidden="true"
               >
                 {notificationCount > 99 ? "99+" : notificationCount}
@@ -225,11 +225,11 @@ function TopNav({
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-sm font-medium text-[hsl(var(--la-foreground))]">
+                  <span className="text-sm font-medium text-foreground">
                     {user.name}
                   </span>
                   {user.email && (
-                    <span className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">
+                    <span className="truncate text-xs text-muted-foreground">
                       {user.email}
                     </span>
                   )}
@@ -253,7 +253,7 @@ function TopNav({
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     onClick={user.onLogoutClick}
-                    className="text-[hsl(var(--la-destructive))] focus:text-[hsl(var(--la-destructive))]"
+                    className="text-destructive focus:text-destructive"
                   >
                     <LogOutIcon />
                     Log out

@@ -91,7 +91,7 @@ function BreadcrumbNavInner({
           <li>
             <button
               onClick={(e) => handleClick(e, "/")}
-              className="flex items-center gap-1 rounded-[--la-radius] px-2 py-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-[hsl(var(--la-accent))]"
+              className="flex items-center gap-1 rounded-[--la-radius] px-2 py-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent"
             >
               <HomeIcon />
               <span className="hidden sm:inline">{homeLabel}</span>
@@ -106,7 +106,7 @@ function BreadcrumbNavInner({
             ) : item.href ? (
               <button
                 onClick={(e) => handleClick(e, item.href)}
-                className="flex items-center gap-1 rounded-[--la-radius] px-2 py-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-[hsl(var(--la-accent))]"
+                className="flex items-center gap-1 rounded-[--la-radius] px-2 py-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent"
               >
                 {item.icon}
                 <span>{item.label}</span>

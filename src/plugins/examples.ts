@@ -66,9 +66,9 @@ export const themeVariantPlugin: ComponentPlugin = {
   variants: {
     theme: {
       success: "bg-green-600 hover:bg-green-700 text-white",
-      warning: "bg-amber-500 hover:bg-amber-600 text-white",
+      warning: "bg-warning hover:bg-amber-600 text-white",
       danger: "bg-red-600 hover:bg-red-700 text-white",
-      info: "bg-blue-500 hover:bg-blue-600 text-white",
+      info: "bg-info hover:bg-blue-600 text-white",
     },
   },
 };
@@ -129,7 +129,7 @@ export const statusBadgePlugin: ComponentPlugin = {
 
   variants: {
     status: {
-      active: "bg-green-100 text-green-800 border-green-300 dark:bg-green-900 dark:text-green-200",
+      active: "bg-success/10 text-green-800 border-green-300 dark:bg-green-900 dark:text-green-200",
       inactive: "bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-200",
       pending:
         "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900 dark:text-yellow-200",

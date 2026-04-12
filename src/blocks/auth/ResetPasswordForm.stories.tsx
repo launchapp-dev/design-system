@@ -133,7 +133,7 @@ export function ResetPasswordForm({ onSubmit, onLoginClick, isLoading, error, su
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {error && (
-              <div className="rounded-md bg-[hsl(var(--la-destructive)/0.1)] p-3 text-sm text-[hsl(var(--la-destructive))]">{error}</div>
+              <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>
             )}
             <FormField control={form.control} name="password" render={({ field }) => (
               <FormItem>

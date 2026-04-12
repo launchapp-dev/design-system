@@ -16,7 +16,7 @@ function SparklineCard({
   title,
   value,
   data,
-  color = "#3b82f6",
+  color = "var(--la-chart-1)",
   trend,
   trendValue,
   description,
@@ -45,7 +45,7 @@ function SparklineCard({
   ].join(" ");
 
   const trendColors = {
-    up: "text-emerald-600 dark:text-emerald-400",
+    up: "text-success",
     down: "text-destructive",
     neutral: "text-muted-foreground",
   };

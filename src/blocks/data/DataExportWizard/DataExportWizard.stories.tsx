@@ -22,7 +22,7 @@ export const Default: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark bg-zinc-950 p-8 rounded-xl">
+      <div className="dark bg-background p-8 rounded-xl">
         <Story />
       </div>
     ),

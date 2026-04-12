@@ -49,9 +49,9 @@ function StarRating({ rating, count }: { rating: number; count?: number }) {
             className={cn(
               "h-3.5 w-3.5",
               star <= Math.floor(rating)
-                ? "fill-amber-400 text-amber-400"
+                ? "fill-warning text-warning"
                 : star - 0.5 <= rating
-                  ? "fill-amber-200 text-amber-400"
+                  ? "fill-warning/50 text-warning"
                   : "fill-muted text-muted-foreground",
             )}
             viewBox="0 0 20 20"

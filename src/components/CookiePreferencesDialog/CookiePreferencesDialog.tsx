@@ -126,7 +126,7 @@ function CookiePreferencesDialog({
           className={cn(
             "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
             "w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col",
-            "rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] shadow-xl",
+            "rounded-lg border border-border bg-background shadow-xl",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -136,12 +136,12 @@ function CookiePreferencesDialog({
           )}
         >
           {/* Header */}
-          <div className="flex items-start justify-between border-b border-[hsl(var(--la-border))] p-6 pb-4">
+          <div className="flex items-start justify-between border-b border-border p-6 pb-4">
             <div>
-              <DialogPrimitive.Title className="text-lg font-semibold text-[hsl(var(--la-foreground))]">
+              <DialogPrimitive.Title className="text-lg font-semibold text-foreground">
                 {title}
               </DialogPrimitive.Title>
-              <DialogPrimitive.Description className="mt-1.5 text-sm text-[hsl(var(--la-muted-foreground))]">
+              <DialogPrimitive.Description className="mt-1.5 text-sm text-muted-foreground">
                 {description}
                 {privacyPolicyUrl && (
                   <>
@@ -160,9 +160,9 @@ function CookiePreferencesDialog({
             </div>
             <DialogPrimitive.Close
               className={cn(
-                "ml-4 shrink-0 rounded-sm opacity-70 ring-offset-[hsl(var(--la-background))]",
+                "ml-4 shrink-0 rounded-sm opacity-70 ring-offset-background",
                 "transition-opacity hover:opacity-100",
-                "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2",
+                "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                 "disabled:pointer-events-none",
               )}
             >
@@ -196,7 +196,7 @@ function CookiePreferencesDialog({
               {/* Tab list (sidebar) */}
               <TabsPrimitive.List
                 aria-label="Cookie categories"
-                className="flex w-44 shrink-0 flex-col gap-1 border-r border-[hsl(var(--la-border))] p-3"
+                className="flex w-44 shrink-0 flex-col gap-1 border-r border-border p-3"
               >
                 {categories.map((category) => (
                   <TabsPrimitive.Trigger
@@ -205,16 +205,16 @@ function CookiePreferencesDialog({
                     className={cn(
                       "flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm",
                       "transition-colors",
-                      "hover:bg-[hsl(var(--la-muted))]",
-                      "data-[state=active]:bg-[hsl(var(--la-muted))] data-[state=active]:font-medium",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
+                      "hover:bg-muted",
+                      "data-[state=active]:bg-muted data-[state=active]:font-medium",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     )}
                   >
-                    <span className="truncate text-[hsl(var(--la-foreground))]">
+                    <span className="truncate text-foreground">
                       {category.name}
                     </span>
                     {category.required && (
-                      <span className="ml-1 shrink-0 rounded-full bg-[hsl(var(--la-muted))] px-1.5 py-0.5 text-[10px] text-[hsl(var(--la-muted-foreground))]">
+                      <span className="ml-1 shrink-0 rounded-full bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
                         On
                       </span>
                     )}
@@ -232,10 +232,10 @@ function CookiePreferencesDialog({
                   >
                     <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                       <div>
-                        <h3 className="text-base font-medium text-[hsl(var(--la-foreground))]">
+                        <h3 className="text-base font-medium text-foreground">
                           {category.name} Cookies
                         </h3>
-                        <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">
+                        <p className="mt-1 text-sm text-muted-foreground">
                           {category.description}
                         </p>
                       </div>
@@ -247,11 +247,11 @@ function CookiePreferencesDialog({
                         className={cn(
                           "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
                           "transition-colors focus-visible:outline-none focus-visible:ring-2",
-                          "focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2",
-                          "focus-visible:ring-offset-[hsl(var(--la-background))]",
+                          "focus-visible:ring-ring focus-visible:ring-offset-2",
+                          "focus-visible:ring-offset-background",
                           "disabled:cursor-not-allowed disabled:opacity-50",
-                          "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                          "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
+                          "data-[state=checked]:bg-primary",
+                          "data-[state=unchecked]:bg-input",
                         )}
                       >
                         <SwitchPrimitive.Thumb
@@ -264,14 +264,14 @@ function CookiePreferencesDialog({
                     </div>
 
                     {category.required && (
-                      <div className="rounded-md bg-[hsl(var(--la-muted))] px-4 py-3 text-sm text-[hsl(var(--la-muted-foreground))]">
+                      <div className="rounded-md bg-muted px-4 py-3 text-sm text-muted-foreground">
                         These cookies are always active as they are required for the site to
                         function.
                       </div>
                     )}
 
                     {category.details && (
-                      <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+                      <p className="text-sm text-muted-foreground">
                         {category.details}
                       </p>
                     )}
@@ -282,7 +282,7 @@ function CookiePreferencesDialog({
           </div>
 
           {/* Footer */}
-          <div className="flex flex-col-reverse gap-2 border-t border-[hsl(var(--la-border))] p-4 sm:flex-row sm:justify-end">
+          <div className="flex flex-col-reverse gap-2 border-t border-border p-4 sm:flex-row sm:justify-end">
             <Button variant="outline" size="sm" onClick={handleRejectAll}>
               Reject All
             </Button>

@@ -55,10 +55,10 @@ function PrivacyDashboard({
     <div className={cn("space-y-6", className)}>
       {/* Page header */}
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-[hsl(var(--la-foreground))]">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
           {title}
         </h1>
-        <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">
+        <p className="mt-1 text-sm text-muted-foreground">
           Manage your personal data, consent preferences, and account settings.
           {userName && (
             <> Logged in as <span className="font-medium">{userName}</span>.</>
@@ -66,7 +66,7 @@ function PrivacyDashboard({
         </p>
       </div>
 
-      <SeparatorPrimitive.Root className="h-px bg-[hsl(var(--la-border))]" />
+      <SeparatorPrimitive.Root className="h-px bg-border" />
 
       {/* Data Download */}
       <Card>
@@ -74,7 +74,7 @@ function PrivacyDashboard({
           <div className="flex items-start gap-3">
             <div
               aria-hidden="true"
-              className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--la-muted))]"
+              className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-muted"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -129,8 +129,8 @@ function PrivacyDashboard({
                 className={cn(
                   "text-sm",
                   dataDownloadStatus === "error"
-                    ? "text-red-600 dark:text-red-400"
-                    : "text-[hsl(var(--la-muted-foreground))]"
+                    ? "text-destructive dark:text-destructive"
+                    : "text-muted-foreground"
                 )}
               >
                 {DATA_DOWNLOAD_STATUS_MESSAGES[dataDownloadStatus]}
@@ -147,7 +147,7 @@ function PrivacyDashboard({
             <div className="flex items-start gap-3">
               <div
                 aria-hidden="true"
-                className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--la-muted))]"
+                className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-muted"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -193,12 +193,12 @@ function PrivacyDashboard({
       </Card>
 
       {/* Account Deletion */}
-      <Card className="border-red-200 dark:border-red-900/50">
+      <Card className="border-destructive/20 dark:border-destructive/20">
         <CardHeader>
           <div className="flex items-start gap-3">
             <div
               aria-hidden="true"
-              className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-50 dark:bg-red-900/20"
+              className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-destructive/5 dark:bg-destructive/20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +210,7 @@ function PrivacyDashboard({
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-red-600 dark:text-red-400"
+                className="text-destructive dark:text-destructive"
               >
                 <polyline points="3 6 5 6 21 6" />
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
@@ -219,7 +219,7 @@ function PrivacyDashboard({
               </svg>
             </div>
             <div>
-              <CardTitle className="text-base text-red-700 dark:text-red-400">
+              <CardTitle className="text-base text-destructive-foreground dark:text-destructive">
                 Delete Account
               </CardTitle>
               <CardDescription className="mt-1">
@@ -232,17 +232,17 @@ function PrivacyDashboard({
         </CardHeader>
         <CardContent>
           {deleteAccountStatus === "deleted" ? (
-            <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               Your account deletion request has been submitted. You will receive a
               confirmation email shortly.
             </p>
           ) : deleteAccountStatus === "confirm" ? (
             <div className="space-y-3">
-              <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/50 dark:bg-red-900/20">
-                <p className="text-sm font-medium text-red-800 dark:text-red-300">
+              <div className="rounded-md border border-destructive/20 bg-destructive/5 px-4 py-3 dark:border-destructive/20 dark:bg-destructive/20">
+                <p className="text-sm font-medium text-destructive-foreground dark:text-destructive">
                   Are you absolutely sure?
                 </p>
-                <p className="mt-1 text-sm text-red-700 dark:text-red-400">
+                <p className="mt-1 text-sm text-destructive-foreground dark:text-destructive">
                   This will permanently delete your account, all your data, and
                   cancel any active subscriptions. This cannot be undone.
                 </p>
@@ -277,7 +277,7 @@ function PrivacyDashboard({
             </Button>
           )}
           {deleteAccountStatus === "error" && (
-            <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+            <p className="mt-2 text-sm text-destructive dark:text-destructive">
               There was a problem processing your request. Please try again or
               contact support.
             </p>

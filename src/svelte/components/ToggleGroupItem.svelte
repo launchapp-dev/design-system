@@ -10,8 +10,8 @@ import { cn } from "../utils/cn";
   } = $props();
 
 const variantClasses: Record<string, string> = {
-  default: "bg-transparent hover:bg-[hsl(var(--la-muted))] hover:text-[hsl(var(--la-muted-foreground))] data-[state=on]:bg-[hsl(var(--la-accent))] data-[state=on]:text-[hsl(var(--la-accent-foreground))]",
-  outline: "border border-[hsl(var(--la-input))] bg-transparent hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] data-[state=on]:bg-[hsl(var(--la-accent))] data-[state=on]:text-[hsl(var(--la-accent-foreground))]",
+  default: "bg-transparent hover:bg-muted hover:text-muted-foreground data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
+  outline: "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
 };
 
 const sizeClasses: Record<string, string> = {
@@ -22,7 +22,7 @@ const sizeClasses: Record<string, string> = {
 
 let classes = $derived(
   cn(
-    "inline-flex items-center justify-center rounded-[--la-radius] text-sm font-medium ring-offset-[hsl(var(--la-background))] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center rounded-[--la-radius] text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     className,
   ),
 );

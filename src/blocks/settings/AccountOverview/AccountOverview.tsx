@@ -56,9 +56,9 @@ function AccountOverview({
   ...props
 }: AccountOverviewProps) {
   const planStatusColors = {
-    active: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400",
+    active: "bg-success text-success dark:bg-success dark:text-success",
     canceled: "bg-muted text-muted-foreground",
-    past_due: "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400",
+    past_due: "bg-destructive text-destructive-foreground dark:bg-destructive dark:text-destructive",
   };
 
   const planStatusLabels = {

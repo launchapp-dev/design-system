@@ -76,10 +76,10 @@ const DrawerNavItem = ({ item, depth = 0 }: { item: MobileNavDrawerShellNavItem;
 
   const cls = cn(
     "flex w-full items-center gap-3 rounded-[--la-radius] py-2.5 text-sm font-medium transition-colors",
-    "text-[hsl(var(--la-foreground))]",
-    "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
-    item.isActive && "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
+    "text-foreground",
+    "hover:bg-accent hover:text-accent-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+    item.isActive && "bg-accent text-accent-foreground",
     item.disabled && "pointer-events-none opacity-50",
     depth === 0 ? "px-3" : "pl-8 pr-3",
   );
@@ -160,7 +160,7 @@ const MobileNavDrawerShell = React.forwardRef<HTMLDivElement, MobileNavDrawerShe
     return (
       <div ref={ref} className={cn("flex h-screen flex-col overflow-hidden", className)} {...props}>
         {/* Top bar */}
-        <header className="flex h-14 shrink-0 items-center gap-3 border-b border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] px-4">
+        <header className="flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background px-4">
           <Button
             variant="ghost"
             size="icon"
@@ -196,7 +196,7 @@ const MobileNavDrawerShell = React.forwardRef<HTMLDivElement, MobileNavDrawerShe
             side={drawerSide}
             className="flex w-[280px] flex-col p-0 sm:max-w-[300px]"
           >
-            <SheetHeader className="border-b border-[hsl(var(--la-border))] p-4">
+            <SheetHeader className="border-b border-border p-4">
               <SheetTitle asChild>
                 <div className="flex items-center gap-2">
                   {logo || <span className="text-base font-semibold">Navigation</span>}
@@ -209,7 +209,7 @@ const MobileNavDrawerShell = React.forwardRef<HTMLDivElement, MobileNavDrawerShe
                 {navSections.map((section, idx) => (
                   <div key={section.title || idx} className="flex flex-col gap-0.5">
                     {section.title && (
-                      <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
+                      <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                         {section.title}
                       </p>
                     )}
@@ -233,7 +233,7 @@ const MobileNavDrawerShell = React.forwardRef<HTMLDivElement, MobileNavDrawerShe
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{user.name}</p>
                     {user.email && (
-                      <p className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">{user.email}</p>
+                      <p className="truncate text-xs text-muted-foreground">{user.email}</p>
                     )}
                   </div>
                 </div>

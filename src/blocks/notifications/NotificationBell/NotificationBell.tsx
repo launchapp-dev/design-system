@@ -60,11 +60,11 @@ function NotificationBell({
   };
 
   const variantClasses = {
-    ghost: "hover:bg-[hsl(var(--la-accent))] text-[hsl(var(--la-foreground))]",
+    ghost: "hover:bg-accent text-foreground",
     outline:
-      "border border-[hsl(var(--la-input))] bg-[hsl(var(--la-background))] hover:bg-[hsl(var(--la-accent))]",
+      "border border-input bg-background hover:bg-accent",
     default:
-      "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] hover:bg-[hsl(var(--la-primary)/0.9)]",
+      "bg-primary text-primary-foreground hover:bg-primary/90",
   };
 
   return (

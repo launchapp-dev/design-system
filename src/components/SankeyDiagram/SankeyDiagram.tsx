@@ -60,11 +60,11 @@ interface LayoutLink extends SankeyLink {
 }
 
 const CHART_COLORS = [
-  "hsl(var(--la-chart-1))",
-  "hsl(var(--la-chart-2))",
-  "hsl(var(--la-chart-3))",
-  "hsl(var(--la-chart-4))",
-  "hsl(var(--la-chart-5))",
+  "var(--la-chart-1)",
+  "var(--la-chart-2)",
+  "var(--la-chart-3)",
+  "var(--la-chart-4)",
+  "var(--la-chart-5)",
 ];
 
 function layoutSankey(
@@ -375,7 +375,7 @@ function SankeyDiagram({
                   y={node.y + node.height / 2}
                   textAnchor={node.x < svgWidth / 2 ? "end" : "start"}
                   dominantBaseline="middle"
-                  fill="hsl(var(--la-foreground))"
+                  fill="var(--la-foreground)"
                   className="text-xs font-medium select-none pointer-events-none"
                 >
                   {node.name}
@@ -387,7 +387,7 @@ function SankeyDiagram({
                   y={node.y + node.height / 2 + 14}
                   textAnchor={node.x < svgWidth / 2 ? "end" : "start"}
                   dominantBaseline="middle"
-                  fill="hsl(var(--la-muted-foreground))"
+                  fill="var(--la-muted-foreground)"
                   className="text-[10px] select-none pointer-events-none"
                 >
                   {formatValue(Math.max(node.incomingValue, node.outgoingValue))}

@@ -69,10 +69,10 @@ export interface DualPanelSidebarShellProps extends React.HTMLAttributes<HTMLDiv
 const PrimaryNavItem = ({ item }: { item: DualPanelNavItem }) => {
   const cls = cn(
     "relative flex h-10 w-10 items-center justify-center rounded-[--la-radius] transition-colors",
-    "text-[hsl(var(--la-muted-foreground))]",
-    "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-1",
-    item.isActive && "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] hover:bg-[hsl(var(--la-primary))] hover:text-[hsl(var(--la-primary-foreground))]",
+    "text-muted-foreground",
+    "hover:bg-accent hover:text-accent-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
+    item.isActive && "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
     item.disabled && "pointer-events-none opacity-50",
   );
 
@@ -80,7 +80,7 @@ const PrimaryNavItem = ({ item }: { item: DualPanelNavItem }) => {
     <>
       <span className="shrink-0">{item.icon}</span>
       {item.badge != null && (
-        <span className="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[hsl(var(--la-destructive))] text-[10px] font-bold text-[hsl(var(--la-destructive-foreground))]">
+        <span className="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
           {typeof item.badge === "number" && item.badge > 9 ? "9+" : item.badge}
         </span>
       )}
@@ -110,10 +110,10 @@ const PrimaryNavItem = ({ item }: { item: DualPanelNavItem }) => {
 const DrawerNavItem = ({ item }: { item: DualPanelNavItem }) => {
   const cls = cn(
     "flex w-full items-center gap-3 rounded-[--la-radius] px-3 py-2.5 text-sm font-medium transition-colors",
-    "text-[hsl(var(--la-foreground))]",
-    "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))]",
-    item.isActive && "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
+    "text-foreground",
+    "hover:bg-accent hover:text-accent-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+    item.isActive && "bg-accent text-accent-foreground",
     item.disabled && "pointer-events-none opacity-50",
   );
 
@@ -172,14 +172,14 @@ const DualPanelSidebarShell = React.forwardRef<HTMLDivElement, DualPanelSidebarS
         <div ref={ref} className={cn("flex h-screen overflow-hidden", className)} {...props}>
           {/* Primary icon sidebar (desktop) */}
           <aside
-            className="hidden md:flex h-full flex-col items-center border-r border-[hsl(var(--la-border))] bg-[hsl(var(--la-card))] z-20"
+            className="hidden md:flex h-full flex-col items-center border-r border-border bg-card z-20"
             style={{ width: primaryWidth }}
             aria-label="Primary navigation"
           >
-            <div className="flex h-14 w-full items-center justify-center border-b border-[hsl(var(--la-border))]">
+            <div className="flex h-14 w-full items-center justify-center border-b border-border">
               {logo || (
-                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
-                  <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
+                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
+                  <span className="text-xs font-bold text-primary-foreground">A</span>
                 </div>
               )}
             </div>
@@ -191,10 +191,10 @@ const DualPanelSidebarShell = React.forwardRef<HTMLDivElement, DualPanelSidebarS
               </nav>
             </ScrollArea>
             {user && (
-              <div className="flex w-full items-center justify-center border-t border-[hsl(var(--la-border))] py-3">
+              <div className="flex w-full items-center justify-center border-t border-border py-3">
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button type="button" className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-1" aria-label={user.name}>
+                    <button type="button" className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1" aria-label={user.name}>
                       <Avatar className="h-8 w-8">
                         {user.avatarSrc && <AvatarImage src={user.avatarSrc} alt={user.name} />}
                         <AvatarFallback>{user.avatarFallback || user.name.charAt(0)}</AvatarFallback>
@@ -203,7 +203,7 @@ const DualPanelSidebarShell = React.forwardRef<HTMLDivElement, DualPanelSidebarS
                   </TooltipTrigger>
                   <TooltipContent side="right">
                     <p className="font-medium">{user.name}</p>
-                    {user.email && <p className="text-xs text-[hsl(var(--la-muted-foreground))]">{user.email}</p>}
+                    {user.email && <p className="text-xs text-muted-foreground">{user.email}</p>}
                   </TooltipContent>
                 </Tooltip>
               </div>
@@ -213,12 +213,12 @@ const DualPanelSidebarShell = React.forwardRef<HTMLDivElement, DualPanelSidebarS
           {/* Secondary panel (desktop) */}
           {secondaryPanelOpen && secondaryPanel && (
             <aside
-              className="hidden md:flex h-full flex-col border-r border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))]"
+              className="hidden md:flex h-full flex-col border-r border-border bg-background"
               style={{ width: secondaryWidth }}
               aria-label="Secondary navigation"
             >
-              <div className="flex h-14 items-center border-b border-[hsl(var(--la-border))] px-4">
-                <span className="text-sm font-semibold text-[hsl(var(--la-foreground))]">{secondaryPanelTitle}</span>
+              <div className="flex h-14 items-center border-b border-border px-4">
+                <span className="text-sm font-semibold text-foreground">{secondaryPanelTitle}</span>
               </div>
               <ScrollArea className="flex-1">
                 {secondaryPanel}
@@ -229,7 +229,7 @@ const DualPanelSidebarShell = React.forwardRef<HTMLDivElement, DualPanelSidebarS
           {/* Mobile drawer */}
           <Sheet open={mobileOpen} onOpenChange={handleMobileOpenChange}>
             <SheetContent side="left" className="w-72 p-0">
-              <SheetHeader className="border-b border-[hsl(var(--la-border))] p-4">
+              <SheetHeader className="border-b border-border p-4">
                 <SheetTitle asChild>
                   <div className="flex items-center gap-2">
                     {logo || <span className="font-semibold">{secondaryPanelTitle}</span>}
@@ -257,7 +257,7 @@ const DualPanelSidebarShell = React.forwardRef<HTMLDivElement, DualPanelSidebarS
                     </Avatar>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium">{user.name}</p>
-                      {user.email && <p className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">{user.email}</p>}
+                      {user.email && <p className="truncate text-xs text-muted-foreground">{user.email}</p>}
                     </div>
                   </div>
                 </>
@@ -267,7 +267,7 @@ const DualPanelSidebarShell = React.forwardRef<HTMLDivElement, DualPanelSidebarS
 
           {/* Main area */}
           <div className="flex flex-1 flex-col overflow-hidden">
-            <header className="flex h-14 items-center gap-4 border-b border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))] px-4">
+            <header className="flex h-14 items-center gap-4 border-b border-border bg-background px-4">
               <Button
                 variant="ghost"
                 size="icon"

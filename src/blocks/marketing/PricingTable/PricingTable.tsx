@@ -272,7 +272,7 @@ function PricingTable({
                   {tier.popular && isGradient ? (
                     <Button
                       className={cn(
-                        "w-full bg-white text-gray-900 hover:bg-indigo-50",
+                        "w-full bg-white text-muted-foreground hover:bg-indigo-50",
                         "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/50",
                       )}
                       disabled={tier.disabled}

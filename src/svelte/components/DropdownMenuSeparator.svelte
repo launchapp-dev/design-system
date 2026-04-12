@@ -9,7 +9,7 @@ import { cn } from "../utils/cn";
 
 
 
-let classes = $derived(cn("-mx-1 my-1 h-px bg-[hsl(var(--la-muted))]", className));
+let classes = $derived(cn("-mx-1 my-1 h-px bg-muted", className));
 </script>
 
 <div role="separator" class={classes} / {...restProps}>

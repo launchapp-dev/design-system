@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const classes = computed(() =>
   cn(
-    "shrink-0 bg-[hsl(var(--la-border))]",
+    "shrink-0 bg-border",
     props.orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
     props.class,
   ),

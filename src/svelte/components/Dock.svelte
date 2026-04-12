@@ -14,7 +14,7 @@
     lg: "min-h-[76px]",
   };
 
-  let classes = $derived(cn("flex items-end justify-center gap-1 px-3 py-2 rounded-2xl bg-[hsl(var(--la-background)/0.8)] backdrop-blur-xl border border-[hsl(var(--la-border)/0.2)] shadow-lg", className, size ? sizeClasses[size] : ""));
+  let classes = $derived(cn("flex items-end justify-center gap-1 px-3 py-2 rounded-2xl bg-background/80 backdrop-blur-xl border border-border/20 shadow-lg", className, size ? sizeClasses[size] : ""));
 </script>
 
 <div class={classes} {...restProps}>

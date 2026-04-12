@@ -45,19 +45,19 @@ const InboxSecondaryPanel = () => (
       <button
         key={label}
         type="button"
-        className={`flex w-full items-center justify-between rounded-[--la-radius] px-3 py-2 text-sm transition-colors hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] ${i === 0 ? "bg-[hsl(var(--la-accent))] font-medium" : "text-[hsl(var(--la-foreground))]"}`}
+        className={`flex w-full items-center justify-between rounded-[--la-radius] px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground ${i === 0 ? "bg-accent font-medium" : "text-foreground"}`}
       >
         <span>{label}</span>
-        {i === 0 && <span className="text-xs text-[hsl(var(--la-muted-foreground))]">128</span>}
-        {i === 1 && <span className="text-xs font-medium text-[hsl(var(--la-primary))]">3</span>}
+        {i === 0 && <span className="text-xs text-muted-foreground">128</span>}
+        {i === 1 && <span className="text-xs font-medium text-primary">3</span>}
       </button>
     ))}
   </div>
 );
 
 const Logo = () => (
-  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
-    <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">M</span>
+  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
+    <span className="text-xs font-bold text-primary-foreground">M</span>
   </div>
 );
 
@@ -68,17 +68,17 @@ const meta: Meta<typeof DualPanelSidebarShell> = {
   parameters: { layout: "fullscreen" },
   decorators: [
     (Story) => (
-      <div className="h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="h-[600px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),
   ],
   render: (args) => (
     <DualPanelSidebarShell {...args}>
-      <div className="flex h-full items-center justify-center bg-[hsl(var(--la-muted))]">
+      <div className="flex h-full items-center justify-center bg-muted">
         <div className="text-center">
           <p className="text-sm font-medium">Main Content</p>
-          <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">Dual-panel sidebar shell</p>
+          <p className="mt-1 text-sm text-muted-foreground">Dual-panel sidebar shell</p>
         </div>
       </div>
     </DualPanelSidebarShell>
@@ -112,7 +112,7 @@ export const SecondaryPanelClosed: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="dark h-[600px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),

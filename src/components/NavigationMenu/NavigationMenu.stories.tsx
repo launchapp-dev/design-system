@@ -89,13 +89,13 @@ function ListItem({
         <a
           href={href}
           className={cn(
-            "block select-none space-y-1 rounded-[--la-radius] p-3 leading-none no-underline outline-none transition-colors hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))] focus:bg-[hsl(var(--la-accent))] focus:text-[hsl(var(--la-accent-foreground))]",
+            "block select-none space-y-1 rounded-[--la-radius] p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className,
           )}
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-[hsl(var(--la-muted-foreground))]">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </a>
@@ -117,10 +117,10 @@ export const Default: Story = {
                   <NavigationMenuLink asChild>
                     <a
                       href="#"
-                      className="flex h-full w-full select-none flex-col justify-end rounded-[--la-radius] bg-gradient-to-b from-[hsl(var(--la-muted)/0.5)] to-[hsl(var(--la-muted))] p-6 no-underline outline-none focus:shadow-md"
+                      className="flex h-full w-full select-none flex-col justify-end rounded-[--la-radius] bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">LaunchApp DS</div>
-                      <p className="text-sm leading-tight text-[hsl(var(--la-muted-foreground))]">
+                      <p className="text-sm leading-tight text-muted-foreground">
                         Beautifully designed components built with Radix UI and Tailwind CSS.
                       </p>
                     </a>
@@ -189,7 +189,7 @@ export const DarkMode: Story = {
         return () => document.documentElement.classList.remove("dark");
       }, []);
       return (
-        <div className="dark bg-[hsl(var(--la-background))] p-8">
+        <div className="dark bg-background p-8">
           <Story />
         </div>
       );
@@ -207,10 +207,10 @@ export const DarkMode: Story = {
                   <NavigationMenuLink asChild>
                     <a
                       href="#"
-                      className="flex h-full w-full select-none flex-col justify-end rounded-[--la-radius] bg-gradient-to-b from-[hsl(var(--la-muted)/0.5)] to-[hsl(var(--la-muted))] p-6 no-underline outline-none focus:shadow-md"
+                      className="flex h-full w-full select-none flex-col justify-end rounded-[--la-radius] bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">LaunchApp DS</div>
-                      <p className="text-sm leading-tight text-[hsl(var(--la-muted-foreground))]">
+                      <p className="text-sm leading-tight text-muted-foreground">
                         Beautifully designed components built with Radix UI and Tailwind CSS.
                       </p>
                     </a>

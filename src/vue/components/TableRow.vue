@@ -9,7 +9,7 @@ interface Props {
 const props = defineProps<Props>();
 const classes = computed(() =>
   cn(
-    "border-b border-[hsl(var(--la-border))] transition-colors hover:bg-[hsl(var(--la-muted)/0.5)] data-[state=selected]:bg-[hsl(var(--la-muted))]",
+    "border-b border-border transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
     props.class,
   ),
 );

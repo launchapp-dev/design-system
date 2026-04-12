@@ -75,7 +75,7 @@ const SetupWizard = React.forwardRef<HTMLDivElement, SetupWizardProps>(
                     <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">Optional</span>
                   )}
                   {step.completed && (
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 text-xs">✓</span>
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-success/10 text-success text-xs">✓</span>
                   )}
                 </button>
               );

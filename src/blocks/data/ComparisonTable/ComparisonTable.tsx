@@ -44,9 +44,9 @@ function StarRating({ rating }: { rating: number }) {
           className={cn(
             "h-3 w-3",
             star <= Math.floor(rating)
-              ? "fill-amber-400 text-amber-400"
+              ? "fill-warning text-warning"
               : star - 0.5 <= rating
-                ? "fill-amber-200 text-amber-400"
+                ? "fill-warning/50 text-warning"
                 : "fill-muted text-muted",
           )}
           viewBox="0 0 20 20"
@@ -63,7 +63,7 @@ function DefaultAttributeValue({ value }: { value: unknown }) {
   if (value === true || value === "yes" || value === "true") {
     return (
       <svg
-        className="h-4 w-4 text-green-600"
+        className="h-4 w-4 text-success"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -265,7 +265,7 @@ function ComparisonTable(
                         {product.pros?.map((pro, i) => (
                           <div key={i} className="flex items-start gap-1.5 text-sm">
                             <svg
-                              className="h-3.5 w-3.5 mt-0.5 text-green-600 shrink-0"
+                              className="h-3.5 w-3.5 mt-0.5 text-success shrink-0"
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 24 24"
                               fill="currentColor"
@@ -299,7 +299,7 @@ function ComparisonTable(
                         {product.cons?.map((con, i) => (
                           <div key={i} className="flex items-start gap-1.5 text-sm">
                             <svg
-                              className="h-3.5 w-3.5 mt-0.5 text-red-400 shrink-0"
+                              className="h-3.5 w-3.5 mt-0.5 text-destructive shrink-0"
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 24 24"
                               fill="none"

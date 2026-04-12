@@ -53,7 +53,7 @@ const navClass = computed(() => cn("flex items-center gap-1", props.class));
     <button
       type="button"
       :disabled="!canPrev"
-      class="inline-flex h-9 w-9 items-center justify-center rounded-[--la-radius] border border-[hsl(var(--la-border))] text-sm hover:bg-[hsl(var(--la-accent))] disabled:opacity-50"
+      class="inline-flex h-9 w-9 items-center justify-center rounded-[--la-radius] border border-border text-sm hover:bg-accent disabled:opacity-50"
       aria-label="Previous page"
       @click="go(modelValue - 1)"
     >
@@ -62,7 +62,7 @@ const navClass = computed(() => cn("flex items-center gap-1", props.class));
       </svg>
     </button>
     <template v-for="page in pages" :key="page">
-      <span v-if="page === -1" class="px-1 text-[hsl(var(--la-muted-foreground))]">…</span>
+      <span v-if="page === -1" class="px-1 text-muted-foreground">…</span>
       <button
         v-else
         type="button"
@@ -70,8 +70,8 @@ const navClass = computed(() => cn("flex items-center gap-1", props.class));
         :class="cn(
           'inline-flex h-9 w-9 items-center justify-center rounded-[--la-radius] border text-sm',
           page === modelValue
-            ? 'border-[hsl(var(--la-primary))] bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]'
-            : 'border-[hsl(var(--la-border))] hover:bg-[hsl(var(--la-accent))]'
+            ? 'border-primary bg-primary text-primary-foreground'
+            : 'border-border hover:bg-accent'
         )"
         @click="go(page)"
       >
@@ -81,7 +81,7 @@ const navClass = computed(() => cn("flex items-center gap-1", props.class));
     <button
       type="button"
       :disabled="!canNext"
-      class="inline-flex h-9 w-9 items-center justify-center rounded-[--la-radius] border border-[hsl(var(--la-border))] text-sm hover:bg-[hsl(var(--la-accent))] disabled:opacity-50"
+      class="inline-flex h-9 w-9 items-center justify-center rounded-[--la-radius] border border-border text-sm hover:bg-accent disabled:opacity-50"
       aria-label="Next page"
       @click="go(modelValue + 1)"
     >

@@ -8,7 +8,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const classes = computed(() =>
-  cn("rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-card))] text-[hsl(var(--la-card-foreground))] shadow-sm", props.class),
+  cn("rounded-[--la-radius] border border-border bg-card text-card-foreground shadow-sm", props.class),
 );
 </script>
 

@@ -9,7 +9,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const classes = computed(() =>
-  cn("transition-colors hover:text-[hsl(var(--la-foreground))]", props.class),
+  cn("transition-colors hover:text-foreground", props.class),
 );
 </script>
 

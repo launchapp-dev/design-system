@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const dockVariants = cva(
-  "flex items-end justify-center gap-1 px-3 py-2 rounded-2xl bg-[hsl(var(--la-background)/0.8)] backdrop-blur-xl border border-[hsl(var(--la-border)/0.2)] shadow-lg",
+  "flex items-end justify-center gap-1 px-3 py-2 rounded-2xl bg-background/80 backdrop-blur-xl border border-border/20 shadow-lg",
   {
     variants: {
       size: {
@@ -20,7 +20,7 @@ const dockVariants = cva(
 );
 
 const dockItemVariants = cva(
-  "relative flex items-center justify-center rounded-xl transition-all duration-200 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--la-background))]",
+  "relative flex items-center justify-center rounded-xl transition-all duration-200 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
   {
     variants: {
       size: {
@@ -281,7 +281,7 @@ function DockItem({
           {item.icon}
           {item.active && (
             <span
-              className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[hsl(var(--la-primary))]"
+              className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary"
               aria-hidden="true"
             />
           )}
@@ -291,7 +291,7 @@ function DockItem({
         <TooltipPrimitive.Content
           side="top"
           sideOffset={tooltipSideOffset}
-          className="z-50 overflow-hidden rounded-md border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] px-3 py-1.5 text-xs text-[hsl(var(--la-popover-foreground))] shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+          className="z-50 overflow-hidden rounded-md border border-border bg-popover px-3 py-1.5 text-xs text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
         >
           {item.label}
         </TooltipPrimitive.Content>

@@ -10,7 +10,7 @@ import { cn } from "../utils/cn";
 
 
 
-let classes = $derived(cn("mt-4 text-sm text-[hsl(var(--la-muted-foreground))]", className));
+let classes = $derived(cn("mt-4 text-sm text-muted-foreground", className));
 </script>
 
 <caption class={classes} {...restProps}>

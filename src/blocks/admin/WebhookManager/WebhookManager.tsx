@@ -104,7 +104,7 @@ function WebhookManagerInner(
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Webhooks</h2>
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             {endpoints.filter((e) => e.active).length} active endpoint{endpoints.filter((e) => e.active).length !== 1 ? "s" : ""}
           </p>
         </div>
@@ -116,8 +116,8 @@ function WebhookManagerInner(
       </div>
 
       {endpoints.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-[hsl(var(--la-border))] py-12 text-center">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">No webhook endpoints configured.</p>
+        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-12 text-center">
+          <p className="text-sm text-muted-foreground">No webhook endpoints configured.</p>
           {onCreateEndpoint && (
             <Button variant="outline" size="sm" className="mt-3" onClick={() => setDialogOpen(true)}>
               Add your first endpoint
@@ -130,7 +130,7 @@ function WebhookManagerInner(
             const isExpanded = expandedEndpoint === endpoint.id;
             const relatedDeliveries = endpointDeliveries(endpoint.id);
             return (
-              <div key={endpoint.id} className="rounded-lg border border-[hsl(var(--la-border))]">
+              <div key={endpoint.id} className="rounded-lg border border-border">
                 <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-start">
                   <div className="min-w-0 flex-1 space-y-2">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -139,13 +139,13 @@ function WebhookManagerInner(
                         {endpoint.active ? "Active" : "Inactive"}
                       </Badge>
                     </div>
-                    <p className="font-mono text-xs text-[hsl(var(--la-muted-foreground))] break-all">{endpoint.url}</p>
+                    <p className="font-mono text-xs text-muted-foreground break-all">{endpoint.url}</p>
                     <div className="flex flex-wrap gap-1">
                       {endpoint.eventTypes.map((et) => (
                         <Badge key={et} variant="outline" className="text-[10px]">{et}</Badge>
                       ))}
                     </div>
-                    <p className="text-xs text-[hsl(var(--la-muted-foreground))]">
+                    <p className="text-xs text-muted-foreground">
                       Created: {endpoint.createdAt}
                     </p>
                   </div>
@@ -172,23 +172,23 @@ function WebhookManagerInner(
                 </div>
 
                 {relatedDeliveries.length > 0 && (
-                  <div className="border-t border-[hsl(var(--la-border))]">
+                  <div className="border-t border-border">
                     <button
-                      className="w-full px-4 py-2 text-left text-xs text-[hsl(var(--la-muted-foreground))] hover:bg-[hsl(var(--la-muted))] transition-colors"
+                      className="w-full px-4 py-2 text-left text-xs text-muted-foreground hover:bg-muted transition-colors"
                       onClick={() => setExpandedEndpoint(isExpanded ? null : endpoint.id)}
                     >
                       {relatedDeliveries.length} delivery log{relatedDeliveries.length !== 1 ? "s" : ""} {isExpanded ? "▲" : "▼"}
                     </button>
                     {isExpanded && (
                       <ScrollArea className="h-48">
-                        <div className="divide-y divide-[hsl(var(--la-border))]">
+                        <div className="divide-y divide-border">
                           {relatedDeliveries.map((d) => (
                             <div key={d.id} className="flex items-start gap-3 px-4 py-2">
                               <Badge variant={deliveryStatusVariant(d.status)} className="shrink-0 mt-0.5 text-[10px]">
                                 {d.status}
                               </Badge>
                               <div className="min-w-0 flex-1 space-y-0.5">
-                                <div className="flex flex-wrap gap-2 text-xs text-[hsl(var(--la-muted-foreground))]">
+                                <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                                   <span>{d.timestamp}</span>
                                   {d.statusCode && <span>HTTP {d.statusCode}</span>}
                                   {d.durationMs !== undefined && <span>{d.durationMs}ms</span>}
@@ -198,7 +198,7 @@ function WebhookManagerInner(
                                   <p className="text-xs text-destructive">{d.error}</p>
                                 )}
                                 {d.responseBody && (
-                                  <p className="text-xs font-mono text-[hsl(var(--la-muted-foreground))] truncate">
+                                  <p className="text-xs font-mono text-muted-foreground truncate">
                                     {d.responseBody}
                                   </p>
                                 )}
@@ -242,7 +242,7 @@ function WebhookManagerInner(
                       type="checkbox"
                       checked={selectedEvents.includes(event)}
                       onChange={() => toggleEvent(event)}
-                      className="rounded border-[hsl(var(--la-border))]"
+                      className="rounded border-border"
                     />
                     {event}
                   </Label>

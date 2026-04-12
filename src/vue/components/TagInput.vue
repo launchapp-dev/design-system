@@ -23,7 +23,7 @@ const inputValue = ref("");
 
 const classes = computed(() =>
   cn(
-    "flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-[--la-radius] border border-[hsl(var(--la-input))] bg-[hsl(var(--la-background))] px-3 py-2 text-sm ring-offset-[hsl(var(--la-background))] focus-within:outline-none focus-within:ring-2 focus-within:ring-[hsl(var(--la-ring))] focus-within:ring-offset-2",
+    "flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-[--la-radius] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
     props.disabled && "cursor-not-allowed opacity-50",
     props.class,
   ),
@@ -58,13 +58,13 @@ function handleKeydown(e: KeyboardEvent) {
     <span
       v-for="tag in modelValue"
       :key="tag"
-      class="inline-flex items-center gap-1 rounded-full bg-[hsl(var(--la-secondary))] px-2.5 py-0.5 text-xs font-medium text-[hsl(var(--la-secondary-foreground))]"
+      class="inline-flex items-center gap-1 rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground"
     >
       {{ tag }}
       <button
         v-if="!disabled"
         type="button"
-        class="ml-0.5 rounded-full hover:bg-[hsl(var(--la-secondary)/0.8)] focus:outline-none"
+        class="ml-0.5 rounded-full hover:bg-secondary/80 focus:outline-none"
         :aria-label="`Remove ${tag}`"
         @click="removeTag(tag)"
       >
@@ -77,7 +77,7 @@ function handleKeydown(e: KeyboardEvent) {
       v-model="inputValue"
       :placeholder="!modelValue.length ? placeholder : ''"
       :disabled="disabled"
-      class="min-w-[120px] flex-1 bg-transparent outline-none placeholder:text-[hsl(var(--la-muted-foreground))]"
+      class="min-w-[120px] flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
       @keydown="handleKeydown"
       @blur="addTag(inputValue)"
     />

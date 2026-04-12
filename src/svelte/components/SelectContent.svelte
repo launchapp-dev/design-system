@@ -35,7 +35,7 @@ onUnmounted(() => {
 
 let classes = $derived(
 cn(
-    "absolute z-50 min-w-[8rem] overflow-hidden rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] text-[hsl(var(--la-popover-foreground))] shadow-md top-full mt-1 w-full",
+    "absolute z-50 min-w-[8rem] overflow-hidden rounded-[--la-radius] border border-border bg-popover text-popover-foreground shadow-md top-full mt-1 w-full",
     className,
   ),
 );

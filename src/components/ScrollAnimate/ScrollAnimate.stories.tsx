@@ -54,9 +54,9 @@ export const FadeInOnScrollStory: StoryObj = {
           <div
             style={{
               padding: "24px",
-              border: "1px solid hsl(var(--la-border))",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
-              background: "hsl(var(--la-card))",
+              background: "var(--la-card)",
             }}
           >
             <p style={{ fontWeight: "600" }}>Card {i + 1}</p>
@@ -109,7 +109,7 @@ export const ParallaxStory: StoryObj = {
         height: "600px",
         overflow: "auto",
         position: "relative",
-        border: "1px solid hsl(var(--la-border))",
+        border: "1px solid var(--la-border)",
         borderRadius: "var(--la-radius)",
       }}
     >
@@ -119,8 +119,8 @@ export const ParallaxStory: StoryObj = {
           <div
             style={{
               padding: "32px",
-              background: "hsl(var(--la-primary))",
-              color: "hsl(var(--la-primary-foreground))",
+              background: "var(--la-primary)",
+              color: "var(--la-primary-foreground)",
               borderRadius: "var(--la-radius)",
               display: "inline-block",
             }}
@@ -136,7 +136,7 @@ export const ParallaxStory: StoryObj = {
             <div
               style={{
                 padding: "32px",
-                background: "hsl(var(--la-secondary))",
+                background: "var(--la-secondary)",
                 borderRadius: "var(--la-radius)",
                 display: "inline-block",
               }}

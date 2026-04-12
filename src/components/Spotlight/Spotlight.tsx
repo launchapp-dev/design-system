@@ -65,9 +65,9 @@ function Spotlight({
         className={cn("pointer-events-none absolute inset-0", hoverTransition)}
         style={{
           opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(circle ${size}px at ${position.x}% ${position.y}%, 
-            hsl(var(--la-primary) / 0.15), 
-            hsl(var(--la-primary) / 0.05) 40%, 
+          background: `radial-gradient(circle ${size}px at ${position.x}% ${position.y}%,
+            color-mix(in srgb, var(--la-primary) 15%, transparent),
+            color-mix(in srgb, var(--la-primary) 5%, transparent) 40%,
             transparent 70%)`,
           transition: springTransition || undefined,
         }}
@@ -77,9 +77,9 @@ function Spotlight({
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
-            background: `radial-gradient(circle ${size}px at 50% 50%, 
-              hsl(var(--la-primary) / 0.15), 
-              hsl(var(--la-primary) / 0.05) 40%, 
+            background: `radial-gradient(circle ${size}px at 50% 50%,
+              color-mix(in srgb, var(--la-primary) 15%, transparent),
+              color-mix(in srgb, var(--la-primary) 5%, transparent) 40%, 
               transparent 70%)`,
           }}
         />

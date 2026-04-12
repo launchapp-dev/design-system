@@ -21,7 +21,7 @@ const { close } = useDropdownMenuContext();
 
 let classes = $derived(
 cn(
-    "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-[hsl(var(--la-accent))] focus:text-[hsl(var(--la-accent-foreground))] hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
+    "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground",
     disabled && "pointer-events-none opacity-50",
     inset && "pl-8",
     className,

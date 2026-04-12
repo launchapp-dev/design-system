@@ -28,7 +28,7 @@ function AnimatedBorder({
   children,
   className,
   variant = "beam",
-  borderColor = "hsl(var(--la-primary))",
+  borderColor = "var(--la-primary)",
   secondaryColor,
   duration = 4,
   size = "md",
@@ -87,9 +87,9 @@ function AnimatedBorder({
           : `repeating-linear-gradient(0deg, ${borderColor}, ${borderColor} ${dashLength}px, transparent ${dashLength}px, transparent ${dashLength + gapLength}px)`,
         backgroundSize: reduced ? "100% 100%" : `${dashLength + gapLength}px 100%`,
         animation: reduced ? "none" : `dash-march ${duration}s linear infinite`,
-        mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+        mask: "linear-gradient(black 0 0) content-box, linear-gradient(black 0 0)",
         maskComposite: "exclude",
-        WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+        WebkitMask: "linear-gradient(black 0 0) content-box, linear-gradient(black 0 0)",
         WebkitMaskComposite: "xor",
       }}
     />

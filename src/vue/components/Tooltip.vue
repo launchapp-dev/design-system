@@ -35,7 +35,7 @@ const sideClasses = {
       v-if="visible"
       role="tooltip"
       :class="cn(
-        'absolute z-50 overflow-hidden rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] px-3 py-1.5 text-xs text-[hsl(var(--la-popover-foreground))] shadow-md whitespace-nowrap',
+        'absolute z-50 overflow-hidden rounded-[--la-radius] border border-border bg-popover px-3 py-1.5 text-xs text-popover-foreground shadow-md whitespace-nowrap',
         sideClasses[side],
         props.class,
       )"

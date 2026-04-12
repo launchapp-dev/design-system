@@ -59,32 +59,32 @@ const STATUS_CONFIG: Record<
 > = {
   operational: {
     label: "Operational",
-    color: "text-green-600",
-    dotColor: "bg-green-500",
+    color: "text-success",
+    dotColor: "bg-success",
     badgeVariant: "outline",
   },
   degraded: {
     label: "Degraded performance",
-    color: "text-yellow-600",
-    dotColor: "bg-yellow-500",
+    color: "text-warning",
+    dotColor: "bg-warning",
     badgeVariant: "secondary",
   },
   partial_outage: {
     label: "Partial outage",
-    color: "text-orange-600",
-    dotColor: "bg-orange-500",
+    color: "text-warning",
+    dotColor: "bg-warning",
     badgeVariant: "secondary",
   },
   major_outage: {
     label: "Major outage",
-    color: "text-red-600",
-    dotColor: "bg-red-500",
+    color: "text-destructive",
+    dotColor: "bg-destructive",
     badgeVariant: "destructive",
   },
   maintenance: {
     label: "Under maintenance",
-    color: "text-blue-600",
-    dotColor: "bg-blue-500",
+    color: "text-info",
+    dotColor: "bg-info",
     badgeVariant: "default",
   },
   unknown: {
@@ -149,8 +149,8 @@ function OverallStatusBanner({ status }: { status: StatusPageServiceStatus }) {
       className={cn(
         "flex items-center gap-3 rounded-lg border p-4",
         isOperational
-          ? "border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950/30"
-          : "border-yellow-200 bg-yellow-50 dark:border-yellow-900 dark:bg-yellow-950/30",
+          ? "border-success bg-success dark:border-success dark:bg-success/30"
+          : "border-warning/20 bg-warning/5 dark:border-warning/20 dark:bg-warning/10",
       )}
     >
       <span className={cn("h-3 w-3 rounded-full", dotColor)} aria-hidden="true" />

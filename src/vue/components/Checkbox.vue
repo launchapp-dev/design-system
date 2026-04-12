@@ -25,10 +25,10 @@ const emit = defineEmits<{
 
 const classes = computed(() =>
   cn(
-    "peer h-4 w-4 shrink-0 rounded-sm border border-[hsl(var(--la-primary))] ring-offset-[hsl(var(--la-background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+    "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
     props.modelValue || props.indeterminate
-      ? "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))]"
-      : "bg-[hsl(var(--la-background))]",
+      ? "bg-primary text-primary-foreground"
+      : "bg-background",
     props.class,
   ),
 );

@@ -161,7 +161,7 @@ function OrDivider() {
   return (
     <div className="flex items-center gap-3">
       <Separator className="flex-1" />
-      <span className="text-xs text-[hsl(var(--la-muted-foreground))] shrink-0">or</span>
+      <span className="text-xs text-muted-foreground shrink-0">or</span>
       <Separator className="flex-1" />
     </div>
   );
@@ -212,7 +212,7 @@ function LoginVariant({
             className="space-y-4"
           >
             {error && (
-              <div className="rounded-md bg-[hsl(var(--la-destructive)/0.1)] p-3 text-sm text-[hsl(var(--la-destructive))]">
+              <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}
               </div>
             )}
@@ -246,7 +246,7 @@ function LoginVariant({
                       <Button
                         variant="link"
                         type="button"
-                        className="px-0 h-auto text-xs font-normal text-[hsl(var(--la-muted-foreground))]"
+                        className="px-0 h-auto text-xs font-normal text-muted-foreground"
                         onClick={() => onSwitchVariant("forgot-password")}
                       >
                         Forgot password?
@@ -296,7 +296,7 @@ function LoginVariant({
       </CardContent>
       {onSwitchVariant && (
         <CardFooter className="justify-center">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}
             <Button
               variant="link"
@@ -358,7 +358,7 @@ function RegisterVariant({
             className="space-y-4"
           >
             {error && (
-              <div className="rounded-md bg-[hsl(var(--la-destructive)/0.1)] p-3 text-sm text-[hsl(var(--la-destructive))]">
+              <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}
               </div>
             )}
@@ -469,7 +469,7 @@ function RegisterVariant({
       </CardContent>
       {onSwitchVariant && (
         <CardFooter className="justify-center">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
             <Button
               variant="link"
@@ -514,9 +514,9 @@ function ForgotPasswordVariant({
       </CardHeader>
       <CardContent>
         {success ? (
-          <div className="rounded-md bg-[hsl(var(--la-primary)/0.1)] p-4 text-sm text-[hsl(var(--la-primary))] text-center space-y-1">
+          <div className="rounded-md bg-primary/10 p-4 text-sm text-primary text-center space-y-1">
             <p className="font-medium">Check your inbox</p>
-            <p className="text-[hsl(var(--la-muted-foreground))]">
+            <p className="text-muted-foreground">
               If that email is registered, a reset link is on its way.
             </p>
           </div>
@@ -529,7 +529,7 @@ function ForgotPasswordVariant({
               className="space-y-4"
             >
               {error && (
-                <div className="rounded-md bg-[hsl(var(--la-destructive)/0.1)] p-3 text-sm text-[hsl(var(--la-destructive))]">
+                <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                   {error}
                 </div>
               )}
@@ -601,9 +601,9 @@ function ResetPasswordVariant({
       </CardHeader>
       <CardContent>
         {success ? (
-          <div className="rounded-md bg-[hsl(var(--la-primary)/0.1)] p-4 text-sm text-[hsl(var(--la-primary))] text-center space-y-1">
+          <div className="rounded-md bg-primary/10 p-4 text-sm text-primary text-center space-y-1">
             <p className="font-medium">Password updated</p>
-            <p className="text-[hsl(var(--la-muted-foreground))]">
+            <p className="text-muted-foreground">
               Your password has been changed. You can now sign in.
             </p>
           </div>
@@ -616,7 +616,7 @@ function ResetPasswordVariant({
               className="space-y-4"
             >
               {error && (
-                <div className="rounded-md bg-[hsl(var(--la-destructive)/0.1)] p-3 text-sm text-[hsl(var(--la-destructive))]">
+                <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                   {error}
                 </div>
               )}

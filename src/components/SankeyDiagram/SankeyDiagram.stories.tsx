@@ -18,13 +18,13 @@ const simpleLinks: SankeyLink[] = [
 ];
 
 const revenueNodes: SankeyNode[] = [
-  { id: "products", name: "Products", color: "hsl(var(--la-chart-1))" },
-  { id: "services", name: "Services", color: "hsl(var(--la-chart-2))" },
-  { id: "subscriptions", name: "Subscriptions", color: "hsl(var(--la-chart-3))" },
-  { id: "marketing", name: "Marketing", color: "hsl(var(--la-chart-4))" },
-  { id: "sales", name: "Sales", color: "hsl(var(--la-chart-5))" },
-  { id: "revenue", name: "Revenue", color: "hsl(var(--la-primary))" },
-  { id: "costs", name: "Costs", color: "hsl(var(--la-destructive))" },
+  { id: "products", name: "Products", color: "var(--la-chart-1)" },
+  { id: "services", name: "Services", color: "var(--la-chart-2)" },
+  { id: "subscriptions", name: "Subscriptions", color: "var(--la-chart-3)" },
+  { id: "marketing", name: "Marketing", color: "var(--la-chart-4)" },
+  { id: "sales", name: "Sales", color: "var(--la-chart-5)" },
+  { id: "revenue", name: "Revenue", color: "var(--la-primary)" },
+  { id: "costs", name: "Costs", color: "var(--la-destructive)" },
 ];
 
 const revenueLinks: SankeyLink[] = [

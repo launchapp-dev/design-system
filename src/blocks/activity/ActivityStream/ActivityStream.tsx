@@ -39,21 +39,21 @@ const typeActionLabel: Record<NonNullable<StreamEvent["type"]>, string> = {
 };
 
 const _typeColors: Record<NonNullable<StreamEvent["type"]>, string> = {
-  create: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
-  update: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30",
-  delete: "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30",
-  comment: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/30",
-  share: "text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/30",
+  create: "text-success bg-success/5 dark:bg-success/10",
+  update: "text-warning dark:text-warning bg-warning/5 dark:bg-warning/10",
+  delete: "text-destructive dark:text-destructive bg-destructive/5 dark:bg-destructive/10",
+  comment: "text-info dark:text-info bg-info dark:bg-info/30",
+  share: "text-primary dark:text-primary bg-primary dark:bg-primary/30",
   like: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/30",
   publish: "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/30",
 };
 
 const typeDots: Record<NonNullable<StreamEvent["type"]>, string> = {
-  create: "bg-emerald-500",
-  update: "bg-amber-500",
-  delete: "bg-red-500",
-  comment: "bg-blue-500",
-  share: "bg-purple-500",
+  create: "bg-success",
+  update: "bg-warning",
+  delete: "bg-destructive",
+  comment: "bg-info",
+  share: "bg-primary",
   like: "bg-pink-500",
   publish: "bg-indigo-500",
 };
@@ -89,7 +89,7 @@ function ActivityStream({
               <button
                 onClick={() => onEventClick?.(event)}
                 className={cn(
-                  "flex flex-1 items-start gap-3 rounded-[--la-radius] p-3 text-left transition-colors hover:bg-[hsl(var(--la-accent))]",
+                  "flex flex-1 items-start gap-3 rounded-[--la-radius] p-3 text-left transition-colors hover:bg-accent",
                   event.href && "cursor-pointer",
                 )}
               >

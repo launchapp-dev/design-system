@@ -88,7 +88,7 @@ function APIKeyManagerInner(
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">API Keys</h2>
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             {keys.length} key{keys.length !== 1 ? "s" : ""}
           </p>
         </div>
@@ -100,8 +100,8 @@ function APIKeyManagerInner(
       </div>
 
       {keys.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-[hsl(var(--la-border))] py-12 text-center">
-          <p className="text-sm text-[hsl(var(--la-muted-foreground))]">No API keys yet.</p>
+        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-12 text-center">
+          <p className="text-sm text-muted-foreground">No API keys yet.</p>
           {onCreateKey && (
             <Button
               variant="outline"
@@ -118,7 +118,7 @@ function APIKeyManagerInner(
           {keys.map((key) => (
             <div
               key={key.id}
-              className="flex flex-col gap-2 rounded-lg border border-[hsl(var(--la-border))] p-4 sm:flex-row sm:items-center sm:justify-between"
+              className="flex flex-col gap-2 rounded-lg border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="min-w-0 space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -127,10 +127,10 @@ function APIKeyManagerInner(
                     {key.active ? "Active" : "Revoked"}
                   </Badge>
                 </div>
-                <p className="font-mono text-xs text-[hsl(var(--la-muted-foreground))] break-all">
+                <p className="font-mono text-xs text-muted-foreground break-all">
                   {maskedKey(key.key)}
                 </p>
-                <div className="flex flex-wrap gap-2 text-xs text-[hsl(var(--la-muted-foreground))]">
+                <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                   <span>Created: {key.createdAt}</span>
                   {key.lastUsedAt && <span>Last used: {key.lastUsedAt}</span>}
                   {key.expiresAt && <span>Expires: {key.expiresAt}</span>}

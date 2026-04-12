@@ -128,12 +128,12 @@ const typeIcons: Record<ActivityFeedItem["type"], React.ReactNode> = {
 };
 
 const typeColors: Record<ActivityFeedItem["type"], string> = {
-  comment: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/30",
-  update: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30",
-  create: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
-  delete: "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30",
-  mention: "text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/30",
-  status: "text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/30",
+  comment: "text-info dark:text-info bg-info dark:bg-info/30",
+  update: "text-warning dark:text-warning bg-warning/5 dark:bg-warning/10",
+  create: "text-success bg-success/5 dark:bg-success/10",
+  delete: "text-destructive dark:text-destructive bg-destructive/5 dark:bg-destructive/10",
+  mention: "text-primary dark:text-primary bg-primary dark:bg-primary/30",
+  status: "text-muted-foreground dark:text-muted-foreground bg-muted dark:bg-muted",
 };
 
 function ActivityFeed({
@@ -154,7 +154,7 @@ function ActivityFeed({
             key={item.id}
             onClick={() => onItemClick?.(item)}
             className={cn(
-              "w-full flex items-start gap-3 rounded-[--la-radius] p-3 text-left transition-colors hover:bg-[hsl(var(--la-accent))]",
+              "w-full flex items-start gap-3 rounded-[--la-radius] p-3 text-left transition-colors hover:bg-accent",
               item.href && "cursor-pointer",
             )}
           >

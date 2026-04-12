@@ -30,7 +30,7 @@ const classes = computed(() => cn("inline-flex items-center gap-1.5", props.clas
       />
       <span :class="cn('relative inline-flex h-2 w-2 rounded-full', statusColors[status])" />
     </span>
-    <span v-if="label" class="text-xs font-medium text-[hsl(var(--la-muted-foreground))]">{{ label }}</span>
+    <span v-if="label" class="text-xs font-medium text-muted-foreground">{{ label }}</span>
     <slot />
   </span>
 </template>

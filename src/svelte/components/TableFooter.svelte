@@ -11,7 +11,7 @@ import { cn } from "../utils/cn";
 
 
 let classes = $derived(
-cn("border-t border-[hsl(var(--la-border))] bg-[hsl(var(--la-muted)/0.5)] font-medium [&>tr]:last:border-b-0", className),
+cn("border-t border-border bg-muted/50 font-medium [&>tr]:last:border-b-0", className),
 );
 </script>
 

@@ -62,7 +62,7 @@ const budgetData: TreeMapNode[] = [
 ];
 
 const marketShareData: TreeMapNode[] = [
-  { id: "1", name: "LaunchApp", value: 38, color: "hsl(var(--la-primary))" },
+  { id: "1", name: "LaunchApp", value: 38, color: "var(--la-primary)" },
   { id: "2", name: "Competitor A", value: 27 },
   { id: "3", name: "Competitor B", value: 19 },
   { id: "4", name: "Competitor C", value: 11 },

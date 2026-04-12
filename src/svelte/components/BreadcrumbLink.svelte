@@ -11,7 +11,7 @@ import { cn } from "../utils/cn";
 
 
 let classes = $derived(
-cn("transition-colors hover:text-[hsl(var(--la-foreground))]", className),
+cn("transition-colors hover:text-foreground", className),
 );
 </script>
 

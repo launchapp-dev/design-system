@@ -67,8 +67,8 @@ const sections: IconOnlyNavSection[] = [
 ];
 
 const Logo = () => (
-  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[hsl(var(--la-primary))]">
-    <span className="text-xs font-bold text-[hsl(var(--la-primary-foreground))]">A</span>
+  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
+    <span className="text-xs font-bold text-primary-foreground">A</span>
   </div>
 );
 
@@ -79,17 +79,17 @@ const meta: Meta<typeof IconOnlySidebarShell> = {
   parameters: { layout: "fullscreen" },
   decorators: [
     (Story) => (
-      <div className="h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="h-[600px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),
   ],
   render: (args) => (
     <IconOnlySidebarShell {...args}>
-      <div className="flex h-full items-center justify-center bg-[hsl(var(--la-muted))]">
+      <div className="flex h-full items-center justify-center bg-muted">
         <div className="text-center">
           <p className="text-sm font-medium">App Content</p>
-          <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">Icon-only sidebar shell</p>
+          <p className="mt-1 text-sm text-muted-foreground">Icon-only sidebar shell</p>
         </div>
       </div>
     </IconOnlySidebarShell>
@@ -117,7 +117,7 @@ export const NoUser: Story = {
 export const DarkMode: Story = {
   decorators: [
     (Story) => (
-      <div className="dark h-[600px] w-full overflow-hidden rounded-lg border border-[hsl(var(--la-border))]">
+      <div className="dark h-[600px] w-full overflow-hidden rounded-lg border border-border">
         <Story />
       </div>
     ),

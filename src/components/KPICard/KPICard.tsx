@@ -17,7 +17,7 @@ function KPICard({
   trend,
   trendLabel,
   sparklineData,
-  sparklineColor = "hsl(var(--la-chart-1))",
+  sparklineColor = "var(--la-chart-1)",
   className,
   ref,
   ...props
@@ -75,7 +75,7 @@ function KPICard({
             <span
               aria-hidden="true"
               className={cn("text-xs font-medium", {
-                "text-emerald-600 dark:text-emerald-400": trend === "up",
+                "text-success": trend === "up",
                 "text-destructive": trend === "down",
                 "text-muted-foreground": trend === "neutral",
               })}
@@ -86,7 +86,7 @@ function KPICard({
           {trendLabel ? (
             <span
               className={cn("text-xs", {
-                "text-emerald-600 dark:text-emerald-400": trend === "up",
+                "text-success": trend === "up",
                 "text-destructive": trend === "down",
                 "text-muted-foreground": trend === "neutral" || trend === undefined,
               })}

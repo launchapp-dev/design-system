@@ -125,27 +125,27 @@ export interface ChangelogFeedProps extends React.HTMLAttributes<HTMLDivElement>
 const typeConfig: Record<ChangelogEntryType, { label: string; color: string; icon: React.ReactNode }> = {
   feature: {
     label: "Feature",
-    color: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+    color: "bg-success/10 text-success border-success/20",
     icon: <TagIcon className="h-4 w-4" />,
   },
   improvement: {
     label: "Improvement",
-    color: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+    color: "bg-info/10 text-info border-info/20",
     icon: <TagIcon className="h-4 w-4" />,
   },
   fix: {
     label: "Fix",
-    color: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+    color: "bg-warning/10 text-warning border-warning/20",
     icon: <TagIcon className="h-4 w-4" />,
   },
   security: {
     label: "Security",
-    color: "bg-red-500/10 text-red-600 border-red-500/20",
+    color: "bg-destructive/10 text-destructive border-destructive/20",
     icon: <TagIcon className="h-4 w-4" />,
   },
   breaking: {
     label: "Breaking",
-    color: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+    color: "bg-primary/10 text-primary border-primary/20",
     icon: <TagIcon className="h-4 w-4" />,
   },
 };

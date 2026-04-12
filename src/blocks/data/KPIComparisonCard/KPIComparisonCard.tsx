@@ -50,15 +50,15 @@ function KPIComparisonCard({
   const isNegative = inverted ? changeDirection === "up" : changeDirection === "down";
 
   const colorClass = isPositive
-    ? "text-emerald-600 dark:text-emerald-400"
+    ? "text-success"
     : isNegative
       ? "text-destructive"
       : "text-muted-foreground";
 
   const bgClass = isPositive
-    ? "bg-emerald-50 dark:bg-emerald-950/30"
+    ? "bg-success/5 dark:bg-success/10"
     : isNegative
-      ? "bg-red-50 dark:bg-red-950/30"
+      ? "bg-destructive/5 dark:bg-destructive/10"
       : "bg-muted";
 
   const Icon =

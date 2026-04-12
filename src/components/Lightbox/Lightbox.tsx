@@ -48,7 +48,7 @@ const lightboxImageVariants = cva(
 );
 
 const lightboxThumbnailVariants = cva(
-  "relative shrink-0 overflow-hidden rounded-md border-2 transition-all duration-200 cursor-pointer opacity-60 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
+  "relative shrink-0 overflow-hidden rounded-md border-2 transition-all duration-200 cursor-pointer opacity-60 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-black",
   {
     variants: {
       size: {
@@ -57,7 +57,7 @@ const lightboxThumbnailVariants = cva(
         lg: "h-20 w-20",
       },
       isActive: {
-        true: "opacity-100 border-[hsl(var(--la-primary))]",
+        true: "opacity-100 border-primary",
         false: "border-transparent",
       },
     },
@@ -305,7 +305,7 @@ function Lightbox({
             className={cn(
               "absolute right-4 top-4 z-10 rounded-full p-2 transition-colors",
               "bg-black/50 text-white hover:bg-black/70",
-              "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
+              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-black",
               "min-h-[44px] min-w-[44px] flex items-center justify-center",
             )}
             aria-label="Close lightbox"
@@ -348,7 +348,7 @@ function Lightbox({
                   isLightVariant
                     ? "bg-black/10 text-foreground hover:bg-black/20"
                     : "bg-black/50 text-white hover:bg-black/70",
-                  "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
+                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-black",
                   "min-h-[44px] min-w-[44px] flex items-center justify-center",
                 )}
                 aria-label="Previous image"
@@ -375,7 +375,7 @@ function Lightbox({
                   isLightVariant
                     ? "bg-black/10 text-foreground hover:bg-black/20"
                     : "bg-black/50 text-white hover:bg-black/70",
-                  "focus:outline-none focus:ring-2 focus:ring-[hsl(var(--la-ring))] focus:ring-offset-2 focus:ring-offset-black",
+                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-black",
                   "min-h-[44px] min-w-[44px] flex items-center justify-center",
                 )}
                 aria-label="Next image"

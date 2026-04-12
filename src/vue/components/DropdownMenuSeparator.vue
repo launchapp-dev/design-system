@@ -7,7 +7,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const classes = computed(() => cn("-mx-1 my-1 h-px bg-[hsl(var(--la-muted))]", props.class));
+const classes = computed(() => cn("-mx-1 my-1 h-px bg-muted", props.class));
 </script>
 
 <template>

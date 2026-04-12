@@ -105,9 +105,9 @@ function MetricCards({
                       className={cn(
                         "gap-1 text-xs font-medium",
                         item.changeType === "up" &&
-                          "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
+                          "text-success bg-success/5 dark:bg-success/10",
                         item.changeType === "down" &&
-                          "text-destructive bg-red-50 dark:bg-red-950/30",
+                          "text-destructive bg-destructive/5 dark:bg-destructive/10",
                         item.changeType === "neutral" && "text-muted-foreground",
                       )}
                     >
@@ -146,9 +146,9 @@ function MetricCards({
                       className={cn(
                         "gap-1 text-xs font-medium",
                         item.changeType === "up" &&
-                          "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30",
+                          "text-success bg-success/5 dark:bg-success/10",
                         item.changeType === "down" &&
-                          "text-destructive bg-red-50 dark:bg-red-950/30",
+                          "text-destructive bg-destructive/5 dark:bg-destructive/10",
                         item.changeType === "neutral" && "text-muted-foreground",
                       )}
                     >

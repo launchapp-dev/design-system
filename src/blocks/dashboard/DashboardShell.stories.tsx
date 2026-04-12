@@ -171,7 +171,7 @@ const SampleContent = () => (
   <div className="space-y-6">
     <div>
       <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-      <p className="text-[hsl(var(--la-muted-foreground))]">
+      <p className="text-muted-foreground">
         Welcome back! Here&apos;s an overview of your business.
       </p>
     </div>
@@ -188,10 +188,10 @@ const SampleContent = () => (
           <div className="space-y-4">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="flex items-center gap-4">
-                <div className="h-9 w-9 rounded-full bg-[hsl(var(--la-muted))]" />
+                <div className="h-9 w-9 rounded-full bg-muted" />
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium">Customer {i}</p>
-                  <p className="text-xs text-[hsl(var(--la-muted-foreground))]">
+                  <p className="text-xs text-muted-foreground">
                     customer{i}@example.com
                   </p>
                 </div>
@@ -208,8 +208,8 @@ const SampleContent = () => (
           <CardDescription>Your monthly performance metrics.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-[200px] flex items-center justify-center border-2 border-dashed border-[hsl(var(--la-border))] rounded-[--la-radius]">
-            <p className="text-[hsl(var(--la-muted-foreground))]">Chart placeholder</p>
+          <div className="h-[200px] flex items-center justify-center border-2 border-dashed border-border rounded-[--la-radius]">
+            <p className="text-muted-foreground">Chart placeholder</p>
           </div>
         </CardContent>
       </Card>
@@ -246,14 +246,14 @@ export const WithCustomLogo: Story = {
     breadcrumbs: [{ label: "Dashboard" }],
     logo: (
       <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded-lg bg-[hsl(var(--la-primary))] flex items-center justify-center text-[hsl(var(--la-primary-foreground))] font-bold">
+        <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold">
           A
         </div>
         <span className="font-semibold text-lg">Acme Inc</span>
       </div>
     ),
     logoCollapsed: (
-      <div className="h-8 w-8 rounded-lg bg-[hsl(var(--la-primary))] flex items-center justify-center text-[hsl(var(--la-primary-foreground))] font-bold">
+      <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold">
         A
       </div>
     ),
@@ -300,7 +300,7 @@ export const WithNestedNavigation: Story = {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Orders</h1>
-          <p className="text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-muted-foreground">
             Manage your orders and track shipments.
           </p>
         </div>
@@ -309,7 +309,7 @@ export const WithNestedNavigation: Story = {
             <CardTitle>Recent Orders</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-[hsl(var(--la-muted-foreground))]">Order list would appear here.</p>
+            <p className="text-muted-foreground">Order list would appear here.</p>
           </CardContent>
         </Card>
       </div>
@@ -334,12 +334,12 @@ export const WithHeaderActions: Story = {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Products</h1>
-            <p className="text-[hsl(var(--la-muted-foreground))]">Manage your product catalog.</p>
+            <p className="text-muted-foreground">Manage your product catalog.</p>
           </div>
         </div>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-[hsl(var(--la-muted-foreground))]">
+            <p className="text-muted-foreground">
               Product grid would appear here.
             </p>
           </CardContent>
@@ -388,7 +388,7 @@ export const WithTabs: Story = {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-          <p className="text-[hsl(var(--la-muted-foreground))]">
+          <p className="text-muted-foreground">
             Manage your account settings and preferences.
           </p>
         </div>
@@ -396,25 +396,25 @@ export const WithTabs: Story = {
           <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0 h-auto">
             <TabsTrigger
               value="general"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
             >
               General
             </TabsTrigger>
             <TabsTrigger
               value="notifications"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
             >
               Notifications
             </TabsTrigger>
             <TabsTrigger
               value="security"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
             >
               Security
             </TabsTrigger>
             <TabsTrigger
               value="billing"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[hsl(var(--la-primary))] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-2"
             >
               Billing
             </TabsTrigger>
@@ -426,7 +426,7 @@ export const WithTabs: Story = {
             <CardDescription>Configure your general account preferences.</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-[hsl(var(--la-muted-foreground))]">
+            <p className="text-muted-foreground">
               Settings form would appear here. This demonstrates the DashboardShell with tabs
               integrated into the main content area.
             </p>

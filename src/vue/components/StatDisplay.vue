@@ -15,9 +15,9 @@ const classes = computed(() => cn("flex flex-col gap-1", props.class));
 
 <template>
   <div :class="classes">
-    <span class="text-sm text-[hsl(var(--la-muted-foreground))]">{{ label }}</span>
-    <span class="text-2xl font-semibold tabular-nums text-[hsl(var(--la-foreground))]">{{ value }}</span>
-    <span v-if="sublabel" class="text-xs text-[hsl(var(--la-muted-foreground))]">{{ sublabel }}</span>
+    <span class="text-sm text-muted-foreground">{{ label }}</span>
+    <span class="text-2xl font-semibold tabular-nums text-foreground">{{ value }}</span>
+    <span v-if="sublabel" class="text-xs text-muted-foreground">{{ sublabel }}</span>
     <slot />
   </div>
 </template>

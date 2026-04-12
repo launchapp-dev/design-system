@@ -51,7 +51,7 @@ const BANNER_DEFAULT_CATEGORIES: CookieConsentBannerCategory[] = [
 const cookieConsentBannerVariants = cva(
   [
     "fixed left-0 right-0 z-50 w-full",
-    "border-[hsl(var(--la-border))] bg-[hsl(var(--la-background))]",
+    "border-border bg-background",
     "shadow-lg",
   ],
   {
@@ -119,8 +119,8 @@ function CookieConsentBanner({
         {!showCustomize ? (
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-[hsl(var(--la-foreground))]">{title}</p>
-              <p className="mt-1 text-sm text-[hsl(var(--la-muted-foreground))]">{description}</p>
+              <p className="text-sm font-semibold text-foreground">{title}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{description}</p>
             </div>
             <div className="flex shrink-0 flex-wrap items-center gap-2">
               <Button variant="ghost" size="sm" onClick={() => setShowCustomize(true)}>
@@ -137,7 +137,7 @@ function CookieConsentBanner({
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-[hsl(var(--la-foreground))]">
+              <p className="text-sm font-semibold text-foreground">
                 Cookie Preferences
               </p>
               <Button
@@ -153,20 +153,20 @@ function CookieConsentBanner({
               {categories.map((category) => (
                 <div
                   key={category.id}
-                  className="flex flex-col sm:flex-row items-start justify-between gap-3 rounded-lg border border-[hsl(var(--la-border))] p-3"
+                  className="flex flex-col sm:flex-row items-start justify-between gap-3 rounded-lg border border-border p-3"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-medium text-[hsl(var(--la-foreground))]">
+                      <span className="text-xs font-medium text-foreground">
                         {category.name}
                       </span>
                       {category.required && (
-                        <span className="rounded-full bg-[hsl(var(--la-muted))] px-1.5 py-0.5 text-[10px] text-[hsl(var(--la-muted-foreground))]">
+                        <span className="rounded-full bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
                           Required
                         </span>
                       )}
                     </div>
-                    <p className="mt-0.5 text-[11px] text-[hsl(var(--la-muted-foreground))]">
+                    <p className="mt-0.5 text-[11px] text-muted-foreground">
                       {category.description}
                     </p>
                   </div>
@@ -178,11 +178,11 @@ function CookieConsentBanner({
                     className={cn(
                       "peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
                       "transition-colors focus-visible:outline-none focus-visible:ring-2",
-                      "focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2",
-                      "focus-visible:ring-offset-[hsl(var(--la-background))]",
+                      "focus-visible:ring-ring focus-visible:ring-offset-2",
+                      "focus-visible:ring-offset-background",
                       "disabled:cursor-not-allowed disabled:opacity-50",
-                      "data-[state=checked]:bg-[hsl(var(--la-primary))]",
-                      "data-[state=unchecked]:bg-[hsl(var(--la-input))]",
+                      "data-[state=checked]:bg-primary",
+                      "data-[state=unchecked]:bg-input",
                     )}
                   >
                     <SwitchPrimitive.Thumb

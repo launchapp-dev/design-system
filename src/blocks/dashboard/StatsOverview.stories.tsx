@@ -10,7 +10,7 @@ const kpiItems = [
     sparklineData: [
       42000, 46000, 44000, 51000, 55000, 58000, 62000, 68000, 71000, 74000, 79000, 89600,
     ],
-    sparklineColor: "hsl(var(--la-chart-1))",
+    sparklineColor: "var(--la-chart-1)",
   },
   {
     label: "Active Users",
@@ -18,7 +18,7 @@ const kpiItems = [
     trend: "up" as const,
     trendLabel: "+4.7% vs last month",
     sparklineData: [3800, 3900, 4100, 4000, 4300, 4500, 4600, 4800, 4900, 5000, 5050, 5100],
-    sparklineColor: "hsl(var(--la-chart-2))",
+    sparklineColor: "var(--la-chart-2)",
   },
   {
     label: "Conversion Rate",
@@ -26,7 +26,7 @@ const kpiItems = [
     trend: "neutral" as const,
     trendLabel: "+0.1% vs last month",
     sparklineData: [2.8, 3.1, 2.9, 3.4, 3.2, 3.0, 3.3, 3.1, 3.4, 3.2, 3.3, 3.24],
-    sparklineColor: "hsl(var(--la-chart-3))",
+    sparklineColor: "var(--la-chart-3)",
   },
   {
     label: "User Churn",
@@ -34,7 +34,7 @@ const kpiItems = [
     trend: "down" as const,
     trendLabel: "-9.1% vs last month",
     sparklineData: [320, 290, 350, 310, 380, 420, 350, 280, 310, 270, 260, 240],
-    sparklineColor: "hsl(var(--la-destructive))",
+    sparklineColor: "var(--la-destructive)",
   },
 ];
 
@@ -101,8 +101,8 @@ export const WithTitleAndChart: Story = {
     cols: 4,
     chartData: trendChartData,
     chartKeys: [
-      { key: "revenue", color: "hsl(var(--la-chart-1))" },
-      { key: "users", color: "hsl(var(--la-chart-2))" },
+      { key: "revenue", color: "var(--la-chart-1)" },
+      { key: "users", color: "var(--la-chart-2)" },
     ],
   },
 };
@@ -128,8 +128,8 @@ export const DarkMode: Story = {
     cols: 4,
     chartData: trendChartData,
     chartKeys: [
-      { key: "revenue", color: "hsl(var(--la-chart-1))" },
-      { key: "users", color: "hsl(var(--la-chart-2))" },
+      { key: "revenue", color: "var(--la-chart-1)" },
+      { key: "users", color: "var(--la-chart-2)" },
     ],
   },
 };
@@ -157,8 +157,8 @@ export const Tablet: Story = {
     cols: 4,
     chartData: trendChartData,
     chartKeys: [
-      { key: "revenue", color: "hsl(var(--la-chart-1))" },
-      { key: "users", color: "hsl(var(--la-chart-2))" },
+      { key: "revenue", color: "var(--la-chart-1)" },
+      { key: "users", color: "var(--la-chart-2)" },
     ],
   },
 };

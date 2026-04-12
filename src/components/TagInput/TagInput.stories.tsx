@@ -47,7 +47,7 @@ export const Default: Story = {
         <p
           style={{
             fontSize: "12px",
-            color: "hsl(var(--la-muted-foreground))",
+            color: "var(--la-muted-foreground)",
             marginBottom: "8px",
           }}
         >
@@ -63,7 +63,7 @@ export const Default: Story = {
           style={{
             marginTop: "12px",
             fontSize: "12px",
-            color: "hsl(var(--la-muted-foreground))",
+            color: "var(--la-muted-foreground)",
           }}
         >
           Tags: {tags.join(", ") || "(none)"}
@@ -81,7 +81,7 @@ export const AutocompleteOnly: Story = {
         <p
           style={{
             fontSize: "12px",
-            color: "hsl(var(--la-muted-foreground))",
+            color: "var(--la-muted-foreground)",
             marginBottom: "8px",
           }}
         >
@@ -108,7 +108,7 @@ export const WithMaxTags: Story = {
         <p
           style={{
             fontSize: "12px",
-            color: "hsl(var(--la-muted-foreground))",
+            color: "var(--la-muted-foreground)",
             marginBottom: "8px",
           }}
         >
@@ -242,7 +242,7 @@ export const WithError: Story = {
           style={{
             marginTop: "4px",
             fontSize: "12px",
-            color: "hsl(var(--la-destructive))",
+            color: "var(--la-destructive)",
           }}
         >
           At least one tag is required.
@@ -289,7 +289,7 @@ export const WithReactHookForm: Story = {
                         style={{
                           marginTop: "4px",
                           fontSize: "12px",
-                          color: "hsl(var(--la-destructive))",
+                          color: "var(--la-destructive)",
                         }}
                       >
                         {fieldState.error.message}
@@ -305,8 +305,8 @@ export const WithReactHookForm: Story = {
             style={{
               padding: "8px 16px",
               borderRadius: "6px",
-              background: "hsl(var(--la-primary))",
-              color: "hsl(var(--la-primary-foreground))",
+              background: "var(--la-primary)",
+              color: "var(--la-primary-foreground)",
               border: "none",
               cursor: "pointer",
               fontSize: "14px",
@@ -325,7 +325,7 @@ export const WithReactHookForm: Story = {
           style={{
             marginTop: "8px",
             fontSize: "12px",
-            color: "hsl(var(--la-muted-foreground))",
+            color: "var(--la-muted-foreground)",
           }}
         >
           Current: {skills.join(", ") || "(none)"}

@@ -10,7 +10,7 @@ import { cn } from "../utils/cn";
 
 
 
-let classes = $derived(cn("font-normal text-[hsl(var(--la-foreground))]", className));
+let classes = $derived(cn("font-normal text-foreground", className));
 </script>
 
 <span aria-current="page" class={classes} {...restProps}>

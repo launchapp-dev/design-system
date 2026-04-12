@@ -7,7 +7,7 @@ import { ScrollArea } from "../ScrollArea";
 import { Separator } from "../Separator";
 
 const notificationBellVariants = cva(
-  "relative inline-flex items-center justify-center rounded-[--la-radius] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "relative inline-flex items-center justify-center rounded-[--la-radius] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       size: {
@@ -17,10 +17,10 @@ const notificationBellVariants = cva(
       },
       variant: {
         default:
-          "bg-[hsl(var(--la-primary))] text-[hsl(var(--la-primary-foreground))] hover:bg-[hsl(var(--la-primary)/0.9)]",
+          "bg-primary text-primary-foreground hover:bg-primary/90",
         outline:
-          "border border-[hsl(var(--la-input))] bg-[hsl(var(--la-background))] hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-        ghost: "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
       },
     },
     defaultVariants: {
@@ -31,7 +31,7 @@ const notificationBellVariants = cva(
 );
 
 const badgeVariants = cva(
-  "absolute flex items-center justify-center rounded-full bg-[hsl(var(--la-destructive))] text-[hsl(var(--la-destructive-foreground))] font-bold pointer-events-none",
+  "absolute flex items-center justify-center rounded-full bg-destructive text-destructive-foreground font-bold pointer-events-none",
   {
     variants: {
       size: {
@@ -144,7 +144,7 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
         <PopoverPrimitive.Portal>
           <PopoverPrimitive.Content
             className={cn(
-              "z-50 w-80 rounded-lg border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] p-0 text-[hsl(var(--la-popover-foreground))] shadow-lg outline-none",
+              "z-50 w-80 rounded-lg border border-border bg-popover p-0 text-popover-foreground shadow-lg outline-none",
               "data-[state=open]:animate-scale-in data-[state=closed]:animate-fade-out",
               "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
               contentClassName,
@@ -154,9 +154,9 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
           >
             <div className="flex items-center justify-between px-4 py-3">
               <div className="flex items-center gap-2">
-                <h2 className="text-sm font-semibold text-[hsl(var(--la-foreground))]">{title}</h2>
+                <h2 className="text-sm font-semibold text-foreground">{title}</h2>
                 {unreadCount > 0 && (
-                  <span className="inline-flex items-center rounded-full bg-[hsl(var(--la-primary))] px-2 py-0.5 text-xs font-medium text-[hsl(var(--la-primary-foreground))]">
+                  <span className="inline-flex items-center rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
                     {unreadCount} new
                   </span>
                 )}
@@ -166,7 +166,7 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
                   variant="ghost"
                   size="sm"
                   onClick={onReadAll}
-                  className="h-auto px-2 py-1 text-xs text-[hsl(var(--la-muted-foreground))] hover:text-[hsl(var(--la-foreground))]"
+                  className="h-auto px-2 py-1 text-xs text-muted-foreground hover:text-foreground"
                 >
                   Mark all read
                 </Button>
@@ -175,7 +175,7 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
             <Separator />
             <ScrollArea className="max-h-80">
               {notifications.length === 0 ? (
-                <p className="px-4 py-8 text-center text-sm text-[hsl(var(--la-muted-foreground))]">
+                <p className="px-4 py-8 text-center text-sm text-muted-foreground">
                   {emptyMessage}
                 </p>
               ) : (
@@ -185,15 +185,15 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
                       <article
                         className={cn(
                           "flex items-start gap-3 px-4 py-3 transition-colors",
-                          "focus-within:bg-[hsl(var(--la-accent))]",
-                          !notification.read && "bg-[hsl(var(--la-primary)/0.05)]",
+                          "focus-within:bg-accent",
+                          !notification.read && "bg-primary/5",
                         )}
                       >
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-col sm:flex-row items-start justify-between gap-2">
                             <p
                               className={cn(
-                                "text-sm text-[hsl(var(--la-foreground))]",
+                                "text-sm text-foreground",
                                 !notification.read && "font-semibold",
                               )}
                             >
@@ -201,19 +201,19 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
                             </p>
                             {!notification.read && (
                               <span
-                                className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[hsl(var(--la-primary))]"
+                                className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
                                 aria-hidden="true"
                               />
                             )}
                           </div>
                           {notification.description && (
-                            <p className="mt-0.5 line-clamp-2 text-xs text-[hsl(var(--la-muted-foreground))]">
+                            <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">
                               {notification.description}
                             </p>
                           )}
                           <div className="mt-1.5 flex items-center gap-2">
                             <time
-                              className="text-xs text-[hsl(var(--la-muted-foreground))]"
+                              className="text-xs text-muted-foreground"
                               dateTime={notification.timestamp}
                             >
                               {notification.timestamp}
@@ -223,7 +223,7 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => onRead(notification.id)}
-                                className="h-auto gap-1 px-1.5 py-0.5 text-xs text-[hsl(var(--la-muted-foreground))] hover:text-[hsl(var(--la-foreground))]"
+                                className="h-auto gap-1 px-1.5 py-0.5 text-xs text-muted-foreground hover:text-foreground"
                               >
                                 <CheckIcon />
                                 Mark as read
@@ -240,7 +240,7 @@ const NotificationBell = React.forwardRef<HTMLButtonElement, NotificationBellPro
             {notifications.length > maxVisible && (
               <>
                 <Separator />
-                <div className="px-4 py-2 text-center text-xs text-[hsl(var(--la-muted-foreground))]">
+                <div className="px-4 py-2 text-center text-xs text-muted-foreground">
                   {notifications.length - maxVisible} more notifications
                 </div>
               </>

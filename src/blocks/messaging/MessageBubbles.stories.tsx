@@ -66,7 +66,7 @@ export const Default: Story = {
     <div
       style={{
         maxWidth: 480,
-        border: "1px solid hsl(var(--la-border))",
+        border: "1px solid var(--la-border)",
         borderRadius: "0.75rem",
         overflow: "hidden",
       }}
@@ -85,7 +85,7 @@ export const DarkMode: Story = {
       <div
         style={{
           maxWidth: 480,
-          border: "1px solid hsl(var(--la-border))",
+          border: "1px solid var(--la-border)",
           borderRadius: "0.75rem",
           overflow: "hidden",
         }}

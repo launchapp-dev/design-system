@@ -17,7 +17,7 @@ export const FadeTransition: StoryObj = {
           onClick={() => setShow((s) => !s)}
           style={{
             padding: "8px 16px",
-            background: "hsl(var(--la-primary))",
+            background: "var(--la-primary)",
             color: "white",
             border: "none",
             borderRadius: "var(--la-radius)",
@@ -32,8 +32,8 @@ export const FadeTransition: StoryObj = {
           show={show}
           style={{
             padding: 32,
-            background: "hsl(var(--la-card))",
-            border: "1px solid hsl(var(--la-border))",
+            background: "var(--la-card)",
+            border: "1px solid var(--la-border)",
             borderRadius: "var(--la-radius)",
           }}
         >
@@ -58,8 +58,8 @@ export const SlideTransition: StoryObj = {
               onClick={() => setShow((s) => !s)}
               style={{
                 padding: "6px 12px",
-                background: "hsl(var(--la-secondary))",
-                border: "1px solid hsl(var(--la-border))",
+                background: "var(--la-secondary)",
+                border: "1px solid var(--la-border)",
                 borderRadius: "var(--la-radius)",
                 cursor: "pointer",
                 fontSize: 12,
@@ -87,8 +87,8 @@ export const SlideTransition: StoryObj = {
               show={show}
               style={{
                 padding: 24,
-                background: "hsl(var(--la-card))",
-                border: "1px solid hsl(var(--la-border))",
+                background: "var(--la-card)",
+                border: "1px solid var(--la-border)",
                 borderRadius: "var(--la-radius)",
               }}
             >
@@ -112,7 +112,7 @@ export const ScaleTransition: StoryObj = {
           onClick={() => setShow((s) => !s)}
           style={{
             padding: "8px 16px",
-            background: "hsl(var(--la-primary))",
+            background: "var(--la-primary)",
             color: "white",
             border: "none",
             borderRadius: "var(--la-radius)",
@@ -127,8 +127,8 @@ export const ScaleTransition: StoryObj = {
           show={show}
           style={{
             padding: 32,
-            background: "hsl(var(--la-card))",
-            border: "1px solid hsl(var(--la-border))",
+            background: "var(--la-card)",
+            border: "1px solid var(--la-border)",
             borderRadius: "var(--la-radius)",
           }}
         >
@@ -150,7 +150,7 @@ export const MorphTransitionStory: StoryObj = {
           onClick={() => setIsActive((s) => !s)}
           style={{
             padding: "8px 16px",
-            background: "hsl(var(--la-primary))",
+            background: "var(--la-primary)",
             color: "white",
             border: "none",
             borderRadius: "var(--la-radius)",
@@ -164,11 +164,11 @@ export const MorphTransitionStory: StoryObj = {
           isActive={isActive}
           style={{
             padding: 32,
-            background: isActive ? "hsl(var(--la-primary))" : "hsl(var(--la-card))",
+            background: isActive ? "var(--la-primary)" : "var(--la-card)",
             color: isActive
-              ? "hsl(var(--la-primary-foreground))"
-              : "hsl(var(--la-card-foreground))",
-            border: "1px solid hsl(var(--la-border))",
+              ? "var(--la-primary-foreground)"
+              : "var(--la-card-foreground)",
+            border: "1px solid var(--la-border)",
             borderRadius: "var(--la-radius)",
           }}
         >
@@ -194,8 +194,8 @@ export const RouteTransitionStory: StoryObj = {
           <div
             style={{
               padding: 24,
-              background: "hsl(var(--la-card))",
-              border: "1px solid hsl(var(--la-border))",
+              background: "var(--la-card)",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
             }}
           >
@@ -210,8 +210,8 @@ export const RouteTransitionStory: StoryObj = {
           <div
             style={{
               padding: 24,
-              background: "hsl(var(--la-card))",
-              border: "1px solid hsl(var(--la-border))",
+              background: "var(--la-card)",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
             }}
           >
@@ -226,8 +226,8 @@ export const RouteTransitionStory: StoryObj = {
           <div
             style={{
               padding: 24,
-              background: "hsl(var(--la-card))",
-              border: "1px solid hsl(var(--la-border))",
+              background: "var(--la-card)",
+              border: "1px solid var(--la-border)",
               borderRadius: "var(--la-radius)",
             }}
           >
@@ -248,9 +248,9 @@ export const RouteTransitionStory: StoryObj = {
               style={{
                 padding: "6px 12px",
                 background:
-                  route === r.path ? "hsl(var(--la-primary))" : "hsl(var(--la-secondary))",
+                  route === r.path ? "var(--la-primary)" : "var(--la-secondary)",
                 color: route === r.path ? "white" : "inherit",
-                border: "1px solid hsl(var(--la-border))",
+                border: "1px solid var(--la-border)",
                 borderRadius: "var(--la-radius)",
                 cursor: "pointer",
                 textTransform: "capitalize",
@@ -315,9 +315,9 @@ export const AllTransitions: StoryObj = {
               onClick={() => setActiveTab(i)}
               style={{
                 padding: "6px 12px",
-                background: activeTab === i ? "hsl(var(--la-primary))" : "hsl(var(--la-secondary))",
+                background: activeTab === i ? "var(--la-primary)" : "var(--la-secondary)",
                 color: activeTab === i ? "white" : "inherit",
-                border: "1px solid hsl(var(--la-border))",
+                border: "1px solid var(--la-border)",
                 borderRadius: "var(--la-radius)",
                 cursor: "pointer",
               }}
@@ -334,8 +334,8 @@ export const AllTransitions: StoryObj = {
 
 const cardStyle: React.CSSProperties = {
   padding: 32,
-  background: "hsl(var(--la-card))",
-  border: "1px solid hsl(var(--la-border))",
+  background: "var(--la-card)",
+  border: "1px solid var(--la-border)",
   borderRadius: "var(--la-radius)",
 };
 
@@ -352,7 +352,7 @@ export const ReducedMotion: StoryObj = {
           onClick={() => setShow((s) => !s)}
           style={{
             padding: "8px 16px",
-            background: "hsl(var(--la-primary))",
+            background: "var(--la-primary)",
             color: "white",
             border: "none",
             borderRadius: "var(--la-radius)",

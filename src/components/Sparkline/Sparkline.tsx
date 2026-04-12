@@ -21,9 +21,9 @@ const sparklineVariants = cva("inline-block", {
       accent:
         "[&_.sparkline-line]:stroke-accent-foreground [&_.sparkline-area]:fill-accent-foreground [&_.sparkline-point]:fill-accent-foreground",
       success:
-        "[&_.sparkline-line]:stroke-[hsl(var(--la-chart-3))] [&_.sparkline-area]:fill-[hsl(var(--la-chart-3))] [&_.sparkline-point]:fill-[hsl(var(--la-chart-3))]",
+        "[&_.sparkline-line]:stroke-chart-3 [&_.sparkline-area]:fill-chart-3 [&_.sparkline-point]:fill-chart-3",
       warning:
-        "[&_.sparkline-line]:stroke-[hsl(var(--la-chart-4))] [&_.sparkline-area]:fill-[hsl(var(--la-chart-4))] [&_.sparkline-point]:fill-[hsl(var(--la-chart-4))]",
+        "[&_.sparkline-line]:stroke-chart-4 [&_.sparkline-area]:fill-chart-4 [&_.sparkline-point]:fill-chart-4",
       chart1:
         "[&_.sparkline-line]:stroke-chart-1 [&_.sparkline-area]:fill-chart-1 [&_.sparkline-point]:fill-chart-1",
       chart2:

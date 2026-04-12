@@ -43,7 +43,7 @@ export const BlurInStory: StoryObj = {
       ))}
       <div>
         <p style={{ fontSize: "12px", marginBottom: "8px" }}>Custom class</p>
-        <BlurIn className="text-2xl font-semibold text-[hsl(var(--la-primary))]">
+        <BlurIn className="text-2xl font-semibold text-primary">
           Styled blur in text
         </BlurIn>
       </div>

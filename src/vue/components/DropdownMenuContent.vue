@@ -41,7 +41,7 @@ const alignClasses = {
 
 const classes = computed(() =>
   cn(
-    "absolute z-50 mt-1 min-w-[8rem] overflow-hidden rounded-[--la-radius] border border-[hsl(var(--la-border))] bg-[hsl(var(--la-popover))] p-1 text-[hsl(var(--la-popover-foreground))] shadow-md",
+    "absolute z-50 mt-1 min-w-[8rem] overflow-hidden rounded-[--la-radius] border border-border bg-popover p-1 text-popover-foreground shadow-md",
     alignClasses[props.align],
     props.class,
   ),

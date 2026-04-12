@@ -35,14 +35,14 @@ export const Default: Story = {
           key={item.title}
           style={{
             padding: "16px",
-            border: "1px solid hsl(var(--la-border))",
+            border: "1px solid var(--la-border)",
             borderRadius: "var(--la-radius)",
-            background: "hsl(var(--la-card))",
+            background: "var(--la-card)",
           }}
         >
           <p style={{ fontWeight: "600", fontSize: "14px" }}>{item.title}</p>
           <p
-            style={{ fontSize: "13px", color: "hsl(var(--la-muted-foreground))", marginTop: "4px" }}
+            style={{ fontSize: "13px", color: "var(--la-muted-foreground)", marginTop: "4px" }}
           >
             {item.description}
           </p>
@@ -64,7 +64,7 @@ export const FastStagger: Story = {
           key={i}
           style={{
             padding: "12px 16px",
-            background: "hsl(var(--la-muted))",
+            background: "var(--la-muted)",
             borderRadius: "var(--la-radius)",
             fontSize: "14px",
           }}
@@ -89,14 +89,14 @@ export const SlowStagger: Story = {
           key={item.title}
           style={{
             padding: "20px",
-            border: "1px solid hsl(var(--la-border))",
+            border: "1px solid var(--la-border)",
             borderRadius: "var(--la-radius)",
-            background: "hsl(var(--la-card))",
+            background: "var(--la-card)",
           }}
         >
           <p style={{ fontWeight: "600" }}>{item.title}</p>
           <p
-            style={{ fontSize: "14px", color: "hsl(var(--la-muted-foreground))", marginTop: "4px" }}
+            style={{ fontSize: "14px", color: "var(--la-muted-foreground)", marginTop: "4px" }}
           >
             {item.description}
           </p>

@@ -153,7 +153,7 @@ function OrderSummary({
               <div
                 className={cn(
                   "h-full rounded-full transition-all duration-500",
-                  freeShippingProgress >= 1 ? "bg-emerald-500" : "bg-primary",
+                  freeShippingProgress >= 1 ? "bg-success" : "bg-primary",
                 )}
                 style={{ width: `${freeShippingProgress * 100}%` }}
                 role="progressbar"
@@ -196,7 +196,7 @@ function OrderSummary({
                   </button>
                 )}
               </div>
-              <span className="text-emerald-600">
+              <span className="text-success">
                 -{currency}
                 {discountAmount.toFixed(2)}
               </span>
@@ -206,7 +206,7 @@ function OrderSummary({
           {shippingCost !== undefined && (
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">{shippingLabel}</span>
-              <span className={cn(shippingCost === 0 && "text-emerald-600 font-medium")}>
+              <span className={cn(shippingCost === 0 && "text-success font-medium")}>
                 {shippingCost === 0 ? "FREE" : `${currency}${shippingCost.toFixed(2)}`}
               </span>
             </div>

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const classes = computed(() => cn("text-lg font-semibold text-[hsl(var(--la-foreground))]", props.class));
+const classes = computed(() => cn("text-lg font-semibold text-foreground", props.class));
 </script>
 
 <template>

@@ -135,10 +135,10 @@ const SidebarNavItem = ({ item, collapsed }: SidebarNavItemProps) => {
 
   const itemClass = cn(
     "flex w-full items-center gap-3 rounded-[--la-radius] px-3 py-2 text-sm font-medium transition-colors",
-    "text-[hsl(var(--la-foreground))]",
-    "hover:bg-[hsl(var(--la-accent))] hover:text-[hsl(var(--la-accent-foreground))]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--la-ring))] focus-visible:ring-offset-1",
-    item.isActive && "bg-[hsl(var(--la-accent))] text-[hsl(var(--la-accent-foreground))]",
+    "text-foreground",
+    "hover:bg-accent hover:text-accent-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
+    item.isActive && "bg-accent text-accent-foreground",
     item.disabled && "pointer-events-none opacity-50",
     collapsed && "justify-center px-2"
   );
@@ -269,7 +269,7 @@ const AppShellSidebar = React.forwardRef<HTMLDivElement, AppShellSidebarProps>(
             {navSections?.map((section, sIdx) => (
               <div key={section.title || sIdx}>
                 {section.title && !collapsed && (
-                  <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-[hsl(var(--la-muted-foreground))]">
+                  <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {section.title}
                   </p>
                 )}
@@ -296,7 +296,7 @@ const AppShellSidebar = React.forwardRef<HTMLDivElement, AppShellSidebarProps>(
                   <div className="flex-1 overflow-hidden">
                     <p className="truncate text-sm font-medium">{user.name}</p>
                     {user.email && (
-                      <p className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">
+                      <p className="truncate text-xs text-muted-foreground">
                         {user.email}
                       </p>
                     )}
@@ -313,7 +313,7 @@ const AppShellSidebar = React.forwardRef<HTMLDivElement, AppShellSidebarProps>(
                   <div className="flex-1 overflow-hidden">
                     <p className="truncate text-sm font-medium">{user.name}</p>
                     {user.email && (
-                      <p className="truncate text-xs text-[hsl(var(--la-muted-foreground))]">
+                      <p className="truncate text-xs text-muted-foreground">
                         {user.email}
                       </p>
                     )}
@@ -477,7 +477,7 @@ const AppShell = React.forwardRef<HTMLDivElement, AppShellProps>(
                   >
                     {action.icon}
                     {action.badge != null && (
-                      <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[hsl(var(--la-destructive))] text-[10px] font-bold text-destructive-foreground">
+                      <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
                         {typeof action.badge === "number" && action.badge > 9 ? "9+" : action.badge}
                       </span>
                     )}

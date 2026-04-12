@@ -29,10 +29,10 @@ const emit = defineEmits<{
 
 const classes = computed(() =>
   cn(
-    "flex h-10 w-full rounded-[--la-radius] border bg-[hsl(var(--la-background))] px-3 py-2 text-sm text-[hsl(var(--la-foreground))] placeholder:text-[hsl(var(--la-muted-foreground))] transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+    "flex h-10 w-full rounded-[--la-radius] border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
     props.error
-      ? "border-[hsl(var(--la-destructive))] focus-visible:ring-[hsl(var(--la-destructive))]"
-      : "border-[hsl(var(--la-input))] focus-visible:ring-[hsl(var(--la-ring))]",
+      ? "border-destructive focus-visible:ring-destructive"
+      : "border-input focus-visible:ring-ring",
     props.class,
   ),
 );

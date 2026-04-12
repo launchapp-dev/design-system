@@ -27,7 +27,7 @@ const realtimeTickerVariants = cva(
 const tickerValueVariants = cva("font-semibold tabular-nums", {
   variants: {
     trend: {
-      up: "text-[hsl(var(--la-chart-3))]",
+      up: "text-chart-3",
       down: "text-destructive",
       neutral: "text-card-foreground",
     },
@@ -40,7 +40,7 @@ const tickerValueVariants = cva("font-semibold tabular-nums", {
 const tickerChangeVariants = cva("flex items-center gap-0.5 font-medium tabular-nums", {
   variants: {
     trend: {
-      up: "text-[hsl(var(--la-chart-3))]",
+      up: "text-chart-3",
       down: "text-destructive",
       neutral: "text-muted-foreground",
     },

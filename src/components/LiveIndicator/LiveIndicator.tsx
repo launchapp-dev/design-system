@@ -23,9 +23,9 @@ const liveDotVariants = cva("rounded-full flex-shrink-0", {
       lg: "h-3 w-3",
     },
     status: {
-      online: "bg-green-500",
-      offline: "bg-[hsl(var(--la-muted-foreground))]",
-      degraded: "bg-amber-400",
+      online: "bg-success",
+      offline: "bg-muted-foreground",
+      degraded: "bg-warning",
     },
   },
   defaultVariants: {

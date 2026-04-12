@@ -48,19 +48,19 @@ export const ParticlesStory: StoryObj = {
     <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
       <div>
         <p style={{ fontSize: "12px", marginBottom: "8px" }}>Default particles</p>
-        <div style={{ height: "200px", borderRadius: "8px", border: "1px solid hsl(var(--la-border))" }}>
+        <div style={{ height: "200px", borderRadius: "8px", border: "1px solid var(--la-border)" }}>
           <Particles />
         </div>
       </div>
       <div>
         <p style={{ fontSize: "12px", marginBottom: "8px" }}>Custom color (blue)</p>
-        <div style={{ height: "200px", borderRadius: "8px", border: "1px solid hsl(var(--la-border))" }}>
+        <div style={{ height: "200px", borderRadius: "8px", border: "1px solid var(--la-border)" }}>
           <Particles color="#3b82f6" count={30} size={3} maxSize={6} />
         </div>
       </div>
       <div>
         <p style={{ fontSize: "12px", marginBottom: "8px" }}>Slow particles</p>
-        <div style={{ height: "200px", borderRadius: "8px", border: "1px solid hsl(var(--la-border))" }}>
+        <div style={{ height: "200px", borderRadius: "8px", border: "1px solid var(--la-border)" }}>
           <Particles speed={0.5} count={20} />
         </div>
       </div>
@@ -372,7 +372,7 @@ export const AllAnimatedBackgrounds: StoryObj = {
         <h3 style={{ fontSize: "14px", fontWeight: "600", marginBottom: "12px" }}>
           Particles
         </h3>
-        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden", border: "1px solid hsl(var(--la-border))" }}>
+        <div style={{ height: "200px", borderRadius: "8px", overflow: "hidden", border: "1px solid var(--la-border)" }}>
           <Particles count={40} />
         </div>
       </section>

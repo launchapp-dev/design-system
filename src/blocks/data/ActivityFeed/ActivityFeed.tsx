@@ -81,11 +81,11 @@ const defaultTypeIcons: Record<ActivityType, React.ReactNode> = {
 };
 
 const typeColors: Record<ActivityType, string> = {
-  create: "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 dark:text-emerald-400",
-  update: "bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-400",
-  delete: "bg-red-50 text-red-600 dark:bg-red-950/30 dark:text-red-400",
-  share: "bg-purple-50 text-purple-600 dark:bg-purple-950/30 dark:text-purple-400",
-  comment: "bg-amber-50 text-amber-600 dark:bg-amber-950/30 dark:text-amber-400",
+  create: "bg-success/5 text-success dark:bg-success/10 dark:text-success",
+  update: "bg-info text-info dark:bg-info/30 dark:text-info",
+  delete: "bg-destructive/5 text-destructive dark:bg-destructive/10 dark:text-destructive",
+  share: "bg-primary text-primary dark:bg-primary/30 dark:text-primary",
+  comment: "bg-warning/5 text-warning dark:bg-warning/10 dark:text-warning",
   like: "bg-rose-50 text-rose-600 dark:bg-rose-950/30 dark:text-rose-400",
   custom: "bg-muted text-muted-foreground",
 };

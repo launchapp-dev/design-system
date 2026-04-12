@@ -14,7 +14,7 @@ import { provideAccordionItemContext, useAccordionContext } from "../composables
 provideAccordionItemContext({ value: value });
 const { activeItems } = useAccordionContext();
 let isOpen = $derived(activeItems.value.includes(value));
-let classes = $derived(cn("border-b border-[hsl(var(--la-border))]", className));
+let classes = $derived(cn("border-b border-border", className));
 </script>
 
 <div class={classes} :data-state="isOpen ? 'open' : 'closed'" {...restProps}>

@@ -248,7 +248,7 @@ export const DarkMode: Story = {
         flexDirection: "column",
         gap: "24px",
         padding: "24px",
-        background: "hsl(var(--la-background))",
+        background: "var(--la-background)",
         borderRadius: "8px",
       }}
     >
@@ -269,7 +269,7 @@ export const InContext: Story = {
       <div
         style={{
           padding: "12px 16px",
-          background: "hsl(var(--la-muted))",
+          background: "var(--la-muted)",
           borderRadius: "12px",
           alignSelf: "flex-start",
         }}
@@ -279,7 +279,7 @@ export const InContext: Story = {
       <div
         style={{
           padding: "12px 16px",
-          background: "hsl(var(--la-primary) / 0.1)",
+          background: "color-mix(in srgb, var(--la-primary) 0.1%, transparent)",
           borderRadius: "12px",
           alignSelf: "flex-end",
         }}
@@ -289,7 +289,7 @@ export const InContext: Story = {
       <div
         style={{
           padding: "12px 16px",
-          background: "hsl(var(--la-muted))",
+          background: "var(--la-muted)",
           borderRadius: "12px",
           alignSelf: "flex-start",
         }}
