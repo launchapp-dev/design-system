@@ -1508,15 +1508,22 @@ export default function Page() {
     description: "Monthly calendar view with event markers and day selection.",
     category: "data",
     sourcePath: "data/CalendarView/CalendarView.tsx",
-    code: `import { CalendarView } from "@launchapp/design-system/blocks/data";
+    code: `import { CalendarView, type CalendarEvent } from "@launchapp/design-system/blocks/data";
 
-const events = [
-  { id: "1", date: "2024-01-15", title: "Team standup", color: "blue" },
-  { id: "2", date: "2024-01-20", title: "Product launch", color: "green" },
+const events: CalendarEvent[] = [
+  { id: "1", title: "Team standup", date: new Date(), allDay: true },
+  { id: "2", title: "Design review", date: new Date(), color: "secondary" },
 ];
 
 export default function Page() {
-  return <CalendarView events={events} onDateSelect={(date) => console.log("selected", date)} />;
+  return (
+    <CalendarView
+      events={events}
+      defaultView="week"
+      onEventCreate={(event) => console.log("created", event)}
+      onEventReschedule={(event) => console.log("rescheduled", event)}
+    />
+  );
 }`,
   },
   {
