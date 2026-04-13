@@ -23,6 +23,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -378,20 +379,12 @@ function DataTableAdvancedInner<TData>(
                   {hasSelection ? `Export ${selectedRows.length} selected` : "Export all"}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <button
-                  type="button"
-                  onClick={() => handleExport("csv")}
-                  className="relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
-                >
+                <DropdownMenuItem onClick={() => handleExport("csv")}>
                   Export as CSV
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleExport("json")}
-                  className="relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
-                >
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleExport("json")}>
                   Export as JSON
-                </button>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
