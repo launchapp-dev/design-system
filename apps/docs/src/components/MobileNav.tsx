@@ -100,17 +100,22 @@ export function MobileNav({ links }: MobileNavProps) {
               </button>
             </div>
             <ul className="space-y-1">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {links.map((link) => {
+                const isExternal = link.href.startsWith("http");
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

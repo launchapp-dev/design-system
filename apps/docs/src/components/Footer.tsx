@@ -48,16 +48,21 @@ export function Footer() {
             <div key={group.title}>
               <h3 className="text-sm font-semibold text-foreground">{group.title}</h3>
               <ul className="mt-3 space-y-2">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {group.links.map((link) => {
+                  const isExternal = link.href.startsWith("http");
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

@@ -31,15 +31,20 @@ export function Navbar() {
         <LaunchAppLogo />
 
         <nav className="hidden md:flex items-center gap-1 ml-4" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="inline-flex h-9 items-center rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isExternal = link.href.startsWith("http");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                className="inline-flex h-9 items-center rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
