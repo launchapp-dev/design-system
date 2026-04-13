@@ -23,6 +23,7 @@ export * from "./ComparisonTable";
 export * from "./ProjectBoard";
 export * from "./CheckoutFunnel";
 export * from "./DataExportWizard";
+export * from "./DataTableAdvanced";
 
 // FilterOption is defined identically in both FullDataTable and FilterBar.
 // Explicit re-export resolves the ambiguity; FullDataTable's definition is canonical.
