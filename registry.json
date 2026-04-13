@@ -3652,6 +3652,9 @@
           "type": "registry:block"
         }
       ],
+      "dependencies": [
+        "@radix-ui/react-popover"
+      ],
       "devDependencies": []
     },
     {
