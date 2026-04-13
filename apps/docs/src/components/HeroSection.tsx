@@ -183,7 +183,7 @@ export function HeroSection() {
                 <Link href="/docs">Read the Docs</Link>
               </Button>
               <Button size="lg" variant="ghost" asChild>
-                <Link href="https://github.com/launchapp/design-system">
+                <Link href="https://github.com/launchapp/design-system" target="_blank" rel="noopener noreferrer">
                   View on GitHub
                 </Link>
               </Button>
