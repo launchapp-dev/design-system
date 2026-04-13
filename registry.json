@@ -2582,6 +2582,20 @@
       "devDependencies": []
     },
     {
+      "name": "block-data-table-advanced",
+      "type": "registry:block",
+      "files": [
+        {
+          "path": "src/blocks/data/DataTableAdvanced/DataTableAdvanced.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "block-data-table-card",
       "type": "registry:block",
       "files": [

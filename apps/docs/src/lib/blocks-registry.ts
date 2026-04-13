@@ -4985,6 +4985,87 @@ export default function Page() {
   );
 }`,
   },
+
+  // ── NEW STUBS (auto-generated) ──
+  {
+    id: "data-table-advanced",
+    name: "Data Table Advanced",
+    description: "Advanced data table with multi-column filtering, sorting, pagination, column resizing, row selection, and CSV/JSON export. Ideal for CRM and admin panels.",
+    category: "data",
+    sourcePath: "data/DataTableAdvanced/DataTableAdvanced.tsx",
+    code: `import { DataTableAdvanced } from "@launchapp/design-system/blocks/data";
+import type { ColumnDef } from "@tanstack/react-table";
+import { Badge } from "@launchapp/design-system";
+
+interface Contact {
+  id: string;
+  name: string;
+  email: string;
+  company: string;
+  status: "active" | "inactive" | "lead";
+  role: string;
+}
+
+const columns: ColumnDef<Contact>[] = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  { accessorKey: "company", header: "Company" },
+  { accessorKey: "role", header: "Role" },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ getValue }) => {
+      const v = getValue<string>();
+      const color = v === "active" ? "default" : v === "lead" ? "secondary" : "outline";
+      return <Badge variant={color}>{v}</Badge>;
+    },
+  },
+];
+
+const data: Contact[] = [
+  { id: "1", name: "Alice Johnson", email: "alice@acme.com", company: "Acme Corp", role: "Admin", status: "active" },
+  { id: "2", name: "Bob Smith", email: "bob@globex.com", company: "Globex", role: "Member", status: "inactive" },
+  { id: "3", name: "Carol White", email: "carol@initech.com", company: "Initech", role: "Member", status: "lead" },
+  { id: "4", name: "David Lee", email: "david@acme.com", company: "Acme Corp", role: "Viewer", status: "active" },
+  { id: "5", name: "Eva Green", email: "eva@globex.com", company: "Globex", role: "Admin", status: "active" },
+];
+
+export default function Page() {
+  return (
+    <DataTableAdvanced
+      title="Contacts"
+      columns={columns}
+      data={data}
+      searchColumn="name"
+      searchPlaceholder="Search contacts..."
+      filterColumns={[
+        {
+          column: "status",
+          label: "Status",
+          options: [
+            { label: "Active", value: "active" },
+            { label: "Inactive", value: "inactive" },
+            { label: "Lead", value: "lead" },
+          ],
+        },
+        {
+          column: "company",
+          label: "Company",
+          options: [
+            { label: "Acme Corp", value: "Acme Corp" },
+            { label: "Globex", value: "Globex" },
+            { label: "Initech", value: "Initech" },
+          ],
+        },
+      ]}
+      enableExport
+      onBulkDelete={(rows) => console.log("Delete", rows)}
+      pageSize={10}
+    />
+  );
+}`,
+  },
+
 ];
 
 export function getBlocksByCategory(category: BlockCategory): BlockEntry[] {
