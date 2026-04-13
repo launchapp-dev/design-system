@@ -3,6 +3,7 @@ import {
   DndContext,
   type DragEndEvent,
   DragOverlay,
+  KeyboardSensor,
   PointerSensor,
   useDraggable,
   useDroppable,
@@ -20,6 +21,7 @@ import {
   isSameDay,
   isSameMonth,
   isToday,
+  isValid,
   setHours,
   setMinutes,
   startOfDay,
@@ -91,7 +93,10 @@ export interface CalendarViewProps extends React.HTMLAttributes<HTMLDivElement> 
   showCreateButton?: boolean;
 }
 
-const hourSlots = Array.from({ length: 12 }, (_, index) => index + 8);
+const CALENDAR_START_HOUR = 0;
+const CALENDAR_HOUR_COUNT = 24;
+const CALENDAR_BUSINESS_HOUR = 8;
+const hourSlots = Array.from({ length: CALENDAR_HOUR_COUNT }, (_, i) => CALENDAR_START_HOUR + i);
 
 const eventColorMap: Record<NonNullable<CalendarEvent["color"]>, string> = {
   default: "border-border bg-muted text-foreground",
@@ -110,7 +115,12 @@ const eventAccentMap: Record<NonNullable<CalendarEvent["color"]>, string> = {
 };
 
 function toDate(value: Date | string) {
-  return value instanceof Date ? value : new Date(value);
+  if (value instanceof Date) return value;
+  // Append local midnight to date-only strings so they parse in local time,
+  // not UTC midnight (which shifts the date backward for UTC− timezones).
+  const normalized =
+    typeof value === "string" && !value.includes("T") ? `${value}T00:00:00` : value;
+  return new Date(normalized);
 }
 
 function toDateInputValue(date: Date) {
@@ -363,6 +373,7 @@ function CalendarCreateDialog({
   const [description, setDescription] = React.useState("");
   const [allDay, setAllDay] = React.useState(false);
   const [color, setColor] = React.useState<NonNullable<CalendarEvent["color"]>>("primary");
+  const [timeError, setTimeError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (!open) return;
@@ -373,12 +384,29 @@ function CalendarCreateDialog({
     setDescription("");
     setAllDay(false);
     setColor("primary");
+    setTimeError(null);
   }, [open, selectedDate]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedTitle = title.trim();
     if (!trimmedTitle) return;
+
+    if (!allDay) {
+      const startDate = fromDateAndTime(dateValue, startTime);
+      const endDate = fromDateAndTime(dateValue, endTime);
+
+      if (!isValid(startDate) || !isValid(endDate)) {
+        setTimeError("Please enter a valid date and time.");
+        return;
+      }
+      if (endDate <= startDate) {
+        setTimeError("End time must be after start time.");
+        return;
+      }
+    }
+
+    setTimeError(null);
     onCreate({
       title: trimmedTitle,
       date: allDay ? startOfDay(fromDateAndTime(dateValue, "00:00")) : fromDateAndTime(dateValue, startTime),
@@ -441,11 +469,19 @@ function CalendarCreateDialog({
               <input
                 type="checkbox"
                 checked={allDay}
-                onChange={(event) => setAllDay(event.target.checked)}
+                onChange={(event) => {
+                  setAllDay(event.target.checked);
+                  setTimeError(null);
+                }}
               />
               All day
             </label>
           </div>
+          {timeError && (
+            <p role="alert" className="text-sm text-destructive">
+              {timeError}
+            </p>
+          )}
           <div className="space-y-2">
             <Label htmlFor="calendar-event-color">Color</Label>
             <select
@@ -555,6 +591,8 @@ function CalendarViewInner(
   const [createDate, setCreateDate] = React.useState(selectedDate ?? initialMonth);
   const [isCreateOpen, setIsCreateOpen] = React.useState(false);
   const [activeEvent, setActiveEvent] = React.useState<CalendarEvent | null>(null);
+  const weekScrollRef = React.useRef<HTMLDivElement>(null);
+  const dayScrollRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setCalendarEvents(normalizeEvents(events));
@@ -564,12 +602,26 @@ function CalendarViewInner(
     if (selectedDate !== undefined) setInternalSelectedDate(selectedDate);
   }, [selectedDate]);
 
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor),
+  );
   const effectiveSelectedDate = selectedDate ?? internalSelectedDate ?? initialMonth;
   const effectiveView = view ?? internalView;
   const selectedDayEvents = sameDayEvents(calendarEvents, effectiveSelectedDate);
   const currentWeekDays = getWeekDays(effectiveSelectedDate);
   const monthDays = getCalendarDays(currentMonth);
+
+  // Scroll week/day views to business hours on mount and when switching views.
+  React.useEffect(() => {
+    const scrollToBusinessHours = (el: HTMLDivElement | null) => {
+      if (!el) return;
+      // Each hour row is min-h-[4.5rem] = 72px; scroll to CALENDAR_BUSINESS_HOUR.
+      el.scrollTop = CALENDAR_BUSINESS_HOUR * 72;
+    };
+    if (effectiveView === "week") scrollToBusinessHours(weekScrollRef.current);
+    if (effectiveView === "day") scrollToBusinessHours(dayScrollRef.current);
+  }, [effectiveView]);
 
   const handleSelectDate = React.useCallback(
     (date: Date) => {
@@ -767,35 +819,37 @@ function CalendarViewInner(
                       </button>
                     ))}
                   </div>
-                  {hourSlots.map((hour) => (
-                    <div key={hour} className="grid grid-cols-[4rem_repeat(7,minmax(0,1fr))]">
-                      <div className="border-r border-b border-border px-2 py-2 text-xs text-muted-foreground">
-                        {format(setHours(startOfDay(effectiveSelectedDate), hour), "ha")}
+                  <div ref={weekScrollRef} className="max-h-[36rem] overflow-y-auto">
+                    {hourSlots.map((hour) => (
+                      <div key={hour} className="grid grid-cols-[4rem_repeat(7,minmax(0,1fr))]">
+                        <div className="border-r border-b border-border px-2 py-2 text-xs text-muted-foreground">
+                          {format(setHours(startOfDay(effectiveSelectedDate), hour), "ha")}
+                        </div>
+                        {currentWeekDays.map((day) => {
+                          const slotEvents = sameDayEvents(calendarEvents, day).filter((event) =>
+                            event.allDay ? hour === CALENDAR_BUSINESS_HOUR : getEventStart(event).getHours() === hour,
+                          );
+                          return (
+                            <TimeSlot key={`${day.toISOString()}-${hour}`} date={day} hour={hour}>
+                              <div className="space-y-1">
+                                {slotEvents.map((event) => (
+                                  <CalendarEventCard key={event.id} event={event} onClick={onEventClick} />
+                                ))}
+                              </div>
+                            </TimeSlot>
+                          );
+                        })}
                       </div>
-                      {currentWeekDays.map((day) => {
-                        const slotEvents = sameDayEvents(calendarEvents, day).filter((event) =>
-                          event.allDay ? hour === 8 : getEventStart(event).getHours() === hour,
-                        );
-                        return (
-                          <TimeSlot key={`${day.toISOString()}-${hour}`} date={day} hour={hour}>
-                            <div className="space-y-1">
-                              {slotEvents.map((event) => (
-                                <CalendarEventCard key={event.id} event={event} onClick={onEventClick} />
-                              ))}
-                            </div>
-                          </TimeSlot>
-                        );
-                      })}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
             {effectiveView === "day" && (
-              <div>
+              <div ref={dayScrollRef} className="max-h-[36rem] overflow-y-auto">
                 {hourSlots.map((hour) => {
                   const slotEvents = selectedDayEvents.filter((event) =>
-                    event.allDay ? hour === 8 : getEventStart(event).getHours() === hour,
+                    event.allDay ? hour === CALENDAR_BUSINESS_HOUR : getEventStart(event).getHours() === hour,
                   );
                   return (
                     <div key={hour} className="grid grid-cols-[4.5rem_1fr]">
