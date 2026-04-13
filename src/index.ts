@@ -598,6 +598,8 @@ export type {
   HeroSectionBlockProps,
   HeroSectionSocialProofMetric,
 } from "./blocks/landing/HeroSection";
+export { HeroBrowserFrame } from "./blocks/landing/HeroBrowserFrame";
+export type { HeroBrowserFrameProps } from "./blocks/landing/HeroBrowserFrame";
 export {
   FeatureGridBlock,
   featureGridBlockVariants,
