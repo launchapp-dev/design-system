@@ -2507,8 +2507,9 @@
         }
       ],
       "dependencies": [
-        "date-fns",
-        "react-day-picker"
+        "@dnd-kit/core",
+        "@dnd-kit/utilities",
+        "date-fns"
       ],
       "devDependencies": []
     },
