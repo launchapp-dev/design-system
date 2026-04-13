@@ -48,3 +48,6 @@ export type { UserProfileCardProps, SocialLink } from "./community";
 // navigation is the authoritative source for CommandPalette (also in search).
 export { CommandPalette } from "./navigation";
 export type { CommandPaletteProps, CommandPaletteGroup } from "./navigation";
+// notifications is the authoritative source for NotificationGroup component (settings exports it as a type alias for NotificationPreferences data model).
+export { NotificationGroup } from "./notifications";
+export type { NotificationGroupProps } from "./notifications";
