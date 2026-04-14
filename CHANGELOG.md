@@ -1,3 +1,27 @@
+## 0.4.3
+
+### Patch Changes
+
+- fix(blocks): replace raw `<button>` elements with `DropdownMenuItem` in `DataTableAdvanced` export dropdown (#435)
+
+## 0.4.2
+
+### Minor Changes
+
+- feat(blocks): add `CalendarView` block with week, month, and agenda scheduling modes (#434)
+- feat(blocks): add `DataTableAdvanced` block with sorting, filtering, pagination, column resize, row selection, and CSV/JSON export (#433)
+
+## 0.4.1
+
+### Minor Changes
+
+- feat(blocks): export `HeroBrowserFrame` from main package index (#432)
+- feat(blocks): enhance `NotificationCenter` with grouping, mark-as-read, preferences link, and composed components (#431)
+- fix(docs): add `target=_blank` to external links in Navbar, Footer, and HeroSection (#430)
+- feat(docs): register `Logo` component in registry and previews (#429)
+- design(tokens): migrate to TW4 token pattern, fix 2008 compliance violations (#428)
+- feat(Logo): add reusable `Logo` / `LogoMark` component (#427)
+
 ## 0.4.0
 
 ### Minor Changes
