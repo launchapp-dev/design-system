@@ -26,6 +26,7 @@ import {
   MetricGrid,
   ActivityFeed,
   EmptyState,
+  DataTableAdvanced,
 } from "@ds/blocks/data";
 import {
   ProductCardGrid,
@@ -8860,4 +8861,62 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       onComplete={() => console.log("workspace setup")}
     />
   ),
+
+  "data-table-advanced": () => {
+    const columns: ColumnDef<{
+      id: string;
+      name: string;
+      email: string;
+      company: string;
+      status: string;
+      role: string;
+    }>[] = [
+      { accessorKey: "name", header: "Name" },
+      { accessorKey: "email", header: "Email" },
+      { accessorKey: "company", header: "Company" },
+      { accessorKey: "role", header: "Role" },
+      { accessorKey: "status", header: "Status" },
+    ];
+    const data = [
+      { id: "1", name: "Alice Johnson", email: "alice@acme.com", company: "Acme Corp", role: "Admin", status: "active" },
+      { id: "2", name: "Bob Smith", email: "bob@globex.com", company: "Globex", role: "Member", status: "inactive" },
+      { id: "3", name: "Carol White", email: "carol@initech.com", company: "Initech", role: "Member", status: "lead" },
+      { id: "4", name: "David Lee", email: "david@acme.com", company: "Acme Corp", role: "Viewer", status: "active" },
+      { id: "5", name: "Eva Green", email: "eva@globex.com", company: "Globex", role: "Admin", status: "active" },
+    ];
+    return (
+      <div className="w-full max-w-5xl border rounded-xl p-6 bg-background shadow-sm">
+        <DataTableAdvanced
+          title="Contacts"
+          columns={columns}
+          data={data}
+          searchColumn="name"
+          searchPlaceholder="Search contacts..."
+          filterColumns={[
+            {
+              column: "status",
+              label: "Status",
+              options: [
+                { label: "Active", value: "active" },
+                { label: "Inactive", value: "inactive" },
+                { label: "Lead", value: "lead" },
+              ],
+            },
+            {
+              column: "company",
+              label: "Company",
+              options: [
+                { label: "Acme Corp", value: "Acme Corp" },
+                { label: "Globex", value: "Globex" },
+                { label: "Initech", value: "Initech" },
+              ],
+            },
+          ]}
+          enableExport
+          onBulkDelete={(rows) => console.log("Delete", rows)}
+          pageSize={10}
+        />
+      </div>
+    );
+  },
 };
