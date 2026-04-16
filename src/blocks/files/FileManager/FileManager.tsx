@@ -157,7 +157,7 @@ const _sampleFiles: FileGridItem[] = [
   },
 ];
 
-const sampleFolders: FileManagerFolder[] = [
+const defaultFolders: FileManagerFolder[] = [
   { id: "f1", name: "All Files", path: "/" },
   { id: "f2", name: "Documents", path: "/documents", fileCount: 12 },
   { id: "f3", name: "Images", path: "/images", fileCount: 8 },
@@ -167,7 +167,7 @@ const sampleFolders: FileManagerFolder[] = [
 
 function FileManager({
   files,
-  folders = sampleFolders,
+  folders = defaultFolders,
   currentFolder = "/",
   uploadFiles,
   onFolderSelect,

@@ -93,7 +93,7 @@ function SignUpForm({
                     <FormLabel>Full name</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Jane Doe"
+                        placeholder="Your name"
                         autoComplete="name"
                         disabled={isLoading}
                         {...field}
