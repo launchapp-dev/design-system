@@ -93,6 +93,41 @@ Accordion, Alert, AlertDialog, AnimatedBackground, AnimatedBorder, AnimatedHeigh
 - Do not add comments in code unless requested
 - Do not add yourself as author or co-author in commits
 
+## Fleet Rule: No Mock Data in Production Paths
+
+**All data on user-facing surfaces must be real and come from the database via Drizzle.**
+This is a fleet-wide rule (TASK-008 in `ao-templates`). "Looks done" ≠ "done": buyers
+pay for templates that run end-to-end, and mock data hides bugs in loading/empty/error
+states that only surface once a real user hits them.
+
+**Banned** in production code paths (anything served from `apps/web` to users):
+- Inline `const mockUsers`, `fakeOrgs`, `demoDeals`, `placeholderStats` arrays/objects
+- JSON files used as fake backends
+- `Lorem ipsum`, `John Doe`, `Jane Doe`, `Acme Corp`, `test@example.com` placeholder copy
+- Components named `Mock*` / `Fake*` / `Demo*` / `Stub*` rendered as the default UI
+- Hardcoded stat numbers on marketing or dashboard surfaces (e.g. `"1,247 active users"`)
+- Imports `from "@/data/mock-..."` (or similar) into production files
+
+**Acceptable** (not flagged):
+- Storybook previews (`*.stories.*`, `.storybook/**`)
+- Tests (`*.test.*`, `*.spec.*`, `**/__tests__/**`, `**/e2e/**`)
+- Fixtures and MSW handlers (`**/fixtures/**`, `**/__mocks__/**`, `**/mocks/handlers.*`)
+- Seed scripts (`**/seed/**`, `**/db/seed/**`) — they populate the real DB with
+  meaningful starter data so a fresh clone shows real content, not empty states
+- HTML form `placeholder="..."` attributes that hint expected input shape
+- Per-repo justified exceptions in `ao-templates/.ao/mock-data-ignore.txt` (each entry
+  must carry a `# why:` comment)
+
+**When implementing a feature**: if the data isn't already in the DB, add the schema
+and seed data first, then build the UI against `db.select(...)`. Don't ship a hardcoded
+array thinking "we'll wire it up later" — that's how mock data leaks into production.
+The fleet scanner (`scripts/scan-mock-data.sh <repo-id>` in `ao-templates`) must score
+≥ 90 for a PR to merge.
+
+> **Design-system exception**: `apps/docs/**` and `src/blocks/**/demo*` showcase pages
+> MAY render illustrative sample data — that's the documentation purpose. The rule
+> applies to non-docs application code (e.g. authenticated dashboards, settings pages).
+
 ## CRITICAL: Registry Must Be Regenerated After Adding Blocks
 
 After adding or modifying any files in `src/blocks/`, you MUST run:
