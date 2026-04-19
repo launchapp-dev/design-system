@@ -102,7 +102,7 @@ function EmptyNotifications({
     >
       <div
         className="flex h-10 w-10 items-center justify-center rounded-full"
-        style={{ background: "var(--la-color-muted, hsl(var(--muted)))" }}
+        style={{ background: "var(--la-muted)" }}
       >
         <BellIcon />
       </div>
@@ -126,13 +126,13 @@ function NotificationItem({ notification, onRead, className }: NotificationItemP
         "group relative flex items-start gap-3 px-4 py-3 transition-colors",
         "hover:bg-accent/50 focus-within:bg-accent/50",
         !notification.read &&
-          "bg-[var(--la-color-primary-subtle,color-mix(in_srgb,var(--la-color-primary,hsl(var(--primary)))_6%,transparent))]",
+          "bg-[--la-color-primary-subtle]",
         className,
       )}
     >
       {!notification.read && (
         <span
-          className="absolute left-1.5 top-4 h-1.5 w-1.5 rounded-full bg-[var(--la-color-primary,hsl(var(--primary)))]"
+          className="absolute left-1.5 top-4 h-1.5 w-1.5 rounded-full bg-[--la-color-primary]"
           aria-hidden="true"
         />
       )}
