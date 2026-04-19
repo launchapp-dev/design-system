@@ -44,8 +44,8 @@ const _typeColors: Record<NonNullable<StreamEvent["type"]>, string> = {
   delete: "text-destructive dark:text-destructive bg-destructive/5 dark:bg-destructive/10",
   comment: "text-info dark:text-info bg-info dark:bg-info/30",
   share: "text-primary dark:text-primary bg-primary dark:bg-primary/30",
-  like: "text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/30",
-  publish: "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/30",
+  like: "text-accent-foreground bg-accent/10 dark:bg-accent/20",
+  publish: "text-secondary-foreground bg-secondary/20 dark:bg-secondary/30",
 };
 
 const typeDots: Record<NonNullable<StreamEvent["type"]>, string> = {
@@ -54,8 +54,8 @@ const typeDots: Record<NonNullable<StreamEvent["type"]>, string> = {
   delete: "bg-destructive",
   comment: "bg-info",
   share: "bg-primary",
-  like: "bg-pink-500",
-  publish: "bg-indigo-500",
+  like: "bg-accent",
+  publish: "bg-secondary",
 };
 
 function ActivityStream({

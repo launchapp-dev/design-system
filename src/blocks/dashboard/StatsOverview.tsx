@@ -19,6 +19,14 @@ export interface StatsOverviewProps extends React.HTMLAttributes<HTMLDivElement>
   chartKeys?: { key: string; color?: string }[];
 }
 
+const CHART_COLORS = [
+  "var(--la-chart-1)",
+  "var(--la-chart-2)",
+  "var(--la-chart-3)",
+  "var(--la-chart-4)",
+  "var(--la-chart-5)",
+] as const;
+
 function StatsOverview({ items, cols = 4, title, description, chartData, chartKeys, className, ref, ...props }: StatsOverviewProps & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <div ref={ref} className={cn("space-y-6", className)} {...props}>
@@ -42,12 +50,12 @@ function StatsOverview({ items, cols = 4, title, description, chartData, chartKe
                     <linearGradient key={key} id={`gradient-${key}`} x1="0" y1="0" x2="0" y2="1">
                       <stop
                         offset="5%"
-                        stopColor={color ?? `var(--la-chart-)`}
+                        stopColor={color ?? CHART_COLORS[i % 5]}
                         stopOpacity={0.2}
                       />
                       <stop
                         offset="95%"
-                        stopColor={color ?? `var(--la-chart-)`}
+                        stopColor={color ?? CHART_COLORS[i % 5]}
                         stopOpacity={0}
                       />
                     </linearGradient>
@@ -73,7 +81,7 @@ function StatsOverview({ items, cols = 4, title, description, chartData, chartKe
                     key={key}
                     type="monotone"
                     dataKey={key}
-                    stroke={color ?? `var(--la-chart-)`}
+                    stroke={color ?? CHART_COLORS[i % 5]}
                     strokeWidth={2}
                     fill={`url(#gradient-${key})`}
                     dot={false}

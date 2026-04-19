@@ -86,7 +86,7 @@ const typeColors: Record<ActivityType, string> = {
   delete: "bg-destructive/5 text-destructive dark:bg-destructive/10 dark:text-destructive",
   share: "bg-primary text-primary dark:bg-primary/30 dark:text-primary",
   comment: "bg-warning/5 text-warning dark:bg-warning/10 dark:text-warning",
-  like: "bg-rose-50 text-rose-600 dark:bg-rose-950/30 dark:text-rose-400",
+  like: "bg-accent/10 text-accent-foreground dark:bg-accent/20",
   custom: "bg-muted text-muted-foreground",
 };
 

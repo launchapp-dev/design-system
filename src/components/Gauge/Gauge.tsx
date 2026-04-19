@@ -118,9 +118,9 @@ const Gauge = React.forwardRef<HTMLDivElement, GaugeProps>(
   const needleAngle = valueToAngle(clampedValue, min, max, startAngle, endAngle);
 
   const defaultZones: GaugeColorZone[] = colorZones ?? [
-    { from: min, to: min + (max - min) * 0.3, color: "hsl(142, 71%, 45%)" },
-    { from: min + (max - min) * 0.3, to: min + (max - min) * 0.7, color: "hsl(45, 93%, 47%)" },
-    { from: min + (max - min) * 0.7, to: max, color: "hsl(0, 72%, 51%)" },
+    { from: min, to: min + (max - min) * 0.3, color: "var(--la-success)" },
+    { from: min + (max - min) * 0.3, to: min + (max - min) * 0.7, color: "var(--la-warning)" },
+    { from: min + (max - min) * 0.7, to: max, color: "var(--la-destructive)" },
   ];
 
   const displayValue = formatValue ? formatValue(clampedValue) : clampedValue.toFixed(0);

@@ -147,9 +147,9 @@ const categoryConfig: Record<IntegrationCategory, { label: string; color: string
   communication: { label: "Communication", color: "bg-primary/10 text-primary border-primary/20" },
   crm: { label: "CRM", color: "bg-success/10 text-success border-success/20" },
   developer: { label: "Developer", color: "bg-muted-foreground/10 text-muted-foreground border-muted-foreground/20" },
-  marketing: { label: "Marketing", color: "bg-pink-500/10 text-pink-600 border-pink-500/20" },
+  marketing: { label: "Marketing", color: "bg-accent/10 text-accent-foreground border-accent/20" },
   payment: { label: "Payment", color: "bg-warning/10 text-warning border-warning/20" },
-  storage: { label: "Storage", color: "bg-cyan-500/10 text-cyan-600 border-cyan-500/20" },
+  storage: { label: "Storage", color: "bg-info/10 text-info border-info/20" },
 };
 
 const statusConfig: Record<IntegrationStatus, { label: string; variant: "default" | "secondary" | "outline" | "destructive" }> = {

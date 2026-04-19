@@ -575,6 +575,12 @@
     --la-ring: hsl(262 83% 58%);
 
     --la-radius: 0.5rem;
+    --la-radius-lg: calc(var(--la-radius) + 4px);
+
+    /* Semantic color aliases providing the full computed value (not raw HSL channels) */
+    --la-color-primary: var(--la-primary);
+    --la-color-muted: var(--la-muted);
+    --la-color-primary-subtle: color-mix(in srgb, var(--la-primary) 6%, transparent);
 
     --la-font-sans: "Inter";
     --la-font-mono: "JetBrains Mono";
