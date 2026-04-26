@@ -868,7 +868,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       searchPlaceholder="Search users..."
     />
   ),
-  timeline: () => (
+  "timeline": () => (
     <div className="flex flex-col gap-10 w-full items-center">
       <div className="w-full max-w-5xl border rounded-xl p-6 bg-background shadow-sm">
         <Timeline items={timelineItems} />
@@ -5756,7 +5756,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       title="Recent Activity"
     />
   ),
-  agency: () => (
+  "agency": () => (
     <Agency
       badge="Award-winning studio"
       headline="We craft digital experiences that convert"
@@ -6074,7 +6074,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       onCancel={() => console.log("cancel")}
     />
   ),
-  maintenance: () => (
+  "maintenance": () => (
     <Maintenance
       title="We'll be back soon"
       description="We're performing scheduled maintenance. This should only take a few minutes."
@@ -6196,7 +6196,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       />
     </div>
   ),
-  portfolio: () => (
+  "portfolio": () => (
     <Portfolio
       name="Alice Johnson"
       title="Full-Stack Engineer & Designer"
@@ -6369,7 +6369,7 @@ export const blockPreviews: Record<string, BlockPreviewFn> = {
       }
     />
   ),
-  startup: () => (
+  "startup": () => (
     <Startup
       badge="YC-backed"
       headline="The fastest way to build your startup"
