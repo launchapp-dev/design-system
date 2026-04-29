@@ -132,7 +132,7 @@ function SettingsLayoutBlock({
                     )}
                     <span>{section.label}</span>
                     {section.badge !== undefined && (
-                      <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-black/20 px-1 text-[10px]">
+                      <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-foreground/20 px-1 text-[10px]">
                         {section.badge}
                       </span>
                     )}

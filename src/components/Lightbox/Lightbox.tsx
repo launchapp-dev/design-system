@@ -6,9 +6,9 @@ import { cn } from "../../lib/utils";
 const lightboxVariants = cva("fixed inset-0 z-50 flex flex-col", {
   variants: {
     variant: {
-      default: "bg-black/95",
-      dark: "bg-black",
-      light: "bg-white/95",
+      default: "bg-[var(--la-overlay-scrim-near)]",
+      dark: "bg-[var(--la-media-canvas)]",
+      light: "bg-[var(--la-surface-on-media-near)]",
     },
   },
   defaultVariants: {
@@ -293,7 +293,7 @@ function Lightbox({
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay
           className={cn(
-            "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out",
+            "fixed inset-0 z-50 bg-[var(--la-overlay-scrim-deep)] data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out",
           )}
         />
         <DialogPrimitive.Content
@@ -304,8 +304,8 @@ function Lightbox({
           <DialogPrimitive.Close
             className={cn(
               "absolute right-4 top-4 z-10 rounded-full p-2 transition-colors",
-              "bg-black/50 text-white hover:bg-black/70",
-              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-black",
+              "bg-[var(--la-overlay-scrim)] text-[var(--la-text-on-media)] hover:bg-[var(--la-overlay-scrim-strong)]",
+              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-[var(--la-media-canvas)]",
               "min-h-[44px] min-w-[44px] flex items-center justify-center",
             )}
             aria-label="Close lightbox"
@@ -331,7 +331,7 @@ function Lightbox({
             <div
               className={cn(
                 "absolute left-4 top-4 z-10 rounded-full px-4 py-2 text-sm font-medium",
-                isLightVariant ? "bg-black/10 text-foreground" : "bg-black/50 text-white",
+                isLightVariant ? "bg-[var(--la-overlay-scrim-faint)] text-foreground" : "bg-[var(--la-overlay-scrim)] text-[var(--la-text-on-media)]",
               )}
               aria-live="polite"
             >
@@ -346,9 +346,9 @@ function Lightbox({
                 className={cn(
                   "absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 transition-colors",
                   isLightVariant
-                    ? "bg-black/10 text-foreground hover:bg-black/20"
-                    : "bg-black/50 text-white hover:bg-black/70",
-                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-black",
+                    ? "bg-[var(--la-overlay-scrim-faint)] text-foreground hover:bg-[var(--la-overlay-scrim-light)]"
+                    : "bg-[var(--la-overlay-scrim)] text-[var(--la-text-on-media)] hover:bg-[var(--la-overlay-scrim-strong)]",
+                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-[var(--la-media-canvas)]",
                   "min-h-[44px] min-w-[44px] flex items-center justify-center",
                 )}
                 aria-label="Previous image"
@@ -373,9 +373,9 @@ function Lightbox({
                 className={cn(
                   "absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 transition-colors",
                   isLightVariant
-                    ? "bg-black/10 text-foreground hover:bg-black/20"
-                    : "bg-black/50 text-white hover:bg-black/70",
-                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-black",
+                    ? "bg-[var(--la-overlay-scrim-faint)] text-foreground hover:bg-[var(--la-overlay-scrim-light)]"
+                    : "bg-[var(--la-overlay-scrim)] text-[var(--la-text-on-media)] hover:bg-[var(--la-overlay-scrim-strong)]",
+                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-[var(--la-media-canvas)]",
                   "min-h-[44px] min-w-[44px] flex items-center justify-center",
                 )}
                 aria-label="Next image"
@@ -435,7 +435,7 @@ function Lightbox({
             <div
               className={cn(
                 "flex items-center justify-center gap-2 overflow-x-auto p-4",
-                isLightVariant ? "bg-white/90" : "bg-black/90",
+                isLightVariant ? "bg-[var(--la-surface-on-media-deep)]" : "bg-[var(--la-overlay-scrim-deeper)]",
               )}
               role="tablist"
               aria-label="Image thumbnails"

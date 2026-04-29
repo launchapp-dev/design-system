@@ -17,13 +17,13 @@ const imageComparisonVariants = cva("relative overflow-hidden select-none", {
 });
 
 const imageComparisonSliderVariants = cva(
-  "absolute top-0 bottom-0 w-1 bg-white/90 cursor-ew-resize z-10 touch-none",
+  "absolute top-0 bottom-0 w-1 bg-[var(--la-surface-on-media-deep)] cursor-ew-resize z-10 touch-none",
   {
     variants: {
       variant: {
         default: "shadow-lg",
-        minimal: "bg-white/60",
-        prominent: "w-1.5 bg-white shadow-xl",
+        minimal: "bg-[var(--la-surface-on-media-translucent)]",
+        prominent: "w-1.5 bg-[var(--la-text-on-media)] shadow-xl",
       },
     },
     defaultVariants: {
@@ -33,7 +33,7 @@ const imageComparisonSliderVariants = cva(
 );
 
 const imageComparisonHandleVariants = cva(
-  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-white shadow-lg transition-transform focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-[var(--la-text-on-media)] shadow-lg transition-transform focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       size: {
@@ -213,7 +213,7 @@ function ImageComparison({
         <img src={afterSrc} alt="" className="h-full w-full object-cover" draggable={false} />
         {showLabels && (
           <div
-            className="absolute right-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
+            className="absolute right-3 top-3 rounded-md bg-[var(--la-overlay-scrim-medium)] px-2.5 py-1 text-xs font-medium text-[var(--la-text-on-media)] backdrop-blur-sm"
             aria-hidden="true"
           >
             {afterLabel}
@@ -232,7 +232,7 @@ function ImageComparison({
         <img src={beforeSrc} alt="" className="h-full w-full object-cover" draggable={false} />
         {showLabels && (
           <div
-            className="absolute left-3 top-3 rounded-md bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm"
+            className="absolute left-3 top-3 rounded-md bg-[var(--la-overlay-scrim-medium)] px-2.5 py-1 text-xs font-medium text-[var(--la-text-on-media)] backdrop-blur-sm"
             aria-hidden="true"
           >
             {beforeLabel}

@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 import { Slider } from "../Slider";
 
 const videoPlayerVariants = cva(
-  "relative group rounded-[--la-radius] overflow-hidden bg-black focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background",
+  "relative group rounded-[--la-radius] overflow-hidden bg-[var(--la-media-canvas)] focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background",
   {
     variants: {
       size: {
@@ -21,7 +21,7 @@ const videoPlayerVariants = cva(
 );
 
 const videoPlayerOverlayVariants = cva(
-  "absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200",
+  "absolute inset-0 flex items-center justify-center bg-[var(--la-overlay-scrim-soft)] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200",
   {
     variants: {
       isPlaying: {
@@ -352,8 +352,8 @@ function VideoPlayerInner(
       />
 
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+        <div className="absolute inset-0 flex items-center justify-center bg-[var(--la-overlay-scrim)]">
+          <div className="w-12 h-12 border-4 border-[var(--la-border-on-media)] border-t-[var(--la-text-on-media)] rounded-full animate-spin" />
         </div>
       )}
 
@@ -361,7 +361,7 @@ function VideoPlayerInner(
         <div className={videoPlayerOverlayVariants({ isPlaying: false })}>
           <button
             onClick={() => videoRef.current?.play()}
-            className="flex items-center justify-center w-20 h-20 rounded-full bg-white/90 hover:bg-white transition-colors min-h-[44px] min-w-[44px]"
+            className="flex items-center justify-center w-20 h-20 rounded-full bg-[var(--la-surface-on-media-deep)] hover:bg-[var(--la-text-on-media)] transition-colors min-h-[44px] min-w-[44px]"
             aria-label="Play video"
           >
             <svg
@@ -382,7 +382,7 @@ function VideoPlayerInner(
         <div className="absolute inset-0 flex items-center justify-center">
           <button
             onClick={() => videoRef.current?.pause()}
-            className="flex items-center justify-center w-16 h-16 rounded-full bg-black/50 hover:bg-black/70 transition-colors min-h-[44px] min-w-[44px]"
+            className="flex items-center justify-center w-16 h-16 rounded-full bg-[var(--la-overlay-scrim)] hover:bg-[var(--la-overlay-scrim-strong)] transition-colors min-h-[44px] min-w-[44px]"
             aria-label="Pause video"
           >
             <svg
@@ -401,11 +401,11 @@ function VideoPlayerInner(
       )}
 
       {showControls && showControlsState && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 pt-12">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[var(--la-overlay-scrim-deep)] to-transparent p-4 pt-12">
           <div className="mb-2">
-            <div className="relative h-1 bg-white/30 rounded-full cursor-pointer group/progress">
+            <div className="relative h-1 bg-[var(--la-border-on-media)] rounded-full cursor-pointer group/progress">
               <div
-                className="absolute inset-y-0 left-0 bg-white/50 rounded-full"
+                className="absolute inset-y-0 left-0 bg-[var(--la-surface-on-media-stronger)] rounded-full"
                 style={{ width: `${buffered}%` }}
               />
               <div
@@ -430,7 +430,7 @@ function VideoPlayerInner(
                 onClick={() =>
                   videoRef.current?.paused ? videoRef.current?.play() : videoRef.current?.pause()
                 }
-                className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/20 transition-colors min-h-[44px] min-w-[44px]"
+                className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[var(--la-surface-on-media)] transition-colors min-h-[44px] min-w-[44px]"
                 aria-label={isPlaying ? "Pause" : "Play"}
               >
                 {isPlaying ? (
@@ -463,7 +463,7 @@ function VideoPlayerInner(
                 <div className="flex items-center gap-1 group/volume">
                   <button
                     onClick={handleMuteToggle}
-                    className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/20 transition-colors min-h-[44px] min-w-[44px]"
+                    className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[var(--la-surface-on-media)] transition-colors min-h-[44px] min-w-[44px]"
                     aria-label={muted ? "Unmute" : "Mute"}
                   >
                     {muted || volume === 0 ? (
@@ -529,7 +529,7 @@ function VideoPlayerInner(
                 </div>
               )}
 
-              <span className="text-sm text-white font-medium tabular-nums">
+              <span className="text-sm text-[var(--la-text-on-media)] font-medium tabular-nums">
                 {formatTime(currentTime)} / {formatTime(duration)}
               </span>
             </div>
@@ -539,7 +539,7 @@ function VideoPlayerInner(
                 <div className="relative">
                   <button
                     onClick={() => setShowSpeedMenu(!showSpeedMenu)}
-                    className="flex items-center justify-center px-2 py-1 rounded hover:bg-white/20 transition-colors text-sm text-white font-medium min-h-[44px]"
+                    className="flex items-center justify-center px-2 py-1 rounded hover:bg-[var(--la-surface-on-media)] transition-colors text-sm text-[var(--la-text-on-media)] font-medium min-h-[44px]"
                     aria-label="Playback speed"
                     aria-expanded={showSpeedMenu}
                     aria-haspopup="listbox"
@@ -548,7 +548,7 @@ function VideoPlayerInner(
                   </button>
                   {showSpeedMenu && (
                     <div
-                      className="absolute bottom-full right-0 mb-2 py-1 bg-black/90 rounded-[--la-radius] shadow-lg min-w-[80px]"
+                      className="absolute bottom-full right-0 mb-2 py-1 bg-[var(--la-overlay-scrim-deeper)] rounded-[--la-radius] shadow-lg min-w-[80px]"
                       role="listbox"
                       aria-label="Select playback speed"
                     >
@@ -557,8 +557,8 @@ function VideoPlayerInner(
                           key={speed}
                           onClick={() => handlePlaybackRateChange(speed)}
                           className={cn(
-                            "w-full px-4 py-1 text-sm text-left hover:bg-white/20 transition-colors min-h-[36px]",
-                            playbackRate === speed ? "text-primary font-medium" : "text-white",
+                            "w-full px-4 py-1 text-sm text-left hover:bg-[var(--la-surface-on-media)] transition-colors min-h-[36px]",
+                            playbackRate === speed ? "text-primary font-medium" : "text-[var(--la-text-on-media)]",
                           )}
                           role="option"
                           aria-selected={playbackRate === speed}
@@ -573,7 +573,7 @@ function VideoPlayerInner(
 
               <button
                 onClick={handleFullscreenToggle}
-                className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/20 transition-colors min-h-[44px] min-w-[44px]"
+                className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-[var(--la-surface-on-media)] transition-colors min-h-[44px] min-w-[44px]"
                 aria-label="Toggle fullscreen"
               >
                 <svg

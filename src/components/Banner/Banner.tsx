@@ -121,7 +121,7 @@ function BannerAction({ className, asChild = false, ref, ...props }: BannerActio
       ref={ref}
       className={cn(
         "inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-        "bg-transparent hover:bg-black/10 dark:hover:bg-white/10",
+        "bg-transparent hover:bg-foreground/10",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2",
         "disabled:pointer-events-none disabled:opacity-50",
         className
