@@ -44,11 +44,11 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
                 alt={image.alt}
                 className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
               />
-              <div className="absolute inset-0 flex items-end justify-between gap-1 bg-gradient-to-t from-black/50 to-transparent p-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              <div className="absolute inset-0 flex items-end justify-between gap-1 bg-gradient-to-t from-[var(--la-overlay-scrim)] to-transparent p-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                 <button
                   type="button"
                   onClick={() => setLightboxId(image.id)}
-                  className="rounded-md bg-white/20 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="rounded-md bg-[var(--la-surface-on-media)] px-2 py-1 text-xs font-medium text-[var(--la-text-on-media)] backdrop-blur-sm hover:bg-[var(--la-surface-on-media-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--la-text-on-media)]"
                   aria-label={`Preview ${image.alt}`}
                 >
                   {image.name ? (
@@ -64,7 +64,7 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
                     size="sm"
                     onClick={() => onRemove(image.id)}
                     aria-label={`Remove ${image.alt}`}
-                    className="h-7 w-7 shrink-0 bg-white/20 p-0 text-white backdrop-blur-sm hover:bg-destructive hover:text-white"
+                    className="h-7 w-7 shrink-0 bg-[var(--la-surface-on-media)] p-0 text-[var(--la-text-on-media)] backdrop-blur-sm hover:bg-destructive hover:text-[var(--la-text-on-media)]"
                   >
                     <svg
                       className="h-3.5 w-3.5"
@@ -91,7 +91,7 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
           open={lightboxId !== null}
           onOpenChange={(open) => !open && setLightboxId(null)}
         >
-          <DialogContent className="max-w-3xl border-0 bg-black/90 p-2 shadow-2xl">
+          <DialogContent className="max-w-3xl border-0 bg-[var(--la-overlay-scrim-deeper)] p-2 shadow-2xl">
             <DialogTitle className="sr-only">{lightboxImage?.alt ?? "Image preview"}</DialogTitle>
             {lightboxImage && (
               <div className="relative flex flex-col items-center gap-2">
@@ -101,7 +101,7 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
                   className="max-h-[80vh] w-auto rounded object-contain"
                 />
                 {lightboxImage.name && (
-                  <p className="text-sm text-white/70">{lightboxImage.name}</p>
+                  <p className="text-sm text-[var(--la-text-on-media-muted)]">{lightboxImage.name}</p>
                 )}
               </div>
             )}
@@ -109,7 +109,7 @@ const ImageGallery = React.forwardRef<HTMLDivElement, ImageGalleryProps>(
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute right-2 top-2 h-8 w-8 rounded-full p-0 text-white hover:bg-white/20 hover:text-white"
+                className="absolute right-2 top-2 h-8 w-8 rounded-full p-0 text-[var(--la-text-on-media)] hover:bg-[var(--la-surface-on-media)] hover:text-[var(--la-text-on-media)]"
                 aria-label="Close preview"
               >
                 <svg

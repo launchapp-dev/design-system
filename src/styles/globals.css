@@ -627,6 +627,34 @@
     --la-info-700: hsl(199 88% 33%);
     --la-info-800: hsl(199 84% 28%);
     --la-info-900: hsl(199 79% 23%);
+
+    /* Media overlay tokens — intentionally constant across light/dark.
+       These sit ON user-controlled visual content (videos, photos, lightbox
+       images, dialog scrims). A fixed dark scrim and white chrome is the
+       universal pattern regardless of app color mode, so these tokens do
+       not swap in `.dark`. */
+    --la-overlay-scrim-faint:   rgba(0, 0, 0, 0.1);
+    --la-overlay-scrim-light:   rgba(0, 0, 0, 0.2);
+    --la-overlay-scrim-soft:    rgba(0, 0, 0, 0.4);
+    --la-overlay-scrim:         rgba(0, 0, 0, 0.5);
+    --la-overlay-scrim-medium:  rgba(0, 0, 0, 0.6);
+    --la-overlay-scrim-strong:  rgba(0, 0, 0, 0.7);
+    --la-overlay-scrim-deep:    rgba(0, 0, 0, 0.8);
+    --la-overlay-scrim-deeper:  rgba(0, 0, 0, 0.9);
+    --la-overlay-scrim-near:    rgba(0, 0, 0, 0.95);
+
+    --la-surface-on-media-soft:        rgba(255, 255, 255, 0.1);
+    --la-surface-on-media:             rgba(255, 255, 255, 0.2);
+    --la-surface-on-media-strong:      rgba(255, 255, 255, 0.3);
+    --la-surface-on-media-stronger:    rgba(255, 255, 255, 0.5);
+    --la-surface-on-media-translucent: rgba(255, 255, 255, 0.6);
+    --la-surface-on-media-deep:        rgba(255, 255, 255, 0.9);
+    --la-surface-on-media-near:        rgba(255, 255, 255, 0.95);
+
+    --la-media-canvas:        rgb(0, 0, 0);
+    --la-text-on-media:       rgb(255, 255, 255);
+    --la-text-on-media-muted: rgba(255, 255, 255, 0.7);
+    --la-border-on-media:     rgba(255, 255, 255, 0.3);
   }
 
   .dark {

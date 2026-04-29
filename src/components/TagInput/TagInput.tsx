@@ -312,7 +312,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                       removeTag(tag);
                     }}
                     aria-label={`Remove ${tag}`}
-                    className="ml-0.5 rounded-full hover:bg-black/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    className="ml-0.5 rounded-full hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

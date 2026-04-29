@@ -22,7 +22,7 @@ function SheetOverlay({
     <DialogPrimitive.Overlay
       ref={ref}
       className={cn(
-        "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out",
+        "fixed inset-0 z-50 bg-[var(--la-overlay-scrim-deep)] data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out",
         className,
       )}
       {...props}

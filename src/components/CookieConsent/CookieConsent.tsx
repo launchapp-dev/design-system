@@ -104,7 +104,7 @@ function CookieConsent({
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay
           className={cn(
-            "fixed inset-0 z-50 bg-black/50",
+            "fixed inset-0 z-50 bg-[var(--la-overlay-scrim)]",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           )}
@@ -167,7 +167,7 @@ function CookieConsent({
                 >
                   <SwitchPrimitive.Thumb
                     className={cn(
-                      "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform",
+                      "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform",
                       "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
                     )}
                   />

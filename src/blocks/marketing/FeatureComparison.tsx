@@ -231,7 +231,7 @@ function FeatureComparison({
                         >
                           <span
                             className={cn(
-                              "inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform",
+                              "inline-block h-3.5 w-3.5 transform rounded-full bg-background transition-transform",
                               isAnnual ? "translate-x-5" : "translate-x-1",
                             )}
                           />

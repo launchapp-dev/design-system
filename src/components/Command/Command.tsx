@@ -29,7 +29,7 @@ const CommandDialog = ({
   <CommandPrimitive.Dialog
     className={cn(
       "[&_[cmdk-dialog-content]]:fixed [&_[cmdk-dialog-content]]:left-1/2 [&_[cmdk-dialog-content]]:top-[20%] [&_[cmdk-dialog-content]]:z-50 [&_[cmdk-dialog-content]]:w-full [&_[cmdk-dialog-content]]:max-w-lg [&_[cmdk-dialog-content]]:-translate-x-1/2",
-      "[&_[cmdk-overlay]]:fixed [&_[cmdk-overlay]]:inset-0 [&_[cmdk-overlay]]:z-50 [&_[cmdk-overlay]]:bg-black/80",
+      "[&_[cmdk-overlay]]:fixed [&_[cmdk-overlay]]:inset-0 [&_[cmdk-overlay]]:z-50 [&_[cmdk-overlay]]:bg-[var(--la-overlay-scrim-deep)]",
     )}
     {...props}
   >
